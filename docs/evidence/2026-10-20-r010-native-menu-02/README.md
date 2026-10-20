@@ -50,7 +50,8 @@ Faith sub-mode switching was subsequently user-confirmed; expanded mini-menu
 contents and another UI scale still need coverage before declaring UI parity. R-010 remains open because dependable refresh, unavailable state
 and lifecycle behavior are unverified. Next task is R-005 read-only player/context
 research; broader GUI regression remains pending. This record is included in
-the local probe-02 history snapshot; no push authorized.
+the probe-02 history snapshot, published on research/native-menu-alternative
+after explicit authorization; no probe code merged into main.
 
 
 ## Faith sub-mode follow-up

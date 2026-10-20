@@ -20,7 +20,7 @@ This is not an audit/removal of all private files on the workstation.
   publication scope. Rechecked screenshot EXIF/XMP/ICC metadata: only technical
   image data and Screenshot comments observed, with no identifying/GPS tags.
 
-## Deliberately private or unchanged state
+## Private recovery state and audit-time upstream state
 
 A private, recoverable Git bundle and reference mapping were saved outside the
 repository before rewriting. Raw logs/crash report remain under ignored local/.
@@ -28,7 +28,7 @@ Local reflogs, unreachable old objects and Codex-managed checkpoint refs were
 not purged; they are private recovery/application state, not the publication
 scope. No claims are made that these local recovery copies contain no identity.
 
-No push was performed. GitHub and origin remote-tracking refs retain the
+At the audit checkpoint, no push had been performed. GitHub and origin refs retained the
 previous history, including its original identity/path disclosures. Rewriting
 local branches alone does not erase published content. Replacing upstream
 history requires a separate explicit publishing decision; even then, external
@@ -39,5 +39,16 @@ remain the reviewed evidence, never raw generated API dumps or crash reports.
 
 Use the sanitized local branch history and inspect actual refs/status before any
 publication. Keep commits on the project-local public identity. Operational next
-task remains R-005 read-only player/Dynasty context and guard research; privacy
-cleanup does not approve new mod behavior or a push.
+task remains R-005 read-only player/Dynasty context and guard research; privacy cleanup does not approve new mod behavior.
+
+## Authorized publication completed
+
+On 2026-10-20 the user explicitly approved publishing the sanitized history.
+An atomic push replaced main using an explicit expected-old-hash lease and
+created both research branches with absence leases. Only the three named branch
+refs were sent; no Codex checkpoints, recovery refs, raw logs or private bundle.
+Main points to sanitized research-baseline history; the probe was not merged
+into main. Research/codex-gui-handoff preserves the failed-probe record and
+research/native-menu-alternative preserves the successful probe-02 record and
+this audit. Remote-ref verification follows the publication. Previous GitHub
+caches/clones may still retain old content; replacing refs does not prove purge.

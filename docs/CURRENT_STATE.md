@@ -41,6 +41,7 @@ Updated 2026-10-20. Read after AGENTS.md; synchronize on material changes.
   handoff/test history. Local history was privacy-scrubbed; prior branch bases
   and hashes changed. Sanitized handoff is 13a82c0, probe-02 record 3feefd5.
   Project-local public login/noreply identity configured; global config unchanged.
-  [Privacy audit](PRIVACY_AUDIT.md) defines publication scope. No push performed:
-  GitHub/origin refs still hold old history; local backup/reflogs/checkpoints
-  remain private recovery state. Inspect actual status/history each session.
+  [Privacy audit](PRIVACY_AUDIT.md) defines publication scope. User-authorized
+  atomic push published sanitized main and both research branches on 2026-10-20.
+  No feature merge into main. Old local backup/reflogs/checkpoints stay private;
+  upstream caches/clones may retain earlier data. Inspect actual refs/status.
