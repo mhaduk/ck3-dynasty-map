@@ -17,11 +17,12 @@ IDs such as R-002 are stable planning IDs, separate from GitHub issue numbers.
 | R-006 | [#6](https://github.com/mhaduk/ck3-dynasty-map/issues/6) | P0 | Verify county -> holder -> dynasty transitions | R-004 | Complete — clean generated scope links verified; no runtime claim |
 | R-007 | [#7](https://github.com/mhaduk/ck3-dynasty-map/issues/7) | P0 | Verify `any_liege_or_above` in target build | R-004 | Partial — clean documented traversal verified; runtime pending |
 | R-008 | [#8](https://github.com/mhaduk/ck3-dynasty-map/issues/8) | P0 | Verify county -> de-jure baronies iterator | R-004 | Partial — iterator signatures verified; filtering/runtime pending |
-| R-009 | [#9](https://github.com/mhaduk/ck3-dynasty-map/issues/9) | P0 | Verify barony color writes, dummy-title side effects and exit/restore behavior | R-002,R-004 | Partial — effect signatures verified; rendering/state safety blocked |
+| R-009 | [#9](https://github.com/mhaduk/ck3-dynasty-map/issues/9) | P0 | Verify barony color writes, dummy-title side effects and exit/restore behavior | R-002,R-004 | Partial — shared barony writes/title RGB serialization confirmed; exact restore/removal open. Situation static trace supports county add/remove and region RGB, but view binding/coverage/lifecycle/removal remain unknown; resume after R-014 source inventory |
 | R-010 | [#10](https://github.com/mhaduk/ck3-dynasty-map/issues/10) | P1 | Confirm additive/minimal original GUI integration, unavailable UI and dependable refresh path | R-003 | Partial — placement/basic/Faith smoke and R-005 watcher evidence; raid/barter guards, full parity/refresh/restore open |
 | R-011 | [#11](https://github.com/mhaduk/ck3-dynasty-map/issues/11) | P1 | Capture vanilla error-log baseline without mod | R-001 | Partial — clean startup log empty; save/map interaction and archive pending |
 | R-012 | [#12](https://github.com/mhaduk/ck3-dynasty-map/issues/12) | P1 | Install/configure CK3 Tiger locally | R-001 | Ready |
 | R-013 | [#13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) | P2 | Establish a supported no-Dynasty local-player fixture and verify unavailable UI | R-005 | Deferred — engine rejects the one-attempt player lowborn fixture; no further fixture iteration now |
+| R-014 | [#14](https://github.com/mhaduk/ck3-dynasty-map/issues/14) | P1 | Inventory CK3 modding documentation and source hierarchy; create and integrate a concise source map | R-001,R-004 | Ready — execute in a separate chat before resuming R-009 |
 
 Initial migration verified 2026-10-20, before adding R-013: R-001 / #1, R-002 / #2, R-003 / #3, R-004 / #4 and R-006 / #6 are
 closed as completed; the other seven M0 issues remain open. Ready/Partial/Blocked
@@ -44,12 +45,12 @@ without a Dynasty.
 | ID | Priority | Work item | Depends on |
 |---|---|---|---|
 | F-101 | P0 | Create launcher-generated local mod skeleton | R-001 |
-| F-102 | P0 | Add prefixed dummy color titles | R-009,F-101 |
+| F-102 | P0 | Historical dummy color-source candidate; hold pending R-009 color-input decision | R-009,F-101 |
 | F-103 | P0 | Add custom barony-color map definition | R-002,F-101 |
 | F-104 | P0 | Resolve valid player Dynasty and implement ADR-008 unavailability/context-loss safety, including the deferred no-Dynasty player prerequisite in [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) | R-005,R-009,R-013,F-101 |
 | F-105 | P0 | Implement `DIRECT` county classifier | R-006,F-104 |
 | F-106 | P0 | Implement `CONTROLLED` via verified liege traversal, including no-Dynasty holders | R-006,R-007,F-104 |
-| F-107 | P0 | Propagate county class to baronies | R-008,F-102,F-105,F-106 |
+| F-107 | P0 | Propagate county class to baronies through the R-009-approved color strategy | R-008,F-102,F-105,F-106 |
 | F-108 | P0 | Integrate map-mode button, unavailable state and exit/restore | R-003,R-009,R-010,F-103,F-104,F-107 |
 | F-109 | P1 | Add English localization | F-108 |
 | F-110 | P0 | Implement dependable refresh: verified re-click or minimal explicit mechanism | R-003,R-010,F-108 |

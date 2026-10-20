@@ -10,4 +10,7 @@ Compact index of completed substantial tasks. Investigation detail belongs in th
 | R-004 | Generate current API documentation | Clean `script_docs` and `dump_data_types` generated for the recorded target build. | [#4](https://github.com/mhaduk/ck3-dynasty-map/issues/4) | [R-004](tasks/R-004-generated-api-docs.md) |
 | R-006 | Verify formal scope links | County/barony and holder/Dynasty/House scope links verified in generated docs; no runtime claim. | [#6](https://github.com/mhaduk/ck3-dynasty-map/issues/6) | [R-006](tasks/R-006-scope-links.md) |
 
-R-005 and R-010 remain partial and are not listed as completed. The [R-005 partial checkpoint](tasks/R-005-player-context.md) consolidates its final gates; see [CURRENT_STATE.md](CURRENT_STATE.md) for the current next action and [RESEARCH.md](RESEARCH.md) for reusable findings.
+R-005, R-009 and R-010 remain partial and are not listed as completed. The
+[R-009 checkpoint](tasks/R-009-barony-color-safety.md) records first-batch runtime
+results, title-color serialization and the unresolved independent renderer input.
+The [R-005 partial checkpoint](tasks/R-005-player-context.md) consolidates its final gates; see [CURRENT_STATE.md](CURRENT_STATE.md) for the current next action and [RESEARCH.md](RESEARCH.md) for reusable findings.

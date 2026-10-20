@@ -13,7 +13,7 @@ flowchart LR
     C --> R[Barony color renderer]
     P[Local player Dynasty] --> C
     H[County holder + liege hierarchy] --> C
-    COL[Dummy color titles / color strategy] --> R
+    COL[Color input strategy: unresolved] --> R
 ```
 
 ### 1. Map mode definition
@@ -24,8 +24,10 @@ Expected location:
 
 Installed 1.20.1.1 `game/gfx/map/map_modes/map_modes.txt:116–195` confirms
 that the native `baronies` object uses `color_mode = baronies` (R-002). The
-proposed custom object/path remains a candidate: separate-file loading, custom
-selection and temporary rendering safety still require an authorized probe.
+R-009 user-run batch supports two original custom objects loaded from a separate
+file and selected with this native producer. This is bounded evidence for those
+definitions; temporary rendering safety is unresolved and changed title colors
+are shared with native baronies.
 
 ### 2. Scripted GUI / execution logic
 
@@ -62,19 +64,49 @@ the one-shot `set_to_lowborn` player fixture; no-Dynasty local-player UI remains
 unverified and is deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13). ADR-008 semantics remain unchanged.
 GUI flag invalidation is not title-color restoration. See the [R-005 checkpoint](tasks/R-005-player-context.md).
 
-### 3. Color sources
+### 3. Color sources and renderer input — unresolved
 
-Expected location:
+The historical dummy-title palette candidate proposed three non-creatable source
+titles in `common/landed_titles/dynmap_colors.txt`. R-009 tested four fixed
+research sources, not a production palette or one title per barony. Search
+visibility and CoA/capital errors leave inertness unresolved. Do not implement
+F-102 or add more titles before the color strategy is resolved.
 
-`common/landed_titles/dynmap_colors.txt`
+Generated `set_title_color` accepts named/RGB values; `set_color_from_title`
+introduces a deliberate slight shift. Direct/named writes avoid dummy sources
+but still mutate title state. R-009 confirmed native/custom barony views share
+those mutations and designated AFTER saves serialize explicit title RGB.
+Definition resets do not recover arbitrary live originals; exact capture,
+automatic cleanup and disabled-mod/fresh-process behavior remain open.
 
-For My Dynasty, use a small set of non-creatable dummy landed titles as color sources:
+Current research separates a conceptual ephemeral barony -> county class
+(DIRECT/CONTROLLED/OTHER) mapping from a three-category palette. This preserves
+county-holder/Dynasty/liege semantics and ADR-008 unavailability. It is not an
+implemented classifier, saved palette registry or verified storage API.
 
-- `d_dynmap_direct`
-- `d_dynmap_controlled`
-- `d_dynmap_other`
+The missing link is a supported consumer of that mapping only in our view.
+Native mode definitions select engine producers. The exposed overlay shader
+samples engine-bound province color textures; no generic script/GUI table upload
+or grouping callback was identified in the reviewed surface. Metadata/selection
+bindings and variables alone do not establish that link. Native Realms, Houses
+and Faith/Rite grouping cannot substitute for the required classifier.
 
-Exact RGB values are intentionally deferred until in-game testing because lighting/terrain blending affects perceived contrast. CK3 1.20.1.1 script_docs verifies `set_title_color` on `landed_title` with named/RGB colors, and `set_color_from_title` from `landed_title` to `landed_title`. The latter deliberately shifts the copied color slightly; a shared source does not guarantee identical RGB values. This finding does not select a new color strategy. Persistence, restoration and map-only isolation remain UNKNOWN (see RESEARCH.md).
+Situation sub-region/group `map_color` and membership are a documented
+specialized consumer. The bounded feasibility trace found installed add/remove
+usage with individual county titles and a native sub-region color mode. It also
+found a world-Situation lifecycle and game-view selection by object ID, not a
+demonstrated local ephemeral buffer or independent named-map binding. Both
+automatic enrollment paths can be disabled and authored gameplay hooks omitted;
+zero-participant rendering, exact county/barony coverage, competing Situation
+selection, saved/shared behavior and exit/removal safety remain unverified.
+The route remains unevaluated for production pending those unknowns; this is
+not approval or static disproof. The user has not rejected persistent state in
+general; the concern is repurposing unrelated titles or Situations as fragile
+map workarounds. Shared shader recoloring also lacks a demonstrated dynamic
+classification input/view gate.
+See the [R-009 trace](tasks/R-009-barony-color-safety.md#native-color-data-trace--static-evidence)
+and [RESEARCH.md](RESEARCH.md#r-009-native-color-data-and-renderer-boundary).
+No strategy or ADR semantics are changed; implementation stays gated.
 
 ### 4. GUI integration
 

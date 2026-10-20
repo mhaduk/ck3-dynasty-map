@@ -53,7 +53,9 @@ untested behavior and known limitations.
 | Exit to another map mode | Restore expected visuals with no leaked Dynasty colors; record the API-supported restoration mechanism |
 | Render lowborn/no-Dynasty holder under qualifying dynastic liege | CONTROLLED, never automatically OTHER |
 
-M0 must determine UI disabling/hiding and context-invalidation/restore hooks.
+M0 must determine UI disabling/hiding and player-context invalidation under
+R-005/R-010; R-009 separately owns title-color exit/context-loss restoration.
+Clearing a GUI marker or restoring launcher selection does not restore colors.
 Unavailable activation must not classify or write colors; restoration cleanup on
 loss of an active context is a separate operation and may need restore writes.
 Use runtime/probe evidence sufficient to demonstrate those distinctions.
@@ -81,6 +83,35 @@ validation error must remain distinguishable from that noise. Color restoration,
 active-map persistence and cleanup stay in R-009 and future implementation
 tests. The SUCCESSION diagnostic kills a ruler: do not rerun it as routine
 documentation work.
+
+## M0 R-009 evidence snapshot — 2026-10-20
+
+The isolated [batch](../research/probes/barony-color-batch/README.md) was installed
+and user-run; its [checklist](../research/probes/barony-color-batch/BATCH_TEST.md)
+now records executed/skipped/untested coverage. No repeat or new launch is
+requested. R009 remains installed but disabled; prior playset selection was
+restored by GUI after the user exited.
+
+| Area | Evidence / remaining gate |
+|---|---|
+| Fixed-target RGB/named/copy writes | Visible success plus receipts; counts differed from planned repeats. Exact per-copy drift is unmeasured; AFTER contains distinct A/B RGB values |
+| Native/minimal/filled custom baronies | Reported rendering; shared mutated state also visible in native baronies. Differing crops/zoom do not measure intensity |
+| Exit/comparison/context loss | Other modes reportedly normal within bounded coverage; returning to baronies and reported observer retained colors. No automatic cleanup |
+| Save/reload | Same-process enabled-mod reload retained colors before writes; read-only designated save copies separately prove title RGB serialization. Fresh-process/disabled-mod load remains untested |
+| Definition resets / BEFORE | C08/C11 made targets red, not exact arbitrary-original restoration. BEFORE loaded after resets, so rollback from marked state is unproven |
+| Title-root C09/C10 | C09 received once with valid player. Reported observer clicks had no new receipt; C10 skipped. Do not infer dispatch cause |
+| Fixtures / errors | Four sources visible in Find Title with CoA errors; cyan missing capital, C04 skipped; two files lack BOM. Actual creation untested; user-reported creatability unverified. Court-scene errors remain, GUI warnings empty |
+
+No production classifier, local-only color storage, exact live-original getter,
+automatic restore or removal safety has been established. R-009's new static
+trace found no generic table-to-renderer input in the reviewed surface; Situation
+colors/membership provide a documented specialized consumer with unresolved
+view binding, coverage, lifecycle and save/removal behavior. R-014's source
+inventory is next in a separate chat; resume R-009 afterward with its source map
+before deciding what further evidence is useful. Persistent state is not
+categorically rejected; the concern is a fragile workaround built from unrelated
+game systems. Any runtime scope needs a fresh design and explicit authorization.
+See the [canonical partial checkpoint](tasks/R-009-barony-color-safety.md).
 
 ## My Dynasty functional matrix
 

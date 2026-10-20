@@ -1,6 +1,6 @@
 # Current State
 
-Updated 2026-10-20. Primary operational handoff; detailed findings remain in their canonical documents.
+Updated 2026-10-21. Primary operational handoff; detailed findings remain in their canonical documents.
 
 ## Environment / Project Context
 
@@ -10,11 +10,19 @@ Updated 2026-10-20. Primary operational handoff; detailed findings remain in the
 
 ## Current Task
 
+- **R-009 — Barony color side effects, map isolation and exit/restore** ([Issue #9](https://github.com/mhaduk/ck3-dynasty-map/issues/9)).
+- **Status:** Partial / active; first user-run batch, native-color data trace and static Situation feasibility checkpoint consolidated in the [R-009 checkpoint](tasks/R-009-barony-color-safety.md). Native/custom barony writes share state and serialize title RGB. Situation county-key add/remove and independent region RGB have installed usage/contracts; renderer coverage, isolated view binding and safe lifecycle/removal remain unverified.
+- **Next action:** review the prepared R-009 publication package, then execute R-014 / #14 in a separate chat. R-009 remains partial/open and resumes after R-014 with the source map as a guide to renderer leads. Do not prepare another Situation probe now. Persistent state is not categorically prohibited; the concern is repurposing unrelated titles/Situations as fragile map workarounds. No production strategy selected and no ADR rewritten. Publication preparation made no staging/commit/push or GitHub writes.
+- **Scope:** first-launch batch completed and prior enabled selection restored; R009 remains installed but disabled. User authorized the reviewed single checkpoint commit, normal push to the existing research branch and #9 body replacement with the issue kept open. Publication is pending execution at this checkpoint. No other GitHub writes or new runtime stage; mod-disabled/fresh-process observation remains a separate future scope.
+- **App state:** user reports CK3 closed and launcher reopened. GUI restored prior enabled selection and verified launcher UI plus enabled-mod manifest; no Codex game UI inspection/control. Saves and raw evidence preserved.
+
+## Previous R-005 checkpoint
+
 - **R-005 — Player context, validity guards, and context-loss handling** ([Issue #5](https://github.com/mhaduk/ck3-dynasty-map/issues/5)).
 - **Goal:** establish safe local-player/Dynasty entry and context-loss behavior for ADR-008.
 - **Status:** Partial / active.
 - **Current checkpoint:** [FINAL GUARDS](evidence/2026-10-20-r005-player-context/final-guards-result.md) A passed for the tested displayed UI path into observer; B's one-shot `set_to_lowborn` fixture was rejected on the player character, so no-Dynasty local-player UI remains unverified and is deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13). The consolidated [R-005 checkpoint](tasks/R-005-player-context.md) was reviewed and accepted as a partial checkpoint. Do not run more fixtures or repeat passed cases.
-- **Next action:** R-009 is the next research task after verification of the authorized publication; use branch history and #5/#10 for the publication outcome. No additional R-005 runtime tests are requested. R-009 (barony color side effects, map isolation and exit/restore) follows in a separate chat and has not started here. R-010 remains separate for native-menu parity/refresh. The user closed CK3 and opened the launcher; Codex restored the prior selection in the existing Dynasty Map - GUI Probe playset (Native Menu Probe on, ENTRY diagnostic off), confirmed by launcher UI and enabled_mods. The diagnostic remains installed but disabled.
+- **Handoff:** the R-005 publication is recorded locally; current branch history includes its checkpoint at `c14a06f`. No additional R-005 runtime tests are requested. R-009 has started in its own chat with context collection and batch preparation. R-010 remains separate for native-menu parity/refresh. The user closed CK3 and opened the launcher; Codex restored the prior selection in the existing Dynasty Map - GUI Probe playset (Native Menu Probe on, ENTRY diagnostic off), confirmed by launcher UI and enabled_mods. The diagnostic remains installed but disabled.
 - **Blockers/open questions:** A is bounded external UI evidence, not direct invalid-root safety or proof against every transition race; no-Dynasty local-player UI is unverified. Do not invoke the known NULL diagnostic again. Do not repeat passed switch, succession, observer or activation-after-load cases.
 - **Runtime state / permission:** final results are user-led; the final checkpoint includes fixture rejection in error.log. Earlier whole-run logs contain excluded court-scene errors. Do not claim clean overall logs. User reported game exit; prior playset selection was restored and verified. Diagnostic files remain installed but disabled; no files or saves were deleted. Preserve saves and evidence.
 - **App ownership:** CLI runs ready file/code/install/log tasks without waiting for user actions. Codex GUI owns code coordination, launcher/mod configuration, instructions and log analysis; it must not inspect, screenshot or control the CK3 game UI. The user alone opens launcher/game through Steam and performs all in-game loading, saving, character/observer changes and diagnostic clicks. Reuse the existing test playset.
@@ -23,10 +31,11 @@ Updated 2026-10-20. Primary operational handoff; detailed findings remain in the
 
 ## Next Up
 
-1. **R-009** — resolve barony color side effects, map isolation, and exit/restore.
-2. **R-010** — complete native-menu parity, availability, refresh, and lifecycle checks.
-3. **R-007 / R-008** — runtime-check liege traversal and county-to-de-jure-barony behavior.
-4. **R-011 / R-012** — complete vanilla baseline and CK3 Tiger setup/validation prerequisites.
+1. **R-014** — inventory CK3 documentation/source hierarchy and integrate the concise source map in a separate chat.
+2. **R-009** — resume renderer-input and lifecycle research after R-014; no probe is prepared or authorized by this checkpoint.
+3. **R-010** — complete native-menu parity, availability, refresh, and lifecycle checks.
+4. **R-007 / R-008** — runtime-check liege traversal and county-to-de-jure-barony behavior.
+5. **R-011 / R-012** — complete vanilla baseline and CK3 Tiger setup/validation prerequisites.
 
 ## Last Completed
 
@@ -43,7 +52,7 @@ Updated 2026-10-20. Primary operational handoff; detailed findings remain in the
 ## Active Blockers
 
 - R-005 / RG-PLAYER-01: no-Dynasty local-player UI deferred to R-013; safe direct invalid-root behavior remains unproven despite bounded external UI evidence for A.
-- R-009 / RG-STATE-01: safe map-only color writes and exit/restore behavior.
+- R-009 / RG-STATE-01: supported view-specific color input and safe exit/removal behavior.
 - R-010 / RG-UI-01: complete native-menu behavior and dependable refresh.
 
 ## Relevant Unresolved Questions

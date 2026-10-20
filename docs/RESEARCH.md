@@ -202,20 +202,208 @@ an identical value. Do not assume identical RGB values across titles using the
 same source. No replacement color strategy is selected by this finding.
 
 Barony iteration yields the `landed_title` scope accepted by these effects;
-this verifies scope compatibility, not safe temporary rendering. Persistence,
-restoration and map-only isolation are UNKNOWN.
+this verifies scope compatibility, not safe temporary rendering. Later R-009
+evidence below confirms shared barony state and title RGB serialization; safe
+restoration and removal remain unresolved.
+
+### R-009 batch preparation — focused static findings
+
+During preparation on 2026-10-20, focused read-only inspection for the isolated
+[research batch](../research/probes/barony-color-batch/README.md) added the
+following source evidence. No target regeneration, installation or runtime
+probe was performed in that preparation stage; subsequent runtime/save results
+are recorded below. Earlier effect/renderer findings are reused.
+
+- `common/landed_titles/00_landed_titles.txt:2330–2373` identifies
+  `b_london`/1527 and `b_southwark`/1526, each with definition RGB
+  `{ 230 5 5 }`, and neighboring `b_woxbrigge`/1528. Static definition values
+  do not capture a live title's original customization or earlier mutations.
+- `common/landed_titles/_landed_titles.info:34–61,103–109,152–157,225–237`
+  documents title color, landless/domicile, automatic claims, drift and distinct
+  normal/partition creation guards. `can_create_on_partition` is used instead
+  of `can_create` for partition. Both guards are false in every original dummy
+  fixture; landless/claims/drift variants remain runtime inertness hypotheses.
+- `common/named_colors/default_colors.txt:1–24` and
+  `culture_colors.txt:1–15` show the named registry and RGB entries. Combined
+  with the generated named-color write signature, this grounds an original
+  named-color versus direct-RGB candidate; it is not a runtime registration pass.
+- Generated `data_types_uncategorized.txt:673–675,113889–113891,114825–114827`
+  exposes `GetTitleByKey` returning Title, `Title.MakeScope` returning Scope,
+  and `Title.IsValid`. `data_types_script.txt:4147–4149` exposes SetRoot;
+  installed `gui/window_title.gui:289` uses a title-root scope for a breakdown,
+  while `common/scripted_guis/pam_scripted_guis.txt:55–65` demonstrates
+  non-character scripted-GUI scopes. A title-root Execute combination is a
+  grounded hypothesis at preparation time. Later C09 received once with a valid
+  player; observer dispatch and C10 cleanup were not demonstrated.
+  Installed `gui/debug/window_component_library.gui:719–727` uses `IsInGame`
+  visibility; the new diagnostic panel uses that gate to exclude frontend use.
+
+Focused searches of generated effects/event-targets and the exposed Title type
+found no arbitrary title-color getter, exact snapshot or reset-color signature.
+The customization window's color getter is not a demonstrated arbitrary-title
+snapshot interface. This is a bounded negative finding, not proof that another
+engine path does not exist. Name/coat-of-arms reset effects do not document a
+color reset. Copying a color into a dummy would introduce documented copy drift
+and higher-tier writes; the batch does not use that as an exact snapshot.
+
+Consequently, the batch used only explicit static-definition reset experiments.
+C08/C11 later ran; C10 was skipped. No automatic exit/context-loss color write
+or exact-original restoration is claimed.
+[The R-009 checkpoint](tasks/R-009-barony-color-safety.md) records the full
+capability/unknown matrix; RG-STATE-01 remains open.
+
+### R-009 native color data and renderer boundary
+
+Focused read-only follow-up on the unchanged target reused R-002/R-003 and
+traced additional color sources, shader consumers and a concrete alternative.
+Full matrix and limits: [R-009 checkpoint](tasks/R-009-barony-color-safety.md#native-color-data-trace--static-evidence).
+
+- Baronies consumes mutable title map RGB: definitions/effects plus user-run
+  native/custom views and serialized A/B overrides establish that connection.
+  A separate definition key does not provide separate color storage.
+- Realms selects `selected_character_realms` (`map_modes.txt:276–281`). Native
+  descriptions identify ruler/realm and vassal exploration; graphic defines
+  document liege/vassal zoom, tributary/confederation mixing and civil-war
+  primary-title interpolation (`common/defines/graphic/00_graphics.txt:225–226,435–438`).
+  The full ordinary realm grouping/RGB algorithm remains opaque.
+- Houses tooltip uses title -> `GetHouseMapModeTitleHolder` -> House
+  (`localization/english/gui/map_l_english.yml:104–105`; generated
+  `data_types_uncategorized.txt:113829–113831`). Exact display-holder selection
+  and RGB source remain unknown. House/Dynasty template `color` is documented
+  as read but unused by game logic (`common/dynasty_houses/_dynasty_houses.info:39–42`;
+  `common/dynasties/_dynasties.info:41–44`); no reusable active map palette is
+  demonstrated. House grouping is not Dynasty grouping.
+- Faiths mode is `religions` / `religions` (`map_modes.txt:1434–1441`). Native
+  description distinguishes county faith, selected-Faith rites at close zoom
+  and county/top-liege mismatch stripes (`localization/english/gui/ingame_main_l_english.yml:39`).
+  Tooltip reads county Rite/parent Faith (`gui/map_l_english.yml:116–121` under
+  localization). Faith and Rite schemas expose RGB/map color; mainline Rite
+  templates copy faith colors (`common/religion/faith_types/_faith_types.info:1–12`;
+  `rite_types/_rite_types.info:27–40`, `rite_types/02_mainline_rite_types.txt:4–17`,
+  latter paths under `common/religion/`). Religious membership mutation is not
+  an independent category channel; precise zoom/stripe/cache behavior is opaque.
+- `gfx/FX/jomini/jomini_province_overlays.fxh:9–26,77–135` binds engine resources
+  `JominiProvinceColorIndirection` and `JominiProvinceColor`, then samples and
+  blends primary/secondary/alternate colors. `gfx/FX/bordercolor.fxh:55–75`
+  adds pattern/desaturation/lighting. Shader text exposes consumption, not the
+  mode-specific producer or a supported dynamic table writer.
+- Generated `MapMode` exposes metadata/accessors, not color submission/provider
+  registration/cache invalidation (`data_types_uncategorized.txt:86117–86160`).
+  Selection/variables/lists alone do not connect a custom barony -> class ->
+  palette model. No generic input hook was identified in focused map types,
+  effects/event-targets, relevant schemas, token references and shader bindings;
+  this is a bounded negative result, not proof of universal engine impossibility.
+- Situation is a **positive specialized consumer**: native `situation` renderer
+  (`map_modes.txt:5226–5231`), group/sub-region `map_color`, membership and
+  character-validity triggers (`common/situation/situations/_situations.info:64–98,114–185`).
+  `start_situation` accepts sub-region RGB; title-region effects add/remove
+  de-jure counties (`effects.log:2857–2876,18244–18256,18423–18435`). Phase
+  province effects also exist (Situation schema `:267–271`;
+  `gfx/map/province_effects/_province_effects.info:5–16,24–38`). Neither route
+  has runtime-verified county coverage, independent selection, local-only storage,
+  automatic lifecycle or harmless removal. County-key add/remove now has installed
+  usage evidence below. Nonoverlap/255 limits apply; three regions fit the limit.
+
+Recommendation: preserve the conceptual independent class/palette model, with
+its renderer connection unverified. The static Situation trace below advances
+membership/selection research; GUI review precedes any separately scoped probe
+or classifier. Native grouping/shader recolor cannot silently replace Dynasty
+semantics. Direct/named title writes remain a tested state-mutating fallback
+with unresolved restoration, not an approved production strategy. No ADR change.
+
+### R-009 Situation feasibility — static evidence
+
+Result: **blocked on named unknowns**, not an approved architecture. Full
+requirement matrix and operational limits:
+[Situation checkpoint](tasks/R-009-barony-color-safety.md#situation-feasibility--static-checkpoint).
+
+- The first earthquake object in
+  `common/situation/situations/tgp_natural_disaster.txt:1–180` starts with an empty
+  area. `common/scripted_effects/10_dlc_tgp_natural_disaster_scripted_effects.txt:73–133`
+  starts it and adds the epicenter **county** and neighboring **counties** using
+  `add_dejure_title_to_sub_region`.
+  `events/situation_events/tgp_natural_disaster_events.txt:43–84,87–110` removes
+  individual counties and explicitly ends the Situation. This supports dynamic
+  county-key membership at installed-script level; exact barony/unheld/nonstandard
+  coverage, cross-region moves and empty-category rendering remain untested.
+- Earthquake defaults to participant-group mode. The distinct
+  `map_mode = sub_regions` example with region RGB is
+  `common/situation/situations/game_extra_nomads_sami.txt:1–24`. This is an actual
+  category-area/color input contract without title-color writes or new titles.
+  Three disjoint regions fit the 255 limit. It does not prove rendering with zero
+  participants or all three regions displayed together.
+- Selection opens a world object's view by ID
+  (`gui/window_situation_list.gui:369–374`; `gui/map_icon_layer.gui:6068–6086`);
+  generic sub-region selection is separate (`gui/window_situation.gui:70–114,738–744`).
+  No independent named-map-to-Situation binding or arbitration between concurrent
+  Situation views was established. Close and return-to-realms are not documented
+  to end the world object or clear its region state.
+- Both auto-add switches can be disabled; authored pulse/join/phase effects,
+  modifiers and migration need not be copied from disasters
+  (`common/situation/situations/_situations.info:129–218,245–278,332–365`). Thus
+  disaster gameplay is not mandatory generic behavior. Complete engine/UI
+  inertness remains unverified. Other-tab items include nonparticipants;
+  `PinSituation` hides only shortcuts (`gui/window_situation_list.gui:261–272,512–550`;
+  `localization/english/situations/situation_list_window_l_english.yml:14–18`).
+- Participant/group `on_leave` does not run when the Situation ends
+  (`_situations.info:170–175,200–208`). Start/membership/end are world simulation
+  operations, not demonstrated local GUI storage. A temporary scope reference
+  does not make the created object temporary. Exact serialization/synchronization,
+  post-end residue, disabled-mod load and ADR-008 renderer cleanup remain unknown;
+  no Situation save inspection or runtime was performed. Multiplayer unsupported.
+- Sami creation is explicitly MPO/game-rule gated
+  (`common/on_action/game_start.txt:2688–2697`); generic Situation feature/DLC
+  requirements are not established by schema or generated start signature.
+  Phase province overlays retain the same carrier/lifecycle gaps and introduce
+  shared effect-channel priority; they do not resolve this feasibility boundary.
+
+The user has not rejected persistent state categorically; the concern is whether
+repurposing unrelated title/Situation systems would be a fragile workaround.
+Situation remains unapproved pending source-led review of view binding,
+coverage, lifecycle, save/removal and gameplay/UI effects. No local-only
+alternative was found in the inspected surface. Any runtime scope requires a
+fresh design and explicit authorization. No source/install/runtime stage,
+classifier, new titles or ADR revision follows from this static checkpoint.
+
+### R-009 first-run and save evidence
+
+User-run batch visibly applied direct/named/copy colors, loaded two original
+custom barony definitions and retained changed colors through native/custom view
+round-trips, same-process AFTER reload and reported observer context loss.
+Other modes reportedly looked normal within bounded visual coverage. These
+observations do not establish map-only isolation. Actual receipt totals:
+C01=2, C02=1, C03=5, C05=2, C06=1, C07=2; C08/C11 each once. C04/C10 skipped.
+C09 received only in the initial valid-player baseline; no new observer receipt
+and no dispatch cause inferred. Definition resets made targets red, not exact
+arbitrary originals. BEFORE load followed resets and is not independent rollback.
+
+Read-only designated BEFORE/AFTER inspection on ignored copies with unchanged
+original hashes confirms explicit title-level A/B RGB overrides only in AFTER,
+separate from CoA references; the two stored values differ. This proves title
+RGB serialization, not a per-copy drift law or successful fresh-process/mod-disabled
+load. Absent BEFORE fields are not a live-original getter. Four fixture records
+occur in both; presence is not creation/ownership evidence. No native House/
+Realms/Faith storage inference follows from those title records.
+
+All four sources are visible in Find Title with CoA generation errors; cyan
+lacks a capital, two source files lack BOM and court-scene errors occur. GUI
+warnings empty; no whole-run-clean claim. Actual creation untested; reported
+creatability is unverified. Prior enabled selection restored after user exit;
+R009 installed but disabled. No new launch/repeat is requested.
 
 ### Still UNKNOWN
 
-- temporary map-only coloring and save persistence;
-- safe restoration on exit, context loss or mod removal;
-- refresh/recompute lifecycle and dependable activation/re-click behavior;
-- custom grouping/classification callback for the native renderer;
-- native House map color source and direct House/Dynasty color access;
-- runtime performance and color leakage into other map modes.
+- supported independent view-specific class/palette consumption;
+- safe exact-original restoration on exit/context loss/removal for title writes;
+- fresh-process/disabled-mod loading of marked saves and fixture residue;
+- per-mode cache/update contracts, dependable refresh and local/shared execution;
+- exact House RGB origin and reusable Dynasty grouping;
+- Situation county/barony coverage, zero-participant rendering, independent
+  selection, saved/shared behavior and lifecycle (county-key input now supported);
+- performance and broader comparison-mode/zoom leakage.
 
-These remain open M0 questions. Generated script_docs signatures do not by
-themselves verify visual results, local-only execution or lifecycle safety.
+These remain open M0 questions. Generated signatures and shader/configuration
+inspection do not by themselves verify runtime/locality/lifecycle safety.
 
 ## VERIFIED — R-002 installed map-mode definitions (2026-10-20)
 
@@ -224,7 +412,9 @@ Read-only inspection of `game/gfx/map/map_modes/map_modes.txt` (6,239 lines;
 SHA-256 `feb28bbd29604cda4aeae2ac31e99f44fa4092b2de163f765b219a8e7775b115`).
 No files were copied from vanilla or modified, and no runtime probe was run.
 R-002 / [#2](https://github.com/mhaduk/ck3-dynasty-map/issues/2) is complete
-as static definition research; custom loading and rendering are not verified.
+as static definition research; custom loading/rendering were unverified then.
+The later R-009 batch above supports the two tested original custom definitions;
+the R-002 entry below preserves its historical static findings.
 
 ### Definition structure and relevant native objects
 

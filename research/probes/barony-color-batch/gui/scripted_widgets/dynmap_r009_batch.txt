@@ -1,0 +1,1 @@
+﻿gui/dynmap_r009_batch.gui = dynmap_r009_batch_widget

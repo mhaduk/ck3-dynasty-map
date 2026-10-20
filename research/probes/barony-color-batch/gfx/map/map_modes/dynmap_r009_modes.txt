@@ -1,0 +1,44 @@
+# Minimal original candidate. Separate-file discovery and default fill untested.
+# Does not override native baronies; controls can select native mode independently.
+dynmap_r009_baronies = {
+    color_mode = baronies
+    small_map_names = baronies
+    large_map_names = baronies
+    selection = baronies
+    fill_in_impassable = no
+}
+
+# A01 independent original filled candidate, selectable in the same launch.
+dynmap_r009_baronies_filled = {
+    color_mode = baronies
+    small_map_names = baronies
+    large_map_names = baronies
+    selection = baronies
+    fill_in_impassable = no
+    gradient_parameters = {
+        zoom_step = 2
+        gradient_alpha_inside = 0.8
+        gradient_alpha_outside = 0.8
+        gradient_width = 0.25
+        gradient_color_mult = 1
+        edge_width = 0.02
+        edge_sharpness = 0.01
+        edge_alpha = 1
+        edge_color_mult = 0.6
+        before_lighting_blend = 0.4
+        after_lighting_blend = 0.9
+    }
+    gradient_parameters = {
+        zoom_step = 9
+        gradient_alpha_inside = 1
+        gradient_alpha_outside = 0.8
+        gradient_width = 0.25
+        gradient_color_mult = 1
+        edge_width = 0.03
+        edge_sharpness = 0.01
+        edge_alpha = 1
+        edge_color_mult = 0.6
+        before_lighting_blend = 0.4
+        after_lighting_blend = 0.9
+    }
+}

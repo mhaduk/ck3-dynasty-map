@@ -1,0 +1,4 @@
+# Original probe value, shared by C01 and C02.
+colors = {
+    dynmap_r009_magenta = { 240 25 200 }
+}
