@@ -22,7 +22,7 @@ IDs such as R-002 are stable planning IDs, separate from GitHub issue numbers.
 | R-011 | [#11](https://github.com/mhaduk/ck3-dynasty-map/issues/11) | P1 | Capture vanilla error-log baseline without mod | R-001 | Partial — clean startup log empty; save/map interaction and archive pending |
 | R-012 | [#12](https://github.com/mhaduk/ck3-dynasty-map/issues/12) | P1 | Install/configure CK3 Tiger locally | R-001 | Ready |
 | R-013 | [#13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) | P2 | Establish a supported no-Dynasty local-player fixture and verify unavailable UI | R-005 | Deferred — engine rejects the one-attempt player lowborn fixture; no further fixture iteration now |
-| R-014 | [#14](https://github.com/mhaduk/ck3-dynasty-map/issues/14) | P1 | Inventory CK3 modding documentation and source hierarchy; create and integrate a concise source map | R-001,R-004 | Ready — execute in a separate chat before resuming R-009 |
+| R-014 | [#14](https://github.com/mhaduk/ck3-dynasty-map/issues/14) | P1 | Inventory CK3 modding documentation and source hierarchy; create and integrate a concise source map | R-001,R-004 | Complete — [source map](CK3_SOURCE_MAP.md) and agent/workflow integration |
 
 Initial migration verified 2026-10-20, before adding R-013: R-001 / #1, R-002 / #2, R-003 / #3, R-004 / #4 and R-006 / #6 are
 closed as completed; the other seven M0 issues remain open. Ready/Partial/Blocked

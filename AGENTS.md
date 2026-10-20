@@ -2,6 +2,8 @@
 
 Read [CURRENT_STATE.md](docs/CURRENT_STATE.md), then [TASK_HISTORY.md](docs/TASK_HISTORY.md). Read the active task and only the deeper project documents it needs. Reuse completed findings; do not repeat target-build research unless the build changes, evidence conflicts, or revalidation is requested.
 
+For CK3 source discovery, start with the [source map](docs/CK3_SOURCE_MAP.md) and open only its recommended target-build sources before broad installation or web searches.
+
 Keep one substantial backlog task per chat. Preserve stable task IDs and update the state/index when work materially changes. Use [CODEX_WORKFLOW.md](docs/CODEX_WORKFLOW.md) for GUI/CLI handoff, model choice, task finalization, GitHub permissions, and privacy gates. For a scoped delegated CLI task, use `.codex-sync/` and avoid overlapping edits.
 
 Before substantial work, choose GUI or CLI explicitly. Default to CLI for bounded source preparation, documentation updates and mechanical work once the design and acceptance criteria are clear, even if GUI performed the preceding research. Prepare the handoff instead of doing the delegated work in GUI. Keep GUI for coordination, unresolved reasoning and result review; small direct edits are allowed when handoff overhead would exceed the work. State a concrete reason when retaining substantial CLI-suitable work in GUI. See the workflow routing rules.

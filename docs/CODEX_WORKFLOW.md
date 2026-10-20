@@ -7,7 +7,7 @@ This document is the detailed operating procedure. Keep [AGENTS.md](../AGENTS.md
 1. Read `AGENTS.md`, `docs/CURRENT_STATE.md`, and `docs/TASK_HISTORY.md`.
 2. Identify the active stable task ID. Read its issue/definition only if needed, then load only the relevant sections of deeper docs and evidence.
 3. Check Git status before editing. Preserve unrelated user changes. One substantial backlog task belongs in one chat; keep iterations of that task in the same chat.
-4. Reuse completed findings. Repeat research only when the CK3 target changes, evidence conflicts, or revalidation is explicitly part of the task.
+4. For CK3 research, identify the subsystem, consult [CK3_SOURCE_MAP.md](CK3_SOURCE_MAP.md), then inspect only the recommended target-build/generated/vanilla sources. Escalate to separately authorized runtime work or bounded community discovery only when static sources leave the question unresolved. Reuse completed findings; repeat target-build research only when the build changes, evidence conflicts, or revalidation is requested.
 
 ## Model choice
 

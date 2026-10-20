@@ -12,8 +12,8 @@ Updated 2026-10-21. Primary operational handoff; detailed findings remain in the
 
 - **R-009 — Barony color side effects, map isolation and exit/restore** ([Issue #9](https://github.com/mhaduk/ck3-dynasty-map/issues/9)).
 - **Status:** Partial / active; first user-run batch, native-color data trace and static Situation feasibility checkpoint consolidated in the [R-009 checkpoint](tasks/R-009-barony-color-safety.md). Native/custom barony writes share state and serialize title RGB. Situation county-key add/remove and independent region RGB have installed usage/contracts; renderer coverage, isolated view binding and safe lifecycle/removal remain unverified.
-- **Next action:** review the prepared R-009 publication package, then execute R-014 / #14 in a separate chat. R-009 remains partial/open and resumes after R-014 with the source map as a guide to renderer leads. Do not prepare another Situation probe now. Persistent state is not categorically prohibited; the concern is repurposing unrelated titles/Situations as fragile map workarounds. No production strategy selected and no ADR rewritten. Publication preparation made no staging/commit/push or GitHub writes.
-- **Scope:** first-launch batch completed and prior enabled selection restored; R009 remains installed but disabled. User authorized the reviewed single checkpoint commit, normal push to the existing research branch and #9 body replacement with the issue kept open. Publication is pending execution at this checkpoint. No other GitHub writes or new runtime stage; mod-disabled/fresh-process observation remains a separate future scope.
+- **Next action:** resume R-009 renderer-input and lifecycle research in its existing chat using the new [CK3 source map](CK3_SOURCE_MAP.md). R-009 remains partial/open; do not prepare another Situation probe now. Persistent state is not categorically prohibited; the concern is repurposing unrelated titles/Situations as fragile map workarounds. No production strategy selected and no ADR rewritten. R-009 publication preparation made no staging/commit/push or GitHub writes.
+- **Scope:** first-launch batch completed and prior enabled selection restored; R009 remains installed but disabled. User authorized the reviewed single checkpoint commit, normal push to the existing research branch and #9 body replacement with the issue kept open. The local R-009 checkpoint commit is present in Git history; remote publication status was not revalidated by R-014. No other GitHub writes or new runtime stage; mod-disabled/fresh-process observation remains a separate future scope.
 - **App state:** user reports CK3 closed and launcher reopened. GUI restored prior enabled selection and verified launcher UI plus enabled-mod manifest; no Codex game UI inspection/control. Saves and raw evidence preserved.
 
 ## Previous R-005 checkpoint
@@ -31,14 +31,14 @@ Updated 2026-10-21. Primary operational handoff; detailed findings remain in the
 
 ## Next Up
 
-1. **R-014** — inventory CK3 documentation/source hierarchy and integrate the concise source map in a separate chat.
-2. **R-009** — resume renderer-input and lifecycle research after R-014; no probe is prepared or authorized by this checkpoint.
-3. **R-010** — complete native-menu parity, availability, refresh, and lifecycle checks.
-4. **R-007 / R-008** — runtime-check liege traversal and county-to-de-jure-barony behavior.
-5. **R-011 / R-012** — complete vanilla baseline and CK3 Tiger setup/validation prerequisites.
+1. **R-009** — resume renderer-input and lifecycle research in its existing chat; no probe is prepared or authorized by this checkpoint.
+2. **R-010** — complete native-menu parity, availability, refresh, and lifecycle checks.
+3. **R-007 / R-008** — runtime-check liege traversal and county-to-de-jure-barony behavior.
+4. **R-011 / R-012** — complete vanilla baseline and CK3 Tiger setup/validation prerequisites.
 
 ## Last Completed
 
+- **R-014** — source hierarchy inventory and persistent agent/workflow integration. Source map and integration complete; publication and #14 closure authorized. See [source map](CK3_SOURCE_MAP.md) and [task summary](tasks/R-014-source-map.md).
 - **R-006** — generated target-build scope links for county/barony, holder, Dynasty, and House verified; no runtime claim. See [task history](TASK_HISTORY.md) and [RESEARCH.md](RESEARCH.md).
 
 ## Relevant Verified Baseline

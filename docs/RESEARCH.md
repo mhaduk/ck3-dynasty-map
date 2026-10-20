@@ -11,6 +11,7 @@ are summarized here and in CURRENT_STATE.md.
 
 | Subject | Reusable finding | Status / task |
 |---|---|---|
+| CK3 source discovery | [Source hierarchy and quick lookup](CK3_SOURCE_MAP.md) | R-014 complete; use this index before broad source searches |
 | Target build and evidence quality | [Evidence policy](#evidence-policy-and-target-build-status); [generated API baseline](#verified--ck3-12011-crozier-generated-script_docs) | 1.20.1.1 signatures verified; runtime limits stated per finding |
 | Player context and validity | [R-005 consolidated status](#r-005--consolidated-status-2026-10-20) | Partial / open, R-005 |
 | Scope transitions | [Formal scope links](#formal-scope-links--r-006--r-008) | Static links verified, R-006/R-008 |
