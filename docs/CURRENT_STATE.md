@@ -16,10 +16,10 @@ Updated 2026-10-20. Read after AGENTS.md; synchronize on material changes.
 - **Failed route:** same-name decoration of the additional-menu type crashed
   in recursive GUI ResolveTypes at startup. Original/installed GUI quarantined
   as .gui.disabled. This attempt is withdrawn; not all integration is disproven.
-- **Recovery:** No mods selected, empty mod-load config and fresh 13:09 runtime
-  logs verified; user confirmed successful startup. Expected DLC mounted;
-  recovery error.log empty. No full save/removal or map-function test claimed.
-- **Current blockers/questions:** compliant native-menu insertion, custom map
+- **Probe 01 recovery:** historical No mods run at 13:09 succeeded, with expected
+  DLC and empty error.log. Current tested session runs only probe 02. No full
+  save/removal or map-function test claimed.
+- **Current blockers/questions:** full native-menu behavior/regressions, custom map
   loading, player/Dynasty guards, manual refresh, context-loss/exit restoration,
   map-only color isolation/persistence, runtime performance and Dynasty colors.
   R-011 remains Partial; vanilla test-game errors were archived before the probe.
@@ -27,13 +27,17 @@ Updated 2026-10-20. Read after AGENTS.md; synchronize on material changes.
   DIRECT before liege-based CONTROLLED, including no-Dynasty holders. ADR-008
   requires valid player/Dynasty. On-demand refresh; no persistent cache/scans.
   User requires native menu integration; no adjacent overlay selected.
-- **Last task:** preserved probe source/history and reviewed failure/recovery
-  evidence. [Test record](evidence/2026-10-20-r010-native-menu/README.md).
-  Raw evidence stays ignored; do not reinstall the failed source.
-- **Single next task:** R-010 research into a materially different original
-  native-menu integration mechanism before proposing another probe. No vanilla
-  GUI copy/policy relaxation, classifier or color work authorized.
-- **Git:** branch research/codex-gui-handoff, based on 5b0efc0 (API findings).
-  This snapshot records accumulated handoff/research and the failed probe;
-  inspect actual status/history each session. User authorized local commits
-  for this record; no push authorized.
+- **Last task:** probe 02 placement/tooltip and basic interactions passed in
+  user-reported smoke checks: DM inert, native mode switching/return and menu
+  open/close work. Faith sub-mode visibility/switching/return also confirmed by
+  user. GUI warnings remain empty; error.log contains
+  17,413 bytes of errors with attribution unresolved. [Evidence](evidence/2026-10-20-r010-native-menu-02/README.md).
+- **Single next task:** R-005 read-only player/Dynasty guard and scripted-GUI
+  context research before adding any active My Dynasty control. R-010 remains
+  Partial: expanded mini-menu/all-variant/UI-scale coverage, unavailable state,
+  refresh and lifecycle pending.
+  Existing probe stays inert; no classifier/color work or vanilla edits.
+- **Git:** branch research/native-menu-alternative starts at 13a82c0 and inherits
+  all handoff/evidence. Original research/codex-gui-handoff retained. Probe 02
+  source, findings and reviewed evidence are recorded in this local history
+  snapshot. No push authorized; inspect actual status/history each session.

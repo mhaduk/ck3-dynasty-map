@@ -18,7 +18,7 @@ IDs such as R-002 are stable planning IDs, separate from GitHub issue numbers.
 | R-007 | [#7](https://github.com/mhaduk/ck3-dynasty-map/issues/7) | P0 | Verify `any_liege_or_above` in target build | R-004 | Partial — clean documented traversal verified; runtime pending |
 | R-008 | [#8](https://github.com/mhaduk/ck3-dynasty-map/issues/8) | P0 | Verify county -> de-jure baronies iterator | R-004 | Partial — iterator signatures verified; filtering/runtime pending |
 | R-009 | [#9](https://github.com/mhaduk/ck3-dynasty-map/issues/9) | P0 | Verify barony color writes, dummy-title side effects and exit/restore behavior | R-002,R-004 | Partial — effect signatures verified; rendering/state safety blocked |
-| R-010 | [#10](https://github.com/mhaduk/ck3-dynasty-map/issues/10) | P1 | Confirm additive/minimal original GUI integration, unavailable UI and dependable refresh path | R-003 | Blocked — tested type extension crashes; quarantined; alternative unresolved |
+| R-010 | [#10](https://github.com/mhaduk/ck3-dynasty-map/issues/10) | P1 | Confirm additive/minimal original GUI integration, unavailable UI and dependable refresh path | R-003 | Partial — probe 02 placement/basic interactions and Faith sub-mode smoke confirmed; broader UI/safety pending |
 | R-011 | [#11](https://github.com/mhaduk/ck3-dynasty-map/issues/11) | P1 | Capture vanilla error-log baseline without mod | R-001 | Partial — clean startup log empty; save/map interaction and archive pending |
 | R-012 | [#12](https://github.com/mhaduk/ck3-dynasty-map/issues/12) | P1 | Install/configure CK3 Tiger locally | R-001 | Ready |
 
@@ -28,10 +28,9 @@ are progress descriptions in issue bodies, not claims of native GitHub states.
 
 R-001 completion unblocks the Ready research items; it does not authorize
 implementation. API findings have been reconfirmed in clean vanilla output. The single
-next task is R-010 research into a materially different original native-menu
-mechanism. Vanilla startup recovery succeeded; the failed probe is withdrawn
-(see research/probes/native-menu/README.md), described
-in [CURRENT_STATE.md](CURRENT_STATE.md) and [RESEARCH.md](RESEARCH.md).
+next task is R-005 read-only player-context/guard research before active controls.
+R-010 probe 02 has positive placement/basic-interaction evidence; broader UI and
+safety gates stay open (see research/probes/native-menu-alternative/README.md).
 
 ## v0.1.0 — My Dynasty MVP
 

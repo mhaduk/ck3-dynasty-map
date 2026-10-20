@@ -76,7 +76,11 @@ Preferred order:
    menu over an adjacent standalone widget. R-010 traced `mapmodes_insert_before`
    in Additional map modes as a candidate. The R-010 same-name type-extension
    probe crashed in recursive GUI type resolution on 2026-10-20 and is withdrawn.
-   That route is blocked; no alternative native-menu path is verified.
+   That route remains withdrawn. Probe 02 (original replacement of only the
+   submenu type, based on primitive flowcontainer) now has startup and in-game
+   DM-placement/tooltip evidence in 1.20.1.1. Full menu behavior, compatibility,
+   unavailable state, refresh and cleanup remain unverified; it is not yet a
+   production integration decision. No general load-order rule is established.
 2. minimal scoped GUI override;
 3. if neither approach is viable, record RG-UI-01 as blocked and document the evidence before revisiting the design.
 

@@ -1,0 +1,46 @@
+Reviewed diagnostic excerpts — R-010 probe 02, 2026-10-20
+
+Selected source lines; absolute paths/account/incident identifiers excluded.
+Raw captures remain local/ignored. Observations are explicitly labelled.
+
+STARTUP: selected debug.log lines (13:21 launch)
+[13:21:34][D][jomini_game_setup.cpp:138]: DLC:
+Garments of the Holy Roman Empire|dlc/dlc001_preorder/dlc001.dlc
+Mod:
+Dynasty Map - Native Menu Probe|mod/dynmap_native_menu_probe.mod|Enabled
+[13:21:36][D][pdx_gui_assetfactory.cpp:680]: [LoadAssetsGUI] Loading "gui/zz_dynmap_native_menu_probe_02.gui"
+[13:21:36][D][pdx_gui_assetfactory.cpp:689]: [LoadAssetsGUI] Loading of "gui/zz_dynmap_native_menu_probe_02.gui" is complete
+[13:21:36][D][pdx_gui_assetfactory.cpp:680]: [LoadAssetsGUI] Loading "gui/shared/mapmodes.gui"
+
+OBSERVATIONS (not log lines)
+Startup error.log and gui_warnings.log: 0 bytes.
+User confirmed main menu; later screenshot shows the DM marker and tooltip
+inside the native Additional Modes menu. Native/Faith sub-mode interactions
+were user-reported, not agent-operated or exhaustively tested.
+Actual probe source was read before shared/mapmodes, despite its zz prefix.
+No universal load/registration precedence is inferred.
+
+IN-GAME: selected error.log diagnostic header
+[13:22:57][E][tutorialstate.h:288]: Invalid lesson key 'reactive_advice_religion', at file: tutorial.txt line: 8
+
+OBSERVATIONS (not log lines)
+In-game error.log: 17,413 bytes; gui_warnings.log: 0 bytes at inspection.
+Other inspected entries concern invalid character/culture evaluation in
+court-scene cultures. Error attribution is not settled without a matched
+vanilla save/scenario. No direct probe filename or ResolveTypes error matched.
+Sizes remained unchanged after basic/Faith smoke checks; no recovery rerun
+for probe 02, other UI scale, full save/removal or multiplayer test claimed.
+
+RAW-CAPTURE CHECKSUMS (SHA-256; originals remain local, not tracked)
+startup-01/error.log: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 (0 bytes)
+startup-01/gui_warnings.log: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 (0 bytes)
+startup-01/debug.log: ba3ad9a7a2d383950ac69c372e30ca6ec8ae92591866239d14ad0e642d2de545 (441831 bytes)
+in-game-01/error.log: 602c7289ea8e757ff7dfd8adad9e1f21ab37bc86e0a049d9ef923c891a68b2c6 (17413 bytes)
+in-game-01/gui_warnings.log: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 (0 bytes)
+in-game-01/debug.log: 76e24906f101f7602da7157ef60a675d5aa7ae9e4eecbb0f461d33e6fd9c8831 (464037 bytes)
+interactions-01/error.log: 602c7289ea8e757ff7dfd8adad9e1f21ab37bc86e0a049d9ef923c891a68b2c6 (17413 bytes)
+interactions-01/gui_warnings.log: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 (0 bytes)
+interactions-01/debug.log: 76e24906f101f7602da7157ef60a675d5aa7ae9e4eecbb0f461d33e6fd9c8831 (464037 bytes)
+faith-submodes-01/error.log: 602c7289ea8e757ff7dfd8adad9e1f21ab37bc86e0a049d9ef923c891a68b2c6 (17413 bytes)
+faith-submodes-01/gui_warnings.log: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 (0 bytes)
+faith-submodes-01/debug.log: eb9344979ce010282c8c4cdc6ee1e02c1285adb14722c2f1c2badc59d5d04eea (477255 bytes)
