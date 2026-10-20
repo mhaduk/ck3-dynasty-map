@@ -45,6 +45,23 @@ Under ADR-008, My Dynasty is unavailable if there is no valid local player or th
 
 If context becomes invalid while the mode is active, stop using the old Dynasty context and clear/restore visual state as far as the CK3 map-mode API permits. M0 must determine how to disable/hide the UI and detect context invalidation safely, including what cleanup/restore the API supports. Cleanup is distinct from unavailable activation and may require restoration writes; it must not classify against stale context.
 
+#### R-005 evidence boundary (2026-10-20)
+
+Explicit fresh player roots, manual-switch/succession notifications and a
+separate GUI observer-validity watcher have runtime diagnostic evidence.
+Character-change hook delivery did not cover tested observer/load transitions;
+GUI VariableSystem state is not guaranteed to reset on in-process reload.
+Direct character-scoped Execute with a null root logged a validation error even
+with conditional root guards, before any effect ran. Do not treat internal
+validation as an error-free missing-player entry boundary. FINAL GUARDS A passed
+for the tested displayed path into observer after RESET: NO PLAYER appeared,
+action buttons were absent, and the bounded capture contained no extra activation
+or probe-attributed validation error. This is external UI evidence for that
+transition, not direct invalid-root or every-race safety. The same run rejected
+the one-shot `set_to_lowborn` player fixture; no-Dynasty local-player UI remains
+unverified and is deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13). ADR-008 semantics remain unchanged.
+GUI flag invalidation is not title-color restoration. See the [R-005 checkpoint](tasks/R-005-player-context.md).
+
 ### 3. Color sources
 
 Expected location:

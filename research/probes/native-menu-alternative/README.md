@@ -6,6 +6,16 @@ passed. Broader compatibility and lifecycle behavior remain unverified. Target C
 Branch `research/native-menu-alternative` starts at `13a82c0`, inheriting the
 complete handoff and failed-probe history; the original branch is retained.
 
+## Current R-005 extension status
+
+The source below is now extended by the R-005 diagnostic suite, not the original
+inert-only revision. It includes NULL (known validation error) and SUCCESSION
+(intentional ruler death in a disposable timeline); do not use casually.
+Raid/barter settings are temporarily omitted after observer errors. Earlier
+16-mode/four-setting parity and hashes describe the historical source, not the
+current two-setting diagnostic variant. DM itself remains inert. See
+[diagnostic status](../player-context/README.md). No production UI selection.
+
 ## Different hypothesis
 
 Replace only the script-defined `flowcontainer_additional_mapmodes` type with
@@ -123,3 +133,21 @@ in the current configuration. Fresh error/gui-warning sizes are unchanged
 (17,413 / 0 bytes); debug/game logs grew and were archived locally. This does
 not verify every sub-mode/DLC, expanded mini-menu content, alternate UI scales
 or the future Dynasty group. R-010 safety/refresh/lifecycle gates stay open.
+
+## R-005 diagnostic extension — prepared, not runtime tested
+
+The current source adds a separate R5 logging-only diagnostic button and requires
+`common/scripted_guis/dynmap_r005_context.txt` from the player-context probe.
+DM remains disabled. Earlier hash and successful runtime checks describe the
+prior inert-only revision, not this extension. See
+[procedure](../player-context/README.md). Startup validation is required again.
+
+## Observer isolation variant — prepared 2026-10-20
+
+Temporarily omitted the raid and barter settings from the original submenu
+source, removing GetPlayer.CanRaid and GetPlayer.HasBarterGoods evaluations.
+Other controls and R5 remain unchanged. This is a diagnostic reduction, not a
+production solution or proof that either control caused the errors.
+GUI SHA-256: `24565d92445507734c6e4f56ed8b42729887c6e6db2e2c342af65c3e692dd60b`. Restart, inspect startup, then repeat global observer
+with Additional Modes open. Compare errors and R5 visibility. Historical R-010
+parity checks do not apply to this reduced variant.

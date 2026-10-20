@@ -1,47 +1,55 @@
-# Current project state
+# Current State
 
-Updated 2026-10-20. Read after AGENTS.md; synchronize on material changes.
+Updated 2026-10-20. Primary operational handoff; detailed findings remain in their canonical documents.
 
-- **Build:** CK3 1.20.1.1 (Crozier), Steam build 25913294; Steam branch UNKNOWN.
-  macOS 26.5.2 (25F84), arm64; supplied crash report identifies Mac16,10.
-- **Milestone:** M0 research/bootstrap. One inert-menu GUI probe failed at
-  startup and is quarantined. No production mod/classifier implemented.
-- **Completed:** R-001 inventory, R-002 definitions, R-003 static GUI inspection,
-  R-004 clean API generation, R-006 scope signatures. Five Issues closed;
-  seven open. [BACKLOG.md](BACKLOG.md) maps planning IDs to GitHub.
-- **VERIFIED baseline:** clean docs expose holder/Dynasty/House links,
-  county/barony/de-jure iterators and liege traversal excluding self. Color-copy
-  effects shift RGB slightly. Installed native baronies renderer exists.
-  Signatures are not visual/lifecycle proof. Details: [RESEARCH.md](RESEARCH.md).
-- **Failed route:** same-name decoration of the additional-menu type crashed
-  in recursive GUI ResolveTypes at startup. Original/installed GUI quarantined
-  as .gui.disabled. This attempt is withdrawn; not all integration is disproven.
-- **Probe 01 recovery:** historical No mods run at 13:09 succeeded, with expected
-  DLC and empty error.log. Current tested session runs only probe 02. No full
-  save/removal or map-function test claimed.
-- **Current blockers/questions:** full native-menu behavior/regressions, custom map
-  loading, player/Dynasty guards, manual refresh, context-loss/exit restoration,
-  map-only color isolation/persistence, runtime performance and Dynasty colors.
-  R-011 remains Partial; vanilla test-game errors were archived before the probe.
-- **Design:** My Dynasty first; county classification, barony-only writes;
-  DIRECT before liege-based CONTROLLED, including no-Dynasty holders. ADR-008
-  requires valid player/Dynasty. On-demand refresh; no persistent cache/scans.
-  User requires native menu integration; no adjacent overlay selected.
-- **Last task:** probe 02 placement/tooltip and basic interactions passed in
-  user-reported smoke checks: DM inert, native mode switching/return and menu
-  open/close work. Faith sub-mode visibility/switching/return also confirmed by
-  user. GUI warnings remain empty; error.log contains
-  17,413 bytes of errors with attribution unresolved. [Evidence](evidence/2026-10-20-r010-native-menu-02/README.md).
-- **Single next task:** R-005 read-only player/Dynasty guard and scripted-GUI
-  context research before adding any active My Dynasty control. R-010 remains
-  Partial: expanded mini-menu/all-variant/UI-scale coverage, unavailable state,
-  refresh and lifecycle pending.
-  Existing probe stays inert; no classifier/color work or vanilla edits.
-- **Git/privacy:** branch research/native-menu-alternative retains complete
-  handoff/test history. Local history was privacy-scrubbed; prior branch bases
-  and hashes changed. Sanitized handoff is 13a82c0, probe-02 record 3feefd5.
-  Project-local public login/noreply identity configured; global config unchanged.
-  [Privacy audit](PRIVACY_AUDIT.md) defines publication scope. User-authorized
-  atomic push published sanitized main and both research branches on 2026-10-20.
-  No feature merge into main. Old local backup/reflogs/checkpoints stay private;
-  upstream caches/clones may retain earlier data. Inspect actual refs/status.
+## Environment / Project Context
+
+- Target baseline: CK3 1.20.1.1 (Crozier); current branch: `research/native-menu-alternative`.
+- Milestone: M0 research/bootstrap. No production mod or classifier has been implemented.
+- This checkpoint contains R-005 and R-010 research/probe work. Preserve unrelated local evidence and excluded materials; do not reset or overwrite them.
+
+## Current Task
+
+- **R-005 — Player context, validity guards, and context-loss handling** ([Issue #5](https://github.com/mhaduk/ck3-dynasty-map/issues/5)).
+- **Goal:** establish safe local-player/Dynasty entry and context-loss behavior for ADR-008.
+- **Status:** Partial / active.
+- **Current checkpoint:** [FINAL GUARDS](evidence/2026-10-20-r005-player-context/final-guards-result.md) A passed for the tested displayed UI path into observer; B's one-shot `set_to_lowborn` fixture was rejected on the player character, so no-Dynasty local-player UI remains unverified and is deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13). The consolidated [R-005 checkpoint](tasks/R-005-player-context.md) was reviewed and accepted as a partial checkpoint. Do not run more fixtures or repeat passed cases.
+- **Next action:** R-009 is the next research task after verification of the authorized publication; use branch history and #5/#10 for the publication outcome. No additional R-005 runtime tests are requested. R-009 (barony color side effects, map isolation and exit/restore) follows in a separate chat and has not started here. R-010 remains separate for native-menu parity/refresh. The user closed CK3 and opened the launcher; Codex restored the prior selection in the existing Dynasty Map - GUI Probe playset (Native Menu Probe on, ENTRY diagnostic off), confirmed by launcher UI and enabled_mods. The diagnostic remains installed but disabled.
+- **Blockers/open questions:** A is bounded external UI evidence, not direct invalid-root safety or proof against every transition race; no-Dynasty local-player UI is unverified. Do not invoke the known NULL diagnostic again. Do not repeat passed switch, succession, observer or activation-after-load cases.
+- **Runtime state / permission:** final results are user-led; the final checkpoint includes fixture rejection in error.log. Earlier whole-run logs contain excluded court-scene errors. Do not claim clean overall logs. User reported game exit; prior playset selection was restored and verified. Diagnostic files remain installed but disabled; no files or saves were deleted. Preserve saves and evidence.
+- **App ownership:** CLI runs ready file/code/install/log tasks without waiting for user actions. Codex GUI owns code coordination, launcher/mod configuration, instructions and log analysis; it must not inspect, screenshot or control the CK3 game UI. The user alone opens launcher/game through Steam and performs all in-game loading, saving, character/observer changes and diagnostic clicks. Reuse the existing test playset.
+- **Fallback / GitHub permission:** the one-attempt fixture failed and the authorized follow-up R-013 / #13 was created and verified open. The user explicitly authorized the reviewed two-commit package, normal push to the existing research branch, replacement of the #5 body and a #10 status comment. #13 needs no additional write; no issue closure, merge to main or new runtime work is authorized by this publication. #5 remains open. A failed fixture is not a passed no-Dynasty UI test; A is bounded external UI guard evidence, not direct invalid-root safety. ADR-008 is unchanged.
+- **Recommended model:** Sol / High if the entry-contract research requires difficult engine reasoning; otherwise Luna / Medium for bounded documentation/maintenance.
+
+## Next Up
+
+1. **R-009** — resolve barony color side effects, map isolation, and exit/restore.
+2. **R-010** — complete native-menu parity, availability, refresh, and lifecycle checks.
+3. **R-007 / R-008** — runtime-check liege traversal and county-to-de-jure-barony behavior.
+4. **R-011 / R-012** — complete vanilla baseline and CK3 Tiger setup/validation prerequisites.
+
+## Last Completed
+
+- **R-006** — generated target-build scope links for county/barony, holder, Dynasty, and House verified; no runtime claim. See [task history](TASK_HISTORY.md) and [RESEARCH.md](RESEARCH.md).
+
+## Relevant Verified Baseline
+
+- Clean generated CK3 1.20.1.1 API docs verify key scope links and iterator/effect signatures; they do not prove runtime rendering or lifecycle safety.
+- Runtime diagnostics verify fresh player/Dynasty context on tested activation, switch, succession, and observer return; the player-change hook did not cover tested observer/load transitions.
+- The GUI observer watcher cleared its GUI-local marker on tested loss of player validity. It does not restore title colors or prove save/load reset behavior.
+- Direct character-scoped Execute with a null root logged an invalid-character validation error before the effect ran, including after a conditional-root guard attempt.
+- R-010 probe 02 has startup, native-menu placement, basic interaction, and Faith sub-mode smoke evidence. Full parity, availability, refresh, and cleanup remain open.
+
+## Active Blockers
+
+- R-005 / RG-PLAYER-01: no-Dynasty local-player UI deferred to R-013; safe direct invalid-root behavior remains unproven despite bounded external UI evidence for A.
+- R-009 / RG-STATE-01: safe map-only color writes and exit/restore behavior.
+- R-010 / RG-UI-01: complete native-menu behavior and dependable refresh.
+
+## Relevant Unresolved Questions
+
+- Does a supported rootless entry or UI guard prevent dispatch into character-scoped validation when there is no local player?
+- Which target-build cleanup mechanism restores map visuals without a recurring scan or stale Dynasty context?
+- Can the native submenu maintain required vanilla control visibility/behavior while providing unavailable state and refresh?
+
+See [BACKLOG.md](BACKLOG.md) for all tasks and dependencies, [RESEARCH.md](RESEARCH.md) for technical evidence, and [CODEX_WORKFLOW.md](CODEX_WORKFLOW.md) for operating procedures.

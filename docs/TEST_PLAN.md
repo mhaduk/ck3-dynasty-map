@@ -45,7 +45,7 @@ untested behavior and known limitations.
 |---|---|
 | Activate with valid player and Dynasty | Correct DIRECT/CONTROLLED/OTHER county classification and barony rendering; no new mod-caused log errors |
 | No valid local player | My Dynasty unavailable; activation performs no classification or color writes; no all-neutral substitute |
-| Player has no valid Dynasty | Same unavailable behavior, verified independently from missing player |
+| Player has no valid Dynasty | Same unavailable behavior, verified independently from missing player; fixture/UI prerequisite deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) |
 | Manual refresh/re-activation after holder or liege change | Updated correct map through M0-verified re-click, or the smallest explicit refresh mechanism if re-click is unsupported |
 | Repeat activation/refresh | Stable results, guarded scopes and no accumulating visual state |
 | Player context becomes invalid while active | Stop using old Dynasty; clear/restore visual state as far as the verified API permits; record limitations and prove no stale-context classification |
@@ -57,6 +57,30 @@ M0 must determine UI disabling/hiding and context-invalidation/restore hooks.
 Unavailable activation must not classify or write colors; restoration cleanup on
 loss of an active context is a separate operation and may need restore writes.
 Use runtime/probe evidence sufficient to demonstrate those distinctions.
+
+## M0 R-005 diagnostic coverage snapshot — 2026-10-20
+
+Passed diagnostic cases: explicit player/Dynasty context, repeated requests,
+manual switches, succession hook/new-player context, activation after controlled
+save/load, observer hiding/return and GUI-local marker clear with menu closed.
+These are not production classification/rendering or full T-115/T-117 passes.
+
+The later [FINAL GUARDS checkpoint](evidence/2026-10-20-r005-player-context/final-guards-result.md)
+passed A for the displayed observer path after RESET: controls were absent and
+no extra activation or probe-attributed validation error appeared in the
+bounded capture. It did not exercise the watcher clearing a live READY value,
+prove direct invalid-root safety or establish safety for every transition race.
+The one-shot player `set_to_lowborn` fixture for B was rejected; Dynasty
+remained present, so no-Dynasty local-player UI remains untested and is deferred
+to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13). The
+courtier effect guard and observer case do not substitute for that player case.
+These diagnostics are not production classification/rendering or full T-115/
+T-117 passes. Do not repeat passed cases or attempt another fixture in R-005.
+Court-scene issues remain excluded from this research; the deliberate NULL
+validation error must remain distinguishable from that noise. Color restoration,
+active-map persistence and cleanup stay in R-009 and future implementation
+tests. The SUCCESSION diagnostic kills a ruler: do not rerun it as routine
+documentation work.
 
 ## My Dynasty functional matrix
 

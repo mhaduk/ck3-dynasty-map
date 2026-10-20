@@ -1,0 +1,130 @@
+# Independent startup widget. Automatic properties use only player validity
+# or GUI-local keys; all character-scoped calls are manual and explicitly rooted.
+widget = {
+    name = "dynmap_r005_entry_contract_widget"
+    parentanchor = top|hcenter
+    position = { 0 140 }
+    size = { 760 310 }
+
+    text_single = {
+        name = "dynmap_r005_final_heading"
+        parentanchor = top|hcenter
+        raw_text = "R-005 FINAL GUARDS"
+        using = Font_Size_Medium
+    }
+
+    text_single = {
+        name = "dynmap_r005_final_player_status"
+        parentanchor = top|hcenter
+        position = { 0 28 }
+        raw_text = "[Select_CString(GetPlayer.IsValid, 'PLAYER', 'NO PLAYER')]"
+        using = Font_Size_Medium
+    }
+
+    text_single = {
+        name = "dynmap_r005_final_availability_status"
+        parentanchor = top|hcenter
+        position = { 0 55 }
+        raw_text = "[Select_CString(GetVariableSystem.HasValue('dynmap_r005_final_availability', 'READY'), 'READY', Select_CString(GetVariableSystem.HasValue('dynmap_r005_final_availability', 'BLOCKED'), 'BLOCKED', 'UNCHECKED'))]"
+        using = Font_Size_Small
+    }
+
+    text_single = {
+        name = "dynmap_r005_final_check_receipt_status"
+        parentanchor = top|hcenter
+        position = { -185 82 }
+        raw_text = "[Select_CString(GetVariableSystem.Exists('dynmap_r005_final_check_received'), 'CHECK RECEIVED', 'CHECK WAITING')]"
+        using = Font_Size_Small
+    }
+
+    text_single = {
+        name = "dynmap_r005_final_activation_receipt_status"
+        parentanchor = top|hcenter
+        position = { 185 82 }
+        raw_text = "[Select_CString(GetVariableSystem.Exists('dynmap_r005_final_activate_received'), 'ACTIVATE RECEIVED', 'ACTIVATE WAITING')]"
+        using = Font_Size_Small
+    }
+
+    button_round = {
+        name = "dynmap_r005_final_check"
+        parentanchor = top|hcenter
+        position = { -185 112 }
+        size = { 160 42 }
+        visible = "[GetPlayer.IsValid]"
+        enabled = "[GetPlayer.IsValid]"
+        raw_text = "CHECK"
+        raw_tooltip = "Read current player's Dynasty availability and log the player scope"
+        onclick = "[GetVariableSystem.Set('dynmap_r005_final_check_received', 'yes')]"
+        onclick = "[GetVariableSystem.Set('dynmap_r005_final_availability', Select_CString(GetScriptedGui('dynmap_r005_final_availability').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), 'READY', 'BLOCKED'))]"
+        onclick = "[GetScriptedGui('dynmap_r005_final_inspect').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+    }
+
+    button_round = {
+        name = "dynmap_r005_final_activate"
+        parentanchor = top|hcenter
+        position = { 185 112 }
+        size = { 180 42 }
+        visible = "[GetPlayer.IsValid]"
+        enabled = "[And(GetPlayer.IsValid, GetVariableSystem.HasValue('dynmap_r005_final_availability', 'READY'))]"
+        raw_text = "MY DYNASTY TEST"
+        raw_tooltip = "Logging-only activation test after READY"
+        onclick = "[GetVariableSystem.Set('dynmap_r005_final_activate_received', 'yes')]"
+        onclick = "[GetScriptedGui('dynmap_r005_final_activate').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+    }
+
+    button_round = {
+        name = "dynmap_r005_final_reset"
+        parentanchor = top|hcenter
+        position = { 0 168 }
+        size = { 130 36 }
+        visible = "[GetPlayer.IsValid]"
+        enabled = "[GetPlayer.IsValid]"
+        raw_text = "RESET STATUS"
+        raw_tooltip = "Clear availability and receipt labels; never reset LOWBORN TEST lock"
+        onclick = "[GetVariableSystem.Clear('dynmap_r005_final_availability')]"
+        onclick = "[GetVariableSystem.Clear('dynmap_r005_final_check_received')]"
+        onclick = "[GetVariableSystem.Clear('dynmap_r005_final_activate_received')]"
+    }
+
+    text_single = {
+        name = "dynmap_r005_final_lowborn_warning"
+        parentanchor = top|hcenter
+        position = { 0 218 }
+        raw_text = "LOWBORN TEST CHANGES CURRENT RULER — NEW DISPOSABLE GAME ONLY"
+        using = Font_Size_Small
+    }
+
+    button_round = {
+        name = "dynmap_r005_final_lowborn"
+        parentanchor = top|hcenter
+        position = { 0 249 }
+        size = { 190 42 }
+        visible = "[GetPlayer.IsValid]"
+        enabled = "[And(GetPlayer.IsValid, Not(GetVariableSystem.Exists('dynmap_r005_final_fixture_used')))]"
+        raw_text = "LOWBORN TEST (ONCE)"
+        raw_tooltip = "Set ONLY the current test ruler lowborn once; disposable timeline only"
+        onclick = "[GetScriptedGui('dynmap_r005_final_lowborn_fixture').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        onclick = "[GetVariableSystem.Set('dynmap_r005_final_fixture_used', 'yes')]"
+        onclick = "[GetVariableSystem.Clear('dynmap_r005_final_availability')]"
+    }
+
+    text_single = {
+        name = "dynmap_r005_final_lowborn_status"
+        parentanchor = top|hcenter
+        position = { 0 293 }
+        raw_text = "[Select_CString(GetVariableSystem.Exists('dynmap_r005_final_fixture_used'), 'LOWBORN USED', 'LOWBORN AVAILABLE')]"
+        using = Font_Size_Small
+    }
+
+    # This child is GUI-only. Its hide event invalidates any cached READY value.
+    widget = {
+        name = "dynmap_r005_final_player_loss_watcher"
+        size = { 0 0 }
+        alwaystransparent = yes
+        visible = "[GetPlayer.IsValid]"
+        state = {
+            name = _hide
+            on_start = "[GetVariableSystem.Clear('dynmap_r005_final_availability')]"
+        }
+    }
+}

@@ -3,6 +3,23 @@
 **Research date:** 2026-10-20
 **Reported public CK3 release at research time (reference baseline, not installed-build verification):** 1.20.1 "Crozier" (2026-10-13). Paradox stated that subsequent changes were being targeted at the forthcoming 1.21 update, so the implementation target must be re-checked on the gaming Mac before coding.
 
+## Reusable findings by subject
+
+Use this index to open only the subject relevant to the active task. Dated runtime checkpoints live in the linked `docs/evidence/` records; they
+are evidence history, not a list of current next steps. Current conclusions
+are summarized here and in CURRENT_STATE.md.
+
+| Subject | Reusable finding | Status / task |
+|---|---|---|
+| Target build and evidence quality | [Evidence policy](#evidence-policy-and-target-build-status); [generated API baseline](#verified--ck3-12011-crozier-generated-script_docs) | 1.20.1.1 signatures verified; runtime limits stated per finding |
+| Player context and validity | [R-005 consolidated status](#r-005--consolidated-status-2026-10-20) | Partial / open, R-005 |
+| Scope transitions | [Formal scope links](#formal-scope-links--r-006--r-008) | Static links verified, R-006/R-008 |
+| Liege traversal | [Liege traversal](#liege-traversal--r-007) | Signature verified; runtime pending, R-007 |
+| Map-mode definitions | [R-002 findings](#verified--r-002-installed-map-mode-definitions-2026-10-20) | Static inspection complete; custom loading/runtime pending |
+| GUI and map lifecycle | [R-003 inspection](#verified--r-003-installed-gui-bindings-2026-10-20); [R-010 registration](#verified--r-010-additive-widget-registration-documentation-2026-10-20) | Integration/lifecycle gates open, R-010 |
+| Color effects and state | [Title-color effects](#title-color-effects--r-009--rg-state-01); [remaining unknowns](#still-unknown) | Signatures verified; rendering/isolation/restore open, R-009 |
+| Historical references | [Reference findings](#historicalreference-findings-pending-m0-verification) | Not target-build verification |
+
 ## Evidence policy and target-build status
 
 Community documentation, Workshop descriptions and archived repositories are
@@ -20,6 +37,47 @@ local file/API entry or runtime procedure, observed result and limitations.
 Keep raw generated dumps local; record original findings here. Distinguish
 reference claims, design assumptions and target-build observations.
 
+## R-005 — Consolidated status (2026-10-20)
+
+**Partial / open; RG-PLAYER-01 remains open.** Canonical checkpoint:
+[R-005 player-context summary](tasks/R-005-player-context.md). Target CK3
+1.20.1.1 (Crozier), Steam build 25913294, DLC baseline Garments of the Holy
+Roman Empire. No Tiger run or production implementation. The final diagnostic
+is installed but disabled after launcher restoration.
+
+| Case | Current result and precise limit |
+|---|---|
+| Explicit valid player/Dynasty root | Passed across activation, manual switches, succession, observer return, controlled reload and V3's same-root comparison. Diagnostic entry execution does not prove production map-mode refresh. |
+| Shared no-Dynasty effect guard | Passed for Terentiy, a no-Dynasty courtier under a distinct valid player root. It does not prove no-Dynasty local-player UI. |
+| Observer watcher / marker invalidation | Earlier corrected C–D cleared a GUI-local marker. In FINAL GUARDS, RESET occurred before entering observer; live READY clearing was not tested in that run. Neither result proves map-color restoration. |
+| Direct NULL Execute | Effect did not run; validation logged an invalid-character error, including with a conditional root guard. No error-free internal NULL boundary is established. Do not repeat. |
+| FINAL GUARDS A — missing-player display | Passed for this tested path: healthy CHECK/activation positive control; after RESET, observer displayed NO PLAYER and all action buttons were absent; no extra activation or probe-attributed validation error was found in the bounded capture. This is external UI evidence for that state transition, not direct invalid-root safety, atomic race or programmatic-caller proof. |
+| FINAL GUARDS B — no-Dynasty local player | Not tested: the one-shot `set_to_lowborn` fixture was rejected on the player character. Dynasty remained present; a fresh CHECK correctly returned READY. No no-Dynasty local-player UI conclusion follows. Further fixture attempts are deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13). |
+
+ADR-008 remains unchanged: My Dynasty must be unavailable without a valid local
+player or valid player Dynasty, with no classification/color writes; context
+loss cleanup remains separate. R-005 stays partial. Do not repeat NULL, V1–V3,
+passed lifecycle cases or the rejected fixture. R-013 owns future supported
+no-Dynasty fixture/UI coverage; R-009 owns color restoration; R-010 owns native
+menu parity and refresh. No further R-005 runtime test is pending.
+
+V1's missing markers were inconclusive; V2 separately confirmed GUI receipt but
+not Execute delivery; V3 ran both character-scoped and omitted-scope entries
+once with the same explicit valid player root. Historical details and their
+limits remain in the [V1](evidence/2026-10-20-r005-player-context/entry-v1-result.md),
+[V2](evidence/2026-10-20-r005-player-context/entry-v2-result.md),
+[V3](evidence/2026-10-20-r005-player-context/entry-v3-result.md) and
+[FINAL GUARDS](evidence/2026-10-20-r005-player-context/final-guards-result.md)
+records. Overall evidence index: [R-005 evidence](evidence/2026-10-20-r005-player-context/README.md).
+
+The earlier bounded entry-contract review remains useful static evidence, not a
+rootless-execution contract. Prior tests included excluded court-scene log noise;
+do not claim whole error logs were clean. No classification, title or color
+writes occurred in these R-005 probes; SUCCESSION intentionally killed a ruler
+in a disposable timeline. Launcher configuration was restored after FINAL
+GUARDS and the diagnostic is disabled. This is config cleanup, not a map-visual
+restore claim.
+
 ## R-001 — Environment inventory complete (2026-10-20)
 
 Read-only local inspection established the following baseline. This completes
@@ -33,7 +91,7 @@ paths and raw evidence stay outside Git under the existing provenance policy.
 | Clausewitz | `titus/release/1.20.1`; revision `af5c758c2072fbb444bab748c2b6dbb41faaa4b3`, installed branch/revision files |
 | Titus | `release/1.20.1`; revision `32d8931eb5e04726c52574cce34a51147a3e4fd7`, installed branch/revision files |
 | macOS / CPU | 26.5.2, build 25F84 (`sw_vers`); arm64 / Apple Silicon (`uname -m`) |
-| Active playset | Initial playset, ID `64eafa44-4e66-4cba-b6af-ffdd77567ada`, read-only launcher database query |
+| Active playset | Initial playset confirmed by read-only launcher database query; machine-specific identifier omitted |
 | Enabled mod | NUI:Realm Ledger, Workshop ID 2995323766; launcher database, `dlc_load.json`, descriptor and runtime `debug.log` agree |
 | DLC installed | Garments of the Holy Roman Empire (`dlc001_preorder`); package files and Steam depot present; no other packages found in inspected DLC directory |
 | DLC enabled | `ck3_dlc001_preorder` enabled in active playset and mounted in `debug.log`; `disabled_dlcs` empty |
@@ -276,13 +334,10 @@ exit restoration and safe GUI injection remain UNKNOWN. No generic map exit or
 player-context invalidation callback was identified in the inspected files;
 this is a bounded negative result, not proof that no such API exists elsewhere.
 
-**R-003 inspection is complete; no integration strategy is approved.** R-005
-(player safety) and R-010 (integration feasibility) are now Ready for research,
-not implementation. R-009 runtime work still awaits an authorized minimal probe
-and its prerequisites. **Single next task: R-010**, read-only investigation of
-original additive/minimal integration feasibility under ADR-006, tracing the
-observed blocks to the live HUD. If no compliant insertion mechanism can be
-established, report RG-UI-01 blocked rather than copying vanilla or relaxing policy.
+**Historical sequencing note (superseded):** when R-003 inspection closed,
+R-005 and R-010 were queued for research, with R-010 first. Current status is
+maintained in CURRENT_STATE.md; R-005 remains partial and R-010 remains open.
+This historical note does not set the active task or authorize implementation.
 
 ## VERIFIED — R-010 additive widget registration documentation (2026-10-20)
 
@@ -381,231 +436,63 @@ This does not establish impossibility or exclude APIs under other names.
 or impossible under the current no-copy policy. Scripted-widget registration
 alone does not attach a widget to that menu. RG-UI-01 / R-010 remain open.
 
-**Concrete next evidence needed for this question:** an explicitly authorized,
-isolated menu-only GUI probe using original files to test the narrow menu-type
-extension/block override. Success means one inert, uniquely named test button
-is a real child in Additional map modes, follows native layout/open/close, and
-preserves existing entries without duplicate widgets or new GUI errors. No map
-mode definition, title/dummy title, color effect or world scan is needed for
-that test. Verify load order/type resolution; stop on failure rather than
-copying vanilla. This report creates no probe/scaffolding and does not authorize
-it. R-005 read-only safety research remains independently available.
+**Historical next evidence proposal:** an isolated menu-only GUI probe using
+original files was proposed to test the narrow menu-type extension. The R-010
+probe and checkpoints are recorded separately in the [R-010 evidence history](evidence/2026-10-20-r010-native-menu-02/checkpoint-history.md);
+see CURRENT_STATE.md for current sequencing. This old proposal is not an active
+R-005 instruction.
 
-### R-010 authorized menu-only probe prepared (2026-10-20)
+Detailed probe preparation and runtime checkpoints are preserved in [the R-010 evidence history](evidence/2026-10-20-r010-native-menu-02/checkpoint-history.md).
 
-After the concrete proposal, the user approved preparing the inert-button
-native-menu test. Original source and procedure are in
-[research/probes/native-menu](../research/probes/native-menu/README.md).
-It tests same-name decoration of the additional-menu type and overrides only
-the named insertion block with one disabled DM button. This is a hypothesis,
-not verified type resolution. No onclick, classification, title/color write,
-map definition, scripted-widget overlay or recurring work is present.
+### R-005 player/Dynasty context and guards — static investigation (2026-10-20)
 
-**Performed:** prepared original source, reviewed its limited scope and brace
-structure; archived pre-probe debug/error/gui-warning/game logs and mod-load
-configuration under ignored local/evidence. The active session's mod-load
-configuration still lists zero mods. error.log now contains 97,878 bytes after
-the user's test-game start (rather than the earlier empty startup observation);
-errors predate loading this probe. A full clean test matrix/bookmark identity
-is not established, so R-011 stays Partial. No raw logs are tracked.
+**Historical static investigation.** The source and generated-doc findings
+below remain useful context; the later user-led runtime observations and current
+status are in the [consolidated result](#r-005--consolidated-status-2026-10-20)
+and [canonical checkpoint](tasks/R-005-player-context.md).
 
-**Not performed:** launcher-generated mod creation, install/enable, engine
-loading, runtime layout/click verification, Tiger or game restart. The generic
-launcher opened without CK3 game context. The next step requires the user to
-open the CK3 launcher through Steam and create the local probe mod; descriptors
-remain launcher-generated and machine-local under the bootstrap policy.
-The procedure includes separate playset setup, failure-stop conditions and
-restoring vanilla by disabling the probe. No integration strategy is selected
-until runtime success. R-010 remains Partial/open; R-005 is deferred while this
-user-requested menu probe is pending.
+VERIFIED API surface and installed examples:
 
-### R-010 probe installation completed (2026-10-20)
+- Generated `data_types/data_types_uncategorized.txt:571–573` exposes
+  `GetPlayer -> Character`; `34627–34629` exposes
+  `Character.GetDynasty -> Dynasty`. `Character.IsValid` and `Dynasty.IsValid`
+  return bool at `40963–40965` and `61153–61155` respectively.
+- `data_types/data_types_gui.txt:1–4,15–18` exposes `GetScriptedGui` and
+  `GuiScope`. `data_types_script.txt:3944–3970,4129–4149` exposes
+  `ScriptedGui.Execute/IsShown/IsValid`, `TopScope.AddScope/SetRoot`.
+  Signatures alone do not establish automatic validation on Execute.
+- Installed `game/gui/activity_window_widgets/funeral_deceased_selection_button.gui:27`
+  explicitly calls Execute with `GuiScope.SetRoot( GetPlayer.MakeScope ).End`.
+  The matching `game/common/scripted_guis/ce1_funeral_scripted_guis.txt:9–17`
+  declares character scope and an effect. Thus a vanilla-supported candidate
+  exists for explicitly supplying the current player root; a map-menu button
+  does not thereby acquire an automatic player root.
+- `game/gui/hud.gui:28–51` uses `GetPlayer.IsValid` to distinguish global
+  observer from player-observer UI. Validity alone therefore does not prove
+  ordinary player control or all observer requirements.
+- `triggers.log:600–603` documents `exists` as a non-null scope-target check.
+  `is_player_selected` (`793–796`) and `is_local_player` (`5667–5671`) are
+  explicitly restricted interface triggers. Do not assume they are legal in
+  arbitrary effects/on-actions.
+- `game/common/on_action/player_change_on_actions.txt:1–6` documents the
+  engine-triggered `on_player_character_change`: root is the new player
+  character and `scope:previous_player_character` the previous one; its comment
+  describes character-to-character changes. Generated `on_actions.log:3929–3931`
+  confirms From Code: Yes but lists Expected Scope: none. This documentation
+  discrepancy leaves actual runtime root/previous-scope behavior to verify.
 
-User opened the CK3-specific launcher through Steam. The agent used its local
-Create a Mod flow (no upload) to generate `Dynasty Map - Native Menu Probe`,
-version 0.0.0, exact supported build 1.20.1.1, directory
-`dynmap_native_menu_probe`. With filesystem approval, the original GUI source
-was copied to that local mod's gui directory; SHA-256 matches source:
-`dc572d67794fa5d17bda7100c8f282f1ba31228991414111db84ce3221e277f0`.
-Descriptors remain machine-local; vanilla and repository descriptor state are
-unchanged.
+Candidate safety approach, **not implemented or runtime verified**: obtain a
+fresh player context on each activation/manual refresh, require valid character
+and Dynasty before work, and guard the effect itself rather than relying only
+on button appearance or automatic IsValid enforcement. Do not rely on boolean
+short-circuiting or null-chain behavior without testing. Keep context transient;
+no saved Dynasty cache or recurring world scan is introduced.
 
-A separate `Dynasty Map - GUI Probe` playset was created and explicitly selected
-on launcher Home. Read-only database inspection confirms that it is active and
-contains only the enabled probe; `dlc_load.json` confirms one enabled local mod
-and no disabled DLC. The new playset has no explicit per-DLC rows, so actual
-DLC mounting will be verified from the next runtime log rather than assumed.
-Initial playset was not modified. No game launch, engine validation or GUI
-runtime result yet; R-010 remains Partial/open. The immediate next task is to
-launch the selected playset and open Additional Modes in a disposable test game.
-
-### R-010 runtime failure and quarantine — 2026-10-20 13:00
-
-**Observed:** a single launch with only `Dynasty Map - Native Menu Probe`
-crashed at 13:00:31 Europe/Warsaw, about five seconds after launch, before the
-main menu. `debug.log:134–140` confirms the probe enabled/mounted, and
-`:612–613` confirms its GUI file was read. Fresh error.log, gui_warnings.log
-and game.log were empty. An empty error log does not clear a startup crash.
-
-The user-supplied macOS report explicitly states stack exhaustion due to
-excessive recursion. Crashed thread 12 contains approximately 43,800 recursive
-`CPdxGuiFactory::ResolveTypes` calls, followed by ResolveDesc/AddTypesToReload/
-PostLoadAssets. **Inference, strongly supported:** this original same-name
-script-defined type/base declaration resolves cyclically rather than decorating
-the prior menu type in this tested configuration. This rejects this probe;
-it does not prove every form of GUI extension impossible. No second run or
-controlled engine-internal diagnosis was performed. The report also identifies
-Mac model `Mac16,10`, previously UNKNOWN during the R-001 system query.
-
-The additional launcher text shows successful Steam library loading and two
-undefined log categories. It is not evidence that Steam connectivity caused the
-crash; the recursion stack is the relevant diagnostic evidence.
-
-**Containment verified:** raw crash report and launch logs archived in ignored
-local/evidence/native-menu-probe/crash-01. Launcher Home switched to No mods;
-mod-load JSON confirms zero enabled mods. The installed GUI was quarantined as
-`.gui.disabled` with filesystem approval; matching original source moved to
-[failed probe source](../research/probes/native-menu/failed/dynmap_native_menu_probe.gui.disabled).
-No active .gui remains in the installed probe. Source SHA-256 remains
-`dc572d67794fa5d17bda7100c8f282f1ba31228991414111db84ce3221e277f0`.
-Vanilla files and external descriptors unchanged. The probe never loaded a save
-or performed map/color/classification writes. No vanilla recovery rerun yet.
-
-**Gate disposition:** R-010 remains open; RG-UI-01 is blocked for the tested
-native-menu method. The broader no-copy integration question remains unresolved,
-not proven impossible. Do not reuse this attempt or promote the separate-widget
-fallback against the user's stated preference. No architecture policy is relaxed.
-**Single next task:** verify a No mods launch reaches the main menu and inspect
-fresh logs; only then research a materially different original integration
-mechanism before proposing another probe. No automatic retry of the failed type.
-
-### R-010 vanilla recovery and reviewed evidence record (2026-10-20)
-
-User confirmed successful startup after No mods was selected. Fresh runtime
-`debug.log` at 13:09:24 lists no mods and Garments of the Holy Roman Empire;
-mod-load JSON has zero enabled mods and recovery error.log is 0 bytes at
-inspection. This confirms startup recovery, not save/load or full removal safety.
-Raw recovery logs were archived locally alongside the failed-launch evidence.
-
-The user requested branch history with documentation, logs and screenshots.
-[Reviewed test evidence](evidence/2026-10-20-r010-native-menu/README.md) contains
-original test notes, selected diagnostic excerpts and two user-supplied images
-(target menu before the probe and crash dialogs). Raw logs/reports, local paths
-and account/incident identifiers are excluded from tracked evidence. Failed
-original source stays disabled. R-010 remains open; the next task is research
-into a materially different original native-menu integration method.
-
-### R-010 alternative probe 02 prepared — 2026-10-20
-
-On user request to continue with another menu test, branch
-`research/native-menu-alternative` was created from `13a82c0`; the handoff branch
-and its complete documentation/evidence remain intact.
-
-Read-only inspection confirmed native `flowcontainer_additional_mapmodes` derives
-from primitive `flowcontainer` (mapmodes.gui:483), is instantiated by the existing
-menu at :419, and has 16 explicit mode references plus four settings controls.
-The failed launch log read the original root-level probe before shared/mapmodes
-(:612 versus :1590), so precedence cannot be assumed from a dynmap prefix alone.
-
-A materially different **original scoped replacement** is now prepared:
-[probe 02 procedure/source](../research/probes/native-menu-alternative/README.md).
-It defines the menu type with primitive flowcontainer as its base, never the
-menu type itself. An independently authored compact layout references native
-modes/settings with their observed DLC gates and shortcuts and adds one inert
-DM marker. The native mini-menu insertion block remains available. This is not
-a copied vanilla body, adjacent overlay or whole-HUD replacement. Layout,
-animation and tutorial-ID parity are not claimed; all shared instances and
-other mods overriding this type are compatibility concerns.
-
-Source uses an intentional loading-order filename exception
-`gui/zz_dynmap_native_menu_probe_02.gui`; actual registration/replacement
-precedence remains unverified. Its hash is
-`6bb3dfce4d508989ffd2cf41345b6f56c71d81de725ea739f4c2629466ac2121`.
-With filesystem approval, identical source was installed in the inactive
-launcher-generated local probe mod. Failed probe 01 remains quarantined.
-No vanilla/descriptors were changed. Pre-test raw logs are archived locally;
-current mod-load JSON remains No mods. No game run or screenshot for probe 02.
-
-Static source review checked brace balance, no same-name base/derived pair,
-16 native-mode references, one disabled actionless marker and absence of
-classifier/title/color operations. This is not engine validation; Tiger has not
-been run. R-010 remains open/Partial, and no integration strategy or ADR changed.
-**Single next task:** select the probe-only playset, launch once and stop at the
-main menu; inspect fresh mount/type/error evidence before proceeding to any
-in-game layout test. Do not automatically retry a failing launch.
-
-### R-010 probe 02 startup checkpoint passed (2026-10-20)
-
-User confirmed startup/main menu after the 13:21 launch. Fresh debug.log:134–140
-lists only the local probe and Garments of the Holy Roman Empire;
-:1027–1028 records loading gui/zz_dynmap_native_menu_probe_02.gui. At inspection,
-error.log and gui_warnings.log are both 0 bytes. Raw launch logs and mod-load
-config archived locally/ignored under native-menu-probe-02/startup-01.
-
-**Verified:** this new source is mounted/read and the game starts without the
-prior recursive GUI-resolution crash. **Not yet verified:** which duplicate
-type definition is effective, whether the DM marker appears inside the native
-menu, native entries/settings parity, close behavior, mini-menu and UI-scale
-regressions. No classification/color effects performed. Next checkpoint is a
-disposable test game and opening Additional Modes under +. R-010 stays open.
-
-### R-010 probe 02 native-menu placement confirmed (2026-10-20)
-
-The user-supplied screenshot shows a subdued DM control inside Additional Modes,
-above the existing native icon rows, with the exact probe-02 tooltip. Disease
-Graphics is still visible. This confirms a real native-menu layout integration
-for the original primitive-based replacement in this tested configuration,
-not an adjacent standalone widget. Source/install hashes match the prepared
-probe. [Reviewed screenshot/test record](evidence/2026-10-20-r010-native-menu-02/README.md).
-
-Important correction to the load-order hypothesis: the captured startup log
-reads root-level zz probe at :1027 **before** shared/mapmodes.gui at :1587.
-The attempt works visually despite that order. Do not claim the zz prefix made
-it load later or infer general namespace/first-wins/last-wins semantics.
-
-At in-game capture, gui_warnings.log remains 0 bytes and error.log is 17,413
-bytes. Observed entries concern an invalid tutorial lesson key and invalid
-character/culture evaluation in gfx/court_scene/scene_cultures/00_default_cultures.txt.
-No direct probe filename or GUI ResolveTypes error was found. Attribution is
-unresolved without a matched-save vanilla comparison; this is not an error-free
-runtime claim. Raw logs/config archived locally/ignored.
-
-**Next checkpoint:** repeated menu open/close, native map switching/return to
-Realms and fresh-log review. Native icon/settings functionality, faith mini-menu,
-UI scales, player guards, manual refresh and lifecycle restoration remain
-unverified. R-010 stays Partial/open; RG-UI-01 now has positive placement evidence,
-not completion of its entire safety/UX gate. No classifier/color work performed.
-
-### R-010 probe 02 basic interaction smoke confirmed (2026-10-20)
-
-User reported DM clicks do not change the map, consistent with its disabled,
-actionless source, and confirmed the requested native-mode switching/return and
-menu open/close checks work. This is user-reported smoke evidence, not an
-agent-operated click trace or complete regression matrix. Fresh log capture
-has unchanged sizes/content: gui_warnings 0 bytes and error.log 17,413 bytes,
-with no direct probe-name or ResolveTypes matches. Raw evidence is local/ignored
-under native-menu-probe-02/interactions-01. Existing script-error attribution
-remains unresolved. Reviewed record updated; no additional screenshot claimed.
-
-The minimal original submenu replacement has positive placement, tooltip and
-basic-interaction evidence for this build/configuration. R-010 remains open:
-mini-mode/UI-scale compatibility, unavailable state, dependable refresh and
-cleanup remain unverified. **Single next research task:** R-005 read-only
-player/Dynasty guard and scripted-GUI execution-context investigation, before
-adding any active My Dynasty control. Keep existing inert probe scope unchanged.
-
-### R-010 probe 02 Faith sub-mode smoke (2026-10-20)
-
-After selecting Faith, the user confirmed the sub-mode buttons are visible and
-can be switched/returned in response to the requested smoke check. This is
-positive user-reported evidence for the current 1.20-style native controls with
-probe 02 enabled. No screenshot/exact sub-mode sequence was captured; do not
-claim all sub-mode variants, expanded mini-menu content, DLC or UI-scale coverage,
-or a working future Dynasty group. Fresh logs retain error.log 17,413 bytes and
-gui_warnings.log 0 bytes; debug/game logs grew. Raw capture archived locally under
-native-menu-probe-02/faith-submodes-01. Error attribution still unresolved.
-Reviewed evidence record updated. R-010 stays open; next task remains R-005
-read-only player/Dynasty guard and execution-context research.
+Later evidence refined these gates. The bounded FINAL GUARDS observer display
+path passed, but it does not establish safe internal NULL dispatch or all
+transition races. The no-Dynasty player fixture was rejected and that UI case is
+deferred to R-013 / #13. Do not follow historical next-step hypotheses here;
+see the consolidated status above. R-009 retains color restoration.
 
 ## Historical/reference findings pending M0 verification
 
@@ -669,7 +556,7 @@ This is a **hard research gate** before implementing UI.
 Can the installed build add custom modes without replacing the full vanilla map-mode GUI? Determine UI disabling/hiding for unavailable My Dynasty (ADR-008), valid activation, a dependable refresh path and exit/restore. Verify re-click before using it; otherwise select the smallest explicit refresh mechanism needed for v0.1.
 
 ### RG-PLAYER-01 — Local player scope
-What exact root/context is provided to the scripted GUI invoked from the installed map-mode button? Prefer a local-player-aware scope rather than global player iteration. Verify valid-player/Dynasty checks and safe invalidation on player switching, succession, observer transitions and reload; stop old-context use and clear/restore visuals as far as the API permits without recurring world scans.
+The gate remains open. Explicit fresh player roots have passed diagnostic execution, and FINAL GUARDS A passed for the tested displayed UI path into observer. This is not an error-free internal NULL boundary or proof of all transition races. The separate no-Dynasty local-player UI check is deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) after the one-shot fixture was rejected. ADR-008 remains required: with no valid local player or player Dynasty, My Dynasty is unavailable and performs no classification/color writes. Context-loss cleanup/restoration remains distinct and unverified; R-009 owns color restoration. See the [R-005 canonical checkpoint](tasks/R-005-player-context.md).
 
 ### RG-COLOR-01 — All Dynasties color source
 Does the native House map expose any reusable House/Dynasty color data or grouping hook?
@@ -693,3 +580,5 @@ Are map-color effects/UI execution local-only, synchronized, or desync-prone? Mu
 - War Maps 3 note on barony coloring: https://steamcommunity.com/sharedfiles/filedetails/?id=3450639748
 - CK3 1.20.0 changelog / sub-map-mode UI: https://steamdb.info/patchnotes/25588574/
 - CK3 1.20.1 changelog: https://steamdb.info/patchnotes/25870654/
+
+Detailed dated R-005 evidence checkpoints are preserved in [the R-005 evidence history](evidence/2026-10-20-r005-player-context/checkpoint-history.md).

@@ -1,0 +1,18 @@
+﻿# Original logging-only hook; append a child, never replace vanilla effect.
+on_player_character_change = {
+    on_actions = { dynmap_r005_player_change_diagnostic }
+}
+
+dynmap_r005_player_change_diagnostic = {
+    effect = {
+        debug_log = "DYNMAP_R005 PLAYER_CHANGE_ENTER"
+        debug_log_scopes = yes
+        if = {
+            limit = { exists = scope:previous_player_character }
+            debug_log = "DYNMAP_R005 PREVIOUS_PLAYER_PRESENT"
+            scope:previous_player_character = { debug_log_scopes = yes }
+        }
+        else = { debug_log = "DYNMAP_R005 PREVIOUS_PLAYER_ABSENT" }
+        debug_log = "DYNMAP_R005 PLAYER_CHANGE_EXIT"
+    }
+}

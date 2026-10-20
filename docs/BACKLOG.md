@@ -13,24 +13,31 @@ IDs such as R-002 are stable planning IDs, separate from GitHub issue numbers.
 | R-002 | [#2](https://github.com/mhaduk/ck3-dynasty-map/issues/2) | P0 | Inspect current `gfx/map/map_modes/map_modes.txt` | R-001 | Complete — native definitions inspected; custom loading/runtime unverified |
 | R-003 | [#3](https://github.com/mhaduk/ck3-dynasty-map/issues/3) | P0 | Inspect installed map-mode GUI, unavailable UI and activation/refresh/exit hooks | R-001 | Complete — static GUI/type inspection; runtime gates open |
 | R-004 | [#4](https://github.com/mhaduk/ck3-dynasty-map/issues/4) | P0 | Generate `script_docs` and `dump_data_types` | R-001 | Complete — clean script_docs and dump_data_types generated |
-| R-005 | [#5](https://github.com/mhaduk/ck3-dynasty-map/issues/5) | P0 | Verify local-player/Dynasty scopes, validity guards and active-context invalidation/restore hooks | R-003,R-004 | Ready — static prerequisites inspected; runtime verification pending |
+| R-005 | [#5](https://github.com/mhaduk/ck3-dynasty-map/issues/5) | P0 | Verify local-player/Dynasty scopes, validity guards and active-context invalidation/restore hooks | R-003,R-004 | Partial — FINAL GUARDS A passed for tested observer UI path; direct invalid-root safety and restore remain open; no-Dynasty player UI deferred to R-013 |
 | R-006 | [#6](https://github.com/mhaduk/ck3-dynasty-map/issues/6) | P0 | Verify county -> holder -> dynasty transitions | R-004 | Complete — clean generated scope links verified; no runtime claim |
 | R-007 | [#7](https://github.com/mhaduk/ck3-dynasty-map/issues/7) | P0 | Verify `any_liege_or_above` in target build | R-004 | Partial — clean documented traversal verified; runtime pending |
 | R-008 | [#8](https://github.com/mhaduk/ck3-dynasty-map/issues/8) | P0 | Verify county -> de-jure baronies iterator | R-004 | Partial — iterator signatures verified; filtering/runtime pending |
 | R-009 | [#9](https://github.com/mhaduk/ck3-dynasty-map/issues/9) | P0 | Verify barony color writes, dummy-title side effects and exit/restore behavior | R-002,R-004 | Partial — effect signatures verified; rendering/state safety blocked |
-| R-010 | [#10](https://github.com/mhaduk/ck3-dynasty-map/issues/10) | P1 | Confirm additive/minimal original GUI integration, unavailable UI and dependable refresh path | R-003 | Partial — probe 02 placement/basic interactions and Faith sub-mode smoke confirmed; broader UI/safety pending |
+| R-010 | [#10](https://github.com/mhaduk/ck3-dynasty-map/issues/10) | P1 | Confirm additive/minimal original GUI integration, unavailable UI and dependable refresh path | R-003 | Partial — placement/basic/Faith smoke and R-005 watcher evidence; raid/barter guards, full parity/refresh/restore open |
 | R-011 | [#11](https://github.com/mhaduk/ck3-dynasty-map/issues/11) | P1 | Capture vanilla error-log baseline without mod | R-001 | Partial — clean startup log empty; save/map interaction and archive pending |
 | R-012 | [#12](https://github.com/mhaduk/ck3-dynasty-map/issues/12) | P1 | Install/configure CK3 Tiger locally | R-001 | Ready |
+| R-013 | [#13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) | P2 | Establish a supported no-Dynasty local-player fixture and verify unavailable UI | R-005 | Deferred — engine rejects the one-attempt player lowborn fixture; no further fixture iteration now |
 
-Migration verified 2026-10-20: R-001 / #1, R-002 / #2, R-003 / #3, R-004 / #4 and R-006 / #6 are
+Initial migration verified 2026-10-20, before adding R-013: R-001 / #1, R-002 / #2, R-003 / #3, R-004 / #4 and R-006 / #6 are
 closed as completed; the other seven M0 issues remain open. Ready/Partial/Blocked
 are progress descriptions in issue bodies, not claims of native GitHub states.
 
-R-001 completion unblocks the Ready research items; it does not authorize
-implementation. API findings have been reconfirmed in clean vanilla output. The single
-next task is R-005 read-only player-context/guard research before active controls.
-R-010 probe 02 has positive placement/basic-interaction evidence; broader UI and
-safety gates stay open (see research/probes/native-menu-alternative/README.md).
+Latest [FINAL GUARDS result](evidence/2026-10-20-r005-player-context/final-guards-result.md)
+and [canonical R-005 checkpoint](tasks/R-005-player-context.md) supersede older
+next-test instructions in this section and in dated evidence. A passed the
+bounded displayed UI path into observer after RESET; it does not establish
+direct invalid-root safety or universal transition-race safety. B's one-shot
+`set_to_lowborn` fixture was rejected on the player character and Dynasty
+remained present. R-013 owns the deferred local-player/no-Dynasty UI case; do
+not iterate on fixtures or repeat V1–V3 or passed lifecycle cases. R-005 remains
+partial. R-009 owns color restoration; R-010 owns native-menu parity/refresh.
+The no-Dynasty courtier guard and observer UI are not proof of a local player
+without a Dynasty.
 
 ## v0.1.0 — My Dynasty MVP
 
@@ -39,7 +46,7 @@ safety gates stay open (see research/probes/native-menu-alternative/README.md).
 | F-101 | P0 | Create launcher-generated local mod skeleton | R-001 |
 | F-102 | P0 | Add prefixed dummy color titles | R-009,F-101 |
 | F-103 | P0 | Add custom barony-color map definition | R-002,F-101 |
-| F-104 | P0 | Resolve valid player Dynasty and implement ADR-008 unavailability/context-loss safety | R-005,R-009,F-101 |
+| F-104 | P0 | Resolve valid player Dynasty and implement ADR-008 unavailability/context-loss safety, including the deferred no-Dynasty player prerequisite in [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) | R-005,R-009,R-013,F-101 |
 | F-105 | P0 | Implement `DIRECT` county classifier | R-006,F-104 |
 | F-106 | P0 | Implement `CONTROLLED` via verified liege traversal, including no-Dynasty holders | R-006,R-007,F-104 |
 | F-107 | P0 | Propagate county class to baronies | R-008,F-102,F-105,F-106 |
@@ -50,7 +57,7 @@ safety gates stay open (see research/probes/native-menu-alternative/README.md).
 | T-112 | P0 | Validate nested foreign and no-Dynasty holders under dynastic lieges | F-106,F-107 |
 | T-113 | P0 | Run Tiger and compare `error.log` with vanilla baseline | R-011,R-012,F-109,F-110,T-111,T-112,T-114,T-115,T-116,T-117 |
 | T-114 | P0 | Validate valid activation and barony rendering, including dummy-title side effects | R-009,F-107,F-108,F-109 |
-| T-115 | P0 | Validate unavailable activation: no player/no Dynasty, no classification/color writes, no all-neutral substitute | F-104,F-108 |
+| T-115 | P0 | Validate unavailable activation: no player/no Dynasty, no classification/color writes, no all-neutral substitute; the no-Dynasty player case follows [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) | F-104,F-108,R-013 |
 | T-116 | P0 | Validate manual refresh/re-activation after holder/liege changes | F-110,T-111,T-112 |
 | T-117 | P0 | Validate active-context loss/player switching and exit/restore without color leaks | R-005,R-009,F-104,F-108 |
 
@@ -63,7 +70,7 @@ safety gates stay open (see research/probes/native-menu-alternative/README.md).
 | P-203 | P1 | Compare naive barony scan vs county-first algorithm if needed | P-202 |
 | E-204 | P0 | Test administrative government | v0.1.0 |
 | E-205 | P1 | Test clan/tribal/theocratic/republic edge cases | v0.1.0 |
-| E-206 | P1 | Harden no-Dynasty player UX and regression coverage beyond MVP guards | v0.1.0 |
+| E-206 | P1 | Harden no-Dynasty player UX/regressions while preserving ADR-008 unavailability; fixture/UI prerequisite follows [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) | v0.1.0,R-013 |
 | E-207 | P1 | Harden observer/no-local-player UX and regression coverage beyond MVP guards | v0.1.0 |
 | C-208 | P0 | Test save/load with map active | v0.1.0 |
 | C-209 | P0 | Test adding/removing mod from existing save | v0.1.0 |

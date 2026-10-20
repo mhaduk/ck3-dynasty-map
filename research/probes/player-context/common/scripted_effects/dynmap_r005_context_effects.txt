@@ -1,0 +1,14 @@
+﻿# Logging-only shared guard. Current scope may differ from root in R5N.
+dynmap_r005_guard_diagnostic_effect = {
+    debug_log = "DYNMAP_R005 GUARD_ENTER"
+    debug_log_scopes = yes
+    if = {
+        limit = { exists = dynasty }
+        debug_log = "DYNMAP_R005 VALID_DYNASTY"
+        dynasty = { debug_log_scopes = yes }
+    }
+    else = {
+        debug_log = "DYNMAP_R005 REJECT_NO_DYNASTY"
+    }
+    debug_log = "DYNMAP_R005 GUARD_EXIT"
+}

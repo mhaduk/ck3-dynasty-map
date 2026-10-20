@@ -47,6 +47,64 @@ types dynmap_native_menu_alternative
             enabled = no
         }
 
+        # Temporary R-005 diagnostic; DM above stays inert.
+        button_round = {
+            name = "dynmap_r005_context_button"
+            parentanchor = hcenter
+            size = { 32 32 }
+            raw_text = "R5"
+            raw_tooltip = "R-005: log current player and Dynasty context"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetScriptedGui('dynmap_r005_context').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            onclick = "[GetScriptedGui('dynmap_r005_context').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+
+        button_round = {
+            name = "dynmap_r005_no_dynasty_button"
+            parentanchor = hcenter
+            size = { 32 32 }
+            raw_text = "R5N"
+            raw_tooltip = "R-005: test shared guard on one courtier without a Dynasty"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetScriptedGui('dynmap_r005_no_dynasty').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            onclick = "[GetScriptedGui('dynmap_r005_no_dynasty').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+
+        button_round = {
+            name = "dynmap_r005_arm_button"
+            parentanchor = hcenter
+            size = { 32 32 }
+            raw_text = "ARM"
+            raw_tooltip = "R-005: arm GUI-only observer lifecycle marker"
+            visible = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r005_armed', 'yes')]"
+        }
+        text_single = {
+            name = "dynmap_r005_arm_status"
+            parentanchor = hcenter
+            text = "[Select_CString(GetVariableSystem.Exists('dynmap_r005_armed'), 'R5: ARMED', 'R5: CLEAR')]"
+            using = Font_Size_Small
+        }
+
+        button = {
+            name = "dynmap_r005_null_button"
+            parentanchor = hcenter
+            size = { 100 28 }
+            raw_text = "NULL"
+            raw_tooltip = "Diagnostic: bypass IsValid and Execute with a null character"
+            onclick = "[GetScriptedGui('dynmap_r005_context').Execute( GuiScope.SetRoot( GetNullCharacter.MakeScope ).End )]"
+        }
+        button = {
+            name = "dynmap_r005_succession_button"
+            parentanchor = hcenter
+            size = { 130 28 }
+            raw_text = "SUCCESSION"
+            raw_tooltip = "TEST SAVE ONLY: kills current ruler to test succession. Save first."
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetScriptedGui('dynmap_r005_succession').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            onclick = "[GetScriptedGui('dynmap_r005_succession').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+
         flowcontainer = {
             name = "dynmap_probe2_modes_row_1"
             parentanchor = hcenter
@@ -182,21 +240,7 @@ types dynmap_native_menu_alternative
             blockoverride "checkbox" { checked = "[ShowLegendMapGraphics]" size = { 20 20 } }
             blockoverride "text" { text = "SETTING_SHOW_LEGEND_MAP_GRAPHICS" max_width = 155 fontsize = 14 }
         }
-        button_checkbox_label = {
-            name = "dynmap_probe2_raid_setting"
-            onclick = "[ToggleShowDetailedRaidMapIcons]"
-            tooltip = "SETTING_SHOW_DETAILED_RAID_MAP_ICON_TOOLTIP"
-            visible = "[GetPlayer.CanRaid]"
-            blockoverride "checkbox" { checked = "[ShowDetailedRaidMapIcons]" size = { 20 20 } }
-            blockoverride "text" { text = "SETTING_SHOW_DETAILED_RAID_MAP_ICON" max_width = 155 fontsize = 14 }
-        }
-        button_checkbox_label = {
-            name = "dynmap_probe2_barter_setting"
-            onclick = "[ToggleShowDetailedBarterMapIcons]"
-            tooltip = "SETTING_SHOW_DETAILED_BARTER_MAP_ICON_TOOLTIP"
-            visible = "[GetPlayer.HasBarterGoods]"
-            blockoverride "checkbox" { checked = "[ShowDetailedBarterMapIcons]" size = { 20 20 } }
-            blockoverride "text" { text = "SETTING_SHOW_DETAILED_BARTER_MAP_ICON" max_width = 155 fontsize = 14 }
-        }
+        # R-005 isolation variant: raid/barter controls temporarily omitted.
+        # Their player-dependent visibility is unsafe until separately tested.
     }
 }

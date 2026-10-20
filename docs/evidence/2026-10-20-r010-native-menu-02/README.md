@@ -27,13 +27,12 @@ this does not establish general type-resolution/namespace/load-order semantics.
 | Broader mini-menu / UI-scale regressions | Expanded mini-menu contents, all variants/DLC cases and another UI scale remain pending. |
 | Player safety, manual refresh and color restoration | Not implemented/tested; unrelated gates remain open. |
 
-![Probe 02 marker and tooltip inside the native menu](native-menu-dm-visible.png)
-
-The image is supplied by the user and cropped to the menu; no new screenshot
-of the rest of the HUD is claimed. Raw in-game logs/config are archived under
-ignored local/evidence/native-menu-probe-02/in-game-01. A matched-save vanilla
-comparison is needed for error attribution; existing error.log is not declared
-clean. No crash/recovery or full removal test for probe 02 has been completed.
+The user-supplied screenshot is retained in local evidence but omitted from
+the public package because it includes an unrelated UI overlay. The observation
+above remains user-reported evidence. Raw in-game logs/config are archived
+locally and are not part of this package. A matched-save vanilla comparison is
+needed for error attribution; existing error.log is not declared clean. No
+crash/recovery or full removal test for probe 02 has been completed.
 
 ## Loading-order observation
 
@@ -64,4 +63,5 @@ debug/game logs grew. Raw capture is local/ignored under
 native-menu-probe-02/faith-submodes-01. No new screenshot captured. Explicit
 expanded mini-menu contents and alternate UI-scale coverage remain unverified.
 
-[Reviewed diagnostic excerpts and raw-capture checksums](reviewed-log-excerpts.txt).
+Selected diagnostic observations and raw-capture checksums remain in local
+review notes and are not part of this public package.
