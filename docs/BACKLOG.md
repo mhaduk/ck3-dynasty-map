@@ -1,0 +1,83 @@
+# Backlog
+
+This is the source list for GitHub Issues until the repository is connected and issues are created. IDs are stable planning IDs, not GitHub issue numbers.
+
+## M0 — Research & bootstrap
+
+| ID | Priority | Work item | Depends on | Status |
+|---|---|---|---|---|
+| R-001 | P0 | Record installed CK3 version and DLC/playset baseline | — | Ready |
+| R-002 | P0 | Inspect current `gfx/map/map_modes/map_modes.txt` | R-001 | Blocked |
+| R-003 | P0 | Inspect installed map-mode GUI, unavailable UI and activation/refresh/exit hooks | R-001 | Blocked |
+| R-004 | P0 | Generate `script_docs` and `dump_data_types` | R-001 | Blocked |
+| R-005 | P0 | Verify local-player/Dynasty scopes, validity guards and active-context invalidation/restore hooks | R-003,R-004 | Blocked |
+| R-006 | P0 | Verify county -> holder -> dynasty transitions | R-004 | Blocked |
+| R-007 | P0 | Verify `any_liege_or_above` in target build | R-004 | Blocked |
+| R-008 | P0 | Verify county -> de-jure baronies iterator | R-004 | Blocked |
+| R-009 | P0 | Verify barony color writes, dummy-title side effects and exit/restore behavior | R-002,R-004 | Blocked |
+| R-010 | P1 | Confirm additive/minimal original GUI integration, unavailable UI and dependable refresh path | R-003 | Blocked |
+| R-011 | P1 | Capture vanilla error-log baseline without mod | R-001 | Blocked |
+| R-012 | P1 | Install/configure CK3 Tiger locally | R-001 | Blocked |
+
+## v0.1.0 — My Dynasty MVP
+
+| ID | Priority | Work item | Depends on |
+|---|---|---|---|
+| F-101 | P0 | Create launcher-generated local mod skeleton | R-001 |
+| F-102 | P0 | Add prefixed dummy color titles | R-009,F-101 |
+| F-103 | P0 | Add custom barony-color map definition | R-002,F-101 |
+| F-104 | P0 | Resolve valid player Dynasty and implement ADR-008 unavailability/context-loss safety | R-005,R-009,F-101 |
+| F-105 | P0 | Implement `DIRECT` county classifier | R-006,F-104 |
+| F-106 | P0 | Implement `CONTROLLED` via verified liege traversal, including no-Dynasty holders | R-006,R-007,F-104 |
+| F-107 | P0 | Propagate county class to baronies | R-008,F-102,F-105,F-106 |
+| F-108 | P0 | Integrate map-mode button, unavailable state and exit/restore | R-003,R-009,R-010,F-103,F-104,F-107 |
+| F-109 | P1 | Add English localization | F-108 |
+| F-110 | P0 | Implement dependable refresh: verified re-click or minimal explicit mechanism | R-003,R-010,F-108 |
+| T-111 | P0 | Validate direct holder and cadet House cases | F-105,F-107 |
+| T-112 | P0 | Validate nested foreign and no-Dynasty holders under dynastic lieges | F-106,F-107 |
+| T-113 | P0 | Run Tiger and compare `error.log` with vanilla baseline | R-011,R-012,F-109,F-110,T-111,T-112,T-114,T-115,T-116,T-117 |
+| T-114 | P0 | Validate valid activation and barony rendering, including dummy-title side effects | R-009,F-107,F-108,F-109 |
+| T-115 | P0 | Validate unavailable activation: no player/no Dynasty, no classification/color writes, no all-neutral substitute | F-104,F-108 |
+| T-116 | P0 | Validate manual refresh/re-activation after holder/liege changes | F-110,T-111,T-112 |
+| T-117 | P0 | Validate active-context loss/player switching and exit/restore without color leaks | R-005,R-009,F-104,F-108 |
+
+## v0.2.0 — Hardening
+
+| ID | Priority | Work item | Depends on |
+|---|---|---|---|
+| U-201 | P1 | Add legend/tooltips for Direct/Controlled/Other | v0.1.0 |
+| P-202 | P0 | Profile refresh with Script Profiler | v0.1.0 |
+| P-203 | P1 | Compare naive barony scan vs county-first algorithm if needed | P-202 |
+| E-204 | P0 | Test administrative government | v0.1.0 |
+| E-205 | P1 | Test clan/tribal/theocratic/republic edge cases | v0.1.0 |
+| E-206 | P1 | Harden no-Dynasty player UX and regression coverage beyond MVP guards | v0.1.0 |
+| E-207 | P1 | Harden observer/no-local-player UX and regression coverage beyond MVP guards | v0.1.0 |
+| C-208 | P0 | Test save/load with map active | v0.1.0 |
+| C-209 | P0 | Test adding/removing mod from existing save | v0.1.0 |
+| C-210 | P1 | Document conflicts with map UI mods | v0.1.0 |
+| L-211 | P2 | Add Polish localization | U-201 |
+
+## v0.3.0 — All Dynasties
+
+| ID | Priority | Work item | Depends on |
+|---|---|---|---|
+| A-301 | P0 | Reverse-engineer native House map semantics/color source | M0 |
+| A-302 | P0 | Evaluate native grouping/reuse strategy | A-301 |
+| A-303 | P0 | Prototype dynasty-head primary-title color fallback | A-301 |
+| A-304 | P1 | Evaluate deterministic palette strategy | A-301 |
+| A-305 | P0 | Select color strategy and record ADR | A-302,A-303,A-304 |
+| A-306 | P0 | Implement All Dynasties classifier | A-305 |
+| A-307 | P0 | Handle no-Dynasty holders | A-306 |
+| A-308 | P0 | Test cadet Houses across independent/vassal realms | A-306 |
+| A-309 | P1 | Test color stability after succession/new cadet branch | A-306 |
+
+## v0.4.0 / v1.0.0
+
+| ID | Priority | Work item |
+|---|---|---|
+| I-401 | P0 | Integrate both modes using current CK3 sub-mode UX if available |
+| I-402 | P1 | Final icon/visual polish |
+| I-403 | P0 | Full regression matrix |
+| I-404 | P0 | Release compatibility checklist against current CK3 version |
+| I-405 | P1 | Workshop metadata/screenshots |
+| I-406 | P0 | Tag and publish `v1.0.0` |

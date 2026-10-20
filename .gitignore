@@ -1,0 +1,44 @@
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100/
+.Trashes/
+
+# Machine-local editor settings and recovery files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# CK3 machine-local references, generated API docs and runtime output
+/local/
+/logs/
+/generated/
+/script_docs/
+/dump_data_types/
+/crashes/
+/dumps/
+/screenshots/
+/pdx_settings.txt
+/dlc_load.json
+*.log
+*.ck3
+*.ck3meta
+
+# Launcher external descriptors contain machine-local paths.
+# The future repository-owned descriptor remains trackable.
+*.mod
+!descriptor.mod
+
+# Build/release packages
+/dist/
+/build/
+*.zip
+*.7z
+
+# Temporary and backup files
+*.tmp
+*.bak

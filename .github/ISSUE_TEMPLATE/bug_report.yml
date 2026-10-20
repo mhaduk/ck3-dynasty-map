@@ -1,0 +1,70 @@
+name: Bug report
+description: Report incorrect behavior or a regression
+title: "bug: "
+labels: ["type:bug"]
+body:
+  - type: input
+    id: ck3_version
+    attributes:
+      label: Exact CK3 version / build
+      description: Include Steam branch (stable/beta) and build identifier where available.
+      placeholder: "Version, build and branch"
+    validations:
+      required: true
+  - type: input
+    id: mod_version
+    attributes:
+      label: Dynasty Map version / commit
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS version and hardware
+      description: Include macOS version and Mac model where applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: dlc
+    attributes:
+      label: Enabled DLC
+      description: List enabled DLC, or state none.
+    validations:
+      required: true
+  - type: textarea
+    id: playset
+    attributes:
+      label: Playset and mod load order
+      description: List enabled mods in load order and whether this reproduces with only Dynasty Map enabled.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Save / bookmark and player context
+      description: Include bookmark or save context, government, player Dynasty or observer state, prior map mode and recent character switches where relevant. Do not upload private or copyrighted files.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant error.log lines
+      description: Remove unrelated/private content; do not upload copyrighted vanilla files.

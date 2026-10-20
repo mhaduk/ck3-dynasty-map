@@ -1,0 +1,23 @@
+name: Research spike
+description: Time-boxed CK3 API / vanilla behavior investigation
+title: "research: "
+labels: ["type:research"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question to answer
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence to collect
+      description: Files, script_docs entries, profiler data, screenshots or logs.
+  - type: textarea
+    id: decision
+    attributes:
+      label: Exit decision
+      description: What concrete architecture/code decision becomes possible when this is answered?
+    validations:
+      required: true
