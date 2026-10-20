@@ -24,3 +24,4 @@
 | RK-20 | Player switching or context loss leaves the active map using an old Dynasty | Unknown | High | Stop old-context use, clear/restore as far as API permits; verify lifecycle hooks in M0 and v0.1 regression tests |
 | RK-21 | Ironman/achievement compatibility is unknown | Unknown | Medium | Make no support claim until explicitly tested against a recorded build and playset |
 | RK-22 | Shades are inaccessible or neutral territory is confused with unavailable mode | Unknown | Medium | Review contrast/accessibility; unavailable mode must not render an all-neutral substitute; verify unavailable UI in M0 |
+| RK-23 | GUI type extension resolves cyclically and crashes at startup | Observed in R-010 probe | High | Failed same-name probe quarantined; verify vanilla recovery; require different evidence-backed integration before another test |

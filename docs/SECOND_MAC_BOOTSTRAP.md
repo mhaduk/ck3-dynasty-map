@@ -1,6 +1,10 @@
 # Second-Mac Bootstrap Checklist
 
 This is the first session checklist for the Mac that actually has CK3 installed.
+For current progress, read [CURRENT_STATE.md](CURRENT_STATE.md) first. R-001 is
+complete for 1.20.1.1 as of 2026-10-20; clean vanilla API generation is complete;
+save/map-mode baseline coverage is still pending (R-011). This checklist is not authorization to create a mod skeleton
+before an implementation task and its research prerequisites are approved.
 
 ## 1. Confirm the target
 
@@ -20,7 +24,7 @@ Use:
 
 The modding guide recommends these options for console access and hot reload where supported.
 
-## 3. Create the local mod through CK3 Launcher
+## 3. Deferred until implementation authorization: create the local mod
 
 Create `Dynasty Map` in the launcher so CK3 generates correct local descriptors for that machine.
 

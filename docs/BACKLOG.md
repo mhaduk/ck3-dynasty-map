@@ -1,23 +1,37 @@
 # Backlog
 
-This is the source list for GitHub Issues until the repository is connected and issues are created. IDs are stable planning IDs, not GitHub issue numbers.
+M0 tasks are tracked in [GitHub Issues](https://github.com/mhaduk/ck3-dynasty-map/issues).
+This document preserves sequencing, dependencies and a status snapshot; keep it
+synchronized with Issues. Later milestones remain planned here until migrated.
+IDs such as R-002 are stable planning IDs, separate from GitHub issue numbers.
 
 ## M0 — Research & bootstrap
 
-| ID | Priority | Work item | Depends on | Status |
-|---|---|---|---|---|
-| R-001 | P0 | Record installed CK3 version and DLC/playset baseline | — | Ready |
-| R-002 | P0 | Inspect current `gfx/map/map_modes/map_modes.txt` | R-001 | Blocked |
-| R-003 | P0 | Inspect installed map-mode GUI, unavailable UI and activation/refresh/exit hooks | R-001 | Blocked |
-| R-004 | P0 | Generate `script_docs` and `dump_data_types` | R-001 | Blocked |
-| R-005 | P0 | Verify local-player/Dynasty scopes, validity guards and active-context invalidation/restore hooks | R-003,R-004 | Blocked |
-| R-006 | P0 | Verify county -> holder -> dynasty transitions | R-004 | Blocked |
-| R-007 | P0 | Verify `any_liege_or_above` in target build | R-004 | Blocked |
-| R-008 | P0 | Verify county -> de-jure baronies iterator | R-004 | Blocked |
-| R-009 | P0 | Verify barony color writes, dummy-title side effects and exit/restore behavior | R-002,R-004 | Blocked |
-| R-010 | P1 | Confirm additive/minimal original GUI integration, unavailable UI and dependable refresh path | R-003 | Blocked |
-| R-011 | P1 | Capture vanilla error-log baseline without mod | R-001 | Blocked |
-| R-012 | P1 | Install/configure CK3 Tiger locally | R-001 | Blocked |
+| ID | GitHub issue | Priority | Work item | Depends on | Status |
+|---|---|---|---|---|---|
+| R-001 | [#1](https://github.com/mhaduk/ck3-dynasty-map/issues/1) | P0 | Record installed CK3 version and DLC/playset baseline | — | Complete — environment inventory; see RESEARCH.md |
+| R-002 | [#2](https://github.com/mhaduk/ck3-dynasty-map/issues/2) | P0 | Inspect current `gfx/map/map_modes/map_modes.txt` | R-001 | Complete — native definitions inspected; custom loading/runtime unverified |
+| R-003 | [#3](https://github.com/mhaduk/ck3-dynasty-map/issues/3) | P0 | Inspect installed map-mode GUI, unavailable UI and activation/refresh/exit hooks | R-001 | Complete — static GUI/type inspection; runtime gates open |
+| R-004 | [#4](https://github.com/mhaduk/ck3-dynasty-map/issues/4) | P0 | Generate `script_docs` and `dump_data_types` | R-001 | Complete — clean script_docs and dump_data_types generated |
+| R-005 | [#5](https://github.com/mhaduk/ck3-dynasty-map/issues/5) | P0 | Verify local-player/Dynasty scopes, validity guards and active-context invalidation/restore hooks | R-003,R-004 | Ready — static prerequisites inspected; runtime verification pending |
+| R-006 | [#6](https://github.com/mhaduk/ck3-dynasty-map/issues/6) | P0 | Verify county -> holder -> dynasty transitions | R-004 | Complete — clean generated scope links verified; no runtime claim |
+| R-007 | [#7](https://github.com/mhaduk/ck3-dynasty-map/issues/7) | P0 | Verify `any_liege_or_above` in target build | R-004 | Partial — clean documented traversal verified; runtime pending |
+| R-008 | [#8](https://github.com/mhaduk/ck3-dynasty-map/issues/8) | P0 | Verify county -> de-jure baronies iterator | R-004 | Partial — iterator signatures verified; filtering/runtime pending |
+| R-009 | [#9](https://github.com/mhaduk/ck3-dynasty-map/issues/9) | P0 | Verify barony color writes, dummy-title side effects and exit/restore behavior | R-002,R-004 | Partial — effect signatures verified; rendering/state safety blocked |
+| R-010 | [#10](https://github.com/mhaduk/ck3-dynasty-map/issues/10) | P1 | Confirm additive/minimal original GUI integration, unavailable UI and dependable refresh path | R-003 | Blocked — tested type extension crashes; quarantined; alternative unresolved |
+| R-011 | [#11](https://github.com/mhaduk/ck3-dynasty-map/issues/11) | P1 | Capture vanilla error-log baseline without mod | R-001 | Partial — clean startup log empty; save/map interaction and archive pending |
+| R-012 | [#12](https://github.com/mhaduk/ck3-dynasty-map/issues/12) | P1 | Install/configure CK3 Tiger locally | R-001 | Ready |
+
+Migration verified 2026-10-20: R-001 / #1, R-002 / #2, R-003 / #3, R-004 / #4 and R-006 / #6 are
+closed as completed; the other seven M0 issues remain open. Ready/Partial/Blocked
+are progress descriptions in issue bodies, not claims of native GitHub states.
+
+R-001 completion unblocks the Ready research items; it does not authorize
+implementation. API findings have been reconfirmed in clean vanilla output. The single
+next task is R-010 research into a materially different original native-menu
+mechanism. Vanilla startup recovery succeeded; the failed probe is withdrawn
+(see research/probes/native-menu/README.md), described
+in [CURRENT_STATE.md](CURRENT_STATE.md) and [RESEARCH.md](RESEARCH.md).
 
 ## v0.1.0 — My Dynasty MVP
 

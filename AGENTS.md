@@ -2,7 +2,11 @@
 
 ## Project and source of truth
 
-Dynasty Map is a pre-implementation Crusader Kings III mod project. Read
+Dynasty Map is a pre-implementation Crusader Kings III mod project. Immediately
+after this file, read [docs/CURRENT_STATE.md](docs/CURRENT_STATE.md). Keep it
+synchronized whenever project state materially changes, including research
+results, blockers and the single next task. It summarizes state; detailed
+evidence and accepted decisions remain in their existing documents. Read
 README.md, CONTRIBUTING.md, docs/PROJECT_CHARTER.md, docs/DECISIONS.md and
 docs/ARCHITECTURE.md before proposing changes. Use docs/ROADMAP.md and
 docs/BACKLOG.md for scope and sequencing, and docs/RESEARCH.md for open gates.

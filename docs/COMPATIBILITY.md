@@ -2,7 +2,14 @@
 
 ## Supported game versions
 
-The research baseline is CK3 1.20.1, but the implementation target is whatever stable CK3 build is installed on the gaming Mac when M0 begins. `supported_version` is updated only after the release checklist passes.
+The installed M0 research target is CK3 1.20.1.1 (Crozier), Steam build 25913294,
+confirmed on 2026-10-20. This is not a runtime compatibility declaration: the
+initial logs/script_docs came from a session with NUI:Realm Ledger enabled.
+Clean vanilla API docs were regenerated and rechecked on 2026-10-20; startup
+error.log is empty. Save/map-mode baseline coverage and runtime probes remain
+pending (see RESEARCH.md, clean follow-up). Reconfirm
+the installed build after updates. `supported_version` is updated only after
+the release checklist passes.
 
 Prefer a minor-series wildcard only after validation, for example:
 

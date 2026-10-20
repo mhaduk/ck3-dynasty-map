@@ -1,0 +1,38 @@
+Reviewed diagnostic excerpts — R-010, 2026-10-20
+
+These are selected lines, not complete logs. Absolute machine paths, account
+IDs, incident IDs and memory addresses are omitted. Labels below distinguish
+source lines from inspection observations. Raw evidence remains local/ignored.
+
+FAILED PROBE: debug.log (13:00 launch)
+Dynasty Map - Native Menu Probe|mod/dynmap_native_menu_probe.mod|Enabled
+[13:00:30][D][pdx_gui_assetfactory.cpp:680]: [LoadAssetsGUI] Loading "gui/dynmap_native_menu_probe.gui"
+[13:00:30][D][pdx_gui_assetfactory.cpp:689]: [LoadAssetsGUI] Loading of "gui/dynmap_native_menu_probe.gui" is complete
+
+FAILED PROBE: user-provided macOS crash report
+Exception Type:    EXC_BAD_ACCESS (SIGILL)
+Exception Message: Thread stack size exceeded due to excessive recursion
+Selected GUI-resolution frames (addresses/frame numbers omitted):
+CPdxGuiFactory::ResolveTypes(SResolveScope&, CPdxGuiFactory::SDependencies*, SPdxGuiFileDesc const&, SPdxGuiResolvedDesc&, bool) const + 64
+CPdxGuiFactory::ResolveTypes(SResolveScope&, CPdxGuiFactory::SDependencies*, SPdxGuiFileDesc const&, SPdxGuiResolvedDesc&, bool) const + 648
+CPdxGuiFactory::ResolveTypes(SResolveScope&, CPdxGuiFactory::SDependencies*, SPdxGuiFileDesc const&, SPdxGuiResolvedDesc&, bool) const + 648
+
+INSPECTION OBSERVATIONS (not log lines)
+Crash time: 13:00:31 Europe/Warsaw; approximately five seconds after launch.
+Crashed thread 12 contains approximately 43,800 recursive ResolveTypes calls.
+Failed launch error.log and gui_warnings.log were 0 bytes.
+The empty files do not establish successful GUI initialization.
+The pre-probe test-game error.log was 97,878 bytes; those errors predate this probe.
+
+VANILLA RECOVERY: debug.log (13:09 launch)
+[13:09:24][D][jomini_game_setup.cpp:138]: DLC:
+Garments of the Holy Roman Empire|dlc/dlc001_preorder/dlc001.dlc
+Mod:
+
+
+RECOVERY OBSERVATIONS (not log lines)
+User confirmed successful startup after No mods was selected.
+Reviewed dlc_load.json: enabled_mods=[], disabled_dlcs=[].
+Recovery error.log was 0 bytes at inspection.
+Installed faulty .gui and original source were quarantined as .gui.disabled.
+No repeated crash test, save-load test or full removal matrix was performed.

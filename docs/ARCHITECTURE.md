@@ -22,7 +22,10 @@ Expected location:
 
 `gfx/map/map_modes/dynmap_map_modes.txt`
 
-The proposed custom map uses `color_mode = baronies`, following historical community examples; M0 must verify the target-build rendering mechanism.
+Installed 1.20.1.1 `game/gfx/map/map_modes/map_modes.txt:116–195` confirms
+that the native `baronies` object uses `color_mode = baronies` (R-002). The
+proposed custom object/path remains a candidate: separate-file loading, custom
+selection and temporary rendering safety still require an authorized probe.
 
 ### 2. Scripted GUI / execution logic
 
@@ -58,11 +61,22 @@ Exact RGB values are intentionally deferred until in-game testing because lighti
 
 ### 4. GUI integration
 
-**Research Gate RG-UI-01**: inspect CK3 1.20.x/1.21.x vanilla `map_modes.txt` and the current map-mode GUI. The public custom-map-mode guide was last verified against a very old CK3 version, while the recorded patch references report sub-map-mode display changes in CK3 1.20. Verify the installed behavior during M0, including unavailable UI, re-click/manual refresh and exit/restore hooks.
+**Research Gate RG-UI-01**: R-002/R-003 statically inspected installed 1.20.1.1
+map definitions and GUI. Native named blocks and explicit faith sub-mode buttons
+exist, but separate-file insertion into the live HUD is unverified; the banner
+instance overrides shared defaults. See RESEARCH.md. The gate remains open. The public custom-map-mode guide was last verified against a very old CK3 version, while the recorded patch references report sub-map-mode display changes in CK3 1.20. Verify the installed behavior during M0, including unavailable UI, re-click/manual refresh and exit/restore hooks.
 
 Preferred order:
 
 1. data-driven/additive integration without replacing a large vanilla GUI file;
+   installed `gui/scripted_widgets/_scripted_widgets.info` documents additive
+   startup registration (R-010). A separate original control is a candidate,
+   not verified native-menu insertion; placement, loading and lifecycle still
+   need an authorized probe. The user prefers a real child of the native map
+   menu over an adjacent standalone widget. R-010 traced `mapmodes_insert_before`
+   in Additional map modes as a candidate. The R-010 same-name type-extension
+   probe crashed in recursive GUI type resolution on 2026-10-20 and is withdrawn.
+   That route is blocked; no alternative native-menu path is verified.
 2. minimal scoped GUI override;
 3. if neither approach is viable, record RG-UI-01 as blocked and document the evidence before revisiting the design.
 

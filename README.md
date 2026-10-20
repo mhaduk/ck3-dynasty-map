@@ -1,7 +1,7 @@
 # Dynasty Map for Crusader Kings III
 
 **Status:** planning / pre-implementation
-**Research baseline:** CK3 1.20.1 "Crozier" (2026-10-20)
+**Research baseline:** CK3 1.20.1.1 "Crozier" (2026-10-20; clean API docs confirmed; runtime probes pending)
 **Repository intent:** source code, design documentation, test evidence, and release history for a CK3 mod adding dynasty-focused map modes.
 
 ## Product goal
@@ -32,6 +32,8 @@ The county is the semantic unit. Baronies, cities and temples inherit the classi
 - Do not bump `supported_version` merely to silence launcher warnings; validate first.
 
 ## Documentation
+
+- [Current state / Codex session handoff](docs/CURRENT_STATE.md)
 
 - [Project charter](docs/PROJECT_CHARTER.md)
 - [Architecture](docs/ARCHITECTURE.md)
