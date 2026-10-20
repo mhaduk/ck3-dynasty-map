@@ -2,7 +2,7 @@
 
 ## Status
 
-This document defines the intended architecture before access to the target machine's CK3 installation. Anything marked **Research Gate** must be confirmed against the installed CK3 version before implementation. All API names and file paths below are candidates from historical/reference evidence until M0 verifies them from installed vanilla files, generated script_docs or runtime tests.
+This document defines the intended architecture during M0 investigation of installed CK3 1.20.1.1 (Crozier). RESEARCH.md records VERIFIED generated script_docs signatures and scope links. Other API names, file paths and integration behavior remain candidates until supported by installed-file, generated-doc or runtime evidence. Open **Research Gates** still block the implementation decisions they cover.
 
 ## Logical components
 
@@ -54,7 +54,7 @@ For My Dynasty, use a small set of non-creatable dummy landed titles as color so
 - `d_dynmap_controlled`
 - `d_dynmap_other`
 
-Exact RGB values are intentionally deferred until in-game testing because lighting/terrain blending affects perceived contrast.
+Exact RGB values are intentionally deferred until in-game testing because lighting/terrain blending affects perceived contrast. CK3 1.20.1.1 script_docs verifies `set_title_color` on `landed_title` with named/RGB colors, and `set_color_from_title` from `landed_title` to `landed_title`. The latter deliberately shifts the copied color slightly; a shared source does not guarantee identical RGB values. This finding does not select a new color strategy. Persistence, restoration and map-only isolation remain UNKNOWN (see RESEARCH.md).
 
 ### 4. GUI integration
 
@@ -82,7 +82,7 @@ flowchart BT
     L2 --> TL[Top liege]
 ```
 
-The design models the ordinary de-facto political hierarchy as a rooted forest with one liege per ruler. M0 must confirm the applicable scopes and government behavior. Historical references describe `any_liege_or_above`; prefer verified engine traversal over materializing a graph.
+The design models the ordinary de-facto political hierarchy as a rooted forest with one liege per ruler. Generated script_docs for 1.20.1.1 verifies `landed_title.holder` -> `character`, `character.dynasty` -> `dynasty`, `character.house` -> `dynasty_house`, and `dynasty_house.house_dynasty` -> `dynasty`. The `county` and `barony` links accept `landed_title` or `province` and return `landed_title`. `any_liege_or_above` accepts a character and iterates character lieges above it, excluding self. Thus DIRECT must be checked separately before CONTROLLED traversal. Government-specific runtime behavior remains untested; prefer this documented traversal over materializing a graph. Exact log locations are in RESEARCH.md.
 
 ## My Dynasty classification
 
@@ -138,7 +138,7 @@ Incremental caching is deliberately postponed because invalidation is harder tha
 
 ## All Dynasties architecture
 
-All Dynasties remains behind a research gate.
+All Dynasties remains behind a research gate. Generated script_docs verifies `every_dynasty_house` and `any_dynasty_house` from `dynasty` to `dynasty_house`; these expose membership, not the native House color source or a grouping/classification callback. Those capabilities remain UNKNOWN.
 
 Desired logical key:
 

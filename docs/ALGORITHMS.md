@@ -4,14 +4,17 @@
 
 Do **not** build a persistent graph for My Dynasty in the MVP.
 
-The design models the ordinary vassal hierarchy as a rooted forest. Historical references describe `any_liege_or_above` as checking lieges above a character. M0 must verify target-build traversal and government behavior; shallow hierarchy depth is an assumption to measure. A persistent graph would require difficult invalidation on succession, conquest, title revocation, vassal transfer, realm split, government mechanics and scripted effects.
+The design models the ordinary vassal hierarchy as a rooted forest. CK3 1.20.1.1 script_docs verifies `any_liege_or_above` with character input/targets, traversing all lieges above the character and excluding self (`triggers.log:1816–1819`; see RESEARCH.md). Government-specific runtime behavior and shallow hierarchy depth remain assumptions to test/measure. A persistent graph would require difficult invalidation on succession, conquest, title revocation, vassal transfer, realm split, government mechanics and scripted effects.
 
 ## Notation and required safety guards
 
 All pseudocode is conceptual, not verified CK3 API syntax. In particular,
 `capital_county(B)` means the containing county of barony B; it is not a claim
-that a CK3 function with that name exists. All scope, iterator, guard, color and
-profiler API candidates require M0 verification.
+that a CK3 function with that name exists. The documented containing-county link
+is `county`, accepting `landed_title` or `province` and returning `landed_title`.
+RESEARCH.md records verified scope, iterator and color-effect signatures for
+1.20.1.1; the pseudocode as a whole is not executable CK3 syntax. Guard context,
+rendering lifecycle and profiler integration still need validation.
 
 Before either algorithm, validate the local player and player Dynasty. If either
 is invalid, My Dynasty is unavailable: return without classification or color
@@ -66,7 +69,11 @@ for each county C:
 
 A holder without a Dynasty must still have its liege chain checked; it is CONTROLLED if a qualifying liege shares PD, otherwise OTHER. DIRECT requires a valid matching holder Dynasty. An absent holder is guarded and classified OTHER.
 
-Historical references suggest global county and hierarchy iteration, including `every_in_de_jure_hierarchy` restricted to baronies. M0 must verify these operations in the installed target build before final code.
+CK3 1.20.1.1 script_docs verifies `every_county` and `every_barony`, both yielding `landed_title` targets, and `every_in_de_jure_hierarchy` with `landed_title` input/targets. The hierarchy iterator includes the starting title itself; recursion (`continue`) is separate from result filtering (`limit`). County-to-barony filtering and visual behavior still need validation. See RESEARCH.md for exact log locations.
+
+Because `any_liege_or_above` excludes the holder, the separate DIRECT check is required before CONTROLLED traversal, not just an optimization. The documented chain is county title -> `holder` -> character -> `dynasty`; character -> `house` -> `house_dynasty` also exposes Dynasty identity.
+
+The color effects accept `landed_title`: `set_title_color` supports named/RGB values; `set_color_from_title` accepts a title target but deliberately shifts the copied color slightly. One shared source therefore does not guarantee identical RGB values. Persistence, restoration, map-only isolation, performance and color leakage remain UNKNOWN; no color-strategy change is selected here.
 
 Complexity:
 
@@ -111,7 +118,7 @@ Do not add caching until the profiler shows the static refresh is materially slo
 
 ## Execution constraints and potential micro-optimizations
 
-1. Check `holder.dynasty == player_dynasty` before traversing lieges.
+1. Check `holder.dynasty == player_dynasty` separately before traversing lieges; the verified traversal excludes the holder itself.
 2. Use M0-verified missing-scope guards (historical candidates: `exists` / `?=`); these remain mandatory for correctness.
 3. Save repeatedly-used scopes temporarily inside one execution if supported cleanly.
 4. Avoid `every_living_character` entirely.

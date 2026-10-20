@@ -7,14 +7,100 @@
 
 Community documentation, Workshop descriptions and archived repositories are
 historical/reference evidence only. They suggest research probes; they do not
-verify API behavior for the target CK3 build. No target-build API verification
-has been recorded yet. M0 must confirm behavior from installed vanilla files,
-generated script_docs or runtime testing before implementation relies on it.
+verify API behavior for the target CK3 build. The generated script_docs findings
+below are authoritative API documentation for installed CK3 1.20.1.1 (Crozier).
+They verify documented signatures and semantics, not runtime rendering behavior.
+Other API assumptions still require installed-file, generated-doc or runtime
+evidence before implementation relies on them.
 
 For each verified finding, record the exact CK3 build, date, probe/backlog ID,
 local file/API entry or runtime procedure, observed result and limitations.
 Keep raw generated dumps local; record original findings here. Distinguish
 reference claims, design assumptions and target-build observations.
+
+## VERIFIED — CK3 1.20.1.1 (Crozier) generated script_docs
+
+**Evidence recorded:** 2026-10-20, static inspection of generated logs from the
+installed build. Sources are local files under
+`${CK3_USER_DATA}/logs/`.
+Raw logs remain outside the repository. No rendering/runtime probes were run.
+These findings address API portions of R-006, R-007, R-008 and R-009; they do not
+close the UI, runtime rendering or state-safety research gates.
+
+### Liege traversal — R-007
+
+`triggers.log:1816–1819` documents:
+
+```text
+any_liege_or_above = { <count=num/all> / <percent=fixed_point> <triggers> }
+Supported Scopes: character
+Supported Targets: character
+```
+
+The entry specifies all lieges above the scoped character, excluding the
+character itself. Therefore the DIRECT holder-Dynasty check must happen
+separately before CONTROLLED traversal. A holder without a Dynasty still needs
+its liege chain checked. Special-government runtime behavior remains untested.
+
+### Formal scope links — R-006 / R-008
+
+| Link | Input scope | Output scope | Generated evidence |
+|---|---|---|---|
+| `holder` | `landed_title` | `character` | `event_targets.log:920–922` |
+| `dynasty` | `character` | `dynasty` | `event_targets.log:550–552` |
+| `house` | `character` | `dynasty_house` | `event_targets.log:610–612` |
+| `house_dynasty` | `dynasty_house` | `dynasty` | `event_targets.log:1145–1147` |
+| `county` | `landed_title` or `province` | `landed_title` (de-jure county) | `event_targets.log:1548–1550` |
+| `barony` | `landed_title` or `province` | `landed_title` (de-jure barony) | `event_targets.log:1536–1538` |
+
+The documented containing-county link is `county`. Conceptual notation such as
+`capital_county(B)` in algorithm discussions is not a verified CK3 API call.
+
+### County, barony and Dynasty/House iterators — R-008 / RG-COLOR-01
+
+| Iterator | Listed input scope | Iterated target | Generated evidence |
+|---|---|---|---|
+| `every_county` | `none` | `landed_title` | `effects.log:773–776` |
+| `every_barony` | `none` | `landed_title` | `effects.log:731–734` |
+| `every_dynasty_house` | `dynasty` | `dynasty_house` | `effects.log:16177–16180` |
+| `any_dynasty_house` | `dynasty` | `dynasty_house` | `triggers.log:11638–11641` |
+
+The effect iterators document `limit = { <triggers> }` and an effects body.
+The any-trigger documents the count/percent form used by `any_liege_or_above`.
+House enumeration exposes identity/membership; it does not expose colors or a
+renderer grouping callback.
+
+`effects.log:11422–11427` also documents `every_in_de_jure_hierarchy` with
+`landed_title` input and targets. It includes the starting title itself and all
+de-jure descendants. `continue` controls recursion separately from `limit`.
+The proposed county-to-barony filtering and rendering still need validation.
+
+### Title-color effects — R-009 / RG-STATE-01
+
+| Effect | Documented input and value/target | Generated evidence |
+|---|---|---|
+| `set_title_color` | `landed_title`; named colors or RGB, with example `set_title_color = { 255 0 0 }` | `effects.log:12761–12767` |
+| `set_color_from_title` | `landed_title`; `set_color_from_title = <some title>`, target `landed_title` | `effects.log:12646–12649` |
+
+`set_color_from_title` intentionally shifts the copied color slightly to avoid
+an identical value. Do not assume identical RGB values across titles using the
+same source. No replacement color strategy is selected by this finding.
+
+Barony iteration yields the `landed_title` scope accepted by these effects;
+this verifies scope compatibility, not safe temporary rendering. Persistence,
+restoration and map-only isolation are UNKNOWN.
+
+### Still UNKNOWN
+
+- temporary map-only coloring and save persistence;
+- safe restoration on exit, context loss or mod removal;
+- refresh/recompute lifecycle and dependable activation/re-click behavior;
+- custom grouping/classification callback for the native renderer;
+- native House map color source and direct House/Dynasty color access;
+- runtime performance and color leakage into other map modes.
+
+These remain open M0 questions. Generated script_docs signatures do not by
+themselves verify visual results, local-only execution or lifecycle safety.
 
 ## Historical/reference findings pending M0 verification
 
@@ -43,7 +129,7 @@ Silk Road advertised a `My dynasty` map mode. Family Matters credits Silk Road f
 
 ### Candidate hierarchy trigger
 
-Historical script references describe `any_liege_or_above` as iterating lieges above a character while skipping the character itself. M0 must inspect installed vanilla/generated script_docs and test the required scopes; current target-build use has not been verified.
+The historical candidate is now VERIFIED at the generated-API level for CK3 1.20.1.1: character input/targets, all lieges above the character, self excluded. See the generated evidence above; runtime government-specific behavior remains untested.
 
 ### CK3 provides profiling and generated API docs
 
