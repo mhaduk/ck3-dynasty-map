@@ -14,6 +14,9 @@ body:
     attributes:
       label: Evidence to collect
       description: Files, script_docs entries, profiler data, screenshots or logs.
+  - type: markdown
+    attributes:
+      value: "Sanitize evidence before posting: remove local paths, usernames, emails, account/device IDs and unrelated log content. Never attach raw generated dumps or copyrighted vanilla files."
   - type: textarea
     id: decision
     attributes:

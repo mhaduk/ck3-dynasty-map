@@ -15,6 +15,7 @@
 
 # CK3 machine-local references, generated API docs and runtime output
 /local/
+/.codex-sync/
 /logs/
 /generated/
 /script_docs/

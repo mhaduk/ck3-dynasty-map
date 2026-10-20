@@ -34,6 +34,8 @@ The county is the semantic unit. Baronies, cities and temples inherit the classi
 ## Documentation
 
 - [Current state / Codex session handoff](docs/CURRENT_STATE.md)
+- [Completed task history](docs/TASK_HISTORY.md)
+- [Codex workflow](docs/CODEX_WORKFLOW.md)
 
 - [Project charter](docs/PROJECT_CHARTER.md)
 - [Architecture](docs/ARCHITECTURE.md)
