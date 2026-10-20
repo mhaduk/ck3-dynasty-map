@@ -37,7 +37,10 @@ Updated 2026-10-20. Read after AGENTS.md; synchronize on material changes.
   Partial: expanded mini-menu/all-variant/UI-scale coverage, unavailable state,
   refresh and lifecycle pending.
   Existing probe stays inert; no classifier/color work or vanilla edits.
-- **Git:** branch research/native-menu-alternative starts at 13a82c0 and inherits
-  all handoff/evidence. Original research/codex-gui-handoff retained. Probe 02
-  source, findings and reviewed evidence are recorded in this local history
-  snapshot. No push authorized; inspect actual status/history each session.
+- **Git/privacy:** branch research/native-menu-alternative retains complete
+  handoff/test history. Local history was privacy-scrubbed; prior branch bases
+  and hashes changed. Sanitized handoff is 13a82c0, probe-02 record 3feefd5.
+  Project-local public login/noreply identity configured; global config unchanged.
+  [Privacy audit](PRIVACY_AUDIT.md) defines publication scope. No push performed:
+  GitHub/origin refs still hold old history; local backup/reflogs/checkpoints
+  remain private recovery state. Inspect actual status/history each session.
