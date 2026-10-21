@@ -21,7 +21,7 @@ The [R-005 partial checkpoint](tasks/R-005-player-context.md) consolidates its f
 
 | Task | Result | Remaining limits | Canonical summary |
 |---|---|---|---|
-| R-016 | Three-view historical pipeline feasibility demonstrated in bounded 1.20.1.2 startup/runtime smoke; user reports normal switching/refresh/native-return operations appear to work. Research closed with bounded validation. | Grey nonmatching land failed visual acceptance; full semantic coverage, performance, context/atomicity safety and persistence/removal remain open. No production-readiness claim; publication state is recorded in CURRENT_STATE. | [R-016](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21) |
+| R-016 | Three-view historical pipeline feasibility demonstrated in bounded 1.20.1.2 startup/runtime smoke; user reports normal switching/refresh/native-return operations appear to work. Research closed with bounded validation. | Grey nonmatching land failed visual acceptance; full semantic coverage, performance, context/atomicity safety and persistence/removal remain open. No production-readiness claim; #16 closed as completed research and checkpoint published. | [R-016](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21) |
 
 Planned successors: [R-017](tasks/R-017-test-scenario-selection.md),
 [F-001](tasks/F-001-dynasty-map-ux.md) and

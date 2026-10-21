@@ -1364,3 +1364,12 @@ Existing R-005/R-009/R-010/R-013 safety owners and ADR-008/009 requirements stay
 open. No successor implementation or additional R-016 runtime was started.
 User authorized scoped commit/push and updating/closing #16; publication receipts
 are retained locally after verification, not predicted in this document.
+
+### Publication verified — 2026-10-21
+
+User-authorized scoped research/source/docs checkpoint pushed to the existing
+research branch. GitHub #16 title/body updated to the final 1.20.1.2 findings
+and verified CLOSED with reason COMPLETED. Definition record F-003 is complete;
+R-017/F-001/F-002 remain planned without new issues or implementation. Grey and
+safety/coverage/persistence limits remain explicit. Publication/privacy receipts
+are retained locally; no private evidence entered the commit.
