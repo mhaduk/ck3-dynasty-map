@@ -57,3 +57,7 @@ The county is the semantic unit. Baronies, cities and temples inherit the classi
 | `1.0.0` | Stable public release | Both modes tested, documented, maintainable and release-ready |
 
 See [ROADMAP.md](docs/ROADMAP.md) for details.
+
+## License
+
+Original project code and documentation are available under the [MIT License](LICENSE). That license applies only to material authored for this project. Crusader Kings III and Paradox assets, trademarks, extracted game files, and other third-party material are not relicensed under MIT and remain subject to their respective terms. The [Code of Conduct](CODE_OF_CONDUCT.md) is adapted from Contributor Covenant 3.0 and is licensed under CC BY-SA 4.0.
