@@ -25,7 +25,7 @@ The [R-005 partial checkpoint](tasks/R-005-player-context.md) consolidates its f
 
 Planned successors: [R-017](tasks/R-017-test-scenario-selection.md),
 [F-001](tasks/F-001-dynasty-map-ux.md) and
-[F-002](tasks/F-002-dynasty-color-strategy.md). They are not completed work.
+[F-002](tasks/F-002-dynasty-color-strategy.md). They are not completed work. GitHub tracking issues: R-017 [#19](https://github.com/mhaduk/ck3-dynasty-map/issues/19), F-001 [#20](https://github.com/mhaduk/ck3-dynasty-map/issues/20), F-002 [#21](https://github.com/mhaduk/ck3-dynasty-map/issues/21).
 
 ## Closed research directions
 

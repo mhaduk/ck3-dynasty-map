@@ -1,5 +1,7 @@
 # R-017 — Test scenario and start selection plan
 
+Issue: [#19](https://github.com/mhaduk/ck3-dynasty-map/issues/19).
+
 Status: PLANNED. No character/year recommendation has been researched or
 verified. R-016 retains Harold 1066 as the historical baseline; it is not
 presumed to be the best broad-coverage fixture.

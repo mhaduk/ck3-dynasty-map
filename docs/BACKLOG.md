@@ -32,13 +32,13 @@ are progress descriptions in issue bodies, not claims of native GitHub states.
 Subsequent disposition: R-015 / #15 closed as not planned on 2026-10-21; its
 technical findings remain partial.
 
-### Successor definitions and plans (no GitHub issues created)
+### Successor definitions and plans
 
 | ID | Work item | Depends on | Status |
 |---|---|---|---|
-| R-017 | Select reproducible test character/start year and natural relationship fixtures for all three views | R-016; ADR-010 | Planned — [scenario plan](tasks/R-017-test-scenario-selection.md); retain Harold 1066 as historical baseline |
-| F-001 | Specify Dynasty entry, active subviews, selection, legend, contrast and grey-ground visual/interaction contract | R-016,R-005,R-009,R-010,R-013; ADR-008/009/010 | Planned — [UX plan](tasks/F-001-dynasty-map-ux.md); grey visibility is P0 acceptance |
-| F-002 | Evaluate Dynasty/House/CoA/title color sources and fallback contract | R-009,R-016; ADR-010 | Planned — [color strategy](tasks/F-002-dynasty-color-strategy.md); fixed palette remains fallback and work is independent of F-001 layout/grey diagnosis |
+| [R-017 / #19](https://github.com/mhaduk/ck3-dynasty-map/issues/19) | Select reproducible test character/start year and natural relationship fixtures for all three views | R-016; ADR-010 | Planned — [scenario plan](tasks/R-017-test-scenario-selection.md); retain Harold 1066 as historical baseline |
+| [F-001 / #20](https://github.com/mhaduk/ck3-dynasty-map/issues/20) | Specify Dynasty entry, active subviews, selection, legend, contrast and grey-ground visual/interaction contract | R-016,R-005,R-009,R-010,R-013; ADR-008/009/010 | Planned — [UX plan](tasks/F-001-dynasty-map-ux.md); grey visibility is P0 acceptance |
+| [F-002 / #21](https://github.com/mhaduk/ck3-dynasty-map/issues/21) | Evaluate Dynasty/House/CoA/title color sources and fallback contract | R-009,R-016; ADR-010 | Planned — [color strategy](tasks/F-002-dynasty-color-strategy.md); fixed palette remains fallback and work is independent of F-001 layout/grey diagnosis |
 | F-003 | Consolidate accepted subview definitions, appearance and examples | R-016; ADR-010 | Complete — [definition tables](tasks/F-003-dynasty-subview-definitions.md); documentation only, no new implementation |
 
 These plans are separate backlog records, not implementation or runtime

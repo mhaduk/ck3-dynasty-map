@@ -1,5 +1,7 @@
 # F-001 — Dynasty map menu and visual contract
 
+Issue: [#20](https://github.com/mhaduk/ck3-dynasty-map/issues/20).
+
 Status: PLANNED successor specification; no implementation authorized here.
 The three-view semantics, labels, order and default are accepted in ADR-010.
 This plan defines the review needed to turn the R-016 candidate UI into a

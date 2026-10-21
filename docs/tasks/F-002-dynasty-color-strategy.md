@@ -1,5 +1,7 @@
 # F-002 — Dynasty color-source strategy
 
+Issue: [#21](https://github.com/mhaduk/ck3-dynasty-map/issues/21).
+
 Status: PLANNED successor research; no source/API investigation or palette
 implementation performed in this planning stage. Fixed colors remain the
 current fallback. This task is separate from F-001's menu and grey-ground work.
