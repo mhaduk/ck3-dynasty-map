@@ -1,128 +1,67 @@
-# Contributor Covenant Code of Conduct
+# Code of Conduct
 
 ## Our Pledge
 
-We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone, regardless of age, body
-size, visible or invisible disability, ethnicity, sex characteristics, gender
-identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, religion, or sexual identity
-and orientation.
+We pledge to make our community welcoming, safe, and equitable for all.
 
-We pledge to act and interact in ways that contribute to an open, welcoming,
-diverse, inclusive, and healthy community.
+We are committed to fostering an environment that respects and promotes the dignity, rights, and contributions of all individuals, regardless of characteristics including race, ethnicity, caste, color, age, physical characteristics, neurodiversity, disability, sex or gender, gender identity or expression, sexual orientation, language, philosophy or religion, national or social origin, socio-economic position, level of education, or other status.
 
-## Our Standards
+The same privileges of participation are extended to everyone who participates in good faith and in accordance with this Covenant.
 
-Examples of behavior that contributes to a positive environment for our
-community include:
+## Encouraged Behaviors
 
-* Demonstrating empathy and kindness toward other people
-* Being respectful of differing opinions, viewpoints, and experiences
-* Giving and gracefully accepting constructive feedback
-* Accepting responsibility and apologizing to those affected by our mistakes,
-  and learning from the experience
-* Focusing on what is best not just for us as individuals, but for the
-  overall community
+While acknowledging differences in social norms, we all strive to meet our community’s expectations for positive behavior. We also understand that our words and actions may be interpreted differently than we intend based on culture, background, or native language.
 
-Examples of unacceptable behavior include:
+With these considerations in mind, we agree to behave mindfully toward each other and act in ways that center our shared values, including:
 
-* The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email
-  address, without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+1. Respecting the purpose of our community, our activities, and our ways of gathering.
+2. Engaging kindly and honestly with others.
+3. Respecting different viewpoints and experiences.
+4. Taking responsibility for our actions and contributions.
+5. Gracefully giving and accepting constructive feedback.
+6. Committing to repairing harm when it occurs.
+7. Behaving in other ways that promote and sustain the well-being of our community.
 
-## Enforcement Responsibilities
+## Restricted Behaviors
 
-Community leaders are responsible for clarifying and enforcing our standards of
-acceptable behavior and will take appropriate and fair corrective action in
-response to any behavior that they deem inappropriate, threatening, offensive,
-or harmful.
+We agree to restrict the following behaviors in our community. Instances, threats, and promotion of these behaviors are violations of this Code of Conduct.
 
-Community leaders have the right and responsibility to remove, edit, or reject
-comments, commits, code, wiki edits, issues, and other contributions that are
-not aligned to this Code of Conduct, and will communicate reasons for moderation
-decisions when appropriate.
+1. **Harassment.** Violating explicitly expressed boundaries or engaging in unnecessary personal attention after any clear request to stop.
+2. **Character attacks.** Making insulting, demeaning, or pejorative comments directed at a community member or group of people.
+3. **Stereotyping or discrimination.** Characterizing anyone’s personality or behavior on the basis of immutable identities or traits.
+4. **Sexualization.** Behaving in a way that would generally be considered inappropriately intimate in the context or purpose of the community.
+5. **Violating confidentiality.** Sharing or acting on someone’s personal or private information without their permission.
+6. **Endangerment.** Causing, encouraging, or threatening violence or other harm toward any person or group.
+7. Behaving in other ways that threaten the well-being of our community.
+
+### Other Restrictions
+
+1. **Misleading identity.** Impersonating someone else for any reason, or pretending to be someone else to evade enforcement actions.
+2. **Failing to credit sources.** Not properly crediting the sources of content you contribute.
+3. **Promotional materials.** Sharing marketing or other commercial content in a way that is outside the norms of the community.
+4. **Irresponsible communication.** Failing to responsibly present content which includes, links or describes any other restricted behaviors.
+
+## Reporting an Issue
+
+To report a possible violation in this project’s GitHub community, use GitHub’s private reporting tools or contact the repository maintainer through the private contact method listed on their GitHub profile. Please include where and when the incident occurred, what happened, and any relevant links or evidence. Do not post a report containing private information in a public issue.
+
+The maintainer will make a reasonable effort to respond promptly and handle reports confidentially. Reports will be reviewed fairly, and enforcement actions will be handled privately where possible.
+
+## Addressing and Repairing Harm
+
+If the maintainer finds that this Code of Conduct has been violated, they may use the following steps as a guideline, taking the impact and severity of the incident into account. Steps may be skipped when warranted:
+
+1. **Warning:** A private written warning describing the concern and the expected change in behavior.
+2. **Temporarily limited activities:** A time-limited restriction on participation or contact when conduct continues or is more serious.
+3. **Temporary suspension:** A temporary removal from project community spaces for a repeated or serious violation.
+4. **Permanent ban:** Removal from project community spaces for a repeated pattern or a sufficiently serious violation.
+
+The maintainer may use their judgment to protect the community and repair harm. Anyone who believes an enforcement action was made in error may reply privately to the maintainer with relevant context.
 
 ## Scope
 
-This Code of Conduct applies within all community spaces, and also applies when
-an individual is officially representing the community in public spaces.
-Examples of representing our community include using an official e-mail address,
-posting via an official social media account, or acting as an appointed
-representative at an online or offline event.
+This Code of Conduct applies in the project repository, its issue and pull request discussions, and other spaces when someone is officially representing the project.
 
-## Enforcement
+## Attribution and License
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-.
-All complaints will be reviewed and investigated promptly and fairly.
-
-All community leaders are obligated to respect the privacy and security of the
-reporter of any incident.
-
-## Enforcement Guidelines
-
-Community leaders will follow these Community Impact Guidelines in determining
-the consequences for any action they deem in violation of this Code of Conduct:
-
-### 1. Correction
-
-**Community Impact**: Use of inappropriate language or other behavior deemed
-unprofessional or unwelcome in the community.
-
-**Consequence**: A private, written warning from community leaders, providing
-clarity around the nature of the violation and an explanation of why the
-behavior was inappropriate. A public apology may be requested.
-
-### 2. Warning
-
-**Community Impact**: A violation through a single incident or series
-of actions.
-
-**Consequence**: A warning with consequences for continued behavior. No
-interaction with the people involved, including unsolicited interaction with
-those enforcing the Code of Conduct, for a specified period of time. This
-includes avoiding interactions in community spaces as well as external channels
-like social media. Violating these terms may lead to a temporary or
-permanent ban.
-
-### 3. Temporary Ban
-
-**Community Impact**: A serious violation of community standards, including
-sustained inappropriate behavior.
-
-**Consequence**: A temporary ban from any sort of interaction or public
-communication with the community for a specified period of time. No public or
-private interaction with the people involved, including unsolicited interaction
-with those enforcing the Code of Conduct, is allowed during this period.
-Violating these terms may lead to a permanent ban.
-
-### 4. Permanent Ban
-
-**Community Impact**: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior,  harassment of an
-individual, or aggression toward or disparagement of classes of individuals.
-
-**Consequence**: A permanent ban from any sort of public interaction within
-the community.
-
-## Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.0, available at
-https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
-
-Community Impact Guidelines were inspired by [Mozilla's code of conduct
-enforcement ladder](https://github.com/mozilla/diversity).
-
-[homepage]: https://www.contributor-covenant.org
-
-For answers to common questions about this code of conduct, see the FAQ at
-https://www.contributor-covenant.org/faq. Translations are available at
-https://www.contributor-covenant.org/translations.
+This Code of Conduct is adapted from the [Contributor Covenant, version 3.0](https://www.contributor-covenant.org/version/3/0/), licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). This file is licensed under CC BY-SA 4.0. That license is separate from the repository’s MIT license for original project material.
