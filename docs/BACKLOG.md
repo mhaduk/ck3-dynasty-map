@@ -17,16 +17,19 @@ IDs such as R-002 are stable planning IDs, separate from GitHub issue numbers.
 | R-006 | [#6](https://github.com/mhaduk/ck3-dynasty-map/issues/6) | P0 | Verify county -> holder -> dynasty transitions | R-004 | Complete — clean generated scope links verified; no runtime claim |
 | R-007 | [#7](https://github.com/mhaduk/ck3-dynasty-map/issues/7) | P0 | Verify `any_liege_or_above` in target build | R-004 | Partial — clean documented traversal verified; runtime pending |
 | R-008 | [#8](https://github.com/mhaduk/ck3-dynasty-map/issues/8) | P0 | Verify county -> de-jure baronies iterator | R-004 | Partial — iterator signatures verified; filtering/runtime pending |
-| R-009 | [#9](https://github.com/mhaduk/ck3-dynasty-map/issues/9) | P0 | Verify barony color writes, dummy-title side effects and exit/restore behavior | R-002,R-004 | Partial — shared barony writes/title RGB serialization confirmed; exact restore/removal open. Situation static trace supports county add/remove and region RGB, but view binding/coverage/lifecycle/removal remain unknown; resume after R-014 source inventory |
+| R-009 | [#9](https://github.com/mhaduk/ck3-dynasty-map/issues/9) | P0 | Verify barony color writes, dummy-title side effects and exit/restore behavior | R-002,R-004 | Partial — shared barony writes/title RGB serialization confirmed; exact restore/removal open. Situation static trace supports county add/remove and region RGB, but view binding/coverage/lifecycle/removal remain unknown; ADR-009 excludes Situation/decision/council carriers; no new scope |
 | R-010 | [#10](https://github.com/mhaduk/ck3-dynasty-map/issues/10) | P1 | Confirm additive/minimal original GUI integration, unavailable UI and dependable refresh path | R-003 | Partial — placement/basic/Faith smoke and R-005 watcher evidence; raid/barter guards, full parity/refresh/restore open |
 | R-011 | [#11](https://github.com/mhaduk/ck3-dynasty-map/issues/11) | P1 | Capture vanilla error-log baseline without mod | R-001 | Partial — clean startup log empty; save/map interaction and archive pending |
 | R-012 | [#12](https://github.com/mhaduk/ck3-dynasty-map/issues/12) | P1 | Install/configure CK3 Tiger locally | R-001 | Ready |
 | R-013 | [#13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) | P2 | Establish a supported no-Dynasty local-player fixture and verify unavailable UI | R-005 | Deferred — engine rejects the one-attempt player lowborn fixture; no further fixture iteration now |
 | R-014 | [#14](https://github.com/mhaduk/ck3-dynasty-map/issues/14) | P1 | Inventory CK3 modding documentation and source hierarchy; create and integrate a concise source map | R-001,R-004 | Complete — [source map](CK3_SOURCE_MAP.md) and agent/workflow integration |
+| R-015 | [#15](https://github.com/mhaduk/ck3-dynasty-map/issues/15) | P1 | Investigate Clerical Regions renderer, custom membership/colors/stripes and isolation | R-001,R-004 | Closed — not planned (2026-10-21); [final disposition](tasks/R-015-clerical-regions.md#final-disposition--2026-10-21). Independent provider not demonstrated; technical evidence partial; no probe/runtime |
 
 Initial migration verified 2026-10-20, before adding R-013: R-001 / #1, R-002 / #2, R-003 / #3, R-004 / #4 and R-006 / #6 are
 closed as completed; the other seven M0 issues remain open. Ready/Partial/Blocked
 are progress descriptions in issue bodies, not claims of native GitHub states.
+Subsequent disposition: R-015 / #15 closed as not planned on 2026-10-21; its
+technical findings remain partial.
 
 Latest [FINAL GUARDS result](evidence/2026-10-20-r005-player-context/final-guards-result.md)
 and [canonical R-005 checkpoint](tasks/R-005-player-context.md) supersede older

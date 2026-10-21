@@ -77,3 +77,26 @@ belong to the valid player's Dynasty.
 **Validation:** v0.1 must cover valid activation, unavailable activation with no
 classification/color writes, manual refresh/re-activation, active-context loss
 and API-supported exit/restore. See TEST_PLAN.md.
+
+## ADR-009 — Custom maps use map-system interfaces
+
+**Status:** Accepted — explicit user direction, 2026-10-21.
+
+**Decision:** Dynasty Map must use the map subsystem's exposed configuration,
+data inputs and view lifecycle. Decisions, council-task selectors, Situations
+and synthetic or mutated religious regions are not accepted carriers for the
+feature. Opening such a carrier from a map-menu button does not satisfy this
+requirement. Normal GUI/script glue is acceptable only when it drives an actual
+map-system interface rather than an unrelated gameplay subsystem.
+
+**Consequence:** the R-009 decision-carried binary-selector hypothesis is
+excluded from the product direction; do not prepare its proposed experiment.
+R-015's independent map-provider question remains relevant, but religious-object
+mutation is outside the accepted architecture. Prior technical findings remain
+valid as bounded research history, not implementation recommendations.
+
+No suitable custom classification-to-map input has yet been demonstrated.
+Further work must identify a concrete map-native input and lifecycle contract
+or report that the inspected target-build interfaces do not establish one.
+Do not substitute another gameplay carrier or reduce product semantics to fit
+one. Original G1/G2 requirements and ADR-001 through ADR-008 remain unchanged.

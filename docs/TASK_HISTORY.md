@@ -16,3 +16,11 @@ source map and agent/workflow integration are complete.
 The [R-009 checkpoint](tasks/R-009-barony-color-safety.md) records first-batch
 runtime results, title-color serialization and the unresolved independent renderer input.
 The [R-005 partial checkpoint](tasks/R-005-player-context.md) consolidates its final gates; see [CURRENT_STATE.md](CURRENT_STATE.md) for the current next action and [RESEARCH.md](RESEARCH.md) for reusable findings.
+
+## Closed research directions
+
+These are administrative scope dispositions, not completed technical validations.
+
+| Task | Disposition | Remaining limits | Canonical record |
+|---|---|---|---|
+| R-015 / [#15](https://github.com/mhaduk/ck3-dynasty-map/issues/15) | Closed as not planned, 2026-10-21; Clerical Regions direction parked | Independent membership/provider binding and lifecycle unproven; no runtime. Reopen only on concrete new evidence. | [R-015](tasks/R-015-clerical-regions.md#final-disposition--2026-10-21) |

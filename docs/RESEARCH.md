@@ -3,6 +3,14 @@
 **Research date:** 2026-10-20
 **Reported public CK3 release at research time (reference baseline, not installed-build verification):** 1.20.1 "Crozier" (2026-10-13). Paradox stated that subsequent changes were being targeted at the forthcoming 1.21 update, so the implementation target must be re-checked on the gaming Mac before coding.
 
+## Current architecture boundary — 2026-10-21
+
+ADR-009 requires map-system interfaces. Decision/council selectors, Situations
+and religious-object carriers are excluded. Earlier carrier hypotheses below
+remain technical history, not accepted next steps. No map-native custom
+classification input has yet been demonstrated; binary views were not adopted
+as a replacement for G1.
+
 ## Reusable findings by subject
 
 Use this index to open only the subject relevant to the active task. Dated runtime checkpoints live in the linked `docs/evidence/` records; they
@@ -19,7 +27,84 @@ are summarized here and in CURRENT_STATE.md.
 | Map-mode definitions | [R-002 findings](#verified--r-002-installed-map-mode-definitions-2026-10-20) | Static inspection complete; custom loading/runtime pending |
 | GUI and map lifecycle | [R-003 inspection](#verified--r-003-installed-gui-bindings-2026-10-20); [R-010 registration](#verified--r-010-additive-widget-registration-documentation-2026-10-20) | Integration/lifecycle gates open, R-010 |
 | Color effects and state | [Title-color effects](#title-color-effects--r-009--rg-state-01); [remaining unknowns](#still-unknown) | Signatures verified; rendering/isolation/restore open, R-009 |
+| Clerical Regions reuse | [Clerical static checkpoint](#r-015--clerical-regions-static-checkpoint-2026-10-21) | Constrained membership exposed; advertised add/remove pair and independent binding unresolved; intended stripe rule documented; R-015 closed as not planned, evidence partial |
 | Historical references | [Reference findings](#historicalreference-findings-pending-m0-verification) | Not target-build verification |
+
+## R-015 — Clerical Regions static checkpoint (2026-10-21)
+
+**Final disposition:** closed as not planned on 2026-10-21 by explicit user
+authorization, retaining partial evidence and explicit unknowns. The supplied
+secondary synthesis does not establish singleton engine storage or resolve the
+missing independent membership/provider chain. See [closure assessment](tasks/R-015-clerical-regions.md#closure-assessment-after-supplied-external-synthesis--2026-10-21).
+Historical barony-map leads are separate; no alternative architecture, product
+scope reduction or follow-on task was adopted. GitHub closure was verified.
+
+Subsequent official-source verification narrows the earlier stripe unknown:
+the 1.20.0 release notes document county/region Rite mismatch as the intended
+native rule. Dev Diary #8 advertises nonreligious reuse and county add/remove;
+exact arbitrary runtime membership and independent renderer binding remain
+unverified. See the [official-source follow-up](tasks/R-015-clerical-regions.md#official-source-follow-up--2026-10-21).
+Earlier UNKNOWN labels below describe Stage A's inspected evidence; this
+follow-up supplies documentation, not runtime verification or an ADR change.
+
+Focused reconciliation `R015-REGION-API-RECONCILE-20261021-02` is delivered,
+GUI-reviewed and accepted: **advertised operation unresolved in corpus**. Expansion
+accepts a landed-title target, so a single eligible county is type-compatible
+(**LIKELY**, county-tier behavior untested), but primitive adjacency/free-only
+constraints remain (`effects.log:11573–11580`). No arbitrary individual
+remove/reassign counterpart, independent family or mode-to-dataset selector was
+identified by alternate description/terminology searches. Situation-scope
+add/remove effects are not clerical membership writers. See the
+[focused reconciliation](tasks/R-015-clerical-regions.md#focused-api-reconciliation--2026-10-21).
+Official generic reuse remains positive evidence of intent; the missing
+ownership/binding contract, not religious vanilla wrappers alone, determines
+the current **STOP** under ADR-009. No probe or runtime stage is prepared.
+
+**Partial; static checkpoint GUI-reviewed and accepted.** Canonical [R-015 evidence and capability matrix](tasks/R-015-clerical-regions.md#stage-a-checkpoint--2026-10-21).
+Installed CK3 1.20.1.1 text and existing clean generated documentation only;
+no new runtime evidence, probe preparation or production route selection.
+
+- **VERIFIED static:** `clerical_regions` definition binds the native color and
+  selection enums (`gfx/map/map_modes/map_modes.txt:6054–6060`). History connects
+  real titles to authored geographical county lists
+  (`history/titles/ce3/00_ecclesiastical_titles.txt:682–688,939–944`;
+  `map_data/geographical_regions/geographical_region.txt:5922–5926,6011–6015`).
+  History syntax is not a runtime membership writer or separate dataset.
+- **VERIFIED static:** province-root create takes free land-connected counties
+  in the capital's de-jure kingdom (`effects.log:15316–15336`); title-root expand
+  takes adjacent unassigned de-jure counties (`:11573–11580`); split uses a
+  ruler's realm portion (`:10775–10796`); merge takes an adjacent region's whole
+  county set (`:11584–11590`). Generic title destruction exists and is used on
+  clerical titles (`:4093–4095`; `events/dlc/pam/pam_clergy_events.txt:751–781`).
+  No arbitrary county add/remove/reassign, private provider or layer reset found
+  in the bounded corpus. This is not proof of global engine impossibility.
+- **VERIFIED static:** region-title RGB definitions and shipped copy-color
+  setup (`common/landed_titles/07_pam_ecclesiastical_titles.txt:563–573,709–719`;
+  `common/scripted_effects/pam_effects.txt:7071–7088,7992–8004`). **LIKELY:** real
+  title RGB supplies ordinary region fill; exact renderer/channel binding is
+  **UNKNOWN**. Title RGB effects are not a view-owned palette.
+- **UNKNOWN:** Clerical Regions stripe rule. Tooltip compares county Rite to
+  region holder Rite (`common/customizable_localization/pam_custom_loc.txt:413–449`);
+  that does not prove stripe production. Shared shader secondary stripes
+  (`gfx/FX/jomini/jomini_province_overlays.fxh:77–82`) do not expose a script
+  producer. Faith's county/top-liege mismatch rule is a distinct mechanism.
+- **VERIFIED static coupling:** title-holder hook can change capital Rite and
+  Church Situation membership (`common/on_action/title_on_actions.txt:3170–3193`);
+  mismatch is code-driven (`on_actions.log:3275–3277`;
+  `common/on_action/dlc/pam/pam_on_actions.txt:529–544`). Wrapper council/fervor/
+  government/toast effects are separable from the primitive, but full synthetic
+  object isolation, save/removal behavior, multiplayer locality and update cost
+  remain **UNKNOWN**. Shipped religious actions have doctrine/PAM gates; actual
+  renderer/direct-effect availability without that DLC is unverified.
+
+Independent provider, isolated synthetic regions and actual religious mutation
+have separate verdicts in the canonical matrix. None establishes the required
+dynamic input for simultaneous three-category, proposed binary or All Dynasties
+views; R-009's separate binary-selector hypothesis remains unchanged. **STOP
+before Dynasty Map probe preparation** until a concrete input lead or separately
+scoped religious-mutation tradeoff justifies a discriminating experiment.
+Persistent state is not rejected categorically; its actual costs are unresolved.
+ADRs, R-009/R-010 partial status and pre-implementation boundary are preserved.
 
 ## Evidence policy and target-build status
 

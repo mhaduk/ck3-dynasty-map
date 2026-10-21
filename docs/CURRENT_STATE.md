@@ -8,7 +8,24 @@ Updated 2026-10-21. Primary operational handoff; detailed findings remain in the
 - Milestone: M0 research/bootstrap. No production mod or classifier has been implemented.
 - This checkpoint contains R-005 and R-010 research/probe work. Preserve unrelated local evidence and excluded materials; do not reset or overwrite them.
 
+## Current architectural constraint
+
+User explicitly requires map-system interfaces (ADR-009, 2026-10-21). No
+Decisions/council selectors, Situations or religious-object carriers. The former
+R-009 binary-selector experiment is excluded; historical next-step proposals
+below do not authorize it. No suitable map-native classification input has yet
+been demonstrated. Any future scoped research must address that exact boundary
+using existing findings; do not repeat a broad scan or prepare a carrier probe.
+
 ## Current Task
+
+- **R-015 — Clerical Regions renderer feasibility** ([Issue #15](https://github.com/mhaduk/ck3-dynasty-map/issues/15)).
+- **Status:** CLOSED — not planned, 2026-10-21. Static research and focused reconciliation reviewed; no independent map dataset/provider binding demonstrated. Technical findings remain partial, not engine-impossibility proof.
+- **Publication:** user authorized #15 body publication, closure as not planned, scoped commit and normal push on the existing research branch. GitHub body/state verified. Canonical evidence is in the R-015 task; Git publication receipt is recorded locally after push.
+- **Next action:** this chat's work is finalized after publication. No next task selected or planned. Reopen R-015 only on concrete independent-input evidence; no probe, installation or runtime stage.
+- **Scope:** preserve prior R-009/R-010 partial findings and unrelated uncommitted research. Original product goals remain unchanged.
+
+## Previous R-009 checkpoint
 
 - **R-009 — Barony color side effects, map isolation and exit/restore** ([Issue #9](https://github.com/mhaduk/ck3-dynasty-map/issues/9)).
 - **Status:** Partial / active; first user-run batch, native-color data trace and static Situation feasibility checkpoint consolidated in the [R-009 checkpoint](tasks/R-009-barony-color-safety.md). Native/custom barony writes share state and serialize title RGB. Situation county-key add/remove and independent region RGB have installed usage/contracts; renderer coverage, isolated view binding and safe lifecycle/removal remain unverified.
@@ -31,7 +48,14 @@ Updated 2026-10-21. Primary operational handoff; detailed findings remain in the
 
 ## Next Up
 
-1. **R-009** — resume renderer-input and lifecycle research in its existing chat; no probe is prepared or authorized by this checkpoint.
+R-015 / [#15](https://github.com/mhaduk/ck3-dynasty-map/issues/15) is closed as
+not planned. The [canonical record](tasks/R-015-clerical-regions.md#final-disposition--2026-10-21)
+preserves constrained region operations, the officially documented stripe rule,
+and missing independent-input/lifecycle contracts. No follow-on task is planned.
+Earlier carrier experiments are excluded by ADR-009; remaining tasks below are
+backlog context, not authorization to execute them.
+
+1. **R-009** — remains partial; ADR-009 excludes the decision/council carrier experiments. No new research or runtime scope.
 2. **R-010** — complete native-menu parity, availability, refresh, and lifecycle checks.
 3. **R-007 / R-008** — runtime-check liege traversal and county-to-de-jure-barony behavior.
 4. **R-011 / R-012** — complete vanilla baseline and CK3 Tiger setup/validation prerequisites.
