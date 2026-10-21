@@ -201,6 +201,10 @@ No external documentation was copied into this repository.
 
 ## Research playbook
 
+Probe/mod preparation and build-change revalidation must also follow
+[MOD_AUTHORING_RULES.md](MOD_AUTHORING_RULES.md), including mandatory offline
+source/install preflight and the separate user-run startup/log gate.
+
 1. Name the subsystem and the claim to establish; consult this map's quick
    lookup row.
 2. For API signatures/scopes, search the installed build's generated output.

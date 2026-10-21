@@ -1,0 +1,343 @@
+﻿# R016 three-view source revision, CK3 1.20.1.2. Research, not production.
+# Each manual pass captures fresh P/D; shared barony RGB has no automatic restore.
+# No counters for new views: bounded markers do not assert coverage.
+
+dynmap_r016_paint_dark_effect = {
+	every_in_de_jure_hierarchy = {
+		continue = { always = yes }
+		limit = { tier = tier_barony }
+		set_title_color = { 25 105 50 }
+	}
+}
+
+dynmap_r016_paint_light_effect = {
+	every_in_de_jure_hierarchy = {
+		continue = { always = yes }
+		limit = { tier = tier_barony }
+		set_title_color = { 145 220 150 }
+	}
+}
+
+dynmap_r016_paint_grey_effect = {
+	every_in_de_jure_hierarchy = {
+		continue = { always = yes }
+		limit = { tier = tier_barony }
+		set_title_color = { 65 70 80 }
+	}
+}
+
+# County holder first; missing holder Dynasty never suppresses senior checks.
+dynmap_r016_realms_county_effect = {
+	if = {
+		limit = { exists = holder }
+		if = {
+			limit = {
+				holder = {
+					OR = {
+						AND = {
+							NOT = {
+								exists = liege
+							}
+							trigger_if = {
+								limit = {
+									exists = dynasty
+								}
+								dynasty = scope:dynmap_r016_player_dynasty
+							}
+							trigger_else = {
+								always = no
+							}
+						}
+						any_liege_or_above = {
+							NOT = {
+								exists = liege
+							}
+							trigger_if = {
+								limit = {
+									exists = dynasty
+								}
+								dynasty = scope:dynmap_r016_player_dynasty
+							}
+							trigger_else = {
+								always = no
+							}
+						}
+					}
+				}
+			}
+			dynmap_r016_paint_dark_effect = yes
+		}
+		else_if = {
+			limit = {
+				holder = {
+					OR = {
+						trigger_if = {
+							limit = {
+								exists = dynasty
+							}
+							dynasty = scope:dynmap_r016_player_dynasty
+						}
+						trigger_else = {
+							always = no
+						}
+						any_liege_or_above = {
+							trigger_if = {
+								limit = {
+									exists = dynasty
+								}
+								dynasty = scope:dynmap_r016_player_dynasty
+							}
+							trigger_else = {
+								always = no
+							}
+						}
+					}
+				}
+			}
+			dynmap_r016_paint_light_effect = yes
+		}
+		else = { dynmap_r016_paint_grey_effect = yes }
+	}
+	else = { dynmap_r016_paint_grey_effect = yes }
+}
+
+dynmap_r016_world_realms_effect = {
+	debug_log = "DYNMAP_R016 WORLD_REALMS BEGIN"
+	if = {
+		limit = { exists = dynasty }
+		save_scope_as = dynmap_r016_player_root
+		dynasty = { save_scope_as = dynmap_r016_player_dynasty }
+		every_county = { dynmap_r016_realms_county_effect = yes }
+		debug_log_scopes = yes
+		clear_saved_scope = dynmap_r016_player_dynasty
+		clear_saved_scope = dynmap_r016_player_root
+	}
+	else = { debug_log = "DYNMAP_R016 WORLD_REALMS REJECT_NO_DYNASTY" }
+	debug_log = "DYNMAP_R016 WORLD_REALMS END"
+}
+
+# County holder first; missing holder Dynasty never suppresses senior checks.
+dynmap_r016_holdings_county_effect = {
+	if = {
+		limit = { exists = holder }
+		if = {
+			limit = {
+				holder = {
+					trigger_if = {
+						limit = {
+							exists = dynasty
+						}
+						dynasty = scope:dynmap_r016_player_dynasty
+					}
+					trigger_else = {
+						always = no
+					}
+				}
+			}
+			dynmap_r016_paint_dark_effect = yes
+		}
+		else_if = {
+			limit = {
+				holder = {
+					OR = {
+						trigger_if = {
+							limit = {
+								exists = dynasty
+							}
+							dynasty = scope:dynmap_r016_player_dynasty
+						}
+						trigger_else = {
+							always = no
+						}
+						any_liege_or_above = {
+							trigger_if = {
+								limit = {
+									exists = dynasty
+								}
+								dynasty = scope:dynmap_r016_player_dynasty
+							}
+							trigger_else = {
+								always = no
+							}
+						}
+					}
+				}
+			}
+			dynmap_r016_paint_light_effect = yes
+		}
+		else = { dynmap_r016_paint_grey_effect = yes }
+	}
+	else = { dynmap_r016_paint_grey_effect = yes }
+}
+
+dynmap_r016_world_holdings_effect = {
+	debug_log = "DYNMAP_R016 WORLD_HOLDINGS BEGIN"
+	if = {
+		limit = { exists = dynasty }
+		save_scope_as = dynmap_r016_player_root
+		dynasty = { save_scope_as = dynmap_r016_player_dynasty }
+		every_county = { dynmap_r016_holdings_county_effect = yes }
+		debug_log_scopes = yes
+		clear_saved_scope = dynmap_r016_player_dynasty
+		clear_saved_scope = dynmap_r016_player_root
+	}
+	else = { debug_log = "DYNMAP_R016 WORLD_HOLDINGS REJECT_NO_DYNASTY" }
+	debug_log = "DYNMAP_R016 WORLD_HOLDINGS END"
+}
+
+# County holder first; missing holder Dynasty never suppresses senior checks.
+dynmap_r016_my_realm_county_effect = {
+	if = {
+		limit = { exists = holder }
+		if = {
+			limit = { holder = { OR = { this = scope:dynmap_r016_player_root any_liege_or_above = { this = scope:dynmap_r016_player_root } } } }
+			dynmap_r016_paint_dark_effect = yes
+		}
+		else_if = {
+			limit = {
+				holder = {
+					OR = {
+						trigger_if = {
+							limit = {
+								exists = dynasty
+							}
+							dynasty = scope:dynmap_r016_player_dynasty
+						}
+						trigger_else = {
+							always = no
+						}
+						any_liege_or_above = {
+							trigger_if = {
+								limit = {
+									exists = dynasty
+								}
+								dynasty = scope:dynmap_r016_player_dynasty
+							}
+							trigger_else = {
+								always = no
+							}
+						}
+					}
+				}
+			}
+			dynmap_r016_paint_light_effect = yes
+		}
+		else = { dynmap_r016_paint_grey_effect = yes }
+	}
+	else = { dynmap_r016_paint_grey_effect = yes }
+}
+
+dynmap_r016_world_my_realm_effect = {
+	debug_log = "DYNMAP_R016 WORLD_MY_REALM BEGIN"
+	if = {
+		limit = { exists = dynasty }
+		save_scope_as = dynmap_r016_player_root
+		dynasty = { save_scope_as = dynmap_r016_player_dynasty }
+		every_county = { dynmap_r016_my_realm_county_effect = yes }
+		debug_log_scopes = yes
+		clear_saved_scope = dynmap_r016_player_dynasty
+		clear_saved_scope = dynmap_r016_player_root
+	}
+	else = { debug_log = "DYNMAP_R016 WORLD_MY_REALM REJECT_NO_DYNASTY" }
+	debug_log = "DYNMAP_R016 WORLD_MY_REALM END"
+}
+
+# Historical Holdings sample baseline: green/orange/grey, unchanged.
+# The same fixed sample counties and classifier are used in both color paths.
+# Middlesex, Kent and Surrey are candidates only; their live classes are unknown.
+dynmap_r016_sample_direct_effect = {
+	debug_log = "DYNMAP_R016 SAMPLE_DIRECT BEGIN"
+	if = {
+		limit = { exists = dynasty }
+		dynasty = { save_scope_as = dynmap_r016_player_dynasty }
+		save_scope_as = dynmap_r016_player_root
+		set_local_variable = { name = dynmap_r016_counties value = 0 }
+		set_local_variable = { name = dynmap_r016_direct value = 0 }
+		set_local_variable = { name = dynmap_r016_controlled value = 0 }
+		set_local_variable = { name = dynmap_r016_other value = 0 }
+		set_local_variable = { name = dynmap_r016_baronies value = 0 }
+		if = { limit = { exists = title:c_middlesex } title:c_middlesex = { dynmap_r016_sample_direct_county_effect = yes } }
+		else = { debug_log = "DYNMAP_R016 SAMPLE_DIRECT TARGET_MISSING c_middlesex" }
+		if = { limit = { exists = title:c_kent } title:c_kent = { dynmap_r016_sample_direct_county_effect = yes } }
+		else = { debug_log = "DYNMAP_R016 SAMPLE_DIRECT TARGET_MISSING c_kent" }
+		if = { limit = { exists = title:c_surrey } title:c_surrey = { dynmap_r016_sample_direct_county_effect = yes } }
+		else = { debug_log = "DYNMAP_R016 SAMPLE_DIRECT TARGET_MISSING c_surrey" }
+		clear_saved_scope = dynmap_r016_player_dynasty
+		scope:dynmap_r016_player_root = { debug_log_scopes = yes clear_saved_scope = dynmap_r016_player_root }
+	}
+	else = { debug_log = "DYNMAP_R016 SAMPLE_DIRECT REJECT_NO_DYNASTY" }
+	debug_log = "DYNMAP_R016 SAMPLE_DIRECT END"
+}
+
+dynmap_r016_sample_direct_county_effect = {
+	scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_counties add = 1 } }
+	if = {
+		limit = { exists = holder }
+		if = {
+			limit = { holder = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } } }
+			scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_direct add = 1 } }
+			every_in_de_jure_hierarchy = { continue = { always = yes } limit = { tier = tier_barony } set_title_color = { 40 190 80 } scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_baronies add = 1 } } }
+		}
+		else_if = {
+			limit = { holder = { any_liege_or_above = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } } } }
+			scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_controlled add = 1 } }
+			every_in_de_jure_hierarchy = { continue = { always = yes } limit = { tier = tier_barony } set_title_color = { 225 150 35 } scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_baronies add = 1 } } }
+		}
+		else = { scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_other add = 1 } } every_in_de_jure_hierarchy = { continue = { always = yes } limit = { tier = tier_barony } set_title_color = { 65 70 80 } scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_baronies add = 1 } } } }
+	}
+	else = { scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_other add = 1 } } every_in_de_jure_hierarchy = { continue = { always = yes } limit = { tier = tier_barony } set_title_color = { 65 70 80 } scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_baronies add = 1 } } } }
+}
+
+dynmap_r016_sample_copy_effect = {
+	debug_log = "DYNMAP_R016 SAMPLE_COPY BEGIN"
+	if = {
+		limit = { exists = dynasty }
+		dynasty = { save_scope_as = dynmap_r016_player_dynasty }
+		save_scope_as = dynmap_r016_player_root
+		if = {
+			limit = {
+				exists = title:d_dynmap_r016_direct
+				exists = title:d_dynmap_r016_controlled
+				exists = title:d_dynmap_r016_other
+				title:d_dynmap_r016_direct = { NOT = { exists = holder } }
+				title:d_dynmap_r016_controlled = { NOT = { exists = holder } }
+				title:d_dynmap_r016_other = { NOT = { exists = holder } }
+			}
+			set_local_variable = { name = dynmap_r016_counties value = 0 }
+			set_local_variable = { name = dynmap_r016_direct value = 0 }
+			set_local_variable = { name = dynmap_r016_controlled value = 0 }
+			set_local_variable = { name = dynmap_r016_other value = 0 }
+			set_local_variable = { name = dynmap_r016_baronies value = 0 }
+			if = { limit = { exists = title:c_middlesex } title:c_middlesex = { dynmap_r016_sample_copy_county_effect = yes } }
+			else = { debug_log = "DYNMAP_R016 SAMPLE_COPY TARGET_MISSING c_middlesex" }
+			if = { limit = { exists = title:c_kent } title:c_kent = { dynmap_r016_sample_copy_county_effect = yes } }
+			else = { debug_log = "DYNMAP_R016 SAMPLE_COPY TARGET_MISSING c_kent" }
+			if = { limit = { exists = title:c_surrey } title:c_surrey = { dynmap_r016_sample_copy_county_effect = yes } }
+			else = { debug_log = "DYNMAP_R016 SAMPLE_COPY TARGET_MISSING c_surrey" }
+		}
+		else = { debug_log = "DYNMAP_R016 SAMPLE_COPY REJECT_HELPER_MISSING_OR_HELD" }
+		clear_saved_scope = dynmap_r016_player_dynasty
+		scope:dynmap_r016_player_root = { debug_log_scopes = yes clear_saved_scope = dynmap_r016_player_root }
+	}
+	else = { debug_log = "DYNMAP_R016 SAMPLE_COPY REJECT_NO_DYNASTY" }
+	debug_log = "DYNMAP_R016 SAMPLE_COPY END"
+}
+
+dynmap_r016_sample_copy_county_effect = {
+	scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_counties add = 1 } }
+	if = {
+		limit = { exists = holder }
+		if = {
+			limit = { holder = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } } }
+			scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_direct add = 1 } }
+			every_in_de_jure_hierarchy = { continue = { always = yes } limit = { tier = tier_barony } set_color_from_title = title:d_dynmap_r016_direct scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_baronies add = 1 } } }
+		}
+		else_if = {
+			limit = { holder = { any_liege_or_above = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } } } }
+			scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_controlled add = 1 } }
+			every_in_de_jure_hierarchy = { continue = { always = yes } limit = { tier = tier_barony } set_color_from_title = title:d_dynmap_r016_controlled scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_baronies add = 1 } } }
+		}
+		else = { scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_other add = 1 } } every_in_de_jure_hierarchy = { continue = { always = yes } limit = { tier = tier_barony } set_color_from_title = title:d_dynmap_r016_other scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_baronies add = 1 } } } }
+	}
+	else = { scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_other add = 1 } } every_in_de_jure_hierarchy = { continue = { always = yes } limit = { tier = tier_barony } set_color_from_title = title:d_dynmap_r016_other scope:dynmap_r016_player_root = { change_local_variable = { name = dynmap_r016_baronies add = 1 } } } }
+}

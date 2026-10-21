@@ -82,6 +82,42 @@ for the run. Preserve prior selection locally and restore it after the user
 exits the game. Create another playset only for a concrete need to preserve
 parallel configurations or an explicit user request.
 
+### Identify the already running launcher on macOS
+
+This is GUI-only troubleshooting when launcher binding is ambiguous or times
+out, never a CLI prerequisite or a check of the user's declared game state.
+Multiple installed launcher versions can share the display name `Paradox
+Launcher` and bundle ID `com.paradoxinteractive.launcher`. App-inventory order,
+the first path in an ambiguity error and the highest installed version do not
+identify the running instance. A timeout does not mean the launcher is closed.
+
+1. Use the supported computer-use app inventory. If name/bundle-ID binding is
+   ambiguous or times out, resolve the main running launcher executable with
+   a bounded read-only lookup limited to that launcher (or an exact PID supplied
+   by the user). Exclude Helper/Renderer processes. A sandbox-denied lookup is
+   not evidence that no launcher exists; use authorized read-only escalation
+   when appropriate. Do not enumerate or inspect CK3.
+2. Derive the enclosing `Paradox Launcher.app` path from that executable and
+   bind with `cua.getApp(fullAppPath)`. Do not guess a versioned directory:
+   selecting an inactive copy may launch it. Do not restart either app.
+3. Verify the returned launcher window identifies **Crusader Kings III** before
+   configuring its playset. Use fresh accessibility state for subsequent UI
+   actions. Use only APIs present in the current tool documentation; if window
+   listing is unavailable, do not invent it or retry it as an alternative.
+4. Keep resolved paths, PIDs and version-specific hints in ignored local notes;
+   rediscover after launcher updates/restarts. Persist this portable procedure,
+   not one machine's path/PID. Distinguish a successful bind from verified mod
+   discovery/selection, and verify the enabled-mod manifest after UI changes.
+
+### User-operated CK3 console
+
+The user confirmed **Shift + Alt + C** opens the console in the tested macOS
+setup (2026-10-21). Prefer that observed shortcut when giving this user console
+instructions; do not assume the backtick/section-sign key works on their layout.
+Other layouts may differ. The user alone opens the console and enters commands;
+Codex never operates or inspects the game window. After a user restart, use fresh
+logs/version/mod evidence and output timestamps to establish generation provenance.
+
 Use this cycle:
 
 1. State required app state and the user's necessary preparation (for example,
@@ -106,6 +142,21 @@ These are role assignments, not extra approval checkpoints. Existing scope,
 permissions, sandbox requirements and the acknowledgement rules still apply.
 
 ## Authorization and stage completion
+
+### Batch preparation and user test instructions
+
+Prepare related hypotheses, controls, expected observations and log checks
+together before another user test launch. Prefer the existing installed payload
+and complete ordinary view switches/observations in one paused session, with
+one report per meaningful checkpoint rather than an acknowledgement per click.
+Reuse passed cases unless a changed build/payload or comparison baseline gives
+a concrete reason to repeat them. Keep necessary execution/attribution gates,
+but do not split preparation, self-review and documentation into extra approvals.
+An unresolved earlier error is not automatically a blocker for every independent
+observation; identify its suspected effect and which dependent tests it blocks.
+Do not label it harmless without evidence. Batch all justified source fixes for
+the next revision; avoid speculative single-field edit/restart loops. Save/load,
+disabled-mod and fresh-process checks retain their distinct state prerequisites.
 
 - Carry out all necessary substeps of an authorized stage without asking for
   separate approval for planning, preparation, self-review and documentation.
@@ -141,6 +192,17 @@ permissions, sandbox requirements and the acknowledgement rules still apply.
   substance. Delegation grants no extra Git, GitHub, install or runtime rights.
 
 ## GUI to CLI handoff
+
+For every probe/mod preparation, revision or game-build change, read and apply
+[MOD_AUTHORING_RULES.md](MOD_AUTHORING_RULES.md). The handoff must name the
+explicit source/installed payload roots, exact expected version, and commands
+`python3 scripts/check_mod_preflight.py <payload-root> --expected-version <version>`
+before installation and the same command with `--installed <installed-root>`
+afterward. Include manual source/schema/guard review, private backups, wrapper
+metadata verification and the fresh user-run startup/log checkpoint before
+loading, saving or classification. A file check or metadata declaration is not
+engine/API/runtime validation. Build changes require targeted revalidation and
+generated-document provenance; retain prior findings under their actual build.
 
 Use one active delegation at a time. Write `.codex-sync/CLI_TASK.md` with a unique delegation ID, parent task ID, model/reasoning recommendation, goal, reason, minimal context references, requested work, expected files, exclusions, explicit permissions, completion criteria, and result path. The task file owns its listed files while the delegation is active; the GUI avoids those files and CLI avoids unrelated files. If unexpected overlapping edits appear, stop and report the conflict.
 

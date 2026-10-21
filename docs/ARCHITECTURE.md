@@ -2,7 +2,7 @@
 
 ## Status
 
-This document defines the intended architecture during M0 investigation of installed CK3 1.20.1.1 (Crozier). RESEARCH.md records VERIFIED generated script_docs signatures and scope links. Other API names, file paths and integration behavior remain candidates until supported by installed-file, generated-doc or runtime evidence. Open **Research Gates** still block the implementation decisions they cover.
+This document defines the intended architecture during M0. R-016 now targets installed CK3 1.20.1.2 (Crozier); earlier evidence retains its 1.20.1.1 provenance. RESEARCH.md records VERIFIED generated script_docs signatures and scope links. Other API names, file paths and integration behavior remain candidates until supported by installed-file, generated-doc or runtime evidence. Open **Research Gates** still block the implementation decisions they cover.
 
 ## Logical components
 
@@ -80,9 +80,11 @@ Definition resets do not recover arbitrary live originals; exact capture,
 automatic cleanup and disabled-mod/fresh-process behavior remain open.
 
 Current research separates a conceptual ephemeral barony -> county class
-(DIRECT/CONTROLLED/OTHER) mapping from a three-category palette. This preserves
-county-holder/Dynasty/liege semantics and ADR-008 unavailability. It is not an
-implemented classifier, saved palette registry or verified storage API.
+(dark/light/grey for the selected ADR-010 view) mapping from a three-category
+palette. It preserves ADR-008 unavailability. R016 has a prepared three-view
+research classifier and bounded startup/execution evidence; no production
+classifier, saved palette registry or verified isolated storage API is
+established.
 
 The missing link is a supported consumer of that mapping only in our view.
 Native mode definitions select engine producers. The exposed overlay shader
@@ -153,27 +155,48 @@ The design models the ordinary de-facto political hierarchy as a rooted forest w
 
 ## My Dynasty classification
 
-Let `PD` be the valid local player's Dynasty and `H` the county holder. This is conceptual pseudocode, not verified CK3 syntax.
+ADR-010 defines one Dynasty family with three ordered views, initially Dynasty
+Realms. For fresh valid player P and Dynasty D, classify county holder H and
+all ordinary de-facto seniors S; T is the highest ruler, or H when independent.
 
-```text
-if local player or PD is invalid:
-    mode unavailable; return without classification or color writes
-else if H exists and H has a valid Dynasty and H.dynasty == PD:
-    DIRECT
-else if H exists and a qualifying de-facto liege has dynasty == PD:
-    CONTROLLED
-else:
-    OTHER
-```
+| View | Dark green | Otherwise light green |
+|---|---|---|
+| Dynasty Realms | T's Dynasty is D | H or any senior has D |
+| Dynasty Holdings | H's Dynasty is D | Any senior has D |
+| My Realm & Dynasty | H is P or P is any senior | H or any senior has D |
 
-Important semantics:
+Otherwise grey; an unheld county is grey. Invalid P/D makes the feature
+unavailable without classification or writes. Dark precedes light. Cadet Houses
+compare Dynasty, not House. Missing holder Dynasty never skips senior checks.
+Player-vassal dark territory is only P's subtree, never all of P's top ruler's
+realm. Baron identity, occupation, claims, regents/co-rulers and tributary/
+suzerain relationships do not replace the legal holder or de-facto hierarchy.
+De-jure membership is used only to propagate the county result to its baronies.
+Historical DIRECT/CONTROLLED/OTHER denotes Holdings, not the default Realms rule.
 
-- cadet Houses automatically collapse because comparison is on `dynasty`;
-- county holder controls classification, not barony holder;
-- a holder without a Dynasty cannot be DIRECT, but can be CONTROLLED through a qualifying liege; check the chain before assigning OTHER;
-- occupations do not change classification in v1.0;
-- tributary/suzerain relations do not count as lieges in v1.0;
-- regents/co-rulers do not replace the legal title holder for classification.
+The R016 source revision for 1.20.1.2 prepared all three direct classifiers,
+one Dynasty menu entry and an associated active-map panel with selection and
+legends. Startup and bounded repeated executions were observed; the user
+reports ordinary switching/refresh/native-return smoke appears to work. Grey
+nonmatching land failed visual acceptance, and the smoke does not establish
+full semantic coverage, atomicity, performance or lifecycle safety. Startup
+loaded the new GUI assets; user observation showed the ordered controls and
+legend at two zoom levels, not all UI scales or compatibility contexts. The
+original Additional Modes seam and narrow banner composition are intentional
+native type overrides; native children remain references. The custom panel
+sits outside the HUD-overridden native submode block. No vanilla body/HUD file
+is packaged. The old R010 Faith smoke does not validate this new panel.
+
+Normal entry/subview/refresh calls Execute with fresh GetPlayer, then SetMapMode.
+UI availability queries Dynasty; the effect checks it again before any pass.
+The composed call is only a candidate: void Execute cannot report success or
+make dispatch/display atomic during a context change. Explicit per-view
+COMPUTE/log review/DISPLAY diagnostics remain available. They do not complete
+the normal UX requirement or close ADR-008. Each subview recomputes rather than
+showing another subview's last-painted RGB. Additional-menu opening does not
+scan; re-entering through Dynasty resets to Realms, while an active alternative
+stays selected until an explicit selection. Shared RGB, context-loss cleanup,
+exit/restore, persistence/removal and full coverage remain unresolved.
 
 ## State management
 
@@ -228,3 +251,13 @@ No All Dynasties implementation should be merged until the color strategy has ex
 - All dummy titles: `d_dynmap_*`
 - Future event namespace: `dynmap`
 - Files owned by this project should start with `dynmap_` where CK3 loading rules permit it.
+
+## R-016 research closeout and specification split
+
+R-016 is closed with bounded pipeline/UI evidence on 1.20.1.2, not production
+acceptance. Grey nonmatching ground is a failed visual item; exact context-safe
+activation, coverage, isolation/restore and removal remain unresolved. The
+[F-003 tables](tasks/F-003-dynasty-subview-definitions.md) consolidate accepted
+semantics and appearance. R-017 plans test fixtures; F-001 owns target layout/
+grey/contrast; F-002 owns color-source feasibility with fixed-palette fallback.
+No successor implementation is selected by this closeout.

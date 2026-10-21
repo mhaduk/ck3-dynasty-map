@@ -1,0 +1,17 @@
+﻿# Original plain CoA definitions prevent relying on generated missing-CoA data.
+# Visual resolution is a startup/runtime question; no historical body is copied.
+d_dynmap_r016_direct = {
+	pattern = "pattern_solid.dds"
+	color1 = "green"
+	color2 = "green"
+}
+d_dynmap_r016_controlled = {
+	pattern = "pattern_solid.dds"
+	color1 = "orange"
+	color2 = "orange"
+}
+d_dynmap_r016_other = {
+	pattern = "pattern_solid.dds"
+	color1 = "grey"
+	color2 = "grey"
+}

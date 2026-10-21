@@ -1,0 +1,306 @@
+# Original R016 family entry and optional diagnostics, using the R010 seam.
+# Replace only the menu type; derive from a primitive, never the replaced type.
+# File-order / replacement semantics and engine validation remain unverified.
+# Native mode and safe setting controls are referenced by their native actions.
+types dynmap_r016_menu
+{
+    type dynmap_r016_mode_button = icon_button_mapmode
+    {
+        size = { 32 32 }
+        blockoverride "mm_icon" { size = { 26 26 } }
+    }
+
+    # Existing identifier is an intentional, limited integration override.
+    type flowcontainer_additional_mapmodes = flowcontainer
+    {
+        direction = vertical
+        visible = "[GetVariableSystem.Exists('mapmodes_expand')]"
+        visible_at_creation = no
+        alwaystransparent = no
+        filter_mouse = all
+        margin = { 16 12 }
+        spacing = 5
+        ignoreinvisible = yes
+        background = { using = Background_Area_Dark }
+
+        state = {
+            name = _mouse_hierarchy_leave
+            on_finish = "[GetVariableSystem.Clear('mapmodes_expand')]"
+        }
+
+        text_single = {
+            name = "dynmap_r016_heading"
+            text = "ADDITIONAL_MAPMODES"
+            parentanchor = hcenter
+            using = Font_Size_Medium
+        }
+
+        # Retain the seam used by native mini-mode instances.
+        block "mapmodes_insert_before" {}
+
+        # One top-level family entry. Opening this menu performs no computation.
+        # Multiple onclick actions are a candidate, not an atomic success contract.
+        button_round = {
+            name = "dynmap_r016_dynasty_entry"
+            parentanchor = hcenter
+            size = { 220 30 }
+            text = "dynmap_r016_dynasty"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+            down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]"
+            tooltip = "dynmap_r016_enter_tt"
+            onclick = "[GetScriptedGui('dynmap_r016_compute_realms').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            onclick = "[SetMapMode('dynmap_my_dynasty')]"
+        }
+
+        flowcontainer = {
+            name = "dynmap_r016_modes_row_1"
+            parentanchor = hcenter
+            spacing = 4
+            ignoreinvisible = yes
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_migration_counties"
+                visible = "[HasDlcFeature('khans_of_the_steppe')]"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('migration_counties')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_19" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_terrain"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('terrain')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_terrain" }
+                blockoverride "mm_icon" { size = { 26 26 } texture = "gfx/interface/icons/flat_icons/map_modes/terrain.dds" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_simple_terrain"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('simple_terrain')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_12" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_players"
+                visible = "[And(Or(GameHasMultiplePlayers, InDebugMode), CanChangeMapMode)]"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('players')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_8" }
+            }
+        }
+
+        flowcontainer = {
+            name = "dynmap_r016_modes_row_2"
+            parentanchor = hcenter
+            spacing = 4
+            ignoreinvisible = yes
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_landless_rulers"
+                visible = "[And(HasDlcFeature('landless_playable'), CanChangeMapMode)]"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('landless_rulers')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_18" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_confederations"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('confederations')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_confederations" }
+                blockoverride "mm_icon" { size = { 26 26 } texture = "gfx/interface/icons/flat_icons/map_modes/confederations.dds" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_epidemics"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('epidemics')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_16" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_legends"
+                visible = "[And(HasDlcFeature('legends'), CanChangeMapMode)]"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('legends')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_17" }
+            }
+        }
+
+        flowcontainer = {
+            name = "dynmap_r016_modes_row_3"
+            parentanchor = hcenter
+            spacing = 4
+            ignoreinvisible = yes
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_dejure_counties"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('dejure_counties')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_6" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_dejure_hegemonies"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('dejure_hegemonies')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_20" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_government"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('government')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_5" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_court_languages"
+                visible = "[And(HasDlcFeature('royal_court'), CanChangeMapMode)]"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('court_languages')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_7" }
+            }
+        }
+
+        flowcontainer = {
+            name = "dynmap_r016_modes_row_4"
+            parentanchor = hcenter
+            spacing = 4
+            ignoreinvisible = yes
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_county_development"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('county_development')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_13" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_county_control"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('county_control')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_15" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_economy_buildings"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('economy_buildings')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_14" }
+            }
+            dynmap_r016_mode_button = {
+                name = "dynmap_r016_diplomatic_relations"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('diplomatic_relations')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_diplomatic_relations" }
+            }
+        }
+
+        text_single = {
+            text = "ADDITIONAL_MAP_SETTINGS"
+            parentanchor = hcenter
+            using = Font_Size_Medium
+        }
+        button_checkbox_label = {
+            name = "dynmap_r016_epidemic_setting"
+            onclick = "[ToggleShowEpidemicMapGraphics]"
+            tooltip = "SETTING_SHOW_EPIDEMIC_MAP_GRAPHICS_TOOLTIP"
+            blockoverride "checkbox" { checked = "[ShowEpidemicMapGraphics]" size = { 20 20 } }
+            blockoverride "text" { text = "SETTING_SHOW_EPIDEMIC_MAP_GRAPHICS" max_width = 155 fontsize = 14 }
+        }
+        button_checkbox_label = {
+            name = "dynmap_r016_legend_setting"
+            onclick = "[ToggleShowLegendMapGraphics]"
+            tooltip = "SETTING_SHOW_LEGEND_MAP_GRAPHICS_TOOLTIP"
+            visible = "[HasDlcFeature('legends')]"
+            blockoverride "checkbox" { checked = "[ShowLegendMapGraphics]" size = { 20 20 } }
+            blockoverride "text" { text = "SETTING_SHOW_LEGEND_MAP_GRAPHICS" max_width = 155 fontsize = 14 }
+        }
+        button_round = {
+            name = "dynmap_r016_diagnostics_toggle"
+            parentanchor = hcenter
+            size = { 220 28 }
+            text = "dynmap_r016_diagnostics"
+            onclick = "[GetVariableSystem.Toggle('dynmap_r016_diagnostics')]"
+        }
+        flowcontainer = {
+            name = "dynmap_r016_diagnostics_area"
+            direction = vertical
+            parentanchor = hcenter
+            spacing = 3
+            ignoreinvisible = yes
+            visible = "[GetVariableSystem.Exists('dynmap_r016_diagnostics')]"
+            text_single = { text = "dynmap_r016_diagnostics_hint" using = Font_Size_Small parentanchor = hcenter }
+            button_round = {
+                name = "dynmap_r016_check"
+                parentanchor = hcenter
+                size = { 220 30 }
+                text = "dynmap_r016_check"
+                visible = "[GetPlayer.IsValid]"
+                enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                onclick = "[GetVariableSystem.Set('dynmap_r016_availability', Select_CString(GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), 'READY', 'BLOCKED'))]"
+            }
+            text_single = { text = "[Select_CString(GetVariableSystem.HasValue('dynmap_r016_availability', 'READY'), 'READY - hint only', 'CHECK required')]" using = Font_Size_Small parentanchor = hcenter }
+            flowcontainer = { parentanchor = hcenter spacing = 4
+                button_round = {
+                    name = "dynmap_r016_stage_realms"
+                    parentanchor = hcenter
+                    size = { 235 30 }
+                    text = "dynmap_r016_compute_realms"
+                    visible = "[GetPlayer.IsValid]"
+                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                    onclick = "[GetScriptedGui('dynmap_r016_compute_realms').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+                }
+                button_round = {
+                    name = "dynmap_r016_display_realms"
+                    parentanchor = hcenter
+                    size = { 210 30 }
+                    text = "dynmap_r016_display_realms"
+                    visible = "[GetPlayer.IsValid]"
+                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                    onclick = "[SetMapMode('dynmap_my_dynasty')]"
+                }
+            }
+            flowcontainer = { parentanchor = hcenter spacing = 4
+                button_round = {
+                    name = "dynmap_r016_stage_holdings"
+                    parentanchor = hcenter
+                    size = { 235 30 }
+                    text = "dynmap_r016_compute_holdings"
+                    visible = "[GetPlayer.IsValid]"
+                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                    onclick = "[GetScriptedGui('dynmap_r016_compute_holdings').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+                }
+                button_round = {
+                    name = "dynmap_r016_display_holdings"
+                    parentanchor = hcenter
+                    size = { 210 30 }
+                    text = "dynmap_r016_display_holdings"
+                    visible = "[GetPlayer.IsValid]"
+                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                    onclick = "[SetMapMode('dynmap_dynasty_holdings')]"
+                }
+            }
+            flowcontainer = { parentanchor = hcenter spacing = 4
+                button_round = {
+                    name = "dynmap_r016_stage_my_realm"
+                    parentanchor = hcenter
+                    size = { 235 30 }
+                    text = "dynmap_r016_compute_my_realm"
+                    visible = "[GetPlayer.IsValid]"
+                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                    onclick = "[GetScriptedGui('dynmap_r016_compute_my_realm').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+                }
+                button_round = {
+                    name = "dynmap_r016_display_my_realm"
+                    parentanchor = hcenter
+                    size = { 210 30 }
+                    text = "dynmap_r016_display_my_realm"
+                    visible = "[GetPlayer.IsValid]"
+                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                    onclick = "[SetMapMode('dynmap_my_realm_dynasty')]"
+                }
+            }
+            button_round = {
+                name = "dynmap_r016_sample_direct"
+                parentanchor = hcenter
+                size = { 450 30 }
+                text = "dynmap_r016_sample_direct"
+                visible = "[GetPlayer.IsValid]"
+                enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                onclick = "[GetScriptedGui('dynmap_r016_compute_sample_direct').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            }
+            button_round = {
+                name = "dynmap_r016_sample_copy"
+                parentanchor = hcenter
+                size = { 450 30 }
+                text = "dynmap_r016_sample_copy"
+                visible = "[GetPlayer.IsValid]"
+                enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                onclick = "[GetScriptedGui('dynmap_r016_compute_sample_copy').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            }
+            button_round = {
+                name = "dynmap_r016_baseline_display"
+                parentanchor = hcenter
+                size = { 450 30 }
+                text = "dynmap_r016_baseline_display"
+                visible = "[GetPlayer.IsValid]"
+                enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                onclick = "[SetMapMode('dynmap_r016_holdings_baseline')]"
+            }
+        }
+        # Raid/barter controls remain omitted pending separate visibility review.
+    }
+}

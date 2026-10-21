@@ -1,7 +1,7 @@
 # Dynasty Map for Crusader Kings III
 
-**Status:** planning / pre-implementation
-**Research baseline:** CK3 1.20.1.1 "Crozier" (2026-10-20; clean API docs confirmed; runtime probes pending)
+**Status:** research prototype; R-016 complete with limits, no production release
+**Target:** CK3 1.20.1.2 "Crozier" / Steam build 26046173 (2026-10-21; bounded prototype startup/runtime smoke). Clean original API baseline: 1.20.1.1.
 **Repository intent:** source code, design documentation, test evidence, and release history for a CK3 mod adding dynasty-focused map modes.
 
 ## Product goal
@@ -13,13 +13,27 @@ CK3 exposes a House map mode but does not provide a world map that groups cadet 
 
 The project deliberately starts with **My Dynasty** because it avoids the hardest unresolved problem: assigning stable, distinct colors to every Dynasty.
 
-## Planned semantics: My Dynasty
+## Accepted My Dynasty subviews
 
-- **Direct / dark shade**: the county holder belongs to the player's Dynasty.
-- **Controlled / light shade**: the county holder is not in the player's Dynasty, but at least one de-facto liege above that holder is.
-- **Other / neutral**: neither the county holder nor any liege above them belongs to the player's Dynasty.
+One **Dynasty** map entry offers three subviews. Dark wins over light;
+nonmatching county land should be grey.
 
-The county is the semantic unit. Baronies, cities and temples inherit the classification of their county so local holding types do not fragment the view.
+| Subview | Dark | Otherwise light |
+|---|---|---|
+| **Dynasty Realms** (default) | Highest de-facto ruler is in the player's Dynasty | Holder or any senior is in that Dynasty |
+| **Dynasty Holdings** | County holder is in the player's Dynasty | Any de-facto senior is in that Dynasty |
+| **My Realm & Dynasty** | Player holds the county or is a senior in its chain | Holder or any senior is in the player's Dynasty |
+
+The county is the semantic unit; constituent baronies inherit its category.
+Cadet Houses share Dynasty identity. Invalid player/Dynasty means unavailable
+with no writes. See [F-003](docs/tasks/F-003-dynasty-subview-definitions.md) for
+the exact definitions, appearance, examples and legend contract.
+
+R-016 demonstrated the pipeline and bounded UI smoke, not release readiness.
+Grey neutral ground failed visual acceptance. Complete semantic coverage,
+context safety, shared title-color restoration and save/removal remain open.
+R-017 plans better test fixtures; F-001 owns final UI/grey/contrast; F-002 owns
+color-source feasibility. All Dynasties remains deferred.
 
 ## Engineering principles
 
@@ -35,6 +49,7 @@ The county is the semantic unit. Baronies, cities and temples inherit the classi
 
 - [Current state / Codex session handoff](docs/CURRENT_STATE.md)
 - [Completed task history](docs/TASK_HISTORY.md)
+- [Subview definitions and appearance (F-003)](docs/tasks/F-003-dynasty-subview-definitions.md)
 - [Codex workflow](docs/CODEX_WORKFLOW.md)
 
 - [Project charter](docs/PROJECT_CHARTER.md)

@@ -1,0 +1,31 @@
+﻿# Character dispatch validation precedes effects; void Execute is not success.
+dynmap_r016_check = {
+	scope = character
+	is_valid = { exists = dynasty }
+	effect = { }
+}
+dynmap_r016_compute_realms = {
+	scope = character
+	is_valid = { exists = dynasty }
+	effect = { dynmap_r016_world_realms_effect = yes }
+}
+dynmap_r016_compute_holdings = {
+	scope = character
+	is_valid = { exists = dynasty }
+	effect = { dynmap_r016_world_holdings_effect = yes }
+}
+dynmap_r016_compute_my_realm = {
+	scope = character
+	is_valid = { exists = dynasty }
+	effect = { dynmap_r016_world_my_realm_effect = yes }
+}
+dynmap_r016_compute_sample_direct = {
+	scope = character
+	is_valid = { exists = dynasty }
+	effect = { dynmap_r016_sample_direct_effect = yes }
+}
+dynmap_r016_compute_sample_copy = {
+	scope = character
+	is_valid = { exists = dynasty }
+	effect = { dynmap_r016_sample_copy_effect = yes }
+}

@@ -24,12 +24,27 @@ IDs such as R-002 are stable planning IDs, separate from GitHub issue numbers.
 | R-013 | [#13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) | P2 | Establish a supported no-Dynasty local-player fixture and verify unavailable UI | R-005 | Deferred — engine rejects the one-attempt player lowborn fixture; no further fixture iteration now |
 | R-014 | [#14](https://github.com/mhaduk/ck3-dynasty-map/issues/14) | P1 | Inventory CK3 modding documentation and source hierarchy; create and integrate a concise source map | R-001,R-004 | Complete — [source map](CK3_SOURCE_MAP.md) and agent/workflow integration |
 | R-015 | [#15](https://github.com/mhaduk/ck3-dynasty-map/issues/15) | P1 | Investigate Clerical Regions renderer, custom membership/colors/stripes and isolation | R-001,R-004 | Closed — not planned (2026-10-21); [final disposition](tasks/R-015-clerical-regions.md#final-disposition--2026-10-21). Independent provider not demonstrated; technical evidence partial; no probe/runtime |
+| R-016 | [#16](https://github.com/mhaduk/ck3-dynasty-map/issues/16) | P0 | Validate historical My Dynasty pipeline with county semantics, fixed barony colors and manual refresh | R-002,R-004,R-005,R-009,R-010,R-014; reuse R-006/007/008 | Closed research with limits — 1.20.1.2 startup and three-view execution gates passed; user reports ordinary switching/refresh/native-return smoke appears to work. Grey nonmatching land failed visual acceptance; semantic coverage, performance, atomicity/context safety and persistence/removal remain open. [Canonical closeout](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21); publication authorized, see current state |
 
 Initial migration verified 2026-10-20, before adding R-013: R-001 / #1, R-002 / #2, R-003 / #3, R-004 / #4 and R-006 / #6 are
 closed as completed; the other seven M0 issues remain open. Ready/Partial/Blocked
 are progress descriptions in issue bodies, not claims of native GitHub states.
 Subsequent disposition: R-015 / #15 closed as not planned on 2026-10-21; its
 technical findings remain partial.
+
+### Successor definitions and plans (no GitHub issues created)
+
+| ID | Work item | Depends on | Status |
+|---|---|---|---|
+| R-017 | Select reproducible test character/start year and natural relationship fixtures for all three views | R-016; ADR-010 | Planned — [scenario plan](tasks/R-017-test-scenario-selection.md); retain Harold 1066 as historical baseline |
+| F-001 | Specify Dynasty entry, active subviews, selection, legend, contrast and grey-ground visual/interaction contract | R-016,R-005,R-009,R-010,R-013; ADR-008/009/010 | Planned — [UX plan](tasks/F-001-dynasty-map-ux.md); grey visibility is P0 acceptance |
+| F-002 | Evaluate Dynasty/House/CoA/title color sources and fallback contract | R-009,R-016; ADR-010 | Planned — [color strategy](tasks/F-002-dynasty-color-strategy.md); fixed palette remains fallback and work is independent of F-001 layout/grey diagnosis |
+| F-003 | Consolidate accepted subview definitions, appearance and examples | R-016; ADR-010 | Complete — [definition tables](tasks/F-003-dynasty-subview-definitions.md); documentation only, no new implementation |
+
+These plans are separate backlog records, not implementation or runtime
+authorization. Existing F-101 through F-110 IDs remain stable; their older
+holder-first wording is historical planning context and must be mapped to the
+current ADR-010 views when a successor is scoped, never renumbered in place.
 
 Latest [FINAL GUARDS result](evidence/2026-10-20-r005-player-context/final-guards-result.md)
 and [canonical R-005 checkpoint](tasks/R-005-player-context.md) supersede older

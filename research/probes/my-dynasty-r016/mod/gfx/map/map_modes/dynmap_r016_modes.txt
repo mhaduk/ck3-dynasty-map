@@ -1,0 +1,29 @@
+﻿# Original baronies producers. Three named selections share mutable title RGB.
+dynmap_my_dynasty = {
+	color_mode = baronies
+	small_map_names = baronies
+	large_map_names = baronies
+	selection = baronies
+	fill_in_impassable = no
+}
+dynmap_dynasty_holdings = {
+	color_mode = baronies
+	small_map_names = baronies
+	large_map_names = baronies
+	selection = baronies
+	fill_in_impassable = no
+}
+dynmap_my_realm_dynasty = {
+	color_mode = baronies
+	small_map_names = baronies
+	large_map_names = baronies
+	selection = baronies
+	fill_in_impassable = no
+}
+dynmap_r016_holdings_baseline = {
+	color_mode = baronies
+	small_map_names = baronies
+	large_map_names = baronies
+	selection = baronies
+	fill_in_impassable = no
+}

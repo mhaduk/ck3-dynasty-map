@@ -26,3 +26,9 @@
 | RK-22 | Shades are inaccessible or neutral territory is confused with unavailable mode | Unknown | Medium | Review contrast/accessibility; unavailable mode must not render an all-neutral substitute; verify unavailable UI in M0 |
 | RK-23 | GUI type extension resolves cyclically and crashes at startup | Observed in R-010 probe | High | Failed same-name probe quarantined; verify vanilla recovery; require different evidence-backed integration before another test |
 | RK-24 | Independent classification may lack a supported view-specific renderer input | Unresolved engine boundary | High | No generic upload identified. Situation has county add/remove and region RGB inputs, but uses world objects/view selection; zero-participant coverage, independent binding, cleanup and save/removal remain unverified. Resume source-led review after R-014; no probe prepared or production route approved |
+
+R-016 closeout (2026-10-21): bounded three-view pipeline/UI smoke does not
+resolve RK-16/17/20/24. RK-22 is now an observed visual acceptance failure: unrelated
+continental county land is not clearly grey; F-001 owns diagnosis and contrast.
+F-002 investigates accent sources with fixed-palette fallback; accessible native
+Dynasty RGB remains unproven. R-017 supplies stronger natural fixtures.

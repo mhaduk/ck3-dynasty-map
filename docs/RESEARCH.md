@@ -845,6 +845,67 @@ transition races. The no-Dynasty player fixture was rejected and that UI case is
 deferred to R-013 / #13. Do not follow historical next-step hypotheses here;
 see the consolidated status above. R-009 retains color restoration.
 
+## R-016 — Stage A reusable static findings (2026-10-21)
+
+Historical source review recovered a `line_dynasty` baronies-mode object, a
+player-rooted `line_dynasty_map` GUI call and fixed helper palette, but **not**
+the Dynasty classifier. The retained infrastructure scripted GUI/effect chain
+supports the generic pipeline only. The bounded search and pinned citations are
+in the [R-016 checkpoint](tasks/R-016-my-dynasty-pipeline.md#stage-a-checkpoint--2026-10-21).
+No historical category or current runtime behavior follows from palette names.
+
+Additional target-build source details, building on R-006/007/008:
+
+- `effects.log:2675–2677` documents `save_scope_as` for an unbroken event chain;
+  `:243–245` documents `clear_saved_scope`. A captured Dynasty scope is distinct
+  from a persistent character/title variable. No delayed chain is proposed.
+- `common/scripted_triggers/00_elective_triggers.txt:111–114` uses Dynasty
+  identity equality to a saved scope route.
+- `common/scripted_effects/00_title_effects.txt:53–57` uses
+  `every_in_de_jure_hierarchy` with a tier filter. Combined with the documented
+  independence of `continue` and `limit`, this grounds the county-first,
+  barony-filtered design; runtime county/barony coverage is still open.
+- `effects.log:139–144,2769–2776` lists local-variable change/set effects, although
+  the emitted usage examples name the ordinary variable forms. Actual shipped
+  `common/scripted_effects/07_dlc_ep3_scripted_effects.txt:2818–2834` uses
+  `set_local_variable`, `local_var:` and `change_local_variable`. This supports
+  local diagnostic counters; actual helper lifetime/output was not tested.
+- `data_types/data_types_script.txt:3944–3946` returns void from
+  `ScriptedGui.Execute`. Neither that signature nor a subsequent `IsValid`
+  check is a successful-effect receipt. External UI guarding/active-view
+  lifecycle retain the R-005/R-009 limitations; no atomic dispatch or automatic
+  color restoration contract was established by Stage A.
+
+No payload, game test, parser/Tiger run or installation occurred. No color path,
+production entry design, persistence acceptance or ADR change was selected.
+
+## R-016 — 1.20.1.2 used-API revalidation (2026-10-21)
+
+Fresh user-generated 1.20.1.2 script/type outputs were reviewed with R016 enabled,
+**not as clean vanilla evidence**. Manifests, newer output mtimes and captured
+build/mount/startup logs support that provenance; the prior 1.20.1.1 baseline
+remains intact. Forty-one relevant contract entries match old/new byte for byte;
+this establishes agreement of documented entries, not unchanged engine behavior.
+See the [review checkpoint](tasks/R-016-my-dynasty-pipeline.md#used-api-review--small-sample-readiness--2026-10-21).
+
+Renewed current generated contracts include `event_targets.log:920–922,550–552`
+(title holder/character Dynasty), `triggers.log:1816–1819` (seniors excluding
+self), `effects.log:773–776,11422–11427` (world counties; self-inclusive de-jure
+hierarchy with continue independent of limit), `:2675–2677,243–245` (unbroken-chain
+capture/clear) and `:12761–12767,12646–12649` (direct RGB/title copy with documented
+slight shift). County-rooted hierarchy plus barony limit remains a supported
+static candidate; runtime coverage and special-government semantics are open.
+
+Current `data_types_script.txt:3944–3946,3968–3970,4147–4149,4279–4281` documents
+void Execute, bool IsValid and TopScope root/end composition;
+`data_types_gui.txt:15–18` promotes GuiScope to TopScope. No successful-effect
+receipt, atomic invalid-context dispatch, repaint timing or lifecycle contract
+follows. `effects.log:139–144,2769–2776,564–565` renews local-counter/scope-log
+availability without settling nested-helper lifetime or emitted totals. These
+limits do not block the separately staged paused valid-context sample; they do
+prevent claiming production entry, complete coverage or persistence safety.
+No classifier, game/Tiger/parser test or independent review ran in this stage.
+
 ## Historical/reference findings pending M0 verification
 
 ### Custom map modes are possible but historically not a first-class stable mod API
@@ -933,3 +994,63 @@ Are map-color effects/UI execution local-only, synchronized, or desync-prone? Mu
 - CK3 1.20.1 changelog: https://steamdb.info/patchnotes/25870654/
 
 Detailed dated R-005 evidence checkpoints are preserved in [the R-005 evidence history](evidence/2026-10-20-r005-player-context/checkpoint-history.md).
+
+## R-016 — Three-view source contracts (pre-install checkpoint, 2026-10-21)
+
+ADR-010 settles the product semantics: Realms default, Holdings and My Realm &
+Dynasty. Historical holder-first results apply to Holdings only. Source-only
+preparation uses fresh P/D per manual pass, three separate county predicates,
+shared direct RGB projection (25/105/50, 145/220/150, 65/70/80), no stored dataset
+or selection cache, and complete senior checks. Static truth-table agreement
+is not CK3 execution. The installed payload remains the historical classifier.
+
+The accepted .2 generated snapshot additionally documents character `liege` at
+`event_targets.log:664–666`. Explicit absence of liege defines an independent
+holder/senior in the ordinary hierarchy; no undocumented independent top_liege
+self behavior is required. `any_liege_or_above` excludes self at
+`triggers.log:1816–1819`. Shipped `00_elective_triggers.txt:167–175` corroborates
+iterator `this` equality and liege existence. My Realm compares P itself in that
+chain, preventing expansion to sibling vassals under a foreign top ruler.
+
+Current types document `IsMapMode` (:2743–2745), `CanChangeMapMode`
+(:1399–1401) and `SetMapMode` (:3187–3189) in data_types_uncategorized.txt;
+void Execute and bool IsValid remain at data_types_script.txt:3944–3946,3968–3970.
+Shipped `gui/activity_window_widgets/funeral_deceased_selection_button.gui:27–28`
+uses consecutive onclick actions after Execute; this does not prove success,
+transactionality, timing or null safety. The normal new compute/select path is
+a candidate with explicit per-view staged diagnostics and an unresolved atomic
+entry/transition gap. Diagnostics cannot substitute for required normal UX.
+
+`gui/shared/mapmodes.gui:1165–1216,1559–1600` explicitly composes native Faith
+subviews/banner. Crucially `gui/hud_bottom.gui:286–338` replaces its submode block;
+the original R016 custom panel is therefore outside that block. Narrow native
+menu/banner type overrides preserve native children and instance block seams;
+composition, selected state, palette and normal-click behavior still need the
+fresh changed-source runtime batch. R010's earlier Faith smoke is reused only
+for its tested native integration evidence. No vanilla body is packaged.
+
+Historical sample/direct-copy bodies and helper definitions remain unchanged
+and separately labeled with their old green/orange palette. No helper fix,
+installation, runtime, parser/Tiger or independent review occurred. Shared RGB,
+no-Dynasty UI, active-context restoration, full coverage and save/removal limits
+remain. See the [source checkpoint](tasks/R-016-my-dynasty-pipeline.md#three-view-source-preparation--2026-10-21)
+and [test matrix](TEST_PLAN.md#my-dynasty-functional-matrix).
+
+## R-016 — Final bounded runtime verdict (2026-10-21)
+
+Research is closed with limits. Installed 1.20.1.2 / 26046173 loaded the original
+nine-file candidate and both new GUI assets; fresh startup error/GUI/conflict
+logs were empty. Each new world classifier produced one initial BEGIN/END pair
+with valid player/Dynasty; subsequent user switching/Refresh/native-return smoke
+reported functional. Its final interval added five complete pairs without new
+error/GUI/conflict entries. Precompute session history/court errors remained a
+baseline, not a wholly clean runtime-log claim. Exact per-control attribution,
+world coverage, deep fixtures, timing and context safety were not established.
+
+User continental screenshots show unsatisfactory neutral grey ground. This is
+failed visual acceptance with an unresolved classification/projection/display
+cause, not a demonstrated terrain-only explanation. Shared native Baronies RGB,
+serialization, exact restore/removal and void Execute/display safety gaps remain.
+No new save test or production route acceptance. See the
+[final disposition](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21)
+and [F-003 accepted definitions](tasks/F-003-dynasty-subview-definitions.md).

@@ -43,7 +43,7 @@ untested behavior and known limitations.
 
 | Case | Required result |
 |---|---|
-| Activate with valid player and Dynasty | Correct DIRECT/CONTROLLED/OTHER county classification and barony rendering; no new mod-caused log errors |
+| Activate with valid player and Dynasty | Correct selected ADR-010 dark/light/grey county classification and barony rendering; no new mod-caused log errors |
 | No valid local player | My Dynasty unavailable; activation performs no classification or color writes; no all-neutral substitute |
 | Player has no valid Dynasty | Same unavailable behavior, verified independently from missing player; fixture/UI prerequisite deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) |
 | Manual refresh/re-activation after holder or liege change | Updated correct map through M0-verified re-click, or the smallest explicit refresh mechanism if re-click is unsupported |
@@ -51,7 +51,7 @@ untested behavior and known limitations.
 | Player context becomes invalid while active | Stop using old Dynasty; clear/restore visual state as far as the verified API permits; record limitations and prove no stale-context classification |
 | Switch to another valid player Dynasty | Stop old-context use; any subsequent classification uses the new valid context; test cleanup and re-activation |
 | Exit to another map mode | Restore expected visuals with no leaked Dynasty colors; record the API-supported restoration mechanism |
-| Render lowborn/no-Dynasty holder under qualifying dynastic liege | CONTROLLED, never automatically OTHER |
+| Render lowborn/no-Dynasty holder under qualifying dynastic liege | Evaluate all seniors using the selected ADR-010 view; never automatically grey |
 
 M0 must determine UI disabling/hiding and player-context invalidation under
 R-005/R-010; R-009 separately owns title-color exit/context-loss restoration.
@@ -115,21 +115,77 @@ See the [canonical partial checkpoint](tasks/R-009-barony-color-safety.md).
 
 ## My Dynasty functional matrix
 
-| Case | Expected |
-|---|---|
-| Player directly holds county | DIRECT |
-| Same Dynasty, different cadet House holds county | DIRECT |
-| Foreign Count under same-Dynasty Duke | CONTROLLED |
-| Foreign Count -> foreign Duke -> same-Dynasty King | CONTROLLED |
-| Same-Dynasty Count under foreign Duke/King | DIRECT |
-| Foreign holder with no same-Dynasty liege | OTHER |
-| Independent same-Dynasty ruler | DIRECT for counties directly held by that Dynasty's counts/ruler; controlled semantics for foreign vassals beneath a dynastic liege |
-| No-Dynasty/lowborn holder | OTHER unless a liege belongs to player Dynasty |
-| Player without valid Dynasty | mode unavailable; no classification/color writes on activation; no all-neutral substitute |
-| No valid local player | mode unavailable with the same no-work activation behavior |
-| Cadet branch created while game running | correct after refresh |
-| Succession changes holder Dynasty | correct after refresh |
-| Vassal transfer changes liege chain | correct after refresh |
+ADR-010 supplies the current three-view expectations below. These are a design
+review/truth table, **not CK3 execution results**. Historical DIRECT/CONTROLLED/
+OTHER rows apply to Holdings. Player is P; all chains are ordinary de-facto,
+without occupation, claims or tributary/suzerain links. Dark takes precedence.
+
+| County / de-facto chain (D = player's Dynasty) | Realms | Holdings | My Realm & Dynasty |
+|---|---|---|---|
+| Foreign count → player king | Dark | Light | Dark |
+| D count → player king | Dark | Dark | Dark |
+| D count → foreign king, outside P subtree | Light | Dark | Light |
+| Foreign count → D duke (not player) → foreign king | Light | Light | Light |
+| Foreign count → independent D brother king | Dark | Light | Light |
+| Independent D count outside P subtree | Dark | Dark | Light |
+| Entirely foreign chain outside P subtree | Grey | Grey | Grey |
+| Foreign count → player duke → foreign king | Light | Light | Dark |
+| Foreign sibling count → same foreign king as player duke, no D senior | Grey | Grey | Grey |
+| Lowborn holder → independent D senior outside P subtree | Dark | Light | Light |
+| Cadet-House D count → foreign king, outside P subtree | Light | Dark | Light |
+| Unheld/invalid county holder | Grey | Grey | Grey |
+| No valid P or no valid D | Unavailable/no work | Unavailable/no work | Unavailable/no work |
+
+Every barony in a county must receive its county result, including secondary
+and empty holdings. Independents are their own highest ruler. A missing holder
+Dynasty never skips dynastic seniors. Cadet creation, succession or vassal
+transfer must produce the new result after a fresh manual recompute; use a
+natural fixture only when available in a separately staged runtime scope.
+
+### R016 three-view batch — execution record and limits, 2026-10-21
+
+The planned startup and grouped runtime smoke were subsequently performed; see
+the dated R-016 checkpoints for evidence. The five final execution pairs do not
+map one-to-one to user actions. The numbered procedure below is retained as the
+historical test design, not a pending R-016 run. Retain accepted old Holdings
+direct/sample/copy/world evidence under
+its original palette/semantics; it does not validate changed classifiers/UI.
+
+1. With CK3 declared closed, later installer preserves installed payload/wrapper,
+   logs and prior selection, runs exact-version 1.20.1.2 preflight, installs the
+   reviewed source, verifies wrapper and installed equivalence. GUI reuses the
+   existing test playset and intended selection. User starts CK3 via Steam,
+   stops at menu; GUI checks fresh build/mount/error/GUI/conflict logs before play.
+2. In one paused disposable valid P/D session, collect natural county/holder/
+   senior fixtures and native references at fixed zoom. Open Additional Modes
+   without clicking Dynasty; require no WORLD markers. Use diagnostic COMPUTE
+   Realms once while native Realms is selected; stop before DISPLAY for its
+   first-execution log gate. Repeat that gate once per new view before dependent
+   display/next write. Matching BEGIN/END, no REJECT/new attributed errors are
+   required; END is not complete coverage. No counter output is assumed.
+3. After the relevant gates, group observations across all three outputs: exact
+   labels/order, one top-level Dynasty entry, initial Realms, active subview
+   controls and down state, matching legend/palette, meaningful contrasting
+   counties, constituent baronies, native-view round trip and returning Realms
+   output. The normal Dynasty/subview/Refresh path must execute its own classifier
+   and select its mode without CHECK/COMPUTE/DISPLAY. Diagnostics are a separate
+   area. Capture markers for normal clicks too; an ordinary menu opening or
+   unrelated menu must not scan. Repeated normal clicks are justified here by
+   the changed UI wiring, not a repeat of basic renderer/API smoke.
+4. Explicitly retain player-vassal/subtree versus sibling-under-same-foreign-king,
+   intermediate dynastic senior under foreign top, independent relative, cadet,
+   lowborn and unheld fixtures in the report; missing natural cases are untested.
+   No fixture mutation, console script, unpause or player switch is requested.
+   Report a normal-UX/atomicity gap if the composed action fails; do not accept
+   staged diagnostics as completion. Compare re-entry/recompute versus repaint
+   timing and note approximate hitch without claiming measured duration.
+
+Stop on wrong class/projection, missing/reject markers, new attributed error,
+crash, context change or harmful helper/native effects; preserve partial evidence.
+An unrelated baseline error needs attribution, not automatic erasure or a claim
+of harmlessness. Legacy sample/copy controls are optional retained diagnostics,
+not prerequisites for direct views. No save/load, fresh-process or disabled-mod
+persistence batch is authorized here. ADR-008/009 safety gates remain open.
 
 ## Government / mechanics matrix
 
@@ -192,3 +248,15 @@ Do not set a hard millisecond budget before measuring the reference Mac. Record 
 - **P1:** wrong dynasty classification, large persistent performance regression, pervasive log errors.
 - **P2:** stale tooltip, minor visual overlap, imperfect shade/contrast.
 - **P3:** cosmetic/documentation issue.
+
+## R-016 closeout coverage and successor tests
+
+R-016 research is closed; its prepared procedures above are historical scope,
+not requests to rerun the session. Fresh startup, three initial execution gates
+and user-reported normal switching/Refresh/native-return smoke passed within
+their bounded context. Grey nonmatching land failed visual acceptance. Numeric
+coverage, exact per-control attribution, deep/cadet/lowborn/player-vassal cases,
+changed-state freshness, profiling, context loss and save/removal remain unproven.
+R-017 will select useful fixtures; F-001 tests final UI/neutral grey/contrast;
+F-002 tests source/fallback colors. Use the accepted
+[F-003 tables](tasks/F-003-dynasty-subview-definitions.md) for expectations.

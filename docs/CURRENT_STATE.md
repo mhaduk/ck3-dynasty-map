@@ -4,7 +4,7 @@ Updated 2026-10-21. Primary operational handoff; detailed findings remain in the
 
 ## Environment / Project Context
 
-- Target baseline: CK3 1.20.1.1 (Crozier); current branch: `research/native-menu-alternative`.
+- Installed candidate: CK3 1.20.1.2 (Crozier), Steam build 26046173, verified from installed launcher metadata and Steam manifest on 2026-10-21. Prior research/generated API baseline remains 1.20.1.1 / 25913294; bounded R-016 startup/runtime smoke on this target is recorded; broader compatibility remains unverified. Current branch: `research/native-menu-alternative`.
 - Milestone: M0 research/bootstrap. No production mod or classifier has been implemented.
 - This checkpoint contains R-005 and R-010 research/probe work. Preserve unrelated local evidence and excluded materials; do not reset or overwrite them.
 
@@ -13,11 +13,18 @@ Updated 2026-10-21. Primary operational handoff; detailed findings remain in the
 User explicitly requires map-system interfaces (ADR-009, 2026-10-21). No
 Decisions/council selectors, Situations or religious-object carriers. The former
 R-009 binary-selector experiment is excluded; historical next-step proposals
-below do not authorize it. No suitable map-native classification input has yet
-been demonstrated. Any future scoped research must address that exact boundary
+below do not authorize it. R-016 demonstrated a bounded title-RGB/baronies pipeline; an independent,
+lifecycle-safe classification input has not been demonstrated. Any future scoped research must address that exact boundary
 using existing findings; do not repeat a broad scan or prepare a carrier probe.
 
 ## Current Task
+
+- **R-016 — Historical My Dynasty pipeline validation** ([Issue #16](https://github.com/mhaduk/ck3-dynasty-map/issues/16)).
+- **Status:** CLOSED — research complete with limits. Three-view source/layout was prepared, installed and exercised in bounded CK3 1.20.1.2 startup/runtime smoke. Repeated classifier execution and the user's ordinary switching/refresh/native-return report support pipeline feasibility; grey nonmatching land failed visual acceptance. Full coverage, performance, context safety and persistence/removal remain unverified. See [R-016 closeout](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21).
+- **Next action:** finalize the authorized publication: scoped privacy-reviewed commit/normal push and #16 research-closeout body/closure. F-003 accepted-definition tables are complete. No successor selected or started: R-017 scenario selection, F-001 UX/grey/contrast and F-002 color-source strategy remain planned. No further R-016 runtime or production implementation.
+- **Scope:** county semantics, three simultaneous categories per selected view, fixed direct barony RGB (25/105/50, 145/220/150, 65/70/80), manual refresh. ADR-010 settles view definitions; All Dynasties deferred, R-015 closed. Preserve accepted old-revision sample/copy/world execution and differentiated world visual evidence without attributing it to new predicates. Three earlier empty-name load errors did not recur in a fresh new game; cause/helper persistence unresolved. Full coverage, no-Dynasty UI, context-loss/restore and persistence/removal remain open; ADR-008/009 are not waived. Scoped R016 finalization staging/commit/push and #16 update/closure are now authorized; prepare/review privacy before publication.
+
+## Previous R-015 checkpoint
 
 - **R-015 — Clerical Regions renderer feasibility** ([Issue #15](https://github.com/mhaduk/ck3-dynasty-map/issues/15)).
 - **Status:** CLOSED — not planned, 2026-10-21. Static research and focused reconciliation reviewed; no independent map dataset/provider binding demonstrated. Technical findings remain partial, not engine-impossibility proof.
@@ -48,10 +55,12 @@ using existing findings; do not repeat a broad scan or prepare a carrier probe.
 
 ## Next Up
 
+Three planned successors: R-017 scenario selection, F-001 UX specification
+and F-002 color strategy. No successor has been selected or begun.
 R-015 / [#15](https://github.com/mhaduk/ck3-dynasty-map/issues/15) is closed as
 not planned. The [canonical record](tasks/R-015-clerical-regions.md#final-disposition--2026-10-21)
 preserves constrained region operations, the officially documented stripe rule,
-and missing independent-input/lifecycle contracts. No follow-on task is planned.
+and missing independent-input/lifecycle contracts. No R-015 follow-on is planned.
 Earlier carrier experiments are excluded by ADR-009; remaining tasks below are
 backlog context, not authorization to execute them.
 
@@ -61,6 +70,9 @@ backlog context, not authorization to execute them.
 4. **R-011 / R-012** — complete vanilla baseline and CK3 Tiger setup/validation prerequisites.
 
 ## Last Completed
+
+- **R-016** — historical three-view pipeline research closed with limits; grey visual acceptance failed and coverage/safety/persistence remain open.
+- **F-003** — accepted subview definitions/appearance consolidated in tables; documentation only.
 
 - **R-014** — source hierarchy inventory and persistent agent/workflow integration. Source map and integration complete; publication and #14 closure authorized. See [source map](CK3_SOURCE_MAP.md) and [task summary](tasks/R-014-source-map.md).
 - **R-006** — generated target-build scope links for county/barony, holder, Dynasty, and House verified; no runtime claim. See [task history](TASK_HISTORY.md) and [RESEARCH.md](RESEARCH.md).
