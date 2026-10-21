@@ -3,6 +3,18 @@
 Status: PARTIAL / active. Target: CK3 1.20.1.1 (Crozier).
 Updated: 2026-10-21. Issue: [#9](https://github.com/mhaduk/ck3-dynasty-map/issues/9).
 
+## Current disposition — 2026-10-21
+
+The highlight/selection and binary-view findings below are retained as static
+research history. ADR-009 subsequently excluded Decisions, council selectors,
+Situations and religious-object carriers from the product architecture. Their
+historical proposed experiments are not current next steps. No binary product
+scope reduction or carrier probe is approved. R-009 remains PARTIAL: shared
+barony RGB writes and serialization are confirmed for the tested paths, while
+acceptable persistence, broader visual effects and cleanup remain unresolved.
+This checkpoint records existing findings only; no new source research,
+runtime, installation or issue update is included.
+
 ## Result and architectural consequence
 
 The first user-run [batch](../../research/probes/barony-color-batch/README.md)
@@ -82,6 +94,115 @@ Copy writes add documented drift and fixture side effects. Neither is selected
 as the production fallback. Shared shader recoloring lacks a classification
 input and verified view gating. No final color strategy or ADR revision occurs.
 
+### Two binary player views — static feasibility (2026-10-21)
+
+The proposed separate DIRECT and exclusive INDIRECT views are a **viable runtime
+hypothesis through a county title selector**, not a verified production route.
+Reducing the requirement to one highlighted set removes the need for three
+simultaneous class colors. The prior three-color negative result does not rule
+this out. This is analysis of a product proposal; G1 and ADR semantics remain
+unchanged. All Dynasties is a separate many-group problem.
+
+With valid player Dynasty PD, DIRECT means a present holder whose Dynasty equals
+PD. INDIRECT means NOT DIRECT, a present holder and a de-facto liege above that
+holder with Dynasty PD. Lowborn holders still require the liege check; absent
+holders match neither. Cadet Houses compare via Dynasty. Direct-view background
+includes CONTROLLED and OTHER; indirect-view background includes DIRECT and
+OTHER. Neither background means “no dynastic connection.” Invalid player/PD
+means unavailable under ADR-008, not an empty result. A union of DIRECT and
+CONTROLLED would be a different optional view, not exclusive INDIRECT.
+
+`common/decisions/_decisions.info:286–310,376–404` documents one widget per
+decision, title-root `title_valid`, decision-taker `scope:ruler` and world/realm
+tier controllers. The shipped realm county selector's predicate checks holder
+identity plus a vacant province without construction
+(`common/decisions/00_holy_order_decisions.txt:648–663`;
+`common/scripted_triggers/00_religious_triggers.txt:1122–1128`). The world
+`select_county_title` controller is documented; the realm variant cannot cover
+dynastic land across independent realms. Exact inclusion of unheld/nonstandard
+counties remains unknown.
+
+A newly traced Faith-window shortcut opens that exact decision with
+`GetDecisionWithKey` and `OpenGameViewData('decision_detail', Decision.Self)`
+(`gui/window_faith.gui:1489–1516`). Thus two authored decision identities can
+carry two predicates through an exposed opening action. The widget then calls
+`OnSelectTitle`; selector GUI consumes a list and one selected title
+(`gui/decision_view_widgets/decision_view_generic_title_selector_widget.gui:15–30`;
+`gui/window_title_selector.gui:23–25,34–55,74–96`). This is decision-carried
+inspection, not a demonstrated independent map-mode extension. Opening the
+decision and confirming its execution are distinct actions.
+
+Native `select_county_title` uses filled gradients at near through flat zoom
+(`gfx/map/map_modes/map_modes.txt:34–92,1991–2067`), supporting investigation of
+area fill. No explicit predicate-to-renderer binding or assignment of valid/
+invalid colors is exposed in that chain. A list/checkmark is not proof that all
+matching counties are filled simultaneously. Global validity/default palettes
+are not view-owned; overriding them may affect vanilla. Selected-title emphasis,
+exact county-to-barony coverage and hidden universe filters remain unknown.
+The standard picker button also requires `HasValidTitles`, so a legitimate
+zero-match view needs separate handling; safe empty-context rendering is unproven.
+
+Normal decision-list selection triggers `ResetCustomWidgetState` through an
+animation (`gui/window_decisions.gui:354–355`;
+`gui/window_decisions_detail.gui:28–38`). The shortcut does not explicitly do so.
+This reset is not a verified map refresh/clear. Two contexts' replacement,
+fresh PD binding, context loss, Close/map-switch cleanup, save/removal and native
+evaluation cost remain unexamined. R-005's diagnostic guards do not validate
+this controller. `SetMapMode` alone supplies neither predicate nor ruler.
+
+Council predicates remain a weaker binary hypothesis: `county_target = all`
+exists, but potential-task activation depends on council/position context.
+The location UI exposes Close separately from Select
+(`gui/window_council.gui:210–228,323–330,1054–1059,1099–1108`;
+generated `data_types_uncategorized.txt:93915–93970`). That does not prove
+side-effect-free preview or cleanup. A fake decision/task still couples the map
+to unrelated gameplay machinery; persistence alone is not the objection.
+
+Together, two consistent binary snapshots could recover all three original
+categories, but lose simultaneous comparison and require precise legends.
+Neither “has a Dynasty” nor inspecting one chosen Dynasty satisfies All
+Dynasties; no new House-to-Dynasty renderer/palette input was found. GUI may
+consider one future fixed-target world-selector experiment for simultaneous
+fill, outside-realm/lowborn-holder controls, selected/empty states and context
+replacement/clear. Only an outline was returned locally: no probe, classifier,
+installation or runtime stage is prepared or authorized. R-009 remains partial.
+
+### Native highlight and selection inputs — static checkpoint (2026-10-21)
+
+No suitable independent three-category area-color input was found in the
+bounded target-build highlight/selection pass. This does not prove global
+engine impossibility. The conceptual classifier and ADR semantics are unchanged.
+
+| Input family | Positive evidence | Missing link for this project |
+|---|---|---|
+| Title picker | `common/decisions/_decisions.info:305–310,388–404` documents title-root `title_valid` with `scope:ruler` and tier/world/realm controllers; `common/decisions/00_holy_order_decisions.txt:648–666` supplies a county predicate. GUI calls selection and Close/Confirm (`gui/decision_view_widgets/decision_view_generic_title_selector_widget.gui:15–30`; `gui/window_title_selector.gui:23–25,47–55,91–96`). | Script-fed eligibility is real; no three county-set/RGB channels or arbitrary layer clear. Native `select_county_title` exists (`gfx/map/map_modes/map_modes.txt:1991–2067`), but controller-to-renderer binding, barony fill, context cleanup and persistence are not documented by these callers. |
+| Council target preview | County target enums, potential/valid predicates, own-realm tint and assignment hooks (`common/council_tasks/_council_tasks.info:3–14,35–60`); actual task-selection button (`gui/window_council.gui:1099–1108`). | Native task/validity/numeric palettes are not arbitrary dynasty categories; preview-to-renderer/exit behavior and barony coverage remain unknown. Assignment is gameplay; its cancellation hook is not a custom visual-layer callback. |
+| Geographical regions | Definition county/province lists and visual-region RGB (`map_data/geographical_regions/_geographical_regions.info:3–32`); multiple selected database regions, Toggle/Clear/Close (`gui/window_geographical_regions.gui:45–81,111–127`; generated `data_types_uncategorized.txt:70321–70424`). | Authored geography is not runtime class membership. No membership writer or selected-region/category RGB binding identified; debug and visual-region consumers are distinct (`map_modes.txt:3863–3867,3942–3946`). Situation membership effects do not edit a geographical region. |
+| Hover/highlight | Struggle object enter/leave border clear (`gui/hud.gui:5014–5022`); global holding/highlight alpha and native palettes (`common/defines/graphic/00_graphics.txt:209–219,399–433,926–928`). | Object/border input and global appearance knobs do not supply arbitrary area geometry or three view-owned colors. Icons/pins and editor painting are different interfaces. |
+
+These are potential selection-based inspection interfaces, not a verified
+DIRECT/CONTROLLED/OTHER map. Explicit UI Close/Clear actions do not establish
+automatic cleanup on map/context changes, local execution or save/removal
+safety. No new producer/binding justified repeating shader research.
+
+The bounded external sample found no independent implementation:
+[War Maps 3](https://steamcommunity.com/workshop/filedetails/?id=3450639748)
+describes the known dummy-title/barony-copy family (updated 2025-07-11, 1.16
+discussion); [Trade Maps DTR](https://steamcommunity.com/sharedfiles/filedetails/?id=2821874072)
+declares War Maps ancestry (updated 2024-12-16), without an accessible original
+implementation proving a different route; [More Mapmode Buttons](https://steamcommunity.com/sharedfiles/filedetails/?id=2223763531)
+describes buttons/presentation (CK3 1.2, updated 2020-11-24). No original code
+repository or reusable code license was located for these three; none was
+installed or validated for 1.20.1.1. Descriptions do not prove internal APIs.
+
+Next: GUI reviews the options and chooses whether a selection-based UX merits
+later investigation or further map research requires a concrete new input
+source. No candidate meets the independent three-category contract yet.
+Persistent data remains acceptable in principle; fragile gameplay-system reuse
+and safe lifecycle/removal are the concerns. No probe preparation, installation
+or runtime stage is authorized by this pass. Full trace, comparison matrix and
+negative-search register were returned in the local CLI result package.
+
 ### Situation feasibility — static checkpoint
 
 **Blocked on named unknowns, not an approved architecture.** The first
@@ -135,8 +256,8 @@ Situation state; earlier title RGB serialization cannot establish that state.
 Phase province overlays share this carrier and add effect-channel collisions;
 they do not resolve locality, selection or lifecycle.
 
-R-014 documentation-source inventory is next in a separate chat. Resume this
-renderer question afterward using its source map. The user has not made
+R-014 documentation-source inventory is complete. The subsequent highlight
+input pass above used its source map. The user has not made
 persistent state categorically unacceptable; the concern is whether reusing
 unrelated title/Situation systems would be a fragile map workaround. Situation
 remains a specialized, unapproved candidate with unresolved view binding,

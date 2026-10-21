@@ -27,6 +27,7 @@ are summarized here and in CURRENT_STATE.md.
 | Map-mode definitions | [R-002 findings](#verified--r-002-installed-map-mode-definitions-2026-10-20) | Static inspection complete; custom loading/runtime pending |
 | GUI and map lifecycle | [R-003 inspection](#verified--r-003-installed-gui-bindings-2026-10-20); [R-010 registration](#verified--r-010-additive-widget-registration-documentation-2026-10-20) | Integration/lifecycle gates open, R-010 |
 | Color effects and state | [Title-color effects](#title-color-effects--r-009--rg-state-01); [remaining unknowns](#still-unknown) | Signatures verified; rendering/isolation/restore open, R-009 |
+| Binary Dynasty-view proposal | [Binary feasibility](#r-009-two-binary-player-views--static-feasibility-2026-10-21) | Historical predicate findings; carrier route excluded by ADR-009; area fill/lifecycle unverified, R-009 |
 | Clerical Regions reuse | [Clerical static checkpoint](#r-015--clerical-regions-static-checkpoint-2026-10-21) | Constrained membership exposed; advertised add/remove pair and independent binding unresolved; intended stripe rule documented; R-015 closed as not planned, evidence partial |
 | Historical references | [Reference findings](#historicalreference-findings-pending-m0-verification) | Not target-build verification |
 
@@ -450,6 +451,80 @@ coverage, lifecycle, save/removal and gameplay/UI effects. No local-only
 alternative was found in the inspected surface. Any runtime scope requires a
 fresh design and explicit authorization. No source/install/runtime stage,
 classifier, new titles or ADR revision follows from this static checkpoint.
+
+### R-009 native highlight / selection inputs — static evidence (2026-10-21)
+
+The bounded generated-API, schema and vanilla caller pass found no independent
+three-category county-to-color interface. Full findings and limits are in the
+[R-009 selection checkpoint](tasks/R-009-barony-color-safety.md#native-highlight-and-selection-inputs--static-checkpoint-2026-10-21).
+
+- Decision `title_valid` is a real mod-authored eligibility predicate: title
+  root, `scope:ruler`, world/realm tier controllers
+  (`common/decisions/_decisions.info:305–310,388–404`). Shipped county selection
+  uses it (`common/decisions/00_holy_order_decisions.txt:648–666`). GUI selection,
+  Close and Confirm exist; no three-set/RGB input, automatic renderer binding
+  or context-loss cleanup contract was identified in the inspected controller.
+- Council county target enums/predicates and own-realm highlighting exist
+  (`common/council_tasks/_council_tasks.info:3–14,35–60`), with native task modes
+  and global palettes. They do not expose arbitrary category/color mapping.
+  Assignment hooks concern gameplay; preview state/exit/coverage remain unknown.
+- Geographical regions accept authored county/province lists and visual-region
+  RGB (`map_data/geographical_regions/_geographical_regions.info:3–32`). The
+  window selects multiple database region identities and exposes Toggle/Clear/
+  Close (`gui/window_geographical_regions.gui:45–81,111–127`; generated
+  `data_types_uncategorized.txt:70321–70424`). No runtime region-membership writer
+  or selected-set RGB binding was identified. `add_geographical_region` edits
+  Situation sub-region membership, not the geographical-region definition.
+- Struggle hover takes an existing Struggle and pairs with a border clear
+  (`gui/hud.gui:5014–5022`). Global highlight alpha/RGB controls
+  (`common/defines/graphic/00_graphics.txt:209–219,399–433,926–928`) supply
+  appearance, not arbitrary county geometry or a view-owned palette.
+
+These interfaces may support a different selection-based UX; their existence
+does not verify area fill, three simultaneous classes, local execution or safe
+save/removal. The three-author-page audit found the known War Maps title-copy
+explanation, DTR's declared War Maps ancestry and historical map-button changes;
+no accessible original code established an independent route. No new data
+producer warranted repeating shader research. R-009 remains partial; no probe,
+classifier, runtime or architecture choice follows from this bounded absence.
+
+### R-009 two binary player views — static feasibility (2026-10-21)
+
+**Historical proposal; subsequently excluded by ADR-009.** Preserve the technical
+findings, but do not prepare the decision/council-selector experiment or treat
+two binary views as an adopted replacement for G1.
+
+Two separate DIRECT / exclusive INDIRECT views need only a boolean distinction,
+so the prior missing three-color interface does not rule them out. They remain
+a proposal, not an accepted G1/ADR change. See the [binary checkpoint](tasks/R-009-barony-color-safety.md#two-binary-player-views--static-feasibility-2026-10-21).
+
+The title-root `title_valid` and world `select_county_title` controller are
+documented (`common/decisions/_decisions.info:286–310,376–404`). A newly followed
+native chain opens the shipped county-selector decision from the Faith GUI
+using a decision identity and `OpenGameViewData`
+(`gui/window_faith.gui:1489–1516`), then invokes the selector's `OnSelectTitle`.
+Two authored decisions can carry different predicates; this is a **viable runtime
+hypothesis for decision-carried inspection**, not independent map-mode binding.
+Native county-selector filled gradients support examining area fill
+(`gfx/map/map_modes/map_modes.txt:34–92,1991–2067`); no explicit boolean-to-fill
+mapping is exposed. A filtered list or selected-title checkmark is insufficient.
+
+The standard picker requires `HasValidTitles`, leaving zero-match entry/rendering
+unverified. Normal decision-list selection resets custom widget state through
+an animation (`gui/window_decisions.gui:354–355`;
+`gui/window_decisions_detail.gui:28–38`); that is not a map refresh/clear contract.
+World/barony coverage, selected-title emphasis, two-context replacement, fresh
+decision-taker Dynasty, invalidation, exit, save/removal and native polling cost
+remain unresolved. Global validity colors are not a view-specific palette.
+Council preview has additional council/assignment coupling.
+
+DIRECT still requires matching holder Dynasty; INDIRECT excludes DIRECT and
+checks de-facto lieges even for lowborn holders. Background means not matching
+the active predicate; invalid PD means unavailable, never an empty map. All
+Dynasties still needs simultaneous parent-Dynasty groups; “has a Dynasty” or one
+chosen-Dynasty inspection is a different feature. No new many-group producer was
+found. Only one future fixed-target selector experiment was outlined locally;
+no source/probe, installation, runtime or production strategy follows.
 
 ### R-009 first-run and save evidence
 
