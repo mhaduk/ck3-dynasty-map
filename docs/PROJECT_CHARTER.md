@@ -11,8 +11,9 @@ Provide one Dynasty map family with **Dynasty Realms** (default), **Dynasty
 Holdings** and **My Realm & Dynasty**. Each classifies counties into dark,
 light and neutral categories under ADR-010. Holdings retains the original
 DIRECT/CONTROLLED/OTHER rule; the other views distinguish dynastic highest
-rulers and the player's own subtree. Exact definitions and appearance are in
-[F-003](tasks/F-003-dynasty-subview-definitions.md). Research feasibility is
+rulers and the player's own subtree. Accepted subview behavior and semantic
+category roles are in [F-003](tasks/F-003-dynasty-subview-definitions.md).
+F-001 owns layout/visual treatment; F-002 owns color-source/fallback. Research feasibility is
 bounded; production safety and visual acceptance remain release requirements.
 
 ### G2 — All Dynasties

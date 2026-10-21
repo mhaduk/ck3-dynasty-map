@@ -57,4 +57,4 @@ slots; it must not hard-code green as a permanent product assumption. R-017
 fixtures may guide later validation. F-002 begins only when separately selected
 as the active backlog task.
 
-Accepted category/appearance reference: [F-003](F-003-dynasty-subview-definitions.md).
+Accepted behavior/category-role reference: [F-003](F-003-dynasty-subview-definitions.md).

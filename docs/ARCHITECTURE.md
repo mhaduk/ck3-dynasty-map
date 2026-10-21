@@ -258,6 +258,7 @@ R-016 is closed with bounded pipeline/UI evidence on 1.20.1.2, not production
 acceptance. Grey nonmatching ground is a failed visual item; exact context-safe
 activation, coverage, isolation/restore and removal remain unresolved. The
 [F-003 tables](tasks/F-003-dynasty-subview-definitions.md) consolidate accepted
-semantics and appearance. R-017 plans test fixtures; F-001 owns target layout/
-grey/contrast; F-002 owns color-source feasibility with fixed-palette fallback.
+subview behavior and semantic result roles. R-017 plans test fixtures; F-001
+owns target layout/grey/contrast; F-002 owns color-source feasibility with
+fixed-palette fallback.
 No successor implementation is selected by this closeout.

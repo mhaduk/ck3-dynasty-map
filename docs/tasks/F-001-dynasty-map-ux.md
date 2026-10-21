@@ -79,4 +79,4 @@ R-013 dependencies remain visible; F-001 does not promise to solve every
 historical lifecycle or compatibility issue. No ADR waiver, issue creation,
 implementation, installation or test is included in this planning record.
 
-Accepted category/appearance reference: [F-003](F-003-dynasty-subview-definitions.md).
+Accepted behavior/category-role reference: [F-003](F-003-dynasty-subview-definitions.md).

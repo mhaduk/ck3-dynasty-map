@@ -39,4 +39,4 @@ These are administrative scope dispositions, not completed technical validations
 
 | Task | Result | Limits | Canonical summary |
 |---|---|---|---|
-| F-003 | Accepted three-subview definitions, appearance and example tables consolidated, 2026-10-21 | Documentation only; implementation, grey/contrast, color-source and safety gates remain with F-001/F-002 and existing research owners | [F-003](tasks/F-003-dynasty-subview-definitions.md) |
+| F-003 / [#22](https://github.com/mhaduk/ck3-dynasty-map/issues/22) | Accepted three-subview behavior, classification and Primary/Secondary/Neutral category roles documented; palette and visual treatment excluded, 2026-10-21 | Documentation only; layout/visual acceptance belongs to F-001, color-source/fallback to F-002, and lifecycle safety remains with its existing owners | [F-003](tasks/F-003-dynasty-subview-definitions.md) |

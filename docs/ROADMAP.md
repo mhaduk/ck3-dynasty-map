@@ -18,8 +18,9 @@ Exit criteria:
 
 R-016 research closed with limits on 2026-10-21: the historical barony-color
 pipeline and three-view UI received bounded runtime smoke on 1.20.1.2. This
-does not close all M0 safety gates or constitute a release. Accepted definitions
-are consolidated in [F-003](tasks/F-003-dynasty-subview-definitions.md).
+does not close all M0 safety gates or constitute a release. Accepted subview
+behavior and semantic category roles are consolidated in
+[F-003](tasks/F-003-dynasty-subview-definitions.md).
 Next planned work: R-017 scenario selection, F-001 final UI/grey/contrast and
 F-002 color-source strategy; no successor implementation has started.
 

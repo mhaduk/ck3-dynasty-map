@@ -75,4 +75,4 @@ runtime testing as a closeout prerequisite, implementation, and changing
 ADR-010 semantics. R-017 does not begin until separately selected as the active
 backlog task.
 
-Accepted category/appearance reference: [F-003](F-003-dynasty-subview-definitions.md).
+Accepted behavior/category-role reference: [F-003](F-003-dynasty-subview-definitions.md).

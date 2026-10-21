@@ -149,6 +149,8 @@ transition safety and final one-action UX remain unverified. Diagnostics alone
 cannot satisfy the target UX. Direct colors are 25/105/50, 145/220/150 and
 65/70/80; historical Holdings sample/copy colors remain separate diagnostics.
 
-F-003 consolidates the accepted ADR-010 definitions and appearance in one
-[reference table](tasks/F-003-dynasty-subview-definitions.md); it changes no rule
-or English label. In particular, the third view remains My Realm & Dynasty.
+F-003 consolidates the accepted ADR-010 subview behavior and semantic
+category-role definitions in one
+[reference](tasks/F-003-dynasty-subview-definitions.md); it changes no rule or
+English label. F-001 owns visual treatment; F-002 owns color-source/fallback.
+In particular, the third view remains My Realm & Dynasty.
