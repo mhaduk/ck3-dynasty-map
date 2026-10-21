@@ -10,6 +10,7 @@ Compact index of completed substantial tasks. Investigation detail belongs in th
 | R-004 | Generate current API documentation | Clean `script_docs` and `dump_data_types` generated for the recorded target build. | [#4](https://github.com/mhaduk/ck3-dynasty-map/issues/4) | [R-004](tasks/R-004-generated-api-docs.md) |
 | R-006 | Verify formal scope links | County/barony and holder/Dynasty/House scope links verified in generated docs; no runtime claim. | [#6](https://github.com/mhaduk/ck3-dynasty-map/issues/6) | [R-006](tasks/R-006-scope-links.md) |
 | R-014 | Inventory CK3 modding documentation and source hierarchy | Concise target-build source map created and integrated into agent/workflow instructions; runtime questions remain separate. | [#14](https://github.com/mhaduk/ck3-dynasty-map/issues/14) | [R-014](tasks/R-014-source-map.md) |
+| R-017 | Select reproducible test starts and relationship fixtures | Scenario-selection stage complete: Ismail 867, William 1066, and Murchad 1066 are recorded as easy bookmark starts with static locators. Runtime liege chains and additional family/comparator coverage are deferred to later tests. | [#19](https://github.com/mhaduk/ck3-dynasty-map/issues/19) | [R-017](tasks/R-017-test-scenario-selection.md) |
 
 R-005, R-009 and R-010 remain partial and are not listed as completed. R-014's
 source map and agent/workflow integration are complete.
@@ -23,9 +24,7 @@ The [R-005 partial checkpoint](tasks/R-005-player-context.md) consolidates its f
 |---|---|---|---|
 | R-016 | Three-view historical pipeline feasibility demonstrated in bounded 1.20.1.2 startup/runtime smoke; user reports normal switching/refresh/native-return operations appear to work. Research closed with bounded validation. | Grey nonmatching land failed visual acceptance; full semantic coverage, performance, context/atomicity safety and persistence/removal remain open. No production-readiness claim; #16 closed as completed research and checkpoint published. | [R-016](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21) |
 
-Planned successors: [R-017](tasks/R-017-test-scenario-selection.md),
-[F-001](tasks/F-001-dynasty-map-ux.md) and
-[F-002](tasks/F-002-dynasty-color-strategy.md). They are not completed work. GitHub tracking issues: R-017 [#19](https://github.com/mhaduk/ck3-dynasty-map/issues/19), F-001 [#20](https://github.com/mhaduk/ck3-dynasty-map/issues/20), F-002 [#21](https://github.com/mhaduk/ck3-dynasty-map/issues/21).
+R-017 / [#19](https://github.com/mhaduk/ck3-dynasty-map/issues/19) is closed as completed scenario selection: three bookmark starts are ready for later tests, while runtime chains and additional family/comparator coverage remain observations for that testing. Planned successors: [F-001](tasks/F-001-dynasty-map-ux.md) and [F-002](tasks/F-002-dynasty-color-strategy.md); neither is selected.
 
 ## Closed research directions
 

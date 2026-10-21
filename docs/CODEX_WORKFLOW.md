@@ -4,10 +4,50 @@ This document is the detailed operating procedure. Keep [AGENTS.md](../AGENTS.md
 
 ## Session startup and task scope
 
+### CLI handoff pickup precedence
+
+When the user invokes `pobierz zadanie`, this is a handoff pickup. Read
+`AGENTS.md` and `.codex-sync/CLI_TASK.md` before selecting any task from the
+operational state/history. A `READY` handoff's delegation ID and parent task ID
+are the active work for that invocation and override stale or historical
+`CURRENT_STATE.md` / `TASK_HISTORY.md` entries. Read only the handoff's
+referenced context, mark it `IN_PROGRESS`, and proceed within its scope. Do not
+announce or select a different task because a completed task remains in the
+state file. If the handoff is missing, not `READY`, or its IDs/status conflict,
+report the discrepancy and stop; never silently fall back to another task.
+
+For ordinary GUI startup, read the state and history as below, but the latest
+explicit user selection in the conversation takes precedence over stale
+operational text. Before dispatching a handoff, GUI should synchronize the
+selected task in `CURRENT_STATE.md`; the handoff remains an additional explicit
+source of task identity for CLI pickup.
+
 1. Read `AGENTS.md`, `docs/CURRENT_STATE.md`, and `docs/TASK_HISTORY.md`.
 2. Identify the active stable task ID. Read its issue/definition only if needed, then load only the relevant sections of deeper docs and evidence.
 3. Check Git status before editing. Preserve unrelated user changes. One substantial backlog task belongs in one chat; keep iterations of that task in the same chat.
 4. For CK3 research, identify the subsystem, consult [CK3_SOURCE_MAP.md](CK3_SOURCE_MAP.md), then inspect only the recommended target-build/generated/vanilla sources. Escalate to separately authorized runtime work or bounded community discovery only when static sources leave the question unresolved. Reuse completed findings; repeat target-build research only when the build changes, evidence conflicts, or revalidation is requested.
+
+### File and command preflight
+
+Before opening/reading a file, check that the exact path exists and is
+readable; before listing a directory, check that it exists and is a directory.
+Before writing, verify the intended parent directory exists and the target is
+the expected file. For required inputs, report a missing/unreadable path and
+stop the dependent step; for optional references, skip them and record that
+they were unavailable. Never use an assumed wildcard such as `docs/ADR-010*`
+as a file path. Discover names with `rg --files` or check an exact path first;
+ADR records live in `docs/DECISIONS.md`. Establish the repository root before
+using relative paths. Include hidden directories in exact references, such as
+`.codex-sync/CLI_TASK.md`; use `List` for a directory and `Read` for a file,
+not `List` on a filename. Do not chain reads of unchecked paths with `&&`,
+since one missing path can abort the whole batch. For searches, quote both the
+pattern and path. Prefer `rg -n -F` with exact identifiers before regular
+expressions; if using a regex, check quoting and syntax. Treat `rg` exit 1 as
+“no matches” and exit 2 as a command, regex, or path error: inspect stderr,
+correct the smallest failing operation, and do not proceed as though it was a
+successful search. Avoid putting expected no-match searches inside an `&&`
+chain. A preflight check is a guard against predictable failures, not a
+substitute for reporting genuine unexpected tool errors.
 
 ## Model choice
 
@@ -227,9 +267,77 @@ the user's standing instruction that they alone start launcher and game.
 
 ## CLI command: “pobierz zadanie”
 
-Read `AGENTS.md` and `.codex-sync/CLI_TASK.md`; require `Status: READY`, then load only referenced context. Warn before starting if the active model is reliably known to differ from the recommendation. Mark the task `IN_PROGRESS`, execute only the permitted work, run requested checks, write `.codex-sync/CLI_RESULT.md`, then mark the task `COMPLETED`. If blocked or failed, record `FAILED` and preserve both files for GUI inspection.
+Read `AGENTS.md` and `.codex-sync/CLI_TASK.md` before choosing a task from
+`CURRENT_STATE.md` or `TASK_HISTORY.md`. Require `Status: READY`, and use its
+delegation and parent IDs as the active assignment even if the state/history
+still describes the previous task. Load only referenced context. If the
+handoff is missing, not ready, or inconsistent, report that and stop rather
+than selecting fallback work. Warn before starting if the active model is
+reliably known to differ from the recommendation. Mark the task `IN_PROGRESS`,
+execute only the permitted work, run requested checks, write
+`.codex-sync/CLI_RESULT.md`, then mark the task `COMPLETED`. If blocked or
+failed, record `FAILED` and preserve both files for GUI inspection.
 
-`CLI_RESULT.md` should report the delegation and parent IDs, result, changed files, checks, new findings, decisions needed, blockers, Git staged/committed/pushed state, GitHub operations and verification, and recommended next action. Be concise.
+For every file referenced by the handoff, validate the exact path before
+reading it. First confirm the repository root; use the full repository-relative
+path, including `.codex-sync/` for handoff files. Use `List` only to inspect a
+directory and `Read` for its exact file. Separate required and optional
+references; do not issue a batch of assumed paths or globs and let the shell
+fail on the first missing match. A search that returns no matches is not by
+itself a task failure: check the search scope/source map and report the
+coverage limit. For `rg`, exit 1 is no matches; exit 2 is a real invocation,
+regex, or path error. On exit 2, inspect stderr and fix the command/path before
+continuing; do not count that attempt as evidence. Record actual tool or file
+errors accurately.
+
+If a read/list/search tool call fails, do not repeat it unchanged or continue
+dependent work. Capture the exact path, operation, exit code, and diagnostic;
+then validate the path or syntax and retry only the smallest read-only step. If
+the exact required file is genuinely absent/unreadable, stop and report the
+blocker. This makes predictable setup mistakes avoidable while keeping genuine
+unexpected errors visible.
+
+### Self-healing and configuration feedback
+
+Agents should recover from a correctable in-scope problem, then report it so
+the workflow can improve. Every CLI result must include a
+**Self-healing / agent-instruction findings** section. If no problem occurred,
+write `None`. If a problem occurred, even when recovered, record the sanitized
+operation and target, exact exit code/error summary, cause if known, corrective
+step, whether retry succeeded, any work skipped, and whether the issue suggests
+a reusable instruction gap. Do not include credentials, private paths, raw logs, or
+unnecessary personal data. Distinguish genuine command/tool failures from
+expected no-match or optional-file conditions; never disguise one as the other.
+
+The GUI reviews that section and the actual changes when consuming the result.
+If the problem exposes a repeatable instruction/configuration gap, update and
+validate `AGENTS.md` and/or `CODEX_WORKFLOW.md`, and preserve the task's result
+and scope. If the error is isolated or the instructions already cover it,
+record why no configuration change is needed. CLI may fix its own command or
+path and continue within scope, but must not edit agent configuration unless
+the handoff explicitly includes that work. Do not create an automatic loop
+that changes configuration for every harmless no-match; changes must address
+an identified, reusable failure mode.
+
+Before marking a handoff `COMPLETED`, inspect the actual `CLI_RESULT.md` and
+confirm the self-healing section exists and accurately accounts for the run.
+Write `None` only after reviewing the tool/command results. If a problem
+occurred but its cause or recovery is unknown, say so explicitly rather than
+implying it was fixed. A missing section blocks `COMPLETED` until the result is
+amended; do not emit the success line while this gate is open.
+
+At the end of the user-facing CLI response, print one status line with ANSI
+color when the terminal supports it: on genuine success, green
+`COMPLETED: STATUS SUCCESS!`; on a failed/blocked task, red
+`COMPLETED: STATUS FAILURE!`. Use ANSI SGR green (`\033[32m`) and red
+(`\033[31m`), then reset (`\033[0m`). If color is unavailable, print the same
+exact text plainly; never expose raw escape codes. Keep `CLI_RESULT.md`
+machine-readable and uncolored: its lifecycle field remains `COMPLETED` only
+for success and `FAILED` for failure/blocking, regardless of the requested
+human-readable completion label. Do not print SUCCESS for partial work or
+failed acceptance criteria.
+
+`CLI_RESULT.md` should report the delegation and parent IDs, result, changed files, checks, new findings, the required self-healing/configuration-feedback section, decisions needed, blockers, Git staged/committed/pushed state, GitHub operations and verification, and recommended next action. Be concise.
 
 ## GUI command: “gotowe”
 
@@ -239,6 +347,17 @@ it follows the acknowledgement rule above. The word itself is not evidence
 that checks passed or that CLI produced a result.
 
 Read the result and confirm its delegation ID matches the task. Inspect the actual working tree for relevant changes; do not rely on the result text alone. Incorporate findings, decide whether the handoff succeeded, update the parent task as needed, mark the task `CONSUMED`, and clean the sync files only after safely preserving the result. Keep failed handoffs until reviewed.
+
+As part of consuming a CLI result, review its self-healing section. If the
+section is missing, do not consume the handoff as-is: use observed evidence to
+append a clearly labeled GUI audit addendum, or request a CLI amendment when no
+reliable evidence is available. Do not invent a cause or recovery. When the
+section
+identifies a reusable gap in agent instructions, correct the relevant
+configuration and run the appropriate documentation checks before completing
+consumption. Do not modify configuration for expected no-match cases or
+isolated errors already covered by current rules; record that assessment in the
+GUI response.
 
 Lifecycle: `READY -> IN_PROGRESS -> COMPLETED -> CONSUMED -> cleanup`; failure: `READY -> IN_PROGRESS -> FAILED`.
 

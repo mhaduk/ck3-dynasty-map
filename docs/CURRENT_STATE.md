@@ -19,10 +19,10 @@ using existing findings; do not repeat a broad scan or prepare a carrier probe.
 
 ## Current Task
 
-- **R-016 — Historical My Dynasty pipeline validation** ([Issue #16](https://github.com/mhaduk/ck3-dynasty-map/issues/16)).
-- **Status:** CLOSED — research complete with limits. Three-view source/layout was prepared, installed and exercised in bounded CK3 1.20.1.2 startup/runtime smoke. Repeated classifier execution and the user's ordinary switching/refresh/native-return report support pipeline feasibility; grey nonmatching land failed visual acceptance. Full coverage, performance, context safety and persistence/removal remain unverified. See [R-016 closeout](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21).
-- **Publication:** scoped R-016/F-003 research/source/documentation commit pushed to the existing research branch. #16 title/body updated for the actual target and verified CLOSED / COMPLETED with bounded evidence and open product gaps. Private publication receipt retained locally.
-- **Next action:** no successor selected or started. R-017 scenario selection ([#19](https://github.com/mhaduk/ck3-dynasty-map/issues/19)), F-001 UX/grey/contrast ([#20](https://github.com/mhaduk/ck3-dynasty-map/issues/20)) and F-002 color-source strategy ([#21](https://github.com/mhaduk/ck3-dynasty-map/issues/21)) remain planned; F-003 behavior/category-role reference is complete. No further R-016 runtime or production implementation.
+- **R-017 — Test scenario and start selection** ([Issue #19](https://github.com/mhaduk/ck3-dynasty-map/issues/19)).
+- **Status:** COMPLETE — scenario-selection stage. Three easy bookmark starts are selected for later user-run tests: Ismail Samani / Iranian Intermezzo 867, William the Bastard / Fate of England 1066, and Murchad ua Briain / Rags to Riches 1066. Static evidence and locators are recorded; full live liege chains, the Murchad Dynasty-ID discrepancy, and remaining family/comparator cases are deliberately deferred to testing. No runtime matrix was performed during R-017.
+- **Previous task:** R-016 — Historical My Dynasty pipeline validation, CLOSED with limits. Three-view source/layout was prepared, installed and exercised in bounded CK3 1.20.1.2 startup/runtime smoke. Repeated classifier execution and the user's ordinary switching/refresh/native-return report support pipeline feasibility; grey nonmatching land failed visual acceptance. Full coverage, performance, context safety and persistence/removal remain unverified. See [R-016 closeout](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21). Scoped R-016/F-003 publication is complete; #16 is verified CLOSED / COMPLETED.
+- **Next action:** The three R-017 starts are available for the next user-run testing stage; start with Iranian Intermezzo 867 as Ismail and observe the actual displayed liege and Nasr's full senior chain. F-001 UX/grey/contrast ([#20](https://github.com/mhaduk/ck3-dynasty-map/issues/20)) and F-002 color-source strategy ([#21](https://github.com/mhaduk/ck3-dynasty-map/issues/21)) remain planned and unselected. No further R-016 runtime or production implementation.
 - **Scope:** county semantics, three simultaneous categories per selected view, fixed direct barony RGB (25/105/50, 145/220/150, 65/70/80), manual refresh. ADR-010 settles view definitions; All Dynasties deferred, R-015 closed. Preserve accepted old-revision sample/copy/world execution and differentiated world visual evidence without attributing it to new predicates. Three earlier empty-name load errors did not recur in a fresh new game; cause/helper persistence unresolved. Full coverage, no-Dynasty UI, context-loss/restore and persistence/removal remain open; ADR-008/009 are not waived. Authorized scoped R016 publication completed; no additional Git/GitHub write scope is implied.
 
 ## Previous R-015 checkpoint
@@ -56,8 +56,10 @@ using existing findings; do not repeat a broad scan or prepare a carrier probe.
 
 ## Next Up
 
-Three planned successors: R-017 scenario selection, F-001 UX specification
-and F-002 color strategy. No successor has been selected or begun.
+R-017 scenario selection is complete with three bookmark starts recorded in
+the [canonical roster](tasks/R-017-test-scenario-selection.md). Live de-facto
+chains and additional family/comparator coverage remain for later tests.
+F-001 UX specification and F-002 color strategy remain planned and unselected.
 R-015 / [#15](https://github.com/mhaduk/ck3-dynasty-map/issues/15) is closed as
 not planned. The [canonical record](tasks/R-015-clerical-regions.md#final-disposition--2026-10-21)
 preserves constrained region operations, the officially documented stripe rule,

@@ -20,6 +20,7 @@ are summarized here and in CURRENT_STATE.md.
 | Subject | Reusable finding | Status / task |
 |---|---|---|
 | CK3 source discovery | [Source hierarchy and quick lookup](CK3_SOURCE_MAP.md) | R-014 complete; use this index before broad source searches |
+| Test start selection | [R-017 roster and fixture locator](tasks/R-017-test-scenario-selection.md) | Selection stage complete: three easy bookmark starts (Ismail 867, William 1066, Murchad 1066) with static evidence and locators. Runtime chains and remaining family/comparator coverage are deferred to later tests |
 | Target build and evidence quality | [Evidence policy](#evidence-policy-and-target-build-status); [generated API baseline](#verified--ck3-12011-crozier-generated-script_docs) | 1.20.1.1 signatures verified; runtime limits stated per finding |
 | Player context and validity | [R-005 consolidated status](#r-005--consolidated-status-2026-10-20) | Partial / open, R-005 |
 | Scope transitions | [Formal scope links](#formal-scope-links--r-006--r-008) | Static links verified, R-006/R-008 |
@@ -1054,3 +1055,34 @@ serialization, exact restore/removal and void Execute/display safety gaps remain
 No new save test or production route acceptance. See the
 [final disposition](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21)
 and [F-003 accepted definitions](tasks/F-003-dynasty-subview-definitions.md).
+
+## R-017 — Sourced start/relationship fixtures (2026-10-21)
+
+Targeted installed CK3 1.20.1.2 sources support **Ismail Samani, 867** as the
+best primary test start: bookmark `bm_867_persia` selects `c_bukhara` for
+character 163157 and explicitly labels Nasr 163099 as his liege and brother.
+Character history assigns both to `house_samanid`; the House record maps it to
+Dynasty 1042070. Title history gives Ismail the county and Nasr
+`k_transoxiana` at the start. This is a verified-static player-to-Dynastic-
+senior fixture; Nasr's own complete senior chain and a Dynasty county outside
+the player's subtree remain unverified.
+
+William the Bastard (1066) is a useful optional complement: history records
+William 140 holding `d_normandy` and `c_alencon`; `d_normandy`'s explicit
+title-liege changes from `k_france` to `k_england` on 1066-10-14, after the
+bookmark date. Treat the live de-facto chain as likely pending observation.
+Murchad (1066) holds `d_munster` and `c_thomond`, but the bookmark's numeric
+Dynasty 695 conflicts with `house_british_isles_briain` mapping to Dynasty
+100009 in the installed House record. Character histories identify House,
+not that bookmark numeric override; do not count the sidekick metadata as a
+confirmed Dynasty match.
+
+The R-017 **scenario-selection stage is complete** with three easy bookmark
+starts: Ismail / Iranian Intermezzo 867, William / Fate of England 1066, and
+Murchad / Rags to Riches 1066. The foreign-only, sibling, independent-relative,
+outside-subtree, cadet, lowborn and unheld cases are not established by these
+sources; full live liege chains are also reserved for later user-run tests.
+Begin with Ismail and record his displayed liege and Nasr's full senior chain.
+Full source citations and locator steps are in the [canonical R-017
+record](tasks/R-017-test-scenario-selection.md). No game, save or runtime UI
+inspection was performed in this research pass.

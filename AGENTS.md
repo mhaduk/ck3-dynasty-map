@@ -1,6 +1,34 @@
 # Codex project rules
 
+**CLI pickup precedence:** when the user invokes `pobierz zadanie`, treat the
+command as a handoff pickup, not ordinary session startup. Read this file and
+`.codex-sync/CLI_TASK.md` first. If its status is `READY`, its delegation ID
+and parent task ID define the work; they take precedence over stale or
+historical task status in `CURRENT_STATE.md` and `TASK_HISTORY.md`. Do not
+select a different task or stop at a closed task listed in those documents.
+Then read only the handoff's referenced context, mark it `IN_PROGRESS`, and
+execute its scope. If the handoff is absent, not `READY`, or inconsistent,
+report that exact condition instead of falling back to another task. For
+ordinary GUI startup without a pickup command, follow the normal state/history
+sequence below and honor the latest explicit user task selection over stale
+state text.
+
 Read [CURRENT_STATE.md](docs/CURRENT_STATE.md), then [TASK_HISTORY.md](docs/TASK_HISTORY.md). Read the active task and only the deeper project documents it needs. Reuse completed findings; do not repeat target-build research unless the build changes, evidence conflicts, or revalidation is requested.
+
+Before opening or reading a path, establish the repository root and validate the exact path exists and is readable; validate directories before listing them and output paths before writing. For required inputs, report a missing/unreadable path before proceeding. For optional inputs, skip them explicitly. Use the full path from the repository root (including hidden parent directories such as `.codex-sync/`); use `List` only on directories and `Read` on exact file paths. Do not assume wildcard patterns match: discover candidates with `rg --files` or check the exact path first. ADRs are sections in `docs/DECISIONS.md`, not separate `docs/ADR-*.md` files. Handle expected no-match search results separately from actual command failures. For `rg`, exit 1 means no matches and exit 2 means a command/path/regex error; inspect stderr and correct the smallest failing step before continuing. Quote search patterns and paths, prefer literal `-F` searches for identifiers, and avoid chaining reads or searches with `&&` when an expected no-match can stop the chain.
+
+**Self-healing and configuration feedback:** if an agent encounters an unexpected
+tool, path, command, or workflow problem, it must report it in the task result,
+including the sanitized operation, error/exit code, root cause if known,
+recovery, and whether work continued. It may correct and retry its own step only
+within the granted scope. The GUI reviews reported problems and updates agent
+configuration when the instructions caused or failed to prevent a recurrence;
+agents must not silently suppress problems or modify `AGENTS.md`/
+`CODEX_WORKFLOW.md` unless that configuration edit is explicitly assigned.
+Before marking a CLI handoff `COMPLETED`, verify `CLI_RESULT.md` contains the
+required self-healing section; write `None` only after reviewing the run for
+errors. An omitted section is a completion-gate failure, not an implicit
+“nothing happened.”
 
 For CK3 source discovery, start with the [source map](docs/CK3_SOURCE_MAP.md) and open only its recommended target-build sources before broad installation or web searches.
 
