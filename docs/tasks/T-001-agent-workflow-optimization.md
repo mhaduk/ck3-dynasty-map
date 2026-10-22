@@ -176,3 +176,17 @@ of GUI-detected defects are retained in local results/reviews. Final GUI review
 recovered one oversized read through a narrow follow-up. The resulting durable
 improvements are specific editing/concurrency/path and log-semantic regressions;
 no extra generic instruction was added for errors already covered by the rules.
+
+<!-- ai-cost:start -->
+## AI cost
+
+| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
+|---|---:|---:|---:|---:|---:|---:|---|
+| codex-auto-review | 137821 | 113280 | 24541 | 770 | 459 | 138591 | partial |
+| gpt-6-luna | 11314496 | 10999040 | 315456 | 84943 | 33453 | 11399439 | partial |
+| gpt-6.1-sol | 14770525 | 14400384 | 370141 | 127414 | 36593 | 14897939 | partial |
+| **Total** | 26222842 | 25512704 | 710138 | 213127 | 70505 | 26435969 | partial |
+
+Method: task-ai-cost/1; evidence cutoff: 2026-10-22T13:15:22Z. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
+Coverage is partial: only explicitly evidenced task turns and linked reviews are allocated; ambiguous usage and missing history are not estimated. Includes dedicated optimization planning, implementation, failed reviews, corrections and publication. Earlier workflow work and the subsequent restart prompt remain unallocated. This backfill job is assigned to T-002 and excluded from these historical totals. No currency or quota inference.
+<!-- ai-cost:end -->

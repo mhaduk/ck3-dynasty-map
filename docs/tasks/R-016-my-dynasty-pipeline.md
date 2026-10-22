@@ -1373,3 +1373,18 @@ and verified CLOSED with reason COMPLETED. Definition record F-003 is complete;
 R-017/F-001/F-002 remain planned without new issues or implementation. Grey and
 safety/coverage/persistence limits remain explicit. Publication/privacy receipts
 are retained locally; no private evidence entered the commit.
+
+<!-- ai-cost:start -->
+## AI cost
+
+| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
+|---|---:|---:|---:|---:|---:|---:|---|
+| codex-auto-review | 269453 | 158336 | 111117 | 1508 | 1020 | 270961 | partial |
+| gpt-6-luna | 9087490 | 8811648 | 275842 | 68902 | 29043 | 9156392 | partial |
+| gpt-6.1-sol | 57594042 | 56097920 | 1496122 | 230252 | 44649 | 57824294 | partial |
+| unknown | 400382 | 398848 | 1534 | 4351 | 0 | 404733 | partial |
+| **Total** | 67351367 | 65466752 | 1884615 | 305013 | 74712 | 67656380 | partial |
+
+Method: task-ai-cost/1; evidence cutoff: 2026-10-22T13:15:22Z. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
+Coverage is partial: only explicitly evidenced task turns and linked reviews are allocated; ambiguous usage and missing history are not estimated. Includes attributed probe work, tests, retries and linked automatic reviews. Mixed finalization/planning turns and shared documentation work remain unallocated. The unknown-model bucket contains measured counters without a matching model context. This backfill job is assigned to T-002 and excluded from these historical totals. No currency or quota inference.
+<!-- ai-cost:end -->

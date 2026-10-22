@@ -108,3 +108,16 @@ installed `game/`):
 No save, runtime state, DLC ownership, or launcher/game UI was inspected. No
 raw installed data was copied into the repository, and no APIs or build
 compatibility claims were revalidated.
+
+<!-- ai-cost:start -->
+## AI cost
+
+| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
+|---|---:|---:|---:|---:|---:|---:|---|
+| codex-auto-review | 75298 | 48896 | 26402 | 356 | 123 | 75654 | partial |
+| gpt-6-luna | 15451215 | 15000960 | 450255 | 94071 | 44497 | 15545286 | partial |
+| **Total** | 15526513 | 15049856 | 476657 | 94427 | 44620 | 15620940 | partial |
+
+Method: task-ai-cost/1; evidence cutoff: 2026-10-22T13:15:22Z. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
+Coverage is partial: only explicitly evidenced task turns and linked reviews are allocated; ambiguous usage and missing history are not estimated. Includes research, corrections, reviews, closure and the evidenced failed initial pickup. Shared advance planning with other tasks remains unallocated. This backfill job is assigned to T-002 and excluded from these historical totals. No currency or quota inference.
+<!-- ai-cost:end -->

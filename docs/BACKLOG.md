@@ -9,6 +9,7 @@ IDs such as R-002 are stable planning IDs, separate from GitHub issue numbers.
 
 | ID | Priority | Work item | Status |
 |---|---|---|---|
+| [T-002 / #24](https://github.com/mhaduk/ck3-dynasty-map/issues/24) | P1 | Per-model historical token accounting and close-time workflow proposal | Complete locally — [accepted result](tasks/T-002-task-ai-cost.md); 11 verified remote tables, 10 local mirrors, 27 offline tests; partial coverage. Configuration proposal unapplied; scoped Git publication authorized 2026-10-22; #24 closure excluded |
 | [T-001 / #23](https://github.com/mhaduk/ck3-dynasty-map/issues/23) | P0 | Incrementally improve per-ID parallel CLI handoffs, context/routing, log analysis and feedback | Complete — [canonical record](tasks/T-001-agent-workflow-optimization.md); GUI accepted both corrected stages on 2026-10-22; 37 offline tooling tests passed. Scoped publication authorized; receipt in #23. Savings unmeasured; F-001 paused |
 
 ## M0 — Research & bootstrap

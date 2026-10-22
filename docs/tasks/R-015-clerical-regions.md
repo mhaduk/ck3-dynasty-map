@@ -443,3 +443,16 @@ The first acceptance item remains unresolved; closure is not full technical
 completion or proof of engine impossibility. No runtime, new implementation,
 product scope reduction or follow-on task was authorized. R-009/R-010 retain
 their partial status. Reopen only on concrete independent-input evidence.
+
+<!-- ai-cost:start -->
+## AI cost
+
+| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
+|---|---:|---:|---:|---:|---:|---:|---|
+| codex-auto-review | 110792 | 86912 | 23880 | 494 | 236 | 111286 | partial |
+| gpt-6.1-sol | 12569443 | 12106240 | 463203 | 68908 | 6824 | 12638351 | partial |
+| **Total** | 12680235 | 12193152 | 487083 | 69402 | 7060 | 12749637 | partial |
+
+Method: task-ai-cost/1; evidence cutoff: 2026-10-22T13:15:22Z. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
+Coverage is partial: only explicitly evidenced task turns and linked reviews are allocated; ambiguous usage and missing history are not estimated. Includes attributed research, follow-ups, rejected approaches and closure review. Subsequent R-009 publication is excluded. Not-planned disposition is preserved. This backfill job is assigned to T-002 and excluded from these historical totals. No currency or quota inference.
+<!-- ai-cost:end -->

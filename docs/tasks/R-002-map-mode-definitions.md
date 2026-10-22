@@ -45,3 +45,15 @@ Informed the candidate map-mode definition in ARCHITECTURE.md; no implementation
 ## Full investigation
 
 GitHub Issue #2 in the public repository.
+
+<!-- ai-cost:start -->
+## AI cost
+
+| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
+|---|---:|---:|---:|---:|---:|---:|---|
+| gpt-6.1-sol | 1170615 | 1142016 | 28599 | 4005 | 112 | 1174620 | partial |
+| **Total** | 1170615 | 1142016 | 28599 | 4005 | 112 | 1174620 | partial |
+
+Method: task-ai-cost/1; evidence cutoff: 2026-10-22T13:15:22Z. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
+Coverage is partial: only explicitly evidenced task turns and linked reviews are allocated; ambiguous usage and missing history are not estimated. Only the explicit definitions-investigation and closure turn is allocated; earlier shared research remains unallocated. This backfill job is assigned to T-002 and excluded from these historical totals. No currency or quota inference.
+<!-- ai-cost:end -->

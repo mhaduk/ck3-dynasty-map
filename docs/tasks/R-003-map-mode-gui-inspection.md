@@ -45,3 +45,15 @@ Defined candidate extension points and handed unresolved runtime gates to R-005/
 ## Full investigation
 
 GitHub Issue #3 in the public repository.
+
+<!-- ai-cost:start -->
+## AI cost
+
+| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
+|---|---:|---:|---:|---:|---:|---:|---|
+| gpt-6.1-sol | 1719191 | 1694208 | 24983 | 5452 | 367 | 1724643 | partial |
+| **Total** | 1719191 | 1694208 | 24983 | 5452 | 367 | 1724643 | partial |
+
+Method: task-ai-cost/1; evidence cutoff: 2026-10-22T13:15:22Z. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
+Coverage is partial: only explicitly evidenced task turns and linked reviews are allocated; ambiguous usage and missing history are not estimated. Only the explicit GUI-investigation and closure turn is allocated; later menu prototypes belong to other research. This backfill job is assigned to T-002 and excluded from these historical totals. No currency or quota inference.
+<!-- ai-cost:end -->

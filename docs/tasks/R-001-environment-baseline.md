@@ -45,3 +45,15 @@ Unblocked target-build-specific inspection and API generation. R-011 remains a s
 ## Full investigation
 
 GitHub Issue #1 in the public repository; its investigation history is authoritative for intermediate updates.
+
+<!-- ai-cost:start -->
+## AI cost
+
+| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
+|---|---:|---:|---:|---:|---:|---:|---|
+| gpt-6.1-sol | 289846 | 280320 | 9526 | 2121 | 27 | 291967 | partial |
+| **Total** | 289846 | 280320 | 9526 | 2121 | 27 | 291967 | partial |
+
+Method: task-ai-cost/1; evidence cutoff: 2026-10-22T13:15:22Z. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
+Coverage is partial: only explicitly evidenced task turns and linked reviews are allocated; ambiguous usage and missing history are not estimated. Only the explicit environment-inventory turn is allocated; shared bootstrap and documentation work remains unallocated. This backfill job is assigned to T-002 and excluded from these historical totals. No currency or quota inference.
+<!-- ai-cost:end -->

@@ -75,3 +75,17 @@ R-009 remains partial/open. The local R-009 checkpoint commit is already present
 was not revalidated here. Resume renderer-input and lifecycle research in its
 existing chat using the source map. No R-009 probe or architecture change is
 authorized by this result.
+
+<!-- ai-cost:start -->
+## AI cost
+
+| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
+|---|---:|---:|---:|---:|---:|---:|---|
+| codex-auto-review | 144005 | 123136 | 20869 | 557 | 209 | 144562 | partial |
+| gpt-6-luna | 3912519 | 3780736 | 131783 | 24743 | 8386 | 3937262 | partial |
+| gpt-6.1-sol | 2439990 | 2351488 | 88502 | 9625 | 445 | 2449615 | partial |
+| **Total** | 6496514 | 6255360 | 241154 | 34925 | 9040 | 6531439 | partial |
+
+Method: task-ai-cost/1; evidence cutoff: 2026-10-22T13:15:22Z. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
+Coverage is partial: only explicitly evidenced task turns and linked reviews are allocated; ambiguous usage and missing history are not estimated. Includes attributed coordinator, CLI and automatic review work. Shared earlier navigation research is not assigned retrospectively. This backfill job is assigned to T-002 and excluded from these historical totals. No currency or quota inference.
+<!-- ai-cost:end -->

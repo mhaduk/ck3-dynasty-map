@@ -2,6 +2,12 @@
 
 Updated 2026-10-22. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+## Last completed tooling task — T-002
+
+- [T-002 — Per-task AI token accounting](tasks/T-002-task-ai-cost.md) is COMPLETE locally on 2026-10-22. GUI accepted T-002-FIX: 27 offline tests passed; independent 3006-record recomputation exactly matched the frozen result. Source-identity and missing-detail defects are corrected.
+- Eleven closed GitHub descriptions have verified per-model AI-cost tables; ten local canonical mirrors are integrated. Historical coverage is partial for every target; ambiguous work stays unallocated. T-002's own local table is an early snapshot excluding later execution/correction/review; no full-task cost or savings is claimed.
+- The proposed private attribution ledger and finite close-time checkpoint are delivered but unapplied. AGENTS/workflow remain unchanged. The user authorized scoped T-002 staging, commit and push on 2026-10-22; publication excludes unrelated F-001/F-004/probe changes. Issue #24 closure and configuration activation remain outside that authorization. F-001's independently authorized scope below is unchanged.
+
 ## Last completed tooling task — T-001
 
 - [T-001 — Incremental agent workflow optimization](tasks/T-001-agent-workflow-optimization.md) is COMPLETE, 2026-10-22; tracked in [Issue #23](https://github.com/mhaduk/ck3-dynasty-map/issues/23), which records the scoped publication receipt. GUI accepted the handoff foundation and corrected log helper; all 37 offline tooling tests passed. Child results/reviews are preserved locally.
