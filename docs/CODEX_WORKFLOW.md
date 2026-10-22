@@ -6,15 +6,21 @@ This document is the detailed operating procedure. Keep [AGENTS.md](../AGENTS.md
 
 ### CLI handoff pickup precedence
 
-When the user invokes `pobierz zadanie`, this is a handoff pickup. Read
-`AGENTS.md` and `.codex-sync/CLI_TASK.md` before selecting any task from the
-operational state/history. A `READY` handoff's delegation ID and parent task ID
-are the active work for that invocation and override stale or historical
-`CURRENT_STATE.md` / `TASK_HISTORY.md` entries. Read only the handoff's
-referenced context, mark it `IN_PROGRESS`, and proceed within its scope. Do not
-announce or select a different task because a completed task remains in the
-state file. If the handoff is missing, not `READY`, or its IDs/status conflict,
-report the discrepancy and stop; never silently fall back to another task.
+`pobierz zadanie [ID]` selects a READY handoff, before consulting operational
+state/history. Read `AGENTS.md`, then use `resolve [ID]`. A named ID inspects
+`.codex-sync/tasks/<ID>/CLI_TASK.md` and `STATUS.json` first; it does not require
+or read the legacy inbox when that task exists. Only when the named directory
+is absent may the resolver match that exact ID in the controlled legacy inbox.
+An existing ineligible or inconsistent named task must not fall through.
+
+Bare pickup uses `resolve` across READY per-ID and active legacy candidates;
+exactly one is required, including when both formats coexist. Zero or multiple
+candidates require a discrepancy report, never a guess or a product-task
+fallback. Read only the resolved handoff's referenced context, validate its
+contract, then claim/mark it IN_PROGRESS. Its ID and parent override stale
+state/history entries. Receipt resolution is separate: `resolve [ID] --receipt`
+selects COMPLETED results for `gotowe [ID]`, with the same uniqueness rule for
+a bare receipt. READY tasks are not pending receipt candidates.
 
 For ordinary GUI startup, read the state and history as below, but the latest
 explicit user selection in the conversation takes precedence over stale
@@ -22,10 +28,10 @@ operational text. Before dispatching a handoff, GUI should synchronize the
 selected task in `CURRENT_STATE.md`; the handoff remains an additional explicit
 source of task identity for CLI pickup.
 
-1. Read `AGENTS.md`, `docs/CURRENT_STATE.md`, and `docs/TASK_HISTORY.md`.
-2. Identify the active stable task ID. Read its issue/definition only if needed, then load only the relevant sections of deeper docs and evidence.
-3. Check Git status before editing. Preserve unrelated user changes. One substantial backlog task belongs in one chat; keep iterations of that task in the same chat.
-4. For CK3 research, identify the subsystem, consult [CK3_SOURCE_MAP.md](CK3_SOURCE_MAP.md), then inspect only the recommended target-build/generated/vanilla sources. Escalate to separately authorized runtime work or bounded community discovery only when static sources leave the question unresolved. Reuse completed findings; repeat target-build research only when the build changes, evidence conflicts, or revalidation is requested.
+1. Read `AGENTS.md`, `docs/CURRENT_STATE.md`, then `docs/TASK_HISTORY.md`; identify the stable task ID and read only relevant task sections/evidence.
+2. Reuse reviewed findings while their input fingerprints, build and evidence remain current. Invalidate only the affected conclusions when one changes. Do not reread full history/workflow on every receipt.
+3. Check Git status before editing and preserve unrelated changes. Keep one substantial backlog task in a chat.
+4. For CK3 research, start at [CK3_SOURCE_MAP.md](CK3_SOURCE_MAP.md), then inspect only recommended target-build sources. Repeat research only for changed build, conflicting evidence or requested revalidation.
 
 ### File and command preflight
 
@@ -63,13 +69,15 @@ reason to keep all subsequent work there.
 | Work | Default route |
 |---|---|
 | User coordination, scope/architecture decisions, unresolved engine reasoning | GUI; delegate a bounded specialist question when useful |
-| Probe/source preparation with a settled design and clear acceptance criteria | CLI, usually Luna / Medium |
-| Bounded documentation updates, consistency work, mechanical edits | CLI, usually Luna / Medium; Luna / Low for trivial work |
-| Genuinely independent review | A separate reviewer/session, usually Sol / Medium; GUI assesses the returned result |
+| Settled source preparation, bounded conceptual analysis and log checkpoints | CLI: Luna / Medium for routine bounded work; Sol / Medium for conceptual comparison; Sol / High for difficult CK3 reasoning |
+| Documentation, consistency and mechanical edits | CLI / Luna / Medium; Luna / Low when trivial |
+| Independent review | Separate reviewer/session / Sol / Medium; GUI assesses the returned evidence |
 | Inspecting a CLI result and integrating its conclusions | GUI |
 | All CK3 game UI interaction, including start/exit, loading, saving, observation and tests | User only; no Codex game-window inspection or control |
 | Configuring an already open launcher, playset selection and mod toggles | Codex GUI; reuse the test playset by default |
 | A small direct edit where the handoff would cost more than the edit, such as a short workflow clarification | GUI allowed |
+
+Before expensive or uncertain work, briefly state: user requirement, mechanism, decisive evidence, blocking unknown, cheapest test and stop/reopen condition. GUI should reach a decision or dispatch a bounded handoff after brief reconnaissance; this is a direction, not a hard timeout. Keep small edits in GUI when handoff overhead exceeds the work.
 
 For bounded, separable work, CLI is the default action, not an optional
 suggestion after the GUI has already completed it. Prepare `CLI_TASK.md` and
@@ -107,7 +115,13 @@ Codex must not bind to, inspect, screenshot, activate, click, control, launch
 or close the CK3 game window, even when automation is technically available.
 A failed in-game automation call is not a reason to try another method. Do not
 spend tokens exploring the game UI. Analyze logs and user-reported observations;
-distinguish those evidence sources. The user may supply screenshots if useful.
+distinguish those evidence sources. When a visual comparison is needed, ask the
+user for an observation or screenshot. The user captures it; Codex may inspect
+only images supplied by the user. Never capture/read the running game screen,
+use game-screen OCR or pixel sampling, or try alternative vision/UI methods to
+compare it autonomously. Do not spend time/tokens probing graphical access.
+This applies to every delegated agent as well as GUI coordination. Launcher
+configuration is separate and grants no access to the CK3 game screen.
 Do not launch/relaunch the launcher either; configure it only after the user
 has opened the CK3-specific launcher through Steam. Do not click PLAY/RESUME.
 If useful, the parent GUI may check prerequisites before dispatch using a
@@ -181,6 +195,55 @@ Use this cycle:
 These are role assignments, not extra approval checkpoints. Existing scope,
 permissions, sandbox requirements and the acknowledgement rules still apply.
 
+### Bounded log checkpoints
+
+Use `scripts/ck3_log_delta.py` for a finite, per-file interval. Put baselines,
+manifests and captured bytes under ignored `.codex-sync/`; choose a new path for
+each run. Named logs are optional unless listed with `--required-name`;
+explicit `--file` inputs are required. Missing optional logs remain visible as
+gaps in the report. A required gap, changed boundary, partial line/read or byte
+cap yields an incomplete interval for a required input. Baselines record whether
+the cursor splits a line; initial and final fragments stay in the byte artifact
+but are excluded from marker/error analysis. Fingerprints sample the first and
+last 256 baseline bytes, so arbitrary same-size rewrites elsewhere may go undetected.
+
+Example, with the user's CK3 log directory supplied explicitly:
+
+```sh
+python3 scripts/ck3_log_delta.py baseline \
+  --log-dir "/path/to/CK3/logs" --name debug.log --name error.log \
+  --required-name debug.log --required-name error.log \
+  --payload-label "probe label" --build-label "build label" \
+  --output .codex-sync/baseline-run-01.json
+# User performs the already-authorized CK3 actions.
+python3 scripts/ck3_log_delta.py delta \
+  --baseline .codex-sync/baseline-run-01.json \
+  --output-dir .codex-sync/checkpoint-run-01
+```
+
+Reports separate `interval_status` (`COMPLETE`, `COMPLETE_WITH_OPTIONAL_GAPS`
+or `INCOMPLETE`), `observation_status` and marker/chain `expectation_status`
+(`MET`, `UNMET` or `UNVERIFIED_INCOMPLETE_EVIDENCE`). Exit 0 means the command
+produced its report; neither exit success nor interval completeness establishes
+clean logs or CK3 test acceptance. `error.log` counts every nonempty complete
+line as an error-channel observation; other logs use a labelled English severity
+keyword heuristic. Full normalized message hashes distinguish repeated messages
+from different messages with the same clipped snippet; summaries are bounded.
+
+The CLI captures only bytes through each file's frozen end size; later appends
+belong to a future checkpoint. Each log has its own capture interval, so the
+set is not an atomic snapshot. An optional JSON `--spec` may define literal
+`markers` (`name`, `literal`, optional `expected` and `log`) and ordered
+`chains` (`name`, `begin`, `end`, optional `reject` and `log`). Every chain
+occurrence is evaluated in text position order, including on one line; overlapping chain literal spans are refused as ambiguous. Counts and
+ordered pairs are evidence of observed text only; equal counts do not prove
+event identity. A missing marker means execution was unobserved. A
+`WRITE_RETURNED` marker supports an execution receipt, not stored RGB,
+classification correctness or visual acceptance. Keep the short CLI report
+with the private artifacts, then let GUI review the receipt alongside user
+observations. CLI finishes on current files and never waits for another game
+action.
+
 ## Authorization and stage completion
 
 ### Batch preparation and user test instructions
@@ -233,133 +296,117 @@ disabled-mod and fresh-process checks retain their distinct state prerequisites.
 
 ## GUI to CLI handoff
 
-For every probe/mod preparation, revision or game-build change, read and apply
-[MOD_AUTHORING_RULES.md](MOD_AUTHORING_RULES.md). The handoff must name the
-explicit source/installed payload roots, exact expected version, and commands
-`python3 scripts/check_mod_preflight.py <payload-root> --expected-version <version>`
-before installation and the same command with `--installed <installed-root>`
-afterward. Include manual source/schema/guard review, private backups, wrapper
-metadata verification and the fresh user-run startup/log checkpoint before
-loading, saving or classification. A file check or metadata declaration is not
-engine/API/runtime validation. Build changes require targeted revalidation and
-generated-document provenance; retain prior findings under their actual build.
+The GUI owns task selection, direction, user coordination and review. The CLI owns only the files and checks listed in its delegation. Give every task a stable delegation ID and parent ID, frozen scope, model profile, minimal exact context, allowed output paths, exclusions, checks, permissions and GUI next step. Record hashes of actual dirty input bytes; Git HEAD alone is not a baseline. One integrator edits shared source/docs. Parallel tasks write separate artifacts. Do not repeat GUI research in CLI. Installations and tests against one live game remain sequential. A worktree is optional and must receive the correct input snapshot.
 
-Use one active delegation at a time. Write `.codex-sync/CLI_TASK.md` with a unique delegation ID, parent task ID, model/reasoning recommendation, goal, reason, minimal context references, requested work, expected files, exclusions, explicit permissions, completion criteria, and result path. The task file owns its listed files while the delegation is active; the GUI avoids those files and CLI avoids unrelated files. If unexpected overlapping edits appear, stop and report the conflict.
+Route bounded preparation, documentation, log checkpoints and settled analysis to CLI. GUI retains open product choices and coordination. Use Luna / Low for trivial mechanical work, Luna / Medium for routine bounded tasks, Sol / Medium for conceptual analysis/review, and Sol / High for difficult CK3 reasoning. These are recommendations, not model-availability or cost claims; report actual model only when known. Preserve the small direct-edit exception when delegation overhead exceeds the work.
 
-Tell the user briefly which model to use and to start CLI with `pobierz zadanie`. Do not duplicate the task body in chat. For specialist investigation, prefer repository edits disabled and return findings through `CLI_RESULT.md`.
+For probes/mods, read [MOD_AUTHORING_RULES.md](MOD_AUTHORING_RULES.md), name exact payload/install roots and expected version, run the preflight before installation and again with `--installed` afterward, and include the manual and user-run startup/log gates. This does not apply to tooling that does not touch a mod.
 
-Bundle related source preparation, its self-review, permitted checks and the
-necessary documentation into one bounded handoff rather than separate approval
-rounds. Include pre-existing local changes and how to preserve them. Preparing
-the handoff is not executing it: do not claim CLI ran or the recommended model
-was used until there is an actual result. If the user must start CLI manually,
-stop at the handoff boundary and await that result.
+### Per-ID lifecycle helper
 
-Include a GUI-before / CLI-work / GUI-after / user-action split, including
-declared launcher/game state as an assumption, not a CLI check. Complete
-permitted launcher/file prerequisites and obtain necessary user preparation
-before dispatch; CLI must not wait for
-user actions. After the result arrives, launcher configuration, logs and
-readiness remain Codex responsibilities; all in-game work belongs to the user.
-A result's "GUI next steps" are for Codex configuration, not a click checklist
-to forward to the human. Launch permissions in an older handoff do not override
-the user's standing instruction that they alone start launcher and game.
+New handoffs live under `.codex-sync/tasks/<ID>/` with `CLI_TASK.md`,
+`STATUS.json`, `CLI_RESULT.md`, `GUI_REVIEW.md` and optional `artifacts/`.
+`STATUS.json` alone controls lifecycle. Scope is frozen at READY; a different
+scope needs a new ID. The helper coordinates cooperating workers, not an OS
+sandbox. All administrative paths, including hidden parents, archives, claims,
+locks and review/result paths, must remain regular files/directories without
+symlinks. This prevents accidental path escape, not hostile concurrent path
+replacement or hard-link attacks.
 
-## CLI command: “pobierz zadanie”
+Run `python3 scripts/handoff.py --root . <operation> ...` from the repository:
 
-Read `AGENTS.md` and `.codex-sync/CLI_TASK.md` before choosing a task from
-`CURRENT_STATE.md` or `TASK_HISTORY.md`. Require `Status: READY`, and use its
-delegation and parent IDs as the active assignment even if the state/history
-still describes the previous task. Load only referenced context. If the
-handoff is missing, not ready, or inconsistent, report that and stop rather
-than selecting fallback work. Warn before starting if the active model is
-reliably known to differ from the recommendation. Mark the task `IN_PROGRESS`,
-execute only the permitted work, run requested checks, write
-`.codex-sync/CLI_RESULT.md`, then mark the task `COMPLETED`. If blocked or
-failed, record `FAILED` and preserve both files for GUI inspection.
+- Create: `create <ID> --parent <PARENT> --task-file <path> [--input <path> ...]
+  [--owned <path> ...] [--check <name> ...]`. Paths are normalized and relative
+  to the repository. `--input` declares an immutable dependency. `--owned`
+  explicitly declares an editable input/output, including an existing dirty
+  source/doc or a new file; if also supplied as `--input`, it is editable but
+  must initially exist. Other new owned files have an initial fingerprint of
+  JSON `null`. All initial fingerprints remain in `inputs`, and the actual
+  initial bytes and manifest remain in `baseline/` across attempts. Do not omit
+  editable source from the baseline. Handoff administration is not an assigned
+  input/output; local context outside `tasks/` may be an input.
+- Resolve pickup: `resolve [ID]` selects the named READY handoff or the sole
+  READY candidate, considering controlled legacy compatibility as above.
+  `claim <ID> --owner <session-label> --revision <N>` checks the frozen scope
+  and **all** initial fingerprints before claim side effects, then moves READY
+  to IN_PROGRESS. An interrupted claim is preserved; no age-based takeover.
+- Inspect: `list` shows per-ID states/revisions; `validate <ID>` checks frozen
+  scope and preserved baseline. READY validation checks all initial inputs;
+  during work it checks immutable dependencies while allowing declared edits.
+  Completed/consumed validation also checks recorded final output hashes.
+  Validate before work and completion. Hashes cannot identify who edited an
+  owned file: one writer per owned path and the integrator's baseline/diff
+  review remain necessary; edits to undeclared files are not OS-enforced.
+- Finish: write `CLI_RESULT.md` with nonempty sections Identity, Result, Files,
+  Checks, Self-healing / agent-instruction findings, Permissions / Git state,
+  and GUI next step. Include a fenced `json` provenance object with `id`,
+  `parent_id`, `attempt`, the exact initial `inputs` map from STATUS, and an
+  `outputs` map of every owned path to its final SHA-256 (or `null` if absent;
+  `{}` when no paths are owned). Result must contain the exact lines
+  `- Outcome: SUCCESS` and `- Acceptance: PASS`; Checks must contain an exact
+  `- <check-name>: PASS` line for each requested check. Annotations belong on
+  separate lines. `complete <ID> --owner <owner> --revision <N>` checks this
+  real grammar, frozen scope, immutable dependencies and final provenance,
+  then records outputs/result hashes and moves to COMPLETED. It permits
+  assigned edits and retains the original inputs. Structural validation does
+  not prove truth or substantive acceptance. A complete negative finding is
+  successful only if it satisfies its investigation's criteria.
+- Failure/recovery: `fail <ID> --owner <owner> --revision <N> --reason <text>`
+  records FAILED even if scope or input drift caused the failure.
+  `recover <ID> --revision <N> --reason <text>` records a READY claim interrupted
+  before its status update, preserving claim evidence for coordinator review.
+- Retry: `retry <ID> --revision <N>` is an explicit coordinator action for FAILED
+  or confirmed interrupted IN_PROGRESS. Scope and **all initial** inputs,
+  including owned files, must still match. Changed inputs require a new
+  delegation with a new baseline; the helper never restores or discards edits.
+  Retry archives previous status, result, review and claim owner in
+  `attempts/<attempt>/`, preserves baseline evidence and reopens the same
+  scope with a new attempt. It never silently rebases fingerprints.
+- Receipt: `resolve [ID] --receipt` resolves COMPLETED results, not READY work.
+  After inspecting actual changes/evidence, `consume <ID> --revision <N>
+  --review <text>` verifies unchanged result, immutable inputs and final
+  outputs, records the review and moves COMPLETED to CONSUMED.
+  CONSUMED records GUI review as ACCEPTED or CHANGES REQUIRED; only acceptance
+  advances the parent stage.
 
-For every file referenced by the handoff, validate the exact path before
-reading it. First confirm the repository root; use the full repository-relative
-path, including `.codex-sync/` for handoff files. Use `List` only to inspect a
-directory and `Read` for its exact file. Separate required and optional
-references; do not issue a batch of assumed paths or globs and let the shell
-fail on the first missing match. A search that returns no matches is not by
-itself a task failure: check the search scope/source map and report the
-coverage limit. For `rg`, exit 1 is no matches; exit 2 is a real invocation,
-regex, or path error. On exit 2, inspect stderr and fix the command/path before
-continuing; do not count that attempt as evidence. Record actual tool or file
-errors accurately.
+Every mutating transition holds a per-task OS file lock from the revision,
+state and owner checks through its evidence changes and status replacement.
+Creation reserves a new ID exclusively; separate IDs have separate locks.
+Stale commands cannot change claims, archives or reviews. Do not acquire a
+second lock inside a transition. Status writes use atomic replacement.
 
-If a read/list/search tool call fails, do not repeat it unchanged or continue
-dependent work. Capture the exact path, operation, exit code, and diagnostic;
-then validate the path or syntax and retry only the smallest read-only step. If
-the exact required file is genuinely absent/unreadable, stop and report the
-blocker. This makes predictable setup mistakes avoidable while keeping genuine
-unexpected errors visible.
+Retry and consume write `.transition.json` before changing attempt/review
+evidence. If interrupted, repeat the **same command with the original
+revision and review text** to finish idempotently, even when status was already
+written. Other transitions are blocked while the journal remains. Archives
+are copied completely before active evidence is removed; the journal retains
+the original evidence until status is committed. Conflicting preserved bytes
+require coordinator inspection; do not remove the journal or steal a claim.
+This is local interruption recovery, not a power-loss durability guarantee.
 
-### Self-healing and configuration feedback
+### Legacy pickup and GUI receipt
 
-Agents should recover from a correctable in-scope problem, then report it so
-the workflow can improve. Every CLI result must include a
-**Self-healing / agent-instruction findings** section. If no problem occurred,
-write `None`. If a problem occurred, even when recovered, record the sanitized
-operation and target, exact exit code/error summary, cause if known, corrective
-step, whether retry succeeded, any work skipped, and whether the issue suggests
-a reusable instruction gap. Do not include credentials, private paths, raw logs, or
-unnecessary personal data. Distinguish genuine command/tool failures from
-expected no-match or optional-file conditions; never disguise one as the other.
+The controlled T-001-T1-FIX correction continues in `.codex-sync/CLI_TASK.md`
+until GUI accepts the foundation. Its Status line remains the legacy authority;
+mark it IN_PROGRESS and write `.codex-sync/CLI_RESULT.md`. Do not use the helper
+to claim/complete that correction or migrate it midway. Preserve archives.
+Named new-format tasks work without the legacy inbox. Bare pickup/receipt must
+first use the shared resolver so it cannot silently prefer legacy.
 
-The GUI reviews that section and the actual changes when consuming the result.
-If the problem exposes a repeatable instruction/configuration gap, update and
-validate `AGENTS.md` and/or `CODEX_WORKFLOW.md`, and preserve the task's result
-and scope. If the error is isolated or the instructions already cover it,
-record why no configuration change is needed. CLI may fix its own command or
-path and continue within scope, but must not edit agent configuration unless
-the handoff explicitly includes that work. Do not create an automatic loop
-that changes configuration for every harmless no-match; changes must address
-an identified, reusable failure mode.
+A legacy result still includes identity, actual checks, limits, permissions/Git
+state, GUI next step and self-healing. Before marking COMPLETED, inspect every
+assigned gate and the actual result. Terminal text is exactly
+`COMPLETED: STATUS SUCCESS!` on success or `COMPLETED: STATUS FAILURE!` on
+failure; success requires all assigned acceptance criteria.
 
-Before marking a handoff `COMPLETED`, inspect the actual `CLI_RESULT.md` and
-confirm the self-healing section exists and accurately accounts for the run.
-Write `None` only after reviewing the tool/command results. If a problem
-occurred but its cause or recovery is unknown, say so explicitly rather than
-implying it was fixed. A missing section blocks `COMPLETED` until the result is
-amended; do not emit the success line while this gate is open.
+`gotowe <ID>` means review and consume that completed result. Bare `gotowe`
+requires a sole eligible COMPLETED candidate across both formats. Confirm
+identity, inspect actual diff/evidence and self-healing, update the parent
+record/state/index where materially changed, then consume the named result
+(or record legacy review). Preserve failed evidence. Child completion never
+completes its parent.
 
-At the end of the user-facing CLI response, print one status line with ANSI
-color when the terminal supports it: on genuine success, green
-`COMPLETED: STATUS SUCCESS!`; on a failed/blocked task, red
-`COMPLETED: STATUS FAILURE!`. Use ANSI SGR green (`\033[32m`) and red
-(`\033[31m`), then reset (`\033[0m`). If color is unavailable, print the same
-exact text plainly; never expose raw escape codes. Keep `CLI_RESULT.md`
-machine-readable and uncolored: its lifecycle field remains `COMPLETED` only
-for success and `FAILED` for failure/blocking, regardless of the requested
-human-readable completion label. Do not print SUCCESS for partial work or
-failed acceptance criteria.
-
-`CLI_RESULT.md` should report the delegation and parent IDs, result, changed files, checks, new findings, the required self-healing/configuration-feedback section, decisions needed, blockers, Git staged/committed/pushed state, GitHub operations and verification, and recommended next action. Be concise.
-
-## GUI command: “gotowe”
-
-When a CLI handoff is pending, `gotowe` means consume its result and continue
-the authorized workflow; do not ask whether to read it. Outside that context,
-it follows the acknowledgement rule above. The word itself is not evidence
-that checks passed or that CLI produced a result.
-
-Read the result and confirm its delegation ID matches the task. Inspect the actual working tree for relevant changes; do not rely on the result text alone. Incorporate findings, decide whether the handoff succeeded, update the parent task as needed, mark the task `CONSUMED`, and clean the sync files only after safely preserving the result. Keep failed handoffs until reviewed.
-
-As part of consuming a CLI result, review its self-healing section. If the
-section is missing, do not consume the handoff as-is: use observed evidence to
-append a clearly labeled GUI audit addendum, or request a CLI amendment when no
-reliable evidence is available. Do not invent a cause or recovery. When the
-section
-identifies a reusable gap in agent instructions, correct the relevant
-configuration and run the appropriate documentation checks before completing
-consumption. Do not modify configuration for expected no-match cases or
-isolated errors already covered by current rules; record that assessment in the
-GUI response.
-
-Lifecycle: `READY -> IN_PROGRESS -> COMPLETED -> CONSUMED -> cleanup`; failure: `READY -> IN_PROGRESS -> FAILED`.
+Every material stage records in its own result: observation, cause or unknown, recovery, outcome, and a small reusable instruction/tool suggestion. Report recovered errors with sanitized operation, diagnostic/exit code and recovery. One coordinator promotes verified reusable lessons; repeated violations of an existing rule call for execution/tool fixes, not automatic rule growth. No background monitor or report per chat message.
 
 ## GitHub and permissions
 

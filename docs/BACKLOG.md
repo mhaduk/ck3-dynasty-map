@@ -5,6 +5,12 @@ This document preserves sequencing, dependencies and a status snapshot; keep it
 synchronized with Issues. Later milestones remain planned here until migrated.
 IDs such as R-002 are stable planning IDs, separate from GitHub issue numbers.
 
+## Project tooling
+
+| ID | Priority | Work item | Status |
+|---|---|---|---|
+| [T-001 / #23](https://github.com/mhaduk/ck3-dynasty-map/issues/23) | P0 | Incrementally improve per-ID parallel CLI handoffs, context/routing, log analysis and feedback | Complete — [canonical record](tasks/T-001-agent-workflow-optimization.md); GUI accepted both corrected stages on 2026-10-22; 37 offline tooling tests passed. Scoped publication authorized; receipt in #23. Savings unmeasured; F-001 paused |
+
 ## M0 — Research & bootstrap
 
 | ID | GitHub issue | Priority | Work item | Depends on | Status |

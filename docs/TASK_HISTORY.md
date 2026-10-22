@@ -4,6 +4,7 @@ Compact index of completed substantial tasks. Investigation detail belongs in th
 
 | Task | Goal | Result | Issue journal | Canonical summary |
 |---|---|---|---|---|
+| T-001 | Incrementally optimize agent coordination, context and log analysis | Per-ID handoffs, explicit ownership/provenance, concise routing/context, direction/self-healing feedback and bounded log checkpoints accepted by GUI on 2026-10-22; 37 offline tests passed. Scoped publication tracked in #23; no measured savings or CK3 runtime validation. | [#23](https://github.com/mhaduk/ck3-dynasty-map/issues/23) | [T-001](tasks/T-001-agent-workflow-optimization.md) |
 | R-001 | Record the installed CK3 baseline | Build 1.20.1.1 (Crozier) and the local research baseline recorded; not a full runtime compatibility claim. | [#1](https://github.com/mhaduk/ck3-dynasty-map/issues/1) | [R-001](tasks/R-001-environment-baseline.md) |
 | R-002 | Inspect installed map-mode definitions | Native map-mode structure and baronies renderer inspected; custom loading/rendering remains unverified. | [#2](https://github.com/mhaduk/ck3-dynasty-map/issues/2) | [R-002](tasks/R-002-map-mode-definitions.md) |
 | R-003 | Inspect installed map-mode GUI/API bindings | Static GUI/type inspection recorded; runtime integration and lifecycle gates remain open. | [#3](https://github.com/mhaduk/ck3-dynasty-map/issues/3) | [R-003](tasks/R-003-map-mode-gui-inspection.md) |
