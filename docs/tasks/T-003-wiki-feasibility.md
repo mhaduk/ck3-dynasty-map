@@ -1,10 +1,10 @@
 # T-003 — GitHub Wiki feasibility and content preparation
 
-Selected by the user on 2026-10-22. Status: COMPLETE locally — feasibility review
-and three-section draft accepted by GUI on 2026-10-22. No public Wiki content
-was written or published.
+Selected by the user on 2026-10-22. Status: COMPLETE — feasibility review,
+three-section draft and live Wiki publication accepted by GUI on 2026-10-22.
 Target: [mhaduk/ck3-dynasty-map Wiki](https://github.com/mhaduk/ck3-dynasty-map/wiki).
-No GitHub issue or wiki write is authorized by this task.
+No GitHub issue was created. The user separately authorized Wiki publication
+and repository commit/push on 2026-10-22.
 
 ## Goal
 
@@ -55,11 +55,12 @@ prepare a reviewable draft for three requested sections:
 
 ## Permissions and limits
 
-This is read-only GitHub capability research plus local draft preparation.
-Do not create or edit GitHub issues, wiki pages, repository settings, files in
-the wiki Git repository, or any public content. Do not stage, commit, push,
-publish, or change remote state. A later user authorization is required before
-uploading the screenshot or creating wiki pages. Do not access the CK3 game UI.
+The feasibility stage was read-only GitHub research plus local draft
+preparation. A later user authorization permitted editing the existing Wiki
+Home page. The guide remains TODO and the temporary screenshot candidate was
+not uploaded. A subsequent user authorization permitted committing and
+pushing the T-003 repository documentation changes. Do not access the CK3 game
+UI.
 
 ## Deliverables
 
@@ -96,10 +97,11 @@ the repository, and read-only `.wiki.git` lookup returned Repository not
 found. Keep initialization as unknown until a separately authorized setup.
 
 The three-section draft passed GUI review. It follows F-003 semantics, marks
-the guide TODO and uses the user-supplied green/grey comparison as a temporary
+the guide TODO and used the user-supplied green/grey comparison as a temporary
 relative image candidate. The screenshot is appearance reference only; its
-clipped UI and incomplete metadata review mean a cleaned/exported copy must be
-reviewed before upload.
+clipped UI and incomplete metadata review meant a cleaned/exported copy would
+need review before upload. The published guide remains TODO and the image was
+not uploaded.
 
 At the 2026-10-22T16:38:31Z inventory cutoff, the categorized closed-task
 subtotal was 134,866,114 measured tokens and 130,108,032 cached input tokens:
@@ -114,8 +116,22 @@ subtotal was 134,866,114 measured tokens and 130,108,032 cached input tokens:
 Unclassified closed chore #17 adds 3,976,814 measured tokens and 3,786,112
 cached input tokens, for 138,842,928 total and 133,894,144 cached across all
 12 closed issues. Every included AI-cost table has partial coverage and the
-same earlier counter cutoff, 2026-10-22T13:15:22Z. No applicable Codex
-credit-to-USD billing basis was established, so USD remains N/A rather than
-using unrelated API prices. The draft and feasibility receipt remain in the
-ignored local handoff artifacts; no wiki, issue, repository or Git publication
-was performed. A later publication requires separate authorization.
+same earlier counter cutoff, 2026-10-22T13:15:22Z. At initial draft time USD
+was N/A because no applicable Codex credit-to-USD billing basis was
+established. After the user clarified that the desired metric was an
+API-equivalent estimate, current model API rates were applied to known model
+usage and the estimates were published rounded to cents: R $15.38, T $4.17,
+F/B N/A (no eligible tasks). The per-task table includes the unclassified #17
+estimate of $0.06 as its own row. These are rough API-equivalent estimates for
+measured usage, not subscription cost or complete lifetime task cost; token
+coverage remains partial. The user then requested that the AI-cost section
+contain only the two tables. The published section now has a four-row R/T/F/B
+summary table followed by a detailed per-task table, without method,
+assumptions or explanatory prose. The other two Wiki sections remain intact.
+
+The existing Home page was saved through the GitHub Wiki editor and the
+published page was verified after save. No separate Wiki Git clone or CLI push
+was needed: the editor write published the page directly. This repository
+commit records the project-side T-003 completion; it does not republish the
+Wiki. Continue adding API-equivalent USD estimates when new AI-cost entries
+are added, using their model and input/cached-input/output token counts.

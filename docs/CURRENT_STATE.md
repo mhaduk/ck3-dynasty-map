@@ -4,7 +4,7 @@ Updated 2026-10-22. This is the operational checkpoint; detailed evidence stays 
 
 ## Last completed tooling task — T-003
 
-- [T-003 — GitHub Wiki feasibility and content preparation](tasks/T-003-wiki-feasibility.md) is COMPLETE locally on 2026-10-22. Read-only metadata confirms Wiki enabled and authenticated permission flags, but initialization remains unverified. GUI accepted the three-section local draft; categorized closed work totals 134,866,114 measured tokens / 130,108,032 cached input tokens, with USD N/A because the Codex billing basis could not be mapped to dollars. No wiki or GitHub publication occurred; separate authorization is required.
+- [T-003 — GitHub Wiki feasibility and content preparation](tasks/T-003-wiki-feasibility.md) is COMPLETE on 2026-10-22. The three-section Wiki Home is published; its AI-cost section contains only the R/T/F/B summary and per-task tables, with API-equivalent USD estimates ($15.38 R, $4.17 T; F/B have no eligible closed tasks). Measured token coverage remains partial. The temporary screenshot was not uploaded.
 
 ## Last completed tooling task — T-002
 
