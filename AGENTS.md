@@ -4,6 +4,16 @@
 
 - For ordinary GUI startup, read [CURRENT_STATE.md](docs/CURRENT_STATE.md), then [TASK_HISTORY.md](docs/TASK_HISTORY.md), then only the active task's relevant context. Reuse findings until inputs, build, evidence or user instructions change.
 - `pobierz zadanie [ID]` picks up a READY handoff; `gotowe [ID]` reviews a completed result. For a named ID, inspect its per-ID task/status first, independently of the legacy inbox. Bare commands require a sole eligible candidate across per-ID and active legacy handoffs. Follow [CODEX_WORKFLOW.md](docs/CODEX_WORKFLOW.md); missing, inconsistent or ineligible handoffs never fall back to product tasks.
+- Every GUI-to-CLI handoff message to the user must end with this four-row Markdown table, with all values filled in:
+
+  | | Command / value |
+  |---|---|
+  | CLI pickup | `pobierz zadanie <ID>` |
+  | GUI receipt | `gotowe <ID>` |
+  | Model / reasoning level | `<recommended model> / <level>` |
+  | Estimated CLI time | `<realistic range in minutes>` |
+
+  Choose the model from the workflow routing guidance, state that it is a recommendation unless runtime confirms it, and estimate time from the bounded scope and known unknowns. For a successful CLI-to-GUI handoff, the user-facing completion message must contain only `SUCCESS` and `gotowe <ID>`; keep details in `CLI_RESULT.md`. Report failures or blocked work truthfully and separately.
 - Before substantial work, choose GUI or CLI using the workflow routing table. Bounded research, documentation and file work default to CLI. GUI coordinates, decides and reviews. Keep one substantial backlog task per chat; do not repeat GUI research in CLI.
 - For each material stage, report observation, cause or unknown, recovery, outcome and a useful instruction/tool improvement. Report recovered command/path/tool failures; do not hide them. See the self-healing section in CODEX_WORKFLOW.
 

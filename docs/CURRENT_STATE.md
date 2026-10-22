@@ -2,6 +2,10 @@
 
 Updated 2026-10-22. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+## Last completed tooling task — T-003
+
+- [T-003 — GitHub Wiki feasibility and content preparation](tasks/T-003-wiki-feasibility.md) is COMPLETE locally on 2026-10-22. Read-only metadata confirms Wiki enabled and authenticated permission flags, but initialization remains unverified. GUI accepted the three-section local draft; categorized closed work totals 134,866,114 measured tokens / 130,108,032 cached input tokens, with USD N/A because the Codex billing basis could not be mapped to dollars. No wiki or GitHub publication occurred; separate authorization is required.
+
 ## Last completed tooling task — T-002
 
 - [T-002 — Per-task AI token accounting](tasks/T-002-task-ai-cost.md) is COMPLETE locally on 2026-10-22. GUI accepted T-002-FIX: 27 offline tests passed; independent 3006-record recomputation exactly matched the frozen result. Source-identity and missing-detail defects are corrected.
