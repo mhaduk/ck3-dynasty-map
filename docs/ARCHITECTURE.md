@@ -4,6 +4,10 @@
 
 This document defines the intended architecture during M0. R-016 now targets installed CK3 1.20.1.2 (Crozier); earlier evidence retains its 1.20.1.1 provenance. RESEARCH.md records VERIFIED generated script_docs signatures and scope links. Other API names, file paths and integration behavior remain candidates until supported by installed-file, generated-doc or runtime evidence. Open **Research Gates** still block the implementation decisions they cover.
 
+## Current research ownership — T-005, 2026-10-23
+
+R-005 owns the safe dispatch/context contract and the no-Dynasty fixture-or-coverage decision merged from R-013. R-009 owns exact arbitrary-original RGB restore, isolation and save/removal. R-007/R-008/R-010 research is closed completed; F-001 owns ordinary classifier/projection/menu/Refresh/parity acceptance. R-016 bounded smoke and current prepared/installed fixes do not pass those gates. Historical checkpoint descriptions below retain their evidence limits. See [T-005](tasks/T-005-research-backlog-review.md).
+
 ## Logical components
 
 ```mermaid
@@ -101,8 +105,8 @@ demonstrated local ephemeral buffer or independent named-map binding. Both
 automatic enrollment paths can be disabled and authored gameplay hooks omitted;
 zero-participant rendering, exact county/barony coverage, competing Situation
 selection, saved/shared behavior and exit/removal safety remain unverified.
-The route remains unevaluated for production pending those unknowns; this is
-not approval or static disproof. The user has not rejected persistent state in
+ADR-009 excludes this route; these findings remain historical, not a current
+production investigation or approval. The user has not rejected persistent state in
 general; the concern is repurposing unrelated titles or Situations as fragile
 map workarounds. Shared shader recoloring also lacks a demonstrated dynamic
 classification input/view gate.
@@ -112,10 +116,10 @@ No strategy or ADR semantics are changed; implementation stays gated.
 
 ### 4. GUI integration
 
-**Research Gate RG-UI-01**: R-002/R-003 statically inspected installed 1.20.1.1
+**RG-UI-01 historical method-selection checkpoint (research closed by T-005):** R-002/R-003 statically inspected installed 1.20.1.1
 map definitions and GUI. Native named blocks and explicit faith sub-mode buttons
 exist, but separate-file insertion into the live HUD is unverified; the banner
-instance overrides shared defaults. See RESEARCH.md. The gate remains open. The public custom-map-mode guide was last verified against a very old CK3 version, while the recorded patch references report sub-map-mode display changes in CK3 1.20. Verify the installed behavior during M0, including unavailable UI, re-click/manual refresh and exit/restore hooks.
+instance overrides shared defaults. See RESEARCH.md. F-001 now owns remaining ordinary UI acceptance. The public custom-map-mode guide was last verified against a very old CK3 version, while the recorded patch references report sub-map-mode display changes in CK3 1.20. Verify the installed behavior during M0, including unavailable UI, re-click/manual refresh and exit/restore hooks.
 
 Preferred order:
 

@@ -1,5 +1,8 @@
 # R-005 — Player context and unavailable-state checkpoint
 
+**Current disposition — 2026-10-23: REDUCE / open.** R-005 owns the narrow safe dispatch/context-invalidation contract and absorbs R-013’s unresolved real no-Dynasty player fixture-or-coverage decision (#13 closed not planned as duplicate ownership). Do not repeat the rejected fixture or NULL diagnostic. Stop with a supported contract and decisive evidence or an explicit blocked boundary; an absent fixture requires an accepted coverage decision, never a silent pass. F-001 owns ordinary unavailable-UI acceptance; R-009 owns RGB restoration. The 1.20.1.1 evidence below remains historical; 1.20.1.2 valid-context R-016/F-001 execution does not close ADR-008. See [T-005](T-005-research-backlog-review.md). Earlier R-013 ownership and “next R-009” instructions below are dated history.
+
+
 **Status: Partial / open.** Target: CK3 1.20.1.1 (Crozier), Steam build 25913294. This checkpoint consolidates evidence for R-005 / GitHub #5; it does not close the issue, waive ADR-008 or establish production readiness. See the [R-005 evidence index](../evidence/2026-10-20-r005-player-context/README.md) and [consolidated research](../RESEARCH.md#r-005--consolidated-status-2026-10-20).
 
 ## Result by gate

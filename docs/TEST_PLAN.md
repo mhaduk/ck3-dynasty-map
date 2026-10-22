@@ -17,10 +17,14 @@ Record for every test run:
 
 ## Baseline procedure
 
-1. Launch vanilla with `-debug_mode -develop`.
-2. Capture baseline `error.log` noise before enabling the mod.
-3. Enable only Dynasty Map for core validation.
-4. Keep a separate compatibility playset for interaction tests.
+T-005 retires a blanket R-011 capture and mandatory R-012 setup. For a concrete
+attribution gap, F-001/T-113 owns a matched vanilla control using recorded build,
+DLC/playset, save and action boundaries. Reuse accepted evidence first; complete
+T-001 intervals do not prove causality or clean logs. Preserve unresolved errors.
+Core feature checks use the existing test playset; any additional game actions
+require separately scoped user-led execution. Tiger is optional under T-113 only
+when a supported static-check gap justifies evaluation; it is not an API authority
+or replacement for source/preflight/parser/runtime gates.
 
 ## Milestone coverage
 
@@ -29,7 +33,8 @@ review textual consistency, links and diffs instead. Do not imply game tests ran
 
 v0.1 requires minimum smoke/regression coverage of safe activation,
 classification, rendering, dependable refresh, exit/restore and unavailable-state
-behavior. Run Tiger and compare error.log with the vanilla baseline. Record
+behavior. Review bounded error evidence and obtain a matched vanilla control
+when attribution requires it; evaluate Tiger only for a concrete static-check gap. Record
 visible refresh hitch observations; a deep profiling baseline is added in v0.2.
 
 v0.2 adds deeper government/state regression, save/load and add/remove testing,
@@ -45,7 +50,7 @@ untested behavior and known limitations.
 |---|---|
 | Activate with valid player and Dynasty | Correct selected ADR-010 dark/light/grey county classification and barony rendering; no new mod-caused log errors |
 | No valid local player | My Dynasty unavailable; activation performs no classification or color writes; no all-neutral substitute |
-| Player has no valid Dynasty | Same unavailable behavior, verified independently from missing player; fixture/UI prerequisite deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) |
+| Player has no valid Dynasty | Same unavailable behavior, verified independently from missing player; unresolved fixture-or-coverage decision now owned by R-005 (R-013 merged) |
 | Manual refresh/re-activation after holder or liege change | Updated correct map through M0-verified re-click, or the smallest explicit refresh mechanism if re-click is unsupported |
 | Repeat activation/refresh | Stable results, guarded scopes and no accumulating visual state |
 | Player context becomes invalid while active | Stop using old Dynasty; clear/restore visual state as far as the verified API permits; record limitations and prove no stale-context classification |
@@ -54,11 +59,13 @@ untested behavior and known limitations.
 | Render lowborn/no-Dynasty holder under qualifying dynastic liege | Evaluate all seniors using the selected ADR-010 view; never automatically grey |
 
 M0 must determine UI disabling/hiding and player-context invalidation under
-R-005/R-010; R-009 separately owns title-color exit/context-loss restoration.
+R-005, with ordinary UI acceptance in F-001; R-009 separately owns title-color exit/context-loss restoration.
 Clearing a GUI marker or restoring launcher selection does not restore colors.
 Unavailable activation must not classify or write colors; restoration cleanup on
 loss of an active context is a separate operation and may need restore writes.
 Use runtime/probe evidence sufficient to demonstrate those distinctions.
+
+Current ownership after T-005: F-001 owns hierarchy/projection/UI acceptance from closed R-007/R-008/R-010, including deep/government cases, exact barony coverage, selected-view Refresh receipts and native/DLC/UI-scale parity. R-005 owns dispatch/context and merged no-Dynasty coverage; R-009 exact RGB restore/save/removal. The dated snapshots below retain earlier issue references as history, not parallel live owners. No test was run in T-005.
 
 ## M0 R-005 diagnostic coverage snapshot — 2026-10-20
 

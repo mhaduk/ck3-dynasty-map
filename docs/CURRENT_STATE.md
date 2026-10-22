@@ -1,6 +1,13 @@
 # Current State
 
-Updated 2026-10-22. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
+Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
+
+## Last completed tooling task — T-005
+
+- [T-005](tasks/T-005-research-backlog-review.md) is COMPLETE after independent substantive GUI review on 2026-10-23; [#27](https://github.com/mhaduk/ck3-dynasty-map/issues/27) is closed completed with verified final table and all acceptance items. Eight research issues reviewed: 0 unchanged, R-005/R-009 narrowed, R-007/R-008/R-010 closed completed, R-011/R-012/R-013 closed not planned. Live bodies/history/comments/reasons independently checked; no other open R issue found.
+- R-005 owns dispatch/context and the merged unresolved no-Dynasty fixture-or-coverage decision. R-009 owns exact original-color restoration/isolation/save/removal. Ordinary classifier/projection/UI acceptance remains in F-001 and existing tests. The concurrent F-001 GUI receipt strengthens emitted-record agreement but strict audit remains INCOMPLETE; no context, stored-RGB, global-census or lifecycle pass follows. F-001 remains incomplete and is not resumed in this chat.
+- Cross-chat receipt conflict is RESOLVED by accepted/consumed `T005-F001-RECONCILE-20261023-02`: preserved original results/baselines and verified drift, then accepted a new receipt over frozen copied contexts. Both original tasks remain historical COMPLETED; pending integration is superseded, not force-consumed. F-001 remains incomplete with the reviewed strict audit INCOMPLETE.
+- Necessary local documentation is synchronized. On 2026-10-23 the user explicitly authorized scoped commit/push of T-005 and this reconciliation. Unrelated F-001 source, tooling and detailed local history remain outside this publication. No agent configuration, implementation, installation or game action is part of this work.
 
 ## Last completed tooling task — T-003
 
@@ -16,7 +23,7 @@ Updated 2026-10-22. This is the operational checkpoint; detailed evidence stays 
 
 - [T-001 — Incremental agent workflow optimization](tasks/T-001-agent-workflow-optimization.md) is COMPLETE, 2026-10-22; tracked in [Issue #23](https://github.com/mhaduk/ck3-dynasty-map/issues/23), which records the scoped publication receipt. GUI accepted the handoff foundation and corrected log helper; all 37 offline tooling tests passed. Child results/reviews are preserved locally.
 - Use per-ID `pobierz zadanie <ID>` / `gotowe <ID>`, separate output ownership and one integrator for shared files. Bounded conceptual/file/log work defaults to the documented CLI profiles; read only relevant context. Log reports separate interval completeness, observations and expectations.
-- No next task is selected. F-001 remains PAUSED; its unrelated uncommitted work is excluded from T-001 publication. The user authorized T-001 commit/push and Issue #23 only. No new game/launcher/process, mod/install/live-log or unrelated Git/GitHub work is authorized. Actual token/latency savings are not yet measured.
+- At T-001 closeout no next task was selected and F-001 was paused; its unrelated uncommitted work is excluded from T-001 publication. The user authorized T-001 commit/push and Issue #23 only. No new game/launcher/process, mod/install/live-log or unrelated Git/GitHub work is authorized. Actual token/latency savings are not yet measured.
 
 ## Environment and project boundary
 
@@ -24,11 +31,11 @@ Updated 2026-10-22. This is the operational checkpoint; detailed evidence stays 
 - Milestone M0 research/bootstrap. No production mod or classifier is implemented. Preserve ADR semantics and unrelated dirty work.
 - The user requires map-system interfaces (ADR-009). Decision/council selectors, Situations and religious-object carriers are excluded. R-016 demonstrated a bounded title-RGB/baronies pipeline; an independent lifecycle-safe classification input remains unproven. Do not repeat broad scans or prepare a carrier probe.
 
-## Paused product task — F-001
+## Selected product task — F-001
 
-- [F-001 — Dynasty map menu and visual contract](tasks/F-001-dynasty-map-ux.md), Issue #20, remains PAUSED at the user's request and incomplete. The user accepted native Baronies grey/green as the visual target; custom Dynasty Realms tint was weak. User-supplied comparison images and the nine-barony trace are preserved privately. Darghan was Neutral; Bukhara's Secondary result conflicts with expected Primary. Other views, full UI behavior and safety remain untested.
-- Resume only from the local GUI handoff and the 2026-10-22 continuation direction in the canonical F-001 record: narrowly compare native/custom display definitions and bindings, keeping Bukhara classification separate. Do not repeat startup, asset or scenario research or request a new game run by default. F-004 icons remain deferred; F-002 color strategy remains planned and unselected.
-- F-001 authorizes no further tests, computation, source/install/launcher changes while paused. The user alone runs CK3. Preserve the existing playset and installed test state.
+- F-001 remains incomplete. Cross-chat receipt integration with T-005 is resolved by accepted/consumed `T005-F001-RECONCILE-20261023-02`, preserving both original frozen results. See the [current reconciled evidence checkpoint](tasks/F-001-dynasty-map-ux.md#current-reconciled-evidence--2026-10-23).
+- Accepted GUI investigation reports 14,109 emitted role/intended-RGB agreements across 4,703 emitted counties per view, including corrected Bukhara. Strict audit remains INCOMPLETE because declared counters are zero; census, stored RGB, pixels and lifecycle safety remain unproven. Counter/export diagnosis from existing evidence is the next bounded feature step; court-scene error attribution stays separate. No automatic new game action is requested.
+- User-approved supplied appearance is preserved. R-005 owns context/no-Dynasty coverage; R-009 exact restoration/isolation/save/removal. The source candidate and detailed local F-001 execution history remain outside this scoped publication.
 
 ## Reusable completed findings and open gates
 

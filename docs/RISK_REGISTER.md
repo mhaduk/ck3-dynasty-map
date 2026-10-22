@@ -25,10 +25,12 @@
 | RK-21 | Ironman/achievement compatibility is unknown | Unknown | Medium | Make no support claim until explicitly tested against a recorded build and playset |
 | RK-22 | Shades are inaccessible or neutral territory is confused with unavailable mode | Unknown | Medium | Review contrast/accessibility; unavailable mode must not render an all-neutral substitute; verify unavailable UI in M0 |
 | RK-23 | GUI type extension resolves cyclically and crashes at startup | Observed in R-010 probe | High | Failed same-name probe quarantined; verify vanilla recovery; require different evidence-backed integration before another test |
-| RK-24 | Independent classification may lack a supported view-specific renderer input | Unresolved engine boundary | High | No generic upload identified. Situation has county add/remove and region RGB inputs, but uses world objects/view selection; zero-participant coverage, independent binding, cleanup and save/removal remain unverified. Resume source-led review after R-014; no probe prepared or production route approved |
+| RK-24 | Independent classification may lack a supported view-specific renderer input | Unresolved engine boundary | High | R-009 owns shared title-RGB isolation/exact restore/save/removal; no independent input demonstrated. ADR-009 excludes Situation/carrier alternatives; no new broad scan. R-016 bounded execution is not a lifecycle-safe production route |
 
 R-016 closeout (2026-10-21): bounded three-view pipeline/UI smoke does not
 resolve RK-16/17/20/24. RK-22 is now an observed visual acceptance failure: unrelated
 continental county land is not clearly grey; F-001 owns diagnosis and contrast.
 F-002 investigates accent sources with fixed-palette fallback; accessible native
 Dynasty RGB remains unproven. R-017 supplies stronger natural fixtures.
+
+T-005 ownership update (2026-10-23): RK-12/20 and no-Dynasty coverage belong to R-005 (R-013 merged); RK-16/17/24 to R-009. F-001 owns remaining ordinary menu/parity, hierarchy and projection acceptance after R-007/R-008/R-010 research closure. Later F-001 visuals are user-accepted for the supplied views; the older RK-22 failure above is historical, not a new requested redesign. Full classification/lifecycle acceptance remains open.

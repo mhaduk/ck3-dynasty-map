@@ -1,5 +1,8 @@
 # R-009 — Barony color side effects, isolation and restore
 
+**Current disposition — 2026-10-23: REDUCE / open.** Keep only the current map-native renderer safety question: exact restoration of arbitrary live originals, shared title-RGB isolation and save/load/removal feasibility. R-016’s 1.20.1.2 bounded execution and F-001 visual approval do not establish these. First identify a concrete supported capture/restore or isolated input contract; stop with evidence or a precise blocked renderer decision. No repeat broad scans, excluded carriers, dummy-title inertness project or palette-source duplication; F-002 owns accent/fallback, R-005 dispatch/context loss, F-001 normal UI acceptance. Local/saved-scope cleanup is not title RGB restoration. See [T-005](T-005-research-backlog-review.md). Historical proposals below are superseded as next steps.
+
+
 Status: PARTIAL / active. Target: CK3 1.20.1.1 (Crozier).
 Updated: 2026-10-21. Issue: [#9](https://github.com/mhaduk/ck3-dynasty-map/issues/9).
 

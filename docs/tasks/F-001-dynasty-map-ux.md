@@ -1,5 +1,23 @@
 # F-001 — Dynasty map menu and visual contract
 
+## Current reconciled evidence — 2026-10-23
+
+The cross-chat receipt conflict with T-005 is resolved by accepted reconciliation
+`T005-F001-RECONCILE-20261023-02`. Both original frozen results and baselines are
+preserved; the new receipt supersedes their pending integration. T-005 is complete;
+F-001 remains incomplete. No feature implementation or new game test is part of
+this reconciliation. Older blocked-receipt statements below describe their dates.
+
+The accepted F-001 GUI investigation found 14,109 emitted role/intended-RGB
+agreements across 4,703 emitted counties per view, including corrected Bukhara.
+Strict audit remains INCOMPLETE because declared counters are zero; global census,
+stored RGB, pixels and lifecycle safety remain unproven. Next bounded work is
+counter/export diagnosis using existing evidence; court-scene error attribution is
+separate. R-005 owns context/no-Dynasty coverage and R-009 restoration/save/removal.
+This checkpoint publishes the reviewed outcome, not the still-unpublished source
+candidate or its detailed local execution history.
+
+
 Issue: [#20](https://github.com/mhaduk/ck3-dynasty-map/issues/20).
 
 Status: PLANNED successor specification; no implementation authorized here.

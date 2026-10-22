@@ -3,13 +3,19 @@
 **Research date:** 2026-10-20
 **Reported public CK3 release at research time (reference baseline, not installed-build verification):** 1.20.1 "Crozier" (2026-10-13). Paradox stated that subsequent changes were being targeted at the forthcoming 1.21 update, so the implementation target must be re-checked on the gaming Mac before coding.
 
-## Current architecture boundary — 2026-10-21
+## Current architecture boundary — 2026-10-23
 
-ADR-009 requires map-system interfaces. Decision/council selectors, Situations
-and religious-object carriers are excluded. Earlier carrier hypotheses below
-remain technical history, not accepted next steps. No map-native custom
-classification input has yet been demonstrated; binary views were not adopted
-as a replacement for G1.
+ADR-009 requires map-system interfaces; earlier carrier hypotheses are historical.
+R-016 demonstrated a bounded shared title-RGB/baronies pipeline on 1.20.1.2,
+without independent view storage, safe exact restoration or removal acceptance.
+T-005 narrows open research to R-005 (dispatch/context and merged R-013 coverage)
+and R-009 (RGB lifecycle/save/removal). R-007/R-008/R-010 are closed completed
+research; their ordinary classifier/projection/UI tests belong to F-001.
+R-011/R-012 are closed not planned: matched attribution controls and optional
+validator evaluation belong to T-113/current feature acceptance when needed.
+Historical partial statuses and next steps below retain their dates; current
+ownership is summarized in the [T-005 review](tasks/T-005-research-backlog-review.md).
+No game test, architecture waiver or production implementation follows.
 
 ## Reusable findings by subject
 
@@ -24,9 +30,9 @@ are summarized here and in CURRENT_STATE.md.
 | Target build and evidence quality | [Evidence policy](#evidence-policy-and-target-build-status); [generated API baseline](#verified--ck3-12011-crozier-generated-script_docs) | 1.20.1.1 signatures verified; runtime limits stated per finding |
 | Player context and validity | [R-005 consolidated status](#r-005--consolidated-status-2026-10-20) | Partial / open, R-005 |
 | Scope transitions | [Formal scope links](#formal-scope-links--r-006--r-008) | Static links verified, R-006/R-008 |
-| Liege traversal | [Liege traversal](#liege-traversal--r-007) | Signature verified; runtime pending, R-007 |
+| Liege traversal | [Liege traversal](#liege-traversal--r-007) | Research closed; remaining classifier/government acceptance in F-001 and later tests |
 | Map-mode definitions | [R-002 findings](#verified--r-002-installed-map-mode-definitions-2026-10-20) | Static inspection complete; custom loading/runtime pending |
-| GUI and map lifecycle | [R-003 inspection](#verified--r-003-installed-gui-bindings-2026-10-20); [R-010 registration](#verified--r-010-additive-widget-registration-documentation-2026-10-20) | Integration/lifecycle gates open, R-010 |
+| GUI and map lifecycle | [R-003 inspection](#verified--r-003-installed-gui-bindings-2026-10-20); [R-010 registration](#verified--r-010-additive-widget-registration-documentation-2026-10-20) | Integration research closed; F-001 UI acceptance, R-005/R-009 safety open |
 | Color effects and state | [Title-color effects](#title-color-effects--r-009--rg-state-01); [remaining unknowns](#still-unknown) | Signatures verified; rendering/isolation/restore open, R-009 |
 | Binary Dynasty-view proposal | [Binary feasibility](#r-009-two-binary-player-views--static-feasibility-2026-10-21) | Historical predicate findings; carrier route excluded by ADR-009; area fill/lifecycle unverified, R-009 |
 | Clerical Regions reuse | [Clerical static checkpoint](#r-015--clerical-regions-static-checkpoint-2026-10-21) | Constrained membership exposed; advertised add/remove pair and independent binding unresolved; intended stripe rule documented; R-015 closed as not planned, evidence partial |
@@ -965,11 +971,23 @@ This is a **hard research gate** before implementing UI.
 
 ## Open research gates
 
-### RG-UI-01 — Current UI insertion method
-Can the installed build add custom modes without replacing the full vanilla map-mode GUI? Determine UI disabling/hiding for unavailable My Dynasty (ADR-008), valid activation, a dependable refresh path and exit/restore. Verify re-click before using it; otherwise select the smallest explicit refresh mechanism needed for v0.1.
+### RG-UI-01 — Integration method research closed; acceptance open
 
-### RG-PLAYER-01 — Local player scope
-The gate remains open. Explicit fresh player roots have passed diagnostic execution, and FINAL GUARDS A passed for the tested displayed UI path into observer. This is not an error-free internal NULL boundary or proof of all transition races. The separate no-Dynasty local-player UI check is deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13) after the one-shot fixture was rejected. ADR-008 remains required: with no valid local player or player Dynasty, My Dynasty is unavailable and performs no classification/color writes. Context-loss cleanup/restoration remains distinct and unverified; R-009 owns color restoration. See the [R-005 canonical checkpoint](tasks/R-005-player-context.md).
+R-010’s original scoped replacement and R-016 menu/panel provide a demonstrated
+bounded path without a vanilla copy. F-001 owns ordinary menu/subview/explicit
+Refresh, native parity, DLC/UI-scale and compatibility acceptance. No universal
+load-order rule or full parity pass follows. R-005 owns safe dispatch and R-009
+actual restore; do not keep a duplicate engine-research gate here.
+
+### RG-PLAYER-01 — Dispatch and context safety (R-005)
+
+Open: the tested observer UI after RESET and fresh valid-root diagnostics do
+not establish atomic entry or invalid-root safety. R-005 now also owns the
+unresolved real no-Dynasty player fixture-or-coverage decision merged from
+R-013. Stop with a supported contract and decisive evidence or a precise blocked
+boundary. ADR-008 guards/no unavailable classification remain mandatory; no
+coverage waiver or repeated rejected fixture/NULL test. R-009 owns RGB restore,
+F-001 normal UI acceptance. See the [R-005 checkpoint](tasks/R-005-player-context.md).
 
 ### RG-COLOR-01 — All Dynasties color source
 Does the native House map expose any reusable House/Dynasty color data or grouping hook?
