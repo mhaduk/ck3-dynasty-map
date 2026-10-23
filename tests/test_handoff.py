@@ -522,6 +522,269 @@ class HandoffTests(unittest.TestCase):
             self.run_cli(args[0], "T-001-STALE-ALL", *args[1:], ok=False)
             self.assertEqual(before, self.snapshot(directory))
 
+    def plan(self, count=3):
+        return {"total_steps": count, "steps": [{"id": f"stage{i}", "label": f"Major stage {i}"} for i in range(count)]}
+
+    def planned(self, task_id="T-007-PLAN", count=3):
+        self.run_cli("create", task_id, "--parent", "T-007", "--task", "Bounded offline work.",
+                     "--input", "input.md", "--check", "unit suite", "--execution-plan", json.dumps(self.plan(count)))
+        directory = self.root / ".codex-sync/tasks" / task_id
+        self.claim(task_id)
+        return directory
+
+    def progress(self, directory, *action, ok=True, owner="worker-a", revision=None):
+        return self.run_cli("progress", directory.name, "--owner", owner, "--revision",
+                            str(revision if revision is not None else self.status(directory)["revision"]), *action, ok=ok)
+
+    def finish_stage(self, directory, milestone):
+        self.progress(directory, "--start", milestone)
+        return self.progress(directory, "--done", milestone)
+
+    def test_plan_validation_before_ready_has_no_partial_task(self):
+        invalid = [None, [], {}, {"total_steps": True, "steps": []}, self.plan(0), self.plan(21),
+                   {**self.plan(), "total_steps": 2},
+                   {"total_steps": 2, "steps": [self.plan()["steps"][0]] * 2},
+                   {"total_steps": 1, "steps": [{"id": "../escape", "label": "Read"}]},
+                   {"total_steps": 1, "steps": [{"id": "read", "label": "escape\x1b"}]},
+                   {"total_steps": 1, "steps": [{"id": "read", "label": " "}]},
+                   {"total_steps": 1, "steps": [{"id": "read", "label": "Read", "extra": 1}]}]
+        for index, plan in enumerate(invalid):
+            task_id = f"T-007-BAD-{index}"
+            self.run_cli("create", task_id, "--parent", "T-007", "--task", "Work",
+                         "--execution-plan", json.dumps(plan), ok=False)
+            self.assertFalse((self.root / ".codex-sync/tasks" / task_id).exists())
+        self.run_cli("create", "T-007-JSON", "--parent", "T-007", "--task", "Work", "--execution-plan", "{", ok=False)
+        self.run_cli("create", "T-007-EMPTY", "--parent", "T-007", "--task", "Work", "--execution-plan", "", ok=False)
+        self.planned("T-007-MAX", 20)
+
+    def test_frozen_inline_plan_bootstrap_and_malformed_blocks(self):
+        task = "Work\n\n```json\n" + json.dumps({"execution_plan": self.plan(1)}) + "\n```\n"
+        self.run_cli("create", "T-007-INLINE", "--parent", "T-007", "--task", task)
+        directory = self.root / ".codex-sync/tasks/T-007-INLINE"
+        self.claim(directory.name)
+        # Simulates a pre-feature frozen task claimed by the previous helper.
+        status = self.status(directory)
+        status.pop("progress")
+        (directory / "STATUS.json").write_text(json.dumps(status))
+        self.progress(directory, "--start", "stage0")
+        self.assertEqual(self.status(directory)["progress"]["plan"], self.plan(1))
+        for index, bad in enumerate((task + task, '```json\n{"execution_plan":\n```\n', task.rsplit("```", 1)[0])):
+            self.run_cli("create", f"T-007-INLINE-BAD-{index}", "--parent", "T-007", "--task", bad, ok=False)
+
+    def test_planless_compatibility_does_not_invent_plan(self):
+        directory = self.create("T-007-OLD")
+        self.assertNotIn("[", self.claim(directory.name).stdout)
+        before = self.snapshot(directory)
+        self.assertIn("planless", self.progress(directory, "--start", "inspect", ok=False).stderr)
+        self.assertEqual(before, self.snapshot(directory))
+        self.write_result(directory)
+        self.run_cli("complete", directory.name, "--owner", "worker-a", "--revision", "2")
+        self.assertNotIn("progress", self.status(directory))
+
+    def test_transition_restart_and_no_fake_drift_or_duplicate_output(self):
+        directory = self.planned()
+        self.assertIn("~0% stage0", self.progress(directory, "--start", "stage0").stdout)
+        before = self.snapshot(directory)
+        # New subprocesses emulate restart and an arbitrary number of ordinary logs/commands.
+        for _ in range(3):
+            self.run_cli("validate", directory.name)
+            self.assertEqual(self.progress(directory, "--start", "stage0").stdout, "")
+        self.assertEqual(before, self.snapshot(directory))
+        self.assertIn("~33%", self.progress(directory, "--done", "stage0").stdout)
+        before = self.snapshot(directory)
+        self.assertEqual(self.progress(directory, "--done", "stage0").stdout, "")
+        self.assertEqual(before, self.snapshot(directory))
+        self.assertIsNone(self.status(directory)["progress"]["current"])
+
+    def test_progress_rejects_unknown_stale_owner_scope_and_input_without_writes(self):
+        directory = self.planned()
+        for action, kwargs in [(("--start", "unknown"), {}), (("--done", "stage0"), {}),
+                               (("--start", "stage0"), {"owner": "intruder"}),
+                               (("--start", "stage0"), {"revision": 1})]:
+            before = self.snapshot(directory)
+            self.progress(directory, *action, ok=False, **kwargs)
+            self.assertEqual(before, self.snapshot(directory))
+        self.progress(directory, "--start", "stage0")
+        before = self.snapshot(directory)
+        self.progress(directory, "--start", "stage1", ok=False)
+        self.assertEqual(before, self.snapshot(directory))
+        for path in (self.root / "input.md", directory / "CLI_TASK.md", directory / "baseline/0.bin"):
+            original = path.read_bytes()
+            path.write_bytes(original + b"drift")
+            before = self.snapshot(directory)
+            self.progress(directory, "--done", "stage0", ok=False)
+            self.assertEqual(before, self.snapshot(directory))
+            path.write_bytes(original)
+        self.progress(directory, "--start", "../outside", ok=False)
+        self.run_cli("progress", "../outside", "--owner", "worker-a", "--revision", "2", "--start", "stage0", ok=False)
+
+    def test_amendment_clamps_percent_preserves_original_and_bounds_evidence(self):
+        directory = self.planned(count=2)
+        frozen = (directory / "CLI_TASK.md").read_bytes()
+        self.finish_stage(directory, "stage0")
+        self.assertEqual(self.status(directory)["progress"]["percent"], 50)
+        plan = self.plan(4)
+        plan["steps"][1]["label"] = "Adapt original intent"
+        self.assertIn("~50%", self.progress(directory, "--amend", json.dumps(plan), "--reason", "Necessary independent validation").stdout)
+        self.assertIn("~50%", self.finish_stage(directory, "stage1").stdout)
+        self.assertIn("~75%", self.finish_stage(directory, "stage2").stdout)
+        self.assertIn("~99%", self.finish_stage(directory, "stage3").stdout)
+        self.assertEqual((directory / "CLI_TASK.md").read_bytes(), frozen)
+        evidence = self.status(directory)["progress"]["amendments"][0]
+        self.assertEqual(evidence["owner"], "worker-a")
+        self.assertEqual(evidence["reason"], "Necessary independent validation")
+        for bad, reason in ((self.plan(21), "Too many"), (self.plan(1), "Remove stage"),
+                            (self.plan(5), ""), (plan, "No change")):
+            before = self.snapshot(directory)
+            self.progress(directory, "--amend", json.dumps(bad), "--reason", reason, ok=False)
+            self.assertEqual(before, self.snapshot(directory))
+        self.run_cli("validate", directory.name)
+
+    def test_completion_gates_percentage_and_consumed_state(self):
+        directory = self.planned(count=1)
+        self.write_result(directory)
+        before = self.snapshot(directory)
+        self.run_cli("complete", directory.name, "--owner", "worker-a", "--revision", "2", ok=False)
+        self.assertEqual(before, self.snapshot(directory))
+        self.finish_stage(directory, "stage0")
+        result = directory / "CLI_RESULT.md"
+        result.write_text(result.read_text().replace("- unit suite: PASS", "- unit suite: FAIL"))
+        self.run_cli("complete", directory.name, "--owner", "worker-a", "--revision", "4", ok=False)
+        self.assertEqual(self.status(directory)["progress"]["percent"], 99)
+        self.write_result(directory)
+        output = self.run_cli("complete", directory.name, "--owner", "worker-a", "--revision", "4").stdout
+        self.assertIn("~100%", output)
+        self.assertIn("GUI review pending", output)
+        self.run_cli("validate", directory.name)
+        before = self.snapshot(directory)
+        self.progress(directory, "--start", "stage0", ok=False)
+        self.assertEqual(before, self.snapshot(directory))
+        self.run_cli("consume", directory.name, "--revision", "5", "--review", "CHANGES REQUIRED: independent review")
+        self.run_cli("validate", directory.name)
+        self.assertEqual(self.status(directory)["progress"]["percent"], 100)
+        self.progress(directory, "--done", "stage0", ok=False)
+
+    def test_failure_retry_archives_progress_and_retains_display_floor(self):
+        directory = self.planned(count=2)
+        self.finish_stage(directory, "stage0")
+        self.progress(directory, "--amend", json.dumps(self.plan(3)), "--reason", "Required verification")
+        revision = self.status(directory)["revision"]
+        self.run_cli("fail", directory.name, "--owner", "worker-a", "--revision", str(revision), "--reason", "Interrupted")
+        failed = self.status(directory)
+        self.assertEqual(failed["progress"]["percent"], 50)
+        before = self.snapshot(directory)
+        self.progress(directory, "--done", "stage1", ok=False)
+        self.assertEqual(before, self.snapshot(directory))
+        self.run_cli("retry", directory.name, "--revision", str(failed["revision"]))
+        self.assertEqual(json.loads((directory / "attempts/1/STATUS.json").read_text()), failed)
+        status = self.status(directory)
+        self.assertEqual(status["progress"]["completed"], [])
+        self.assertEqual(status["progress"]["percent"], 50)
+        self.assertEqual(len(status["progress"]["amendments"]), 1)
+        self.claim(directory.name, revision=status["revision"])
+        self.assertIn("~50%", self.finish_stage(directory, "stage0").stdout)
+
+    def test_progress_rejects_symlink_and_pending_journal_before_mutation(self):
+        directory = self.planned()
+        sentinel = self.temp_root / "outside"
+        sentinel.write_text("unchanged")
+        (directory / "artifacts/link").symlink_to(sentinel)
+        before = self.snapshot(directory)
+        self.assertIn("symlink", self.progress(directory, "--start", "stage0", ok=False).stderr)
+        self.assertEqual(before, self.snapshot(directory))
+        self.assertEqual(sentinel.read_text(), "unchanged")
+        (directory / "artifacts/link").unlink()
+        (directory / ".transition.json").write_text("{}")
+        before = self.snapshot(directory)
+        self.assertIn("pending", self.progress(directory, "--start", "stage0", ok=False).stderr)
+        self.assertEqual(before, self.snapshot(directory))
+
+    def test_progress_plan_evidence_tampering_and_premature_100_rejected(self):
+        directory = self.planned()
+        original = self.status(directory)
+        for change in ({"percent": 100}, {"plan": self.plan(4)}, {"completed": ["unknown"]}, {"completed": [[], []]}):
+            status = json.loads(json.dumps(original))
+            status["progress"].update(change)
+            (directory / "STATUS.json").write_text(json.dumps(status))
+            self.run_cli("validate", directory.name, ok=False)
+        (directory / "STATUS.json").write_text(json.dumps(original))
+
+    def test_progress_atomic_interruption_and_exclusive_lock(self):
+        directory = self.planned()
+        helper = self.load_helper()
+        before = self.snapshot(directory)
+        original = helper.atomic_json
+        import fcntl
+        def interrupt(root, path, value):
+            self.assertEqual(path, directory / "STATUS.json")
+            with (directory / ".status-lock").open("a+") as contender:
+                with self.assertRaises(BlockingIOError):
+                    fcntl.flock(contender.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            raise OSError("injected before progress commit")
+        with mock.patch.object(helper, "atomic_json", interrupt):
+            with self.assertRaisesRegex(OSError, "injected"):
+                self.invoke(helper, "progress", directory.name, "--owner", "worker-a", "--revision", "2", "--start", "stage0")
+        self.assertEqual(before, self.snapshot(directory))
+        def after_commit(root, path, value):
+            original(root, path, value)
+            raise OSError("injected after progress commit")
+        with mock.patch.object(helper, "atomic_json", after_commit):
+            with self.assertRaisesRegex(OSError, "injected"):
+                self.invoke(helper, "progress", directory.name, "--owner", "worker-a", "--revision", "2", "--start", "stage0")
+        committed = self.snapshot(directory)
+        self.assertEqual(self.progress(directory, "--start", "stage0").stdout, "")
+        self.assertEqual(committed, self.snapshot(directory))
+
+    def test_concurrent_progress_only_one_revision_wins(self):
+        directory = self.planned()
+        commands = [[sys.executable, str(SCRIPT), "--root", str(self.root), "progress", directory.name,
+                     "--owner", "worker-a", "--revision", "2", "--start", milestone]
+                    for milestone in ("stage0", "stage1")]
+        workers = [subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) for cmd in commands]
+        output = [worker.communicate(timeout=15) for worker in workers]
+        self.assertEqual(sorted(worker.returncode for worker in workers), [0, 2])
+        self.assertEqual(self.status(directory)["revision"], 3)
+        self.assertEqual(sum("~0%" in stdout for stdout, _ in output), 1)
+        self.assertTrue(any("stale status revision" in stderr for _, stderr in output))
+
+    def test_amendment_count_cap_and_interrupted_attempt_retry(self):
+        directory = self.planned(count=1)
+        for index in range(20):
+            plan = self.plan(1)
+            plan["steps"][0]["label"] = f"Adapt intent {index}"
+            self.progress(directory, "--amend", json.dumps(plan), "--reason", "Preserve original intent")
+        before = self.snapshot(directory)
+        self.progress(directory, "--amend", json.dumps(self.plan(2)), "--reason", "One more", ok=False)
+        self.assertEqual(before, self.snapshot(directory))
+        self.progress(directory, "--start", "stage0")
+        previous = self.status(directory)
+        self.run_cli("retry", directory.name, "--revision", str(previous["revision"]))
+        self.assertEqual(json.loads((directory / "attempts/1/STATUS.json").read_text()), previous)
+        self.assertIsNone(self.status(directory)["progress"]["current"])
+        self.assertEqual(len(self.status(directory)["progress"]["amendments"]), 20)
+
+    def test_temporary_root_end_to_end_progress_transcript(self):
+        transcript = ["Temporary-root offline demonstration; no live task receipt."]
+        self.run_cli("create", "T-007-DEMO", "--parent", "T-007", "--task", "Offline demo", "--check", "unit suite",
+                     "--execution-plan", json.dumps(self.plan(2)))
+        directory = self.root / ".codex-sync/tasks/T-007-DEMO"
+        transcript += ["create: frozen GUI plan with two major stages", self.claim(directory.name).stdout.strip()]
+        transcript.append(self.progress(directory, "--start", "stage0").stdout.strip())
+        transcript.append("ordinary log: inspected bounded fixture")
+        transcript.append(self.progress(directory, "--done", "stage0").stdout.strip())
+        transcript.append(self.progress(directory, "--amend", json.dumps(self.plan(3)), "--reason", "Additional independent fixture verification").stdout.strip())
+        for milestone in ("stage1", "stage2"):
+            transcript.append(self.progress(directory, "--start", milestone).stdout.strip())
+            transcript.append("ordinary log: verified fixture stage")
+            transcript.append(self.progress(directory, "--done", milestone).stdout.strip())
+        self.write_result(directory)
+        revision = self.status(directory)["revision"]
+        transcript.append(self.run_cli("complete", directory.name, "--owner", "worker-a", "--revision", str(revision)).stdout.strip())
+        transcript.append("ordinary log: independent fixture review completed")
+        transcript.append(self.run_cli("consume", directory.name, "--revision", str(revision + 1), "--review", "ACCEPTED: offline demonstration only").stdout.strip())
+        self.run_cli("validate", directory.name)
+        print("\n" + "\n".join(transcript))
+
 
 if __name__ == "__main__":
     unittest.main()

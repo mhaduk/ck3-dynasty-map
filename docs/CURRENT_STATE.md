@@ -2,6 +2,21 @@
 
 Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+## Last completed tooling task — T-007 / #25
+
+GUI accepted T-007 on 2026-10-23 and consumed `T007-PROGRESS-20261023-01`
+after independent source/test/contract review and a successful 36-test rerun.
+GUI-supplied 1–20-stage plans now drive persistent, monotonic CLI progress;
+100% requires the existing completion gates and still leaves GUI review separate.
+See the [canonical record](tasks/T-007-handoff-progress.md). Historical #25 used
+T-003, already occupied by Wiki; T-007 is this task's distinct identity.
+The user authorized scoped cleanup, documentation/Wiki updates, commit and push.
+Issue #25 is closed completed. Wiki publication `4f1f66c` adds the progress
+guide and an unmeasured T-007 cost row (T: 5 closed, 2 measured; $4.17 known-model
+estimate unchanged). Measured T-007 usage is unavailable (N/A, not zero).
+No CK3 actions; F-001 remains paused. Accepted CLI evidence was preserved
+locally before coordinator integration.
+
 ## Last completed tooling task — T-004
 
 - [T-004 / #26](https://github.com/mhaduk/ck3-dynasty-map/issues/26) is COMPLETE after scoped documentation publication and verified issue close. New issue titles use `<ID> — <concise title>`; R/F/T/B templates use explicit placeholders. Wiki Home AI-cost tables were refreshed on 2026-10-23 using current Standard API prices, confirming known-model estimates R $15.38 and T $4.17; measured coverage remains partial and T-004 counters are unavailable (N/A, not zero). See [canonical T-004 record](tasks/T-004-issue-title-convention.md).

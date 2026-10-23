@@ -207,10 +207,161 @@ def inputs_fingerprint(root, paths, optional=()):
     return result
 
 
+def validate_plan(plan):
+    if not isinstance(plan, dict) or set(plan) != {"total_steps", "steps"}:
+        raise HandoffError("execution_plan requires total_steps and steps")
+    steps = plan["steps"]
+    if (type(plan["total_steps"]) is not int or not isinstance(steps, list)
+            or not 1 <= len(steps) <= 20 or plan["total_steps"] != len(steps)):
+        raise HandoffError("execution_plan requires 1–20 matching steps")
+    ids = []
+    for step in steps:
+        if (not isinstance(step, dict) or set(step) != {"id", "label"}
+                or not isinstance(step["id"], str)
+                or not re.fullmatch(r"[a-z][a-z0-9_-]{0,39}", step["id"])
+                or not isinstance(step["label"], str) or not step["label"].strip()
+                or len(step["label"]) > 160 or any(ord(c) < 32 or ord(c) == 127 for c in step["label"])):
+            raise HandoffError("invalid execution_plan milestone ID or label")
+        ids.append(step["id"])
+    if len(set(ids)) != len(ids):
+        raise HandoffError("duplicate execution_plan milestone ID")
+    return plan
+
+
+def frozen_plan(text):
+    plans = []
+    for block, closing in re.findall(r"(?ms)^```json[ \t]*\n(.*?)(^```[ \t]*(?:\n|\Z)|\Z)", text):
+        if not closing and "execution_plan" in block:
+            raise HandoffError("unclosed execution_plan JSON fence")
+        try:
+            value = json.loads(block)
+        except ValueError as exc:
+            if "execution_plan" in block:
+                raise HandoffError("invalid execution_plan JSON") from exc
+            continue
+        if isinstance(value, dict) and "execution_plan" in value:
+            plans.append(validate_plan(value["execution_plan"]))
+    if len(plans) > 1:
+        raise HandoffError("multiple execution plans")
+    return plans[0] if plans else None
+
+
+def plan_argument(raw):
+    try:
+        return validate_plan(json.loads(raw))
+    except ValueError as exc:
+        raise HandoffError("invalid execution_plan JSON") from exc
+
+
+def new_progress(plan):
+    return {"plan": plan, "completed": [], "current": None, "percent": 0, "amendments": []}
+
+
+def check_amendment(before, after):
+    validate_plan(after)
+    old_ids = [s["id"] for s in before["steps"]]
+    if [s["id"] for s in after["steps"]][:len(old_ids)] != old_ids:
+        raise HandoffError("amendment must retain existing milestone IDs and order")
+    if before == after:
+        raise HandoffError("amendment must change the plan")
+
+
+def progress_contract(status, plan):
+    progress = status.get("progress")
+    if progress is None:
+        return  # Old frozen handoffs need no migration; bootstrap on first transition.
+    if plan is None or not isinstance(progress, dict):
+        raise HandoffError("progress requires a frozen GUI plan")
+    if set(progress) != {"plan", "completed", "current", "percent", "amendments"}:
+        raise HandoffError("invalid progress fields")
+    amendments = progress["amendments"]
+    if not isinstance(amendments, list) or len(amendments) > 20:
+        raise HandoffError("invalid progress amendments")
+    for amendment in amendments:
+        if (not isinstance(amendment, dict) or set(amendment) != {"plan", "reason", "owner", "at", "revision"}
+                or not isinstance(amendment["reason"], str) or not amendment["reason"].strip()):
+            raise HandoffError("invalid amendment evidence")
+        check_amendment(plan, amendment["plan"])
+        plan = amendment["plan"]
+    if progress["plan"] != plan:
+        raise HandoffError("progress plan differs from frozen plan/amendment evidence")
+    ids = [s["id"] for s in plan["steps"]]
+    done, current, percent = progress["completed"], progress["current"], progress["percent"]
+    if (not isinstance(done, list) or any(not isinstance(s, str) or s not in ids for s in done)
+            or len(set(done)) != len(done) or (current is not None and (not isinstance(current, str) or current not in ids or current in done))
+            or type(percent) is not int or not 0 <= percent <= 100):
+        raise HandoffError("invalid progress state")
+    finished = status["status"] in {"COMPLETED", "CONSUMED"}
+    if (finished and (percent != 100 or set(done) != set(ids) or current is not None)
+            or not finished and not min(99, len(done) * 100 // len(ids)) <= percent <= 99):
+        raise HandoffError("invalid progress percentage/completion gate")
+
+
+def progress_line(status):
+    p = status.get("progress")
+    if p is None:
+        return None
+    percent = p["percent"]
+    bar = "#" * (percent // 10) + "-" * (10 - percent // 10)
+    milestone = p["current"] or "milestone boundary"
+    suffix = "CLI complete; GUI review pending" if status["status"] == "COMPLETED" else status["status"]
+    return f"{status['id']} [{bar}] ~{percent}% {milestone} ({suffix})"
+
+
+def cmd_progress(args):
+    root = repo_root(args.root)
+    directory = task_dir(root, args.id)
+    with locked(root, directory):
+        no_pending(directory)
+        status = checked_status(root, directory, args.revision)
+        require_owner(status, args.owner)
+        require_state(status, "IN_PROGRESS")
+        contract(root, directory, status)
+        plan = frozen_plan((directory / "CLI_TASK.md").read_text(encoding="utf-8"))
+        if plan is None:
+            raise HandoffError("planless handoff; CLI must not invent initial milestones")
+        p = json.loads(json.dumps(status.get("progress") or new_progress(plan)))
+        original = json.loads(json.dumps(p))
+        if args.amend is not None:
+            if not args.reason or not args.reason.strip() or len(args.reason) > 1000:
+                raise HandoffError("amendment requires a bounded nonempty reason; scope stays frozen")
+            if len(p["amendments"]) >= 20:
+                raise HandoffError("maximum 20 amendments")
+            amended = plan_argument(args.amend)
+            check_amendment(p["plan"], amended)
+            p["amendments"].append({"plan": amended, "reason": args.reason, "owner": args.owner,
+                                    "at": now(), "revision": status["revision"]})
+            p["plan"] = amended
+        else:
+            ids = [s["id"] for s in p["plan"]["steps"]]
+            milestone = args.start or args.done
+            if milestone not in ids:
+                raise HandoffError("unknown milestone ID")
+            if args.start:
+                if milestone in p["completed"]:
+                    raise HandoffError("milestone already completed")
+                if p["current"] not in (None, milestone):
+                    raise HandoffError("finish current milestone before starting another")
+                p["current"] = milestone
+            elif milestone not in p["completed"]:
+                if p["current"] != milestone:
+                    raise HandoffError("start milestone before completing it")
+                p["completed"].append(milestone)
+                p["current"] = None
+        p["percent"] = max(p["percent"], min(99, len(p["completed"]) * 100 // p["plan"]["total_steps"]))
+        if p == original and status.get("progress") is not None:
+            return  # Restart/repeated transition: no revision churn or duplicate bar.
+        updated = next_status(status, progress=p)
+        progress_contract(updated, plan)
+        atomic_json(root, directory / "STATUS.json", updated)
+    print(progress_line(updated) + ("; plan amended" if args.amend is not None else ""))
+
+
 def contract(root, directory, status, initial=False):
     task = safe_path(root, directory / "CLI_TASK.md", "file", required=True)
     if digest(task.read_bytes()) != status["scope_sha256"]:
         raise HandoffError("frozen task description changed")
+    progress_contract(status, frozen_plan(task.read_text(encoding="utf-8")))
     # Initial dirty bytes and their manifest are retained across attempts.
     manifest = read_json(root, directory / "baseline" / "INPUTS.json")
     if manifest != status["inputs"]:
@@ -240,6 +391,12 @@ def cmd_create(args):
         task_text = source.read_text(encoding="utf-8")
     else:
         task_text = args.task
+    if args.execution_plan is not None:
+        plan = plan_argument(args.execution_plan)
+        if frozen_plan(task_text) is not None:
+            raise HandoffError("execution plan already supplied in task")
+        task_text = task_text.rstrip() + "\n\n```json\n" + json.dumps({"execution_plan": plan}) + "\n```\n"
+    frozen_plan(task_text)  # Validate GUI plan before any READY side effects.
     if not task_text.strip():
         raise HandoffError("task description is required")
     if any(not c or "\n" in c or "\r" in c for c in args.check):
@@ -287,8 +444,13 @@ def cmd_claim(args):
         claim.mkdir()
         atomic_bytes(root, claim / "owner", args.owner.encode())
         status = next_status(status, status="IN_PROGRESS", owner=args.owner, claimed_at=now())
+        plan = frozen_plan((directory / "CLI_TASK.md").read_text(encoding="utf-8"))
+        if plan is not None and "progress" not in status:
+            status["progress"] = new_progress(plan)
         atomic_json(root, directory / "STATUS.json", status)
     print(f"claimed {args.id} attempt {status['attempt']} revision {status['revision']}")
+    if progress_line(status):
+        print(progress_line(status))
 
 
 def candidates(root):
@@ -484,6 +646,8 @@ def cmd_retry(args):
                     evidence["claim-owner" if name == ".claim/owner" else name] = source.read_bytes().hex()
             after = next_status(status, attempt=status["attempt"] + 1, status="READY", owner=None,
                                 retry_of_attempt=status["attempt"], retried_at=now())
+            if "progress" in after:
+                after["progress"] = {**after["progress"], "completed": [], "current": None}
             for key in ("claimed_at", "completed_at", "consumed_at", "failure", "recovered_at", "outputs",
                         "result_sha256", "result_provenance", "review_sha256"):
                 after.pop(key, None)
@@ -532,9 +696,17 @@ def cmd_complete(args):
         data = result.read_bytes()
         outputs = inputs_fingerprint(root, status["owned"], optional=status["owned"])
         provenance = result_provenance(data.decode(), status, outputs)
+        progress = status.get("progress")
+        plan = frozen_plan((directory / "CLI_TASK.md").read_text(encoding="utf-8"))
+        if plan is not None:
+            if progress is None or len(progress["completed"]) != progress["plan"]["total_steps"]:
+                raise HandoffError("all supplied milestones must finish before CLI completion")
+            status = {**status, "progress": {**progress, "percent": 100}}
         atomic_json(root, directory / "STATUS.json", next_status(status, status="COMPLETED", completed_at=now(),
                     outputs=outputs, result_sha256=digest(data), result_provenance=provenance))
     print(f"completed {args.id}")
+    if progress_line(status):
+        print(progress_line({**status, "status": "COMPLETED"}))
 
 
 def cmd_consume(args):
@@ -571,6 +743,7 @@ def build_parser():
     p = subs.add_parser("create", help="create one frozen READY task")
     p.add_argument("id"); p.add_argument("--parent", required=True)
     p.add_argument("--task", default=""); p.add_argument("--task-file")
+    p.add_argument("--execution-plan", help="GUI-supplied plan JSON, frozen into CLI_TASK before READY")
     p.add_argument("--input", action="append", default=[], help="immutable dependency (unless also --owned)")
     p.add_argument("--owned", action="append", default=[], help="owned editable input/output, including new files")
     p.add_argument("--check", action="append", default=[]); p.set_defaults(func=cmd_create)
@@ -591,6 +764,11 @@ def build_parser():
         p.set_defaults(func=function)
     p = subs.add_parser("validate", help="validate frozen scope, baseline and applicable fingerprints")
     p.add_argument("id"); p.set_defaults(func=cmd_validate)
+    p = subs.add_parser("progress", help="record one meaningful milestone transition or justified plan amendment")
+    p.add_argument("id"); p.add_argument("--owner", required=True); p.add_argument("--revision", type=int, required=True)
+    actions = p.add_mutually_exclusive_group(required=True)
+    actions.add_argument("--start"); actions.add_argument("--done"); actions.add_argument("--amend", help="replacement plan JSON; retains IDs, may append stages")
+    p.add_argument("--reason"); p.set_defaults(func=cmd_progress)
     return parser
 
 

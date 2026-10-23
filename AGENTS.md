@@ -15,6 +15,7 @@
 
   Choose the model from the workflow routing guidance, state that it is a recommendation unless runtime confirms it, and estimate time from the bounded scope and known unknowns. For a successful CLI-to-GUI handoff, the user-facing completion message must contain only `SUCCESS` and `gotowe <ID>`; keep details in `CLI_RESULT.md`. Report failures or blocked work truthfully and separately.
 - Before substantial work, choose GUI or CLI using the workflow routing table. Bounded research, documentation and file work default to CLI. GUI coordinates, decides and reviews. Keep one substantial backlog task per chat; do not repeat GUI research in CLI. New GitHub issue titles use `<ID> — <concise title>`; see [CODEX_WORKFLOW.md](docs/CODEX_WORKFLOW.md).
+- As the final preparation step for useful long-running handoffs, GUI supplies a structured `execution_plan` with 1–20 major milestones before READY. CLI uses the supplied IDs with `handoff.py progress` on meaningful starts/completions; justified amendments preserve frozen scope. Keep the last percentage during long stages; 100% means gated CLI completion, with GUI review still pending. Never invent a plan for old planless handoffs. See the workflow for commands and retry behavior.
 - For each material stage, report observation, cause or unknown, recovery, outcome and a useful instruction/tool improvement. Report recovered command/path/tool failures; do not hide them. See the self-healing section in CODEX_WORKFLOW.
 
 ## Project and source rules

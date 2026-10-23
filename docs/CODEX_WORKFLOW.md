@@ -397,6 +397,104 @@ the original evidence until status is committed. Conflicting preserved bytes
 require coordinator inspection; do not remove the journal or steal a claim.
 This is local interruption recovery, not a power-loss durability guarantee.
 
+### GUI execution plan and CLI progress
+
+As the **last preparation step**, after settling scope, permissions, owned
+paths and checks, GUI derives 1–20 meaningful major milestones for a handoff
+where progress reporting is useful. Prefer fewer broad stages; never list shell
+commands or add stages merely to smooth the display. Include validation,
+review, cleanup, authorized publication and final handoff when materially
+required. A publication milestone grants no permission. Freeze the plan before
+READY using `create --execution-plan '<plan JSON>'`, which appends one fenced
+`json` object `{"execution_plan": <plan>}` to `CLI_TASK.md`. Alternatively put
+that single block directly in the task description. Do not supply both.
+
+The plan has exactly `total_steps` and `steps`, where `total_steps` is an integer
+matching the list length, and each step has exactly `id` and `label`. IDs are
+unique lowercase identifiers matching `[a-z][a-z0-9_-]{0,39}`. Labels are
+nonempty, single-line text up to 160 characters without control characters.
+Malformed or duplicate plans are refused before task creation. CLI receives
+the GUI's initial plan and chooses concrete commands within each stage; it
+must not reconstruct initial milestones from prose. Existing planless per-ID
+tasks and controlled legacy handoffs remain compatible without migration or
+invented progress. `progress` refuses a planless task.
+
+Example in a disposable repository (owner `worker`, no assigned outputs):
+
+```sh
+python3 scripts/handoff.py --root . create T-007-EXAMPLE --parent T-007 \
+  --task 'Prepare bounded change, verify it and finalize evidence.' \
+  --check offline-tests \
+  --execution-plan '{"total_steps":3,"steps":[{"id":"prepare","label":"Prepare bounded change"},{"id":"verify","label":"Validate and review change"},{"id":"handoff","label":"Finalize evidence and CLI handoff"}]}'
+python3 scripts/handoff.py --root . claim T-007-EXAMPLE --owner worker --revision 1
+python3 scripts/handoff.py --root . progress T-007-EXAMPLE --owner worker --revision 2 --start prepare
+# Execute concrete preparation commands; keep ordinary output readable.
+python3 scripts/handoff.py --root . progress T-007-EXAMPLE --owner worker --revision 3 --done prepare
+```
+
+Continue with `--start verify`, `--done verify`, `--start handoff`, `--done
+handoff`, each with the current revision from `STATUS.json`. Write the exact
+result grammar and hashes, then run `validate` and `complete` as above. Use
+`progress <ID> --owner <owner> --revision <N> --start <id>` at a stage's start
+and `--done <id>` after its actual work passes. Only one milestone may be
+current; finish it before starting another. All supplied milestones are
+required; their IDs may be visited in an order appropriate to dependencies.
+Only the final `complete` operation can emit 100%, after all milestones,
+result checks, frozen input/scope and final provenance checks pass. Its output
+explicitly says `CLI complete; GUI review pending`. Later receipt/acceptance
+remains the coordinator's separate decision; 100% does not complete a parent.
+
+Each successful meaningful transition emits one compact line such as
+`T-007-EXAMPLE [###-------] ~33% milestone boundary (IN_PROGRESS)`.
+No timer, ETA, elapsed-time display, sub-progress or repeated checklist is
+added. Normal command logs appear between bars. While a long stage runs,
+leave the displayed percentage unchanged. The integer is
+`max(previous_display, min(99, completed_count * 100 // total_steps))`;
+only gated CLI completion sets 100. This is a coarse milestone orientation,
+not measured time, CPU, tokens or remaining workload. One-stage tasks remain
+at 0 until that stage ends, then 99 until completion gates pass.
+
+For genuinely necessary major work **within the same scope**, use
+`progress <ID> --owner <owner> --revision <N> --amend '<replacement plan JSON>'
+--reason '<justification>'`. Adapt labels only when original intent remains;
+retain every existing ID and its order, optionally appending major stages.
+No deletions, renames or reordering; the cap stays 20 steps and there may be
+at most 20 amendments per task. Reasons must be nonempty and at most 1000
+characters. Semantics and necessity require review; the helper validates
+structure, not whether a justification is true. A changed scope or permission
+still requires a new handoff. The frozen original plan/scope remain unchanged;
+status preserves each replacement plan, reason, owner, revision and timestamp.
+Replaying this evidence must reproduce the active plan. Adding stages clamps
+the displayed high-water mark until the completed fraction catches up; it
+does not create artificial progress.
+
+`STATUS.json.progress` persists the active plan, current ID, completed IDs,
+displayed integer and amendment evidence. Restart with the same owner and
+current revision; do not reclaim or steal a claim. Repeating a current `start`
+or already completed `done` with the **current** revision is a silent no-op,
+without a revision increment; a stale revision is still rejected. Validation
+does not emit a bar or advance progress. Status persistence and terminal
+printing are not an atomic transaction: interruption after persistence but
+before output can omit a line; restarting must not invent or replay work.
+
+Failure preserves the last progress as evidence and never emits 100. FAILED
+tasks reject progress changes. Explicit coordinator retry keeps the original
+scope/input rules and archives the prior status with its progress. The new
+attempt retains amendments and displayed high-water mark but clears current
+and completed IDs, so every milestone must be executed again. Its retained
+percentage is historical orientation, not a remaining-work estimate. An
+interrupted IN_PROGRESS attempt uses the same explicit retry safeguards.
+COMPLETED and CONSUMED tasks reject progress writes; receipt keeps the
+100% CLI-execution value even if GUI requests changes. Corrective work needs
+a separate handoff. Planless tasks keep the original lifecycle behavior.
+
+Progress uses the same per-task lock, owner, revision, pending-journal,
+symlink/path, baseline and frozen-contract guards as lifecycle transitions.
+Only one atomic status replacement follows all checks. No progress command
+changes task text, baseline, claims, outputs, result grammar or publication
+permissions. See [T-007](tasks/T-007-handoff-progress.md) for acceptance and
+offline evidence; GUI still reviews the actual diff and evidence before receipt.
+
 ### Legacy pickup and GUI receipt
 
 The controlled T-001-T1-FIX correction continues in `.codex-sync/CLI_TASK.md`
