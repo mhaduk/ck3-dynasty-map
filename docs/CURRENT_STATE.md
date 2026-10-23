@@ -28,10 +28,17 @@ Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays 
 ## Environment and project boundary
 
 - Installed candidate: CK3 1.20.1.2 (Crozier), Steam build 26046173, recorded from launcher metadata and Steam manifest on 2026-10-21. The generated API baseline remains 1.20.1.1 / 25913294. A bounded R-016 startup/runtime smoke used the newer build; broader compatibility is unverified.
-- Milestone M0 research/bootstrap. No production mod or classifier is implemented. Preserve ADR semantics and unrelated dirty work.
+- Milestone M0 research/bootstrap. The partial diagnostic implementation is published; production/lifecycle safety remains unverified. Preserve ADR semantics and unrelated work.
 - The user requires map-system interfaces (ADR-009). Decision/council selectors, Situations and religious-object carriers are excluded. R-016 demonstrated a bounded title-RGB/baronies pipeline; an independent lifecycle-safe classification input remains unproven. Do not repeat broad scans or prepare a carrier probe.
 
-## Selected product task — F-001
+## Paused product task — F-001
+
+**User pause checkpoint — 2026-10-23.** F-001 is not the active task. Cycle31
+was reviewed as a published partial result; its original FAILED status is
+preserved. Do not start another F-001 cycle, test, fix or accounting refresh.
+The user will select other work before returning. New sessions start from the
+[resume checkpoint](tasks/F-001-resume.md); two duplicate-title load errors
+remain the closure blocker. No new task is selected by this pause.
 
 Current closeout checkpoint, 2026-10-23: final cycle31 made a **partial
 compatibility recovery; F-001 / #20 remains OPEN and NOT READY for closure**.
@@ -58,7 +65,7 @@ persistence impact remain unknown. No further game test or cycle32 is requested.
   [F-004 / #29](https://github.com/mhaduk/ck3-dynasty-map/issues/29) retains
   numeric/sample/completeness and separate court-error attribution gaps.
   R-005/#5 and R-009/#9 retain context and exact restoration/save/removal.
-- The authorized partial source/documentation publication must say OPEN /
+- The published partial source/documentation result says OPEN /
   blocked and preserve all unrelated tooling/T-005 work. F-001 is ineligible
   for the closed-task Wiki rollup. Measured partial usage is recorded in its
   [canonical record](tasks/F-001-dynasty-map-ux.md); missing/unknown coverage

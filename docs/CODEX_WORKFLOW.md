@@ -302,6 +302,19 @@ Route bounded preparation, documentation, log checkpoints and settled analysis t
 
 For probes/mods, read [MOD_AUTHORING_RULES.md](MOD_AUTHORING_RULES.md), name exact payload/install roots and expected version, run the preflight before installation and again with `--installed` afterward, and include the manual and user-run startup/log gates. This does not apply to tooling that does not touch a mod.
 
+For authorized recurring installs, a machine-local trusted-project
+`.codex/config.toml` may add only the exact diagnostic mod directory to
+`sandbox_workspace_write.writable_roots`, keeping `workspace-write` and the
+existing approval policy. Keep that configuration ignored by Git. Start a new
+CLI session to load the setting; host-managed session permissions may override
+local configuration. Try ordinary sandbox execution within that allowed root;
+do not request escalation preemptively on every installer retry. Escalate only
+for an actual denied operation outside the effective policy. Do not grant the
+whole CK3 user-data/game directory or disable the sandbox. Permissions do not
+replace scoped install authorization, backups, preflight or the game-closed
+prerequisite. Self-review installer evidence-directory handling before execution,
+and use no-write syntax inspection to avoid unrelated cache permissions.
+
 ### Per-ID lifecycle helper
 
 New handoffs live under `.codex-sync/tasks/<ID>/` with `CLI_TASK.md`,
@@ -413,6 +426,21 @@ Every material stage records in its own result: observation, cause or unknown, r
 Use `gh` for GitHub operations when available. Read-only examples include `gh auth status`, `gh repo view`, `gh issue list`, and `gh issue view <number>`. Authentication is local state: do not reauthenticate automatically or record credentials/account identity. GitHub reads and writes are separate permissions. A task must explicitly authorize GitHub writes before creating/editing/commenting on/closing Issues or PRs or changing labels/milestones. Before each write, verify the repository, exact target, and current remote state; make only the requested change and verify the result. Never guess an Issue number or create a duplicate. GitHub-write authorization does not grant Git staging, commit, or push permission.
 
 For substantial work, use the stable planning ID (R/F/T/B-xxx) in the Issue title/body. The Issue is the detailed investigation journal; comments may record hypotheses, tests and concise sanitized evidence. Do not paste full logs. At completion, put the distilled result in one canonical `docs/tasks/<ID>-<slug>.md`, update reusable technical knowledge in `RESEARCH.md`, and finalize the Issue only if writes are authorized. Do not close an Issue before its acceptance criteria are met.
+
+### Wiki AI-cost estimates
+
+When publishing or updating the project Wiki's AI-cost section, estimate the
+API-equivalent USD cost for every newly added eligible task using its recorded
+per-model input, cached-input and output token counts. Apply current official
+API prices for each recorded model and state the price lookup date and source.
+Cached input is a subset of input; price uncached and cached input separately,
+and do not count reasoning tokens again when already included in output. Do
+not equate subscription usage with API spend. Keep unknown model/pricing
+buckets visible as unpriced; do not guess model mappings. Note when
+request-level context lengths, cache writes or other metering details are
+unavailable, and label the result as a rough estimate for measured usage.
+Recheck official API prices when refreshing the Wiki, since rates can change.
+Preserve the existing R/T/F/B summary and matching per-task detail groups.
 
 ## Task finalization
 

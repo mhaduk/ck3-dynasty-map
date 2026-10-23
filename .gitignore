@@ -9,6 +9,7 @@
 # Machine-local editor settings and recovery files
 .vscode/
 .idea/
+/.codex/
 *.swp
 *.swo
 *~

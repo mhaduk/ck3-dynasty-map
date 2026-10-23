@@ -9,6 +9,16 @@ two unnamed duplicate-title errors persist on loading the existing session.
 The agreed final-cycle stop condition therefore prevents narrowed F-001 closure.
 This prototype is not a production, strict-audit or lifecycle acceptance claim.
 
+## User pause checkpoint — 2026-10-23
+
+Cycle31 has been reviewed as an honest published partial result. Its FAILED
+closure status remains historical; no further CLI delegation, code change or
+game test is requested. F-001 stays open while the user works on other tasks.
+Resume only on explicit selection, using [the focused handoff](F-001-resume.md).
+Two unnamed duplicate-title load errors remain; F-005/#30 owns their disposition.
+F-004/#29 retains diagnostic gaps. Raw evidence and original journals are local
+and preserved. Existing finite cost cutoff remains unchanged.
+
 ## Delivered scope and usage
 
 One Dynasty parent in Additional Map Modes opens Dynasty Realms by default.

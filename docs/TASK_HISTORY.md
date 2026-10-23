@@ -43,6 +43,11 @@ are historical observations, not the current accepted result.
 
 ## F-001 incomplete closeout checkpoint — 2026-10-23
 
+GUI reviewed cycle31 as a published partial result, then the user explicitly
+paused F-001 to work on other tasks. It is not a completed-history entry.
+[Future-session checkpoint](tasks/F-001-resume.md) records the two remaining
+load errors and retained evidence; no new CLI cycle is pending.
+
 This is an incomplete-task checkpoint, not a completed-task row. Final cycle31
 restored the exact prior inert helper declarations/CoA and six original names,
 without reviving retired execution paths. Nine-file source/install equality,
