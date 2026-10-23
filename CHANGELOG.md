@@ -11,6 +11,9 @@ All notable changes to Dynasty Map will be documented here.
 - Reusable mod encoding/preflight rules and read-only file checker added.
 
 ### Added
+- T-008 offline evidence inventory: explicit file/hash pins, selected upstream
+  statuses and declared equality links produce a private deterministic report
+  with visible unknowns and gaps, without an aggregate runtime PASS.
 - Project architecture and release plan.
 - Research baseline for CK3 1.20.1.
 - My Dynasty semantics and performance strategy.

@@ -2,6 +2,26 @@
 
 Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+## Last completed tooling task — T-008 / #32
+
+GUI accepted the minimal offline evidence inventory on 2026-10-23 after
+independent correction review and saved-session accounting. Explicit finite
+manifests drive byte/hash checks, selected upstream fields and declared equality
+links; completeness never overrides upstream verdicts. All 22 focused tests
+pass independently and in an isolated public-only tree; unchanged upstream
+suites have 84 passing tests in CLI evidence. Original EXECUTE remains consumed
+CHANGES REQUIRED; corrected `T008-FIX-20261023-03` is accepted/consumed with
+preserved outputs. One GUI and three CLI saved sessions measure 17,172,634
+tokens, about $0.99 API-equivalent at a finite cutoff; coverage remains partial.
+See [canonical T-008](tasks/T-008-workflow-optimization.md) and
+[usage guide](EVIDENCE_REPORT.md). Local completion only: #32 remains open,
+with a local commit authorized on 2026-10-23; push is explicitly excluded.
+GitHub/Wiki publication and issue closure remain unauthorized.
+Next planned iteration: [T-009 structured preflight](tasks/T-009-structured-preflight.md),
+selected from the earlier analysis to fill the current text-only result gap.
+Planning only; no READY handoff or implementation. Other candidates remain deferred. No app action; F-001 remains
+paused.
+
 ## Last completed tooling correction — T-007 / #25 presentation follow-up
 
 GUI accepted and consumed `T007-DISPLAY-20261023-02` on 2026-10-23 after
@@ -31,11 +51,11 @@ sessions yield 10,275,358 measured tokens, about $1.74 API-equivalent at the
 finite cutoff; coverage and later exclusions are explicit in the
 [canonical record](tasks/T-006-workflow-automation.md). Issue #28 is closed
 completed with the original analysis-only scope preserved alongside routing
-step 0. T-008 / #32 is open and planned for a separate new session using the
-new routing; no follow-up implementation started. The Wiki routing guide and
+step 0. At that checkpoint T-008 / #32 was planned for a separate new session;
+its later accepted local iteration is recorded above. The Wiki routing guide and
 T-006 cost row are published. T-007 and paused F-001 remain unchanged. The
-publication receipt records verified repository and Wiki commits. No T-008
-implementation or F-001 continuation is authorized.
+publication receipt records verified repository and Wiki commits. That publication authorized no further implementation; the later T-008
+user selection is recorded above. F-001 continuation remains unauthorized.
 
 ## Last completed tooling task — T-007 / #25
 
