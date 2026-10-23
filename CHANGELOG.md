@@ -11,6 +11,9 @@ All notable changes to Dynasty Map will be documented here.
 - Reusable mod encoding/preflight rules and read-only file checker added.
 
 ### Added
+- T-009 structured preflight: optional `--json` and a typed evidence inventory
+  adapter preserve file-check findings, incomplete coverage and separate
+  source/inventory verdicts; checked legacy text and exit behavior retained.
 - T-008 offline evidence inventory: explicit file/hash pins, selected upstream
   statuses and declared equality links produce a private deterministic report
   with visible unknowns and gaps, without an aggregate runtime PASS.

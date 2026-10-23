@@ -43,6 +43,164 @@ class EvidenceReportTests(unittest.TestCase):
     def run_report(self, output=".codex-sync/report.json"):
         return er.build_report(self.root, "manifest.json", output)
 
+    def preflight_result(self, status="PASS", requested=False, **changes):
+        value = {"schema": "mod-preflight-result/1", "status": status, "exit_code": 0 if status == "PASS" else 1,
+                 "source_coverage": "COMPLETE", "source_files": 2, "source_version_check": "NOT_REQUESTED",
+                 "installed_requested": requested, "installed_coverage": "COMPLETE" if requested else "NOT_REQUESTED",
+                 "installed_files": 2 if requested else None, "installed_version_check": "NOT_REQUESTED",
+                 "comparison": "MATCH" if requested else "NOT_REQUESTED", "findings": [],
+                 "limits": ["Offline file checks only; CK3 syntax, references/API, runtime/load/save, RGB and user acceptance remain unverified."]}
+        value.update(changes)
+        return value
+
+    def test_mod_preflight_adapter_projects_literal_status_without_producer(self):
+        for status in ("PASS", "FAIL", "INCOMPLETE"):
+            value = self.preflight_result(status, requested=True,
+                findings=[] if status == "PASS" else [{"scope": "source", "code": "missing_bom", "count": 1}])
+            data = json.dumps(value, separators=(",", ":")).encode()
+            item = self.artifact("preflight", "evidence/preflight.json", "mod-preflight", data)
+            self.manifest([item])
+            _, output, state = self.run_report(f".codex-sync/{status}.json")
+            report = json.loads(output); row = report["artifacts"][0]
+            self.assertEqual(state, "COMPLETE")
+            self.assertEqual(row["selected_upstream_fields"]["status"], status)
+            self.assertEqual(row["selected_upstream_fields"]["exit_code"], value["exit_code"])
+            self.assertNotIn("limits", row["selected_upstream_fields"])
+
+    def test_mod_preflight_required_unknowns_and_pinned_link_trust(self):
+        value = self.preflight_result("FAIL", findings=[{"scope": "source", "code": "missing_bom", "count": 1}])
+        a = self.artifact("a", "evidence/a.json", "mod-preflight", json.dumps(value).encode())
+        link = {"id": "same-status", "from": {"artifact": "a", "field": "status"}, "to": {"artifact": "a", "field": "status"}}
+        self.manifest([a], [link]); _, output, state = self.run_report()
+        self.assertEqual(state, "COMPLETE")
+        self.assertEqual(json.loads(output)["links"][0]["state"], "MATCH")
+        other_value = self.preflight_result("PASS")
+        b = self.artifact("b", "evidence/b.json", "mod-preflight", json.dumps(other_value).encode())
+        self.manifest([a, b], [{"id": "different-status", "from": {"artifact": "a", "field": "status"},
+                               "to": {"artifact": "b", "field": "status"}}])
+        _, output, state = self.run_report(".codex-sync/status-mismatch.json")
+        self.assertEqual(state, "INCOMPLETE")
+        self.assertEqual(json.loads(output)["links"][0]["state"], "MISMATCH")
+        self.manifest([a], [{"id": "list-endpoint", "from": {"artifact": "a", "field": "findings"},
+                            "to": {"artifact": "a", "field": "status"}}])
+        with self.assertRaises(er.Invalid): self.run_report(".codex-sync/list-link.json")
+        a["bytes"] += 1
+        self.manifest([a], [link]); _, output, state = self.run_report(".codex-sync/pin.json")
+        self.assertEqual(state, "INCOMPLETE")
+        self.assertEqual(json.loads(output)["links"][0]["state"], "UNKNOWN")
+
+    def test_mod_preflight_invalid_values_are_redacted_and_link_unknown(self):
+        mutations = [
+            {"schema": "future-private-schema"},
+            {"remove": "source_version_check"},
+            {"source_files": True},
+            {"exit_code": True},
+            {"status": "UNKNOWN-PRIVATE"},
+            {"findings": [{"scope": "source", "code": "private/path", "count": 1}]},
+            {"findings": [{"scope": "source", "code": "unknown_code", "count": 1}]},
+            {"findings": [{"scope": "source", "code": "missing_bom", "count": -1}]},
+            {"findings": [{"scope": "source", "code": "missing_bom", "count": 1}] * 129},
+            {"installed_files": None, "installed_requested": True},
+        ]
+        for index, change in enumerate(mutations):
+            value = self.preflight_result("FAIL")
+            if "remove" in change:
+                value.pop(change["remove"])
+                change = {}
+            value.update(change)
+            ident = f"p{index}"
+            a = self.artifact(ident, f"evidence/{ident}.json", "mod-preflight", json.dumps(value).encode())
+            link = {"id": f"l{index}", "from": {"artifact": ident, "field": "status"}, "to": {"artifact": ident, "field": "status"}}
+            self.manifest([a], [link]); _, output, state = self.run_report(f".codex-sync/invalid-{index}.json")
+            report = json.loads(output)
+            self.assertEqual(state, "INCOMPLETE")
+            self.assertEqual(report["links"][0]["state"], "UNKNOWN")
+            self.assertNotIn(b"private/path", output)
+            self.assertNotIn(b"UNKNOWN-PRIVATE", output)
+
+    def test_mod_preflight_subprocess_json_pipeline_preserves_source_exit_separately(self):
+        checker = str(Path(er.__file__).with_name("check_mod_preflight.py"))
+        cases = []
+        passing = self.root / "passing"; passing.mkdir()
+        (passing / "descriptor.mod").write_text('name = "Demo"\nversion = "1"\nsupported_version = "y"\n')
+        failing = self.root / "failing"; failing.mkdir()
+        (failing / "descriptor.mod").write_text('name = "Demo"\nversion = "1"\nsupported_version = "x"\n')
+        cases.extend(((passing, "PASS", 0), (failing, "FAIL", 1), (self.root / "unavailable", "INCOMPLETE", 1)))
+        for index, (payload, status, source_exit) in enumerate(cases):
+            command = [sys.executable, checker, str(payload), "--expected-version", "y", "--json"]
+            produced = subprocess.run(command, capture_output=True)
+            self.assertEqual(produced.returncode, source_exit)
+            self.assertEqual(produced.stderr, b"")
+            result = json.loads(produced.stdout)
+            self.assertEqual(result["status"], status)
+            self.assertEqual(result["exit_code"], source_exit)
+            self.assertNotIn(str(payload).encode(), produced.stdout)
+            item = self.artifact(f"source{index}", f"evidence/source{index}.json", "mod-preflight", produced.stdout)
+            self.manifest([item])
+            _, output, inventory_state = self.run_report(f".codex-sync/pipeline-{index}.json")
+            report = json.loads(output)
+            self.assertEqual(inventory_state, "COMPLETE")
+            self.assertEqual(report["inventory_completeness"], "COMPLETE")
+            self.assertEqual(report["artifacts"][0]["selected_upstream_fields"]["status"], status)
+
+    def test_mod_preflight_rejects_findings_limit_duplicate_and_unknown_link_fields(self):
+        value = self.preflight_result("FAIL", findings=[{"scope": "source", "code": "missing_bom", "count": 1},
+                                                          {"scope": "source", "code": "missing_bom", "count": 2}])
+        projection, issues = er._projection("mod-preflight", value)
+        self.assertIn("duplicate_finding", issues)
+        self.assertNotIn("private", json.dumps(projection))
+        value = self.preflight_result("FAIL", findings=[{"scope": "source", "code": "missing_bom", "count": 2**31}])
+        _, issues = er._projection("mod-preflight", value)
+        self.assertIn("invalid_finding_count", issues)
+        for count in (True, 1.5, -1):
+            value = self.preflight_result("FAIL", findings=[{"scope": "source", "code": "missing_bom", "count": count}])
+            _, issues = er._projection("mod-preflight", value)
+            self.assertIn("invalid_finding_count", issues)
+
+    def test_mod_preflight_malformed_finding_scalars_are_finite_and_redacted(self):
+        sentinel = "PRIVATE-FINDING-SENTINEL"
+        for bad in ([sentinel], {"secret": sentinel}, None, True, 7):
+            for field in ("scope", "code"):
+                value = self.preflight_result("FAIL", findings=[{"scope": "source", "code": "missing_bom", "count": 1}])
+                value["findings"][0][field] = bad
+                projection, issues = er._projection("mod-preflight", value)
+                self.assertIn("unsupported_finding", issues)
+                self.assertEqual(projection["findings"], [])
+                self.assertNotIn(sentinel, json.dumps(projection))
+
+    def test_mod_preflight_malformed_finding_subprocess_required_and_optional(self):
+        for required in (True, False):
+            value = self.preflight_result("FAIL", findings=[{"scope": ["PRIVATE"], "code": "missing_bom", "count": 1}])
+            data = json.dumps(value).encode()
+            item = self.artifact("bad", "evidence/bad.json", "mod-preflight", data, required=required)
+            link = {"id": "bad-status", "from": {"artifact": "bad", "field": "status"}, "to": {"artifact": "bad", "field": "status"}}
+            self.manifest([item], [link])
+            output_rel = f".codex-sync/malformed-{required}.json"
+            command = [sys.executable, str(Path(er.__file__)), "--root", str(self.root), "--manifest", "manifest.json", "--output", output_rel]
+            result = subprocess.run(command, capture_output=True)
+            self.assertEqual(result.returncode, 2)
+            self.assertEqual(result.stdout, b"INCOMPLETE\n")
+            self.assertEqual(result.stderr, b"")
+            output = (self.root / output_rel).read_bytes()
+            report = json.loads(output)
+            self.assertEqual(report["links"][0]["state"], "UNKNOWN")
+            self.assertNotIn(b"PRIVATE", output)
+            self.assertNotIn(b"PRIVATE", result.stderr)
+            self.assertTrue((self.root / output_rel).is_file())
+            self.assertEqual(report["inventory_completeness"], "INCOMPLETE")
+
+        value = self.preflight_result("FAIL", findings=[{"scope": {"secret": "PRIVATE"}, "code": "missing_bom", "count": 1}])
+        data = json.dumps(value).encode()
+        item = self.artifact("optional", "evidence/optional.json", "mod-preflight", data, required=False)
+        self.manifest([item])
+        output_rel = ".codex-sync/optional-gap.json"
+        command = [sys.executable, str(Path(er.__file__)), "--root", str(self.root), "--manifest", "manifest.json", "--output", output_rel]
+        result = subprocess.run(command, capture_output=True)
+        self.assertEqual(result.returncode, 0)
+        report = json.loads((self.root / output_rel).read_bytes())
+        self.assertEqual(report["inventory_completeness"], "COMPLETE_WITH_OPTIONAL_GAPS")
+        self.assertNotIn(b"PRIVATE", (self.root / output_rel).read_bytes())
+
     def test_complete_inventory_preserves_incomplete_upstream_and_is_deterministic(self):
         status = {"id": "child", "parent_id": "T-008", "attempt": 1, "revision": 3, "status": "COMPLETED",
                   "owner": "PRIVATE", "inputs": {"private/path": "secret"}}

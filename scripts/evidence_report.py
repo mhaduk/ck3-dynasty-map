@@ -37,6 +37,19 @@ CLASS_ENUMS = {
     "classification_match": {"MATCH", "MISMATCH", "UNVERIFIED"},
     "intended_rgb_mapping": {"MATCH", "MISMATCH", "UNVERIFIED"},
 }
+PREFLIGHT_FIELDS = {
+    "status": {"INCOMPLETE", "FAIL", "PASS"},
+    "source_coverage": {"INCOMPLETE", "COMPLETE"},
+    "source_version_check": {"NOT_REQUESTED", "MATCH", "MISMATCH", "UNVERIFIED"},
+    "installed_coverage": {"NOT_REQUESTED", "INCOMPLETE", "COMPLETE"},
+    "installed_version_check": {"NOT_REQUESTED", "MATCH", "MISMATCH", "UNVERIFIED"},
+    "comparison": {"NOT_REQUESTED", "MATCH", "MISMATCH", "UNVERIFIED"},
+}
+PREFLIGHT_CODES = {"invalid_root", "misplaced_coa", "symlink", "incidental_file", "read_error", "missing_bom",
+                   "duplicate_bom", "invalid_utf8", "bad_loc_header", "loc_folder_mismatch", "loc_filename_mismatch",
+                   "missing_descriptor", "descriptor_unavailable", "descriptor_declaration", "version_mismatch", "inventory_missing",
+                   "inventory_extra", "bytes_mismatch", "traversal_error"}
+PREFLIGHT_LIMITS = ["Offline file checks only; CK3 syntax, references/API, runtime/load/save, RGB and user acceptance remain unverified."]
 LIMITATIONS = [
     "Inventory completeness describes file pins and declared links only; it is not an engine or runtime verdict.",
     "Selected upstream fields are a partial projection, not exhaustive evidence or contract validation.",
@@ -191,7 +204,7 @@ def _artifact_spec(item):
     if not isinstance(item["id"], str) or not ID_RE.fullmatch(item["id"]): raise Invalid("invalid_artifact_id")
     _path(item["path"])
     if type(item["required"]) is not bool: raise Invalid("invalid_required_flag")
-    if not isinstance(item["kind"], str) or item["kind"] not in {"opaque", "handoff-status", "log-delta", "classification"}: raise Invalid("unsupported_kind")
+    if not isinstance(item["kind"], str) or item["kind"] not in {"opaque", "handoff-status", "log-delta", "classification", "mod-preflight"}: raise Invalid("unsupported_kind")
     if type(item["bytes"]) is not int or item["bytes"] < 0: raise Invalid("invalid_expected_bytes")
     if not isinstance(item["sha256"], str) or not HASH_RE.fullmatch(item["sha256"]): raise Invalid("invalid_expected_hash")
 
@@ -244,6 +257,65 @@ def _projection(kind, obj):
                 selected.append(row)
         out["batches"] = selected
         return out, issues
+    if kind == "mod-preflight":
+        if obj.get("schema") != "mod-preflight-result/1":
+            return {}, ["unsupported_schema"]
+        expected = {"schema", "status", "exit_code", "source_coverage", "source_files", "source_version_check",
+                    "installed_requested", "installed_coverage", "installed_files", "installed_version_check",
+                    "comparison", "findings", "limits"}
+        if set(obj) - expected:
+            issues.append("unknown_fields")
+        for key in sorted(expected - set(obj)):
+            issues.append("missing_" + key)
+        out = {}
+        for key, allowed in PREFLIGHT_FIELDS.items():
+            value = obj.get(key)
+            if isinstance(value, str) and value in allowed: out[key] = value
+            else: issues.append("invalid_" + key)
+        value = obj.get("exit_code")
+        if type(value) is int and value in (0, 1): out["exit_code"] = value
+        else: issues.append("invalid_exit_code")
+        for key in ("source_files", "installed_files"):
+            value = obj.get(key)
+            if key == "installed_files" and value is None: out[key] = None
+            elif type(value) is int and 0 <= value <= 2**31 - 1: out[key] = value
+            else: issues.append("invalid_" + key)
+        requested = obj.get("installed_requested")
+        if type(requested) is bool: out["installed_requested"] = requested
+        else: issues.append("invalid_installed_requested")
+        raw = obj.get("findings")
+        selected, seen, total = [], set(), 0
+        if not isinstance(raw, list) or len(raw) > 128:
+            issues.append("invalid_findings")
+        else:
+            for item in raw:
+                if not isinstance(item, dict) or set(item) != {"scope", "code", "count"}:
+                    issues.append("invalid_finding"); continue
+                scope, code, count = item["scope"], item["code"], item["count"]
+                if (type(scope) is not str or scope not in {"source", "installed", "comparison"}
+                        or type(code) is not str or code not in PREFLIGHT_CODES):
+                    issues.append("unsupported_finding"); continue
+                if type(count) is not int or not 0 < count <= 2**31 - 1:
+                    issues.append("invalid_finding_count"); continue
+                pair = (scope, code)
+                if pair in seen: issues.append("duplicate_finding"); continue
+                seen.add(pair); total += count
+                if total > 2**31 - 1: issues.append("finding_count_overflow"); continue
+                selected.append({"scope": scope, "code": code, "count": count})
+        out["findings"] = selected
+        if out.get("status") and "exit_code" in out and ((out["status"] == "PASS") != (out["exit_code"] == 0)):
+            issues.append("incoherent_status_exit")
+        if requested is True:
+            if (out.get("installed_coverage") == "NOT_REQUESTED" or obj.get("installed_files") is None
+                    or out.get("comparison") == "NOT_REQUESTED"):
+                issues.append("incoherent_installed_requested")
+        elif requested is False:
+            if (out.get("installed_coverage") != "NOT_REQUESTED" or obj.get("installed_files") is not None
+                    or out.get("installed_version_check") != "NOT_REQUESTED" or out.get("comparison") != "NOT_REQUESTED"):
+                issues.append("incoherent_installed_not_requested")
+        if obj.get("limits") != PREFLIGHT_LIMITS:
+            issues.append("invalid_limits")
+        return out, sorted(set(issues))
     return {}, []
 
 
@@ -280,6 +352,7 @@ def build_report(root: Path, manifest_rel: str, output_rel: str):
             if spec["kind"] == "handoff-status": allowed |= {"id", "parent_id", "attempt", "revision", "status"}
             elif spec["kind"] == "log-delta": allowed |= set(DELTA_FIELDS)
             elif spec["kind"] == "classification": allowed |= {"status", "exit_code", "capture_completeness"}
+            elif spec["kind"] == "mod-preflight": allowed |= {"status", "exit_code", "source_coverage", "source_files", "source_version_check", "installed_requested", "installed_coverage", "installed_files", "installed_version_check", "comparison"}
             if endpoint["field"] not in allowed: raise Invalid("unsupported_link_field")
     output_path = _safe_target(root, output_rel, must_exist=False)
     if output_path is None or output_path.exists(): raise Invalid("output_collision_or_parent_missing")

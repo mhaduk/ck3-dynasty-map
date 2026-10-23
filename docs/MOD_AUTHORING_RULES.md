@@ -79,6 +79,18 @@ and SHA-256 equality. Symlinks are rejected. It is not a CK3 parser, Tiger,
 reference resolver, privacy scanner or API/runtime validator; unknown file
 categories and engine loading precedence need manual review.
 
+For a pinned machine-readable result, add `--json` to either command. JSON is
+opt-in; the default human-readable output and exit behavior stay the same. The
+versioned `mod-preflight-result/1` schema reports literal `PASS`, `FAIL`, or
+`INCOMPLETE`, coverage, version/comparison states and finite finding counts. It
+uses `descriptor_unavailable` when an incomplete inventory cannot establish
+whether the required descriptor is present; default output retains the
+historical missing-descriptor message. It contains no payload paths, descriptor contents, expected-version text or raw
+errors. A complete file check still does not establish syntax, references,
+engine API, load/save, RGB or user acceptance. See
+[EVIDENCE_REPORT.md](EVIDENCE_REPORT.md) for the schema, adapter behavior and a
+copyable pinned-report example.
+
 1. Complete source self-review and pass offline preflight **before install**.
    Every relevant CLI handoff must name both commands, payload roots and exact
    expected version; no hidden normalization or installation in the checker.

@@ -2,6 +2,24 @@
 
 Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+## Last completed tooling task — T-009
+
+GUI accepted and consumed `T009-FIX-20261023-02` on 2026-10-23 after focused
+code review, original negative repro checks, 39 independent focused tests and
+39 public-only isolated tests. CLI evidence has 123 passing targeted tests.
+Opt-in preflight JSON and the inventory adapter preserve separate upstream
+verdicts/coverage and checked legacy messages/exits. Initial EXECUTE remains
+consumed CHANGES REQUIRED; corrected outputs are preserved. One GUI and two
+CLI saved sessions measure 21,427,689 tokens, about $0.83 API-equivalent;
+finite-cutoff coverage is partial, with mixed preliminary planning unallocated.
+See [T-009](tasks/T-009-structured-preflight.md) and
+[structured evidence guide](EVIDENCE_REPORT.md). The user authorized a local
+T-009 commit on 2026-10-23, explicitly excluding push. GitHub/Wiki change,
+new issue, installation and runtime actions remain unauthorized.
+Next planned area: [T-010 finite checkpoint comparison](tasks/T-010-checkpoint-comparison.md),
+selected from previous analysis; no READY handoff or implementation.
+F-001 remains paused.
+
 ## Last completed tooling task — T-008 / #32
 
 GUI accepted the minimal offline evidence inventory on 2026-10-23 after
@@ -17,9 +35,9 @@ See [canonical T-008](tasks/T-008-workflow-optimization.md) and
 [usage guide](EVIDENCE_REPORT.md). Local completion only: #32 remains open,
 with a local commit authorized on 2026-10-23; push is explicitly excluded.
 GitHub/Wiki publication and issue closure remain unauthorized.
-Next planned iteration: [T-009 structured preflight](tasks/T-009-structured-preflight.md),
-selected from the earlier analysis to fill the current text-only result gap.
-Planning only; no READY handoff or implementation. Other candidates remain deferred. No app action; F-001 remains
+At that checkpoint [T-009](tasks/T-009-structured-preflight.md) was selected
+to fill the text-only preflight gap; its later local acceptance is recorded
+above. Other candidates remain deferred. No app action; F-001 remains
 paused.
 
 ## Last completed tooling correction — T-007 / #25 presentation follow-up
