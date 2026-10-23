@@ -2,6 +2,15 @@
 
 Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+## Completed administrative closeout — T-008 / T-009 / T-010
+
+User authorized the full closeout on 2026-10-23: initial commit, T-011 deferred
+ideas record, cost/docs/Wiki refresh, scoped recoverable cleanup, three task
+closures, final commit and push. Initial accepted T-010 commit `accaa74` is
+created. GUI verified all three saved-session accounting tables and approved
+publication of their finite-cutoff partial costs. Batch `T008-T010-PUBLISH-20261023-01` was published and verified; T-011 remains open/deferred. Issues #32, #35 and #36 are closed completed.
+No implementation, game/app action or F-001 continuation is authorized.
+
 ## Last completed tooling task — T-010
 
 GUI accepted the private finite-checkpoint metadata comparison on 2026-10-23
@@ -30,12 +39,10 @@ consumed CHANGES REQUIRED; corrected outputs are preserved. One GUI and two
 CLI saved sessions measure 21,427,689 tokens, about $0.83 API-equivalent;
 finite-cutoff coverage is partial, with mixed preliminary planning unallocated.
 See [T-009](tasks/T-009-structured-preflight.md) and
-[structured evidence guide](EVIDENCE_REPORT.md). The user authorized a local
-T-009 commit on 2026-10-23, explicitly excluding push. GitHub/Wiki change,
-new issue, installation and runtime actions remain unauthorized.
-Next planned area: [T-010 finite checkpoint comparison](tasks/T-010-checkpoint-comparison.md),
-selected from previous analysis; the later bounded research handoff is
-recorded above. No implementation started.
+[structured evidence guide](EVIDENCE_REPORT.md). The initial T-009 checkpoint
+authorized a local commit only; the later batch authorization superseded that
+restriction for publication and issue #35. T-010 was the next area at that
+checkpoint and is now complete above. No implementation beyond accepted scope started.
 F-001 remains paused.
 
 ## Last completed tooling task — T-008 / #32
@@ -50,9 +57,8 @@ CHANGES REQUIRED; corrected `T008-FIX-20261023-03` is accepted/consumed with
 preserved outputs. One GUI and three CLI saved sessions measure 17,172,634
 tokens, about $0.99 API-equivalent at a finite cutoff; coverage remains partial.
 See [canonical T-008](tasks/T-008-workflow-optimization.md) and
-[usage guide](EVIDENCE_REPORT.md). Local completion only: #32 remains open,
-with a local commit authorized on 2026-10-23; push is explicitly excluded.
-GitHub/Wiki publication and issue closure remain unauthorized.
+[usage guide](EVIDENCE_REPORT.md). Issue #32 is closed after the separately
+authorized publication batch; its initial local checkpoint is historical.
 At that checkpoint [T-009](tasks/T-009-structured-preflight.md) was selected
 to fill the text-only preflight gap; its later local acceptance is recorded
 above. Other candidates remain deferred. No app action; F-001 remains

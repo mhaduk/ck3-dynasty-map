@@ -1,11 +1,11 @@
 # T-010 — Finite checkpoint comparison
 
-Status: **COMPLETE LOCALLY — GUI accepted the corrected implementation on
-2026-10-23 after independent tests and saved-session accounting**.
+Status: **CLOSED — GUI accepted the corrected implementation and the completed record was published with issue #36 on 2026-10-23.**
 Research is accepted/consumed. Both original EXECUTE and CLI correction remain
 consumed CHANGES REQUIRED with original bytes preserved; GUI accepted the final
-small dependency-guard correction separately. No commit/push, GitHub/Wiki write,
-live capture or F-001 continuation. Predecessors:
+small dependency-guard correction separately. The initial local checkpoint
+preceded this separately authorized publication; no live capture or F-001
+continuation occurred. Predecessors:
 [T-008](T-008-workflow-optimization.md) and
 [T-009](T-009-structured-preflight.md).
 
@@ -255,3 +255,8 @@ checked on 2026-10-23. Unknown usage is not zero.
 Method: task-ai-cost/1; evidence cutoff: 2026-10-23T19:06:57.266616+00:00. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
 Partial measured coverage: five task-specific GUI turns in one session, four CLI turns in three sessions including premature pickup and resume. 215 own response IDs deduplicated; independent sum agrees. Preliminary mixed T-009 commit/planning turn unallocated; later accounting/integration/final response excluded. Six same-day linked review sources checked; no matching selected parent/root turn found. Missing usage is not zero.
 <!-- ai-cost:end -->
+
+
+## Publication and closure — 2026-10-23
+
+Published completed record: [issue #36](https://github.com/mhaduk/ck3-dynasty-map/issues/36), closed after validation of the approved batch gates. Generation and continuity remain UNKNOWN, count/new-byte deltas remain null, and event causality remains UNPROVEN. Frozen measured usage is 22,167,566 tokens and $1.7642329 API-equivalent, partial coverage; long-context Sol pricing was applied request by request. Later shared closeout work is excluded. See the [Wiki AI-cost table](https://github.com/mhaduk/ck3-dynasty-map/wiki).

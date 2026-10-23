@@ -1,10 +1,8 @@
 # T-009 — Structured preflight evidence
 
-Status: **COMPLETE LOCALLY — GUI accepted the corrected implementation on
-2026-10-23 after independent tests and saved-session accounting**.
+Status: **CLOSED — GUI accepted the corrected implementation and the completed record was published with issue #35 on 2026-10-23.**
 `T009-FIX-20261023-02` is accepted/consumed; initial EXECUTE remains consumed
-CHANGES REQUIRED, with original evidence preserved. The user subsequently authorized a local commit on 2026-10-23; push,
-GitHub/Wiki publication and new issue creation remain unauthorized. No CK3 runtime or
+CHANGES REQUIRED, with original evidence preserved. The user authorized scoped publication and closure in the 2026-10-23 batch handoff. No CK3 runtime or
 installation work was performed. Predecessor: [T-008](T-008-workflow-optimization.md).
 
 ## Original problem and selected direction
@@ -246,7 +244,7 @@ uncached/cached/output rates of $2/$0.10/$10 for GPT-6.1 Sol and
 $0.10/$0.01/$0.50 for GPT-6 Luna. The accounting cutoff is not extended to count
 its own documentation.
 
-## Local commit and successor selection — 2026-10-23
+## Local commit and successor selection — 2026-10-23 (historical checkpoint)
 
 The accepted T-009 implementation, records and short successor plan are
 user-authorized for a local commit only; no push or external publication.
@@ -272,3 +270,8 @@ no raw-log parsing, capture or implementation starts here.
 Method: task-ai-cost/1; evidence cutoff: 2026-10-23T18:16:57.841333+00:00. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
 Partial measured coverage: one GUI session (three selected T-009 turns) and two CLI sessions; 212 deduplicated own responses. Independent sum agrees. Preliminary T-009 plan in mixed T-008 commit turn remains unallocated; later accounting/integration/final response excluded. Six same-day review sources checked; no exact selected parent/root-turn match. Unobserved usage is not zero.
 <!-- ai-cost:end -->
+
+
+## Publication and closure — 2026-10-23
+
+Published completed record: [issue #35](https://github.com/mhaduk/ck3-dynasty-map/issues/35), closed after validation of the approved batch gates. The accepted implementation remains subject to its documented limits: structured preflight evidence does not establish CK3 syntax, API or runtime compatibility. Frozen measured usage is 21,427,689 tokens and $0.8268543 API-equivalent, partial coverage; later shared closeout work is excluded. See the [Wiki AI-cost table](https://github.com/mhaduk/ck3-dynasty-map/wiki).

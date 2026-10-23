@@ -1,12 +1,8 @@
 # T-008 — Workflow optimization after routing
 
-Status: **COMPLETE LOCALLY — GUI accepted the selected minimal iteration on
-2026-10-23 after independent correction review and saved-session accounting**.
-Research and corrected EXECUTE are accepted/consumed; the original EXECUTE
-remains consumed CHANGES REQUIRED. [Issue #32](https://github.com/mhaduk/ck3-dynasty-map/issues/32)
-remains open pending separately authorized publication/closure. No Git/GitHub
-write, installation or runtime action is part of this completion. Remaining
-optimization candidates stay deferred.
+Status: **CLOSED — GUI accepted the bounded offline evidence inventory on 2026-10-23; published with issue #32.** The original planned scope below is retained as dated history. Remaining candidates are mapped to [T-011](T-011-deferred-workflow-optimizations.md).
+
+This record preserves the original plan and intermediate checkpoints. Current status: CLOSED after publication and closure of [issue #32](https://github.com/mhaduk/ck3-dynasty-map/issues/32); accepted implementation and its limitations are recorded below. Remaining optimization candidates stay deferred in [T-011](T-011-deferred-workflow-optimizations.md).
 
 ## Goal
 
@@ -193,7 +189,7 @@ the final response are excluded; the cutoff is not recursively extended.
 was checked on 2026-10-23: uncached/cached/output per million are
 $2/$0.10/$10 for GPT-6.1 Sol and $0.10/$0.01/$0.50 for GPT-6 Luna.
 
-## Local commit and planned successor — 2026-10-23
+## Local commit and planned successor — 2026-10-23 (historical checkpoint)
 
 The user authorized a local commit of accepted T-008 and the short successor
 plan, explicitly excluding push. GitHub/Wiki updates and issue closure remain
@@ -219,3 +215,8 @@ implementation, installation or game action begins here.
 Method: task-ai-cost/1; evidence cutoff: 2026-10-23T17:39:01.530464+00:00. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
 One saved GUI session and three CLI sessions; 220 deduplicated own response IDs; independent sum agrees. Coverage partial; later accounting/integration/final response excluded. No matching linked automatic-review source in four same-day review sessions; not fabricated as zero usage.
 <!-- ai-cost:end -->
+
+
+## Publication and closure — 2026-10-23
+
+Published to the approved branch and Wiki; [issue #32](https://github.com/mhaduk/ck3-dynasty-map/issues/32) was updated with the accepted result and closed completed after the batch gates. The initial PLANNED body is preserved above as dated scope history. T-008 measured 17,172,634 tokens and $0.9896894 API-equivalent at the frozen partial cutoff; later shared closeout work was excluded. Current rates and coverage notes are in the [Wiki AI-cost table](https://github.com/mhaduk/ck3-dynasty-map/wiki).
