@@ -140,23 +140,54 @@ includes only T-007 source, tests and documentation.
 
 ## AI cost and publication scope
 
-T-007 has no attributable response-counter report in the supplied evidence.
-Input, cached-input, output and cost are N/A, not zero; no model mapping or
-full-task total is inferred. Wiki retains the prior measured amounts and adds
-this task as unmeasured. Official Standard rates were checked on 2026-10-23
-at [OpenAI API pricing](https://developers.openai.com/api/docs/pricing).
-Any future measured estimate must price uncached input, cached input and output
-separately; cached input and reasoning output remain subsets. Unknown models
-stay unpriced, and request-level context/cache-write/tier gaps remain explicit.
-This is API-equivalent estimation, not subscription spending.
+Correction on 2026-10-23: the initial N/A was an accounting omission, not
+missing session evidence. The coordinator stopped at the CLI report instead
+of reading the saved sessions. Task-specific preparation, CLI implementation,
+GUI review/publication and linked automatic reviews were recovered from
+response-level records through the original completion at 2026-10-23T11:52:07.855Z.
+A frozen private attribution manifest preserves exact source bytes, hashes,
+turn assignments and response IDs. The existing accounting helper and an
+independent direct sum agree on all 56 response records. This later correction
+is outside that finite cutoff; no ongoing/full-future-task claim is made.
+
+Measured usage totals 4,675,197 tokens, including 4,400,128 cached input tokens.
+The known-model Standard API-equivalent estimate is $1.2434732 (about $1.24).
+It uses gpt-6.1-sol rates of $2 uncached input, $0.10 cached input and $10 output
+per million tokens, checked on 2026-10-23 at
+[OpenAI API pricing](https://developers.openai.com/api/docs/pricing).
+All priced requests are below the long-context threshold; cache-write counters
+are zero. Standard is an estimate, not a claim about actual subscription spend
+or processing-tier billing. Reasoning output is already included in output.
+The measured codex-auto-review bucket has no established public model price
+and remains unpriced; it is included in token totals, excluded from USD totals.
+
+Recovery: replace the N/A row with measured per-model usage and update Wiki
+rollups. Reusable improvement: closing a task must inspect saved session
+counters and exact task/turn attribution before declaring N/A; missing counters
+in a CLI report alone are insufficient. Freeze a completion cutoff to avoid
+recursively counting the accounting/publication work forever.
 
 The user authorized scoped documentation/Wiki cleanup, commit and push after
 successful review. Public content contains no private task artifacts, raw logs,
 saves, generated dumps or machine paths. Issue #25 is verified CLOSED/completed
 with all 13 acceptance items checked and its collision corrected to T-007. Wiki commit `4f1f66c` publishes the
 [handoff progress guide](https://github.com/mhaduk/ck3-dynasty-map/wiki/Handoff-progress)
-and updates closed-task cost coverage to T: 5 closed, 2 measured; measured
-totals and the $4.17 known-model estimate remain unchanged. Standard rate
-verification agrees with the existing historical estimate. T-007 remains N/A.
+and initially added T-007 as N/A. The subsequent session-backed correction
+updates coverage to T: 5 closed, 3 measured, with 33,013,452 measured tokens,
+31,662,336 cached-input tokens and a $5.41 known-model estimate (unrounded
+sum $5.4123779). The original historical amounts remain unchanged.
 The repository publication contains only the reviewed helper/tests and related
 instructions/records; no game or implementation follow-up is started.
+
+<!-- ai-cost:start -->
+## AI cost
+
+| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
+|---|---:|---:|---:|---:|---:|---:|---|
+| codex-auto-review | 41930 | 26496 | 15434 | 292 | 175 | 42222 | partial |
+| gpt-6.1-sol | 4597047 | 4373632 | 223415 | 35928 | 5178 | 4632975 | partial |
+| **Total** | 4638977 | 4400128 | 238849 | 36220 | 5353 | 4675197 | partial |
+
+Method: task-ai-cost/1; evidence cutoff: 2026-10-23T11:52:07.855Z. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
+Coverage: measured preparation, CLI implementation, GUI review/publication and linked automatic reviews through original completion. This later correction is excluded. Response IDs deduplicated; independent direct sum agrees. codex-auto-review is measured but unpriced; no invented model mapping. Standard short-context API estimate; no subscription-spend claim.
+<!-- ai-cost:end -->

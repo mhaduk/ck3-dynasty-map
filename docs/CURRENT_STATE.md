@@ -12,8 +12,10 @@ See the [canonical record](tasks/T-007-handoff-progress.md). Historical #25 used
 T-003, already occupied by Wiki; T-007 is this task's distinct identity.
 The user authorized scoped cleanup, documentation/Wiki updates, commit and push.
 Issue #25 is closed completed. Wiki publication `4f1f66c` adds the progress
-guide and an unmeasured T-007 cost row (T: 5 closed, 2 measured; $4.17 known-model
-estimate unchanged). Measured T-007 usage is unavailable (N/A, not zero).
+guide. The initial N/A was corrected using 56 saved response records through
+original completion: T-007 4,675,197 tokens, about $1.24 for priced usage;
+automatic review measured but unpriced. Wiki T totals: 5 closed, 3 measured,
+33,013,452 tokens and about $5.41. Later correction work is outside the cutoff.
 No CK3 actions; F-001 remains paused. Accepted CLI evidence was preserved
 locally before coordinator integration.
 

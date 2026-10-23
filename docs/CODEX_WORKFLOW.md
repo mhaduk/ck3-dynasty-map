@@ -539,6 +539,17 @@ For substantial work, use the stable planning ID (R/F/T/B-xxx) in the Issue titl
 
 ### Wiki AI-cost estimates
 
+Before finalizing task cost, inspect saved task-session response counters,
+including coordinator preparation/review/publication, CLI execution and linked
+automatic reviews. Map exact task-specific turns and deduplicate response IDs
+with the existing accounting helper; do not use aggregate session totals for
+mixed-task chats. Keep source snapshots, hashes and assignments private.
+A missing table in CLI_RESULT is not a reason to declare N/A. Use N/A only
+for a specifically checked missing/unattributable counter, and record the
+source check and reason. Unknown model prices remain unpriced even when
+usage is measured. Freeze a finite completion cutoff and state later excluded
+work; do not repeatedly extend accounting to count its own publication.
+
 When publishing or updating the project Wiki's AI-cost section, estimate the
 API-equivalent USD cost for every newly added eligible task using its recorded
 per-model input, cached-input and output token counts. Apply current official
