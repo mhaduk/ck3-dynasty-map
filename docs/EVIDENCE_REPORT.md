@@ -1,5 +1,10 @@
 # Offline evidence inventory
 
+For side-by-side comparison of two explicitly pinned format-1 CK3 log-delta
+metadata manifests, see [Saved checkpoint metadata comparison](CHECKPOINT_COMPARISON.md).
+That report compares declared fields only; it cannot establish generation,
+byte continuity, event identity, count deltas or causality.
+
 `scripts/evidence_report.py` creates a deterministic inventory from one explicit
 local manifest. It reads only the manifest and its listed files, never searches
 for evidence, follows symlinks, contacts a service, or invokes another helper.

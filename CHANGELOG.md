@@ -11,6 +11,9 @@ All notable changes to Dynasty Map will be documented here.
 - Reusable mod encoding/preflight rules and read-only file checker added.
 
 ### Added
+- T-010 private checkpoint metadata comparison: explicit saved-manifest pins,
+  declared ranges, retained fingerprints and count context with source gaps
+  preserved; no inferred continuity, new-event counts or causality.
 - T-009 structured preflight: optional `--json` and a typed evidence inventory
   adapter preserve file-check findings, incomplete coverage and separate
   source/inventory verdicts; checked legacy text and exit behavior retained.

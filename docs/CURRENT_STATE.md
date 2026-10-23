@@ -2,6 +2,23 @@
 
 Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+## Last completed tooling task — T-010
+
+GUI accepted the private finite-checkpoint metadata comparison on 2026-10-23
+after focused review, a small final dependency-guard correction and 24 tests
+passing independently and in a public-only isolated tree. CLI evidence has
+29 inventory and 15 log-delta regression tests plus saved-example/guide smokes.
+Original EXECUTE and CLI correction remain consumed CHANGES REQUIRED; final
+GUI-corrected bytes are separately accepted/preserved. Source statuses and
+gaps remain explicit, generation/continuity UNKNOWN, count/new-byte deltas null,
+event identity/causality UNPROVEN. One GUI and three CLI sessions measure
+22,167,566 tokens, about $1.76 API-equivalent with per-request long-context
+pricing; finite-cutoff coverage is partial. See
+[T-010](tasks/T-010-checkpoint-comparison.md) and
+[usage guide](CHECKPOINT_COMPARISON.md). Local completion only: no commit/push,
+GitHub/Wiki action, new capture, installation or game operation. F-001 remains
+paused; no successor selected.
+
 ## Last completed tooling task — T-009
 
 GUI accepted and consumed `T009-FIX-20261023-02` on 2026-10-23 after focused
@@ -17,7 +34,8 @@ See [T-009](tasks/T-009-structured-preflight.md) and
 T-009 commit on 2026-10-23, explicitly excluding push. GitHub/Wiki change,
 new issue, installation and runtime actions remain unauthorized.
 Next planned area: [T-010 finite checkpoint comparison](tasks/T-010-checkpoint-comparison.md),
-selected from previous analysis; no READY handoff or implementation.
+selected from previous analysis; the later bounded research handoff is
+recorded above. No implementation started.
 F-001 remains paused.
 
 ## Last completed tooling task — T-008 / #32
