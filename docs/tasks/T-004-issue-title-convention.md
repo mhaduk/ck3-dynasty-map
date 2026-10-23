@@ -26,10 +26,16 @@ Known-model estimates were recomputed from existing measured model counters usin
 
 - Observation: #26 was OPEN with all acceptance boxes unchecked; local T-003 history described the published estimate as $15.38 R / $4.17 T and the backlog incorrectly said no publication / USD N/A.
 - Cause: issue-template defaults retained textual prefixes, configuration omitted the stable title shape, and the backlog reflected the initial T-003 feasibility checkpoint rather than its later publication.
-- Recovery: aligned instructions/templates, corrected the stale T-003 status, and reconciled the Wiki against the current official Standard rates. A first draft treated the lower “All models” rows as Standard; line-level review of the pricing page showed Standard rates are twice those values. The mistaken draft was corrected before Wiki publication, and no wrong cost figure was pushed.
+- Recovery: aligned instructions/templates, corrected the stale T-003 status, and reconciled the Wiki against the current official Standard rates. A first draft treated the lower “All models” rows as Standard; line-level review of the pricing page showed Standard rates are twice those values. The first repository commit briefly published that mistaken draft; the next commit corrected it. No wrong cost estimate was published to the Wiki. The branch history is preserved without rewriting.
 - Outcome detail: the independent recomputation from per-model input, cached-input and output counters exactly matches the existing R $15.38251664 and T $4.16890470 totals before rounding.
 - Outcome: issue #26 closed completed after the repository commit and Wiki publication; the CLI publication receipt is retained in the private handoff record.
 - Reusable improvement: inspect the exact named handoff before using older task journals, and refresh published price-derived values when the official rate tier changes.
+
+## Publication receipts
+
+- Repository branch `research/native-menu-alternative`: initial documentation commit `4a5d3748e5aac3f06a1654499bd1786077c5688a`; corrective Standard-rate commit `2de51bf` is the final remote head. The initial commit's doubled cost values were superseded by the corrective commit; no force push was used.
+- GitHub Wiki Home: commit `1017ff8e173254b4e6031248863b0acdc4bc369c`; a fresh clone matched remote HEAD and `Home.md` byte-for-byte (SHA-256 `5b5bda84a7b31371dda776421668bfc34ce49f7ae7ace79df778f30bf11015ce`). The two non-cost sections are unchanged.
+- Issue #26: closed completed after the documentation commit; final body readback records the Wiki publication SHA and its verification.
 
 ## Scope limits
 
