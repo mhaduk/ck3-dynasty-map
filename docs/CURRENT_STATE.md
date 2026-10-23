@@ -2,6 +2,26 @@
 
 Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+## Last completed tooling task — T-006 / model-routing contract
+
+GUI accepted step 0 on 2026-10-23 after targeted review, two direct
+corrections and saved-session cost verification. GUI/Sol owns decisions;
+bounded CLI/Luna work collects, verifies, researches or executes the approved
+contract and returns compact evidence. Existing lifecycle/progress/safety and
+upstream verdicts remain intact; no helper/schema/runtime model switch.
+Original `T006-ROUTING-20261023-02` is consumed CHANGES REQUIRED and preserved;
+GUI separately accepted corrected template/source evidence. All 36 tests and
+the corrected disposable template lifecycle pass. One GUI and two CLI saved
+sessions yield 10,275,358 measured tokens, about $1.74 API-equivalent at the
+finite cutoff; coverage and later exclusions are explicit in the
+[canonical record](tasks/T-006-workflow-automation.md). Issue #28 is closed
+completed with the original analysis-only scope preserved alongside routing
+step 0. T-008 / #32 is open and planned for a separate new session using the
+new routing; no follow-up implementation started. The Wiki routing guide and
+T-006 cost row are published. T-007 and paused F-001 remain unchanged. The
+publication receipt records verified repository and Wiki commits. No T-008
+implementation or F-001 continuation is authorized.
+
 ## Last completed tooling task — T-007 / #25
 
 GUI accepted T-007 on 2026-10-23 and consumed `T007-PROGRESS-20261023-01`

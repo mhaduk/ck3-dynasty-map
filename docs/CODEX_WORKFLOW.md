@@ -57,7 +57,20 @@ substitute for reporting genuine unexpected tool errors.
 
 ## Model choice
 
-The GUI coordinates with the user and uses Sol / Medium as the default reasoning profile. CLI defaults to Luna / Medium for scoped routine work, Luna / Low for trivial mechanical work, Sol / High for unknown CK3 behavior or difficult debugging, and Sol / Medium (or High when warranted) for independent review. Choose by reasoning difficulty, not task size. Do not claim a model switch unless the runtime confirms it.
+GUI / Sol is the orchestrator and decision maker: it owns the problem, scope,
+acceptance criteria, architecture, material alternatives and trade-offs,
+direction, final acceptance and next step. CLI / Luna is the default worker for
+bounded evidence collection, verification, research, comparison, analysis and
+execution of an approved plan. Recommend Luna / Medium for ordinary bounded
+work and Luna / Low for trivial mechanical work. Difficulty calls for more
+bounded evidence, a recommendation or escalation to GUI; it does not trigger an
+automatic architecture choice or model upgrade. GUI may explicitly select a
+stronger worker or reviewer when warranted. Profiles are recommendations unless
+the runtime confirms the selected model. When supported by the installed CLI,
+an individual session may be started with `--model gpt-6-luna -c
+model_reasoning_effort='"medium"'`; this is an optional invocation example,
+not a shared default or a claim that every account/session can select it. Do
+not claim measured cost or quality savings from this routing.
 
 ## Required GUI/CLI routing decision
 
@@ -68,10 +81,11 @@ reason to keep all subsequent work there.
 
 | Work | Default route |
 |---|---|
-| User coordination, scope/architecture decisions, unresolved engine reasoning | GUI; delegate a bounded specialist question when useful |
-| Settled source preparation, bounded conceptual analysis and log checkpoints | CLI: Luna / Medium for routine bounded work; Sol / Medium for conceptual comparison; Sol / High for difficult CK3 reasoning |
+| User coordination, scope/architecture decisions, material alternatives/trade-offs, direction and unresolved decisions | GUI / Sol |
+| COLLECT, VERIFY, RESEARCH and approved EXECUTE work within frozen scope | CLI / Luna / Medium by default; Luna / Low for trivial mechanical work |
+| Difficult bounded reasoning or conflicting evidence | CLI gathers and presents bounded evidence/recommendations; GUI decides whether to direct further work or explicitly choose a stronger worker/reviewer |
 | Documentation, consistency and mechanical edits | CLI / Luna / Medium; Luna / Low when trivial |
-| Independent review | Separate reviewer/session / Sol / Medium; GUI assesses the returned evidence |
+| Independent review | GUI / Sol owns acceptance; it may explicitly choose a separate reviewer/session when useful |
 | Inspecting a CLI result and integrating its conclusions | GUI |
 | All CK3 game UI interaction, including start/exit, loading, saving, observation and tests | User only; no Codex game-window inspection or control |
 | Configuring an already open launcher, playset selection and mod toggles | Codex GUI; reuse the test playset by default |
@@ -92,6 +106,39 @@ CLI then prepares the isolated payload and documentation in one task; GUI
 reviews the actual result. Source preparation, self-review and documentation
 belong to that authorized preparation stage. A self-review must not be called
 independent review.
+
+## Delegation classes, evidence and escalation
+
+Every new `CLI_TASK.md` names one primary delegation type: `COLLECT` (gather
+facts/evidence), `VERIFY` (check a stated claim or contract), `RESEARCH` (bound
+analysis of a question and alternatives), or `EXECUTE` (carry out an approved,
+bounded plan). Secondary activities may be stated in prose. `DECIDE` is
+reserved for GUI and is never a CLI delegation type. Each task states
+`Decision authority: GUI`; these are semantic instructions, not a new enforced
+STATUS schema.
+
+CLI may interpret evidence and recommend options with reasons, benefits, risks
+and scope impact. It should complete useful safe work within the delegation
+before escalating minor uncertainty: gather another bounded source, test
+hypotheses, compare options or state uncertainty where authorized. Escalate
+architecture, scope, direction, material trade-offs, consequential evidence
+conflicts, work outside the contract, or decisions not safely derived from it.
+Continue independent authorized work while an unrelated question is pending;
+never cross permission, ownership or decision boundaries.
+
+Return a compact, decision-oriented dossier inside `## Result` in the existing
+`CLI_RESULT.md`: `### QUESTION / SCOPE`, `### FINDINGS`, `### EVIDENCE`,
+`### OPTIONS` (when applicable), `### RECOMMENDATION` (optional),
+`### UNRESOLVED / UNKNOWN`, and `### DECISION REQUIRED`. Map critical claims to
+precise paths/lines and snapshot hashes, test invocations/results, or receipt,
+checkpoint and commit IDs as applicable. Mark claims as observed, inferred or
+recommended; distinguish historical evidence from fresh checks, preserve
+upstream completeness/verdicts, and say UNKNOWN when evidence does not decide.
+Do not include private chain-of-thought or raw dumps. GUI reviews the dossier,
+opens selected decisive evidence, and inspects the actual scoped diff/checks;
+it does not repeat the full context by default. Widen review only for mismatch,
+missing provenance, changed inputs or material risk. CLI self-review is not
+independent review; a recommendation is not acceptance.
 
 ## Roles, prerequisites and CK3 test cycle
 
@@ -296,9 +343,30 @@ disabled-mod and fresh-process checks retain their distinct state prerequisites.
 
 ## GUI to CLI handoff
 
-The GUI owns task selection, direction, user coordination and review. The CLI owns only the files and checks listed in its delegation. Give every task a stable delegation ID and parent ID, frozen scope, model profile, minimal exact context, allowed output paths, exclusions, checks, permissions and GUI next step. Record hashes of actual dirty input bytes; Git HEAD alone is not a baseline. One integrator edits shared source/docs. Parallel tasks write separate artifacts. Do not repeat GUI research in CLI. Installations and tests against one live game remain sequential. A worktree is optional and must receive the correct input snapshot.
+GUI / Sol owns task selection, problem and scope, acceptance criteria,
+architecture, material choices, user coordination and review. CLI / Luna owns
+only the bounded work, files and checks listed in its delegation; it may
+interpret evidence and recommend, while decision authority remains GUI. Give
+every task a stable delegation ID and parent ID, primary type and
+`Decision authority: GUI`, model profile, frozen scope, minimal exact context,
+allowed discovery/input roots and limits, mutable-state policy or snapshots,
+owned output paths, exclusions, safety/permissions, checks and GUI next step.
+Record hashes of actual dirty input bytes; Git HEAD alone is not a baseline.
+One integrator edits shared source/docs. Parallel tasks write separate
+artifacts. Do not repeat GUI research in CLI. Installations and tests against
+one live game remain sequential. A worktree is optional and must receive the
+correct input snapshot. Use [CLI_DELEGATION_TEMPLATE.md](CLI_DELEGATION_TEMPLATE.md)
+for the compatible task and result shape; it does not replace the lifecycle
+helper.
 
-Route bounded preparation, documentation, log checkpoints and settled analysis to CLI. GUI retains open product choices and coordination. Use Luna / Low for trivial mechanical work, Luna / Medium for routine bounded tasks, Sol / Medium for conceptual analysis/review, and Sol / High for difficult CK3 reasoning. These are recommendations, not model-availability or cost claims; report actual model only when known. Preserve the small direct-edit exception when delegation overhead exceeds the work.
+Route bounded collection, verification, research, comparisons, documentation,
+analysis and approved execution to CLI / Luna / Medium; trivial mechanical work
+may use Luna / Low. GUI retains decisions and product coordination. More
+difficult work remains bounded and is returned with evidence or an escalation
+request; do not auto-upgrade the model or transfer decision authority. GUI may
+explicitly select a stronger worker/reviewer. These are recommendations, not
+availability or cost claims; report actual model only when known. Preserve the
+small direct-edit exception when delegation overhead exceeds the work.
 
 For probes/mods, read [MOD_AUTHORING_RULES.md](MOD_AUTHORING_RULES.md), name exact payload/install roots and expected version, run the preflight before installation and again with `--installed` afterward, and include the manual and user-run startup/log gates. This does not apply to tooling that does not touch a mod.
 
