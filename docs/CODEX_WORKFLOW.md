@@ -512,11 +512,23 @@ result checks, frozen input/scope and final provenance checks pass. Its output
 explicitly says `CLI complete; GUI review pending`. Later receipt/acceptance
 remains the coordinator's separate decision; 100% does not complete a parent.
 
-Each successful meaningful transition emits one compact line such as
-`T-007-EXAMPLE [###-------] ~33% milestone boundary (IN_PROGRESS)`.
-No timer, ETA, elapsed-time display, sub-progress or repeated checklist is
-added. Normal command logs appear between bars. While a long stage runs,
-leave the displayed percentage unchanged. The integer is
+Each successful meaningful transition emits one compact diagnostic line on
+command stdout. This is ordinary tool output; it does not create an agent
+message and the client may collapse it. After the command succeeds, CLI reads
+the persisted `STATUS.json.progress` and sends one standalone agent commentary
+outside shell output/code fences, such as
+`🟢 T-007 [██████░░░░] ~60% — Validate changes`. Use the parent ID and a
+human-readable stage label from the persisted plan/current state; at a boundary
+use “milestone boundary”. Render ten cells with `percent // 10` filled cells
+and the remainder empty. Translate readable stage/boundary text into the language
+of the latest user request; preserve commands, IDs and required receipt phrases.
+The green-circle cue is portable but native text
+color is client-dependent. Never reconstruct or guess a percentage from the
+command text. Do not relay a failed, rejected, stale or no-op command, and do
+not repeat a commentary for an unchanged state. At 100%, explicitly say
+`CLI complete; GUI review pending`. No timer, ETA, elapsed-time display,
+sub-progress or repeated checklist is added. Normal command logs remain. While
+a long stage runs, leave the displayed percentage unchanged. The integer is
 `max(previous_display, min(99, completed_count * 100 // total_steps))`;
 only gated CLI completion sets 100. This is a coarse milestone orientation,
 not measured time, CPU, tokens or remaining workload. One-stage tasks remain

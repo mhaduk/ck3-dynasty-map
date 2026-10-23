@@ -2,6 +2,21 @@
 
 Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+## Last completed tooling correction — T-007 / #25 presentation follow-up
+
+GUI accepted and consumed `T007-DISPLAY-20261023-02` on 2026-10-23 after
+focused diff/demo review and a successful independent 36-test rerun. Instructions
+now relay persisted progress as standalone commentary with a green-circle cue,
+parent ID, bar, approximate percent and readable stage. Native text color and
+future model adherence remain client/model dependent. GUI placed the relay rule
+inside the copyable template and clarified use of the user's language after an
+unintended Finnish message. No helper/lifecycle changes. Saved runtime confirms
+Luna / Medium; one GUI and one CLI session measure 2,770,983 tokens, about $0.39
+API-equivalent through a finite follow-up cutoff, with partial coverage. Original
+T-007 acceptance/accounting remain unchanged. See the
+[canonical correction](tasks/T-007-handoff-progress.md). Scoped commit/push is
+user-authorized; no issue/Wiki write. F-001 remains paused; no app action.
+
 ## Last completed tooling task — T-006 / model-routing contract
 
 GUI accepted step 0 on 2026-10-23 after targeted review, two direct

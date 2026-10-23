@@ -14,6 +14,10 @@ All notable changes to Dynasty Map will be documented here.
 - Project architecture and release plan.
 - Research baseline for CK3 1.20.1.
 - My Dynasty semantics and performance strategy.
+- T-007 progress presentation: CLI handoffs relay successful persisted
+  milestone transitions as concise standalone agent commentary, including the
+  parent task, approximate percentage and readable stage. No-op/failure
+  suppression and the GUI-review-pending completion cue are explicit.
 
 ## Planned [0.1.0]
 

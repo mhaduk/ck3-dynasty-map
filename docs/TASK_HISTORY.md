@@ -19,6 +19,12 @@ Compact index of completed substantial tasks. Investigation detail belongs in th
 | R-014 | Inventory CK3 modding documentation and source hierarchy | Concise target-build source map created and integrated into agent/workflow instructions; runtime questions remain separate. | [#14](https://github.com/mhaduk/ck3-dynasty-map/issues/14) | [R-014](tasks/R-014-source-map.md) |
 | R-017 | Select reproducible test starts and relationship fixtures | Scenario-selection stage complete: Ismail 867, William 1066, and Murchad 1066 are recorded as easy bookmark starts with static locators. Runtime liege chains and additional family/comparator coverage are deferred to later tests. | [#19](https://github.com/mhaduk/ck3-dynasty-map/issues/19) | [R-017](tasks/R-017-test-scenario-selection.md) |
 
+T-007 presentation follow-up accepted on 2026-10-23: standalone persisted-state
+commentary, copyable-template integration and user-language guidance; 36 tests
+pass, no lifecycle changes. Separate partial follow-up accounting: 2,770,983
+tokens, about $0.39 API-equivalent; original closed-task amounts are unchanged.
+See the [canonical correction](tasks/T-007-handoff-progress.md).
+
 Before the 2026-10-23 T-005 review, R-005, R-009 and R-010 were partial and not listed as completed. Current dispositions are recorded in the T-005 section below. R-014's
 source map and agent/workflow integration are complete.
 The [R-009 checkpoint](tasks/R-009-barony-color-safety.md) records first-batch

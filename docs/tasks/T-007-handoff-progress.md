@@ -1,5 +1,63 @@
 # T-007 — Handoff execution plan and CLI progress
 
+## 2026-10-23 presentation correction — accepted
+
+The GUI identified that progress bars printed in shell output may be hidden in
+collapsed tool-result cards and are not standalone agent messages. The helper's
+stdout remains useful diagnostic evidence, but it cannot guarantee user-facing
+presentation or native text color. Instructions now require CLI to relay one
+standalone commentary after each successful meaningful transition, formatting
+only the persisted progress state with the parent ID, a compact ten-cell bar,
+approximate percentage and readable stage. No-op, rejected, stale or failed
+commands produce no relay; unchanged states are not repeated. At 100%, the
+message says CLI completion is gated and GUI review remains pending. No lifecycle
+or progress calculation behavior changes. A disposable fixture demonstrates the
+state and relay contract; offline helper checks cannot prove client styling or
+reliable model instruction-following. Historical acceptance, evidence and cost
+cutoff below remain unchanged.
+
+Independent GUI review accepted and consumed `T007-DISPLAY-20261023-02` on
+2026-10-23. All 36 existing handoff tests passed again. The saved worker session
+confirms `gpt-6-luna / medium`; the worker had reported this as unknown because
+it had not inspected runtime evidence. Helper and test source remain unchanged.
+GUI moved the progress instructions inside the template's copyable task example
+so copied handoffs retain them, and added a short language rule after the user
+reported an unintended Finnish commentary. Commentary follows the latest user
+request's language; commands, IDs and required receipt phrases remain exact.
+This reduces ambiguity without guaranteeing perfect model adherence.
+
+Self-healing: the worker recovered from a rejected exact-text patch by rereading
+live lines; a broad listing was narrowed after noisy output. GUI found the relay
+paragraph outside the template's copyable example and moved it inside. Review
+copyable artifacts as copied, rather than relying on surrounding guidance.
+No executable behavior changed and no additional implementation tests are needed.
+
+### Correction-only accounting
+
+The original T-007 table below is unchanged. This separate follow-up uses one
+saved GUI session (preparation and review turns) and one saved CLI session,
+with frozen source snapshots and explicit per-turn assignments retained privately.
+The existing accounting helper and independent response-ID sum agree on 46
+records through 2026-10-23T14:10:07.257077Z. No linked automatic-review counters
+were found in these two selected sessions or the bounded task-ID session search;
+no zero-cost claim is made for missing/unattributed review usage. Later record
+integration, language/template refinements, accounting publication and Git work
+are excluded from this finite cutoff. Coverage is partial.
+
+| Model | Input | Cached input (subset) | Output | Total tokens | API-equivalent USD |
+|---|---:|---:|---:|---:|---:|
+| gpt-6.1-sol | 1315194 | 1231616 | 7180 | 1322374 | $0.362118 |
+| gpt-6-luna | 1438576 | 1373056 | 10033 | 1448609 | $0.025299 |
+| **Total** | **2753770** | **2604672** | **17213** | **2770983** | **$0.387417** |
+
+Standard short-context rates checked on 2026-10-23 at
+[official API pricing](https://developers.openai.com/api/docs/pricing): per
+million uncached/cached/output tokens, Sol $2/$0.10/$10 and Luna $0.10/$0.01/$0.50.
+Observed request inputs remain below 272K; cache-write counters are zero.
+Reasoning is included in output, not counted again. This is a rough estimate for
+measured usage, not subscription spend or a claim of billed processing tier.
+The correction does not refresh the closed-task Wiki or historical issue totals.
+
 Status: COMPLETE — independent GUI acceptance and consumed receipt, 2026-10-23.
 Scoped documentation/Wiki publication, commit and push authorized by the user.
 
