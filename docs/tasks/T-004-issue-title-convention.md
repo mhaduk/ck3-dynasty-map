@@ -33,7 +33,7 @@ Known-model estimates were recomputed from existing measured model counters usin
 
 ## Publication receipts
 
-- Repository branch `research/native-menu-alternative`: initial documentation commit `4a5d3748e5aac3f06a1654499bd1786077c5688a`; corrective Standard-rate commit `2de51bf` is the final remote head. The initial commit's doubled cost values were superseded by the corrective commit; no force push was used.
+- Repository branch `research/native-menu-alternative`: initial documentation commit `4a5d3748e5aac3f06a1654499bd1786077c5688a`; corrective Standard-rate commit `2de51bf`. The initial commit's doubled cost values were superseded by the corrective commit; no force push was used.
 - GitHub Wiki Home: commit `1017ff8e173254b4e6031248863b0acdc4bc369c`; a fresh clone matched remote HEAD and `Home.md` byte-for-byte (SHA-256 `5b5bda84a7b31371dda776421668bfc34ce49f7ae7ace79df778f30bf11015ce`). The two non-cost sections are unchanged.
 - Issue #26: closed completed after the documentation commit; final body readback records the Wiki publication SHA and its verification.
 
