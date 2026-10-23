@@ -1,100 +1,164 @@
 # F-001 — Dynasty map menu and visual contract
 
-## Current reconciled evidence — 2026-10-23
-
-The cross-chat receipt conflict with T-005 is resolved by accepted reconciliation
-`T005-F001-RECONCILE-20261023-02`. Both original frozen results and baselines are
-preserved; the new receipt supersedes their pending integration. T-005 is complete;
-F-001 remains incomplete. No feature implementation or new game test is part of
-this reconciliation. Older blocked-receipt statements below describe their dates.
-
-The accepted F-001 GUI investigation found 14,109 emitted role/intended-RGB
-agreements across 4,703 emitted counties per view, including corrected Bukhara.
-Strict audit remains INCOMPLETE because declared counters are zero; global census,
-stored RGB, pixels and lifecycle safety remain unproven. Next bounded work is
-counter/export diagnosis using existing evidence; court-scene error attribution is
-separate. R-005 owns context/no-Dynasty coverage and R-009 restoration/save/removal.
-This checkpoint publishes the reviewed outcome, not the still-unpublished source
-candidate or its detailed local execution history.
-
-
 Issue: [#20](https://github.com/mhaduk/ck3-dynasty-map/issues/20).
 
-Status: PLANNED successor specification; no implementation authorized here.
-The three-view semantics, labels, order and default are accepted in ADR-010.
-This plan defines the review needed to turn the R-016 candidate UI into a
-product contract while preserving unresolved feasibility and safety gates.
+Status: **OPEN / PARTIAL — closure blocked**, 2026-10-23. The user accepts the
+shown menu, three-view grey/green appearance and focused interactions. The
+final compatibility recovery removed three missing-template diagnostics, but
+two unnamed duplicate-title errors persist on loading the existing session.
+The agreed final-cycle stop condition therefore prevents narrowed F-001 closure.
+This prototype is not a production, strict-audit or lifecycle acceptance claim.
 
-## Accepted product decisions
+## Delivered scope and usage
 
-- One top-level Dynasty map entry; while active, associated subviews appear in
-  this order: Dynasty Realms (default), Dynasty Holdings, My Realm & Dynasty.
-- Each view uses ADR-010's county semantics and dark-over-light precedence.
-- The selected subview and its legend are visible. English labels are approved.
-- Fixed colors remain usable as a temporary palette interface; F-002 owns
-  whether a Dynasty-derived accent is supportable.
-- Grey nonmatching land is a P0 visual acceptance requirement. Poorly visible
-  grey in R-016 is a known failed acceptance item, not a closed defect.
+One Dynasty parent in Additional Map Modes opens Dynasty Realms by default.
+Three native-style child icons select Dynasty Realms, Dynasty Holdings and
+My Realm & Dynasty; labels, legends, hover/selected frames and the accepted
+appearance distinguish them. The temporary repeated shield remains approved;
+final icons belong to [F-005](F-005-functional-followups.md#deferred-final-icons).
+[F-003](F-003-dynasty-subview-definitions.md) defines the unchanged semantic
+roles and precedence; F-002 owns a later Dynasty-derived color strategy.
 
-## Proposed interaction and layout contract
-
-```text
-Map mode bar: [Dynasty]
-Active map banner: [Dynasty Realms] [Dynasty Holdings] [My Realm & Dynasty]
-Legend:          [dark swatch + meaning] [light swatch + meaning] [grey swatch + meaning]
-Actions:         [Refresh] [Return to Realms]
-```
-
-Treat this as a compact proposal, not a claim that current panel placement or
-native overrides are final. Keep the active map and current selection clear;
-make each subview a direct selection. Refresh recomputes the selected view from
-fresh player/Dynasty context. Returning to Realms selects that view explicitly.
-Opening an unrelated menu must not scan or silently change the selected view.
-The accepted initial entry and family re-entry default is Dynasty Realms.
-Opening or closing an unrelated menu while Dynasty remains active preserves
-the selected alternative. Leaving for a native map and re-entering Dynasty
-returns to Dynasty Realms; it does not restore the previous alternative.
-
-Unavailable context must visibly disable or hide entry/actions and must not
-dispatch a character-rooted classifier. On context loss while active, the
-required unavailable/cleanup behavior remains an ADR-008 and R-005/R-009 gate;
-do not imply that a grey repaint, GUI watcher, or launcher state solves it.
-Final user flow must not depend on diagnostic controls. Keep diagnostics
-collapsed/developer-only during development, then remove them from the normal
-flow.
-
-## Visual acceptance matrix
-
-| Area | Acceptance |
+| Child-icon gesture | Delivered operation |
 |---|---|
-| Classification and projection | Correct dark/light/grey semantics per ADR-010; all county baronies, including secondary baronies, receive the county result |
-| Neutral ground | Nonmatching land has an unmistakable grey fill across relevant views; classification, projection and renderer behavior are investigated before changing only the palette |
-| Boundaries | Specify ocean and impassable-land behavior explicitly. Current proposal: leave non-county ocean/impassable regions to native rendering; do not paint them grey unless a supported rule is established |
-| Contrast | Check near and distant zoom, supported UI scales, selected versus unselected control, map terrain and color-vision-independent cues |
-| Redundant cues | Show selected subview by both label/state treatment and shape/outline; category meaning must not rely on hue alone |
-| Legend | Swatches and text match the actual active palette and semantics; no hard-coded green assumptions if F-002 changes the accent |
-| Refresh and return | Refresh visibly targets the selected view; Return selects Realms; ordinary native round-trip and re-entry follow the reviewed persistence rule |
-| Availability and safety | No invalid-root dispatch, stale-context display, or unsupported exit/removal claim; lifecycle behavior has explicit evidence and owner |
+| Ordinary click | Fresh guarded computation, then matching display; active re-click refreshes |
+| Shift+click | Matching computation/display plus one summary |
+| Option/Alt+click | Matching computation/display plus summary and bounded samples |
+| Shift+Option/Alt+click | One explicit full three-view audit, without painting or selecting another map |
+| Ctrl with any gesture | Same operation; Ctrl adds no action |
 
-## Stages and dependencies
+Hold modifiers through mouse release. The debugging area remains collapsed
+and supplies shortcut hints. Native return/re-entry defaults to Dynasty Realms.
+Opening unrelated menus, unavailable contexts and transition races retain
+unverified coverage; do not infer their acceptance from ordinary clicks.
 
-1. Review the compact layout proposal, labels, selection/default rules and
-   acceptance matrix. Mark each point as accepted, proposed or unresolved.
-2. Perform a narrow technical gap audit against R-016, R-010, R-005, R-009,
-   ADR-008/009/010 and target-build evidence. Diagnose the grey failure across
-   classification, county-to-barony projection and rendering; do not assume a
-   shader/terrain-only cause. Reuse existing evidence; new source research or
-   runtime requires its own bounded scope.
-3. Prepare an implementation handoff only after the UX specification is
-   reviewed. Keep safe normal activation separate from diagnostic execution.
-4. Stage grouped visual and interaction acceptance, then address lifecycle,
-   compatibility, privacy and release gates with their existing owners.
+All three map IDs, five native zoom profiles per view and the fixed palette
+25/105/50, 145/220/150, 65/70/80 are preserved. Ordinary routes retain fresh
+player roots, liveness/Dynasty/CanChangeMapMode guards and compute-before-display
+ordering. Exact context/dispatch safety remains R-005 research.
 
-R-017's selected fixtures should inform later acceptance coverage. F-002 owns
-color-source feasibility and does not block this task's initial grey diagnosis,
-layout specification or use of explicit palette slots. R-005/R-009/R-010 and
-R-013 dependencies remain visible; F-001 does not promise to solve every
-historical lifecycle or compatibility issue. No ADR waiver, issue creation,
-implementation, installation or test is included in this planning record.
+## Evidence retained from implementation and review
 
-Accepted behavior/category-role reference: [F-003](F-003-dynasty-subview-definitions.md).
+- Accepted supplied three-view screenshots establish the shown grey/green
+  appearance; they do not certify every zoom, UI scale or relationship case.
+- The Realms highest-ruler/self-liege defect was corrected before the accepted
+  complete batch. Reviewed emitted records put Bukhara in Primary and Darghan
+  in Neutral. One complete batch contained 4,703 emitted counties per view and
+  14,109 role/intended-RGB agreements against the independent F-003 oracle.
+  Emitted identities remain the input: this is not an independent world census,
+  stored-RGB getter or pixel check.
+- Nine temporary numeric controls showed positive locals/exports while
+  localized counters rendered zero. SCOPE to TopScope.GetValue is documented;
+  no numeric cure was proved or applied. Strict audit remains INCOMPLETE.
+- Earlier two audit beginnings/one ending remain historical evidence; physical
+  click count and the second interruption's cause are unknown. Current complete
+  callbacks do not erase that finding or establish universal dispatch behavior.
+- Source-derived checks cover the three slots and eight modifier combinations,
+  guards, single dispatch, ordering and the combined no-paint/no-selection route.
+  The independent parser still rejects missing/zero/contradictory declarations;
+  no skip, expectedFailure or weakened acceptance was introduced.
+
+The complete earlier local preparation/runtime journal was privately archived
+before this public summary was distilled. Cross-chat T-005 reconciliation stays
+accepted; no T-005 work is reopened or included in this feature's publication.
+
+## Three-cycle closeout and final recovery
+
+| Cycle | Actual result |
+|---|---|
+| 29 | Retired completed COUNTERPROBE/KEYPROBE scaffolding, side controls, trace/copy experiments and baseline mode. Seven-file source/install equality and 33 existing tests passed. F-004/#29 and F-005/#30 were created; F-001 stayed open |
+| 30 | User-only menu and grouped normal/modifier/native-return smoke. Summary, samples and one full audit observed. Load reported three missing retired title templates and two unnamed duplicate-title errors; closure rejected. Approximate one-second click delay was user-reported, unmeasured and not a proved regression |
+| 31 | Exact prior title/CoA declarations and six original localization entries restored; all other runtime bodies unchanged. Nine-file equality and the same 33 tests passed. User-only menu and focused paused-session load/selection check completed. Three missing-template errors absent, two duplicate-title errors persist; F-001 remains open |
+
+The two restored files are inert compatibility declarations for loaded-state
+references, with exact prior bytes/BOMs. Their original comments describe the
+retired copy experiment; no old execution roots, trace hooks, side tester,
+baseline profile, generated shader or vanilla artwork were restored. Static
+reachability alone had been insufficient grounds to retire loaded references.
+
+With CK3 declared closed, installation changed only those two additions and
+localization. Verified backup covered the prior seven files, wrapper, enabled
+manifest, five ordinary logs and a consistent read-only SQLite selection
+snapshot. Actual ordered R016-only test selection, wrapper and manifest stayed
+unchanged. All nine installed/source files match by inventory, bytes and SHA-256.
+After user launch no installed files were written again.
+
+The user explicitly reported main menu, then confirmed the existing session
+was loaded and everything worked as requested. This contextually affirms the
+focused icon/Holdings/combined-audit sequence; no independent UI observation or
+literal selected-map ID was captured. One current full audit beginning/ending,
+no rejection and no retired probe markers were observed. Strict numeric
+analysis was not rerun against an unchanged known-failing contract.
+
+The original startup append interval reset and remains INCOMPLETE. A separate
+byte-zero current-generation capture was COMPLETE, confirming enabled/mounted
+R016, both GUI completions and runtime 1.20.1.2. Error/GUI/conflict channels were
+empty through menu; three bookmark and nine holy-order warnings remained
+separately unattributed. The finite pre-load-to-test interval was COMPLETE:
+error-channel diagnostics are two unnamed duplicate-title errors, 57 invalid
+court-character trigger blocks and one court culture-set failure. Mirrored
+channels are not additional incidents. GUI/conflict channels remained empty.
+
+**Remaining blocker:** two `Duplicate landed title name` errors still occur on
+load, without title names. Their cause, save-history relationship and persistence
+or RGB impact are UNKNOWN. Removing the missing-template errors does not clear
+this separate condition. No save was read/edited, no new fixture/control or
+court/numeric root-cause investigation was started, and the final-cycle limit
+was not converted into a passing verdict. The reviewed partial source and
+findings may be published; the feature is not closed or represented as ready.
+
+## Remaining owners and stop conditions
+
+| Requirement | Owner and limit |
+|---|---|
+| Persistent unnamed duplicate-title load errors | [F-005 / #30](https://github.com/mhaduk/ck3-dynasty-map/issues/30); blocks F-001 closure pending explicit evidence/disposition, with R-009 retaining save/restoration research |
+| Numeric zero declarations, strict framing/completeness, malformed role labels, readable bounds and automated verification | [F-004 / #29](https://github.com/mhaduk/ck3-dynasty-map/issues/29); strict status stays INCOMPLETE |
+| Court-scene errors | F-004/F-005; attribution remains unknown and harmlessness is not established |
+| Fresh/invalid context and real no-Dynasty coverage | [R-005 / #5](https://github.com/mhaduk/ck3-dynasty-map/issues/5), integrated later by F-005; unavailable is not Neutral |
+| Exact original RGB restoration/isolation, save/load/removal | [R-009 / #9](https://github.com/mhaduk/ck3-dynasty-map/issues/9); a file backup cannot restore stored RGB |
+| Independent global/projection/government coverage, UI-scale/zoom/parity/compatibility, performance and final icons | F-005; retain unmeasured approximately one-second click delay and existing fixture plans, without reopening completed research |
+
+No automatic world scans, religious/Situation/decision carriers, lifecycle
+waiver or ADR semantic change is introduced. No further game action or extra
+microtask is requested by this result. The user alone starts/loads/tests/exits
+CK3; Codex used files, logs and human reports, never game UI/process access.
+
+## Verification and publication boundary
+
+The 33 existing classification/parser/source-routing tests passed. Source and
+installed preflights passed for nine files on target 1.20.1.2 / installed Steam
+build 26046173. These are bounded checks, not a CK3 parser or universal API and
+runtime guarantee. Compatibility recovery has a negative final acceptance
+result because of the persistent duplicate-title errors.
+
+Publication covers only the reviewed F-001 payload/analyzer/tests/README and
+necessary F-001/F-004/F-005/state/backlog/history records. Unrelated workflow,
+ignore/configuration and tooling changes remain excluded. The issue remains
+OPEN; the closed-task Wiki must exclude F-001 even when measured partial costs
+are recorded below. No completed-task history row is added.
+
+<!-- ai-cost:start -->
+## AI cost
+
+| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
+|---|---:|---:|---:|---:|---:|---:|---|
+| codex-auto-review | 137702 | 90624 | 47078 | 914 | 656 | 138616 | partial |
+| gpt-6-luna | 18360165 | 17403264 | 956901 | 167261 | 44376 | 18527426 | partial |
+| gpt-6.1-sol | 126810031 | 123501440 | 3308591 | 732531 | 175655 | 127542562 | partial |
+| unknown | 344635 | 22784 | 321851 | 4501 | 0 | 349136 | partial |
+| **Total** | 145652533 | 141018112 | 4634421 | 905207 | 220687 | 146557740 | partial |
+
+Method: task-ai-cost/1; evidence cutoff: 2026-10-23T10:22:41.410082+00:00. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
+Coverage is partial: explicitly mapped F-001 GUI/CLI/review work, failed attempts/retries and metadata-linked guardian reviews through the finite cutoff; prior R-016 work and shared T-005 work are excluded. Ambiguous or missing history is unallocated/N/A. Later accounting/publication and GUI receipt are excluded to avoid recursive accounting; this is not a full lifetime task cost or subscription/quota bill.
+
+| Recorded model | Covered Standard API-equivalent USD |
+|---|---:|
+| codex-auto-review | N/A — unpriced |
+| gpt-6-luna | $0.353353 |
+| gpt-6.1-sol | $31.475997 |
+| unknown | N/A — unpriced |
+| **Known-model subtotal** | **$31.829350** |
+| **Full total** | **N/A — unknown/review model buckets unpriced** |
+
+Prices checked 2026-10-23: [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna). Per million uncached/cached/output tokens: $2/$0.10/$10 and $0.10/$0.01/$0.50. The 103 measured responses above 272,000 input tokens use the documented 2x input/cache and 1.5x output multiplier. Standard rates are an explicit API-equivalent comparison basis; actual service-tier, regional, cache-write, image/tool and other billing details are unavailable or excluded. Reasoning and cached tokens are subsets and are never added again.
+<!-- ai-cost:end -->

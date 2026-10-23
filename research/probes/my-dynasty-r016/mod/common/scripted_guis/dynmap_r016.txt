@@ -1,31 +1,63 @@
 ﻿# Character dispatch validation precedes effects; void Execute is not success.
 dynmap_r016_check = {
 	scope = character
-	is_valid = { exists = dynasty }
+	is_valid = { is_alive = yes exists = dynasty }
 	effect = { }
 }
 dynmap_r016_compute_realms = {
 	scope = character
-	is_valid = { exists = dynasty }
-	effect = { dynmap_r016_world_realms_effect = yes }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_operation_cleanup_effect = yes dynmap_r016_world_realms_effect = yes }
 }
 dynmap_r016_compute_holdings = {
 	scope = character
-	is_valid = { exists = dynasty }
-	effect = { dynmap_r016_world_holdings_effect = yes }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_operation_cleanup_effect = yes dynmap_r016_world_holdings_effect = yes }
 }
 dynmap_r016_compute_my_realm = {
 	scope = character
-	is_valid = { exists = dynasty }
-	effect = { dynmap_r016_world_my_realm_effect = yes }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_operation_cleanup_effect = yes dynmap_r016_world_my_realm_effect = yes }
 }
-dynmap_r016_compute_sample_direct = {
+
+dynmap_r016_dump_all_views = {
 	scope = character
-	is_valid = { exists = dynasty }
-	effect = { dynmap_r016_sample_direct_effect = yes }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_audit_batch_effect = yes }
 }
-dynmap_r016_compute_sample_copy = {
+
+dynmap_r016_summary_realms = {
 	scope = character
-	is_valid = { exists = dynasty }
-	effect = { dynmap_r016_sample_copy_effect = yes }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_summary_realms_effect = yes }
+}
+
+dynmap_r016_samples_realms = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_samples_realms_effect = yes }
+}
+
+dynmap_r016_summary_holdings = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_summary_holdings_effect = yes }
+}
+
+dynmap_r016_samples_holdings = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_samples_holdings_effect = yes }
+}
+
+dynmap_r016_summary_my_realm = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_summary_my_realm_effect = yes }
+}
+
+dynmap_r016_samples_my_realm = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_samples_my_realm_effect = yes }
 }

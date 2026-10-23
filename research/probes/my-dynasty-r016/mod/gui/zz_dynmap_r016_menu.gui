@@ -38,19 +38,24 @@ types dynmap_r016_menu
         # Retain the seam used by native mini-mode instances.
         block "mapmodes_insert_before" {}
 
-        # One top-level family entry. Opening this menu performs no computation.
-        # Multiple onclick actions are a candidate, not an atomic success contract.
+        # One top-level family icon. Opening Additional Modes performs no computation.
         button_round = {
             name = "dynmap_r016_dynasty_entry"
             parentanchor = hcenter
-            size = { 220 30 }
-            text = "dynmap_r016_dynasty"
+            size = { 40 40 }
             visible = "[GetPlayer.IsValid]"
             enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
             down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]"
-            tooltip = "dynmap_r016_enter_tt"
+            tooltip = "dynmap_r016_dynasty_tt"
             onclick = "[GetScriptedGui('dynmap_r016_compute_realms').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
             onclick = "[SetMapMode('dynmap_my_dynasty')]"
+            button_icon = {
+                size = { 26 26 }
+                parentanchor = center
+                alwaystransparent = yes
+                texture = "gfx/interface/icons/flat_icons/house.dds"
+                down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]"
+            }
         }
 
         flowcontainer = {
@@ -193,6 +198,7 @@ types dynmap_r016_menu
             parentanchor = hcenter
             size = { 220 28 }
             text = "dynmap_r016_diagnostics"
+            tooltip = "dynmap_r016_modifier_status_tt"
             onclick = "[GetVariableSystem.Toggle('dynmap_r016_diagnostics')]"
         }
         flowcontainer = {
@@ -203,103 +209,6 @@ types dynmap_r016_menu
             ignoreinvisible = yes
             visible = "[GetVariableSystem.Exists('dynmap_r016_diagnostics')]"
             text_single = { text = "dynmap_r016_diagnostics_hint" using = Font_Size_Small parentanchor = hcenter }
-            button_round = {
-                name = "dynmap_r016_check"
-                parentanchor = hcenter
-                size = { 220 30 }
-                text = "dynmap_r016_check"
-                visible = "[GetPlayer.IsValid]"
-                enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                onclick = "[GetVariableSystem.Set('dynmap_r016_availability', Select_CString(GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), 'READY', 'BLOCKED'))]"
-            }
-            text_single = { text = "[Select_CString(GetVariableSystem.HasValue('dynmap_r016_availability', 'READY'), 'READY - hint only', 'CHECK required')]" using = Font_Size_Small parentanchor = hcenter }
-            flowcontainer = { parentanchor = hcenter spacing = 4
-                button_round = {
-                    name = "dynmap_r016_stage_realms"
-                    parentanchor = hcenter
-                    size = { 235 30 }
-                    text = "dynmap_r016_compute_realms"
-                    visible = "[GetPlayer.IsValid]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    onclick = "[GetScriptedGui('dynmap_r016_compute_realms').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-                }
-                button_round = {
-                    name = "dynmap_r016_display_realms"
-                    parentanchor = hcenter
-                    size = { 210 30 }
-                    text = "dynmap_r016_display_realms"
-                    visible = "[GetPlayer.IsValid]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    onclick = "[SetMapMode('dynmap_my_dynasty')]"
-                }
-            }
-            flowcontainer = { parentanchor = hcenter spacing = 4
-                button_round = {
-                    name = "dynmap_r016_stage_holdings"
-                    parentanchor = hcenter
-                    size = { 235 30 }
-                    text = "dynmap_r016_compute_holdings"
-                    visible = "[GetPlayer.IsValid]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    onclick = "[GetScriptedGui('dynmap_r016_compute_holdings').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-                }
-                button_round = {
-                    name = "dynmap_r016_display_holdings"
-                    parentanchor = hcenter
-                    size = { 210 30 }
-                    text = "dynmap_r016_display_holdings"
-                    visible = "[GetPlayer.IsValid]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    onclick = "[SetMapMode('dynmap_dynasty_holdings')]"
-                }
-            }
-            flowcontainer = { parentanchor = hcenter spacing = 4
-                button_round = {
-                    name = "dynmap_r016_stage_my_realm"
-                    parentanchor = hcenter
-                    size = { 235 30 }
-                    text = "dynmap_r016_compute_my_realm"
-                    visible = "[GetPlayer.IsValid]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    onclick = "[GetScriptedGui('dynmap_r016_compute_my_realm').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-                }
-                button_round = {
-                    name = "dynmap_r016_display_my_realm"
-                    parentanchor = hcenter
-                    size = { 210 30 }
-                    text = "dynmap_r016_display_my_realm"
-                    visible = "[GetPlayer.IsValid]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    onclick = "[SetMapMode('dynmap_my_realm_dynasty')]"
-                }
-            }
-            button_round = {
-                name = "dynmap_r016_sample_direct"
-                parentanchor = hcenter
-                size = { 450 30 }
-                text = "dynmap_r016_sample_direct"
-                visible = "[GetPlayer.IsValid]"
-                enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                onclick = "[GetScriptedGui('dynmap_r016_compute_sample_direct').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-            }
-            button_round = {
-                name = "dynmap_r016_sample_copy"
-                parentanchor = hcenter
-                size = { 450 30 }
-                text = "dynmap_r016_sample_copy"
-                visible = "[GetPlayer.IsValid]"
-                enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                onclick = "[GetScriptedGui('dynmap_r016_compute_sample_copy').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-            }
-            button_round = {
-                name = "dynmap_r016_baseline_display"
-                parentanchor = hcenter
-                size = { 450 30 }
-                text = "dynmap_r016_baseline_display"
-                visible = "[GetPlayer.IsValid]"
-                enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                onclick = "[SetMapMode('dynmap_r016_holdings_baseline')]"
-            }
         }
         # Raid/barter controls remain omitted pending separate visibility review.
     }

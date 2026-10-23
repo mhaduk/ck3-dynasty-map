@@ -23,7 +23,7 @@ Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays 
 
 - [T-001 — Incremental agent workflow optimization](tasks/T-001-agent-workflow-optimization.md) is COMPLETE, 2026-10-22; tracked in [Issue #23](https://github.com/mhaduk/ck3-dynasty-map/issues/23), which records the scoped publication receipt. GUI accepted the handoff foundation and corrected log helper; all 37 offline tooling tests passed. Child results/reviews are preserved locally.
 - Use per-ID `pobierz zadanie <ID>` / `gotowe <ID>`, separate output ownership and one integrator for shared files. Bounded conceptual/file/log work defaults to the documented CLI profiles; read only relevant context. Log reports separate interval completeness, observations and expectations.
-- At T-001 closeout no next task was selected and F-001 was paused; its unrelated uncommitted work is excluded from T-001 publication. The user authorized T-001 commit/push and Issue #23 only. No new game/launcher/process, mod/install/live-log or unrelated Git/GitHub work is authorized. Actual token/latency savings are not yet measured.
+- Historical T-001 authority covered its own publication only. F-001 was later explicitly resumed and received separate bounded install/test/publication authority; its current partial result and stop condition appear below. No agent game/process/UI operation is authorized. Actual tooling token/latency savings remain unmeasured.
 
 ## Environment and project boundary
 
@@ -33,9 +33,46 @@ Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays 
 
 ## Selected product task — F-001
 
-- F-001 remains incomplete. Cross-chat receipt integration with T-005 is resolved by accepted/consumed `T005-F001-RECONCILE-20261023-02`, preserving both original frozen results. See the [current reconciled evidence checkpoint](tasks/F-001-dynasty-map-ux.md#current-reconciled-evidence--2026-10-23).
-- Accepted GUI investigation reports 14,109 emitted role/intended-RGB agreements across 4,703 emitted counties per view, including corrected Bukhara. Strict audit remains INCOMPLETE because declared counters are zero; census, stored RGB, pixels and lifecycle safety remain unproven. Counter/export diagnosis from existing evidence is the next bounded feature step; court-scene error attribution stays separate. No automatic new game action is requested.
-- User-approved supplied appearance is preserved. R-005 owns context/no-Dynasty coverage; R-009 exact restoration/isolation/save/removal. The source candidate and detailed local F-001 execution history remain outside this scoped publication.
+Current closeout checkpoint, 2026-10-23: final cycle31 made a **partial
+compatibility recovery; F-001 / #20 remains OPEN and NOT READY for closure**.
+The user reports the focused paused-session icons/selection actions work.
+Three missing retired-template errors disappeared after exact restoration,
+but two unnamed duplicate-title load errors persist. Cause/save relationship/
+persistence impact remain unknown. No further game test or cycle32 is requested.
+
+- Installed package has nine source-identical files on CK3 1.20.1.2 / Steam
+  26046173. Only the two exact prior inert title/CoA declarations and six
+  original localization entries were restored. All other runtime bodies and
+  the descriptor are unchanged; retired execution/probe/baseline paths stay
+  removed. Existing 33 tests and source/installed preflights passed. Verified
+  prior backup, wrapper/manifest and actual ordered R016-only selection
+  preservation are recorded privately. After user launch no install writes.
+- User-only menu gate passed with mount/version/both GUIs. Reset append was
+  retained INCOMPLETE; separate byte-zero startup and finite load captures
+  were COMPLETE. One full audit beginning/ending and no reject/retired probes
+  were observed. The unchanged strict zero-count contract remains INCOMPLETE;
+  emitted record agreement is not stored RGB, global census or lifecycle proof.
+- [F-005 / #30](https://github.com/mhaduk/ck3-dynasty-map/issues/30) owns the two
+  persistent unnamed duplicate-title errors and residual functional/UX work,
+  including prior unmeasured roughly one-second click delay and final icons.
+  [F-004 / #29](https://github.com/mhaduk/ck3-dynasty-map/issues/29) retains
+  numeric/sample/completeness and separate court-error attribution gaps.
+  R-005/#5 and R-009/#9 retain context and exact restoration/save/removal.
+- The authorized partial source/documentation publication must say OPEN /
+  blocked and preserve all unrelated tooling/T-005 work. F-001 is ineligible
+  for the closed-task Wiki rollup. Measured partial usage is recorded in its
+  [canonical record](tasks/F-001-dynasty-map-ux.md); missing/unknown coverage
+  and unpriced buckets remain explicit. No success/closure/lifecycle waiver.
+
+### Earlier F-001 receipts
+
+Earlier presentation, classifier/self-liege correction, parser/V2, modifier,
+installation and closeout receipts are distilled in the
+[canonical F-001 record](tasks/F-001-dynasty-map-ux.md). The complete local
+journal and original handoff baselines were archived before distillation.
+Historical next-step/permission notes do not override the current final-cycle
+stop condition. T-005 reconciliation remains accepted; strict diagnostic and
+R-005/R-009 research boundaries remain unchanged.
 
 ## Reusable completed findings and open gates
 

@@ -21,7 +21,7 @@ types dynmap_r016_views
         # Keep native headers/close control and their nested instance seams.
         flowcontainer_map_mode_header = {
             parentanchor = center
-            visible = "[Not(Or(Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty')), IsMapMode('dynmap_r016_holdings_baseline')))]"
+            visible = "[Not(Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty')))]"
         }
         flowcontainer = {
             name = "dynmap_r016_active_subviews"
@@ -35,41 +35,131 @@ types dynmap_r016_views
             background = { using = Background_Area_Dark }
             visible = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]"
             flowcontainer = { parentanchor = hcenter spacing = 5 ignoreinvisible = yes
-                button_round = {
-                    name = "dynmap_r016_view_realms"
+                # Fixed slot: exactly one child handles a stable modifier state.
+                widget = {
+                    name = "dynmap_r016_slot_realms"
                     parentanchor = hcenter
-                    size = { 235 30 }
-                    text = "dynmap_r016_realms"
+                    size = { 40 40 }
                     visible = "[GetPlayer.IsValid]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    down = "[IsMapMode('dynmap_my_dynasty')]"
-                    tooltip = "dynmap_r016_realms_tt"
-                    onclick = "[GetScriptedGui('dynmap_r016_compute_realms').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-                    onclick = "[SetMapMode('dynmap_my_dynasty')]"
+                    button_round = {
+                        name = "dynmap_r016_view_realms"
+                        parentanchor = center
+                        size = { 40 40 }
+                        visible = "[Not(And(IsAltDown, IsShiftDown))]"
+                        enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                        down = "[IsMapMode('dynmap_my_dynasty')]"
+                        tooltip = "dynmap_r016_realms_tt"
+                        onclick = "[GetScriptedGui(Select_CString(IsAltDown, 'dynmap_r016_samples_realms', Select_CString(IsShiftDown, 'dynmap_r016_summary_realms', 'dynmap_r016_compute_realms'))).Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+                        onclick = "[SetMapMode('dynmap_my_dynasty')]"
+                        button_icon = {
+                            size = { 26 26 }
+                            parentanchor = center
+                            alwaystransparent = yes
+                            texture = "gfx/interface/icons/flat_icons/map_modes/dejure_kingdoms.dds"
+                            down = "[IsMapMode('dynmap_my_dynasty')]"
+                        }
+                    }
+                    button_round = {
+                        name = "dynmap_r016_view_realms_audit"
+                        parentanchor = center
+                        size = { 40 40 }
+                        visible = "[And(IsAltDown, IsShiftDown)]"
+                        enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                        down = "[IsMapMode('dynmap_my_dynasty')]"
+                        tooltip = "dynmap_r016_realms_tt"
+                        onclick = "[GetScriptedGui('dynmap_r016_dump_all_views').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+                        button_icon = {
+                            size = { 26 26 }
+                            parentanchor = center
+                            alwaystransparent = yes
+                            texture = "gfx/interface/icons/flat_icons/map_modes/dejure_kingdoms.dds"
+                            down = "[IsMapMode('dynmap_my_dynasty')]"
+                        }
+                    }
                 }
-                button_round = {
-                    name = "dynmap_r016_view_holdings"
+                # Fixed slot: exactly one child handles a stable modifier state.
+                widget = {
+                    name = "dynmap_r016_slot_holdings"
                     parentanchor = hcenter
-                    size = { 235 30 }
-                    text = "dynmap_r016_holdings"
+                    size = { 40 40 }
                     visible = "[GetPlayer.IsValid]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    down = "[IsMapMode('dynmap_dynasty_holdings')]"
-                    tooltip = "dynmap_r016_holdings_tt"
-                    onclick = "[GetScriptedGui('dynmap_r016_compute_holdings').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-                    onclick = "[SetMapMode('dynmap_dynasty_holdings')]"
+                    button_round = {
+                        name = "dynmap_r016_view_holdings"
+                        parentanchor = center
+                        size = { 40 40 }
+                        visible = "[Not(And(IsAltDown, IsShiftDown))]"
+                        enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                        down = "[IsMapMode('dynmap_dynasty_holdings')]"
+                        tooltip = "dynmap_r016_holdings_tt"
+                        onclick = "[GetScriptedGui(Select_CString(IsAltDown, 'dynmap_r016_samples_holdings', Select_CString(IsShiftDown, 'dynmap_r016_summary_holdings', 'dynmap_r016_compute_holdings'))).Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+                        onclick = "[SetMapMode('dynmap_dynasty_holdings')]"
+                        button_icon = {
+                            size = { 26 26 }
+                            parentanchor = center
+                            alwaystransparent = yes
+                            texture = "gfx/interface/icons/holding_types_tab/castle_holding.dds"
+                            down = "[IsMapMode('dynmap_dynasty_holdings')]"
+                        }
+                    }
+                    button_round = {
+                        name = "dynmap_r016_view_holdings_audit"
+                        parentanchor = center
+                        size = { 40 40 }
+                        visible = "[And(IsAltDown, IsShiftDown)]"
+                        enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                        down = "[IsMapMode('dynmap_dynasty_holdings')]"
+                        tooltip = "dynmap_r016_holdings_tt"
+                        onclick = "[GetScriptedGui('dynmap_r016_dump_all_views').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+                        button_icon = {
+                            size = { 26 26 }
+                            parentanchor = center
+                            alwaystransparent = yes
+                            texture = "gfx/interface/icons/holding_types_tab/castle_holding.dds"
+                            down = "[IsMapMode('dynmap_dynasty_holdings')]"
+                        }
+                    }
                 }
-                button_round = {
-                    name = "dynmap_r016_view_my_realm"
+                # Fixed slot: exactly one child handles a stable modifier state.
+                widget = {
+                    name = "dynmap_r016_slot_my_realm"
                     parentanchor = hcenter
-                    size = { 235 30 }
-                    text = "dynmap_r016_my_realm"
+                    size = { 40 40 }
                     visible = "[GetPlayer.IsValid]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    down = "[IsMapMode('dynmap_my_realm_dynasty')]"
-                    tooltip = "dynmap_r016_my_realm_tt"
-                    onclick = "[GetScriptedGui('dynmap_r016_compute_my_realm').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-                    onclick = "[SetMapMode('dynmap_my_realm_dynasty')]"
+                    button_round = {
+                        name = "dynmap_r016_view_my_realm"
+                        parentanchor = center
+                        size = { 40 40 }
+                        visible = "[Not(And(IsAltDown, IsShiftDown))]"
+                        enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                        down = "[IsMapMode('dynmap_my_realm_dynasty')]"
+                        tooltip = "dynmap_r016_my_realm_tt"
+                        onclick = "[GetScriptedGui(Select_CString(IsAltDown, 'dynmap_r016_samples_my_realm', Select_CString(IsShiftDown, 'dynmap_r016_summary_my_realm', 'dynmap_r016_compute_my_realm'))).Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+                        onclick = "[SetMapMode('dynmap_my_realm_dynasty')]"
+                        button_icon = {
+                            size = { 26 26 }
+                            parentanchor = center
+                            alwaystransparent = yes
+                            texture = "gfx/interface/icons/flat_icons/house.dds"
+                            down = "[IsMapMode('dynmap_my_realm_dynasty')]"
+                        }
+                    }
+                    button_round = {
+                        name = "dynmap_r016_view_my_realm_audit"
+                        parentanchor = center
+                        size = { 40 40 }
+                        visible = "[And(IsAltDown, IsShiftDown)]"
+                        enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+                        down = "[IsMapMode('dynmap_my_realm_dynasty')]"
+                        tooltip = "dynmap_r016_my_realm_tt"
+                        onclick = "[GetScriptedGui('dynmap_r016_dump_all_views').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+                        button_icon = {
+                            size = { 26 26 }
+                            parentanchor = center
+                            alwaystransparent = yes
+                            texture = "gfx/interface/icons/flat_icons/house.dds"
+                            down = "[IsMapMode('dynmap_my_realm_dynasty')]"
+                        }
+                    }
                 }
             }
             flowcontainer = {
@@ -142,50 +232,8 @@ types dynmap_r016_views
                 }
             }
             flowcontainer = { parentanchor = hcenter spacing = 5 ignoreinvisible = yes
-                button_round = {
-                    name = "dynmap_r016_refresh_realms"
-                    parentanchor = hcenter
-                    size = { 200 30 }
-                    text = "dynmap_r016_refresh"
-                    visible = "[And(GetPlayer.IsValid, IsMapMode('dynmap_my_dynasty'))]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    onclick = "[GetScriptedGui('dynmap_r016_compute_realms').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-                    onclick = "[SetMapMode('dynmap_my_dynasty')]"
-                }
-                button_round = {
-                    name = "dynmap_r016_refresh_holdings"
-                    parentanchor = hcenter
-                    size = { 200 30 }
-                    text = "dynmap_r016_refresh"
-                    visible = "[And(GetPlayer.IsValid, IsMapMode('dynmap_dynasty_holdings'))]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    onclick = "[GetScriptedGui('dynmap_r016_compute_holdings').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-                    onclick = "[SetMapMode('dynmap_dynasty_holdings')]"
-                }
-                button_round = {
-                    name = "dynmap_r016_refresh_my_realm"
-                    parentanchor = hcenter
-                    size = { 200 30 }
-                    text = "dynmap_r016_refresh"
-                    visible = "[And(GetPlayer.IsValid, IsMapMode('dynmap_my_realm_dynasty'))]"
-                    enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-                    onclick = "[GetScriptedGui('dynmap_r016_compute_my_realm').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-                    onclick = "[SetMapMode('dynmap_my_realm_dynasty')]"
-                }
                 button_round = { size = { 100 30 } text = "dynmap_r016_back" onclick = "[SetMapMode('realms')]" }
             }
-        }
-        # Legacy palette has a separate diagnostic display, never a fourth subview.
-        flowcontainer = {
-            name = "dynmap_r016_baseline_banner"
-            visible = "[IsMapMode('dynmap_r016_holdings_baseline')]"
-            parentanchor = center
-            direction = vertical
-            spacing = 4
-            background = { using = Background_Area_Dark }
-            margin = { 12 8 }
-            text_single = { text = "dynmap_r016_baseline_legend" using = Font_Size_Small }
-            button_round = { size = { 100 30 } text = "dynmap_r016_back" onclick = "[SetMapMode('realms')]" }
         }
     }
 }

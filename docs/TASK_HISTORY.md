@@ -32,7 +32,26 @@ The [R-005 partial checkpoint](tasks/R-005-player-context.md) consolidates its f
 |---|---|---|---|
 | R-016 | Three-view historical pipeline feasibility demonstrated in bounded 1.20.1.2 startup/runtime smoke; user reports normal switching/refresh/native-return operations appear to work. Research closed with bounded validation. | Grey nonmatching land failed visual acceptance; full semantic coverage, performance, context/atomicity safety and persistence/removal remain open. No production-readiness claim; #16 closed as completed research and checkpoint published. | [R-016](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21) |
 
-R-017 / [#19](https://github.com/mhaduk/ck3-dynasty-map/issues/19) is closed as completed scenario selection: three bookmark starts are ready for later tests, while runtime chains and additional family/comparator coverage remain observations for that testing. Historical pre-T-005 successor checkpoint: [F-001](tasks/F-001-dynasty-map-ux.md) and [F-002](tasks/F-002-dynasty-color-strategy.md); neither is selected.
+R-017 / [#19](https://github.com/mhaduk/ck3-dynasty-map/issues/19) is closed
+as completed scenario selection: three starts are ready for later tests;
+runtime chains and additional family/comparator coverage remain deferred.
+F-002 remains planned/unselected. F-001's intervening preparation, accepted
+shown appearance, Realms self-liege correction and modifier/parser checks are
+distilled in its [canonical record](tasks/F-001-dynasty-map-ux.md). Its current
+status is the incomplete checkpoint below; earlier category/display failures
+are historical observations, not the current accepted result.
+
+## F-001 incomplete closeout checkpoint — 2026-10-23
+
+This is an incomplete-task checkpoint, not a completed-task row. Final cycle31
+restored the exact prior inert helper declarations/CoA and six original names,
+without reviving retired execution paths. Nine-file source/install equality,
+33 unchanged tests and user-only menu/focused interaction checks passed. The
+three missing-template errors are absent; two unnamed duplicate-title load
+errors persist, so F-001 / #20 remains OPEN / NOT READY. F-005/#30 owns that
+compatibility blocker; F-004/#29 retains diagnostic gaps, and R-005/#5/R-009/#9
+retain their safety research. No further test cycle, save research or false
+feature closure is started. [Current canonical record](tasks/F-001-dynasty-map-ux.md).
 
 ## Closed research directions
 
