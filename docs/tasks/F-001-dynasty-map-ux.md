@@ -2,22 +2,22 @@
 
 Issue: [#20](https://github.com/mhaduk/ck3-dynasty-map/issues/20).
 
-Status: **OPEN / PARTIAL — closure blocked**, 2026-10-23. The user accepts the
-shown menu, three-view grey/green appearance and focused interactions. The
-final compatibility recovery removed three missing-template diagnostics, but
-two unnamed duplicate-title errors persist on loading the existing session.
-The agreed final-cycle stop condition therefore prevents narrowed F-001 closure.
-This prototype is not a production, strict-audit or lifecycle acceptance claim.
+Status: **COMPLETE — bounded delivered scope**, 2026-10-23. The user accepts the menu, three-view appearance and
+ordinary interaction on fresh 867 Ismail sessions and explicitly orders
+narrowed feature closure. F-001 does not claim production, strict-audit,
+global-coverage or lifecycle acceptance. Cycle31 remains historically FAILED.
+The two unnamed duplicate-title errors on the earlier existing-session load
+were not reproduced in the bounded fresh-game controls; their exact cause and
+the affected save's persistence impact remain UNKNOWN under F-005/R-009.
 
-## User pause checkpoint — 2026-10-23
+## Dated pause checkpoint — superseded by the final closeout direction
 
-Cycle31 has been reviewed as an honest published partial result. Its FAILED
-closure status remains historical; no further CLI delegation, code change or
-game test is requested. F-001 stays open while the user works on other tasks.
-Resume only on explicit selection, using [the focused handoff](F-001-resume.md).
-Two unnamed duplicate-title load errors remain; F-005/#30 owns their disposition.
-F-004/#29 retains diagnostic gaps. Raw evidence and original journals are local
-and preserved. Existing finite cost cutoff remains unchanged.
+At that checkpoint Cycle31's FAILED closure status remained historical and
+F-001 was paused. The later user direction supersedes the pause for closeout of
+the bounded fresh-session menu/appearance/ordinary-interaction scope. It does
+not waive F-004 diagnostics, F-005 old-save compatibility, R-005 context or
+R-009 restoration/save/removal research. Raw evidence and original journals
+remain preserved.
 
 ## Delivered scope and usage
 
@@ -37,8 +37,9 @@ roles and precedence; F-002 owns a later Dynasty-derived color strategy.
 | Shift+Option/Alt+click | One explicit full three-view audit, without painting or selecting another map |
 | Ctrl with any gesture | Same operation; Ctrl adds no action |
 
-Hold modifiers through mouse release. The debugging area remains collapsed
-and supplies shortcut hints. Native return/re-entry defaults to Dynasty Realms.
+Hold modifiers through mouse release. Shortcut hints remain in the per-view
+tooltips; the unused diagnostics toggle and informational panel were removed in
+cycle32. Native return/re-entry defaults to Dynasty Realms.
 Opening unrelated menus, unavailable contexts and transition races retain
 unverified coverage; do not infer their acceptance from ordinary clicks.
 
@@ -80,6 +81,27 @@ accepted; no T-005 work is reopened or included in this feature's publication.
 | 30 | User-only menu and grouped normal/modifier/native-return smoke. Summary, samples and one full audit observed. Load reported three missing retired title templates and two unnamed duplicate-title errors; closure rejected. Approximate one-second click delay was user-reported, unmeasured and not a proved regression |
 | 31 | Exact prior title/CoA declarations and six original localization entries restored; all other runtime bodies unchanged. Nine-file equality and the same 33 tests passed. User-only menu and focused paused-session load/selection check completed. Three missing-template errors absent, two duplicate-title errors persist; F-001 remains open |
 
+## Final bounded closeout evidence — 2026-10-23
+
+The user accepts the delivered menu, appearance and ordinary interaction from
+fresh 867 Ismail sessions and directs F-001 to close at that bounded scope.
+The cycle34 and cycle35 new-game/error-channel captures did not reproduce the
+two unnamed duplicate-title errors from the older loaded session. The overall
+cycle34/35 captures are INCOMPLETE because the debug channel ends on a partial
+line; their separately complete startup/error-channel evidence remains bounded.
+Other initialization and court errors persist with attribution UNKNOWN. Do not
+call the logs clean or harmless.
+
+Closeout preparation adds the source-grounded
+[painting and test-history guide](../F001_MAP_PAINTING.md), refreshes this
+record's cost evidence to the finite cutoff 2026-10-23T20:25:32.055275Z, and
+prepares Issue/Wiki drafts. GUI independently verified all 1,425 mapped response counters and request-level
+pricing against saved GUI/CLI/review records. This record accompanies the
+authorized final GitHub/Wiki publication. The accepted bounded closure does not assert that the old save is
+repaired or that the two errors were caused by that save.
+
+### Cycle31 compatibility recovery evidence — historical, superseded for bounded closure
+
 The two restored files are inert compatibility declarations for loaded-state
 references, with exact prior bytes/BOMs. Their original comments describe the
 retired copy experiment; no old execution roots, trace hooks, side tester,
@@ -109,7 +131,7 @@ error-channel diagnostics are two unnamed duplicate-title errors, 57 invalid
 court-character trigger blocks and one court culture-set failure. Mirrored
 channels are not additional incidents. GUI/conflict channels remained empty.
 
-**Remaining blocker:** two `Duplicate landed title name` errors still occur on
+**Historical cycle31 blocker:** two `Duplicate landed title name` errors still occur on
 load, without title names. Their cause, save-history relationship and persistence
 or RGB impact are UNKNOWN. Removing the missing-template errors does not clear
 this separate condition. No save was read/edited, no new fixture/control or
@@ -117,11 +139,11 @@ court/numeric root-cause investigation was started, and the final-cycle limit
 was not converted into a passing verdict. The reviewed partial source and
 findings may be published; the feature is not closed or represented as ready.
 
-## Remaining owners and stop conditions
+## Historical cycle31 blockers and continuing follow-up owners
 
 | Requirement | Owner and limit |
 |---|---|
-| Persistent unnamed duplicate-title load errors | [F-005 / #30](https://github.com/mhaduk/ck3-dynasty-map/issues/30); blocks F-001 closure pending explicit evidence/disposition, with R-009 retaining save/restoration research |
+| Persistent unnamed duplicate-title load errors | [F-005 / #30](https://github.com/mhaduk/ck3-dynasty-map/issues/30); historically blocked cycle31; unresolved old-session compatibility remains with this owner after bounded fresh-session F-001 closure, with R-009 retaining save/restoration research |
 | Numeric zero declarations, strict framing/completeness, malformed role labels, readable bounds and automated verification | [F-004 / #29](https://github.com/mhaduk/ck3-dynasty-map/issues/29); strict status stays INCOMPLETE |
 | Court-scene errors | F-004/F-005; attribution remains unknown and harmlessness is not established |
 | Fresh/invalid context and real no-Dynasty coverage | [R-005 / #5](https://github.com/mhaduk/ck3-dynasty-map/issues/5), integrated later by F-005; unavailable is not Neutral |
@@ -133,7 +155,7 @@ waiver or ADR semantic change is introduced. No further game action or extra
 microtask is requested by this result. The user alone starts/loads/tests/exits
 CK3; Codex used files, logs and human reports, never game UI/process access.
 
-## Verification and publication boundary
+## Historical cycle31 verification/publication boundary
 
 The 33 existing classification/parser/source-routing tests passed. Source and
 installed preflights passed for nine files on target 1.20.1.2 / installed Steam
@@ -143,32 +165,22 @@ result because of the persistent duplicate-title errors.
 
 Publication covers only the reviewed F-001 payload/analyzer/tests/README and
 necessary F-001/F-004/F-005/state/backlog/history records. Unrelated workflow,
-ignore/configuration and tooling changes remain excluded. The issue remains
-OPEN; the closed-task Wiki must exclude F-001 even when measured partial costs
-are recorded below. No completed-task history row is added.
+ignore/configuration and tooling changes remain excluded. At that historical checkpoint the issue remained OPEN and was excluded from
+the closed-task Wiki. The final accepted bounded closeout above supersedes that
+disposition; the original negative compatibility evidence remains unchanged.
 
 <!-- ai-cost:start -->
 ## AI cost
 
-| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
-|---|---:|---:|---:|---:|---:|---:|---|
-| codex-auto-review | 137702 | 90624 | 47078 | 914 | 656 | 138616 | partial |
-| gpt-6-luna | 18360165 | 17403264 | 956901 | 167261 | 44376 | 18527426 | partial |
-| gpt-6.1-sol | 126810031 | 123501440 | 3308591 | 732531 | 175655 | 127542562 | partial |
-| unknown | 344635 | 22784 | 321851 | 4501 | 0 | 349136 | partial |
-| **Total** | 145652533 | 141018112 | 4634421 | 905207 | 220687 | 146557740 | partial |
+| Model | Input | Cached input (subset) | Uncached input | Output | Total tokens | Known-model API-equivalent cost |
+|---|---:|---:|---:|---:|---:|---:|
+| codex-auto-review | 137702 | 90624 | 47078 | 914 | 138616 | N/A (unpriced) |
+| gpt-6-luna | 21964413 | 20840064 | 1124349 | 200428 | 22164841 | $0.421050 |
+| gpt-6.1-sol | 133199843 | 129741824 | 3458019 | 754329 | 133954172 | $32.616872 |
+| unknown | 344635 | 22784 | 321851 | 4501 | 349136 | N/A (unpriced) |
+| **Total** | 155646593 | 150695296 | 4951297 | 960172 | 156606765 | **$33.037921** |
 
-Method: task-ai-cost/1; evidence cutoff: 2026-10-23T10:22:41.410082+00:00. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
-Coverage is partial: explicitly mapped F-001 GUI/CLI/review work, failed attempts/retries and metadata-linked guardian reviews through the finite cutoff; prior R-016 work and shared T-005 work are excluded. Ambiguous or missing history is unallocated/N/A. Later accounting/publication and GUI receipt are excluded to avoid recursive accounting; this is not a full lifetime task cost or subscription/quota bill.
+Method: task-ai-cost/1; evidence cutoff: 2026-10-23T20:25:32.055275Z. Coverage is partial and preserves mapped F-001 GUI/CLI/review work, failed attempts/retries and linked guardian-review records from the earlier account, plus the current GUI conversation and dedicated CLI32/CLI33 sessions. The three added session snapshots have 57, 31 and 33 response records. No separate linked automatic-review session was identified by the bounded ID lookup; four previously mapped `codex-auto-review` responses remain unpriced. One `unknown` model response also remains unpriced. Prior R-016 development and shared T-005 work remain excluded; ambiguous or missing history is unallocated. Closeout preparation after the cutoff, publication and later GUI review are excluded. This is not a full lifetime task cost or subscription/quota bill.
 
-| Recorded model | Covered Standard API-equivalent USD |
-|---|---:|
-| codex-auto-review | N/A — unpriced |
-| gpt-6-luna | $0.353353 |
-| gpt-6.1-sol | $31.475997 |
-| unknown | N/A — unpriced |
-| **Known-model subtotal** | **$31.829350** |
-| **Full total** | **N/A — unknown/review model buckets unpriced** |
-
-Prices checked 2026-10-23: [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna). Per million uncached/cached/output tokens: $2/$0.10/$10 and $0.10/$0.01/$0.50. The 103 measured responses above 272,000 input tokens use the documented 2x input/cache and 1.5x output multiplier. Standard rates are an explicit API-equivalent comparison basis; actual service-tier, regional, cache-write, image/tool and other billing details are unavailable or excluded. Reasoning and cached tokens are subsets and are never added again.
+Cached input is a subset; reasoning is included in Output. Price lookup date: 2026-10-23, from [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol) and [GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna). Standard per-million uncached/cached/output rates are $2/$0.10/$10 and $0.10/$0.01/$0.50. 103 Sol responses above 272,000 input tokens use the documented 2x input/cache and 1.5x output multipliers. Actual service tier, regional/cache-write/tool/image billing is unavailable or excluded. The $33.037921 known subtotal is a partial API-equivalent estimate; unpriced buckets remain visible and are not assigned a dollar value. Independent GUI recomputation verified all 1,425 assigned responses, source-prefix hashes, deduplication and per-request pricing. Coverage remains partial.
 <!-- ai-cost:end -->

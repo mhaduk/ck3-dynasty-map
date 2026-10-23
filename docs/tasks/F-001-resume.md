@@ -1,8 +1,15 @@
-# F-001 — paused-session resume checkpoint
+# F-001 — prior paused-session checkpoint
 
-Updated 2026-10-23. **OPEN / PARTIAL; paused explicitly by the user.** Work on
-other tasks may proceed. Do not automatically resume F-001, create a new CLI
-handoff, repeat game tests or mark it complete.
+Historical checkpoint updated 2026-10-23. The later user direction supersedes
+this pause for closeout of the bounded menu, appearance and ordinary interaction
+on fresh 867 Ismail sessions. The user authorized comprehensive closeout,
+publication and scoped Git cleanup; GUI has accepted the closeout preparation and verified saved-session costs.
+F-001 is complete for its bounded delivered UI scope; this file preserves the
+earlier pause only and is not an instruction to resume it. Current evidence and
+ownership are summarized in the [canonical result](F-001-dynasty-map-ux.md).
+The remaining sections below are historical guidance as of the pause; where
+they say that the two errors block F-001, read that as the old checkpoint
+disposition rather than the current narrowed closeout status.
 
 ## Minimal startup for a future session
 

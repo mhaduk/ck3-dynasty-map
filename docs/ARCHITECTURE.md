@@ -6,7 +6,7 @@ This document defines the intended architecture during M0. R-016 now targets ins
 
 ## Current research ownership — T-005, 2026-10-23
 
-R-005 owns the safe dispatch/context contract and the no-Dynasty fixture-or-coverage decision merged from R-013. R-009 owns exact arbitrary-original RGB restore, isolation and save/removal. R-007/R-008/R-010 research is closed completed; F-001 owns ordinary classifier/projection/menu/Refresh/parity acceptance. R-016 bounded smoke and current prepared/installed fixes do not pass those gates. Historical checkpoint descriptions below retain their evidence limits. See [T-005](tasks/T-005-research-backlog-review.md).
+R-005 owns the safe dispatch/context contract and the no-Dynasty fixture-or-coverage decision merged from R-013. R-009 owns exact arbitrary-original RGB restore, isolation and save/removal. R-007/R-008/R-010 research is closed completed. The user accepts the bounded F-001 menu, appearance and ordinary interaction on fresh 867 Ismail sessions; residual parity/coverage is tracked by F-005, while context and RGB lifecycle gates remain with R-005/R-009. Historical checkpoint descriptions below retain their evidence limits. See [T-005](tasks/T-005-research-backlog-review.md) and [the F-001 painting guide](F001_MAP_PAINTING.md).
 
 ## Logical components
 
@@ -119,7 +119,7 @@ No strategy or ADR semantics are changed; implementation stays gated.
 **RG-UI-01 historical method-selection checkpoint (research closed by T-005):** R-002/R-003 statically inspected installed 1.20.1.1
 map definitions and GUI. Native named blocks and explicit faith sub-mode buttons
 exist, but separate-file insertion into the live HUD is unverified; the banner
-instance overrides shared defaults. See RESEARCH.md. F-001 now owns remaining ordinary UI acceptance. The public custom-map-mode guide was last verified against a very old CK3 version, while the recorded patch references report sub-map-mode display changes in CK3 1.20. Verify the installed behavior during M0, including unavailable UI, re-click/manual refresh and exit/restore hooks.
+instance overrides shared defaults. See RESEARCH.md. The bounded F-001 menu and ordinary flow are user-accepted on fresh 867 Ismail sessions; other UI parity, unavailable-state and lifecycle cases remain unverified under F-005/R-005/R-009. The public custom-map-mode guide was last verified against a very old CK3 version, while the recorded patch references report sub-map-mode display changes in CK3 1.20.
 
 Preferred order:
 

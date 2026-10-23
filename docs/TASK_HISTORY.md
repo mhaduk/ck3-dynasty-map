@@ -4,6 +4,7 @@ Compact index of completed substantial tasks. Investigation detail belongs in th
 
 | Task | Goal | Result | Issue journal | Canonical summary |
 |---|---|---|---|---|
+| F-001 | Deliver Dynasty menu, three subviews, readable grey presentation and remove obsolete debug controls | Complete for user-accepted fresh 867 Ismail UI/ordinary interaction. Shared barony RGB + native gradient profiles documented; old-session compatibility and strict diagnostics remain open with their owners. GUI verified 156,606,765 measured tokens / $33.03792114 known cost, partial cutoff coverage | [#20](https://github.com/mhaduk/ck3-dynasty-map/issues/20) | [F-001](tasks/F-001-dynasty-map-ux.md), [painting/test history](F001_MAP_PAINTING.md) |
 | T-010 | Compare two pinned saved checkpoint manifests without continuity or causal inference | Published and closed #36 after final small GUI correction; 24 focused tests independently and in isolated public-only tree, 44 upstream regression tests in CLI evidence; 22,167,566 tokens, $1.7642329 API-equivalent, partial coverage/per-request context pricing | [#36](https://github.com/mhaduk/ck3-dynasty-map/issues/36) | [T-010](tasks/T-010-checkpoint-comparison.md) |
 | T-009 | Structured preflight JSON and compatible evidence inventory adapter | Published and closed #35 after accepted correction; 39 focused tests pass independently and in isolated public-only tree, 123 targeted regressions in CLI evidence; 21,427,689 measured tokens, $0.8268543 API-equivalent, partial coverage | [#35](https://github.com/mhaduk/ck3-dynasty-map/issues/35) | [T-009](tasks/T-009-structured-preflight.md) |
 | T-008 | Reduce repeated pin/status assembly with a bounded offline evidence inventory | Published and closed #32 after accepted correction and GUI review; 22 focused tests also pass in isolated public-only tree, 84 upstream regressions in CLI evidence; 17,172,634 measured tokens, $0.9896894 API-equivalent, partial finite-cutoff coverage | [#32](https://github.com/mhaduk/ck3-dynasty-map/issues/32) | [T-008](tasks/T-008-workflow-optimization.md) |
@@ -49,26 +50,22 @@ as completed scenario selection: three starts are ready for later tests;
 runtime chains and additional family/comparator coverage remain deferred.
 F-002 remains planned/unselected. F-001's intervening preparation, accepted
 shown appearance, Realms self-liege correction and modifier/parser checks are
-distilled in its [canonical record](tasks/F-001-dynasty-map-ux.md). Its current
-status is the incomplete checkpoint below; earlier category/display failures
-are historical observations, not the current accepted result.
+distilled in its [canonical record](tasks/F-001-dynasty-map-ux.md). Its final bounded completion is listed in the completed-task table; the
+incomplete checkpoint below is historical. Earlier category/display failures
+remain historical observations.
 
-## F-001 incomplete closeout checkpoint — 2026-10-23
+## Historical F-001 incomplete checkpoint — superseded by bounded closure
 
-GUI reviewed cycle31 as a published partial result, then the user explicitly
-paused F-001 to work on other tasks. It is not a completed-history entry.
-[Future-session checkpoint](tasks/F-001-resume.md) records the two remaining
-load errors and retained evidence; no new CLI cycle is pending.
-
-This is an incomplete-task checkpoint, not a completed-task row. Final cycle31
-restored the exact prior inert helper declarations/CoA and six original names,
-without reviving retired execution paths. Nine-file source/install equality,
-33 unchanged tests and user-only menu/focused interaction checks passed. The
-three missing-template errors are absent; two unnamed duplicate-title load
-errors persist, so F-001 / #20 remains OPEN / NOT READY. F-005/#30 owns that
-compatibility blocker; F-004/#29 retains diagnostic gaps, and R-005/#5/R-009/#9
-retain their safety research. No further test cycle, save research or false
-feature closure is started. [Current canonical record](tasks/F-001-dynasty-map-ux.md).
+The user subsequently accepted the delivered menu, appearance and ordinary
+interaction on fresh 867 Ismail sessions and explicitly directed narrowed
+feature closure. GUI reviewed the painting/test documentation and independently
+verified the finite saved-session cost account before final publication. The
+completed-task row above supersedes this historical pause. Cycle31 remains FAILED.
+The two earlier unnamed duplicate-title errors were absent from bounded fresh
+game error-channel lines, but their cause and old-save persistence impact stay
+UNKNOWN. F-004/#29, F-005/#30, R-005/#5 and R-009/#9 retain their distinct open
+gates. See the [canonical record](tasks/F-001-dynasty-map-ux.md) and
+[painting/test-history guide](F001_MAP_PAINTING.md).
 
 ## Closed research directions
 

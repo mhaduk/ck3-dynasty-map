@@ -193,23 +193,6 @@ types dynmap_r016_menu
             blockoverride "checkbox" { checked = "[ShowLegendMapGraphics]" size = { 20 20 } }
             blockoverride "text" { text = "SETTING_SHOW_LEGEND_MAP_GRAPHICS" max_width = 155 fontsize = 14 }
         }
-        button_round = {
-            name = "dynmap_r016_diagnostics_toggle"
-            parentanchor = hcenter
-            size = { 220 28 }
-            text = "dynmap_r016_diagnostics"
-            tooltip = "dynmap_r016_modifier_status_tt"
-            onclick = "[GetVariableSystem.Toggle('dynmap_r016_diagnostics')]"
-        }
-        flowcontainer = {
-            name = "dynmap_r016_diagnostics_area"
-            direction = vertical
-            parentanchor = hcenter
-            spacing = 3
-            ignoreinvisible = yes
-            visible = "[GetVariableSystem.Exists('dynmap_r016_diagnostics')]"
-            text_single = { text = "dynmap_r016_diagnostics_hint" using = Font_Size_Small parentanchor = hcenter }
-        }
         # Raid/barter controls remain omitted pending separate visibility review.
     }
 }

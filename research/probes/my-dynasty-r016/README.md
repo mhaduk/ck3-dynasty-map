@@ -1,22 +1,27 @@
 # R-016 — Three Dynasty views, source candidate
 
-## Current package — F-001 compatibility recovery, 2026-10-23
+## Current package — F-001 bounded closeout, 2026-10-23
 
 Research prototype for CK3 **1.20.1.2 / Steam build 26046173**, not a production
-release. User accepts the supplied grey/green three-view appearance. The reviewed
-cleanup passed its seven-file installation and main-menu gate, but loading the
-existing test session reported three missing retired helper-title templates and
-two unnamed duplicate-title errors. The final recovery candidate restores the
-exact two prior title/CoA files and six original name/adjective entries, bringing
-the package back to **nine files** without restoring retired execution paths.
-All 33 existing classifier/parser/source-routing tests and the nine-file source
-preflight pass. Recovery installation passed with complete nine-file equality,
-unchanged wrapper/manifest/ordered R016-only playset selection and verified
-backup of the prior payload and five ordinary logs. User-only startup and the
-focused paused-session interaction check passed.
-The three missing-template errors are absent after restoration, but two unnamed
-duplicate-title errors persist at load. **F-001 remains OPEN / closure blocked**;
-visible operation and file equality do not clear that remaining condition.
+release. The user accepts the menu, grey/green three-view appearance and
+ordinary interaction on fresh 867 Ismail sessions. Cycle31 restored the exact
+two prior title/CoA files and six original name/adjective entries, bringing the
+package to **nine files** without restoring retired execution paths. All 33
+existing classifier/parser/source-routing tests and the nine-file source
+preflight passed. Recovery installation passed complete source equality with
+the wrapper, manifest and ordered R016-only playset selection preserved.
+
+The earlier existing-session load had three missing-template messages and two
+unnamed duplicate-title messages. The three templates disappeared after exact
+restoration; the two duplicate messages did not recur in bounded cycle34/35
+fresh-game error-channel lines. Their cause, affected saved state and persistence
+impact remain UNKNOWN. Overall later captures are INCOMPLETE at a partial final
+debug line, and other initialization/court errors remain unattributed. F-001's
+bounded closeout is accepted; it makes no old-save repair, clean-log,
+strict-audit or lifecycle claim.
+
+See the [painting and test-history guide](../../../docs/F001_MAP_PAINTING.md)
+and [canonical F-001 record](../../../docs/tasks/F-001-dynasty-map-ux.md).
 
 | Retained entry | Operation |
 |---|---|
@@ -26,7 +31,7 @@ visible operation and file equality do not clear that remaining condition.
 | Alt/Option+click on a child | Summary plus at most 10 samples per role and 20 additional detail counties, then matching display |
 | Alt/Option+Shift+click on a child | One explicit all-three-view V2 audit; no painting or map/selection change |
 | Ctrl with any gesture | Same operation; Ctrl is ignored |
-| Collapsed Dynasty Map debugging | Shortcut hints; no separate Test modifiers control |
+| View tooltips | Shortcut hints remain; no diagnostics toggle or informational panel |
 
 Keep modifiers held through mouse release. Fresh `GetPlayer.MakeScope` roots,
 character liveness/Dynasty/CanChangeMapMode guards, accepted F-003 predicates,
@@ -67,13 +72,14 @@ payload/wrapper/manifest/five-log backup plus a consistent read-only SQLite
 snapshot of actual ordered selection. R016-only GUI Probe selection, wrapper
 and manifest stayed unchanged. A fresh five-log prelaunch baseline is local.
 Cycle 30 observed startup and normal/modifier callbacks, but the load errors
-block closure. Cycle 31 uses a fresh CK3-closed declaration for this minimal
+blocked that historical checkpoint. Cycle 31 uses a fresh CK3-closed declaration for this minimal
 recovery, then user-only menu and paused-session load checkpoints in the same
 task. The user confirmed the requested Holdings/combined-audit sequence worked
 as expected; one complete audit frame was observed. Strict numeric acceptance
-remains INCOMPLETE. Two persistent unnamed duplicate-title errors prevent
-F-001/#20 closure. Only truthful partial source/evidence publication proceeds;
-F-001 remains excluded from the closed-task Wiki cost inventory.
+remains INCOMPLETE. Later bounded fresh-game controls did not reproduce the two
+earlier unnamed duplicate-title errors, but their cause and old-save persistence
+impact remain UNKNOWN. F-004 and F-005 retain their diagnostic and compatibility
+follow-ups.
 
 ## Evidence and historical limits
 
@@ -83,8 +89,9 @@ KEYPROBE/COUNTERPROBE and baseline commands are retired. Do not use old probe
 instructions to repeat passed tests or modify a live installation.
 
 [Current F-001 record](../../../docs/tasks/F-001-dynasty-map-ux.md) records the
-accepted appearance, Realms self-liege correction, source/parser checks,
-three-cycle closeout and remaining load blocker.
+accepted bounded appearance and ordinary interaction, Realms self-liege
+correction, source/parser checks, three-cycle history and later fresh-game
+controls.
 [F-003](../../../docs/tasks/F-003-dynasty-subview-definitions.md) defines the
 unchanged role predicates; [R-016](../../../docs/tasks/R-016-my-dynasty-pipeline.md)
 retains the historical pipeline's bounded feasibility evidence.

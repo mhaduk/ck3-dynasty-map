@@ -34,3 +34,11 @@ F-002 investigates accent sources with fixed-palette fallback; accessible native
 Dynasty RGB remains unproven. R-017 supplies stronger natural fixtures.
 
 T-005 ownership update (2026-10-23): RK-12/20 and no-Dynasty coverage belong to R-005 (R-013 merged); RK-16/17/24 to R-009. F-001 owns remaining ordinary menu/parity, hierarchy and projection acceptance after R-007/R-008/R-010 research closure. Later F-001 visuals are user-accepted for the supplied views; the older RK-22 failure above is historical, not a new requested redesign. Full classification/lifecycle acceptance remains open.
+
+F-001 closeout update (2026-10-23): the user accepts the bounded menu,
+appearance and ordinary interaction on fresh 867 Ismail sessions. Cycle34/35
+fresh-game error-channel lines did not reproduce the two unnamed duplicate-title
+errors seen in the earlier existing-session load; cause and persistence impact
+remain UNKNOWN. The bounded acceptance does not reduce RK-16/17/20/24, strict
+diagnostic, context, RGB restoration or removal risks. Overall new-game/smoke
+captures remain INCOMPLETE at a partial final debug line.

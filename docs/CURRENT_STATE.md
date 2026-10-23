@@ -2,6 +2,10 @@
 
 Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+Entries below preserve their dated task cutoffs. The dedicated F-001 section
+later in this file supersedes earlier statements that F-001 was paused; its
+bounded F-001 scope is complete; remaining gates retain their named owners.
+
 ## Completed administrative closeout — T-008 / T-009 / T-010
 
 User authorized the full closeout on 2026-10-23: initial commit, T-011 deferred
@@ -9,7 +13,7 @@ ideas record, cost/docs/Wiki refresh, scoped recoverable cleanup, three task
 closures, final commit and push. Initial accepted T-010 commit `accaa74` is
 created. GUI verified all three saved-session accounting tables and approved
 publication of their finite-cutoff partial costs. Batch `T008-T010-PUBLISH-20261023-01` was published and verified; T-011 remains open/deferred. Issues #32, #35 and #36 are closed completed.
-No implementation, game/app action or F-001 continuation is authorized.
+That administrative authorization did not include product work; the later explicit F-001 closeout direction is recorded below.
 
 ## Last completed tooling task — T-010
 
@@ -149,55 +153,31 @@ locally before coordinator integration.
 - Milestone M0 research/bootstrap. The partial diagnostic implementation is published; production/lifecycle safety remains unverified. Preserve ADR semantics and unrelated work.
 - The user requires map-system interfaces (ADR-009). Decision/council selectors, Situations and religious-object carriers are excluded. R-016 demonstrated a bounded title-RGB/baronies pipeline; an independent lifecycle-safe classification input remains unproven. Do not repeat broad scans or prepare a carrier probe.
 
-## Paused product task — F-001
+## Completed product task — F-001 / #20
 
-**User pause checkpoint — 2026-10-23.** F-001 is not the active task. Cycle31
-was reviewed as a published partial result; its original FAILED status is
-preserved. Do not start another F-001 cycle, test, fix or accounting refresh.
-The user will select other work before returning. New sessions start from the
-[resume checkpoint](tasks/F-001-resume.md); two duplicate-title load errors
-remain the closure blocker. No new task is selected by this pause.
+On 2026-10-23 the user accepted the delivered menu, appearance and ordinary
+interaction on fresh 867 Ismail sessions and explicitly directed narrowed
+feature closure. GUI accepted the source-grounded painting/test history and independently
+verified 1,425 mapped saved-session response records: 156,606,765 measured
+tokens and $33.03792114 known API-equivalent cost, with partial coverage and
+unpriced buckets. F-001 closes at this bounded scope with the authorized
+source/docs/GitHub/Wiki publication. Cycle31 remains historically FAILED.
+No successor is automatically selected and no further game action is requested.
 
-Current closeout checkpoint, 2026-10-23: final cycle31 made a **partial
-compatibility recovery; F-001 / #20 remains OPEN and NOT READY for closure**.
-The user reports the focused paused-session icons/selection actions work.
-Three missing retired-template errors disappeared after exact restoration,
-but two unnamed duplicate-title load errors persist. Cause/save relationship/
-persistence impact remain unknown. No further game test or cycle32 is requested.
+The two unnamed duplicate-title errors from the earlier loaded session did not
+recur in the bounded cycle34/35 fresh-game error-channel lines. Their exact
+cause and old-save persistence impact remain UNKNOWN. The overall new-game/smoke
+captures are INCOMPLETE at a partial final debug line; other initialization
+and court errors remain unattributed. No clean-log, old-save repair, strict
+audit, global-census, stored-RGB or lifecycle pass is claimed. See the
+[canonical F-001 record](tasks/F-001-dynasty-map-ux.md) and its
+[painting/test-history guide](F001_MAP_PAINTING.md).
 
-- Installed package has nine source-identical files on CK3 1.20.1.2 / Steam
-  26046173. Only the two exact prior inert title/CoA declarations and six
-  original localization entries were restored. All other runtime bodies and
-  the descriptor are unchanged; retired execution/probe/baseline paths stay
-  removed. Existing 33 tests and source/installed preflights passed. Verified
-  prior backup, wrapper/manifest and actual ordered R016-only selection
-  preservation are recorded privately. After user launch no install writes.
-- User-only menu gate passed with mount/version/both GUIs. Reset append was
-  retained INCOMPLETE; separate byte-zero startup and finite load captures
-  were COMPLETE. One full audit beginning/ending and no reject/retired probes
-  were observed. The unchanged strict zero-count contract remains INCOMPLETE;
-  emitted record agreement is not stored RGB, global census or lifecycle proof.
-- [F-005 / #30](https://github.com/mhaduk/ck3-dynasty-map/issues/30) owns the two
-  persistent unnamed duplicate-title errors and residual functional/UX work,
-  including prior unmeasured roughly one-second click delay and final icons.
-  [F-004 / #29](https://github.com/mhaduk/ck3-dynasty-map/issues/29) retains
-  numeric/sample/completeness and separate court-error attribution gaps.
-  R-005/#5 and R-009/#9 retain context and exact restoration/save/removal.
-- The published partial source/documentation result says OPEN /
-  blocked and preserve all unrelated tooling/T-005 work. F-001 is ineligible
-  for the closed-task Wiki rollup. Measured partial usage is recorded in its
-  [canonical record](tasks/F-001-dynasty-map-ux.md); missing/unknown coverage
-  and unpriced buckets remain explicit. No success/closure/lifecycle waiver.
-
-### Earlier F-001 receipts
-
-Earlier presentation, classifier/self-liege correction, parser/V2, modifier,
-installation and closeout receipts are distilled in the
-[canonical F-001 record](tasks/F-001-dynasty-map-ux.md). The complete local
-journal and original handoff baselines were archived before distillation.
-Historical next-step/permission notes do not override the current final-cycle
-stop condition. T-005 reconciliation remains accepted; strict diagnostic and
-R-005/R-009 research boundaries remain unchanged.
+[F-004/#29](https://github.com/mhaduk/ck3-dynasty-map/issues/29) keeps diagnostic
+count/rendering and court-error gaps. [F-005/#30](https://github.com/mhaduk/ck3-dynasty-map/issues/30)
+keeps old-session compatibility, functional/UX follow-ups and final icons.
+R-005/#5 and R-009/#9 retain context and exact color restoration/save/removal
+research. No unrelated T-005 work is included.
 
 ## Reusable completed findings and open gates
 

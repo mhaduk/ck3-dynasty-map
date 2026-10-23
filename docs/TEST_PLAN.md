@@ -65,7 +65,16 @@ Unavailable activation must not classify or write colors; restoration cleanup on
 loss of an active context is a separate operation and may need restore writes.
 Use runtime/probe evidence sufficient to demonstrate those distinctions.
 
-Current ownership after T-005: F-001 owns hierarchy/projection/UI acceptance from closed R-007/R-008/R-010, including deep/government cases, exact barony coverage, selected-view Refresh receipts and native/DLC/UI-scale parity. R-005 owns dispatch/context and merged no-Dynasty coverage; R-009 exact RGB restore/save/removal. The dated snapshots below retain earlier issue references as history, not parallel live owners. No test was run in T-005.
+Ownership checkpoint after T-005 (2026-10-23): F-001 then owned hierarchy/projection/UI acceptance from closed R-007/R-008/R-010, including deep/government cases, exact barony coverage, selected-view Refresh receipts and native/DLC/UI-scale parity. R-005 owns dispatch/context and merged no-Dynasty coverage; R-009 exact RGB restore/save/removal. The dated snapshots below retain earlier issue references as history, not parallel live owners. No test was run in T-005.
+
+F-001 closeout update, 2026-10-23: the user accepts the bounded menu,
+appearance and ordinary interaction on fresh 867 Ismail sessions. This does
+not mark strict diagnostics, global coverage, stored RGB, context-loss cleanup,
+save/load/removal or broad UI parity as passed. F-004/#29 owns diagnostics;
+F-005/#30 owns remaining functional/UI compatibility; R-005/#5 and R-009/#9
+retain context and RGB/save/removal gaps. Refer to
+[F-001 test history](F001_MAP_PAINTING.md); no new game test was run during this
+documentation preparation.
 
 ## M0 R-005 diagnostic coverage snapshot — 2026-10-20
 

@@ -51,14 +51,22 @@ artwork into the public repository. Update only icon mapping/references without
 changing F-003 semantics or menu behavior. No asset search, image generation,
 composite or redesign is assigned in the current cleanup cycle.
 
+## F-001 bounded closeout update — 2026-10-23
+
+The user accepts the delivered F-001 menu, appearance and ordinary interaction
+on fresh 867 Ismail sessions and directs narrowed feature closure. Cycle34/35
+complete error-channel lines did not reproduce the two unnamed duplicate-title
+errors from the earlier existing-session load. The cause and save persistence
+impact remain UNKNOWN; overall captures are INCOMPLETE at a partial final debug
+line, and other initialization/court errors remain unattributed. F-005 continues
+to own old-session compatibility, functional/UX coverage and deferred icons.
+This does not claim the old save is repaired or establish lifecycle safety.
+
 ## Completion boundary
 
-F-001 / [#20](https://github.com/mhaduk/ck3-dynasty-map/issues/20) stays open until
-the cleaned package receives its final grouped smoke and reviewed closeout.
-Closing its narrowed delivered UI scope later does not complete this task,
-F-004, R-005 or R-009. Each residual item needs evidence or an explicit supported
-coverage decision; genuine unsafe regressions remain blockers despite the
-three-cycle closeout budget.
+F-001's accepted bounded scope does not complete F-005, F-004, R-005 or R-009.
+Each residual item needs its own evidence or explicit supported coverage
+decision; genuine unsafe regressions remain blockers for the affected scope.
 
 ## Cycle30 verification and cleanup blocker — 2026-10-23
 

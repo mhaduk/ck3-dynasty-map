@@ -88,3 +88,14 @@ without another redundant analyzer run. The loaded interval again contains
 unattributed. Three missing helper-template errors disappeared after exact
 declaration restoration, but two unnamed duplicate-title errors persist under
 F-005 and continue to block F-001 closure. No numeric/court cure is claimed.
+
+## F-001 bounded closeout ownership — 2026-10-23
+
+The user accepts the delivered F-001 menu, appearance and ordinary interaction
+on fresh 867 Ismail sessions and directs narrowed feature closure. Cycle34/35
+complete error-channel lines did not reproduce the earlier two unnamed
+duplicate-title errors; overall captures remain INCOMPLETE at a partial final
+debug line. This disposition does not change F-004 ownership: numeric rendering,
+strict framing/completeness, malformed sample labels, interrupted-batch
+robustness and court-error attribution remain OPEN here. The user has not
+accepted a clean diagnostic contract or a harmlessness attribution.

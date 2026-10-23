@@ -11,6 +11,12 @@ without independent view storage, safe exact restoration or removal acceptance.
 T-005 narrows open research to R-005 (dispatch/context and merged R-013 coverage)
 and R-009 (RGB lifecycle/save/removal). R-007/R-008/R-010 are closed completed
 research; their ordinary classifier/projection/UI tests belong to F-001.
+The user accepts the bounded F-001 menu, appearance and ordinary interaction
+on fresh 867 Ismail sessions. This does not pass RG-PLAYER-01, shared RGB/save/
+removal gates, strict diagnostics or broad projection/parity acceptance; residual
+functional checks are owned by F-005 and diagnostic checks by F-004. The earlier
+two duplicate-title messages were not reproduced in bounded fresh-game error
+channels, but their cause and old-save relationship remain UNKNOWN.
 R-011/R-012 are closed not planned: matched attribution controls and optional
 validator evaluation belong to T-113/current feature acceptance when needed.
 Historical partial statuses and next steps below retain their dates; current

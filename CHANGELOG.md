@@ -48,6 +48,10 @@ All notable changes to Dynasty Map will be documented here.
 ## Planned [0.4.0]
 
 ### Changed
+- F-001 closeout removes the unused diagnostics toggle, informational panel
+  and three UI-only localization entries; modifier hints remain on each view.
+  This records the actual two-file UI cleanup from cycle32, later installed in
+  cycle35; it does not claim diagnostic-backend removal or a clean log.
 - Integrated Dynasty map-mode UX with both modes.
 
 ## Planned [1.0.0]
