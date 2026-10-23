@@ -41,6 +41,11 @@ Model recommendation: Luna / Medium (recommendation unless runtime confirms)
 
 ## Checks
 - <check-name>: <method and pass condition>
+- For AI-cost/closeout publication scopes, GUI must add `ai-cost-table-format`:
+  every scoped Issue/PR body and canonical record contains the exact workflow
+  per-model cost table (including Total and USD), arithmetic/coverage notes
+  verified, then the published body is read back. Prose or a link is insufficient.
+  The token-only helper fragment is not the final priced table.
 
 ## Progress and communication
 Keep user-facing commentary in the language of the latest user request, including
@@ -135,6 +140,13 @@ does not apply, while retaining every dossier heading for clear unknowns.
 {"id":"<ID>","parent_id":"<PARENT>","attempt":1,"inputs":{},"outputs":{}}
 ```
 ~~~
+
+For an AI-cost/closeout publication result, keep the canonical table specified
+in CODEX_WORKFLOW in each scoped Issue/PR body and canonical task record. In
+`## Checks`, include the exact standalone `- ai-cost-table-format: PASS` only
+after validating the table and published-body readback. A prose-only cost
+summary is CHANGES REQUIRED. Do not change the generic result grammar or
+add this check to unrelated tasks.
 
 Never place chain-of-thought, credentials, private machine paths, raw logs,
 saves or dumps in the dossier. Keep sensitive evidence private and cite its

@@ -660,6 +660,38 @@ costs as N/A and unknown model prices visibly unpriced. Do not replace missing
 token counters with zero or claim missing usage actually cost nothing. Label
 such totals as partial known/priced cost and preserve coverage limitations.
 
+### Required AI-cost table in task reports
+
+Every AI-cost update or task-closeout publication must include a GFM table in
+the GitHub Issue/PR body and matching canonical task record. A prose total or
+link alone does not satisfy this requirement. Keep prose for context below
+the table. Use exactly these columns, one row per recorded model, and a bold
+Total row:
+
+| Model | Input | Cached input (subset) | Uncached input | Output | Total tokens | Known-model API-equivalent cost |
+|---|---:|---:|---:|---:|---:|---:|
+| <recorded model> | <input> | <cached subset> | <input minus cached> | <output> | <input plus output> | <$USD or N/A> |
+| **Total** | <sum> | <sum> | <sum> | <sum> | <sum> | <sum of known unrounded USD> |
+
+State partial/missing coverage, finite cutoff, excluded work, price date/source,
+context-rate handling and unpriced models below the table. Keep unavailable
+counters N/A and unknown prices explicitly unpriced; do not hide their rows or
+invent model aliases. Cached input is a subset; reasoning is already included
+in Output. Sum known unrounded USD with N/A contributing zero only to cost
+arithmetic; a positive known sum must display USD. The token-only fragment
+from task_ai_cost.py is not the final priced publication table: combine its
+verified counters with verified per-model pricing without changing attribution.
+
+For any handoff updating/publishing costs, GUI must assign the named check
+`ai-cost-table-format`. CLI must verify the exact header, per-model rows, Total
+row, arithmetic and limitations in every scoped Issue/PR body and canonical
+record, then read back the published body and verify the same table again.
+Report the exact standalone `- ai-cost-table-format: PASS` only after those
+checks. Missing tables or prose-only reports are CHANGES REQUIRED even when
+the numeric prose total is correct. This is a semantic review/check convention,
+not a new handoff.py schema or permission. Preserve the Wiki's separate grouped
+R/T/F/B summary and per-task layout; it need not use this per-model schema.
+
 ## Task finalization
 
 GUI must perform the saved-session cost check above before closing each task,

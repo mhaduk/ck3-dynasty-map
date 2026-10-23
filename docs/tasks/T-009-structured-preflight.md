@@ -261,14 +261,15 @@ no raw-log parsing, capture or implementation starts here.
 <!-- ai-cost:start -->
 ## AI cost
 
-| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
-|---|---:|---:|---:|---:|---:|---:|---|
-| gpt-6-luna | 17954686 | 17651200 | 303486 | 94885 | 33283 | 18049571 | partial |
-| gpt-6.1-sol | 3359797 | 3331712 | 28085 | 18321 | 4593 | 3378118 | partial |
-| **Total** | 21314483 | 20982912 | 331571 | 113206 | 37876 | 21427689 | partial |
+| Model | Input | Cached input (subset) | Uncached input | Output | Total tokens | Known-model API-equivalent cost |
+|---|---:|---:|---:|---:|---:|---:|
+| gpt-6-luna | 17,954,686 | 17,651,200 | 303,486 | 94,885 | 18,049,571 | $0.2543031 |
+| gpt-6.1-sol | 3,359,797 | 3,331,712 | 28,085 | 18,321 | 3,378,118 | $0.5725512 |
+| **Total** | 21,314,483 | 20,982,912 | 331,571 | 113,206 | 21,427,689 | **$0.8268543** |
 
-Method: task-ai-cost/1; evidence cutoff: 2026-10-23T18:16:57.841333+00:00. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
-Partial measured coverage: one GUI session (three selected T-009 turns) and two CLI sessions; 212 deduplicated own responses. Independent sum agrees. Preliminary T-009 plan in mixed T-008 commit turn remains unallocated; later accounting/integration/final response excluded. Six same-day review sources checked; no exact selected parent/root-turn match. Unobserved usage is not zero.
+Coverage: partial for all rows. Frozen cutoff: 2026-10-23T18:16:57.841333+00:00; later shared closeout/publication work excluded. Cached input is a subset; reasoning output is included in Output. Rough API-equivalent token estimate, not subscription spend. Standard prices checked 2026-10-23: [official pricing](https://developers.openai.com/api/docs/pricing?latest-pricing-expanded=true). Recorded requests use short-context reference rates. Missing/unattributable usage remains unknown; no full-coverage claim.
+
+Reasoning output (subset of Output): gpt-6-luna: 33,283, gpt-6.1-sol: 4,593.
 <!-- ai-cost:end -->
 
 

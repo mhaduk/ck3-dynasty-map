@@ -246,14 +246,15 @@ checked on 2026-10-23. Unknown usage is not zero.
 <!-- ai-cost:start -->
 ## AI cost
 
-| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
-|---|---:|---:|---:|---:|---:|---:|---|
-| gpt-6-luna | 14933989 | 14526720 | 407269 | 104484 | 42687 | 15038473 | partial |
-| gpt-6.1-sol | 7103557 | 7071232 | 32325 | 25536 | 6346 | 7129093 | partial |
-| **Total** | 22037546 | 21597952 | 439594 | 130020 | 49033 | 22167566 | partial |
+| Model | Input | Cached input (subset) | Uncached input | Output | Total tokens | Known-model API-equivalent cost |
+|---|---:|---:|---:|---:|---:|---:|
+| gpt-6-luna | 14,933,989 | 14,526,720 | 407,269 | 104,484 | 15,038,473 | $0.2382361 |
+| gpt-6.1-sol | 7,103,557 | 7,071,232 | 32,325 | 25,536 | 7,129,093 | $1.5259968 |
+| **Total** | 22,037,546 | 21,597,952 | 439,594 | 130,020 | 22,167,566 | **$1.7642329** |
 
-Method: task-ai-cost/1; evidence cutoff: 2026-10-23T19:06:57.266616+00:00. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
-Partial measured coverage: five task-specific GUI turns in one session, four CLI turns in three sessions including premature pickup and resume. 215 own response IDs deduplicated; independent sum agrees. Preliminary mixed T-009 commit/planning turn unallocated; later accounting/integration/final response excluded. Six same-day linked review sources checked; no matching selected parent/root turn found. Missing usage is not zero.
+Coverage: partial for all rows. Frozen cutoff: 2026-10-23T19:06:57.266616+00:00; later shared closeout/publication work excluded. Cached input is a subset; reasoning output is included in Output. Rough API-equivalent token estimate, not subscription spend. Standard prices checked 2026-10-23: [official pricing](https://developers.openai.com/api/docs/pricing?latest-pricing-expanded=true). Fourteen Sol requests above 272,000 input tokens use 2x input/cache and 1.5x output for the entire request; generation/runtime claims remain unchanged. Missing/unattributable usage remains unknown; no full-coverage claim.
+
+Reasoning output (subset of Output): gpt-6-luna: 42,687, gpt-6.1-sol: 6,346.
 <!-- ai-cost:end -->
 
 

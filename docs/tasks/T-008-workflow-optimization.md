@@ -206,14 +206,15 @@ implementation, installation or game action begins here.
 <!-- ai-cost:start -->
 ## AI cost
 
-| Model | Input total | Cached input (subset) | Uncached input | Output total | Reasoning output (subset) | Total tokens | Coverage |
-|---|---:|---:|---:|---:|---:|---:|---|
-| gpt-6-luna | 13733273 | 13418240 | 315033 | 87665 | 25334 | 13820938 | partial |
-| gpt-6.1-sol | 3330761 | 3205632 | 125129 | 20935 | 3908 | 3351696 | partial |
-| **Total** | 17064034 | 16623872 | 440162 | 108600 | 29242 | 17172634 | partial |
+| Model | Input | Cached input (subset) | Uncached input | Output | Total tokens | Known-model API-equivalent cost |
+|---|---:|---:|---:|---:|---:|---:|
+| gpt-6-luna | 13,733,273 | 13,418,240 | 315,033 | 87,665 | 13,820,938 | $0.2095182 |
+| gpt-6.1-sol | 3,330,761 | 3,205,632 | 125,129 | 20,935 | 3,351,696 | $0.7801712 |
+| **Total** | 17,064,034 | 16,623,872 | 440,162 | 108,600 | 17,172,634 | **$0.9896894** |
 
-Method: task-ai-cost/1; evidence cutoff: 2026-10-23T17:39:01.530464+00:00. Measured response counters only; cached input and reasoning output are subsets, not addends. Uncached input = input minus cached input; total = input plus output where recorded.
-One saved GUI session and three CLI sessions; 220 deduplicated own response IDs; independent sum agrees. Coverage partial; later accounting/integration/final response excluded. No matching linked automatic-review source in four same-day review sessions; not fabricated as zero usage.
+Coverage: partial for all rows. Frozen cutoff: 2026-10-23T17:39:01.530464+00:00; later shared closeout/publication work excluded. Cached input is a subset; reasoning output is included in Output. Rough API-equivalent token estimate, not subscription spend. Standard prices checked 2026-10-23: [official pricing](https://developers.openai.com/api/docs/pricing?latest-pricing-expanded=true). Recorded requests use short-context reference rates. Missing/unattributable usage remains unknown; no full-coverage claim.
+
+Reasoning output (subset of Output): gpt-6-luna: 25,334, gpt-6.1-sol: 3,908.
 <!-- ai-cost:end -->
 
 
