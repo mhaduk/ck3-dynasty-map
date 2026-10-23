@@ -1,6 +1,6 @@
 name: Feature request
-description: Propose a user-visible enhancement
-title: "feat: "
+description: Propose a user-visible enhancement. Replace F-XXX with the next verified stable ID; keep the title format <ID> — <concise title>.
+title: "F-XXX — "
 labels: ["type:feature"]
 body:
   - type: textarea

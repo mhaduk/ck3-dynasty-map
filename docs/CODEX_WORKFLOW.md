@@ -421,6 +421,18 @@ completes its parent.
 
 Every material stage records in its own result: observation, cause or unknown, recovery, outcome, and a small reusable instruction/tool suggestion. Report recovered errors with sanitized operation, diagnostic/exit code and recovery. One coordinator promotes verified reusable lessons; repeated violations of an existing rule call for execution/tool fixes, not automatic rule growth. No background monitor or report per chat message.
 
+## GitHub issue title convention
+
+Use the stable task identifier as the only textual category prefix in new
+project issue titles: `<ID> — <concise title>`, where `<ID>` begins with R-,
+F-, T- or B- and uses the next verified stable identifier. Do not prepend
+`research:`, `feature:`, `feat:`, `task:`, `chore:`, `bug:` or equivalent
+category words. Keep useful GitHub type labels as metadata. Templates should
+show the appropriate ID prefix and explain that the placeholder must be
+replaced; examples should retain ordinary title text after the ID. Commit
+message prefixes in CONTRIBUTING.md are separate and remain valid. Do not
+change historical issue bodies or task identifiers merely to match this rule.
+
 ## GitHub and permissions
 
 Use `gh` for GitHub operations when available. Read-only examples include `gh auth status`, `gh repo view`, `gh issue list`, and `gh issue view <number>`. Authentication is local state: do not reauthenticate automatically or record credentials/account identity. GitHub reads and writes are separate permissions. A task must explicitly authorize GitHub writes before creating/editing/commenting on/closing Issues or PRs or changing labels/milestones. Before each write, verify the repository, exact target, and current remote state; make only the requested change and verify the result. Never guess an Issue number or create a duplicate. GitHub-write authorization does not grant Git staging, commit, or push permission.

@@ -119,10 +119,13 @@ cached input tokens, for 138,842,928 total and 133,894,144 cached across all
 same earlier counter cutoff, 2026-10-22T13:15:22Z. At initial draft time USD
 was N/A because no applicable Codex credit-to-USD billing basis was
 established. After the user clarified that the desired metric was an
-API-equivalent estimate, current model API rates were applied to known model
-usage and the estimates were published rounded to cents: R $15.38, T $4.17,
-F/B N/A (no eligible tasks). The per-task table includes the unclassified #17
-estimate of $0.06 as its own row. These are rough API-equivalent estimates for
+API-equivalent estimate, the then-current model rates were applied to known
+model usage. A 2026-10-23 refresh uses the official Standard short-context
+API rates (Sol: $2 input / $0.10 cached input / $10 output per million;
+Luna: $0.10 / $0.01 / $0.50) and revises the known-model estimates to R
+$30.77 and T $8.34. F/B remain N/A (no eligible closed tasks). The earlier
+published values R $15.38 and T $4.17 are superseded by this rate refresh. The per-task table includes the unclassified #17
+estimate of $0.11 as its own row after the Standard-rate refresh. These are rough API-equivalent estimates for
 measured usage, not subscription cost or complete lifetime task cost; token
 coverage remains partial. The user then requested that the AI-cost section
 contain only the two tables. The published section now has a four-row R/T/F/B
@@ -130,8 +133,8 @@ summary table followed by a detailed per-task table, without method,
 assumptions or explanatory prose. The other two Wiki sections remain intact.
 
 The existing Home page was saved through the GitHub Wiki editor and the
-published page was verified after save. No separate Wiki Git clone or CLI push
-was needed: the editor write published the page directly. This repository
-commit records the project-side T-003 completion; it does not republish the
-Wiki. Continue adding API-equivalent USD estimates when new AI-cost entries
-are added, using their model and input/cached-input/output token counts.
+published page was verified after save. The 2026-10-23 T-004 refresh republishes
+the AI-cost tables from the current closed-task inventory using official
+Standard rates; T-004 itself has no attributable counters and is marked N/A.
+Continue adding API-equivalent USD estimates when new AI-cost entries are
+added, using their model and input/cached-input/output token counts.

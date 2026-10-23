@@ -1,6 +1,6 @@
 name: Bug report
-description: Report incorrect behavior or a regression
-title: "bug: "
+description: Report incorrect behavior or a regression. Replace B-XXX with the next verified stable ID; keep the title format <ID> — <concise title>.
+title: "B-XXX — "
 labels: ["type:bug"]
 body:
   - type: input

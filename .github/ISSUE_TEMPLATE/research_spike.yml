@@ -1,6 +1,6 @@
 name: Research spike
-description: Time-boxed CK3 API / vanilla behavior investigation
-title: "research: "
+description: Time-boxed CK3 API / vanilla behavior investigation. Replace R-XXX with the next verified stable ID; keep the title format <ID> — <concise title>.
+title: "R-XXX — "
 labels: ["type:research"]
 body:
   - type: textarea
