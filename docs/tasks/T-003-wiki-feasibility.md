@@ -120,12 +120,13 @@ same earlier counter cutoff, 2026-10-22T13:15:22Z. At initial draft time USD
 was N/A because no applicable Codex credit-to-USD billing basis was
 established. After the user clarified that the desired metric was an
 API-equivalent estimate, the then-current model rates were applied to known
-model usage. A 2026-10-23 refresh uses the official Standard short-context
-API rates (Sol: $2 input / $0.10 cached input / $10 output per million;
-Luna: $0.10 / $0.01 / $0.50) and revises the known-model estimates to R
-$30.77 and T $8.34. F/B remain N/A (no eligible closed tasks). The earlier
-published values R $15.38 and T $4.17 are superseded by this rate refresh. The per-task table includes the unclassified #17
-estimate of $0.11 as its own row after the Standard-rate refresh. These are rough API-equivalent estimates for
+model usage. On 2026-10-23 the official Standard short-context API rates were
+rechecked (Sol: $2 input / $0.10 cached input / $10 output per million; Luna:
+$0.10 / $0.01 / $0.50). Independent recomputation confirms the published
+known-model estimates remain R $15.38 and T $4.17. F/B remain N/A (no eligible
+closed tasks). The separate lower “All models” tier was not used. The per-task
+table includes the unclassified #17 estimate of $0.06 as its own row; the
+2026-10-23 Standard-rate check confirms it. These are rough API-equivalent estimates for
 measured usage, not subscription cost or complete lifetime task cost; token
 coverage remains partial. The user then requested that the AI-cost section
 contain only the two tables. The published section now has a four-row R/T/F/B
@@ -133,8 +134,8 @@ summary table followed by a detailed per-task table, without method,
 assumptions or explanatory prose. The other two Wiki sections remain intact.
 
 The existing Home page was saved through the GitHub Wiki editor and the
-published page was verified after save. The 2026-10-23 T-004 refresh republishes
-the AI-cost tables from the current closed-task inventory using official
-Standard rates; T-004 itself has no attributable counters and is marked N/A.
+published page was verified after save. The 2026-10-23 T-004 publication
+rechecks the current closed-task inventory and official Standard rates; the prior R/T known-model totals remain
+unchanged. T-004 itself has no attributable counters and is marked N/A.
 Continue adding API-equivalent USD estimates when new AI-cost entries are
 added, using their model and input/cached-input/output token counts.

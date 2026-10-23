@@ -4,7 +4,7 @@ Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays 
 
 ## Last completed tooling task — T-004
 
-- [T-004 / #26](https://github.com/mhaduk/ck3-dynasty-map/issues/26) is COMPLETE after scoped documentation publication and verified issue close. New issue titles use `<ID> — <concise title>`; R/F/T/B templates use explicit placeholders. Wiki Home AI-cost tables were refreshed on 2026-10-23 using current Standard API prices: known-model estimates R $30.77 and T $8.34; measured coverage remains partial and T-004 counters are unavailable (N/A, not zero). See [canonical T-004 record](tasks/T-004-issue-title-convention.md).
+- [T-004 / #26](https://github.com/mhaduk/ck3-dynasty-map/issues/26) is COMPLETE after scoped documentation publication and verified issue close. New issue titles use `<ID> — <concise title>`; R/F/T/B templates use explicit placeholders. Wiki Home AI-cost tables were refreshed on 2026-10-23 using current Standard API prices, confirming known-model estimates R $15.38 and T $4.17; measured coverage remains partial and T-004 counters are unavailable (N/A, not zero). See [canonical T-004 record](tasks/T-004-issue-title-convention.md).
 
 ## Last completed tooling task — T-005
 
