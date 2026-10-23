@@ -539,11 +539,17 @@ For substantial work, use the stable planning ID (R/F/T/B-xxx) in the Issue titl
 
 ### Wiki AI-cost estimates
 
-Before finalizing task cost, inspect saved task-session response counters,
-including coordinator preparation/review/publication, CLI execution and linked
-automatic reviews. Map exact task-specific turns and deduplicate response IDs
-with the existing accounting helper; do not use aggregate session totals for
-mixed-task chats. Keep source snapshots, hashes and assignments private.
+Before closing any task, the GUI coordinator verifies its cost accounting
+against saved sessions. Every task must have at least one identified GUI
+session and zero or more identified CLI sessions; GUI-only tasks need no CLI
+session. Include all attributable GUI preparation/review/publication, CLI
+execution and linked automatic-review response counters through the frozen
+cutoff. Record the session inventory and exact task/turn mapping privately.
+If the required GUI session cannot be found, report the evidence gap and the
+search performed; never invent a session or silently skip the GUI check.
+Map task-specific turns and deduplicate response IDs with the existing
+accounting helper; do not use aggregate session totals for mixed-task chats.
+Keep source snapshots, hashes and assignments private.
 A missing table in CLI_RESULT is not a reason to declare N/A. Use N/A only
 for a specifically checked missing/unattributable counter, and record the
 source check and reason. Unknown model prices remain unpriced even when
@@ -563,7 +569,21 @@ unavailable, and label the result as a rough estimate for measured usage.
 Recheck official API prices when refreshing the Wiki, since rates can change.
 Preserve the existing R/T/F/B summary and matching per-task detail groups.
 
+For **total cost** arithmetic at every aggregation level (model, task, task
+type and overall), an N/A cost component contributes $0 to the sum. It must
+not propagate N/A over known dollar amounts. Whenever at least one component
+has a numeric USD cost greater than zero, display the total in USD, never
+N/A. Sum unrounded known amounts before formatting the displayed total.
+For example, `$1.24 + N/A = $1.24`, and `$1.24 + $0.53 + N/A = $1.77`.
+This convention applies only to cost aggregation: keep individual unavailable
+costs as N/A and unknown model prices visibly unpriced. Do not replace missing
+token counters with zero or claim missing usage actually cost nothing. Label
+such totals as partial known/priced cost and preserve coverage limitations.
+
 ## Task finalization
+
+GUI must perform the saved-session cost check above before closing each task,
+including GUI-only tasks; CLI completion alone does not satisfy that check.
 
 Before marking a substantial task done, update the canonical task summary, reusable research if needed, decisions if semantics/architecture changed, backlog, task history, current state, and affected risk/test/architecture docs. Update CHANGELOG only for user-visible changes. Run relevant consistency checks and privacy review. Preserve partial status when gates remain open; do not turn an unfinished task into a historical completion row.
 
