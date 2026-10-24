@@ -1,3 +1,7 @@
+## T-013 — compact Wiki cost summary accepted and published
+
+GUI accepted corrected presentation on 2026-10-25: five short columns, no Coverage in the main summary and a bold Total. Six focused tests pass; original receipt consumed CHANGES REQUIRED and GUI correction preserved separately. Wiki `a835bda` and Issue #34 body readbacks passed; #34 closed completed. Historical group values remain unchanged; authorized addition of T-013 yields 31 closed tasks / 798,112,291 measured tokens / 775,137,664 cached / $93.04 known cost. T-013 finite-cutoff saved GUI/CLI cost: 3,440,481 tokens / $0.42056876, partial coverage. Scoped repository commit/push authorized. See [canonical record](tasks/T-013-wiki-cost-table.md). No game action.
+
 ## T-020 — accepted handoff execution summary
 
 GUI accepted the sixth `Plan of execution` table row and frozen ordered milestone
