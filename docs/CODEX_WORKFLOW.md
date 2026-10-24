@@ -110,6 +110,19 @@ independent review.
 
 ## Delegation classes, evidence and escalation
 
+For difficult unresolved problems, GUI may opt into an independent diagnostic
+review when evidence leaves competing hypotheses, cross-layer contradictions,
+weakly documented behavior, a costly next experiment, repeated rediscovery, or
+a material assumption challenge. A simple reproducible defect, one likely
+decisive check, mechanical work, missing decisive user evidence, or token count
+alone is not a trigger. GUI / Coordinator remains the decision and acceptance
+authority; any external reviewer is read-only and advisory. Use the bounded
+manual packet workflow, immutable-input rules and privacy limits in
+[Diagnostic Review](DIAGNOSTIC_REVIEW.md). Do not claim savings or treat
+unavailable external usage as zero. Match the output directory name to the
+manifest review ID; optional evidence may be unavailable only when it is
+genuinely absent. Treat symlinks and malformed identity data as errors.
+
 Every new `CLI_TASK.md` names one primary delegation type: `COLLECT` (gather
 facts/evidence), `VERIFY` (check a stated claim or contract), `RESEARCH` (bound
 analysis of a question and alternatives), or `EXECUTE` (carry out an approved,

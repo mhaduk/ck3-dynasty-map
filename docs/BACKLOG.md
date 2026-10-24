@@ -22,7 +22,7 @@ Dated migration/checkpoint statements below retain their historical meaning.
 | [T-008 / #32](tasks/T-008-workflow-optimization.md) | P2 | Reassess and select the next minimal workflow optimization after T-006 routing | Complete — corrected offline inventory accepted by GUI; 22 focused/isolated tests, 84 upstream regressions; #32 closed after publication; remaining candidates mapped to T-011 |
 | [T-009](tasks/T-009-structured-preflight.md) | P2 | Add structured preflight evidence compatible with the T-008 inventory | Complete — corrected implementation accepted/consumed; 39 focused/isolated tests and 123 targeted regressions; #35 closed after publication; no live app action |
 | [T-010](tasks/T-010-checkpoint-comparison.md) | P2 | Compare two finite pinned log checkpoints without causal inference | Complete — final GUI correction accepted; 24 focused/isolated tests, 29 inventory and 15 log-delta regressions; #36 closed after publication; source limits remain explicit |
-
+| [T-015 / #41](tasks/T-015-diagnostic-escalation.md) | P2 | Opt-in diagnostic escalation and independent advisory review | Complete — corrected packet builder/import accepted; 161 independent tests and historical dry run; saved-session costs verified; issue/Wiki published; no external reviewer or CK3 operation required |
 | [T-011 / #37](https://github.com/mhaduk/ck3-dynasty-map/issues/37) | P3 | Preserve undelivered T-008 optimization candidates for later prioritization | Deferred — OPEN; no implementation selected |
 
 ## M0 — Research & bootstrap

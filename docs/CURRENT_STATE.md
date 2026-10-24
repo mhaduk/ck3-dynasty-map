@@ -6,7 +6,23 @@ Entries below preserve their dated task cutoffs. The dedicated F-001 section
 later in this file supersedes earlier statements that F-001 was paused; its
 bounded F-001 scope is complete; remaining gates retain their named owners.
 
-## Active GUI selection — F-004 / #29
+## Completed GUI selection — T-015 / #41
+
+GUI accepted the corrected manual diagnostic escalation workflow on 2026-10-24.
+A versioned named-input packet builder, immutable snapshots, advisory response
+import and Coordinator synthesis are delivered. Independent GUI review reran
+161 tests, validated unchanged historical F-004 packet hashes and checked one
+saved GUI plus two CLI sessions: 118 mapped responses, 8,872,726 tokens and
+$0.60832176 known API-equivalent USD through 2026-10-24T12:12:05Z. Coverage is
+partial; unavailable review counters and later closeout remain excluded.
+Issue #41 is closed completed; its cost table/label passed readback. Wiki
+publication `be80e03` passed page readback. The original FAILED attempt and
+administrative receipt repair remain preserved privately. User authorized
+scoped cleanup, commit and push; no CK3 action or external reviewer run occurred.
+See [T-015](tasks/T-015-diagnostic-escalation.md) and the
+[review guide](DIAGNOSTIC_REVIEW.md). No successor is automatically selected.
+
+## Completed GUI selection — F-004 / #29
 
 Bounded diagnostic and interaction acceptance is delivered on 2026-10-24 for
 fresh paused Ismail 867 / CK3 1.20.1.2 / Steam 26046173. Three isolated AUDIT
