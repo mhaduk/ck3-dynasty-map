@@ -1,3 +1,12 @@
+## T-020 — accepted handoff execution summary
+
+GUI accepted the sixth `Plan of execution` table row and frozen ordered milestone
+summaries on 2026-10-25 after correcting stale five-row/last-row instructions.
+54 independent handoff/context tests pass. Finite-cutoff cost: 4,751,582 tokens,
+$0.36908640 known API-equivalent, partial coverage; later closeout excluded.
+Issue/Wiki and scoped repository publication are user-authorized. See the
+[canonical record](tasks/T-020-handoff-execution-plan.md). No product or game action.
+
 ## F-002 bounded closeout complete — publication verified
 
 User reports color behavior works across many characters and observer mode; screenshot55 confirms the first Charles entry and restored F-004 tooltip. Source52 is hash-matched into the normal repository probe, installation53 equality/preflight accepted, startup54 passed, and runtime56 native-summary framing/arithmetic accepted with its stated limits. GUI accepted bounded F-002 behavior and independently reviewed the finite-cutoff cost account. Repository publication, Issue #21 and Wiki readbacks passed; #21 is closed. Full 76-pair runtime coverage, exact stored/rendered RGB, missing-slot normalization, save/removal safety and performance remain unproven. No new game action was part of closeout. See the canonical F-002 record.

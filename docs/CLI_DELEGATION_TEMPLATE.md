@@ -82,6 +82,14 @@ progress is useful; the example above is illustrative only. Follow the current
 schema: CLI must not invent an initial plan. Justified in-scope amendments
 use the existing `progress --amend` procedure; scope changes require a new handoff.
 
+For a planned handoff, append one `Plan of execution` row after the five
+standard receipt rows using `handoff.render_handoff_table`. GUI supplies up to
+ten concise authored summary bullets, each mapped to ordered milestone IDs,
+and freezes them with `create --plan-summary`. The helper binds the summary to
+the plan fingerprint, rejects stale or incomplete mappings, and escapes table
+cells. For more than ten milestones, GUI authors ordered meaningful groups.
+Planless legacy handoffs retain the five-row table.
+
 ## Compact result example
 
 Keep the exact top-level headings and required success/check/provenance grammar

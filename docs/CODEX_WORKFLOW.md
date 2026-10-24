@@ -575,6 +575,19 @@ range was present. GUI explicitly marks a reviewed comparable candidate with
 the output includes the calibrated range, basis, pair count and uncertainty.
 GUI still decides comparability before using a pair. Keep the raw baseline in `Estimated CLI time: <low>–<high> minutes` in the frozen task and calibrated time/steps separately, to avoid applying calibration twice. See [GUI context guide](GUI_CONTEXT.md) for retry, history integrity, session boundaries and published-ref handling.
 
+Append exactly one `Plan of execution` row after the five established receipt
+rows. Render it with `handoff.render_handoff_table(rows, plan, summary)` during
+the existing GUI preparation; the five `(label, value)` rows retain their
+wording, order and combined telemetry. GUI authors a concise meaningful
+summary in that same pass and freezes it with `create --plan-summary '<JSON>'`.
+The summary contains `plan_sha256` (the canonical plan fingerprint) and ordered
+`bullets`, each with milestone `ids` and authored `text`. Every milestone ID
+must appear exactly once in plan order. Use at most ten bullets; plans above ten
+milestones require GUI-authored meaningful groups that preserve order. The
+helper rejects stale hashes, missing or reordered IDs, and malformed summaries.
+Regenerate the summary whenever the plan changes. Planless legacy receipts keep
+their five rows.
+
 An optional GUI context measurement is prepared during the same handoff
 preparation, with no extra model call or GUI turn. Run
 `python3 scripts/gui_context.py --session <explicit-saved-session-file> --task <parent-ID> --handoff <delegation-ID> --repository-ref <published-ref> --identity <stable-private-session-key> --preview <private-preview.json>`

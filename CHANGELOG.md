@@ -20,6 +20,8 @@ All notable changes to Dynasty Map will be documented here.
 - Reusable mod encoding/preflight rules and read-only file checker added.
 
 ### Added
+- T-020 developer workflow: planned GUI-to-CLI tables append a concise execution
+  summary bound to the frozen milestones, preserving existing telemetry and progress.
 - T-012 developer workflow: local GUI session text estimates, aggregate history,
   context-history links in cost previews, calibrated CLI ranges with plan counts,
   and a consistent 30-cell Unicode progress line. No session-management decisions.

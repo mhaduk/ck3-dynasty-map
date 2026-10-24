@@ -6,6 +6,7 @@ import argparse
 from contextlib import contextmanager
 from datetime import datetime, timezone
 import fcntl
+import html
 import hashlib
 import json
 import os
@@ -246,6 +247,72 @@ def frozen_plan(text):
     return plans[0] if plans else None
 
 
+def plan_fingerprint(plan):
+    return digest(json.dumps(validate_plan(plan), sort_keys=True, separators=(",", ":")).encode())
+
+
+def validate_plan_summary(summary, plan):
+    """Validate GUI-authored bullets against the exact frozen plan."""
+    plan = validate_plan(plan)
+    if not isinstance(summary, dict) or set(summary) != {"plan_sha256", "bullets"}:
+        raise HandoffError("plan summary requires plan_sha256 and bullets")
+    if summary["plan_sha256"] != plan_fingerprint(plan):
+        raise HandoffError("plan summary is stale; regenerate it for the frozen plan")
+    bullets = summary["bullets"]
+    if not isinstance(bullets, list) or not 1 <= len(bullets) <= 10:
+        raise HandoffError("plan summary requires 1–10 bullets")
+    ids = [step["id"] for step in plan["steps"]]
+    covered = []
+    for bullet in bullets:
+        if not isinstance(bullet, dict) or set(bullet) != {"ids", "text"}:
+            raise HandoffError("each summary bullet requires ids and text")
+        group, text = bullet["ids"], bullet["text"]
+        if (not isinstance(group, list) or not group or any(x not in ids for x in group)
+                or not isinstance(text, str) or not text.strip() or "\n" in text or "\r" in text):
+            raise HandoffError("invalid plan summary bullet")
+        covered.extend(group)
+    if covered != ids:
+        raise HandoffError("plan summary must cover milestone IDs once, in frozen order")
+    return summary
+
+
+def render_handoff_table(rows, plan=None, summary=None):
+    """Append the frozen plan row to the five established GUI handoff rows."""
+    if len(rows) != 5:
+        raise HandoffError("handoff table requires the five established rows")
+    output = ["| | Command / value |", "|---|---|"]
+    cell = lambda value: html.escape(str(value), quote=False).replace("|", "\\|").replace("\n", " ").replace("\r", " ")
+    for label, value in rows:
+        output.append(f"| {cell(label)} | {cell(value)} |")
+    if plan is not None:
+        summary = validate_plan_summary(summary, plan)
+        value = "<br>".join(
+            f"• [{cell(', '.join(bullet['ids']))}] {cell(bullet['text'])}"
+            for bullet in summary["bullets"]
+        )
+        output.append(f"| Plan of execution | {value} |")
+    return "\n".join(output)
+
+
+def frozen_plan_summary(text, plan):
+    marker = "## Execution plan summary"
+    sections = text.split(marker)
+    if len(sections) == 1:
+        return None
+    if len(sections) != 2:
+        raise HandoffError("duplicate execution plan summary")
+    match = re.search(r"```json\s*\n(\{.*?\})\s*\n```", sections[1], re.S)
+    if not match:
+        raise HandoffError("invalid execution plan summary JSON")
+    try:
+        value = json.loads(match.group(1))
+        if set(value) != {"plan_summary"}:
+            raise ValueError
+        return validate_plan_summary(value["plan_summary"], plan)
+    except (ValueError, TypeError, KeyError) as exc:
+        raise HandoffError("invalid execution plan summary") from exc
+
+
 def plan_argument(raw):
     try:
         return validate_plan(json.loads(raw))
@@ -431,7 +498,18 @@ def cmd_create(args):
         if frozen_plan(task_text) is not None:
             raise HandoffError("execution plan already supplied in task")
         task_text = task_text.rstrip() + "\n\n```json\n" + json.dumps({"execution_plan": plan}) + "\n```\n"
-    frozen_plan(task_text)  # Validate GUI plan before any READY side effects.
+    plan = frozen_plan(task_text)
+    if args.plan_summary is not None:
+        if plan is None or frozen_plan_summary(task_text, plan) is not None:
+            raise HandoffError("plan summary requires one plan and must be supplied only once")
+        try:
+            summary = json.loads(args.plan_summary)
+        except ValueError as exc:
+            raise HandoffError("invalid plan summary JSON") from exc
+        validate_plan_summary(summary, plan)
+        task_text = task_text.rstrip() + "\n\n## Execution plan summary\n\n```json\n" + json.dumps({"plan_summary": summary}) + "\n```\n"
+    if plan is not None:
+        frozen_plan_summary(task_text, plan)  # Freeze and validate GUI-authored summary with the plan.
     if not task_text.strip():
         raise HandoffError("task description is required")
     if any(not c or "\n" in c or "\r" in c for c in args.check):
@@ -779,6 +857,7 @@ def build_parser():
     p.add_argument("id"); p.add_argument("--parent", required=True)
     p.add_argument("--task", default=""); p.add_argument("--task-file")
     p.add_argument("--execution-plan", help="GUI-supplied plan JSON, frozen into CLI_TASK before READY")
+    p.add_argument("--plan-summary", help="GUI-authored summary JSON bound to the exact frozen plan")
     p.add_argument("--context-preview", help="optional private JSON preview from gui_context.py; diagnostic only")
     p.add_argument("--input", action="append", default=[], help="immutable dependency (unless also --owned)")
     p.add_argument("--owned", action="append", default=[], help="owned editable input/output, including new files")

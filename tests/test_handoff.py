@@ -571,6 +571,51 @@ class HandoffTests(unittest.TestCase):
         for index, bad in enumerate((task + task, '```json\n{"execution_plan":\n```\n', task.rsplit("```", 1)[0])):
             self.run_cli("create", f"T-007-INLINE-BAD-{index}", "--parent", "T-007", "--task", bad, ok=False)
 
+    def test_plan_summary_table_order_grouping_staleness_and_legacy(self):
+        spec = importlib.util.spec_from_file_location("handoff_summary", SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        rows = [("CLI pickup", "`pobierz zadanie X`"), ("GUI receipt", "`gotowe X`"),
+                ("Model / reasoning level", "Luna / Medium"), ("Estimated CLI time / steps", "5–13 minutes / 5 steps"),
+                ("szacowane tokeny/wiadomości", "100 tokenów; 2 wiadomości")]
+        for count, groups in ((1, [["stage0"]]), (5, [[f"stage{i}"] for i in range(5)]),
+                              (12, [[f"stage{i}", f"stage{i+1}"] for i in range(0, 12, 2)])):
+            plan = self.plan(count)
+            summary = {"plan_sha256": module.plan_fingerprint(plan),
+                       "bullets": [{"ids": group, "text": "Milestone " + ", ".join(group)} for group in groups]}
+            rendered = module.render_handoff_table(rows, plan, summary)
+            self.assertEqual(len(rendered.splitlines()), 8)
+            self.assertEqual(rendered.splitlines()[2:7], [f"| {label} | {value} |" for label, value in rows])
+            self.assertEqual(rendered.splitlines()[-1].split("|")[1].strip(), "Plan of execution")
+            self.assertEqual(rendered.splitlines()[-1].count("•"), len(groups))
+        escaped = module.render_handoff_table([("x|y", "a|b")] + rows[1:], None, None)
+        self.assertIn("x\\|y", escaped)
+        self.assertNotIn("Plan of execution", escaped)
+        stale = {"plan_sha256": "0" * 64, "bullets": [{"ids": ["stage0"], "text": "x"}]}
+        with self.assertRaisesRegex(module.HandoffError, "stale"):
+            module.render_handoff_table(rows, self.plan(1), stale)
+        bad_order = {"plan_sha256": module.plan_fingerprint(self.plan(2)),
+                     "bullets": [{"ids": ["stage1", "stage0"], "text": "x"}]}
+        with self.assertRaisesRegex(module.HandoffError, "cover"):
+            module.render_handoff_table(rows, self.plan(2), bad_order)
+        eleven = self.plan(11)
+        too_many = {"plan_sha256": module.plan_fingerprint(eleven),
+                    "bullets": [{"ids": [f"stage{i}"], "text": f"Step {i}"} for i in range(11)]}
+        with self.assertRaisesRegex(module.HandoffError, "1–10"):
+            module.render_handoff_table(rows, eleven, too_many)
+        plan = self.plan(1)
+        frozen_summary = {"plan_sha256": module.plan_fingerprint(plan),
+                          "bullets": [{"ids": ["stage0"], "text": "Inspect the supplied evidence"}]}
+        self.run_cli("create", "T-007-SUMMARY", "--parent", "T-007", "--task", "Work",
+                     "--execution-plan", json.dumps(plan), "--plan-summary", json.dumps(frozen_summary))
+        frozen_text = (self.root / ".codex-sync/tasks/T-007-SUMMARY/CLI_TASK.md").read_text()
+        self.assertEqual(module.frozen_plan_summary(frozen_text, plan), frozen_summary)
+        stale_plan = self.plan(1)
+        stale_plan["steps"][0]["label"] = "Changed source plan"
+        self.run_cli("create", "T-007-SUMMARY-STALE", "--parent", "T-007", "--task", "Work",
+                     "--execution-plan", json.dumps(stale_plan), "--plan-summary", json.dumps(frozen_summary), ok=False)
+        self.assertFalse((self.root / ".codex-sync/tasks/T-007-SUMMARY-STALE").exists())
+
     def test_planless_compatibility_does_not_invent_plan(self):
         directory = self.create("T-007-OLD")
         self.assertNotIn("[", self.claim(directory.name).stdout)
