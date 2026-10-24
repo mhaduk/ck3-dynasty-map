@@ -923,7 +923,14 @@ class ClassificationTests(unittest.TestCase):
             self.assertNotIn("every_in_de_jure_hierarchy", audit_arm)
             self.assertNotIn("diagnostic_county", audit_arm)
             self.assertIn("exists = scope:dynmap_r016_diagnostic_armed", paint_arm)
-            self.assertEqual(paint_arm.count("set_title_color"), 1)
+            if color == "dark":
+                self.assertEqual(paint_arm.count("dynmap_r016_paint_mixed_primary_effect = yes"), 1)
+                self.assertNotIn("set_title_color", paint_arm)
+            elif color == "light":
+                self.assertEqual(paint_arm.count("dynmap_r016_paint_mixed_secondary_effect = yes"), 1)
+                self.assertNotIn("set_title_color", paint_arm)
+            else:
+                self.assertEqual(paint_arm.count("set_title_color = { 65 70 80 }"), 1)
         for role in ("primary", "secondary", "neutral"):
             bounded = effect_source("dynmap_r016_diagnostic_county_" + role + "_effect")
             self.assertIn("dynmap_r016_d_sample_" + role + " < 10", bounded)
@@ -1014,7 +1021,8 @@ class ClassificationTests(unittest.TestCase):
                           "my_realm": "dynmap_my_realm_dynasty"}
         expected_routes = {(False, False): "compute", (True, False): "summary",
                            (False, True): "samples", (True, True): "audit"}
-        fresh_root = r"GuiScope\s*\.SetRoot\(\s*GetPlayer.MakeScope\s*\)\s*\.End"
+        fresh_root = (r"GuiScope\s*\.SetRoot\(\s*GetPlayer.MakeScope\s*\)"
+                      r"(?:\.AddScope\('dynmap_r016_palette_id',\s*MakeScopeValue\(.*\)\))?\.End")
         valid_check = r"GetScriptedGui\('dynmap_r016_check'\)\.IsValid\(\s*" + fresh_root + r"\s*\)"
         buttons = list(blocks(views.split('name = "dynmap_r016_active_subviews"', 1)[1].split('name = "dynmap_r016_custom_header"', 1)[0], "button_round"))
         self.assertEqual(len(buttons), 6)
@@ -1061,18 +1069,22 @@ class ClassificationTests(unittest.TestCase):
                             for callback in callbacks:
                                 execute = re.fullmatch(r"\[GetScriptedGui\((.*)\)\.Execute\(\s*" + fresh_root + r"\s*\)\]", callback)
                                 select = re.fullmatch(r"\[SetMapMode\('([^']+)'\)\]", callback)
-                                self.assertTrue(execute or select, callback)
+                                palette_state = callback.startswith("[GetVariableSystem.Set('dynmap_r016_last_palette',")
+                                self.assertTrue(execute or select or palette_state, callback)
                                 if execute:
                                     dispatches.append(evaluate(execute[1], keys))
                                     order.append("execute")
-                                else:
+                                elif select:
                                     maps.append(select[1])
                                     order.append("map")
+                                else:
+                                    self.assertIn("IntToString(DynmapR016PaletteId(GetPlayer.GetDynasty.GetDynastyCoA))", callback)
+                                    order.append("palette-state")
                             route = expected_routes[shift, alt]
                             expected = "dynmap_r016_" + ("audit_" + view if route == "audit" else route + "_" + view)
                             self.assertEqual(dispatches, [expected])
                             self.assertEqual(maps, [] if shift and alt else [map_id])
-                            self.assertEqual(order, ["execute"] if shift and alt else ["execute", "map"])
+                            self.assertEqual(order, ["execute"] if shift and alt else ["execute", "map", "palette-state"])
                             backend = list(blocks(sg, expected))
                             self.assertEqual(len(backend), 1)
                             self.assertRegex(backend[0], r"scope\s*=\s*character\b")

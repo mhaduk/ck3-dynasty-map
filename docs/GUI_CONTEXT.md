@@ -25,7 +25,10 @@ Then pass the generated JSON to the ordinary `scripts/handoff.py create`
 command as `--context-preview .codex-sync/gui-context-preview.json`. This adds
 two diagnostic lines and a link to the task description before its frozen plan.
 It does not add scope, alter the number of plan steps, or create another model
-turn. Omit the option if no explicit saved session is available.
+turn. In the user-facing handoff, show the measured values as the last table
+row, directly below `Estimated CLI time / steps`: `szacowane tokeny/wiadomości`
+with value `<N> tokenów; <M> wiadomości`. Use `niedostępne` when unavailable.
+This describes saved GUI-session text, not the full active model context. Omit the option if no explicit saved session is available.
 
 The parser recognizes `response_item` message events with `user` or `assistant`
 roles and text content blocks. It deduplicates repeated message IDs, ignores
