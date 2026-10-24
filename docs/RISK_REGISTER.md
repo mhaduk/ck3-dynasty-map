@@ -42,3 +42,13 @@ errors seen in the earlier existing-session load; cause and persistence impact
 remain UNKNOWN. The bounded acceptance does not reduce RK-16/17/20/24, strict
 diagnostic, context, RGB restoration or removal risks. Overall new-game/smoke
 captures remain INCOMPLETE at a partial final debug line.
+
+F-004 bounded closeout update (2026-10-24): native declarations now support
+the accepted DIAG V3 summary/samples and three independent selected-view V4
+passes against emitted rosters; the fixed-row interaction is user-accepted.
+This does not lower RK-16/17/20/24 or remove the strict sample-interval,
+context, RGB restoration, save/removal, global coverage or lifecycle limits.
+Initialization and court-scene errors remain unattributed; no clean-log or
+harmlessness claim is made. Timing is owned by R-018/F-006, independent of
+F-004. GUI cost/accounting review and publication readback passed; #29 is closed
+completed for its bounded scope.

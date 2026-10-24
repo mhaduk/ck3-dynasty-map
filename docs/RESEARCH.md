@@ -23,6 +23,15 @@ Historical partial statuses and next steps below retain their dates; current
 ownership is summarized in the [T-005 review](tasks/T-005-research-backlog-review.md).
 No game test, architecture waiver or production implementation follows.
 
+F-004's bounded 2026-10-24 diagnostic acceptance is now recorded in its
+[canonical result](tasks/F-004-diagnostics-hardening.md) and
+[developer guide](F004_DIAGNOSTICS.md): native DIAG V3 declarations/samples
+and three isolated AUDIT V4 reports pass relative to emitted rosters, and the
+user accepts the fixed-row interaction in the tested fixture. This does not
+change the research boundary: independent global coverage, stored RGB,
+restoration, save/removal and lifecycle remain unproven. Timing remains outside
+F-004 under R-018/#38 and F-006/#39.
+
 ## Reusable findings by subject
 
 Use this index to open only the subject relevant to the active task. Dated runtime checkpoints live in the linked `docs/evidence/` records; they

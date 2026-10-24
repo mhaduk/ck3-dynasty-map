@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline V1/V2 classification audit. See the probe README for grammar and limits.
+"""Offline V1/V2/V3 history plus build-bound V4 native-counter audit.
 
 Exit 0: complete emitted roster/records, all independently verified roles/RGBs
 match. Exit 1: complete evidence with a semantic or intended-RGB mismatch.
@@ -8,6 +8,7 @@ No exit code verifies stored RGB, pixels, CK3 parsing, or iterator coverage.
 """
 
 import argparse
+from decimal import Decimal, InvalidOperation
 import hashlib
 import json
 from pathlib import Path
@@ -19,6 +20,7 @@ import sys
 PREFIX = "DYNMAP_R016 AUDIT V1 "
 BEGIN = "BATCH_BEGIN SOURCE F001_DUMP_08 TARGET 1.20.1.2"
 BEGIN_V2 = "BATCH_BEGIN SOURCE F001_FIX_12 TARGET 1.20.1.2 SCOPE FULL"
+BEGIN_V3 = re.compile(r"BATCH_BEGIN SOURCE F001_FIX_12 TARGET 1\.20\.1\.2 SCOPE SELECTED VIEW (REALMS|HOLDINGS|MY_REALM)")
 VIEWS = ("REALMS", "HOLDINGS", "MY_REALM")
 RGB = {"PRIMARY": [25, 105, 50], "SECONDARY": [145, 220, 150],
        "NEUTRAL": [65, 70, 80]}
@@ -29,7 +31,10 @@ MARKER = re.compile(
     r"file: common/scripted_effects/dynmap_r016\.txt line: \d+ "
     r"\([a-z0-9_]+\): DYNMAP_R016 AUDIT V1 (.+)$")
 MARKER_V2 = re.compile(MARKER.pattern.replace("AUDIT V1", "AUDIT V2"))
+MARKER_V3 = re.compile(MARKER.pattern.replace("AUDIT V1", "AUDIT V3"))
+MARKER_V4 = re.compile(MARKER.pattern.replace("AUDIT V1", "AUDIT V4"))
 MARKER_DIAG = re.compile(MARKER.pattern.replace("AUDIT V1", "DIAG V2"))
+MARKER_DIAG_V3 = re.compile(MARKER.pattern.replace("AUDIT V1", "DIAG V3"))
 SCOPE = re.compile(r"^\[[^\]\r\n]+\]\[D\]\[effectimpl\.cpp:\d+\]: (.+)$")
 IDENTITY = re.compile(
     r"^(.*?) \(Internal ID: (\d+)(?: - (Historical ID|Internal Key):? "
@@ -135,6 +140,8 @@ def parse_actor(cur, role):
 def parse_batch(tokens, sequence):
     if tokens[0].get("schema") == 2:
         return parse_batch_v2(tokens, sequence)
+    if tokens[0].get("schema") == 3:
+        return parse_batch_v3(tokens, sequence)
     cur = Cursor(tokens)
     first = cur.take(BEGIN)
     batch = {"sequence": sequence, "source": location(first),
@@ -192,6 +199,58 @@ def parse_batch(tokens, sequence):
 COUNTER_FIELDS = ("total", "primary", "secondary", "neutral", "held", "unheld",
                   "holder_no_dynasty", "holder_match", "senior_match", "top_match",
                   "subtree", "attempted_writes")
+NATIVE_KEYS = {"dynmap_r016_out_" + field: field for field in COUNTER_FIELDS}
+NATIVE_KEYS.update({"dynmap_r016_out_roster": "roster", "dynmap_r016_out_actors": "actors"})
+SUMMARY_NATIVE_KEYS = {key for key in NATIVE_KEYS if key not in ("dynmap_r016_out_roster", "dynmap_r016_out_actors")}
+NATIVE_COUNT = re.compile(r"([0-9]{1,15})(?:\.([0-9]+))?")
+
+
+def parse_native_targets(lines, expected):
+    """Parse one target-build debug_log_scopes block without deriving counts."""
+    if any("DYNMAP_R016" in line for line in lines):
+        raise Invalid("nested/interleaved operation marker inside native counter block")
+    roots = sum(line.startswith("Root: ") for line in lines)
+    sections = sum(line == "Saved event targets:" for line in lines)
+    if roots != 1 or sections != 1:
+        raise Invalid("native dump must contain exactly one Root and Saved event targets header")
+    root_at = next(i for i, line in enumerate(lines) if line.startswith("Root: "))
+    section_at = lines.index("Saved event targets:")
+    if root_at >= section_at:
+        raise Invalid("native dump Root must precede saved targets")
+    if root_at != 1 or not SCOPE.fullmatch(lines[0]):
+        raise Invalid("native dump must begin with immediate current identity followed by Root")
+    current_match = SCOPE.fullmatch(lines[0])
+    root_match = re.fullmatch(r"Root: (.+)", lines[root_at])
+    current_identity = identity(current_match[1], "Character")
+    root_identity = identity(root_match[1], "Character")
+    if ref(current_identity) != ref(root_identity):
+        raise Invalid("native current and Root identities disagree")
+    values, seen = {}, set()
+    for line in lines[section_at + 1:]:
+        if not line:
+            continue
+        if ": " not in line:
+            raise Invalid("malformed native saved-target line")
+        key, raw = line.split(": ", 1)
+        if key.startswith("dynmap_r016_out_"):
+            if key not in NATIVE_KEYS or key in seen:
+                raise Invalid("unknown or duplicate dynmap counter target")
+            if key not in expected:
+                raise Invalid("unexpected phase-specific dynmap counter target")
+            match = NATIVE_COUNT.fullmatch(raw)
+            if not match or (match[2] is not None and any(c != "0" for c in match[2])):
+                raise Invalid("native counter is not an exact nonnegative integer")
+            try:
+                number = Decimal(raw)
+            except InvalidOperation:
+                raise Invalid("invalid native counter number")
+            if number > 9999999999:
+                raise Invalid("native counter exceeds supported integer range")
+            values[NATIVE_KEYS[key]] = int(number)
+            seen.add(key)
+    if seen != set(expected):
+        raise Invalid("native dump is missing required phase counters")
+    return values, current_identity
 RESULT = re.compile(r"RESULT (PRIMARY|SECONDARY|NEUTRAL) RGB (\d{1,3}) (\d{1,3}) (\d{1,3}) WRITES_SUPPRESSED")
 
 
@@ -227,11 +286,18 @@ def graph_chain(subject, actors):
     return chain
 
 
-def parse_batch_v2(tokens, sequence):
+def parse_batch_v2(tokens, sequence, selected_view=None):
     cur = Cursor(tokens)
-    first = cur.take(BEGIN_V2)  # SUMMARY/SAMPLES can never masquerade as FULL.
+    if selected_view is None:
+        first = cur.take(BEGIN_V2)  # SUMMARY/SAMPLES can never masquerade as FULL.
+    else:
+        framing = BEGIN_V3.fullmatch(cur.peek() or "")
+        if framing is None or framing[1] != selected_view:
+            raise Invalid("V3 framing and selected view disagree")
+        first = cur.take(framing[0])
     batch = {"sequence": sequence, "source": location(first), "end": location(tokens[-1]),
-             "source_version": "F001_FIX_12", "schema": 2, "operation_scope": "FULL",
+             "source_version": "F001_FIX_12", "schema": 2 if selected_view is None else 3,
+             "operation_scope": "FULL" if selected_view is None else "SELECTED", "selected_view": selected_view,
              "target": "1.20.1.2", "records": [], "errors": []}
     if cur.peek() and cur.peek().startswith("REJECT "):
         batch.update(availability="UNAVAILABLE", rejection=cur.take()["text"])
@@ -285,7 +351,7 @@ def parse_batch_v2(tokens, sequence):
         if item["holder_ref"] is not None and ref(item["holder_ref"]) not in actors:
             raise Invalid("unresolved V2 holder actor reference")
     batch["view_counters"] = {}
-    for view in VIEWS:
+    for view in ((selected_view,) if selected_view is not None else VIEWS):
         cur.take("VIEW_BEGIN " + view)
         rows = []
         while cur.peek() and cur.peek().startswith("RESULT "):
@@ -330,6 +396,17 @@ def parse_batch_v2(tokens, sequence):
     cur.take("BATCH_END")
     if cur.peek() is not None:
         raise Invalid("unexpected tokens after V2 batch end")
+    return batch
+
+
+def parse_batch_v3(tokens, sequence):
+    match = BEGIN_V3.fullmatch(tokens[0]["text"])
+    if not match:
+        raise Invalid("V3 batch must explicitly declare exactly one selected view")
+    view = match[1]
+    batch = parse_batch_v2(tokens, sequence, selected_view=view)
+    # Keep the framing version explicit; V2 remains a distinct historical all-view contract.
+    batch["schema"] = 3
     return batch
 
 
@@ -413,7 +490,8 @@ def verify_batch(batch):
         errors.append("empty county roster/zero records cannot establish a pass")
     if len(keys) != len(set(keys)):
         errors.append("duplicate county in roster")
-    for view in VIEWS:
+    expected_views = (batch["selected_view"],) if batch.get("operation_scope") == "SELECTED" else VIEWS
+    for view in expected_views:
         actual = [r["county"]["key"] for r in batch["records"] if r["view"] == view]
         if len(actual) != len(set(actual)):
             errors.append(view + ": duplicate county record")
@@ -505,7 +583,7 @@ def analyze_paths(paths, max_bytes=DEFAULT_MAX_BYTES):
     total_bytes, sequence = 0, 0
     for input_index, path in enumerate(paths, 1):
         path = Path(path)
-        tokens, pending, current, diagnostic = [], None, None, None
+        tokens, pending, current, diagnostic, native_dump = [], None, None, None, None
         digest, size, line_no = hashlib.sha256(), 0, 0
         try:
             with path.open("rb") as handle:
@@ -535,6 +613,106 @@ def analyze_paths(paths, max_bytes=DEFAULT_MAX_BYTES):
                         pending = None
                         if match:
                             continue
+                    diag_v3 = MARKER_DIAG_V3.fullmatch(text)
+                    if native_dump is not None:
+                        end_marker = MARKER_DIAG_V3.fullmatch(text)
+                        end = re.fullmatch(r"COUNTERS_END PHASE (SUMMARY|SAMPLES) VIEW (REALMS|HOLDINGS|MY_REALM)", end_marker[1]) if end_marker else None
+                        if end:
+                            try:
+                                if (end[1], end[2]) != (native_dump["phase"], native_dump["view"]):
+                                    raise Invalid("native counter end marker phase/view mismatch")
+                                vals, context = parse_native_targets(native_dump["lines"], SUMMARY_NATIVE_KEYS)
+                                if diagnostic is None or (diagnostic["operation_scope"], diagnostic["view"]) != (end[1], end[2]):
+                                    raise Invalid("native counter block outside matching diagnostic operation")
+                                if diagnostic.get("native_counters") is not None:
+                                    raise Invalid("duplicate native counter block")
+                                diagnostic["native_counters"] = vals
+                                diagnostic["native_context"] = {"type": context["type"], "runtime_id": context["runtime_id"]}
+                                diagnostic["native_counter_block"] = {"phase": native_dump["phase"], "view": native_dump["view"],
+                                    "input": input_index, "begin_line": native_dump["begin_line"], "end_line": line_no}
+                                diagnostic["counter_source"] = "CK3 debug_log_scopes / Saved event targets"
+                                if (vals["total"] != vals["primary"] + vals["secondary"] + vals["neutral"] or
+                                        vals["total"] != vals["held"] + vals["unheld"] or
+                                        any(vals[f] > vals["held"] for f in ("holder_no_dynasty", "holder_match", "senior_match", "top_match", "subtree"))):
+                                    raise Invalid("native diagnostic counters disagree arithmetically")
+                                if end[1] == "SUMMARY":
+                                    diagnostic["summary"] = vals
+                            except Invalid as exc:
+                                errors.append({"input": input_index, "line": line_no, "error": str(exc)})
+                            native_dump = None
+                            continue
+                        end_marker = MARKER_V4.fullmatch(text)
+                        audit_end = re.fullmatch(r"COUNTERS_END PHASE (ROSTER|VIEW) VIEW (SELECTED|REALMS|HOLDINGS|MY_REALM)", end_marker[1]) if end_marker else None
+                        if audit_end:
+                            try:
+                                phase, view = audit_end[1], audit_end[2]
+                                if (phase, view) != (native_dump["phase"], native_dump["view"]):
+                                    raise Invalid("native audit counter end marker phase/view mismatch")
+                                expected = {"dynmap_r016_out_roster", "dynmap_r016_out_actors"} if phase == "ROSTER" else SUMMARY_NATIVE_KEYS
+                                vals, context = parse_native_targets(native_dump["lines"], expected)
+                                if current is None:
+                                    raise Invalid("native audit counters outside a batch")
+                                if phase == "ROSTER":
+                                    tokens.append({"text": "ROSTER_COUNTS COUNT %d ACTORS %d" % (vals["roster"], vals["actors"]), "input": input_index, "line": line_no, "schema": 4, "native_context": (context["type"], context["runtime_id"]), "native_block": {"phase": phase, "view": view, "input": input_index, "begin_line": native_dump["begin_line"], "end_line": line_no}})
+                                else:
+                                    tokens.append({"text": "COUNTS " + " ".join(field.upper() + " " + str(vals[field]) for field in COUNTER_FIELDS), "input": input_index, "line": line_no, "schema": 4, "native_context": (context["type"], context["runtime_id"]), "native_block": {"phase": phase, "view": view, "input": input_index, "begin_line": native_dump["begin_line"], "end_line": line_no}})
+                            except Invalid as exc:
+                                errors.append({"input": input_index, "line": line_no, "error": str(exc)})
+                            native_dump = None
+                            continue
+                        else:
+                            native_dump["lines"].append(text)
+                        continue
+                    if diag_v3:
+                        payload = diag_v3[1]
+                        token = {"text": payload, "input": input_index, "line": line_no}
+                        try:
+                            begin = re.fullmatch(r"BEGIN SOURCE F004_NATIVE_14 TARGET 1\.20\.1\.2 BUILD 26046173 SCOPE (SUMMARY|SAMPLES) VIEW (REALMS|HOLDINGS|MY_REALM)", payload)
+                            counters = re.fullmatch(r"COUNTERS_BEGIN PHASE (SUMMARY|SAMPLES) VIEW (REALMS|HOLDINGS|MY_REALM)", payload)
+                            if current is not None:
+                                raise Invalid("diagnostic operation interleaved inside full batch")
+                            if begin:
+                                if diagnostic is not None:
+                                    raise Invalid("nested diagnostic operation")
+                                diagnostic = {"schema": 3, "source_version": "F004_NATIVE_14", "target": "1.20.1.2", "build": "26046173",
+                                    "operation_scope": begin[1], "view": begin[2], "write_policy": "PAINT_ATTEMPTS; no stored/pixel receipt",
+                                    "source": location(token), "samples": dict.fromkeys(RGB, 0), "details": 0,
+                                    "summary": None, "native_counters": None, "availability": "AVAILABLE",
+                                    "validation": "FRAMING_AND_BOUNDS_ONLY; not a full-map classification audit"}
+                            elif counters:
+                                if diagnostic is None or native_dump is not None or (diagnostic["operation_scope"], diagnostic["view"]) != (counters[1], counters[2]):
+                                    raise Invalid("unexpected or nested native counter block")
+                                native_dump = {"phase": counters[1], "view": counters[2], "lines": [], "begin_line": line_no}
+                            elif diagnostic is None:
+                                raise Invalid("diagnostic marker outside framed operation")
+                            elif payload.startswith(("SAMPLE ROLE ", "DETAIL ROLE ")):
+                                sm = re.fullmatch(r"(SAMPLE|DETAIL) ROLE (primary|secondary|neutral)", payload)
+                                if not sm or diagnostic["operation_scope"] != "SAMPLES":
+                                    raise Invalid("invalid/unexpected bounded diagnostic sample")
+                                if sm[1] == "SAMPLE": diagnostic["samples"][sm[2].upper()] += 1
+                                else: diagnostic["details"] += 1
+                                if max(diagnostic["samples"].values()) > 10 or diagnostic["details"] > 20:
+                                    raise Invalid("diagnostic sample/detail bounds exceeded")
+                            elif payload == "UNAVAILABLE": diagnostic["availability"] = "UNAVAILABLE"
+                            elif payload == "END":
+                                if diagnostic["availability"] == "AVAILABLE" and diagnostic.get("native_counters") is None:
+                                    raise Invalid("available DIAG V3 operation needs exactly one complete native counter block")
+                                if diagnostic["operation_scope"] == "SUMMARY" and diagnostic.get("summary") is None:
+                                    raise Invalid("summary DIAG V3 operation lacks native declaration")
+                                if diagnostic["availability"] == "UNAVAILABLE" and diagnostic.get("native_counters") is not None:
+                                    raise Invalid("unavailable operation cannot contain native counters")
+                                diagnostic.update(end=location(token), framing="COMPLETE")
+                                diagnostics.append(diagnostic); diagnostic = None
+                            elif payload not in ("COUNTY", "HOLDER", "HOLDER_NO_DYNASTY", "TOP_UNAVAILABLE", "UNHELD", "ZERO_BARONY_WRITES"):
+                                raise Invalid("unsupported DIAG V3 marker")
+                        except Invalid as exc:
+                            errors.append(dict(location(token), error=str(exc)))
+                        continue
+                    if re.match(r"^dynmap_r016_out_[A-Za-z0-9_]+:\s*", text):
+                        if diagnostic is not None or (current is not None and tokens and tokens[0].get("schema") == 4):
+                            errors.append({"input": input_index, "line": line_no,
+                                           "error": "native counter target outside its framed counter block"})
+                        continue
                     diag_marker = MARKER_DIAG.fullmatch(text)
                     if diag_marker:
                         payload = diag_marker[1]
@@ -593,6 +771,12 @@ def analyze_paths(paths, max_bytes=DEFAULT_MAX_BYTES):
                         marker = MARKER_V2.fullmatch(text)
                         schema = 2
                     if not marker:
+                        marker = MARKER_V3.fullmatch(text)
+                        schema = 3
+                    if not marker:
+                        marker = MARKER_V4.fullmatch(text)
+                        schema = 4
+                    if not marker:
                         if (current is not None and SCOPE.fullmatch(text) and tokens and
                                 tokens[-1].get("identity_expected") and
                                 "identity" in tokens[-1]):
@@ -603,9 +787,27 @@ def analyze_paths(paths, max_bytes=DEFAULT_MAX_BYTES):
                                            "error": "unsupported/ambiguous audit marker shape or version"})
                         continue
                     payload = marker[1]
+                    if schema == 4:
+                        if payload.startswith("BATCH_BEGIN") and not re.fullmatch(r"BATCH_BEGIN SOURCE F004_NATIVE_14 TARGET 1\.20\.1\.2 BUILD 26046173 SCOPE SELECTED VIEW (REALMS|HOLDINGS|MY_REALM)", payload):
+                            errors.append({"input": input_index, "line": line_no, "error": "unsupported native audit source, target or build"})
+                            continue
+                        payload = payload.replace("AUDIT V4", "AUDIT V3")
+                        payload = payload.replace("BATCH_BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173", "BATCH_BEGIN SOURCE F001_FIX_12 TARGET 1.20.1.2")
                     token = {"text": payload, "input": input_index, "line": line_no, "schema": schema}
+                    v4_counters = re.fullmatch(r"COUNTERS_BEGIN PHASE (ROSTER|VIEW) VIEW (SELECTED|REALMS|HOLDINGS|MY_REALM)", marker[1]) if schema == 4 else None
+                    if v4_counters:
+                        if native_dump is not None:
+                            errors.append(dict(location(token), error="nested native counter block"))
+                        elif v4_counters[1] == "ROSTER" and v4_counters[2] != "SELECTED":
+                            errors.append(dict(location(token), error="roster phase must declare SELECTED"))
+                        elif v4_counters[1] == "VIEW" and v4_counters[2] not in VIEWS:
+                            errors.append(dict(location(token), error="invalid selected-view counter phase"))
+                        else:
+                            pending = None
+                            native_dump = {"phase": v4_counters[1], "view": v4_counters[2], "lines": [], "begin_line": line_no}
+                        continue
                     expected_identity = IDENTITY_FIELDS.get(payload)
-                    if schema == 2 and (payload == "HOLDER" or payload.startswith("RESULT ")):
+                    if schema in (2, 3, 4) and (payload == "HOLDER" or payload.startswith("RESULT ")):
                         expected_identity = "Character" if payload == "HOLDER" else "Landed_title"
                     if expected_identity:
                         token["identity_expected"] = expected_identity
@@ -629,7 +831,25 @@ def analyze_paths(paths, max_bytes=DEFAULT_MAX_BYTES):
                         try:
                             if any(t["schema"] != tokens[0]["schema"] for t in tokens):
                                 raise Invalid("mixed audit schema inside batch")
-                            batch = parse_batch(tokens, current)
+                            parse_tokens = tokens
+                            native_schema = tokens[0]["schema"]
+                            if native_schema == 4:
+                                parse_tokens = [dict(t, schema=3) for t in tokens]
+                            batch = parse_batch(parse_tokens, current)
+                            if native_schema == 4:
+                                batch["schema"] = 4
+                                batch["source_version"] = "F004_NATIVE_14"
+                                batch["target"] = "1.20.1.2"
+                                batch["build"] = "26046173"
+                                batch["counter_source"] = "CK3 debug_log_scopes / Saved event targets"
+                                batch["native_counter_blocks"] = [t["native_block"] for t in tokens if t.get("native_block")]
+                                expected_blocks = [("ROSTER", "SELECTED"), ("VIEW", batch["selected_view"])] if batch.get("availability") == "AVAILABLE" else []
+                                if [(b["phase"], b["view"]) for b in batch["native_counter_blocks"]] != expected_blocks:
+                                    raise Invalid("native counter block phases/views disagree with selected audit")
+                                contexts = [t["native_context"] for t in tokens if t.get("native_context")]
+                                expected_context = ref(batch["player"]["subject"]) if batch.get("player") else None
+                                if batch.get("availability") == "AVAILABLE" and (len(contexts) != 2 or any(c != expected_context for c in contexts)):
+                                    raise Invalid("native counter context does not match exactly the expected audit player/root")
                             verify_batch(batch)
                             batches.append(batch)
                         except Invalid as exc:
@@ -638,6 +858,8 @@ def analyze_paths(paths, max_bytes=DEFAULT_MAX_BYTES):
                         current, tokens, pending = None, [], None
             if diagnostic is not None:
                 errors.append({"input": input_index, "line": line_no, "error": "truncated diagnostic operation at end of input"})
+            if native_dump is not None:
+                errors.append({"input": input_index, "line": line_no, "error": "truncated native counter block"})
             if current is not None:
                 errors.append({"input": input_index, "line": line_no,
                                "begin_line": tokens[0]["line"], "error": "truncated batch at end of input"})
@@ -655,25 +877,38 @@ def analyze_paths(paths, max_bytes=DEFAULT_MAX_BYTES):
     mismatch = any(b["classification_match"] == "MISMATCH" or
                    b["intended_rgb_mapping"] == "MISMATCH" for b in batches)
     status = "INCOMPLETE" if incomplete else "FAIL" if mismatch else "PASS"
-    return {"schema": 2, "supported_capture_schemas": [1, 2], "status": status, "exit_code": 2 if incomplete else 1 if mismatch else 0,
+    return {"schema": 4, "supported_capture_schemas": [1, 2, 3, 4], "status": status, "exit_code": 2 if incomplete else 1 if mismatch else 0,
             "capture_completeness": "INCOMPLETE" if errors else "COMPLETE",
             "inputs": inputs, "errors": errors, "batches": batches, "diagnostic_operations": diagnostics,
             "runtime_storage": "UNVERIFIED: no stored/pixel RGB evidence; full audits suppress writes",
-            "coverage_limit": "Completeness is relative to emitted every_county roster; no independent engine census."}
+            "coverage_limit": "Completeness is relative to emitted every_county roster; no independent engine census.",
+            "selected_view_limit": "A V4 PASS covers only its explicitly named view; all three views require three separate selected-view batches. Historical V3 framing remains separately interpreted."}
 
 
 def summary(report):
     lines = ["Classification audit: " + report["status"],
              "Capture framing: " + report["capture_completeness"], report["runtime_storage"],
              report["coverage_limit"]]
+    if any(batch.get("schema") in (3, 4) for batch in report["batches"]):
+        lines.append(report["selected_view_limit"])
     for error in report["errors"]:
         lines.append("Capture issue: " + json.dumps(error, ensure_ascii=True))
     for operation in report.get("diagnostic_operations", []):
         lines.append("Diagnostic %s %s: %s; %s" % (operation["operation_scope"], operation["view"], operation["framing"], operation["validation"]))
+        if operation.get("counter_source"):
+            lines.append("  Counter source: %s; build=%s/%s; expected native keys=%d; values=%s" % (
+                operation["counter_source"], operation.get("target", "UNKNOWN"),
+                operation.get("build", "UNKNOWN"), len(operation.get("native_counters", {})),
+                json.dumps(operation.get("native_counters", {}), sort_keys=True)))
     for batch in report["batches"]:
-        lines.append("Batch %s: records=%s completeness=%s roles=%s intended_RGB=%s availability=%s" % (
-            batch["sequence"], len(batch["records"]), batch["record_completeness"],
+        scope = ("scope=SELECTED view=" + batch["selected_view"]
+                 if batch.get("operation_scope") == "SELECTED" else "scope=FULL")
+        lines.append("Batch %s: %s records=%s completeness=%s roles=%s intended_RGB=%s availability=%s" % (
+            batch["sequence"], scope, len(batch["records"]), batch["record_completeness"],
             batch["classification_match"], batch["intended_rgb_mapping"], batch["availability"]))
+        if batch.get("counter_source"):
+            lines.append("  Counter source: %s; build=%s/%s" % (batch["counter_source"],
+                batch.get("target", "UNKNOWN"), batch.get("build", "UNKNOWN")))
         for error in batch["errors"]:
             lines.append("  Batch issue: " + error)
         if batch.get("rejection"):

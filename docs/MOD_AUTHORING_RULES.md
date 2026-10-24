@@ -101,7 +101,13 @@ copyable pinned-report example.
 3. Install only the reviewed isolated payload and wrapper; compare wrapper
    name/version/supported_version/path separately. Run post-install preflight
    and keep a per-file hash/BOM receipt. Resolve any mismatch before startup.
-   GUI configures the already open launcher and verifies actual selection.
+   CLI checks `dlc_load.json` enabled mods and resolved wrappers/payloads against
+   the intended set; use bounded read-only playset/configuration evidence only
+   when needed. GUI reviews the receipt without routine visual launcher checks.
+   GUI configures the already open launcher only for a proven mismatch or
+   unresolved ambiguity, then persisted configuration is read back. See the
+   file-first verification procedure in CODEX_WORKFLOW. Startup logs below
+   independently establish what the engine actually mounted.
 4. User alone starts CK3 through Steam and stops at main menu. Capture a fresh
    bounded log interval and verify actual mounted mod, build, GUI warnings,
    errors and database conflicts before play, save loading or classification.

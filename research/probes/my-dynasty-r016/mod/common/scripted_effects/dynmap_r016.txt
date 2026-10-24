@@ -6,7 +6,7 @@ dynmap_r016_paint_dark_effect = {
 	if = {
 		limit = { exists = scope:dynmap_r016_audit_armed }
 		dynmap_r016_count_role_effect = { ROLE = primary }
-		debug_log = "DYNMAP_R016 AUDIT V2 RESULT PRIMARY RGB 25 105 50 WRITES_SUPPRESSED"
+		debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 25 105 50 WRITES_SUPPRESSED"
 		debug_log_scopes = no
 	}
 	else = {
@@ -21,7 +21,7 @@ dynmap_r016_paint_dark_effect = {
 				change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
 			}
 		}
-		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } dynmap_r016_diagnostic_county_effect = { ROLE = primary } }
+		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } dynmap_r016_diagnostic_county_primary_effect = yes }
 	}
 }
 
@@ -29,7 +29,7 @@ dynmap_r016_paint_light_effect = {
 	if = {
 		limit = { exists = scope:dynmap_r016_audit_armed }
 		dynmap_r016_count_role_effect = { ROLE = secondary }
-		debug_log = "DYNMAP_R016 AUDIT V2 RESULT SECONDARY RGB 145 220 150 WRITES_SUPPRESSED"
+		debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 145 220 150 WRITES_SUPPRESSED"
 		debug_log_scopes = no
 	}
 	else = {
@@ -44,7 +44,7 @@ dynmap_r016_paint_light_effect = {
 				change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
 			}
 		}
-		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } dynmap_r016_diagnostic_county_effect = { ROLE = secondary } }
+		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } dynmap_r016_diagnostic_county_secondary_effect = yes }
 	}
 }
 
@@ -52,7 +52,7 @@ dynmap_r016_paint_grey_effect = {
 	if = {
 		limit = { exists = scope:dynmap_r016_audit_armed }
 		dynmap_r016_count_role_effect = { ROLE = neutral }
-		debug_log = "DYNMAP_R016 AUDIT V2 RESULT NEUTRAL RGB 65 70 80 WRITES_SUPPRESSED"
+		debug_log = "DYNMAP_R016 AUDIT V4 RESULT NEUTRAL RGB 65 70 80 WRITES_SUPPRESSED"
 		debug_log_scopes = no
 	}
 	else = {
@@ -67,7 +67,7 @@ dynmap_r016_paint_grey_effect = {
 				change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
 			}
 		}
-		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } dynmap_r016_diagnostic_county_effect = { ROLE = neutral } }
+		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } dynmap_r016_diagnostic_county_neutral_effect = yes }
 	}
 }
 
@@ -390,14 +390,14 @@ dynmap_r016_count_role_effect = {
 # First encountered per role in native every_county order; no random/sort API.
 # Missing Dynasty/holder or zero baronies are descriptive cases, not engine errors.
 # Samples have county/holder identities, no repeated senior hierarchies.
-dynmap_r016_diagnostic_county_effect = {
-	dynmap_r016_count_role_effect = { ROLE = $ROLE$ }
+dynmap_r016_diagnostic_county_primary_effect = {
+	dynmap_r016_count_role_effect = { ROLE = primary }
 	if = {
 		limit = { exists = scope:dynmap_r016_diagnostic_samples }
 		if = {
-			limit = { local_var:dynmap_r016_d_sample_$ROLE$ < 10 }
-			change_local_variable = { name = dynmap_r016_d_sample_$ROLE$ add = 1 }
-			debug_log = "DYNMAP_R016 DIAG V2 SAMPLE ROLE $ROLE$"
+			limit = { local_var:dynmap_r016_d_sample_primary < 10 }
+			change_local_variable = { name = dynmap_r016_d_sample_primary add = 1 }
+			debug_log = "DYNMAP_R016 DIAG V3 SAMPLE ROLE primary"
 			dynmap_r016_diagnostic_sample_effect = yes
 		}
 		else_if = {
@@ -410,7 +410,59 @@ dynmap_r016_diagnostic_county_effect = {
 				}
 			}
 			change_local_variable = { name = dynmap_r016_d_details add = 1 }
-			debug_log = "DYNMAP_R016 DIAG V2 DETAIL ROLE $ROLE$"
+			debug_log = "DYNMAP_R016 DIAG V3 DETAIL ROLE primary"
+			dynmap_r016_diagnostic_sample_effect = yes
+		}
+	}
+}
+
+dynmap_r016_diagnostic_county_secondary_effect = {
+	dynmap_r016_count_role_effect = { ROLE = secondary }
+	if = {
+		limit = { exists = scope:dynmap_r016_diagnostic_samples }
+		if = {
+			limit = { local_var:dynmap_r016_d_sample_secondary < 10 }
+			change_local_variable = { name = dynmap_r016_d_sample_secondary add = 1 }
+			debug_log = "DYNMAP_R016 DIAG V3 SAMPLE ROLE secondary"
+			dynmap_r016_diagnostic_sample_effect = yes
+		}
+		else_if = {
+			limit = {
+				local_var:dynmap_r016_d_details < 20
+				OR = {
+					local_var:dynmap_r016_d_county_writes = 0
+					NOT = { exists = holder }
+					trigger_if = { limit = { exists = holder } holder = { OR = { NOT = { exists = dynasty } NOT = { exists = top_liege } } } } trigger_else = { always = no }
+				}
+			}
+			change_local_variable = { name = dynmap_r016_d_details add = 1 }
+			debug_log = "DYNMAP_R016 DIAG V3 DETAIL ROLE secondary"
+			dynmap_r016_diagnostic_sample_effect = yes
+		}
+	}
+}
+
+dynmap_r016_diagnostic_county_neutral_effect = {
+	dynmap_r016_count_role_effect = { ROLE = neutral }
+	if = {
+		limit = { exists = scope:dynmap_r016_diagnostic_samples }
+		if = {
+			limit = { local_var:dynmap_r016_d_sample_neutral < 10 }
+			change_local_variable = { name = dynmap_r016_d_sample_neutral add = 1 }
+			debug_log = "DYNMAP_R016 DIAG V3 SAMPLE ROLE neutral"
+			dynmap_r016_diagnostic_sample_effect = yes
+		}
+		else_if = {
+			limit = {
+				local_var:dynmap_r016_d_details < 20
+				OR = {
+					local_var:dynmap_r016_d_county_writes = 0
+					NOT = { exists = holder }
+					trigger_if = { limit = { exists = holder } holder = { OR = { NOT = { exists = dynasty } NOT = { exists = top_liege } } } } trigger_else = { always = no }
+				}
+			}
+			change_local_variable = { name = dynmap_r016_d_details add = 1 }
+			debug_log = "DYNMAP_R016 DIAG V3 DETAIL ROLE neutral"
 			dynmap_r016_diagnostic_sample_effect = yes
 		}
 	}
@@ -434,7 +486,7 @@ dynmap_r016_diagnostic_sample_effect = {
 
 dynmap_r016_summary_realms_effect = {
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 BEGIN SOURCE F001_FIX_12 SCOPE SUMMARY VIEW REALMS"
+	debug_log = "DYNMAP_R016 DIAG V3 BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SUMMARY VIEW REALMS"
 	every_player = {
 		limit = { this = root is_alive = yes exists = dynasty }
 		save_scope_as = dynmap_r016_diagnostic_armed
@@ -449,17 +501,19 @@ dynmap_r016_summary_realms_effect = {
 			set_local_variable = { name = dynmap_r016_d_details value = 0 }
 			dynmap_r016_world_realms_effect = yes
 			dynmap_r016_counts_snapshot_effect = yes
-			debug_log = "dynmap_r016_diag_counts"
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_BEGIN PHASE SUMMARY VIEW REALMS"
+			debug_log_scopes = yes
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_END PHASE SUMMARY VIEW REALMS"
 		}
 	}
-	else = { debug_log = "DYNMAP_R016 DIAG V2 UNAVAILABLE" }
+	else = { debug_log = "DYNMAP_R016 DIAG V3 UNAVAILABLE" }
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 END"
+	debug_log = "DYNMAP_R016 DIAG V3 END"
 }
 
 dynmap_r016_samples_realms_effect = {
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 BEGIN SOURCE F001_FIX_12 SCOPE SAMPLES VIEW REALMS"
+	debug_log = "DYNMAP_R016 DIAG V3 BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SAMPLES VIEW REALMS"
 	every_player = {
 		limit = { this = root is_alive = yes exists = dynasty }
 		save_scope_as = dynmap_r016_diagnostic_armed
@@ -475,17 +529,19 @@ dynmap_r016_samples_realms_effect = {
 			save_scope_as = dynmap_r016_diagnostic_samples
 			dynmap_r016_world_realms_effect = yes
 			dynmap_r016_counts_snapshot_effect = yes
-			debug_log = "dynmap_r016_diag_counts"
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_BEGIN PHASE SAMPLES VIEW REALMS"
+			debug_log_scopes = yes
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_END PHASE SAMPLES VIEW REALMS"
 		}
 	}
-	else = { debug_log = "DYNMAP_R016 DIAG V2 UNAVAILABLE" }
+	else = { debug_log = "DYNMAP_R016 DIAG V3 UNAVAILABLE" }
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 END"
+	debug_log = "DYNMAP_R016 DIAG V3 END"
 }
 
 dynmap_r016_summary_holdings_effect = {
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 BEGIN SOURCE F001_FIX_12 SCOPE SUMMARY VIEW HOLDINGS"
+	debug_log = "DYNMAP_R016 DIAG V3 BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SUMMARY VIEW HOLDINGS"
 	every_player = {
 		limit = { this = root is_alive = yes exists = dynasty }
 		save_scope_as = dynmap_r016_diagnostic_armed
@@ -500,17 +556,19 @@ dynmap_r016_summary_holdings_effect = {
 			set_local_variable = { name = dynmap_r016_d_details value = 0 }
 			dynmap_r016_world_holdings_effect = yes
 			dynmap_r016_counts_snapshot_effect = yes
-			debug_log = "dynmap_r016_diag_counts"
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_BEGIN PHASE SUMMARY VIEW HOLDINGS"
+			debug_log_scopes = yes
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_END PHASE SUMMARY VIEW HOLDINGS"
 		}
 	}
-	else = { debug_log = "DYNMAP_R016 DIAG V2 UNAVAILABLE" }
+	else = { debug_log = "DYNMAP_R016 DIAG V3 UNAVAILABLE" }
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 END"
+	debug_log = "DYNMAP_R016 DIAG V3 END"
 }
 
 dynmap_r016_samples_holdings_effect = {
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 BEGIN SOURCE F001_FIX_12 SCOPE SAMPLES VIEW HOLDINGS"
+	debug_log = "DYNMAP_R016 DIAG V3 BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SAMPLES VIEW HOLDINGS"
 	every_player = {
 		limit = { this = root is_alive = yes exists = dynasty }
 		save_scope_as = dynmap_r016_diagnostic_armed
@@ -526,17 +584,19 @@ dynmap_r016_samples_holdings_effect = {
 			save_scope_as = dynmap_r016_diagnostic_samples
 			dynmap_r016_world_holdings_effect = yes
 			dynmap_r016_counts_snapshot_effect = yes
-			debug_log = "dynmap_r016_diag_counts"
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_BEGIN PHASE SAMPLES VIEW HOLDINGS"
+			debug_log_scopes = yes
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_END PHASE SAMPLES VIEW HOLDINGS"
 		}
 	}
-	else = { debug_log = "DYNMAP_R016 DIAG V2 UNAVAILABLE" }
+	else = { debug_log = "DYNMAP_R016 DIAG V3 UNAVAILABLE" }
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 END"
+	debug_log = "DYNMAP_R016 DIAG V3 END"
 }
 
 dynmap_r016_summary_my_realm_effect = {
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 BEGIN SOURCE F001_FIX_12 SCOPE SUMMARY VIEW MY_REALM"
+	debug_log = "DYNMAP_R016 DIAG V3 BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SUMMARY VIEW MY_REALM"
 	every_player = {
 		limit = { this = root is_alive = yes exists = dynasty }
 		save_scope_as = dynmap_r016_diagnostic_armed
@@ -551,17 +611,19 @@ dynmap_r016_summary_my_realm_effect = {
 			set_local_variable = { name = dynmap_r016_d_details value = 0 }
 			dynmap_r016_world_my_realm_effect = yes
 			dynmap_r016_counts_snapshot_effect = yes
-			debug_log = "dynmap_r016_diag_counts"
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_BEGIN PHASE SUMMARY VIEW MY_REALM"
+			debug_log_scopes = yes
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_END PHASE SUMMARY VIEW MY_REALM"
 		}
 	}
-	else = { debug_log = "DYNMAP_R016 DIAG V2 UNAVAILABLE" }
+	else = { debug_log = "DYNMAP_R016 DIAG V3 UNAVAILABLE" }
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 END"
+	debug_log = "DYNMAP_R016 DIAG V3 END"
 }
 
 dynmap_r016_samples_my_realm_effect = {
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 BEGIN SOURCE F001_FIX_12 SCOPE SAMPLES VIEW MY_REALM"
+	debug_log = "DYNMAP_R016 DIAG V3 BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SAMPLES VIEW MY_REALM"
 	every_player = {
 		limit = { this = root is_alive = yes exists = dynasty }
 		save_scope_as = dynmap_r016_diagnostic_armed
@@ -577,84 +639,86 @@ dynmap_r016_samples_my_realm_effect = {
 			save_scope_as = dynmap_r016_diagnostic_samples
 			dynmap_r016_world_my_realm_effect = yes
 			dynmap_r016_counts_snapshot_effect = yes
-			debug_log = "dynmap_r016_diag_counts"
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_BEGIN PHASE SAMPLES VIEW MY_REALM"
+			debug_log_scopes = yes
+			debug_log = "DYNMAP_R016 DIAG V3 COUNTERS_END PHASE SAMPLES VIEW MY_REALM"
 		}
 	}
-	else = { debug_log = "DYNMAP_R016 DIAG V2 UNAVAILABLE" }
+	else = { debug_log = "DYNMAP_R016 DIAG V3 UNAVAILABLE" }
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 DIAG V2 END"
+	debug_log = "DYNMAP_R016 DIAG V3 END"
 }
 
-dynmap_r016_audit_actor_effect = {
-	debug_log = "DYNMAP_R016 AUDIT V2 SUBJECT"
+dynmap_r016_audit_v3_actor_effect = {
+	debug_log = "DYNMAP_R016 AUDIT V4 SUBJECT"
 	debug_log_scopes = no
 	if = {
 		limit = { exists = dynasty }
-		dynasty = { debug_log = "DYNMAP_R016 AUDIT V2 DYNASTY" debug_log_scopes = no }
+		dynasty = { debug_log = "DYNMAP_R016 AUDIT V4 DYNASTY" debug_log_scopes = no }
 	}
-	else = { debug_log = "DYNMAP_R016 AUDIT V2 DYNASTY_NULL" }
+	else = { debug_log = "DYNMAP_R016 AUDIT V4 DYNASTY_NULL" }
 	if = {
 		limit = { exists = liege }
-		liege = { debug_log = "DYNMAP_R016 AUDIT V2 LIEGE" debug_log_scopes = no }
-		debug_log = "DYNMAP_R016 AUDIT V2 NO_LIEGE NO"
-		if = { limit = { liege = this } debug_log = "DYNMAP_R016 AUDIT V2 LIEGE_SELF YES" }
-		else = { debug_log = "DYNMAP_R016 AUDIT V2 LIEGE_SELF NO" }
+		liege = { debug_log = "DYNMAP_R016 AUDIT V4 LIEGE" debug_log_scopes = no }
+		debug_log = "DYNMAP_R016 AUDIT V4 NO_LIEGE NO"
+		if = { limit = { liege = this } debug_log = "DYNMAP_R016 AUDIT V4 LIEGE_SELF YES" }
+		else = { debug_log = "DYNMAP_R016 AUDIT V4 LIEGE_SELF NO" }
 	}
 	else = {
-		debug_log = "DYNMAP_R016 AUDIT V2 LIEGE_NULL"
-		debug_log = "DYNMAP_R016 AUDIT V2 NO_LIEGE YES"
-		debug_log = "DYNMAP_R016 AUDIT V2 LIEGE_SELF NO"
+		debug_log = "DYNMAP_R016 AUDIT V4 LIEGE_NULL"
+		debug_log = "DYNMAP_R016 AUDIT V4 NO_LIEGE YES"
+		debug_log = "DYNMAP_R016 AUDIT V4 LIEGE_SELF NO"
 	}
 	if = {
 		limit = { exists = top_liege }
-		top_liege = { debug_log = "DYNMAP_R016 AUDIT V2 TOP" debug_log_scopes = no }
-		if = { limit = { top_liege = this } debug_log = "DYNMAP_R016 AUDIT V2 TOP_SELF YES" }
-		else = { debug_log = "DYNMAP_R016 AUDIT V2 TOP_SELF NO" }
+		top_liege = { debug_log = "DYNMAP_R016 AUDIT V4 TOP" debug_log_scopes = no }
+		if = { limit = { top_liege = this } debug_log = "DYNMAP_R016 AUDIT V4 TOP_SELF YES" }
+		else = { debug_log = "DYNMAP_R016 AUDIT V4 TOP_SELF NO" }
 	}
 	else = {
-		debug_log = "DYNMAP_R016 AUDIT V2 TOP_NULL"
-		debug_log = "DYNMAP_R016 AUDIT V2 TOP_SELF NO"
+		debug_log = "DYNMAP_R016 AUDIT V4 TOP_NULL"
+		debug_log = "DYNMAP_R016 AUDIT V4 TOP_SELF NO"
 	}
-	if = { limit = { is_independent_ruler = yes } debug_log = "DYNMAP_R016 AUDIT V2 INDEPENDENT YES" }
-	else = { debug_log = "DYNMAP_R016 AUDIT V2 INDEPENDENT NO" }
+	if = { limit = { is_independent_ruler = yes } debug_log = "DYNMAP_R016 AUDIT V4 INDEPENDENT YES" }
+	else = { debug_log = "DYNMAP_R016 AUDIT V4 INDEPENDENT NO" }
 }
 
 # Character scope. Local list holds only references, and is cleared on entry/exit.
 # The subject itself and every ordinary senior are visited while building roster.
-dynmap_r016_audit_intern_actor_effect = {
+dynmap_r016_audit_v3_intern_actor_effect = {
 	if = {
 		limit = { NOT = { is_target_in_local_variable_list = { name = dynmap_r016_audit_seen target = this } } }
 		add_to_local_variable_list = { name = dynmap_r016_audit_seen target = this }
 		change_local_variable = { name = dynmap_r016_d_actors add = 1 }
-		debug_log = "DYNMAP_R016 AUDIT V2 ACTOR_BEGIN DEF"
-		dynmap_r016_audit_actor_effect = yes
-		debug_log = "DYNMAP_R016 AUDIT V2 ACTOR_END"
+		debug_log = "DYNMAP_R016 AUDIT V4 ACTOR_BEGIN DEF"
+		dynmap_r016_audit_v3_actor_effect = yes
+		debug_log = "DYNMAP_R016 AUDIT V4 ACTOR_END"
 	}
 }
 
-dynmap_r016_audit_roster_county_effect = {
+dynmap_r016_audit_v3_roster_county_effect = {
 	if = {
 		limit = { exists = holder }
 		holder = {
-			dynmap_r016_audit_intern_actor_effect = yes
-			every_liege_or_above = { dynmap_r016_audit_intern_actor_effect = yes }
+			dynmap_r016_audit_v3_intern_actor_effect = yes
+			every_liege_or_above = { dynmap_r016_audit_v3_intern_actor_effect = yes }
 		}
 	}
 	change_local_variable = { name = dynmap_r016_d_roster add = 1 }
-	debug_log = "DYNMAP_R016 AUDIT V2 COUNTY_BEGIN"
+	debug_log = "DYNMAP_R016 AUDIT V4 COUNTY_BEGIN"
 	debug_log_scopes = no
 	if = {
 		limit = { exists = holder }
-		holder = { debug_log = "DYNMAP_R016 AUDIT V2 HOLDER" debug_log_scopes = no }
+		holder = { debug_log = "DYNMAP_R016 AUDIT V4 HOLDER" debug_log_scopes = no }
 	}
-	else = { debug_log = "DYNMAP_R016 AUDIT V2 HOLDER_NULL" }
-	debug_log = "DYNMAP_R016 AUDIT V2 COUNTY_END"
+	else = { debug_log = "DYNMAP_R016 AUDIT V4 HOLDER_NULL" }
+	debug_log = "DYNMAP_R016 AUDIT V4 COUNTY_END"
 }
 
-# Finite explicit all-three-view audit. No paint, restore, sample or SetMapMode.
-dynmap_r016_audit_batch_effect = {
-	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 AUDIT V2 BATCH_BEGIN SOURCE F001_FIX_12 TARGET 1.20.1.2 SCOPE FULL"
+# V3 selected-view audit. Shared actor/roster setup; one classifier only.
+# No paint, restore, sample, SetMapMode or other-view classifier.
+
+dynmap_r016_audit_v3_roster_effect = {
 	every_player = {
 		limit = { this = root is_alive = yes exists = dynasty }
 		save_scope_as = dynmap_r016_audit_armed
@@ -665,38 +729,87 @@ dynmap_r016_audit_batch_effect = {
 			set_local_variable = { name = dynmap_r016_d_actors value = 1 }
 			set_local_variable = { name = dynmap_r016_d_roster value = 0 }
 			add_to_local_variable_list = { name = dynmap_r016_audit_seen target = this }
-			debug_log = "DYNMAP_R016 AUDIT V2 ACTOR_BEGIN PLAYER"
-			dynmap_r016_audit_actor_effect = yes
-			debug_log = "DYNMAP_R016 AUDIT V2 ACTOR_END"
+			debug_log = "DYNMAP_R016 AUDIT V4 ACTOR_BEGIN PLAYER"
+			dynmap_r016_audit_v3_actor_effect = yes
+			debug_log = "DYNMAP_R016 AUDIT V4 ACTOR_END"
 			# Player's ordinary ancestry is needed even outside any county holder chain.
-			every_liege_or_above = { dynmap_r016_audit_intern_actor_effect = yes }
-			debug_log = "DYNMAP_R016 AUDIT V2 ROSTER_BEGIN"
-			every_county = { dynmap_r016_audit_roster_county_effect = yes }
+			every_liege_or_above = { dynmap_r016_audit_v3_intern_actor_effect = yes }
+			debug_log = "DYNMAP_R016 AUDIT V4 ROSTER_BEGIN"
+			every_county = { dynmap_r016_audit_v3_roster_county_effect = yes }
 			save_scope_value_as = { name = dynmap_r016_out_roster value = local_var:dynmap_r016_d_roster }
 			save_scope_value_as = { name = dynmap_r016_out_actors value = local_var:dynmap_r016_d_actors }
-			debug_log = "dynmap_r016_audit_roster_counts"
-			debug_log = "DYNMAP_R016 AUDIT V2 ROSTER_END"
-			debug_log = "DYNMAP_R016 AUDIT V2 VIEW_BEGIN REALMS"
+			debug_log = "DYNMAP_R016 AUDIT V4 COUNTERS_BEGIN PHASE ROSTER VIEW SELECTED"
+			debug_log_scopes = yes
+			debug_log = "DYNMAP_R016 AUDIT V4 COUNTERS_END PHASE ROSTER VIEW SELECTED"
+			clear_saved_scope = dynmap_r016_out_roster
+			clear_saved_scope = dynmap_r016_out_actors
+			debug_log = "DYNMAP_R016 AUDIT V4 ROSTER_END"
+		}
+	}
+}
+
+dynmap_r016_audit_realms_selected_effect = {
+	dynmap_r016_operation_cleanup_effect = yes
+	debug_log = "DYNMAP_R016 AUDIT V4 BATCH_BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SELECTED VIEW REALMS"
+	dynmap_r016_audit_v3_roster_effect = yes
+	if = {
+		limit = { exists = scope:dynmap_r016_audit_armed }
+		scope:dynmap_r016_audit_armed = {
+			debug_log = "DYNMAP_R016 AUDIT V4 VIEW_BEGIN REALMS"
 			dynmap_r016_counts_init_effect = yes
 			dynmap_r016_world_realms_effect = yes
 			dynmap_r016_counts_snapshot_effect = yes
-			debug_log = "dynmap_r016_audit_counts"
-			debug_log = "DYNMAP_R016 AUDIT V2 VIEW_END REALMS"
-			debug_log = "DYNMAP_R016 AUDIT V2 VIEW_BEGIN HOLDINGS"
+			debug_log = "DYNMAP_R016 AUDIT V4 COUNTERS_BEGIN PHASE VIEW VIEW REALMS"
+			debug_log_scopes = yes
+			debug_log = "DYNMAP_R016 AUDIT V4 COUNTERS_END PHASE VIEW VIEW REALMS"
+			debug_log = "DYNMAP_R016 AUDIT V4 VIEW_END REALMS"
+		}
+	}
+	else = { debug_log = "DYNMAP_R016 AUDIT V4 REJECT PLAYER_DEAD_MISSING_OR_NO_DYNASTY" }
+	dynmap_r016_operation_cleanup_effect = yes
+	debug_log = "DYNMAP_R016 AUDIT V4 BATCH_END"
+}
+
+dynmap_r016_audit_holdings_selected_effect = {
+	dynmap_r016_operation_cleanup_effect = yes
+	debug_log = "DYNMAP_R016 AUDIT V4 BATCH_BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SELECTED VIEW HOLDINGS"
+	dynmap_r016_audit_v3_roster_effect = yes
+	if = {
+		limit = { exists = scope:dynmap_r016_audit_armed }
+		scope:dynmap_r016_audit_armed = {
+			debug_log = "DYNMAP_R016 AUDIT V4 VIEW_BEGIN HOLDINGS"
 			dynmap_r016_counts_init_effect = yes
 			dynmap_r016_world_holdings_effect = yes
 			dynmap_r016_counts_snapshot_effect = yes
-			debug_log = "dynmap_r016_audit_counts"
-			debug_log = "DYNMAP_R016 AUDIT V2 VIEW_END HOLDINGS"
-			debug_log = "DYNMAP_R016 AUDIT V2 VIEW_BEGIN MY_REALM"
+			debug_log = "DYNMAP_R016 AUDIT V4 COUNTERS_BEGIN PHASE VIEW VIEW HOLDINGS"
+			debug_log_scopes = yes
+			debug_log = "DYNMAP_R016 AUDIT V4 COUNTERS_END PHASE VIEW VIEW HOLDINGS"
+			debug_log = "DYNMAP_R016 AUDIT V4 VIEW_END HOLDINGS"
+		}
+	}
+	else = { debug_log = "DYNMAP_R016 AUDIT V4 REJECT PLAYER_DEAD_MISSING_OR_NO_DYNASTY" }
+	dynmap_r016_operation_cleanup_effect = yes
+	debug_log = "DYNMAP_R016 AUDIT V4 BATCH_END"
+}
+
+dynmap_r016_audit_my_realm_selected_effect = {
+	dynmap_r016_operation_cleanup_effect = yes
+	debug_log = "DYNMAP_R016 AUDIT V4 BATCH_BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SELECTED VIEW MY_REALM"
+	dynmap_r016_audit_v3_roster_effect = yes
+	if = {
+		limit = { exists = scope:dynmap_r016_audit_armed }
+		scope:dynmap_r016_audit_armed = {
+			debug_log = "DYNMAP_R016 AUDIT V4 VIEW_BEGIN MY_REALM"
 			dynmap_r016_counts_init_effect = yes
 			dynmap_r016_world_my_realm_effect = yes
 			dynmap_r016_counts_snapshot_effect = yes
-			debug_log = "dynmap_r016_audit_counts"
-			debug_log = "DYNMAP_R016 AUDIT V2 VIEW_END MY_REALM"
+			debug_log = "DYNMAP_R016 AUDIT V4 COUNTERS_BEGIN PHASE VIEW VIEW MY_REALM"
+			debug_log_scopes = yes
+			debug_log = "DYNMAP_R016 AUDIT V4 COUNTERS_END PHASE VIEW VIEW MY_REALM"
+			debug_log = "DYNMAP_R016 AUDIT V4 VIEW_END MY_REALM"
 		}
 	}
-	else = { debug_log = "DYNMAP_R016 AUDIT V2 REJECT PLAYER_DEAD_MISSING_OR_NO_DYNASTY" }
+	else = { debug_log = "DYNMAP_R016 AUDIT V4 REJECT PLAYER_DEAD_MISSING_OR_NO_DYNASTY" }
 	dynmap_r016_operation_cleanup_effect = yes
-	debug_log = "DYNMAP_R016 AUDIT V2 BATCH_END"
+	debug_log = "DYNMAP_R016 AUDIT V4 BATCH_END"
 }

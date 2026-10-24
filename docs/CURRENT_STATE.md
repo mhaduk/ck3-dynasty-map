@@ -1,10 +1,26 @@
 # Current State
 
-Updated 2026-10-23. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
+Updated 2026-10-24. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
 Entries below preserve their dated task cutoffs. The dedicated F-001 section
 later in this file supersedes earlier statements that F-001 was paused; its
 bounded F-001 scope is complete; remaining gates retain their named owners.
+
+## Active GUI selection — F-004 / #29
+
+Bounded diagnostic and interaction acceptance is delivered on 2026-10-24 for
+fresh paused Ismail 867 / CK3 1.20.1.2 / Steam 26046173. Three isolated AUDIT
+V4 reports PASS relative to their emitted rosters; DIAG V3 native declarations
+and bounded samples work. User accepts the fixed 130×40 two-row host, tested
+no-jump/full-hit behavior and public tooltip copy. Historical failures remain;
+the latest samples operation is framed but its file interval is INCOMPLETE at
+a partial boundary. Initialization/court attribution remains unknown; no
+clean-log, global-census, stored-RGB, pixel or lifecycle claim. GUI independently verified the finite saved-session costs: 140,284,028 tokens,
+$15.29928952 known API-equivalent USD, partial coverage with unpriced review.
+F-004/#29 is closed completed; the issue cost table/label and Wiki publication
+`d5f08ac` passed remote readback. Scoped cleanup retains private evidence.
+No new game test is needed. Timer work stays with open R-018/#38 and
+planned/blocked F-006/#39.
 
 ## Completed administrative closeout — T-008 / T-009 / T-010
 

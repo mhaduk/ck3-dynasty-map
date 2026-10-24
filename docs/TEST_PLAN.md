@@ -76,6 +76,19 @@ retain context and RGB/save/removal gaps. Refer to
 [F-001 test history](F001_MAP_PAINTING.md); no new game test was run during this
 documentation preparation.
 
+F-004 bounded acceptance update, 2026-10-24: on CK3 1.20.1.2 / Steam
+26046173, three fresh isolated AUDIT V4 captures pass independently for
+REALMS (31/3/4669), HOLDINGS (16/18/4669) and MY_REALM (2/32/4669), each with
+4,703 counties/results, 1,854 actors, role/intended-RGB MATCH and zero
+attempted writes. These passes are relative to each emitted roster, not an
+independent world census. DIAG V3 native summary/sample operations deliver the
+twelve declarations and the bounded 10-per-role/20-detail samples; the latest
+sample operation is framed while its containing interval remains INCOMPLETE
+at a partial boundary. The user accepts fixed-row no-jump/hit behavior. No
+repeat audit, clean-log check, stored-RGB, pixel, save/removal, or lifecycle
+test is requested or implied. See [F-004 guide](F004_DIAGNOSTICS.md) and
+[interaction history](F004_GUI_INTERACTION.md); the user alone operates CK3.
+
 ## M0 R-005 diagnostic coverage snapshot — 2026-10-20
 
 Passed diagnostic cases: explicit player/Dynasty context, repeated requests,

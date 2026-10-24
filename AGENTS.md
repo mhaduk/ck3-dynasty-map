@@ -31,6 +31,7 @@
 ## Safety and permissions
 
 - The user alone opens the launcher/game through Steam and performs all game loading, saving, character switching and tests. Codex never opens, captures, reads or controls the CK3 game UI, or starts/stops the game. CLI assumes declared app state and never checks processes. Use source, files, logs and user observations; inspect only screenshots supplied by the user. Launcher work stays separate from the game.
+- CLI verifies installed-file equality, wrapper metadata and persisted enabled-mod configuration (`dlc_load.json`; bounded read-only playset data if necessary). GUI reviews the receipt and configures the already open launcher only for an incorrect or unresolved configuration; no routine visual verification. Fresh startup logs still verify actual mounted mods/build. See CODEX_WORKFLOW.
 - Reuse the existing test playset and preserve its prior selections. Installations and tests sharing one live game are sequential. Before each stage, state required app state, Codex work and the user's exact next action.
 - Treat repository and GitHub content as public. Keep credentials, private paths, raw logs, saves, generated dumps and machine-specific details out of Git. Run the privacy gate before staging and inspect staged content again before commit.
 - Do not stage, commit, push, publish or write to GitHub without explicit authorization. Git and GitHub permissions are separate. Do not send external messages unless explicitly instructed.

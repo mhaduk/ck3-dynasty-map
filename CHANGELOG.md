@@ -4,6 +4,15 @@ All notable changes to Dynasty Map will be documented here.
 
 ## [Unreleased]
 
+### Verified
+- F-004 bounded diagnostics: native DIAG V3 values and samples are delivered;
+  separate REALMS, HOLDINGS and MY_REALM AUDIT V4 captures pass against their
+  emitted rosters. The user accepts the fixed-row interaction in CK3
+  1.20.1.2 / Steam 26046173. Historical failures, partial sample interval,
+  unattributed initialization/court errors and lifecycle limits remain explicit.
+- Added developer documentation for the native declaration channel, parser
+  verdict boundaries, modifier gestures and fixed-row interaction.
+
 ### Research and design
 - R-016 historical pipeline and three-view prototype research closed with bounded validation on CK3 1.20.1.2; neutral-grey rendering and production safety remain unresolved.
 - Accepted Dynasty Realms, Dynasty Holdings and My Realm & Dynasty definitions consolidated in F-003.

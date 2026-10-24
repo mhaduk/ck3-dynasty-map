@@ -8,6 +8,14 @@ This document defines the intended architecture during M0. R-016 now targets ins
 
 R-005 owns the safe dispatch/context contract and the no-Dynasty fixture-or-coverage decision merged from R-013. R-009 owns exact arbitrary-original RGB restore, isolation and save/removal. R-007/R-008/R-010 research is closed completed. The user accepts the bounded F-001 menu, appearance and ordinary interaction on fresh 867 Ismail sessions; residual parity/coverage is tracked by F-005, while context and RGB lifecycle gates remain with R-005/R-009. Historical checkpoint descriptions below retain their evidence limits. See [T-005](tasks/T-005-research-backlog-review.md) and [the F-001 painting guide](F001_MAP_PAINTING.md).
 
+F-004's accepted 2026-10-24 diagnostic path reads native `debug_log_scopes`
+declarations for DIAG V3 summaries/samples and independently framed AUDIT V4
+selected-view batches. Each selected-view PASS is limited to emitted-roster
+agreement in the tested fixture. The fixed two-row icon host is accepted for
+that fixture/build; it does not establish other UI parity or lifecycle safety.
+Native diagnostic text is not treated as a stable serialization API. See
+[F-004 diagnostics](F004_DIAGNOSTICS.md).
+
 ## Logical components
 
 ```mermaid

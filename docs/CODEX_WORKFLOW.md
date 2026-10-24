@@ -88,7 +88,8 @@ reason to keep all subsequent work there.
 | Independent review | GUI / Sol owns acceptance; it may explicitly choose a separate reviewer/session when useful |
 | Inspecting a CLI result and integrating its conclusions | GUI |
 | All CK3 game UI interaction, including start/exit, loading, saving, observation and tests | User only; no Codex game-window inspection or control |
-| Configuring an already open launcher, playset selection and mod toggles | Codex GUI; reuse the test playset by default |
+| Verify installed payload and persisted enabled-mod/playset configuration | CLI, read-only file evidence first; no routine launcher UI inspection |
+| Correct an incorrect or unresolved launcher/playset configuration | Codex GUI, already open launcher only; reuse the test playset |
 | A small direct edit where the handoff would cost more than the edit, such as a short workflow clarification | GUI allowed |
 
 Before expensive or uncertain work, briefly state: user requirement, mechanism, decisive evidence, blocking unknown, cheapest test and stop/reopen condition. GUI should reach a decision or dispatch a bounded handoff after brief reconnaissance; this is a direction, not a hard timeout. Keep small edits in GUI when handoff overhead exceeds the work.
@@ -150,8 +151,9 @@ independent review; a recommendation is not acceptance.
   actions, or mark FAILED because app state was not independently verified.
   CLI reports actual code/file/tool failures, not a manufactured state gate.
 - Codex GUI coordinates the work, prepares handoffs, reviews actual changes,
-  inspects logs and installed mod files, and configures the already open CK3
-  launcher/playset. It gives the user concise in-game test instructions and
+  reviews CLI installation/configuration receipts and logs. It configures the
+  already open CK3 launcher/playset only for a documented mismatch or unresolved
+  configuration that cannot be settled from file evidence. It gives the user concise in-game test instructions and
   analyzes logs afterward. It may perform mod file operations or delegate them
   to CLI according to the routing rules.
 - The user opens/restarts launcher and game through Steam and performs every
@@ -183,6 +185,43 @@ for the run. Preserve prior selection locally and restore it after the user
 exits the game. Create another playset only for a concrete need to preserve
 parallel configurations or an explicit user request.
 
+### File-first installation and activation verification
+
+CLI verifies installation without routinely opening or inspecting the launcher:
+
+1. Before replacement preserve the payload, external wrapper, bounded prior
+   logs and enabled-mod/playset configuration in private local evidence. Run
+   source preflight, then installed inventory/byte/hash equality preflight.
+   Compare external wrapper name, version, supported_version and resolved path
+   separately; matching metadata alone is not an installed-file check.
+2. Read `dlc_load.json` and compare its `enabled_mods` with the exact intended
+   set, including preserved prior selections. Resolve each enabled wrapper and
+   payload; detect missing/duplicate/conflicting entries and unintended active
+   probes. Do not silently disable an unrelated mod. Keep disabled-DLC state.
+3. If the manifest is missing, malformed, ambiguous, inconsistent with expected
+   selection, or has concrete evidence of staleness, use bounded read-only
+   launcher configuration/playset data (such as its SQLite database) as needed.
+   Use read-only access and handle locks or unavailable schema as evidence gaps;
+   do not modify launcher databases/manifests or infer current playset identity
+   from the mod list alone. No routine process or UI check is introduced.
+4. Return exact file checks and persisted selection verdict separately, with
+   private hashes/source provenance and explicit unknowns. Coherent sufficient
+   file evidence means GUI reviews the receipt; it does not repeat the check
+   visually or ask the user to open the launcher solely for verification.
+5. GUI uses the already open launcher only to correct a proven configuration
+   mismatch or resolve a material ambiguity that file checks cannot settle.
+   If needed the user opens it through Steam. Preserve the existing playset
+   and selections; after UI changes re-read persisted configuration. The user
+   alone starts the game. Fresh bounded startup logs remain the authority for
+   the mod/build actually mounted; a manifest is configuration evidence, not
+   runtime proof. A previously passed selection check may be reused until its
+   inputs or intended set change.
+
+These checks add no game/process/UI permission or direct launcher-file editing
+permission. They apply to installation, restoration and subsequent revisions;
+only unresolved or changed evidence warrants broader checking. Token savings
+are an intended reduction of duplicate GUI work, not measured savings.
+
 ### Identify the already running launcher on macOS
 
 This is GUI-only troubleshooting when launcher binding is ambiguous or times
@@ -210,6 +249,15 @@ identify the running instance. A timeout does not mean the launcher is closed.
    not one machine's path/PID. Distinguish a successful bind from verified mod
    discovery/selection, and verify the enabled-mod manifest after UI changes.
 
+### User app-state shorthand
+
+The user may declare `GZ` = gra zamknięta (CK3 closed), `LO` = launcher
+otwarty (launcher open), or both as `GZ, LO`. Treat these as explicit user
+state declarations with the same meaning as the full phrases, without process
+or UI verification. The shorthand alone reports state; it does not authorize
+unrelated work. During an already described installation/test stage it satisfies
+that stage's corresponding state prerequisite. Do not infer unreported states.
+
 ### User-operated CK3 console
 
 The user confirmed **Shift + Alt + C** opens the console in the tested macOS
@@ -222,11 +270,12 @@ logs/version/mod evidence and output timestamps to establish generation provenan
 Use this cycle:
 
 1. State required app state and the user's necessary preparation (for example,
-   close CK3, or open its launcher through Steam). Codex configures the launcher
-   when available. Accept the user's confirmation that prerequisites are ready;
+   close CK3; open its launcher through Steam only if configuration requires
+   GUI correction). CLI first verifies the persisted configuration as above. Accept the user's confirmation that prerequisites are ready;
    tell CLI to assume that state and execute without rechecking.
-2. CLI performs its assigned work/checks and returns; GUI verifies the result,
-   installed payload, intended mod selection and preservation of prior logs.
+2. CLI performs its assigned work/checks and returns installation, persisted
+   selection and prior-log preservation receipts. GUI reviews the decisive
+   evidence; it inspects/configures the launcher only for the exceptions above.
 3. GUI reports readiness and gives a short numbered set of user actions with
    expected visible result and a clear stop point. Group practical steps into
    one checkpoint; do not ask for another approval between routine substeps.
@@ -237,7 +286,8 @@ Use this cycle:
    Keep raw logs/saves/local paths ignored. If evidence is missing, request only
    the missing observation; do not operate the game or repeat the whole cycle.
 5. Tell the user when game exit is required; after they exit, Codex handles
-   launcher/mod restoration and verifies the resulting configuration.
+   authorized mod restoration and verifies files/persisted configuration first;
+   launcher UI is needed only for unresolved or incorrect configuration.
 
 These are role assignments, not extra approval checkpoints. Existing scope,
 permissions, sandbox requirements and the acknowledgement rules still apply.

@@ -83,6 +83,54 @@ def marker_v2(text):
     return marker(text).replace(audit.PREFIX, "DYNMAP_R016 AUDIT V2 ")
 
 
+def marker_v3(text):
+    return marker(text).replace(audit.PREFIX, "DYNMAP_R016 AUDIT V3 ")
+
+
+def marker_v4(text):
+    return marker(text).replace(audit.PREFIX, "DYNMAP_R016 AUDIT V4 ")
+
+
+def marker_diag_v3(text):
+    return marker(text).replace(audit.PREFIX, "DYNMAP_R016 DIAG V3 ")
+
+
+def native_dump(values, role=1):
+    identity_text = native(character(role)["subject"]).split("]: ", 1)[1].strip()
+    lines = [native(character(role)["subject"]).strip(), "Root: " + identity_text,
+             "", "Saved event targets:"]
+    lines.extend("%s: %s.00" % (key, value) for key, value in values.items())
+    return "\n".join(lines) + "\n"
+
+
+def fixture_v4(view="REALMS", **kwargs):
+    """Wrap a selected V3 fixture with synthetic, native-shaped declarations."""
+    v3 = fixture_v3(view, **kwargs)
+    out = []
+    for line in v3.splitlines(keepends=True):
+        if "DYNMAP_R016 AUDIT V3 BATCH_BEGIN" in line:
+            line = line.replace("AUDIT V3 BATCH_BEGIN SOURCE F001_FIX_12 TARGET 1.20.1.2",
+                                "AUDIT V4 BATCH_BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173")
+        elif "DYNMAP_R016 AUDIT V3 ROSTER_COUNTS " in line:
+            match = re.search(r"COUNT (\d+) ACTORS (\d+)", line)
+            values = {"dynmap_r016_out_roster": int(match[1]), "dynmap_r016_out_actors": int(match[2])}
+            out.append(marker_v4("COUNTERS_BEGIN PHASE ROSTER VIEW SELECTED"))
+            out.append(native_dump(values))
+            out.append(marker_v4("COUNTERS_END PHASE ROSTER VIEW SELECTED"))
+            continue
+        elif "DYNMAP_R016 AUDIT V3 COUNTS " in line:
+            fields = re.findall(r"([A-Z_]+) (\d+)", line.split("DYNMAP_R016 AUDIT V3 COUNTS ", 1)[1])
+            values = {"dynmap_r016_out_" + k.lower(): int(v) for k, v in fields}
+            out.append(marker_v4("COUNTERS_BEGIN PHASE VIEW VIEW " + view))
+            out.append(native_dump(values))
+            out.append(marker_v4("COUNTERS_END PHASE VIEW VIEW " + view))
+            continue
+        else:
+            line = line.replace("DYNMAP_R016 AUDIT V3 ", "DYNMAP_R016 AUDIT V4 ")
+        out.append(line)
+    return "".join(out)
+
+
 def actor_v2(role, value):
     return actor(role, value).replace(audit.PREFIX, "DYNMAP_R016 AUDIT V2 ")
 
@@ -127,6 +175,31 @@ def fixture_v2(player=None, holder=None, seniors=(), roles=None, held=True, key=
     return text + marker_v2("BATCH_END")
 
 
+def fixture_v3(view="REALMS", **kwargs):
+    """Selected V3 frame copied from one independent synthetic V2 view."""
+    lines = fixture_v2(**kwargs).splitlines(keepends=True)
+    kept, in_selected, found_header = [], False, False
+    for line in lines:
+        payload = line.split("DYNMAP_R016 AUDIT V2 ", 1)[-1].rstrip("\r\n")
+        if payload.startswith("BATCH_BEGIN"):
+            line = line.replace("DYNMAP_R016 AUDIT V2 ", "DYNMAP_R016 AUDIT V3 ")
+            line = line.replace("SCOPE FULL", "SCOPE SELECTED VIEW " + view)
+            kept.append(line)
+        elif payload == "VIEW_BEGIN " + view:
+            in_selected, found_header = True, True
+            kept.append(line.replace("DYNMAP_R016 AUDIT V2 ", "DYNMAP_R016 AUDIT V3 "))
+        elif payload == "VIEW_END " + view:
+            kept.append(line.replace("DYNMAP_R016 AUDIT V2 ", "DYNMAP_R016 AUDIT V3 "))
+            in_selected = False
+        elif payload == "BATCH_END":
+            kept.append(line.replace("DYNMAP_R016 AUDIT V2 ", "DYNMAP_R016 AUDIT V3 "))
+        elif in_selected or not payload.startswith(("VIEW_BEGIN ", "RESULT ", "COUNTS ", "VIEW_END ")):
+            kept.append(line.replace("DYNMAP_R016 AUDIT V2 ", "DYNMAP_R016 AUDIT V3 "))
+    if not found_header:
+        raise AssertionError("selected synthetic view missing")
+    return "".join(kept)
+
+
 def effect_source(name):
     source = (ROOT / "research/probes/my-dynasty-r016/mod/common/scripted_effects/dynmap_r016.txt").read_text(encoding="utf-8-sig")
     match = re.search(r"(?ms)^" + re.escape(name) + r" = \{\n(.*?)^\}", source)
@@ -146,6 +219,340 @@ class ClassificationTests(unittest.TestCase):
         result = self.analyze(text)
         self.assertEqual(result["status"], status, audit.summary(result))
         return result
+
+    def test_existing_positive_and_true_zero_role_controls(self):
+        # Positive Primary and genuine zero Secondary/Neutral remain distinct
+        # in a nonempty complete synthetic batch; no values are invented.
+        report = self.assert_status(fixture_v2(roles=("PRIMARY", "PRIMARY", "PRIMARY")), "PASS")
+        self.assertEqual(report["batches"][0]["view_counters"]["REALMS"]["primary"], 1)
+        self.assertEqual(report["batches"][0]["view_counters"]["REALMS"]["secondary"], 0)
+        self.assertEqual(report["batches"][0]["view_counters"]["REALMS"]["neutral"], 0)
+
+    def test_v3_selected_view_positive_zero_and_independent_semantics(self):
+        primary = (character(1), character(1), [])
+        secondary = {
+            "REALMS": (character(1), character(2, 10, 9, 9), [character(9, 20)]),
+            "HOLDINGS": (character(1), character(2, 20, 9, 9), [character(9, 10)]),
+            "MY_REALM": (character(1), character(2, 20, 9, 9), [character(9, 10)]),
+        }
+        neutral = {view: (character(1), character(2, 20, 9, 9), [character(9, 20)])
+                   for view in audit.VIEWS}
+        for view in audit.VIEWS:
+            for role, case in (("PRIMARY", primary), ("SECONDARY", secondary[view]), ("NEUTRAL", neutral[view])):
+                with self.subTest(view=view, role=role):
+                    player, holder, seniors = case
+                    roles = {name: "PRIMARY" for name in audit.VIEWS}
+                    roles[view] = role
+                    result = self.assert_status(fixture_v3(view, player=player, holder=holder,
+                                                           seniors=seniors, roles=tuple(roles[n] for n in audit.VIEWS)), "PASS")
+                    batch = result["batches"][0]
+                    self.assertEqual(batch["schema"], 3)
+                    self.assertEqual(batch["operation_scope"], "SELECTED")
+                    self.assertEqual(batch["selected_view"], view)
+                    self.assertEqual({row["view"] for row in batch["records"]}, {view})
+                    self.assertEqual(len(batch["records"]), 1)
+                    self.assertEqual(batch["records"][0]["expected_role"], role)
+                    rendered = audit.summary(result)
+                    self.assertIn("scope=SELECTED view=" + view, rendered)
+                    self.assertIn("only its explicitly named view", rendered)
+                    self.assertEqual(batch["view_counters"][view]["total"], 1)
+                    self.assertEqual(batch["view_counters"][view]["primary"] +
+                                     batch["view_counters"][view]["secondary"] +
+                                     batch["view_counters"][view]["neutral"], 1)
+
+    def test_v3_rejects_wrong_or_missing_selected_view_and_zero_declarations(self):
+        text = fixture_v3("REALMS")
+        self.assert_status(text.replace("SCOPE SELECTED VIEW REALMS", "SCOPE SELECTED VIEW HOLDINGS"), "INCOMPLETE")
+        self.assert_status(text.replace(marker_v3("VIEW_BEGIN REALMS"), ""), "INCOMPLETE")
+        self.assert_status(text.replace("COUNTS TOTAL 1", "COUNTS TOTAL 0", 1), "INCOMPLETE")
+        self.assert_status(text.replace(marker_v3("BATCH_END"), marker_v3("VIEW_BEGIN HOLDINGS") + marker_v3("VIEW_END HOLDINGS") + marker_v3("BATCH_END")), "INCOMPLETE")
+
+    def test_v3_rejects_duplicate_counties_actors_bad_role_and_bad_identity(self):
+        text = fixture_v3("REALMS", holder=character(2, 10, 1, 1))
+        lines = text.splitlines(keepends=True)
+        record = []
+        copying = False
+        for line in lines:
+            if "AUDIT V3 RESULT " in line:
+                copying = True
+            if copying:
+                record.append(line)
+            if copying and "AUDIT V3 COUNTS TOTAL" in line:
+                record.pop()
+                break
+        self.assertTrue(record)
+        counts_line = next(line for line in lines if "AUDIT V3 COUNTS TOTAL" in line)
+        self.assert_status(text.replace("".join(record), "", 1), "INCOMPLETE")
+        self.assert_status(text.replace(counts_line, "".join(record) + counts_line, 1), "INCOMPLETE")
+        actor_block = []
+        copying = False
+        for line in lines:
+            if "AUDIT V3 ACTOR_BEGIN DEF" in line:
+                copying = True
+            if copying:
+                actor_block.append(line)
+            if copying and "AUDIT V3 ACTOR_END" in line:
+                break
+        self.assertTrue(actor_block)
+        roster_end = next(line for line in lines if "AUDIT V3 ROSTER_END" in line)
+        self.assert_status(text.replace("".join(actor_block), "", 1), "INCOMPLETE")
+        self.assert_status(text.replace(roster_end, "".join(actor_block) + roster_end, 1), "INCOMPLETE")
+        self.assert_status(text.replace("RESULT PRIMARY RGB", "RESULT UNKNOWN RGB", 1), "INCOMPLETE")
+        self.assert_status(text.replace("c_synthetic_alpha", "b_synthetic_alpha", 1), "INCOMPLETE")
+
+    def test_v3_rejects_interrupted_partial_and_invalid_actor_graph(self):
+        text = fixture_v3("MY_REALM")
+        self.assert_status(text[:text.index(marker_v3("BATCH_END"))], "INCOMPLETE")
+        self.assert_status(text.rstrip("\n"), "INCOMPLETE")
+        broken = fixture_v3("REALMS", holder=character(2, 10, 7, 7))
+        self.assert_status(broken, "INCOMPLETE")
+        rejected = marker_v3("BATCH_BEGIN SOURCE F001_FIX_12 TARGET 1.20.1.2 SCOPE SELECTED VIEW REALMS") + marker_v3("REJECT PLAYER_DEAD_MISSING_OR_NO_DYNASTY") + marker_v3("BATCH_END")
+        result = self.assert_status(rejected, "INCOMPLETE")
+        self.assertEqual(result["batches"][0]["availability"], "UNAVAILABLE")
+
+    def test_v4_native_counters_drive_selected_audit_without_row_synthesis(self):
+        for view in audit.VIEWS:
+            report = self.assert_status(fixture_v4(view), "PASS")
+            batch = report["batches"][0]
+            self.assertEqual(batch["schema"], 4)
+            self.assertEqual(batch["counter_source"], "CK3 debug_log_scopes / Saved event targets")
+            self.assertEqual(batch["view_counters"][view]["total"], 1)
+            self.assertEqual(batch["view_counters"][view]["secondary"], 0)
+        broken = fixture_v4("REALMS").replace("dynmap_r016_out_primary: 1.00", "dynmap_r016_out_primary: 0.00")
+        self.assert_status(broken, "INCOMPLETE")
+        for mutation in (
+            lambda s: s.replace("dynmap_r016_out_primary: 1.00\n", "", 1),
+            lambda s: s.replace("dynmap_r016_out_primary: 1.00", "dynmap_r016_out_primary: -1.00", 1),
+            lambda s: s.replace("dynmap_r016_out_primary: 1.00", "dynmap_r016_out_primary: 1.50", 1),
+            lambda s: s.replace("dynmap_r016_out_primary: 1.00", "dynmap_r016_out_primary: 1.00\ndynmap_r016_out_primary: 1.00", 1),
+            lambda s: s.replace("BUILD 26046173", "BUILD 999", 1),
+            lambda s: s.replace("SOURCE F004_NATIVE_14", "SOURCE F004_NATIVE_15", 1),
+            lambda s: s.replace("COUNTERS_BEGIN PHASE VIEW VIEW REALMS", "COUNTERS_BEGIN PHASE VIEW VIEW HOLDINGS", 1),
+            lambda s: s.replace("Saved event targets:", "Saved targets:", 1),
+        ):
+            self.assert_status(mutation(fixture_v4("REALMS")), "INCOMPLETE")
+        injected = fixture_v4("REALMS").replace(marker_v4("BATCH_END"),
+            "dynmap_r016_out_primary: 1.00\n" + marker_v4("BATCH_END"), 1)
+        self.assert_status(injected, "INCOMPLETE")
+
+    def test_v4_rejects_paired_wrong_view_legacy_header_and_spoofed_end(self):
+        text = fixture_v4("REALMS")
+        self.assert_status(text, "PASS")
+        cases = {
+            "paired-wrong-view": text.replace("PHASE VIEW VIEW REALMS", "PHASE VIEW VIEW HOLDINGS"),
+            "legacy-no-build-header": text.replace(
+                "BATCH_BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173",
+                "BATCH_BEGIN SOURCE F001_FIX_12 TARGET 1.20.1.2"),
+            "spoofed-native-end": text.replace(
+                marker_v4("COUNTERS_END PHASE VIEW VIEW REALMS"),
+                "untrusted: DYNMAP_R016 AUDIT V4 COUNTERS_END PHASE VIEW VIEW REALMS\n"),
+        }
+        for name, changed in cases.items():
+            with self.subTest(case=name):
+                self.assertNotEqual(changed, text)
+                self.assert_status(changed, "INCOMPLETE")
+
+    def test_native_numeric_parser_accepts_zero_and_rejects_unknown_targets(self):
+        expected = audit.SUMMARY_NATIVE_KEYS
+        lines = [native(character(1)["subject"]).strip(),
+                 "Root: " + native(character(1)["subject"]).split("]: ", 1)[1].strip(),
+                 "", "Saved event targets:"]
+        lines.extend(key + ": 0.00" for key in sorted(expected))
+        values, _ = audit.parse_native_targets(lines, expected)
+        self.assertEqual(values["total"], 0)
+        with self.assertRaises(audit.Invalid):
+            audit.parse_native_targets(lines + ["dynmap_r016_out_injected: 4.00"], expected)
+
+    def test_diag_v3_complete_native_summary_keeps_diagnostic_scope_separate(self):
+        for view in audit.VIEWS:
+            values = dict.fromkeys(audit.COUNTER_FIELDS, 0)
+            text = marker_diag_v3("BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SUMMARY VIEW " + view)
+            text += marker_diag_v3("COUNTERS_BEGIN PHASE SUMMARY VIEW " + view)
+            text += native_dump({"dynmap_r016_out_" + f: v for f, v in values.items()})
+            text += marker_diag_v3("COUNTERS_END PHASE SUMMARY VIEW " + view)
+            text += marker_diag_v3("END")
+            report = self.analyze(text)
+            operation = report["diagnostic_operations"][0]
+            self.assertEqual(operation["framing"], "COMPLETE")
+            self.assertEqual(operation["schema"], 3)
+            self.assertEqual(operation["view"], view)
+            self.assertEqual(operation["counter_source"], "CK3 debug_log_scopes / Saved event targets")
+            self.assertEqual(operation["summary"]["total"], 0)
+
+    def test_diag_v3_rejects_unclosed_or_duplicate_native_blocks(self):
+        values = dict.fromkeys(audit.COUNTER_FIELDS, 0)
+        base = marker_diag_v3("BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SUMMARY VIEW REALMS")
+        start = marker_diag_v3("COUNTERS_BEGIN PHASE SUMMARY VIEW REALMS")
+        dump = native_dump({"dynmap_r016_out_" + f: v for f, v in values.items()})
+        end = marker_diag_v3("COUNTERS_END PHASE SUMMARY VIEW REALMS")
+        done = marker_diag_v3("END")
+        self.assertEqual(self.analyze(base + start + dump + done)["diagnostic_operations"], [])
+        report = self.analyze(base + start + dump + end + start + dump + end + done)
+        self.assertTrue(report["errors"])
+
+    def test_diag_v3_samples_keep_bounds_and_native_declaration(self):
+        values = dict.fromkeys(audit.COUNTER_FIELDS, 0)
+        values.update(total=1, primary=1)
+        text = marker_diag_v3("BEGIN SOURCE F004_NATIVE_14 TARGET 1.20.1.2 BUILD 26046173 SCOPE SAMPLES VIEW HOLDINGS")
+        text += marker_diag_v3("SAMPLE ROLE primary") + marker_diag_v3("DETAIL ROLE neutral")
+        text += marker_diag_v3("COUNTERS_BEGIN PHASE SAMPLES VIEW HOLDINGS")
+        text += native_dump({"dynmap_r016_out_" + f: v for f, v in values.items()})
+        text += marker_diag_v3("COUNTERS_END PHASE SAMPLES VIEW HOLDINGS") + marker_diag_v3("END")
+        operation = self.analyze(text)["diagnostic_operations"][0]
+        self.assertEqual(operation["samples"]["PRIMARY"], 1)
+        self.assertEqual(operation["details"], 1)
+        self.assertEqual(operation["native_counter_block"]["phase"], "SAMPLES")
+
+    def test_native_dump_rejects_nested_marker_and_unclosed_wrapper(self):
+        expected = audit.SUMMARY_NATIVE_KEYS
+        lines = [native(character(1)["subject"]).strip(),
+                 "Root: " + native(character(1)["subject"]).split("]: ", 1)[1].strip(),
+                 "DYNMAP_R016 DIAG V3 COUNTERS_BEGIN", "Saved event targets:"]
+        lines.extend(key + ": 0.00" for key in sorted(expected))
+        with self.assertRaises(audit.Invalid):
+            audit.parse_native_targets(lines, expected)
+
+    def test_v1_v2_historical_scopes_remain_supported(self):
+        self.assert_status(fixture(), "PASS")
+        self.assert_status(fixture_v2(), "PASS")
+        self.assertEqual(audit.analyze_paths([])["supported_capture_schemas"], [1, 2, 3, 4])
+
+    def test_numeric_total_candidate_and_sample_role_grammar_are_narrow(self):
+        loc = (ROOT / "research/probes/my-dynasty-r016/mod/localization/english/dynmap_r016_l_english.yml").read_text(encoding="utf-8-sig")
+        effects = (ROOT / "research/probes/my-dynasty-r016/mod/common/scripted_effects/dynmap_r016.txt").read_text(encoding="utf-8-sig")
+        total = re.search(r"dynmap_r016_audit_v3_counts:0 \"([^\"]+)\"", loc)[1]
+        self.assertIn("TOTAL [SCOPE.GetValue('dynmap_r016_out_total')|0]", total)
+        self.assertNotIn("IntToString(FixedPointToInt(SCOPE.GetValue('dynmap_r016_out_total')))", total)
+        for role in ("primary", "secondary", "neutral"):
+            self.assertIn('debug_log = "DYNMAP_R016 DIAG V3 SAMPLE ROLE ' + role + '"', effects)
+            self.assertIn('debug_log = "DYNMAP_R016 DIAG V3 DETAIL ROLE ' + role + '"', effects)
+        self.assertNotIn("ROLE $ROLE", effects)
+
+    def test_receiver_experiment_is_retired_without_weakening_v2_unavailable(self):
+        loc = (ROOT / "research/probes/my-dynasty-r016/mod/localization/english/dynmap_r016_l_english.yml").read_text(encoding="utf-8-sig")
+        effects = (ROOT / "research/probes/my-dynasty-r016/mod/common/scripted_effects/dynmap_r016.txt").read_text(encoding="utf-8-sig")
+        self.assertNotIn("dynmap_r016_receiver_nested", loc + effects)
+        self.assertNotIn("dynmap_r016_receiver_root", loc + effects)
+        self.assertNotIn("RECEIVER EXPERIMENT", loc + effects)
+        self.assertIn('else = { debug_log = "DYNMAP_R016 DIAG V3 UNAVAILABLE" }', effects)
+
+    def test_top_dynasty_routes_reuse_realms_modifier_operations(self):
+        menu = (ROOT / "research/probes/my-dynasty-r016/mod/gui/zz_dynmap_r016_menu.gui").read_text(encoding="utf-8-sig")
+        expected = {
+            "dynmap_r016_dynasty_entry": ("dynmap_r016_compute_realms", True),
+            "dynmap_r016_dynasty_entry_shift": ("dynmap_r016_summary_realms", True),
+            "dynmap_r016_dynasty_entry_option": ("dynmap_r016_samples_realms", True),
+            "dynmap_r016_dynasty_entry_audit": ("dynmap_r016_audit_realms", False),
+        }
+        for name, (operation, selects) in expected.items():
+            match = re.search(r'name = "' + re.escape(name) + r'"(.*?)(?=\n        button_round = |\n        flowcontainer = )', menu, re.S)
+            self.assertIsNotNone(match, name)
+            block = match[1]
+            self.assertIn("GetScriptedGui('" + operation + "').Execute(", block)
+            self.assertEqual("onclick = \"[SetMapMode('dynmap_my_dynasty')]\"" in block, selects)
+
+    def test_final_banner_restores_icon_order_and_uses_native_header_close(self):
+        gui = (ROOT / "research/probes/my-dynasty-r016/mod/gui/zz_dynmap_r016_views.gui").read_text(encoding="utf-8-sig")
+        row = gui.split('name = "dynmap_r016_active_subviews"', 1)[1].split('name = "dynmap_r016_custom_header"', 1)[0]
+        names = re.findall(r'name = "(dynmap_r016_view_(?:realms|holdings|my_realm)(?:_audit)?)"', row)
+        self.assertEqual(names, ["dynmap_r016_view_realms", "dynmap_r016_view_holdings", "dynmap_r016_view_my_realm", "dynmap_r016_view_realms_audit", "dynmap_r016_view_holdings_audit", "dynmap_r016_view_my_realm_audit"])
+        self.assertNotIn("dynmap_r016_slot_", row)
+        self.assertNotIn("dynmap_r016_legend_", gui)
+        self.assertNotIn('text = "dynmap_r016_back"', gui)
+        self.assertIn('text = "MAP_MODE_SHOWING_HEADER"', gui)
+        self.assertIn("text_map_mode_header = { visible = \"[IsMapMode(\'dynmap_my_dynasty\')]\" text = \"dynmap_r016_realms\" }", gui)
+        self.assertIn("onclick = \"[SetMapMode(\'realms\')]\"", gui)
+        self.assertIn('shortcut = "close_window"', gui)
+        self.assertIn('tooltip = "dynmap_r016_back"', gui)
+
+    def test_hover_copy_has_full_categories_without_debug_or_modifier_hints(self):
+        loc = (ROOT / "research/probes/my-dynasty-r016/mod/localization/english/dynmap_r016_l_english.yml").read_text(encoding="utf-8-sig")
+        views = (ROOT / "research/probes/my-dynasty-r016/mod/gui/zz_dynmap_r016_views.gui").read_text(encoding="utf-8-sig")
+        menu = (ROOT / "research/probes/my-dynasty-r016/mod/gui/zz_dynmap_r016_menu.gui").read_text(encoding="utf-8-sig")
+        for key in ("dynmap_r016_realms_tt", "dynmap_r016_holdings_tt", "dynmap_r016_my_realm_tt"):
+            line = next(line for line in loc.splitlines() if line.startswith(" " + key + ":"))
+            for label in ("Dark:", "Light:", "Grey:"):
+                self.assertIn(label, line)
+            self.assertNotRegex(line.lower(), r"shift|option|alt|ctrl|debug|hold modifiers|audit")
+        for label in ("Dark green:", "Light green:"):
+            self.assertNotIn(label, loc)
+        self.assertIn('dynmap_r016_dynasty_tt:0 "Open Dynasty Realms and refresh the map for your current Dynasty."', loc)
+        self.assertNotRegex(next(line for line in loc.splitlines() if line.startswith(" dynmap_r016_dynasty_tt:")).lower(), r"shift|option|alt|ctrl|debug|hold modifiers|audit")
+        self.assertEqual(views.count("using = tooltip_nw"), 6)
+        self.assertEqual(menu.count("using = tooltip_nw"), 4)
+        self.assertNotRegex(views.lower(), r"on_mouse|tooltip_delay|timer")
+        self.assertNotIn("RECEIVER EXPERIMENT", loc)
+
+    def test_hover_cards_have_native_title_paragraph_and_separate_bold_rows(self):
+        loc = (ROOT / "research/probes/my-dynasty-r016/mod/localization/english/dynmap_r016_l_english.yml").read_text(encoding="utf-8-sig")
+        expected = {
+            "dynmap_r016_realms_tt": "Dynasty Realms",
+            "dynmap_r016_holdings_tt": "Dynasty Holdings",
+            "dynmap_r016_my_realm_tt": "My Realm & Dynasty",
+        }
+        for key, title in expected.items():
+            line = next(line for line in loc.splitlines() if line.startswith(" " + key + ":"))
+            value = line.split('"', 1)[1].rsplit('"', 1)[0]
+            rows = value.split(r"\n")
+            self.assertEqual(len(rows), 8, key)
+            self.assertEqual(rows[0], "#T " + title + "#!")
+            self.assertTrue(rows[1].strip(), key)
+            self.assertEqual(rows[2], "")
+            self.assertTrue(rows[3].startswith("#bold Dark:#! "), key)
+            self.assertTrue(rows[4].startswith("#bold Light:#! "), key)
+            self.assertTrue(rows[5].startswith("#bold Grey:#! "), key)
+            self.assertEqual(rows[6], "")
+            self.assertTrue(rows[7].strip(), key)
+
+    def test_child_button_hit_frames_match_their_full_slots(self):
+        views = (ROOT / "research/probes/my-dynasty-r016/mod/gui/zz_dynmap_r016_views.gui").read_text(encoding="utf-8-sig")
+        row = views.split('name = "dynmap_r016_active_subviews"', 1)[1].split('name = "dynmap_r016_custom_header"', 1)[0]
+        self.assertEqual(row.count("button_round = {"), 6)
+        self.assertEqual(row.count("size = { 40 40 }"), 6)
+        self.assertEqual(row.count("size = { 130 40 }"), 1)
+        self.assertEqual(row.count("name = \"dynmap_r016_normal_row\""), 1)
+        self.assertEqual(row.count("name = \"dynmap_r016_audit_row\""), 1)
+        self.assertEqual(row.count("parentanchor = top|left"), 2)
+        self.assertEqual(row.count("widgetanchor = top|left"), 2)
+        self.assertEqual(row.count("spacing = 5"), 2)
+        self.assertEqual(row.count("visible = \"[GetPlayer.IsValid]\""), 6)
+        self.assertIn('visible = "[And(GetPlayer.IsValid, Not(And(IsAltDown, IsShiftDown)))]"', row)
+        self.assertIn('visible = "[And(GetPlayer.IsValid, And(IsAltDown, IsShiftDown))]"', row)
+        self.assertNotRegex(row, r'button_round\s*=\s*\{[^}]*parentanchor\s*=\s*hcenter')
+
+    def test_scope_dump_is_singlely_inserted_at_realms_summary_boundary(self):
+        effects = (ROOT / "research/probes/my-dynasty-r016/mod/common/scripted_effects/dynmap_r016.txt").read_text(encoding="utf-8-sig")
+        summary = effects.split("dynmap_r016_summary_realms_effect = {", 1)[1].split("dynmap_r016_samples_realms_effect = {", 1)[0]
+        self.assertEqual(summary.count("debug_log_scopes = yes"), 1)
+        self.assertRegex(summary, r"dynmap_r016_counts_snapshot_effect = yes\n\s*debug_log = \"DYNMAP_R016 DIAG V3 COUNTERS_BEGIN PHASE SUMMARY VIEW REALMS\"\n\s*debug_log_scopes = yes\n\s*debug_log = \"DYNMAP_R016 DIAG V3 COUNTERS_END PHASE SUMMARY VIEW REALMS\"")
+        self.assertNotIn('debug_log = "dynmap_r016_diag_counts"', effects)
+        self.assertEqual(effects.count("debug_log_scopes = yes"), 10)
+
+    def test_child_modifier_dispatch_keeps_single_view_semantics(self):
+        gui = (ROOT / "research/probes/my-dynasty-r016/mod/gui/zz_dynmap_r016_views.gui").read_text(encoding="utf-8-sig")
+        for view, mode in (("realms", "dynmap_my_dynasty"),
+                           ("holdings", "dynmap_dynasty_holdings"),
+                           ("my_realm", "dynmap_my_realm_dynasty")):
+            ordinary_name = 'name = "dynmap_r016_view_' + view + '"'
+            start = gui.rfind("button_round = {", 0, gui.index(ordinary_name))
+            end = gui.find("\n                button_round = {", gui.index(ordinary_name))
+            ordinary = gui[start:end]
+            self.assertIn('visible = "[GetPlayer.IsValid]"', ordinary)
+            self.assertIn("dynmap_r016_samples_" + view, ordinary)
+            self.assertIn("dynmap_r016_summary_" + view, ordinary)
+            self.assertIn("dynmap_r016_compute_" + view, ordinary)
+            self.assertIn("onclick = \"[SetMapMode('" + mode + "')]\"", ordinary)
+            self.assertIn("using = tooltip_nw", ordinary)
+
+            audit_name = 'name = "dynmap_r016_view_' + view + '_audit"'
+            start = gui.rfind("button_round = {", 0, gui.index(audit_name))
+            end = gui.find("\n                button_round = {", gui.index(audit_name))
+            if end < 0:
+                end = gui.index('\n            flowcontainer = {\n                name = "dynmap_r016_custom_header"', gui.index(audit_name))
+            audit_button = gui[start:end]
+            self.assertIn('visible = "[GetPlayer.IsValid]"', audit_button)
+            self.assertIn("dynmap_r016_audit_" + view, audit_button)
+            self.assertNotIn("SetMapMode", audit_button)
 
     def test_f003_examples_across_all_three_views(self):
         # Nine examples from the fixed contract, using invented runtime identities.
@@ -320,26 +727,29 @@ class ClassificationTests(unittest.TestCase):
         self.assertEqual(result["exit_code"], 2)
 
     def test_source_emitted_grammar_uses_tested_native_shapes(self):
-        # V1 remains input-compatible; the candidate now emits V2. This replaces
-        # only the old emitter inventory assertion, retaining all V1 semantic cases.
+        # Historical V1/V2/V3 input remains covered above; active calls emit V4.
         source = (ROOT / "research/probes/my-dynasty-r016/mod/common/scripted_effects/dynmap_r016.txt").read_text(encoding="utf-8-sig")
-        emitted = set(re.findall(r'debug_log = "DYNMAP_R016 AUDIT V2 ([^"]+)"', source))
-        samples = fixture_v2() + fixture_v2(held=False, roles=("NEUTRAL",) * 3)
-        samples += fixture_v2(holder=character(2, None, 2, 2), roles=("NEUTRAL",) * 3)
-        samples += fixture_v2(holder=character(2, 20, 3, 3), seniors=[character(3)], roles=("SECONDARY",) * 3)
-        samples += marker_v2("REJECT PLAYER_DEAD_MISSING_OR_NO_DYNASTY")
-        holder = character(2); holder.update(top=None, top_self=False)
-        samples += fixture_v2(holder=holder)
-        supported = {audit.MARKER_V2.fullmatch(line)[1] for line in samples.splitlines() if audit.MARKER_V2.fullmatch(line)}
-        self.assertEqual(emitted - supported, set())
+        for view in ("REALMS", "HOLDINGS", "MY_REALM"):
+            self.assertIn("SCOPE SELECTED VIEW " + view, source)
+        self.assertNotIn("DYNMAP_R016 AUDIT V2", source)
         for field in ("SUBJECT", "DYNASTY", "LIEGE", "TOP", "COUNTY_BEGIN", "HOLDER"):
-            self.assertRegex(source, r'debug_log = "DYNMAP_R016 AUDIT V2 ' + field + r'"\s+debug_log_scopes = no')
-        self.assertEqual(source.count('debug_log = "dynmap_r016_audit_counts"'), 3)
+            self.assertRegex(source, r'debug_log = "DYNMAP_R016 AUDIT V4 ' + field + r'"\s+debug_log_scopes = no')
+        self.assertEqual(source.count('debug_log = "DYNMAP_R016 AUDIT V4 COUNTERS_BEGIN PHASE VIEW VIEW '), 3)
+        self.assertEqual(source.count('debug_log = "DYNMAP_R016 AUDIT V4 COUNTERS_BEGIN PHASE ROSTER VIEW SELECTED"'), 1)
+        self.assertNotIn('debug_log = "dynmap_r016_audit_v3_counts"', source)
+        roster_phase = source.split('dynmap_r016_audit_v3_roster_effect = {', 1)[1].split('\n}', 1)[0]
+        self.assertLess(roster_phase.index('COUNTERS_END PHASE ROSTER'), roster_phase.index('clear_saved_scope = dynmap_r016_out_roster'))
+        self.assertLess(roster_phase.index('clear_saved_scope = dynmap_r016_out_actors'), roster_phase.index('ROSTER_END'))
         loc = (ROOT / "research/probes/my-dynasty-r016/mod/localization/english/dynmap_r016_l_english.yml").read_text(encoding="utf-8-sig")
-        for key in ("dynmap_r016_audit_counts", "dynmap_r016_diag_counts", "dynmap_r016_audit_roster_counts"):
+        for key in ("dynmap_r016_audit_v3_counts", "dynmap_r016_diag_counts", "dynmap_r016_audit_v3_roster_counts"):
             line = next(line for line in loc.splitlines() if line.startswith(" " + key + ":"))
-            self.assertNotIn("|0", line)  # Numeric UI grouping is not a machine protocol.
-            self.assertEqual(line.count("SCOPE.GetValue("), line.count("IntToString(FixedPointToInt("))
+            if key == "dynmap_r016_audit_v3_counts":
+                self.assertIn("TOTAL [SCOPE.GetValue('dynmap_r016_out_total')|0]", line)
+                self.assertNotIn("IntToString(FixedPointToInt(SCOPE.GetValue('dynmap_r016_out_total')))", line)
+                self.assertEqual(line.count("SCOPE.GetValue("), line.count("IntToString(FixedPointToInt(" ) + 1)
+            else:
+                self.assertNotIn("|0", line)  # Other counters retain the historical machine grammar.
+                self.assertEqual(line.count("SCOPE.GetValue("), line.count("IntToString(FixedPointToInt("))
 
     def test_runtime_only_dynasty_empty_and_missing_keys_v1_v2(self):
         for fixture_fn in (fixture, fixture_v2):
@@ -495,12 +905,17 @@ class ClassificationTests(unittest.TestCase):
                 self.assertEqual(body.count("dynmap_r016_world_" + view + "_effect"), 1)
                 self.assertEqual(body.count("dynmap_r016_operation_cleanup_effect = yes"), 2)
                 self.assertEqual("save_scope_as = dynmap_r016_diagnostic_samples" in body, mode == "samples")
-        batch = effect_source("dynmap_r016_audit_batch_effect")
-        self.assertNotIn("diagnostic_samples", batch)
-        self.assertNotIn("set_title_color", batch)
-        self.assertEqual(batch.count("dynmap_r016_operation_cleanup_effect = yes"), 2)
         for view in ("realms", "holdings", "my_realm"):
+            batch = effect_source("dynmap_r016_audit_" + view + "_selected_effect")
+            self.assertNotIn("diagnostic_samples", batch)
+            self.assertNotIn("set_title_color", batch)
+            self.assertEqual(batch.count("dynmap_r016_audit_v3_roster_effect = yes"), 1)
+            self.assertEqual(batch.count("dynmap_r016_operation_cleanup_effect = yes"), 2)
             self.assertEqual(batch.count("dynmap_r016_world_" + view + "_effect"), 1)
+            self.assertEqual(sum(batch.count("dynmap_r016_world_" + other + "_effect") for other in ("realms", "holdings", "my_realm")), 1)
+        roster = effect_source("dynmap_r016_audit_v3_roster_effect")
+        self.assertEqual(roster.count("every_county"), 1)
+        self.assertEqual(roster.count("dynmap_r016_world_"), 0)
         for color in ("dark", "light", "grey"):
             writer = effect_source("dynmap_r016_paint_" + color + "_effect")
             audit_arm, paint_arm = writer.split("\n\telse = {", 1)
@@ -509,11 +924,12 @@ class ClassificationTests(unittest.TestCase):
             self.assertNotIn("diagnostic_county", audit_arm)
             self.assertIn("exists = scope:dynmap_r016_diagnostic_armed", paint_arm)
             self.assertEqual(paint_arm.count("set_title_color"), 1)
-        bounded = effect_source("dynmap_r016_diagnostic_county_effect")
-        self.assertIn("dynmap_r016_d_sample_$ROLE$ < 10", bounded)
-        self.assertIn("dynmap_r016_d_details < 20", bounded)
-        self.assertIn("else_if", bounded)
-        self.assertNotIn("random", bounded)
+        for role in ("primary", "secondary", "neutral"):
+            bounded = effect_source("dynmap_r016_diagnostic_county_" + role + "_effect")
+            self.assertIn("dynmap_r016_d_sample_" + role + " < 10", bounded)
+            self.assertIn("dynmap_r016_d_details < 20", bounded)
+            self.assertIn("else_if", bounded)
+            self.assertNotIn("random", bounded)
         initialized = set(re.findall(r"set_local_variable = \{ name = (dynmap_r016_d_\w+)", source))
         cleaned = set(re.findall(r"remove_local_variable = (dynmap_r016_d_\w+)", effect_source("dynmap_r016_diagnostic_cleanup_effect")))
         self.assertEqual(initialized, cleaned)
@@ -539,6 +955,21 @@ class ClassificationTests(unittest.TestCase):
                         break
                 else:
                     self.fail("unclosed " + kind)
+
+        menu = (ROOT / "research/probes/my-dynasty-r016/mod/gui/zz_dynmap_r016_menu.gui").read_text(encoding="utf-8-sig")
+        native_instances = list(blocks(menu, "dynmap_r016_mode_button"))
+        self.assertEqual(len(native_instances), 16)
+        self.assertIsNotNone(re.search(r"type dynmap_r016_mode_button = icon_button_mapmode\s*\{.*?size\s*=\s*\{\s*32\s+32\s*\}", menu, re.S))
+        for instance in native_instances:
+            explicit_size = re.search(r"(?m)^ {16}size\s*=\s*\{\s*(\d+)\s+(\d+)\s*\}", instance)
+            if explicit_size:
+                self.assertEqual(explicit_size.groups(), ("32", "32"))
+        top_buttons = list(blocks(menu, "button_round"))
+        for name in ("dynmap_r016_dynasty_entry", "dynmap_r016_dynasty_entry_shift",
+                     "dynmap_r016_dynasty_entry_option", "dynmap_r016_dynasty_entry_audit"):
+            button = next(body for body in top_buttons if 'name = "' + name + '"' in body)
+            self.assertRegex(button, r"size\s*=\s*\{\s*40\s+40\s*\}")
+            self.assertIn("alwaystransparent = yes", button)
 
         def properties(text):
             # Only this container's fields; nested icons cannot add callbacks.
@@ -582,23 +1013,17 @@ class ClassificationTests(unittest.TestCase):
         expected_modes = {"realms": "dynmap_my_dynasty", "holdings": "dynmap_dynasty_holdings",
                           "my_realm": "dynmap_my_realm_dynasty"}
         expected_routes = {(False, False): "compute", (True, False): "summary",
-                           (False, True): "samples", (True, True): "dump_all_views"}
+                           (False, True): "samples", (True, True): "audit"}
         fresh_root = r"GuiScope\s*\.SetRoot\(\s*GetPlayer.MakeScope\s*\)\s*\.End"
         valid_check = r"GetScriptedGui\('dynmap_r016_check'\)\.IsValid\(\s*" + fresh_root + r"\s*\)"
-        slots = []
-        for widget in blocks(views, "widget"):
-            buttons = list(blocks(widget, "button_round"))
-            if buttons:
-                modes = {dict(properties(button)).get("down") for button in buttons}
-                slots.append((widget, buttons, modes))
-        self.assertEqual(len(slots), len(expected_modes))
+        buttons = list(blocks(views.split('name = "dynmap_r016_active_subviews"', 1)[1].split('name = "dynmap_r016_custom_header"', 1)[0], "button_round"))
+        self.assertEqual(len(buttons), 6)
         for view, map_id in expected_modes.items():
-            matches = [(widget, buttons) for widget, buttons, modes in slots
-                       if modes == {"[IsMapMode('" + map_id + "')]"}]
-            self.assertEqual(len(matches), 1, view)
-            widget, buttons = matches[0]
-            self.assertFalse(any(key.startswith("on") for key, _ in properties(widget)))
+            buttons_for_mode = [button for button in buttons if dict(properties(button)).get("down") == "[IsMapMode('" + map_id + "')]" ]
+            self.assertEqual(len(buttons_for_mode), 2, view)
             for button in buttons:
+                if dict(properties(button)).get("down") != "[IsMapMode('" + map_id + "')]":
+                    continue
                 for icon in blocks(button, "button_icon"):
                     self.assertFalse(any(key.startswith("on") for key, _ in properties(icon)))
             for shift in (False, True):
@@ -608,11 +1033,20 @@ class ClassificationTests(unittest.TestCase):
                             keys = {"IsShiftDown": shift, "IsAltDown": alt, "IsCtrlDown": ctrl,
                                     "GetPlayer.IsValid": True, "CanChangeMapMode": True,
                                     "valid_context": True}
-                            parent_visible = dict(properties(widget))["visible"]
-                            self.assertTrue(evaluate(parent_visible, keys))
-                            self.assertFalse(evaluate(parent_visible, dict(keys, **{"GetPlayer.IsValid": False})))
-                            active = [button for button in buttons
-                                      if evaluate(dict(properties(button))["visible"], keys)]
+                            self.assertEqual(sum(evaluate(dict(properties(button))["visible"], dict(keys, **{"GetPlayer.IsValid": False})) for button in buttons_for_mode), 0)
+                            audit_row = shift and alt
+                            row_name = "dynmap_r016_audit_row" if audit_row else "dynmap_r016_normal_row"
+                            row_match = re.search(r'name = "' + row_name + r'"(.*?)(?=\n\s*}\s*flowcontainer =|\n\s*}\s*}\s*flowcontainer =)', views, re.S)
+                            self.assertIsNotNone(row_match, row_name)
+                            row_visible = re.search(r'visible\s*=\s*"(\[[^\]]+\])"', row_match[1])[1]
+                            self.assertTrue(evaluate(row_visible, keys))
+                            other_name = "dynmap_r016_normal_row" if audit_row else "dynmap_r016_audit_row"
+                            other_match = re.search(r'name = "' + other_name + r'"(.*?)(?=\n\s*}\s*flowcontainer =|\n\s*}\s*}\s*flowcontainer =)', views, re.S)
+                            other_visible = re.search(r'visible\s*=\s*"(\[[^\]]+\])"', other_match[1])[1]
+                            self.assertFalse(evaluate(other_visible, keys))
+                            active = [button for button in buttons_for_mode
+                                      if dict(properties(button)).get("name", "").endswith("_audit") == audit_row
+                                      and evaluate(dict(properties(button))["visible"], keys)]
                             self.assertEqual(len(active), 1)
                             props = properties(active[0])
                             enabled, count = re.subn(valid_check, "valid_context", dict(props)["enabled"])
@@ -635,7 +1069,7 @@ class ClassificationTests(unittest.TestCase):
                                     maps.append(select[1])
                                     order.append("map")
                             route = expected_routes[shift, alt]
-                            expected = "dynmap_r016_" + route + ("" if shift and alt else "_" + view)
+                            expected = "dynmap_r016_" + ("audit_" + view if route == "audit" else route + "_" + view)
                             self.assertEqual(dispatches, [expected])
                             self.assertEqual(maps, [] if shift and alt else [map_id])
                             self.assertEqual(order, ["execute"] if shift and alt else ["execute", "map"])
@@ -643,8 +1077,8 @@ class ClassificationTests(unittest.TestCase):
                             self.assertEqual(len(backend), 1)
                             self.assertRegex(backend[0], r"scope\s*=\s*character\b")
                             self.assertRegex(backend[0], r"is_valid\s*=\s*\{\s*is_alive\s*=\s*yes\s+exists\s*=\s*dynasty\s*\}")
-                            if route in ("summary", "samples", "dump_all_views"):
-                                effect = ("dynmap_r016_audit_batch_effect" if shift and alt else expected + "_effect")
+                            if route in ("summary", "samples", "audit"):
+                                effect = ("dynmap_r016_audit_" + view + "_selected_effect" if shift and alt else expected + "_effect")
                                 self.assertEqual(list(blocks(backend[0], "effect"))[0].split(), [effect, "=", "yes"])
 
     def test_json_records_have_actual_expected_hierarchy_and_locations(self):

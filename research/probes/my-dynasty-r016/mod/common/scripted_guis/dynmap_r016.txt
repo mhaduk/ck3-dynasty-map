@@ -20,10 +20,20 @@ dynmap_r016_compute_my_realm = {
 	effect = { dynmap_r016_operation_cleanup_effect = yes dynmap_r016_world_my_realm_effect = yes }
 }
 
-dynmap_r016_dump_all_views = {
+dynmap_r016_audit_realms = {
 	scope = character
 	is_valid = { is_alive = yes exists = dynasty }
-	effect = { dynmap_r016_audit_batch_effect = yes }
+	effect = { dynmap_r016_audit_realms_selected_effect = yes }
+}
+dynmap_r016_audit_holdings = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_audit_holdings_selected_effect = yes }
+}
+dynmap_r016_audit_my_realm = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_audit_my_realm_selected_effect = yes }
 }
 
 dynmap_r016_summary_realms = {
