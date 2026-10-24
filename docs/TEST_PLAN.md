@@ -287,5 +287,5 @@ their bounded context. Grey nonmatching land failed visual acceptance. Numeric
 coverage, exact per-control attribution, deep/cadet/lowborn/player-vassal cases,
 changed-state freshness, profiling, context loss and save/removal remain unproven.
 R-017 will select useful fixtures; F-001 tests final UI/neutral grey/contrast;
-F-002 tests source/fallback colors. Use the accepted
+F-002 bounded verification covers the accepted tolerant-six-channel selector/fallback and user observations; see the canonical F-002 record. The separate top diagnostic overlay is not visually accepted as rendered/placed and shows only pair-2/option-B examples. The legacy broad classification suite still contains source expectations from earlier palette designs; use the current F-002 focused checks for this selector and keep the historic results visible. Use the accepted
 [F-003 tables](tasks/F-003-dynasty-subview-definitions.md) for expectations.

@@ -1,6 +1,548 @@
+## F-002 bounded closeout complete — publication verified
+
+User reports color behavior works across many characters and observer mode; screenshot55 confirms the first Charles entry and restored F-004 tooltip. Source52 is hash-matched into the normal repository probe, installation53 equality/preflight accepted, startup54 passed, and runtime56 native-summary framing/arithmetic accepted with its stated limits. GUI accepted bounded F-002 behavior and independently reviewed the finite-cutoff cost account. Repository publication, Issue #21 and Wiki readbacks passed; #21 is closed. Full 76-pair runtime coverage, exact stored/rendered RGB, missing-slot normalization, save/removal safety and performance remain unproven. No new game action was part of closeout. See the canonical F-002 record.
+
 # Current State
 
 Updated 2026-10-24. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
+
+## Runtime56 — three summaries verified by GUI
+
+56consumedCHANGES REQUIRED for misplaced/nulloutputs and inconsistentcapture
+provenance. GUI froze actualcurrent5logs siblingGUI-evidence, stablehashed.
+CompleteDIAGV3REALMS298/0/4405,HOLDINGS38/260/4405,MY_REALM89/209/4405;
+total4703each,held3476/unheld1227,selected/completedID2. Differentprimary/
+secondary splits expected byviewsemantics, not CLI allegedanomaly. Summary
+framing/arithmeticaccepted, noindependentcensus/audit. Shiftmodifiernotindividually
+attributed. Earlierinitializationerrors present; no dynmap orsummary-timeerror
+entries found,GUI/conflicts empty; no overallcleanlogclaim. No repeatclickneeded.
+
+## First-entry Charles55 — user visual acceptance
+
+After54startupPASS user followed singlefirstDynastyentry instruction and
+reports looks good. Supplied screenshot shows brownmap and restoredF004
+DynastyRealms tooltip. Accepted bounded visualCharlesII867firstentry, no
+secondsubmenu click reported. Source52/installed53 preserved as workingbaseline.
+Not full76runtime/other-ruler/allview/switch/observer or storedRGB proof.
+Postclickboundedlogs stillpending, top panelrender notestablished.
+No repeatcacheproof/restart/reinstall requested. No featureclosure/publication.
+
+## Startup54 PASS — single first-entry Charles test pending
+
+GUI consumed54 ACCEPTED after8actualoutputhashes, intendedmount andfresh
+generation22:59:44Warsaw after53completion22:57:59. Error/gui/conflicts empty;
+12basegamebookmark/holyorderwarnings only, no newpaletteparserdiagnostics.
+CLI runtimeversionUNKNOWN corrected by GUI: debug3775explicit1.20.1.2; Steam
+26046173 installation evidenceonly. Next userpausedCharlesII867 ONEfirst
+Dynastyfamilyentry then screenshot BEFORE submenu re-click. No firstentry
+paint/tooltip/UIacceptance yet; no cache-onlyrepeat or fullswitchtests.
+
+## Installation53 accepted — fresh startup gate pending
+
+GUI consumed53 ACCEPTED installation-only after actual sevenoutputhashes,
+all ten prior47archivefiles, five loghashes, rawconfig/currentwrapper checks
+and frozen52receipt equality. Independent installed10filepreflightPASS.
+Currentinstalled52:76complete ±5selector, single-scriptfreshselect/paint,
+exactF004tooltips, unchangedmenu/topgeometry, freshdiagnosticRGB.
+Version1.20.1.2/build26046173; manifestfingerprintdrift causeUNKNOWN.
+CLI helperordering/statuspath recoveries recorded. UserGZLO, no laterstartyet.
+Next userSteam/mainmenu freshgate beforeload/click, then firstentryCharles.
+No runtime/firstclick/UIacceptance, top swatches pair2/B-only limitation.
+
+## Source52 accepted — tolerant full palette, installation pending
+
+GUI consumed52 ACCEPTED source-only.51 review verified76disjoint inclusive±5
+six-channel boxes, correctedfloor literaloutputs and single-scriptselect/saveID/
+worldcompute;51consumedCHANGES REQUIRED for stale topRGB.52writes6freshvars
+and actualscriptreads beforebranches. Independent hashes,7tests and10file
+preflightPASS; nine other51files byteidentical. ExactF004tooltip restored,
+acceptedmenu geometry/X/130x40 preserved. Top swatches remain pair2/B-only.
+Installed47stilloldonepair; game lastdeclaredopen. Need currentGZLO before
+separate52installation. No firstclick/parser/runtime acceptance yet.50READY
+superseded by51/52;49FAILEDpartial preserved. No repeatcache/research.
+
+## Startup48 independently PASS — UI check pending
+
+GUI consumed48 CHANGES REQUIRED administrative: all8outputs misplaced in tasks/ID,
+null lifecycle hashes; original preserved. CLI UNVERIFIED used48claimtime as47installtime.
+Actual47completion20:14:37UTC precedes startup22:15:26Warsaw by49s. GUI checked
+five frozen capture hashes/stability/completeness, intended mount/version1.20.1.2,
+empty error/gui/conflicts,12basegame bookmark/holyorder warnings only. Startup
+independently ACCEPTED PASS, no restart/recapture. Next user pausedCharles UIcheck
+debug removal/headerX/structuredtooltip/righticon and separate top panel.
+No UI/render/hit acceptance yet, initialgreen separate, no cache-only repeat.
+
+## Installation47 accepted — fresh startup pending
+
+GUI consumed47 ACCEPTED installation-only. Independent seven output hashes,
+all ten prior43 archive files, five archived log hashes, raw config/currentwrapper
+and frozen46 receipt equality verified; installed10file preflight PASS. Version
+1.20.1.2/build26046173, appmanifest fingerprint drift cause UNKNOWN. Recovered
+CLI phase-specific baseline verification and stale revision failures documented.
+Next user Steam start/mainmenu fresh startup gate BEFORE load/click/UIcheck.
+Actual corrected layout/hit regions/top rendering remain unverified; paint code
+preserved, prior user Charles brown observation retained; initial green separate.
+No feature closure/publication.
+
+## Source46 accepted — UI regression repair, installation pending
+
+GUI consumed46 ACCEPTED source-only after independent output/10file hashes,
+three-file diff, exact scripted callback and top-panel suffix checks, preflight PASS.
+Old baseline used by39/42 predated later F001 cleanup/stable-row acceptance;
+user screenshots reveal debugging button, legends/footer, old tooltips and partial
+right-icon hit region.46 removes debug/legends, restores short native header/X,
+grouped neutral tooltips and coincident130x40 rows. Paint/cache/top panel preserved.
+User reports brown Charles after click, initial green separately unresolved.
+No installation/runtime UI claim. Last game state open; need user closedgame/
+openlauncher before separate scoped installation. No repeated cache test/research.
+
+## Installation43 accepted, GUI handover44 prepared
+
+GUI consumed43ACCEPTED after checking actual10old40archivefiles, allbackup/
+rawconfig/loghashes and frozen42source vs installedreceipt. All7outputsnon-null,
+correctsiblingdir. GUIinitialoldschemaKeyError recoveredactualbackup_sha256/
+backup_logs/rawhex. Freshstartup notrequestedyet; useraskednewGUIhandover.
+No source/install changesduringclosecheckpoint; no gamecontrol/taskclosure.
+
+## Source42 accepted — install43 under current GZ LO
+
+GUI consumed42sourcefix acceptedexperimental. Independenttests/10preflightPASS,
+typedpanelcomparisons andactualstoredvarreadchecks inspected. Paint39byteequal,
+bottomF001normalizedpreserved. Native2registrationwarnings remainUNRESOLVED;
+freshstartupgatebeforeanyload/click, nowaiver/cleangateclaim.43install freezes
+10accepted42files, actualinstalledbaseline40receipt under tasks/ID (history
+misplacementpreserved). CurrentuserGZLOstillvalid, no subsequentgame start.
+43outputs must all live declaredsiblingdir and hashnonnullbeforecomplete.
+
+## Sourcefix42 selected — current user GZ LO
+
+User confirms closedgame/openlauncher after41. Preserve39painting/cache and
+acceptedbottom. BoundedCLI42sourcefix paneltypedcomparisons/simpletext,
+actualscriptreadsofdiagnosticvars and nativeoverrideregistrationorderreview.
+Optional separate topwidgetfile allowed, no vanillaHUDcopy. No installbefore
+GUIreview; no automatic rollback or repeatedgetterprobe. CurrentGZnotprocesschecked.
+
+## Startup41 FAIL — top diagnostic panel expressions
+
+Freshuser mainmenu41 mountedintendedR016/version1.20.1.2. GateFAIL:
+newtopGUI uses unsupportedinfix= and malformedrawtextquotes;7newdiagnostic
+variables setbutneverscript-used (localizationdoesnotcount), plus2native-type
+duplicateregistrationwarnings (loadingorderunknown). No load/click/paintproof.
+IndependentGUIreview and focusedtests missedthese sourceerrors; do notcall
+paintpipelinebroken. Repairtopdiagnostics/scriptingreads and investigateoverride
+registration withoutchangingacceptedbottomlayout; preserve39source/evidence.
+Gameopen; sourcepreparationpossible, installationonlyafteruserGZ.
+
+## Install40 independently accepted — CLI receipt admin changes required
+
+CLI40completed but wrote7requiredartifacts in tasks/ID rather than declared
+siblingoutputdir; STATUSoutputsnull. GUIconsume CHANGES REQUIRED preserves
+thisfailure. GUI independently verified actualartifacts/prior36all10backup,
+archive/log/config/currentwrapper hashes,frozen39source and installedpreflight
+PASS10files; separately ACCEPTEDinstallation in40/GUI-review.json. No reinstall
+needed. InitialGUIreads expectedpaths failed; discoveredactualfiles and recovered.
+Next userSteam/mainmenufreshgate beforeload/click; no parser/paintacceptance.
+
+## Install40 authorized — current user GZ LO
+
+User confirms gameclosed/launcheropen for scopedinstall39source, oldbaseline36.
+GUI rechecked10accepted39sourcehashes, frozen40manifest. CLI backup/install/
+preflight-equality/wrapper-configreadonly checks, GUIreceipt before userSteam
+mainmenu gate. No sourcechanges, no runtime/paintacceptance.
+
+## Source39 accepted — current GZ required before installation
+
+GUI consumed39ACCEPTED sourcecandidate. Independent actualartifactchecks and
+10filepreflightPASS. Cache/readback->numericID->restoredexistingpaintpipeline,
+known2dark134/59/29 light176/128/108; otherBgreen. Bottomnormalizedbytecomparison
+againstactualF001closeout PASS, no extra palette/debugrow. Separatetopviewport
+transparenttestwidget has6channels/cacheID/computedID/swatches; pointerfilter
+none. Actualrootregistration/placementabovepause/overlap/transparency and
+maprender pendinguserstartup/visualtest. No install yet; usercurrentGZrequired.
+39recoveredCLIerrors recorded; no GUIcheckfailure. Full76tableintegration and
+30floorbugfix deferred untilonepairpaintpass. No featureclosure/publication.
+
+## Latest39 source direction — onepair paint + separate top test panel
+
+Seconduser38screenshot shows pair2brownlegend; GUI accepts bounded current
+Charlescache->GUIreadback, after6channel/match2log. User authorizes next39
+knownCharlespairpaint using existingpipeline BEFORE76paletteintegration.
+User explicitly requires targetbottomUI untouched: remove addedpalette/debug
+row, preservefinalacceptedlayout; add separate topcentertransparenttestpanel
+abovepause, onlycustommapvisible, passthrough. This newtopUIauthorized.
+39sourceonly; nocurrentGZ, noinstallation. Knownpaircorrectdark134/59/29,
+light176/128/108; unknownBgreen.30tablefloorbugcorrectbeforelaterintegration.
+
+## Runtime38 partial — pair selection observed, GUIreadback pending
+
+User supplied multicolormap screenshot afterclick; nolegendvisible. Capture38
+Charles90104 receives c1=114/33/22,c2=191/133/47 at20:53:09; default126then
+match2markers observed, sourcewrites currentcharactercache2beforemarker.
+This proves boundedtransfer/selectorbranch, notindependentpersistentread or
+GUIreadback. PrototypeSetMapModewithoutpaint explains why mapcolors are not
+result. IntervalINCOMPLETE(debugpartialline), initializationerrors present;
+no dynmap-attributederrorline found, no overallcleanlogclaim. Next userexisting
+legendscreenshotonly, no repeatclick/save/switch. No source/installchange.
+
+## Startup37 PASS — one cache/readback click pending
+
+User atmainmenu. Fresh37capture intendedR016mounted/version1.20.1.2;
+error/guiwarnings/databaseconflicts all0bytes. Prior34errors absent.
+Runtimebaseline frozen beforeload. Startup only, notcache/getter/selectionproof.
+Next userfreshdisposable pausedCharlesII867, ordinaryDynastyRealmsfamilyentry
+once, reportexistinglegend/screenshot. No save/othercompute/switch/observer.
+Prototype doesnotpaint; mapcolors nottestresult. Quantizationmatchunknown.
+
+## Install36 accepted — fresh startup pending
+
+GUI accepted/consumed36install of reviewed35fix; exact10files/equality,
+wrapper/configunchanged, soleR016,1.20.1.2/build26046173. Backupall10exact33,
+hashes/logs/configrawbytes and frozen35source receipt checkedGUI. GUIoldconfig
+keylookup failed, recovered actualoriginal_sha256 schema; allchecksPASS.
+CLIcompilecache/revision/installerpaths recovered documented. Next userSteam
+start/mainmenu gate beforeload/click. Cachecode retained, no paint/runtimeclaim.
+
+## Fix35 source reviewed; install36 authorized GZ LO
+
+User explicitly preserves cache/palettework and restores acceptedpresentation.
+CurrentGZLO confirmed. GUI smallfix35:125invalidhiddenliteral ->visible=no,
+unusedlocalremoved, isolatedunreachablelegacyeffectsremoved (archivesretained),
+ordinarylegendstyle restored. Cache/getter/selector retained, menuGUIbyteidentical32.
+Assertions and10filepreflightPASS.35sourcehashes frozen;36CLIinstall baseline33.
+GUI also found30pair2dark40/18/9 violatesfloor-only40 (mix134/59/29);
+preview35correct134/59/29,light176/128/108.30table preserved, must correct
+beforefullintegration. No loss of existingwork. Runtimeprobe remainsunverified.
+
+## Startup34 FAIL — prototype packaging defects
+
+Freshmainmenu34 intendedR016mounted/version1.20.1.2. GateFAIL beforeclick:
+375visibleexpressions parse no as function (bracketedliteral), unusedlocal
+pair_probe_selected, residuallegacy palette_id referencedbutneverset.
+No cache/readbackruntimefalsifier; probe neverclicked. Known bracketedno
+failure repeated despite18/19history; source tests+GUIreview missedit.
+Required sourcefix: literal visible=no, removeunuseddiagnosticlocal, remove
+unreachablelegacypaletteeffects fromisolatedcandidate; preserveacceptedlayout.
+Noinstalledchanges while gameopen. Userexit/GZrequired beforefixinstallation.
+
+## Installation33 accepted — fresh mainmenu gate pending
+
+GUI accepted/consumed33. Installedpayload now exact32onepaircache/readback
+prototype, replacing26palettecandidate. CLI10file equality/preflights,
+wrapper/configunchanged/soleR016 pass. GUI checked backupall10against26,
+archive/log/config hashes and frozen32hashes againstinstalledreceipt.
+Recovered CLI claim/path/installerconstants/searcherrors recorded; no GUI
+checkfailure. Metadata1.20.1.2/build26046173; oldappmanifesthash differs,
+causeUNKNOWN. Next userSteamstart and stopmainmenu for fresh mountedmod/
+build/parsergate BEFOREload/click. No painting/runtime/featureacceptance.
+
+## Installation33 authorized — user GZ LO
+
+User now confirms gameclosed/launcheropen. GUI selects scopedCLI33installation
+of exact32cache/readbackprototype, expectedoldinstalled26baseline. Backup,
+preflights/equality, wrapper/configreadonly and metadata checks required.
+No gameaction; GUIreceipt before userSteam/mainmenu parsergate. Source32hashes
+recheckedGUI, no changes. No runtime/featureacceptance.
+
+## Prototype32 source accepted — pending33installation
+
+GUI accepted/consumed32 as isolated onepair cache/readback experiment.
+Independent artifacttests+10filepreflight PASS; actual6AddScopes, currentcharacter
+set_variable default126/match2, Scope.GetVariable/GetValueWithDefault readback
+and existinglegend inspected. No paint/worldtraversal in invokedcallback;
+acceptedlayout preserved, othercomputecallbacks disconnected for probe.
+GUI notes Byte extractor rounds nearest while staticpairkey uses truncation;
+complete6channel match remains hypothesis. Capture channel scopes + selectedID;
+B result alone cannot falsify cache/readback. Getter composition, onclickorder,
+parser and runtime unknown. Next currentGZLO before separate install; game last
+reported mainmenu. No installation yet, no feature/paint acceptance or closure.
+
+## Latest approved F-002 step — cache prototype32
+
+User accepts separated read -> select/cache on currentcharacter -> GUIreadback
+-> existingliteralwriter architecture. First source-only32prototype for ONE
+knownpair and optionB; existingmenu layout preserved, one normalrefreshcallback
+temporarily tests cache/readback without painting. No automatedload/switchhooks.
+30table useful but integrationFAILED;31FAILED beforecandidate, no new engine
+falsifier.32explicitly tests hypothesizedcomposed getter instead of demanding
+runtimeproof before sourcepreparation. No installation until GUIreview/GZ.
+
+## Latest F-002 direction — defined-pair palette30
+
+User supersedes writer search: precompute75/25colors for88textualpairs from
+installed source roster static count 29, unknownpair -> exacthistoricalgreen optionB.
+No dynastyIDlookup or nearestgrid.88includes missingc2 and aliases; RGBdedupe,
+rounding and missing-slot distinction must be explicit. GUI selects bounded
+sourcepreparation30 using frozen24layout; shallow channeltransfer/script
+pairselection avoids27depth20.28writersearch BLOCKED,no installablecandidate;
+not a runtime failure or universalimpossibility proof. No installation until
+GUIreview/currentGZ. Preserve oldpalettearchive and acceptedmenu layout.
+
+## Next GUI session — F-002 checkpoint44
+
+Read handoff F002-GUI-HANDOVER-20261024-44 and its source hashes first after startup state/history. Source42 accepted and
+installed43 CONSUMED/ACCEPTED;10fileequality/backups/config checks passed.
+No fresh42startup yet. Last userGZLO, no laterstart reported. User requests
+newGUI before continuing. Next userSteam/mainmenu gate, no load/clickuntilreview.
+2nativeoverrideregistrationwarnings remainunresolved; no cleanparser/runtime/
+paintclaim. Then ONEpausedCharles867Realmsclick ifgatepasses, screenshotbottom/
+top/map. PreserveacceptedF001bottom, separate topdebugpanel, knownpaironly.
+Do notrepeat38cacheproof/research or installnormalrepo24. Later76tablefloorbug
+fix and integration deferred. No publication/closureauthority.
+
+## Installation26 — GUI review accepted, startup pending
+
+GUI accepted/consumed F002-MIX-INSTALL-20261024-26 after user GZ LO.
+Accepted24 normal menu + approximate Dynasty75/25 palette is now installed,
+replacing19read/transfer diagnostic. CLI reports exact10file equality and
+preflights; wrapper/config unchanged, sole R016 enabled. GUI verified backup
+archive/hash/all10prior19files, config raw bytes and5archived logs. GUI first
+archive comparison omitted payload/ prefix; corrected normalization passes.
+CLI recovered lifecycle/revision/validate/key-format errors are recorded.
+Steam manifest hash differs from old fingerprint, cause UNKNOWN; explicit
+metadata remains1.20.1.2/build26046173. Receipt diagnostic_only terminology
+is historical; frozen24hashes identify restored normal menu, not debug19.
+Next user starts via Steam and stops mainmenu for fresh mounted-mod/build/
+parser gate BEFORE load/compute. Runtime/alpha/performance remain unverified.
+No layout changes, publication or taskclosure.
+
+## Startup27 — FAIL, palette macro depth
+
+User reached mainmenu after26installation. Fresh private27capture mounts intended
+R016 and records1.20.1.2. Startup gate FAIL: DynmapR016PaletteId argument
+replacement exceeds engine depth20; dependent onclick parsing fails in menu/
+views. Circular usage is engine suggestion, not proven. Error/gui-warning logs
+nonempty; database conflicts empty. No load/compute/runtime acceptance.
+Next user exits and declares GZ LO; bounded correction must reduce expansion
+depth while preserving accepted layout and75/25palette semantics. No source or
+installed mutation in startup review. Prior63tests did not model engine depth;
+add focused validation for this newly observed constraint, no repeated research.
+
+## Active GUI selection — F-002 / #21
+
+On 2026-10-24 the user selected practical character-associated coloration,
+accepting the current player House/CoA rather than requiring Dynasty-wide
+stability. Exact existing green is the fallback when a complete usable color
+set cannot be obtained. Requested runtime scope: current character, in-session
+character switch, observer (custom controls hidden without valid player).
+External advisory review is imported privately; its GUI CoA getter and title-copy
+claims are discovery only. GUI selects one bounded source-preparation execution:
+verify direct supported palette/bridge, implement if available, preserve green
+otherwise and add independently useful fresh/absent-context guards. Title color
+is not silently selected as House color. No repeated probe cycles or broad
+research. GUI accepted/consumed `F002-IMPLEMENT-20261024-01` as bounded source preparation:
+two custom host/header valid-player visibility guards, with 58 tests and the
+9-file preflight passing independently. No supported two-shade script bridge
+was established; dynamic color is NOT IMPLEMENTED and F-002 remains incomplete.
+No installation or runtime test occurred. GUI defers a green-only runtime cycle
+because it cannot validate the requested dynamic improvement. No Git or
+publication authority. The user separately authorized an AGENTS clarification:
+the measured tokens/messages line must appear in the user-facing handoff above
+the table, not just in its local CLI_TASK.
+
+Second external reply on 2026-10-24 still supplies no complete writer bridge.
+GUI selects `F002-BRIDGE-EXECUTE-20261024-02`: one focused component/GUI-transfer
+and dynamic Color RHS verification, conditional source implementation only if
+supported. First actual accent transfer is assessed separately from second
+shade/legend. No repeated green-only delivery or runtime cycle. Fresh 1.20.1.2
+API generation, if required, remains user-only; stale dumps are not relabeled.
+
+GUI accepted/consumed `F002-BRIDGE-EXECUTE-20261024-02` as bounded verification:
+normal payload/tests unchanged, dynamic implementation NOT IMPLEMENTED. Historical
+common types do list GetR/GetG_CVector4f float accessors; argument/range/transfer
+semantics and dynamic Color RHS remain unproven on target build. GUI independently
+inspected those signatures and the evidence; no repeated tests/preflight claimed.
+Next: user-only target-build script_docs and dump_data_types generation, then
+focused review; no installation or green-only runtime cycle. User changed the
+handoff display rule: saved GUI text tokens/messages now occupy the final table
+row directly below Estimated CLI time / steps, replacing the separate line.
+
+User confirmed fresh script_docs/dump_data_types on 2026-10-24. GUI preserved
+six files privately: fresh write times plus user confirmation, debug version
+1.20.1.2, hashes identical to historical baseline. Component float accessors
+are present; transfer and dynamic writer still lack documented semantics.
+GUI selects source-only `F002-BRIDGE-PROBE-20261024-04`: one isolated diagnostic
+with controls for actual transfer/writer, no repeated document survey. No
+installation or game control, normal payload unchanged, no feature acceptance.
+
+GUI reviewed/consumed `F002-BRIDGE-PROBE-20261024-04`: truthful negative
+finding only; no executable probe files were prepared, no preflight/runtime,
+no dynamic implementation. The source contract permitted stopping on missing
+conversion documentation; the practical test objective remains unmet. Do not
+repeat the same evidence-only delegation or regenerate identical docs.
+GUI raises one material alternative for user decision: classify CoA color in
+GUI into a finite approximate palette and transfer only an integer palette ID,
+using literal script RGB writers. This avoids the unknown float-RGB bridge and
+dynamic Color RHS, but is an unverified design and approximates House color;
+it is not accepted/implemented and GetColor argument semantics still need testing.
+
+User explicitly accepted finite approximate House palette selection ("Go!")
+on 2026-10-24. GUI selects F002-PALETTE-IMPLEMENT-20261024-05: GUI compares CoA
+float channels and selects only an integer palette ID/finite dispatch; scripted
+painting uses predeclared literal RGB pairs and matching legend. This removes
+the prior float-transfer/dynamic Color RHS dependency. Exact default green,
+current-character/switch/observer scope and existing guards remain. Source
+candidate implementation is authorized; no installation until declared game
+closed, no game action or publication. Index/cache semantics remain runtime
+validation candidates, not grounds for repeating identical source surveys.
+
+GUI consumed F002-PALETTE-IMPLEMENT-20261024-05 CHANGES REQUIRED after independent
+62-test and 10-file preflight passes. Source review found missing integer-to-fixed
+conversion, unsupported switch/on_value structure, wrong VariableSystem receiver,
+actual macro teal counterexample returning green, and a local-only test
+dependency. F002-PALETTE-FIX-20261024-06 corrects these and requires actual-macro
+and public-only test checks. No installation/runtime or feature acceptance.
+
+GUI independently accepted corrected F002-PALETTE-FIX source as a runtime
+candidate: 62 repository tests + 62 public-only tests and 10-file preflight
+passed. Actual macro/type/branch/receiver fixes inspected. CLI receipt remains
+consumed CHANGES REQUIRED solely for three absent required private documents;
+separate GUI review/combined runtime plan preserved privately, no rewrite of
+historical outputs. Next prerequisite: user declares CK3 closed before scoped
+installation. No install/runtime performed; F-002 remains incomplete.
+
+User declared GZ LO (game closed, launcher open). Scoped installation of GUI-
+accepted palette candidate is now authorized via F002-INSTALL-20261024-07:
+backup, ten-file installation/equality/preflights, wrapper read-only metadata
+and persisted enabled-mod verification. No game/process/UI operation, source
+change or config mutation. User starts only after GUI installation receipt.
+
+GUI accepted/consumed F002-INSTALL-20261024-07. Independent installed preflight
+confirms 10-file exact inventory/byte/SHA equality; backup archive hashes, nine
+old payload members, unchanged wrapper and sole enabled R016 selection verified.
+Installer recovered from new-directory partial-copy interruption using archived
+or frozen-source per-file states; final equality passed. GUI archive verification
+initially omitted payload/ member prefix and recovered without mutation. Next:
+user starts through Steam and stops at main menu for fresh startup/build/mounted-
+mod gate. No runtime or feature acceptance yet; no routine launcher UI check.
+
+User reached main menu. Fresh startup mounted intended R016 payload and recorded
+1.20.1.2, but emitted two attributed palette_id "used but never set" errors:
+startup gate FAIL; no load/compute allowed. GUI made one small uniform source
+correction (handoff overhead exceeds edit): 12 receiving scripted GUIs declare
+saved_scopes palette_id, following installed ep2_activities example; generic
+availability check unchanged. 62 tests + 10-file source preflight pass. This is
+a candidate fix, not runtime proof. Installed payload remains unchanged because
+game is open. Next: user exits game and confirms GZ before one-file replacement;
+then fresh startup gate. Private startup capture and prior source bytes retained.
+
+User redeclared GZ LO. GUI installed only saved_scopes declaration correction
+after exact prior installed-hash verification and file/wrapper/config backups.
+All 10 installed files equal source; source and installed preflight passed;
+wrapper and sole R016 selection unchanged. Small one-file correction retained
+in GUI, no new delegated work. Next user starts through Steam and stops at main
+menu; fresh startup gate remains required. No game/UI/process action by Codex.
+Private receipt F002-SCOPE-INSTALL-20261024-09 preserves prior bytes and hashes.
+
+Fresh post-correction main-menu startup gate PASS: intended R016 mounted,
+version 1.20.1.2, error/gui-warnings/database-conflicts channels empty at captured
+checkpoint. Prior palette_id startup errors absent. This is startup only, not
+palette evaluation proof. Runtime baseline frozen in F002-STARTUP-20261024-10.
+User may perform one fresh disposable session: current character/three views,
+switch to contrasting House and explicit refresh, then observer. No save or
+agent game/UI/process action. Gameplay/visual evidence remains pending.
+
+User supplied red map/legend screenshots for Siemowit of Polania and Charles II
+of West Francia; GUI checked target static character/CoA definitions: dynasties
+699 and 25061 both have color1 red, so these two results are consistent, not
+evidence of wrong quantization. User reports many green Asia results and Shah
+Vikarma II; exact identity/House input not yet resolved. Green could be actual
+source green or achromatic fallback. Complete captured gameplay interval has
+initialization errors; no selected palette-specific error identified, no clean-
+log claim. Observer outcome unreported. Preserve supplied screenshots privately;
+no further code/install or feature acceptance yet.
+
+User selected bounded F002-20RULERS-20261024-12 comparison:10 European+10 Asian
+rulers, preferably867, roster frozen before colors. Compare actual defined CoA
+slots and chromatic selector, histograms/common-known subset, green-vs-fallback,
+unknown generated data explicit. No forced distinct state colors, runtime/UI
+inspection, source implementation or installation. GUI decides selection rule
+from evidence; current candidate remains installed and product incomplete.
+
+User supersedes synthetic palettes AND static lookup: current character Dynasty
+CoA color1 dark, brighten RGB for light, color2 reserved; missing/unusable input
+green. Direct fresh-API check confirms Character.GetDynasty -> Dynasty ->
+GetDynastyCoA -> CoatOfArms, with GetColor returning CVector4f and channel float
+accessors. Installed vanilla coat_of_arms.gui uses Dynasty.GetDynastyCoA.
+Config slot1/2 semantics and exact GUI RGB-to-script writer remain unproven.
+No source/install action yet. F002-20RULERS receipt is still pending review;
+prior interrupted static lookup preliminary count remains private and obsolete.
+
+GUI freezes F002-DIRECT-RGB-20261024-15 under latest user instruction: direct
+current Dynasty CoA color1 dark,35%towardwhite light, color2 reserve; absence
+fallback green. Private diagnostic/candidate copy tests exact slot/extraction,
+8bit channel conversion if necessary, numeric transfer and dynamic Color RHS
+separately, with literal controls and bounded two-barony writes. No static
+lookup/House palette/All Dynasties. Source preparation only, normal/installed
+payload unchanged. Old20ruler receipt has CURRENT_STATE fingerprint drift after
+GUI edits and is preserved unreconciled; no force consumption or scope fallback.
+
+GUI accepted/consumed F002-DIRECT-RGB-20261024-15 as executable diagnostic source,
+not full feature. Independent1021 primary+5invalid+256light macro tests and10file
+preflight pass. Dynasty c1/c2 readout, numeric37/43/61 control and two-barony
+literal/dynamic writer inspected. Scope-valued Color RHS and index/range remain
+experimental. Fresh dump IntToFixedPoint literally returns float; numeric control
+must resolve actual behavior. GUI preserved original candidate and made separate
+F002-DIRECT-RGB-GUI-20261024-16 copy with descriptor name matching existing wrapper.
+No installation; next user declares game closed for diagnostic installation,
+then fresh startup parser/mounted-mod gate before any user click. No full-view
+integration, final feature acceptance or publication.
+
+User declared GZ LO for direct-RGB diagnostic. F002-DIRECT-INSTALL-20261024-17
+installs ONLY GUI-reviewed private16candidate into existing R016 target after
+old10file/wrapper/config/log backup, comparing against09installed baseline.
+Normal mod stays unchanged; wrapper/config read-only and preserved. Candidate
+has experimental dynamic Color RHS; next user startup parser gate is mandatory.
+No game actions, feature acceptance or publication.
+
+GUI accepted/consumed F002-DIRECT-INSTALL-20261024-17: independent10file installed
+preflight, archive hashes/all10old file hashes, wrapper bytes and dlc_load bytes
+verified. Direct-RGB diagnostic now installed, normal repository mod unchanged.
+Next: user Steam startup/main menu only for fresh experimental Color RHS parser,
+build/mounted-mod gate. No gameplay, dynamic RGB or feature acceptance yet.
+
+Direct-RGB diagnostic fresh startup FAIL (F002-DIRECT-STARTUP-20261024-18):
+intended mod mounted/version1.20.1.2, but Color parser explicitly rejects three
+scope:rgb tokens as malformed in set_title_color. Exact dynamic RHS falsified,
+not general impossibility. Independent GUI syntax bugs [no] visibility and bare
+37/43/61 numeric literals also fail; GUI review missed these. No game load or
+paint authorized, no getter/transfer runtime success claimed. Do not repeat this
+RHS or revive rejected palettes/static lookup. Next user declares GZ for restoring
+previous accepted payload from17backup; current failing diagnostic stays installed
+until game closed. No source edits/installation during open game.
+
+User GZ LO explicitly chose a corrected new version instead of rollback. GUI
+made small direct19candidate correction: visible=no, typed integer literals,
+removed rejected scope-valued RGB writer. Live diagnostic now READ/TRANSFER ONLY,
+no two-barony writes; dynamic painting unresolved, no palettes/staticlookup revived.
+After old10file/wrapper/config/log backup and metadata/hash drift checks, only2
+installed files replaced. Full10file source/installed preflight/equality pass;
+wrapper/selection unchanged. Original18failure and16candidate preserved. Next:
+user startup/mainmenu gate, then raw Dynasty c1/c2 and numeric control if clean.
+No game/UI/process action by Codex, feature incomplete.
+
+Corrected19diagnostic main-menu startup20PASS: intendedmod mounted1.20.1.2,
+error/guiwarning/conflict logs empty at capture. This proves startup only, not
+actual Dynasty getter/byte transfer. Runtime baseline frozen. Next user fresh
+disposable CharlesII867 session opens additional mapmodes, provides C1/C2 readout,
+clicks TRANSFER37/43/61 and READ C1 CHANNELS once each. No painting/saving or
+feature tests requested yet; dynamic writer remains removed/unresolved.
+
+User4switch read tests captured22: Louis30228, Rostislav187002, Siemowit82235
+all114/33/22; Sotan fictional_cumans_6 gives20/62/102. All four fresh character
+roots and in-range complete numeric receipts observed; earlierCharles90104
+114/33/22 preserved. Bounded Dynasty CoA getter+numeric transfer works across
+these switches and changes for Sotan; not full feature or dynamic writer proof.
+No more read/transfer clicks needed. Diagnostic menu regression unaccepted;
+user explicitly requires asking before changing accepted working menu. No further
+source/install/UI changes in this inspection. Dynamic titleRGB writer unresolved.
+
+User GO selects F002-MIX-DYNAMIC-20261024-23: restore exact predebug workingmenu
+from17backup with3documented checks(normal/Shift/Option/both,tooltips/layout),
+DynastyCoAc1/c2 mix75/25, dark maxchannelfloor40,light35%towardwhite. Exact dynamic
+writer attempted first WITHOUT repeating rejected scopeRGB RHS. If no supported
+alternatewriter exists, report preciseblockedboundary while completing menu/mix;
+user has accepted nearestpalette-of-mix as next fallback option, not silent exact
+success. No install/game/UI action; ask before any new accepted-layout changes.
 
 ## Completed GUI selection — T-012 / #33
 

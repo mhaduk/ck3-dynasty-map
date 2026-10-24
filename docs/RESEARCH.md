@@ -1119,3 +1119,20 @@ Begin with Ismail and record his displayed liege and Nasr's full senior chain.
 Full source citations and locator steps are in the [canonical R-017
 record](tasks/R-017-test-scenario-selection.md). No game, save or runtime UI
 inspection was performed in this research pass.
+
+
+## F-002 — accepted approximate current-character palette (2026-10-24)
+
+The user selected practical character-associated coloring rather than Dynasty-wide identity. The accepted source reads the current player Dynasty CoA's ordered color1/color2 RGB channels during a normal refresh and matches the six byte channels to one of 76 complete ordered roster pairs. The inclusive ±5 ranges are pairwise disjoint. Twelve roster entries lack color2; unknown or unmatched pairs use exact option-B green (dark 25/105/50, light 145/220/150). This is a static finite palette keyed by current colors, not a Dynasty-ID lookup, nearest-color search, or persistent registry.
+
+The dark mix is 75% color1 and 25% color2. It receives a maximum-channel floor of 40/255 only when below that floor; zero becomes 40/40/40. Light moves dark 35% toward white. Byte outputs round with floor(x+0.5). Matching tolerance is an explicit allowance, not a claim about engine rounding. The literal writers are keyed by sparse roster IDs; missing IDs route to option B. The selector writes all six fresh values before its branches and selects once per normal refresh.
+
+
+
+A separate transparent top-of-viewport diagnostic overlay remains in the accepted source. It exposes cached-ID/channel diagnostics and only the known Charles pair-2 and option-B swatch examples; it is not a 76-row palette legend. The screenshot evidence does not establish that this top overlay rendered or verify its placement. It was authorized and remains; this closeout does not remove it or claim visual acceptance for it.
+
+Evidence labels: source and installed bytes matched for ten files (52/53); startup gate passed (54); user reports many-character and observer behavior accepted, with a first-entry screenshot showing the accepted brown map and exact F-004 tooltip (55); the GUI accepted bounded DIAG V3 summary framing/arithmetic for three reports of 4,703 each (56). These do not constitute a full 76-pair census, independent classification audit, stored-pixel readback, or performance test. Missing-slot engine normalization, exact RGB rendering, save/removal safety and Dynasty stability are unresolved.
+
+Source provenance is the private frozen palette roster SHA-256 `3142d65d5217c40cb015bc7c66275695ebb5c618dd243a13182aebc1de0e186c`. Public generated data stores numeric pair IDs and RGB channels only; it omits raw Dynasty IDs and vanilla source dumps. See the [F-002 canonical record](tasks/F-002-dynasty-color-strategy.md).
+
+Reusable closeout lessons: accepted source baselines can predate later F-001 presentation cleanup, so review exact frozen payload lineage before installation; byte equality proves installed file identity, not runtime UI; use native authoring patterns and a fresh parser/startup gate; keep installer evidence phase-specific; a stale numeric GUI value was fixed by selecting and saving the ID in one script-side Execute; sparse IDs and inclusive disjoint ±5 boxes must stay aligned across selector and writers; validate lifecycle outputs' sibling paths and non-null hashes before completion; runtime line evidence must use its own capture interval, not startup hashes. A user described the overall work as “about five times longer than expected”; this is qualitative feedback only, not a calibrated duration or model-cost measure.

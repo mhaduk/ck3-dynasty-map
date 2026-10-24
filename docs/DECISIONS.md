@@ -154,3 +154,12 @@ category-role definitions in one
 [reference](tasks/F-003-dynasty-subview-definitions.md); it changes no rule or
 English label. F-001 owns visual treatment; F-002 owns color-source/fallback.
 In particular, the third view remains My Realm & Dynasty.
+
+
+## F-002 color-source choice — 2026-10-24 (bounded closeout complete)
+
+**Decision:** use the current player Dynasty CoA's two ordered RGB colors to select an approximate precomputed palette row. Match all six byte channels against the 76 complete roster pairs with inclusive ±5 bounds. Missing or unmatched input uses exact historical option-B green.
+
+**Why:** the user accepted practical current-character-associated variation after rejecting an exact dynamic color write and choosing a finite fallback strategy.
+
+**Limits:** this does not provide Dynasty-ID continuity, a universal CoA getter, nearest-color matching, full-roster runtime proof, or missing-slot normalization. The user reports the behavior works across many characters and observer mode; bounded GUI review, cost review and publication are complete. This choice changes no ADR-010 category or classification semantics and does not waive shared RGB restoration, save/removal or context risks. See the [F-002 record](tasks/F-002-dynasty-color-strategy.md).

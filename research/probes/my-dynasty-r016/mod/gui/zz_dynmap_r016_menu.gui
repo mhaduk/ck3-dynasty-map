@@ -1,4 +1,4 @@
-# Original R016 family entry and optional diagnostics, using the R010 seam.
+﻿# Original R016 family entry and optional diagnostics, using the R010 seam.
 # Replace only the menu type; derive from a primitive, never the replaced type.
 # File-order / replacement semantics and engine validation remain unverified.
 # Native mode and safe setting controls are referenced by their native actions.
@@ -6,7 +6,6 @@ types dynmap_r016_menu
 {
     type dynmap_r016_mode_button = icon_button_mapmode
     {
-        # Preserve the existing native mini-mode frame and row geometry.
         size = { 32 32 }
         blockoverride "mm_icon" { size = { 26 26 } }
     }
@@ -39,58 +38,24 @@ types dynmap_r016_menu
         # Retain the seam used by native mini-mode instances.
         block "mapmodes_insert_before" {}
 
-        # One top-level family icon with mutually exclusive modifier targets.
-        # Opening Additional Modes performs no computation.
+        # One top-level family icon. Opening Additional Modes performs no computation.
         button_round = {
-            using = tooltip_nw
             name = "dynmap_r016_dynasty_entry"
             parentanchor = hcenter
             size = { 40 40 }
-            visible = "[And(GetPlayer.IsValid, Not(Or(IsShiftDown, IsAltDown)))]"
+            visible = "[GetPlayer.IsValid]"
             enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
             down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]"
             tooltip = "dynmap_r016_dynasty_tt"
-            onclick = "[GetScriptedGui('dynmap_r016_compute_realms').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            onclick = "[GetScriptedGui('dynmap_r016_refresh_realms').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('dynmap_r016_pair_c1_r', MakeScopeValue(IntToFixedPoint(DynmapR016Byte(GetR_CVector4f(GetPlayer.GetDynasty.GetDynastyCoA.GetColor('(int32)1')))))).AddScope('dynmap_r016_pair_c1_g', MakeScopeValue(IntToFixedPoint(DynmapR016Byte(GetG_CVector4f(GetPlayer.GetDynasty.GetDynastyCoA.GetColor('(int32)1')))))).AddScope('dynmap_r016_pair_c1_b', MakeScopeValue(IntToFixedPoint(DynmapR016Byte(GetB_CVector4f(GetPlayer.GetDynasty.GetDynastyCoA.GetColor('(int32)1')))))).AddScope('dynmap_r016_pair_c2_r', MakeScopeValue(IntToFixedPoint(DynmapR016Byte(GetR_CVector4f(GetPlayer.GetDynasty.GetDynastyCoA.GetColor('(int32)2')))))).AddScope('dynmap_r016_pair_c2_g', MakeScopeValue(IntToFixedPoint(DynmapR016Byte(GetG_CVector4f(GetPlayer.GetDynasty.GetDynastyCoA.GetColor('(int32)2')))))).AddScope('dynmap_r016_pair_c2_b', MakeScopeValue(IntToFixedPoint(DynmapR016Byte(GetB_CVector4f(GetPlayer.GetDynasty.GetDynastyCoA.GetColor('(int32)2')))))).End)]"
             onclick = "[SetMapMode('dynmap_my_dynasty')]"
-            button_icon = { size = { 26 26 } parentanchor = center alwaystransparent = yes texture = "gfx/interface/icons/flat_icons/house.dds" down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]" }
-        }
-        button_round = {
-            using = tooltip_nw
-            name = "dynmap_r016_dynasty_entry_shift"
-            parentanchor = hcenter
-            size = { 40 40 }
-            visible = "[And(GetPlayer.IsValid, And(IsShiftDown, Not(IsAltDown)))]"
-            enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-            down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]"
-            tooltip = "dynmap_r016_dynasty_tt"
-            onclick = "[GetScriptedGui('dynmap_r016_summary_realms').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-            onclick = "[SetMapMode('dynmap_my_dynasty')]"
-            button_icon = { size = { 26 26 } parentanchor = center alwaystransparent = yes texture = "gfx/interface/icons/flat_icons/house.dds" down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]" }
-        }
-        button_round = {
-            using = tooltip_nw
-            name = "dynmap_r016_dynasty_entry_option"
-            parentanchor = hcenter
-            size = { 40 40 }
-            visible = "[And(GetPlayer.IsValid, And(IsAltDown, Not(IsShiftDown)))]"
-            enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-            down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]"
-            tooltip = "dynmap_r016_dynasty_tt"
-            onclick = "[GetScriptedGui('dynmap_r016_samples_realms').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-            onclick = "[SetMapMode('dynmap_my_dynasty')]"
-            button_icon = { size = { 26 26 } parentanchor = center alwaystransparent = yes texture = "gfx/interface/icons/flat_icons/house.dds" down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]" }
-        }
-        button_round = {
-            using = tooltip_nw
-            name = "dynmap_r016_dynasty_entry_audit"
-            parentanchor = hcenter
-            size = { 40 40 }
-            visible = "[And(GetPlayer.IsValid, And(IsAltDown, IsShiftDown))]"
-            enabled = "[And(CanChangeMapMode, GetScriptedGui('dynmap_r016_check').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-            down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]"
-            tooltip = "dynmap_r016_dynasty_tt"
-            onclick = "[GetScriptedGui('dynmap_r016_audit_realms').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-            button_icon = { size = { 26 26 } parentanchor = center alwaystransparent = yes texture = "gfx/interface/icons/flat_icons/house.dds" down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]" }
+            button_icon = {
+                size = { 26 26 }
+                parentanchor = center
+                alwaystransparent = yes
+                texture = "gfx/interface/icons/flat_icons/house.dds"
+                down = "[Or3(IsMapMode('dynmap_my_dynasty'), IsMapMode('dynmap_dynasty_holdings'), IsMapMode('dynmap_my_realm_dynasty'))]"
+            }
         }
 
         flowcontainer = {

@@ -271,6 +271,5 @@ acceptance. Grey nonmatching ground is a failed visual item; exact context-safe
 activation, coverage, isolation/restore and removal remain unresolved. The
 [F-003 tables](tasks/F-003-dynasty-subview-definitions.md) consolidate accepted
 subview behavior and semantic result roles. R-017 plans test fixtures; F-001
-owns target layout/grey/contrast; F-002 owns color-source feasibility with
-fixed-palette fallback.
+owns target layout/grey/contrast; F-002 owns the accepted approximate character-associated palette and its exact green fallback. See the F-002 canonical record for boundaries and evidence.
 No successor implementation is selected by this closeout.

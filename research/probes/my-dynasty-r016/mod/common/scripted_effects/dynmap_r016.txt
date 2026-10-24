@@ -6,15 +6,14 @@ dynmap_r016_paint_dark_effect = {
 	if = {
 		limit = { exists = scope:dynmap_r016_audit_armed }
 		dynmap_r016_count_role_effect = { ROLE = primary }
-		debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 25 105 50 WRITES_SUPPRESSED"
-		debug_log_scopes = no
+		dynmap_r016_audit_palette_primary_effect = yes
 	}
 	else = {
 		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } set_local_variable = { name = dynmap_r016_d_county_writes value = 0 } }
 		every_in_de_jure_hierarchy = {
 			continue = { always = yes }
 			limit = { tier = tier_barony }
-			set_title_color = { 25 105 50 }
+			 dynmap_r016_paint_mixed_primary_effect = yes
 			if = {
 				limit = { exists = scope:dynmap_r016_diagnostic_armed }
 				change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
@@ -29,15 +28,14 @@ dynmap_r016_paint_light_effect = {
 	if = {
 		limit = { exists = scope:dynmap_r016_audit_armed }
 		dynmap_r016_count_role_effect = { ROLE = secondary }
-		debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 145 220 150 WRITES_SUPPRESSED"
-		debug_log_scopes = no
+		dynmap_r016_audit_palette_secondary_effect = yes
 	}
 	else = {
 		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } set_local_variable = { name = dynmap_r016_d_county_writes value = 0 } }
 		every_in_de_jure_hierarchy = {
 			continue = { always = yes }
 			limit = { tier = tier_barony }
-			set_title_color = { 145 220 150 }
+			dynmap_r016_paint_mixed_secondary_effect = yes
 			if = {
 				limit = { exists = scope:dynmap_r016_diagnostic_armed }
 				change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
@@ -71,6 +69,326 @@ dynmap_r016_paint_grey_effect = {
 	}
 }
 
+# Nearest-grid ID dispatch uses literal RGB writers; exact dynamic RGB remains unsupported.
+# DYNAMIC_WRITER_BLOCKED: the rejected scope-valued set_title_color RHS stays absent.
+dynmap_r016_audit_palette_primary_effect = {
+ if = { limit = { scope:dynmap_r016_palette_id = 1 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 137 76 67 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 2 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 134 59 29 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 3 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 182 160 156 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 4 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 172 109 42 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 6 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 63 81 88 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 8 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 66 98 126 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 9 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 150 106 41 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 11 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 149 116 61 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 12 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 159 157 155 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 14 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 70 68 64 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 15 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 158 167 175 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 18 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 67 51 26 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 19 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 71 91 38 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 20 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 74 108 76 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 21 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 204 202 200 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 23 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 161 171 159 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 24 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 191 134 48 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 25 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 201 185 162 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 28 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 194 151 86 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 29 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 92 31 22 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 30 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 44 56 82 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 31 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 94 45 26 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 33 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 175 158 166 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 34 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 48 26 20 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 35 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 83 120 155 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 36 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 164 175 185 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 37 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 115 34 23 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 38 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 20 63 102 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 39 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 151 120 45 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 42 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 37 86 131 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 43 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 60 78 111 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 44 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 23 66 85 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 45 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 22 53 81 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 46 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 118 71 98 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 47 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 91 41 43 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 48 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 97 49 52 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 49 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 40 36 30 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 50 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 163 78 12 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 51 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 30 40 49 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 52 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 79 103 117 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 53 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 176 133 69 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 54 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 115 54 60 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 55 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 33 81 61 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 56 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 48 33 12 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 57 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 154 62 50 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 58 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 255 191 230 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 59 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 141 62 34 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 60 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 172 115 43 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 61 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 89 27 64 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 62 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 29 63 31 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 63 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 198 136 43 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 64 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 70 85 105 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 65 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 38 76 110 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 66 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 39 89 114 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 67 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 86 110 54 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 68 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 166 95 50 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 69 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 67 85 48 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 70 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 45 82 47 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 71 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 219 219 219 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 72 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 52 66 32 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 73 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 159 0 101 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 74 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 92 50 27 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 75 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 145 130 0 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 76 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 194 167 85 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 77 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 48 95 15 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 78 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 116 64 63 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 79 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 149 74 63 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 80 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 134 78 34 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 81 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 108 32 33 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 82 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 28 73 52 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 83 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 217 195 163 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 84 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 74 120 157 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 85 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 84 93 107 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 86 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 79 90 89 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 87 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 99 51 31 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 88 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 122 63 9 WRITES_SUPPRESSED" }
+ else = { debug_log = "DYNMAP_R016 AUDIT V4 RESULT PRIMARY RGB 25 105 50 WRITES_SUPPRESSED" }
+ debug_log_scopes = no
+}
+dynmap_r016_audit_palette_secondary_effect = {
+ if = { limit = { scope:dynmap_r016_palette_id = 1 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 178 139 133 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 2 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 176 128 108 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 3 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 208 193 191 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 4 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 201 160 117 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 6 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 130 142 146 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 8 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 132 153 171 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 9 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 187 158 116 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 11 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 186 165 129 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 12 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 193 191 190 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 14 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 135 133 131 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 15 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 192 198 203 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 18 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 133 122 106 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 19 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 135 148 114 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 20 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 137 159 139 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 21 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 222 221 219 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 23 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 194 200 193 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 24 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 213 176 120 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 25 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 220 210 195 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 28 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 215 187 145 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 29 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 149 109 104 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 30 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 118 126 143 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 31 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 150 119 106 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 33 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 203 192 197 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 34 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 120 106 102 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 35 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 143 167 190 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 36 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 196 203 210 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 37 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 164 111 104 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 38 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 102 130 156 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 39 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 187 167 119 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 42 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 113 145 174 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 43 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 128 140 161 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 44 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 104 132 145 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 45 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 104 124 142 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 46 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 166 135 153 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 47 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 148 116 117 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 48 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 152 121 123 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 49 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 115 113 109 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 50 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 195 140 97 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 51 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 109 115 121 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 52 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 141 156 165 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 53 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 204 176 134 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 54 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 164 124 128 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 55 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 111 142 129 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 56 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 120 111 97 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 57 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 189 130 122 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 58 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 255 213 239 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 59 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 181 130 111 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 60 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 201 164 117 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 61 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 147 107 131 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 62 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 108 130 109 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 63 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 218 178 117 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 64 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 135 145 158 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 65 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 114 139 161 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 66 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 115 147 163 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 67 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 145 161 124 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 68 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 197 151 122 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 69 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 133 145 120 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 70 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 119 143 120 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 71 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 232 232 232 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 72 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 123 132 110 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 73 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 193 89 155 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 74 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 149 122 107 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 75 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 184 174 89 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 76 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 215 198 145 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 77 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 120 151 99 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 78 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 165 131 130 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 79 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 186 137 130 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 80 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 176 140 111 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 81 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 159 110 111 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 82 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 107 137 123 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 83 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 230 216 195 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 84 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 137 167 191 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 85 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 144 150 159 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 86 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 141 148 147 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 87 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 154 122 109 WRITES_SUPPRESSED" }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 88 } debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 169 130 95 WRITES_SUPPRESSED" }
+ else = { debug_log = "DYNMAP_R016 AUDIT V4 RESULT SECONDARY RGB 145 220 150 WRITES_SUPPRESSED" }
+ debug_log_scopes = no
+}
+dynmap_r016_paint_mixed_primary_effect = {
+ if = { limit = { scope:dynmap_r016_palette_id = 1 } set_title_color = { 137 76 67 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 2 } set_title_color = { 134 59 29 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 3 } set_title_color = { 182 160 156 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 4 } set_title_color = { 172 109 42 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 6 } set_title_color = { 63 81 88 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 8 } set_title_color = { 66 98 126 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 9 } set_title_color = { 150 106 41 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 11 } set_title_color = { 149 116 61 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 12 } set_title_color = { 159 157 155 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 14 } set_title_color = { 70 68 64 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 15 } set_title_color = { 158 167 175 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 18 } set_title_color = { 67 51 26 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 19 } set_title_color = { 71 91 38 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 20 } set_title_color = { 74 108 76 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 21 } set_title_color = { 204 202 200 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 23 } set_title_color = { 161 171 159 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 24 } set_title_color = { 191 134 48 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 25 } set_title_color = { 201 185 162 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 28 } set_title_color = { 194 151 86 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 29 } set_title_color = { 92 31 22 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 30 } set_title_color = { 44 56 82 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 31 } set_title_color = { 94 45 26 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 33 } set_title_color = { 175 158 166 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 34 } set_title_color = { 48 26 20 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 35 } set_title_color = { 83 120 155 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 36 } set_title_color = { 164 175 185 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 37 } set_title_color = { 115 34 23 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 38 } set_title_color = { 20 63 102 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 39 } set_title_color = { 151 120 45 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 42 } set_title_color = { 37 86 131 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 43 } set_title_color = { 60 78 111 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 44 } set_title_color = { 23 66 85 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 45 } set_title_color = { 22 53 81 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 46 } set_title_color = { 118 71 98 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 47 } set_title_color = { 91 41 43 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 48 } set_title_color = { 97 49 52 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 49 } set_title_color = { 40 36 30 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 50 } set_title_color = { 163 78 12 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 51 } set_title_color = { 30 40 49 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 52 } set_title_color = { 79 103 117 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 53 } set_title_color = { 176 133 69 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 54 } set_title_color = { 115 54 60 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 55 } set_title_color = { 33 81 61 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 56 } set_title_color = { 48 33 12 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 57 } set_title_color = { 154 62 50 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 58 } set_title_color = { 255 191 230 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 59 } set_title_color = { 141 62 34 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 60 } set_title_color = { 172 115 43 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 61 } set_title_color = { 89 27 64 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 62 } set_title_color = { 29 63 31 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 63 } set_title_color = { 198 136 43 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 64 } set_title_color = { 70 85 105 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 65 } set_title_color = { 38 76 110 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 66 } set_title_color = { 39 89 114 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 67 } set_title_color = { 86 110 54 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 68 } set_title_color = { 166 95 50 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 69 } set_title_color = { 67 85 48 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 70 } set_title_color = { 45 82 47 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 71 } set_title_color = { 219 219 219 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 72 } set_title_color = { 52 66 32 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 73 } set_title_color = { 159 0 101 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 74 } set_title_color = { 92 50 27 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 75 } set_title_color = { 145 130 0 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 76 } set_title_color = { 194 167 85 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 77 } set_title_color = { 48 95 15 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 78 } set_title_color = { 116 64 63 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 79 } set_title_color = { 149 74 63 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 80 } set_title_color = { 134 78 34 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 81 } set_title_color = { 108 32 33 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 82 } set_title_color = { 28 73 52 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 83 } set_title_color = { 217 195 163 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 84 } set_title_color = { 74 120 157 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 85 } set_title_color = { 84 93 107 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 86 } set_title_color = { 79 90 89 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 87 } set_title_color = { 99 51 31 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 88 } set_title_color = { 122 63 9 } }
+ else = { set_title_color = { 25 105 50 } }
+}
+dynmap_r016_paint_mixed_secondary_effect = {
+ if = { limit = { scope:dynmap_r016_palette_id = 1 } set_title_color = { 178 139 133 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 2 } set_title_color = { 176 128 108 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 3 } set_title_color = { 208 193 191 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 4 } set_title_color = { 201 160 117 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 6 } set_title_color = { 130 142 146 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 8 } set_title_color = { 132 153 171 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 9 } set_title_color = { 187 158 116 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 11 } set_title_color = { 186 165 129 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 12 } set_title_color = { 193 191 190 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 14 } set_title_color = { 135 133 131 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 15 } set_title_color = { 192 198 203 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 18 } set_title_color = { 133 122 106 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 19 } set_title_color = { 135 148 114 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 20 } set_title_color = { 137 159 139 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 21 } set_title_color = { 222 221 219 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 23 } set_title_color = { 194 200 193 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 24 } set_title_color = { 213 176 120 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 25 } set_title_color = { 220 210 195 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 28 } set_title_color = { 215 187 145 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 29 } set_title_color = { 149 109 104 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 30 } set_title_color = { 118 126 143 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 31 } set_title_color = { 150 119 106 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 33 } set_title_color = { 203 192 197 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 34 } set_title_color = { 120 106 102 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 35 } set_title_color = { 143 167 190 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 36 } set_title_color = { 196 203 210 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 37 } set_title_color = { 164 111 104 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 38 } set_title_color = { 102 130 156 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 39 } set_title_color = { 187 167 119 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 42 } set_title_color = { 113 145 174 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 43 } set_title_color = { 128 140 161 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 44 } set_title_color = { 104 132 145 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 45 } set_title_color = { 104 124 142 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 46 } set_title_color = { 166 135 153 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 47 } set_title_color = { 148 116 117 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 48 } set_title_color = { 152 121 123 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 49 } set_title_color = { 115 113 109 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 50 } set_title_color = { 195 140 97 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 51 } set_title_color = { 109 115 121 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 52 } set_title_color = { 141 156 165 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 53 } set_title_color = { 204 176 134 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 54 } set_title_color = { 164 124 128 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 55 } set_title_color = { 111 142 129 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 56 } set_title_color = { 120 111 97 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 57 } set_title_color = { 189 130 122 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 58 } set_title_color = { 255 213 239 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 59 } set_title_color = { 181 130 111 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 60 } set_title_color = { 201 164 117 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 61 } set_title_color = { 147 107 131 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 62 } set_title_color = { 108 130 109 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 63 } set_title_color = { 218 178 117 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 64 } set_title_color = { 135 145 158 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 65 } set_title_color = { 114 139 161 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 66 } set_title_color = { 115 147 163 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 67 } set_title_color = { 145 161 124 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 68 } set_title_color = { 197 151 122 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 69 } set_title_color = { 133 145 120 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 70 } set_title_color = { 119 143 120 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 71 } set_title_color = { 232 232 232 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 72 } set_title_color = { 123 132 110 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 73 } set_title_color = { 193 89 155 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 74 } set_title_color = { 149 122 107 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 75 } set_title_color = { 184 174 89 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 76 } set_title_color = { 215 198 145 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 77 } set_title_color = { 120 151 99 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 78 } set_title_color = { 165 131 130 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 79 } set_title_color = { 186 137 130 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 80 } set_title_color = { 176 140 111 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 81 } set_title_color = { 159 110 111 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 82 } set_title_color = { 107 137 123 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 83 } set_title_color = { 230 216 195 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 84 } set_title_color = { 137 167 191 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 85 } set_title_color = { 144 150 159 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 86 } set_title_color = { 141 148 147 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 87 } set_title_color = { 154 122 109 } }
+ else_if = { limit = { scope:dynmap_r016_palette_id = 88 } set_title_color = { 169 130 95 } }
+ else = { set_title_color = { 145 220 150 } }
+}
 # County holder first; missing holder Dynasty never suppresses senior checks.
 dynmap_r016_realms_county_effect = {
 	if = {
@@ -144,6 +462,323 @@ dynmap_r016_realms_county_effect = {
 	else = {
 		dynmap_r016_paint_grey_effect = yes
 	}
+}
+
+# Frozen76 ordered pairs; independent inclusive ±5 byte ranges.
+dynmap_r016_select_palette_effect = {
+	# Unknown, invalid and unrecognized/missing slots are exact option B.
+	set_variable = { name = dynmap_r016_pair_cache_id value = 126 }
+	set_variable = { name = dynmap_r016_last_c1_r value = scope:dynmap_r016_pair_c1_r }
+	set_variable = { name = dynmap_r016_last_c1_g value = scope:dynmap_r016_pair_c1_g }
+	set_variable = { name = dynmap_r016_last_c1_b value = scope:dynmap_r016_pair_c1_b }
+	set_variable = { name = dynmap_r016_last_c2_r value = scope:dynmap_r016_pair_c2_r }
+	set_variable = { name = dynmap_r016_last_c2_g value = scope:dynmap_r016_pair_c2_g }
+	set_variable = { name = dynmap_r016_last_c2_b value = scope:dynmap_r016_pair_c2_b }
+	if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 29 var:dynmap_r016_last_c1_g <= 39 var:dynmap_r016_last_c1_b >= 18 var:dynmap_r016_last_c1_b <= 28 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 1 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 29 var:dynmap_r016_last_c1_g <= 39 var:dynmap_r016_last_c1_b >= 18 var:dynmap_r016_last_c1_b <= 28 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 2 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 199 var:dynmap_r016_last_c1_r <= 209 var:dynmap_r016_last_c1_g >= 197 var:dynmap_r016_last_c1_g <= 207 var:dynmap_r016_last_c1_b >= 195 var:dynmap_r016_last_c1_b <= 205 var:dynmap_r016_last_c2_r >= 110 var:dynmap_r016_last_c2_r <= 120 var:dynmap_r016_last_c2_g >= 29 var:dynmap_r016_last_c2_g <= 39 var:dynmap_r016_last_c2_b >= 18 var:dynmap_r016_last_c2_b <= 28 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 3 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 186 var:dynmap_r016_last_c1_r <= 196 var:dynmap_r016_last_c1_g >= 129 var:dynmap_r016_last_c1_g <= 139 var:dynmap_r016_last_c1_b >= 43 var:dynmap_r016_last_c1_b <= 53 var:dynmap_r016_last_c2_r >= 110 var:dynmap_r016_last_c2_r <= 120 var:dynmap_r016_last_c2_g >= 29 var:dynmap_r016_last_c2_g <= 39 var:dynmap_r016_last_c2_b >= 18 var:dynmap_r016_last_c2_b <= 28 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 4 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 15 var:dynmap_r016_last_c1_r <= 25 var:dynmap_r016_last_c1_g >= 58 var:dynmap_r016_last_c1_g <= 68 var:dynmap_r016_last_c1_b >= 97 var:dynmap_r016_last_c1_b <= 107 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 6 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 15 var:dynmap_r016_last_c1_r <= 25 var:dynmap_r016_last_c1_g >= 58 var:dynmap_r016_last_c1_g <= 68 var:dynmap_r016_last_c1_b >= 97 var:dynmap_r016_last_c1_b <= 107 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 8 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 186 var:dynmap_r016_last_c1_r <= 196 var:dynmap_r016_last_c1_g >= 129 var:dynmap_r016_last_c1_g <= 139 var:dynmap_r016_last_c1_b >= 43 var:dynmap_r016_last_c1_b <= 53 var:dynmap_r016_last_c2_r >= 21 var:dynmap_r016_last_c2_r <= 31 var:dynmap_r016_last_c2_g >= 18 var:dynmap_r016_last_c2_g <= 28 var:dynmap_r016_last_c2_b >= 14 var:dynmap_r016_last_c2_b <= 24 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 9 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 186 var:dynmap_r016_last_c1_r <= 196 var:dynmap_r016_last_c1_g >= 129 var:dynmap_r016_last_c1_g <= 139 var:dynmap_r016_last_c1_b >= 43 var:dynmap_r016_last_c1_b <= 53 var:dynmap_r016_last_c2_r >= 15 var:dynmap_r016_last_c2_r <= 25 var:dynmap_r016_last_c2_g >= 58 var:dynmap_r016_last_c2_g <= 68 var:dynmap_r016_last_c2_b >= 97 var:dynmap_r016_last_c2_b <= 107 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 11 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 199 var:dynmap_r016_last_c1_r <= 209 var:dynmap_r016_last_c1_g >= 197 var:dynmap_r016_last_c1_g <= 207 var:dynmap_r016_last_c1_b >= 195 var:dynmap_r016_last_c1_b <= 205 var:dynmap_r016_last_c2_r >= 21 var:dynmap_r016_last_c2_r <= 31 var:dynmap_r016_last_c2_g >= 18 var:dynmap_r016_last_c2_g <= 28 var:dynmap_r016_last_c2_b >= 14 var:dynmap_r016_last_c2_b <= 24 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 12 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 21 var:dynmap_r016_last_c1_r <= 31 var:dynmap_r016_last_c1_g >= 18 var:dynmap_r016_last_c1_g <= 28 var:dynmap_r016_last_c1_b >= 14 var:dynmap_r016_last_c1_b <= 24 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 14 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 199 var:dynmap_r016_last_c1_r <= 209 var:dynmap_r016_last_c1_g >= 197 var:dynmap_r016_last_c1_g <= 207 var:dynmap_r016_last_c1_b >= 195 var:dynmap_r016_last_c1_b <= 205 var:dynmap_r016_last_c2_r >= 15 var:dynmap_r016_last_c2_r <= 25 var:dynmap_r016_last_c2_g >= 58 var:dynmap_r016_last_c2_g <= 68 var:dynmap_r016_last_c2_b >= 97 var:dynmap_r016_last_c2_b <= 107 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 15 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 21 var:dynmap_r016_last_c1_r <= 31 var:dynmap_r016_last_c1_g >= 18 var:dynmap_r016_last_c1_g <= 28 var:dynmap_r016_last_c1_b >= 14 var:dynmap_r016_last_c1_b <= 24 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 18 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 26 var:dynmap_r016_last_c1_r <= 36 var:dynmap_r016_last_c1_g >= 72 var:dynmap_r016_last_c1_g <= 82 var:dynmap_r016_last_c1_b >= 30 var:dynmap_r016_last_c1_b <= 40 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 19 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 26 var:dynmap_r016_last_c1_r <= 36 var:dynmap_r016_last_c1_g >= 72 var:dynmap_r016_last_c1_g <= 82 var:dynmap_r016_last_c1_b >= 30 var:dynmap_r016_last_c1_b <= 40 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 20 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 199 var:dynmap_r016_last_c1_r <= 209 var:dynmap_r016_last_c1_g >= 197 var:dynmap_r016_last_c1_g <= 207 var:dynmap_r016_last_c1_b >= 195 var:dynmap_r016_last_c1_b <= 205 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 21 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 199 var:dynmap_r016_last_c1_r <= 209 var:dynmap_r016_last_c1_g >= 197 var:dynmap_r016_last_c1_g <= 207 var:dynmap_r016_last_c1_b >= 195 var:dynmap_r016_last_c1_b <= 205 var:dynmap_r016_last_c2_r >= 26 var:dynmap_r016_last_c2_r <= 36 var:dynmap_r016_last_c2_g >= 72 var:dynmap_r016_last_c2_g <= 82 var:dynmap_r016_last_c2_b >= 30 var:dynmap_r016_last_c2_b <= 40 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 23 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 186 var:dynmap_r016_last_c1_r <= 196 var:dynmap_r016_last_c1_g >= 129 var:dynmap_r016_last_c1_g <= 139 var:dynmap_r016_last_c1_b >= 43 var:dynmap_r016_last_c1_b <= 53 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 24 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 199 var:dynmap_r016_last_c1_r <= 209 var:dynmap_r016_last_c1_g >= 197 var:dynmap_r016_last_c1_g <= 207 var:dynmap_r016_last_c1_b >= 195 var:dynmap_r016_last_c1_b <= 205 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 25 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 186 var:dynmap_r016_last_c1_r <= 196 var:dynmap_r016_last_c1_g >= 129 var:dynmap_r016_last_c1_g <= 139 var:dynmap_r016_last_c1_b >= 43 var:dynmap_r016_last_c1_b <= 53 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 28 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 29 var:dynmap_r016_last_c1_g <= 39 var:dynmap_r016_last_c1_b >= 18 var:dynmap_r016_last_c1_b <= 28 var:dynmap_r016_last_c2_r >= 21 var:dynmap_r016_last_c2_r <= 31 var:dynmap_r016_last_c2_g >= 18 var:dynmap_r016_last_c2_g <= 28 var:dynmap_r016_last_c2_b >= 14 var:dynmap_r016_last_c2_b <= 24 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 29 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 15 var:dynmap_r016_last_c1_r <= 25 var:dynmap_r016_last_c1_g >= 58 var:dynmap_r016_last_c1_g <= 68 var:dynmap_r016_last_c1_b >= 97 var:dynmap_r016_last_c1_b <= 107 var:dynmap_r016_last_c2_r >= 110 var:dynmap_r016_last_c2_r <= 120 var:dynmap_r016_last_c2_g >= 29 var:dynmap_r016_last_c2_g <= 39 var:dynmap_r016_last_c2_b >= 18 var:dynmap_r016_last_c2_b <= 28 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 30 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 29 var:dynmap_r016_last_c1_g <= 39 var:dynmap_r016_last_c1_b >= 18 var:dynmap_r016_last_c1_b <= 28 var:dynmap_r016_last_c2_r >= 26 var:dynmap_r016_last_c2_r <= 36 var:dynmap_r016_last_c2_g >= 72 var:dynmap_r016_last_c2_g <= 82 var:dynmap_r016_last_c2_b >= 30 var:dynmap_r016_last_c2_b <= 40 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 31 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 199 var:dynmap_r016_last_c1_r <= 209 var:dynmap_r016_last_c1_g >= 197 var:dynmap_r016_last_c1_g <= 207 var:dynmap_r016_last_c1_b >= 195 var:dynmap_r016_last_c1_b <= 205 var:dynmap_r016_last_c2_r >= 84 var:dynmap_r016_last_c2_r <= 94 var:dynmap_r016_last_c2_g >= 22 var:dynmap_r016_last_c2_g <= 32 var:dynmap_r016_last_c2_b >= 59 var:dynmap_r016_last_c2_b <= 69 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 33 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 21 var:dynmap_r016_last_c1_r <= 31 var:dynmap_r016_last_c1_g >= 18 var:dynmap_r016_last_c1_g <= 28 var:dynmap_r016_last_c1_b >= 14 var:dynmap_r016_last_c1_b <= 24 var:dynmap_r016_last_c2_r >= 110 var:dynmap_r016_last_c2_r <= 120 var:dynmap_r016_last_c2_g >= 29 var:dynmap_r016_last_c2_g <= 39 var:dynmap_r016_last_c2_b >= 18 var:dynmap_r016_last_c2_b <= 28 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 34 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 37 var:dynmap_r016_last_c1_r <= 47 var:dynmap_r016_last_c1_g >= 88 var:dynmap_r016_last_c1_g <= 98 var:dynmap_r016_last_c1_b >= 135 var:dynmap_r016_last_c1_b <= 145 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 35 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 199 var:dynmap_r016_last_c1_r <= 209 var:dynmap_r016_last_c1_g >= 197 var:dynmap_r016_last_c1_g <= 207 var:dynmap_r016_last_c1_b >= 195 var:dynmap_r016_last_c1_b <= 205 var:dynmap_r016_last_c2_r >= 37 var:dynmap_r016_last_c2_r <= 47 var:dynmap_r016_last_c2_g >= 88 var:dynmap_r016_last_c2_g <= 98 var:dynmap_r016_last_c2_b >= 135 var:dynmap_r016_last_c2_b <= 145 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 36 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 29 var:dynmap_r016_last_c1_g <= 39 var:dynmap_r016_last_c1_b >= 18 var:dynmap_r016_last_c1_b <= 28 var:dynmap_r016_last_c2_r >= 110 var:dynmap_r016_last_c2_r <= 120 var:dynmap_r016_last_c2_g >= 29 var:dynmap_r016_last_c2_g <= 39 var:dynmap_r016_last_c2_b >= 18 var:dynmap_r016_last_c2_b <= 28 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 37 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 15 var:dynmap_r016_last_c1_r <= 25 var:dynmap_r016_last_c1_g >= 58 var:dynmap_r016_last_c1_g <= 68 var:dynmap_r016_last_c1_b >= 97 var:dynmap_r016_last_c1_b <= 107 var:dynmap_r016_last_c2_r >= 15 var:dynmap_r016_last_c2_r <= 25 var:dynmap_r016_last_c2_g >= 58 var:dynmap_r016_last_c2_g <= 68 var:dynmap_r016_last_c2_b >= 97 var:dynmap_r016_last_c2_b <= 107 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 38 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 186 var:dynmap_r016_last_c1_r <= 196 var:dynmap_r016_last_c1_g >= 129 var:dynmap_r016_last_c1_g <= 139 var:dynmap_r016_last_c1_b >= 43 var:dynmap_r016_last_c1_b <= 53 var:dynmap_r016_last_c2_r >= 26 var:dynmap_r016_last_c2_r <= 36 var:dynmap_r016_last_c2_g >= 72 var:dynmap_r016_last_c2_g <= 82 var:dynmap_r016_last_c2_b >= 30 var:dynmap_r016_last_c2_b <= 40 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 39 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 37 var:dynmap_r016_last_c1_r <= 47 var:dynmap_r016_last_c1_g >= 88 var:dynmap_r016_last_c1_g <= 98 var:dynmap_r016_last_c1_b >= 135 var:dynmap_r016_last_c1_b <= 145 var:dynmap_r016_last_c2_r >= 15 var:dynmap_r016_last_c2_r <= 25 var:dynmap_r016_last_c2_g >= 58 var:dynmap_r016_last_c2_g <= 68 var:dynmap_r016_last_c2_b >= 97 var:dynmap_r016_last_c2_b <= 107 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 42 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 37 var:dynmap_r016_last_c1_r <= 47 var:dynmap_r016_last_c1_g >= 88 var:dynmap_r016_last_c1_g <= 98 var:dynmap_r016_last_c1_b >= 135 var:dynmap_r016_last_c1_b <= 145 var:dynmap_r016_last_c2_r >= 110 var:dynmap_r016_last_c2_r <= 120 var:dynmap_r016_last_c2_g >= 29 var:dynmap_r016_last_c2_g <= 39 var:dynmap_r016_last_c2_b >= 18 var:dynmap_r016_last_c2_b <= 28 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 43 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 15 var:dynmap_r016_last_c1_r <= 25 var:dynmap_r016_last_c1_g >= 58 var:dynmap_r016_last_c1_g <= 68 var:dynmap_r016_last_c1_b >= 97 var:dynmap_r016_last_c1_b <= 107 var:dynmap_r016_last_c2_r >= 26 var:dynmap_r016_last_c2_r <= 36 var:dynmap_r016_last_c2_g >= 72 var:dynmap_r016_last_c2_g <= 82 var:dynmap_r016_last_c2_b >= 30 var:dynmap_r016_last_c2_b <= 40 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 44 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 15 var:dynmap_r016_last_c1_r <= 25 var:dynmap_r016_last_c1_g >= 58 var:dynmap_r016_last_c1_g <= 68 var:dynmap_r016_last_c1_b >= 97 var:dynmap_r016_last_c1_b <= 107 var:dynmap_r016_last_c2_r >= 21 var:dynmap_r016_last_c2_r <= 31 var:dynmap_r016_last_c2_g >= 18 var:dynmap_r016_last_c2_g <= 28 var:dynmap_r016_last_c2_b >= 14 var:dynmap_r016_last_c2_b <= 24 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 45 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 84 var:dynmap_r016_last_c1_r <= 94 var:dynmap_r016_last_c1_g >= 22 var:dynmap_r016_last_c1_g <= 32 var:dynmap_r016_last_c1_b >= 59 var:dynmap_r016_last_c1_b <= 69 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 46 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 29 var:dynmap_r016_last_c1_g <= 39 var:dynmap_r016_last_c1_b >= 18 var:dynmap_r016_last_c1_b <= 28 var:dynmap_r016_last_c2_r >= 15 var:dynmap_r016_last_c2_r <= 25 var:dynmap_r016_last_c2_g >= 58 var:dynmap_r016_last_c2_g <= 68 var:dynmap_r016_last_c2_b >= 97 var:dynmap_r016_last_c2_b <= 107 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 47 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 29 var:dynmap_r016_last_c1_g <= 39 var:dynmap_r016_last_c1_b >= 18 var:dynmap_r016_last_c1_b <= 28 var:dynmap_r016_last_c2_r >= 37 var:dynmap_r016_last_c2_r <= 47 var:dynmap_r016_last_c2_g >= 88 var:dynmap_r016_last_c2_g <= 98 var:dynmap_r016_last_c2_b >= 135 var:dynmap_r016_last_c2_b <= 145 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 48 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 21 var:dynmap_r016_last_c1_r <= 31 var:dynmap_r016_last_c1_g >= 18 var:dynmap_r016_last_c1_g <= 28 var:dynmap_r016_last_c1_b >= 14 var:dynmap_r016_last_c1_b <= 24 var:dynmap_r016_last_c2_r >= 21 var:dynmap_r016_last_c2_r <= 31 var:dynmap_r016_last_c2_g >= 18 var:dynmap_r016_last_c2_g <= 28 var:dynmap_r016_last_c2_b >= 14 var:dynmap_r016_last_c2_b <= 24 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 49 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 148 var:dynmap_r016_last_c1_r <= 158 var:dynmap_r016_last_c1_g >= 54 var:dynmap_r016_last_c1_g <= 64 var:dynmap_r016_last_c1_b >= 0 var:dynmap_r016_last_c1_b <= 5 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 50 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 21 var:dynmap_r016_last_c1_r <= 31 var:dynmap_r016_last_c1_g >= 18 var:dynmap_r016_last_c1_g <= 28 var:dynmap_r016_last_c1_b >= 14 var:dynmap_r016_last_c1_b <= 24 var:dynmap_r016_last_c2_r >= 37 var:dynmap_r016_last_c2_r <= 47 var:dynmap_r016_last_c2_g >= 88 var:dynmap_r016_last_c2_g <= 98 var:dynmap_r016_last_c2_b >= 135 var:dynmap_r016_last_c2_b <= 145 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 51 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 37 var:dynmap_r016_last_c1_r <= 47 var:dynmap_r016_last_c1_g >= 88 var:dynmap_r016_last_c1_g <= 98 var:dynmap_r016_last_c1_b >= 135 var:dynmap_r016_last_c1_b <= 145 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 52 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 161 var:dynmap_r016_last_c1_r <= 171 var:dynmap_r016_last_c1_g >= 105 var:dynmap_r016_last_c1_g <= 115 var:dynmap_r016_last_c1_b >= 21 var:dynmap_r016_last_c1_b <= 31 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 53 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 84 var:dynmap_r016_last_c1_r <= 94 var:dynmap_r016_last_c1_g >= 22 var:dynmap_r016_last_c1_g <= 32 var:dynmap_r016_last_c1_b >= 59 var:dynmap_r016_last_c1_b <= 69 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 54 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 26 var:dynmap_r016_last_c1_r <= 36 var:dynmap_r016_last_c1_g >= 72 var:dynmap_r016_last_c1_g <= 82 var:dynmap_r016_last_c1_b >= 30 var:dynmap_r016_last_c1_b <= 40 var:dynmap_r016_last_c2_r >= 37 var:dynmap_r016_last_c2_r <= 47 var:dynmap_r016_last_c2_g >= 88 var:dynmap_r016_last_c2_g <= 98 var:dynmap_r016_last_c2_b >= 135 var:dynmap_r016_last_c2_b <= 145 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 55 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 0 var:dynmap_r016_last_c1_r <= 5 var:dynmap_r016_last_c1_g >= 0 var:dynmap_r016_last_c1_g <= 5 var:dynmap_r016_last_c1_b >= 0 var:dynmap_r016_last_c1_b <= 5 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 56 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 132 var:dynmap_r016_last_c1_r <= 142 var:dynmap_r016_last_c1_g >= 11 var:dynmap_r016_last_c1_g <= 21 var:dynmap_r016_last_c1_b >= 0 var:dynmap_r016_last_c1_b <= 5 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 57 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 250 var:dynmap_r016_last_c1_r <= 255 var:dynmap_r016_last_c1_g >= 250 var:dynmap_r016_last_c1_g <= 255 var:dynmap_r016_last_c1_b >= 250 var:dynmap_r016_last_c1_b <= 255 var:dynmap_r016_last_c2_r >= 250 var:dynmap_r016_last_c2_r <= 255 var:dynmap_r016_last_c2_g >= 0 var:dynmap_r016_last_c2_g <= 5 var:dynmap_r016_last_c2_b >= 148 var:dynmap_r016_last_c2_b <= 158 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 58 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 123 var:dynmap_r016_last_c1_r <= 133 var:dynmap_r016_last_c1_g >= 35 var:dynmap_r016_last_c1_g <= 45 var:dynmap_r016_last_c1_b >= 24 var:dynmap_r016_last_c1_b <= 34 var:dynmap_r016_last_c2_r >= 173 var:dynmap_r016_last_c2_r <= 183 var:dynmap_r016_last_c2_g >= 121 var:dynmap_r016_last_c2_g <= 131 var:dynmap_r016_last_c2_b >= 45 var:dynmap_r016_last_c2_b <= 55 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 59 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 186 var:dynmap_r016_last_c1_r <= 196 var:dynmap_r016_last_c1_g >= 129 var:dynmap_r016_last_c1_g <= 139 var:dynmap_r016_last_c1_b >= 43 var:dynmap_r016_last_c1_b <= 53 var:dynmap_r016_last_c2_r >= 110 var:dynmap_r016_last_c2_r <= 120 var:dynmap_r016_last_c2_g >= 55 var:dynmap_r016_last_c2_g <= 65 var:dynmap_r016_last_c2_b >= 25 var:dynmap_r016_last_c2_b <= 35 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 60 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 84 var:dynmap_r016_last_c1_r <= 94 var:dynmap_r016_last_c1_g >= 22 var:dynmap_r016_last_c1_g <= 32 var:dynmap_r016_last_c1_b >= 59 var:dynmap_r016_last_c1_b <= 69 var:dynmap_r016_last_c2_r >= 84 var:dynmap_r016_last_c2_r <= 94 var:dynmap_r016_last_c2_g >= 22 var:dynmap_r016_last_c2_g <= 32 var:dynmap_r016_last_c2_b >= 59 var:dynmap_r016_last_c2_b <= 69 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 61 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 26 var:dynmap_r016_last_c1_r <= 36 var:dynmap_r016_last_c1_g >= 72 var:dynmap_r016_last_c1_g <= 82 var:dynmap_r016_last_c1_b >= 30 var:dynmap_r016_last_c1_b <= 40 var:dynmap_r016_last_c2_r >= 21 var:dynmap_r016_last_c2_r <= 31 var:dynmap_r016_last_c2_g >= 18 var:dynmap_r016_last_c2_g <= 28 var:dynmap_r016_last_c2_b >= 14 var:dynmap_r016_last_c2_b <= 24 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 62 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 250 var:dynmap_r016_last_c1_r <= 255 var:dynmap_r016_last_c1_g >= 168 var:dynmap_r016_last_c1_g <= 178 var:dynmap_r016_last_c1_b >= 46 var:dynmap_r016_last_c1_b <= 56 var:dynmap_r016_last_c2_r >= 21 var:dynmap_r016_last_c2_r <= 31 var:dynmap_r016_last_c2_g >= 18 var:dynmap_r016_last_c2_g <= 28 var:dynmap_r016_last_c2_b >= 14 var:dynmap_r016_last_c2_b <= 24 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 63 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 37 var:dynmap_r016_last_c1_r <= 47 var:dynmap_r016_last_c1_g >= 88 var:dynmap_r016_last_c1_g <= 98 var:dynmap_r016_last_c1_b >= 135 var:dynmap_r016_last_c1_b <= 145 var:dynmap_r016_last_c2_r >= 148 var:dynmap_r016_last_c2_r <= 158 var:dynmap_r016_last_c2_g >= 54 var:dynmap_r016_last_c2_g <= 64 var:dynmap_r016_last_c2_b >= 0 var:dynmap_r016_last_c2_b <= 5 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 64 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 37 var:dynmap_r016_last_c1_r <= 47 var:dynmap_r016_last_c1_g >= 88 var:dynmap_r016_last_c1_g <= 98 var:dynmap_r016_last_c1_b >= 135 var:dynmap_r016_last_c1_b <= 145 var:dynmap_r016_last_c2_r >= 21 var:dynmap_r016_last_c2_r <= 31 var:dynmap_r016_last_c2_g >= 18 var:dynmap_r016_last_c2_g <= 28 var:dynmap_r016_last_c2_b >= 14 var:dynmap_r016_last_c2_b <= 24 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 65 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 37 var:dynmap_r016_last_c1_r <= 47 var:dynmap_r016_last_c1_g >= 88 var:dynmap_r016_last_c1_g <= 98 var:dynmap_r016_last_c1_b >= 135 var:dynmap_r016_last_c1_b <= 145 var:dynmap_r016_last_c2_r >= 26 var:dynmap_r016_last_c2_r <= 36 var:dynmap_r016_last_c2_g >= 72 var:dynmap_r016_last_c2_g <= 82 var:dynmap_r016_last_c2_b >= 30 var:dynmap_r016_last_c2_b <= 40 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 66 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 46 var:dynmap_r016_last_c1_r <= 56 var:dynmap_r016_last_c1_g >= 97 var:dynmap_r016_last_c1_g <= 107 var:dynmap_r016_last_c1_b >= 51 var:dynmap_r016_last_c1_b <= 61 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 67 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 148 var:dynmap_r016_last_c1_r <= 158 var:dynmap_r016_last_c1_g >= 54 var:dynmap_r016_last_c1_g <= 64 var:dynmap_r016_last_c1_b >= 0 var:dynmap_r016_last_c1_b <= 5 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 68 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 46 var:dynmap_r016_last_c1_r <= 56 var:dynmap_r016_last_c1_g >= 97 var:dynmap_r016_last_c1_g <= 107 var:dynmap_r016_last_c1_b >= 51 var:dynmap_r016_last_c1_b <= 61 var:dynmap_r016_last_c2_r >= 110 var:dynmap_r016_last_c2_r <= 120 var:dynmap_r016_last_c2_g >= 29 var:dynmap_r016_last_c2_g <= 39 var:dynmap_r016_last_c2_b >= 18 var:dynmap_r016_last_c2_b <= 28 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 69 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 46 var:dynmap_r016_last_c1_r <= 56 var:dynmap_r016_last_c1_g >= 97 var:dynmap_r016_last_c1_g <= 107 var:dynmap_r016_last_c1_b >= 51 var:dynmap_r016_last_c1_b <= 61 var:dynmap_r016_last_c2_r >= 21 var:dynmap_r016_last_c2_r <= 31 var:dynmap_r016_last_c2_g >= 18 var:dynmap_r016_last_c2_g <= 28 var:dynmap_r016_last_c2_b >= 14 var:dynmap_r016_last_c2_b <= 24 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 70 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 219 var:dynmap_r016_last_c1_r <= 229 var:dynmap_r016_last_c1_g >= 219 var:dynmap_r016_last_c1_g <= 229 var:dynmap_r016_last_c1_b >= 219 var:dynmap_r016_last_c1_b <= 229 var:dynmap_r016_last_c2_r >= 197 var:dynmap_r016_last_c2_r <= 207 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 197 var:dynmap_r016_last_c2_b <= 207 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 71 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 26 var:dynmap_r016_last_c1_r <= 36 var:dynmap_r016_last_c1_g >= 72 var:dynmap_r016_last_c1_g <= 82 var:dynmap_r016_last_c1_b >= 30 var:dynmap_r016_last_c1_b <= 40 var:dynmap_r016_last_c2_r >= 110 var:dynmap_r016_last_c2_r <= 120 var:dynmap_r016_last_c2_g >= 29 var:dynmap_r016_last_c2_g <= 39 var:dynmap_r016_last_c2_b >= 18 var:dynmap_r016_last_c2_b <= 28 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 72 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 174 var:dynmap_r016_last_c1_r <= 184 var:dynmap_r016_last_c1_g >= 0 var:dynmap_r016_last_c1_g <= 5 var:dynmap_r016_last_c1_b >= 99 var:dynmap_r016_last_c1_b <= 109 var:dynmap_r016_last_c2_r >= 93 var:dynmap_r016_last_c2_r <= 103 var:dynmap_r016_last_c2_g >= 0 var:dynmap_r016_last_c2_g <= 5 var:dynmap_r016_last_c2_b >= 85 var:dynmap_r016_last_c2_b <= 95 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 73 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 55 var:dynmap_r016_last_c1_g <= 65 var:dynmap_r016_last_c1_b >= 25 var:dynmap_r016_last_c1_b <= 35 var:dynmap_r016_last_c2_r >= 21 var:dynmap_r016_last_c2_r <= 31 var:dynmap_r016_last_c2_g >= 18 var:dynmap_r016_last_c2_g <= 28 var:dynmap_r016_last_c2_b >= 14 var:dynmap_r016_last_c2_b <= 24 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 74 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 128 var:dynmap_r016_last_c1_r <= 138 var:dynmap_r016_last_c1_g >= 161 var:dynmap_r016_last_c1_g <= 171 var:dynmap_r016_last_c1_b >= 0 var:dynmap_r016_last_c1_b <= 5 var:dynmap_r016_last_c2_r >= 174 var:dynmap_r016_last_c2_r <= 184 var:dynmap_r016_last_c2_g >= 16 var:dynmap_r016_last_c2_g <= 26 var:dynmap_r016_last_c2_b >= 0 var:dynmap_r016_last_c2_b <= 5 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 75 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 186 var:dynmap_r016_last_c1_r <= 196 var:dynmap_r016_last_c1_g >= 150 var:dynmap_r016_last_c1_g <= 160 var:dynmap_r016_last_c1_b >= 42 var:dynmap_r016_last_c1_b <= 52 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 76 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 0 var:dynmap_r016_last_c1_r <= 5 var:dynmap_r016_last_c1_g >= 77 var:dynmap_r016_last_c1_g <= 87 var:dynmap_r016_last_c1_b >= 0 var:dynmap_r016_last_c1_b <= 9 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 77 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 81 var:dynmap_r016_last_c1_r <= 91 var:dynmap_r016_last_c1_g >= 13 var:dynmap_r016_last_c1_g <= 23 var:dynmap_r016_last_c1_b >= 13 var:dynmap_r016_last_c1_b <= 23 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 78 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 126 var:dynmap_r016_last_c1_r <= 136 var:dynmap_r016_last_c1_g >= 26 var:dynmap_r016_last_c1_g <= 36 var:dynmap_r016_last_c1_b >= 13 var:dynmap_r016_last_c1_b <= 23 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 79 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 55 var:dynmap_r016_last_c1_g <= 65 var:dynmap_r016_last_c1_b >= 25 var:dynmap_r016_last_c1_b <= 35 var:dynmap_r016_last_c2_r >= 186 var:dynmap_r016_last_c2_r <= 196 var:dynmap_r016_last_c2_g >= 129 var:dynmap_r016_last_c2_g <= 139 var:dynmap_r016_last_c2_b >= 43 var:dynmap_r016_last_c2_b <= 53 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 80 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 29 var:dynmap_r016_last_c1_g <= 39 var:dynmap_r016_last_c1_b >= 18 var:dynmap_r016_last_c1_b <= 28 var:dynmap_r016_last_c2_r >= 84 var:dynmap_r016_last_c2_r <= 94 var:dynmap_r016_last_c2_g >= 22 var:dynmap_r016_last_c2_g <= 32 var:dynmap_r016_last_c2_b >= 59 var:dynmap_r016_last_c2_b <= 69 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 81 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 26 var:dynmap_r016_last_c1_r <= 36 var:dynmap_r016_last_c1_g >= 72 var:dynmap_r016_last_c1_g <= 82 var:dynmap_r016_last_c1_b >= 30 var:dynmap_r016_last_c1_b <= 40 var:dynmap_r016_last_c2_r >= 15 var:dynmap_r016_last_c2_r <= 25 var:dynmap_r016_last_c2_g >= 58 var:dynmap_r016_last_c2_g <= 68 var:dynmap_r016_last_c2_b >= 97 var:dynmap_r016_last_c2_b <= 107 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 82 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 199 var:dynmap_r016_last_c1_r <= 209 var:dynmap_r016_last_c1_g >= 197 var:dynmap_r016_last_c1_g <= 207 var:dynmap_r016_last_c1_b >= 195 var:dynmap_r016_last_c1_b <= 205 var:dynmap_r016_last_c2_r >= 250 var:dynmap_r016_last_c2_r <= 255 var:dynmap_r016_last_c2_g >= 168 var:dynmap_r016_last_c2_g <= 178 var:dynmap_r016_last_c2_b >= 46 var:dynmap_r016_last_c2_b <= 56 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 83 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 37 var:dynmap_r016_last_c1_r <= 47 var:dynmap_r016_last_c1_g >= 88 var:dynmap_r016_last_c1_g <= 98 var:dynmap_r016_last_c1_b >= 135 var:dynmap_r016_last_c1_b <= 145 var:dynmap_r016_last_c2_r >= 164 var:dynmap_r016_last_c2_r <= 174 var:dynmap_r016_last_c2_g >= 194 var:dynmap_r016_last_c2_g <= 204 var:dynmap_r016_last_c2_b >= 202 var:dynmap_r016_last_c2_b <= 212 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 84 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 39 var:dynmap_r016_last_c1_r <= 49 var:dynmap_r016_last_c1_g >= 52 var:dynmap_r016_last_c1_g <= 62 var:dynmap_r016_last_c1_b >= 71 var:dynmap_r016_last_c1_b <= 81 var:dynmap_r016_last_c2_r >= 199 var:dynmap_r016_last_c2_r <= 209 var:dynmap_r016_last_c2_g >= 197 var:dynmap_r016_last_c2_g <= 207 var:dynmap_r016_last_c2_b >= 195 var:dynmap_r016_last_c2_b <= 205 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 85 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 15 var:dynmap_r016_last_c1_r <= 25 var:dynmap_r016_last_c1_g >= 58 var:dynmap_r016_last_c1_g <= 68 var:dynmap_r016_last_c1_b >= 97 var:dynmap_r016_last_c1_b <= 107 var:dynmap_r016_last_c2_r >= 250 var:dynmap_r016_last_c2_r <= 255 var:dynmap_r016_last_c2_g >= 168 var:dynmap_r016_last_c2_g <= 178 var:dynmap_r016_last_c2_b >= 46 var:dynmap_r016_last_c2_b <= 56 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 86 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 110 var:dynmap_r016_last_c1_r <= 120 var:dynmap_r016_last_c1_g >= 29 var:dynmap_r016_last_c1_g <= 39 var:dynmap_r016_last_c1_b >= 18 var:dynmap_r016_last_c1_b <= 28 var:dynmap_r016_last_c2_r >= 46 var:dynmap_r016_last_c2_r <= 56 var:dynmap_r016_last_c2_g >= 97 var:dynmap_r016_last_c2_g <= 107 var:dynmap_r016_last_c2_b >= 51 var:dynmap_r016_last_c2_b <= 61 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 87 }
+	}
+	else_if = {
+		limit = { AND = { var:dynmap_r016_last_c1_r >= 148 var:dynmap_r016_last_c1_r <= 158 var:dynmap_r016_last_c1_g >= 54 var:dynmap_r016_last_c1_g <= 64 var:dynmap_r016_last_c1_b >= 0 var:dynmap_r016_last_c1_b <= 5 var:dynmap_r016_last_c2_r >= 26 var:dynmap_r016_last_c2_r <= 36 var:dynmap_r016_last_c2_g >= 72 var:dynmap_r016_last_c2_g <= 82 var:dynmap_r016_last_c2_b >= 30 var:dynmap_r016_last_c2_b <= 40 } }
+		set_variable = { name = dynmap_r016_pair_cache_id value = 88 }
+	}
+	save_scope_value_as = { name = dynmap_r016_palette_id value = var:dynmap_r016_pair_cache_id }
 }
 
 dynmap_r016_world_realms_effect = {

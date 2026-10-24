@@ -10,8 +10,8 @@
 | RK-06 | Dynamic/event refresh introduces constant performance cost | Medium | High | No dynamic refresh before profiler evidence |
 | RK-07 | Persistent graph/cache becomes stale after edge-case hierarchy changes | High | High | No persistent graph in MVP |
 | RK-08 | Global variables pollute saves / complicate observer or multiplayer | Medium | Medium/High | Avoid global variables unless current UI forces multiplexing |
-| RK-09 | All Dynasties cannot access a native Dynasty/House color | Medium | High | Research native House mode; retain title-color and palette fallbacks |
-| RK-10 | Dynasty color changes when dynasty head/title changes | Medium | Medium | Document chosen strategy; test succession/new cadet branches |
+| RK-09 | Native Dynasty/House color getter is unavailable; approximate current-CoA palette may miss pairs | Medium | Medium | 76 complete ordered pairs with exact option-B fallback are accepted; universal getter and full-roster runtime remain unproven |
+| RK-10 | Approximate palette may vary across cadet Houses/succession because it follows current CoA channels | Medium | Medium | User selected practical current-character association; Dynasty-wide continuity is not promised or proven |
 | RK-11 | Lowborn/no-Dynasty landed holders cause invalid scopes | Medium | Medium | Guard missing Dynasty scopes; still check lieges for CONTROLLED before assigning OTHER |
 | RK-12 | Observer/no local player breaks My Dynasty | Medium | Low | Unavailable under ADR-008; no classification/color writes on activation; test active-context cleanup |
 | RK-13 | Multiplayer desync/incorrect local player context | Unknown | High | Unsupported until deliberately tested |
@@ -30,8 +30,7 @@
 R-016 closeout (2026-10-21): bounded three-view pipeline/UI smoke does not
 resolve RK-16/17/20/24. RK-22 is now an observed visual acceptance failure: unrelated
 continental county land is not clearly grey; F-001 owns diagnosis and contrast.
-F-002 investigates accent sources with fixed-palette fallback; accessible native
-Dynasty RGB remains unproven. R-017 supplies stronger natural fixtures.
+F-002 now has user-accepted approximate character-associated palette behavior with option-B fallback. Dynasty-ID stability, exact stored/rendered RGB, missing-slot normalization, removal safety and full-roster runtime coverage remain unproven. R-017 supplies natural fixtures.
 
 T-005 ownership update (2026-10-23): RK-12/20 and no-Dynasty coverage belong to R-005 (R-013 merged); RK-16/17/24 to R-009. F-001 owns remaining ordinary menu/parity, hierarchy and projection acceptance after R-007/R-008/R-010 research closure. Later F-001 visuals are user-accepted for the supplied views; the older RK-22 failure above is historical, not a new requested redesign. Full classification/lifecycle acceptance remains open.
 
