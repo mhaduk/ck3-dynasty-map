@@ -7,6 +7,7 @@ are supplied in a private JSON manifest; output contains aggregates only.
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 
 VERSION = "task-ai-cost/1"
@@ -37,6 +38,64 @@ def replace_suffix(body, fragment, expected_sha256):
         return body[:a] + fragment + body[b + len(END):]
     separator = "" if not body or body.endswith("\n\n") else "\n" if body.endswith("\n") else "\n\n"
     return body + separator + fragment
+
+
+def with_context_history(fragment, history_path, repository_root, repository_ref="main"):
+    """Add a stable repo link only when a real post-activation aggregate exists."""
+    if not re.fullmatch(r"[A-Za-z0-9_./-]+", repository_ref) or ".." in repository_ref or repository_ref.startswith("/"):
+        raise ValueError("invalid public repository ref")
+    if history_path is None:
+        return fragment
+    root_lexical = Path(repository_root).absolute()
+    root = Path(repository_root).resolve(strict=True)
+    path = Path(history_path)
+    absolute = path.absolute()
+    if absolute.is_symlink():
+        raise ValueError("symlink GUI context history path refused")
+    if not absolute.is_file():
+        return fragment
+    try:
+        repo_relative = absolute.relative_to(root_lexical)
+    except ValueError as exc:
+        raise ValueError("GUI context history must be inside docs/telemetry/gui-context") from exc
+    current = root
+    for part in repo_relative.parts:
+        current = current / part
+        if current.is_symlink():
+            raise ValueError("symlink GUI context history path refused")
+    if len(repo_relative.parts) != 4 or repo_relative.parts[:3] != ("docs", "telemetry", "gui-context"):
+        raise ValueError("GUI context history must be inside docs/telemetry/gui-context")
+    if (Path(repo_relative.parts[3]).suffix != ".jsonl"
+            or not Path(repo_relative.parts[3]).stem.startswith(("T-", "R-", "F-", "B-"))):
+        raise ValueError("GUI context history filename must use a stable task ID")
+    if absolute.stat().st_size > 2 * 1024 * 1024:
+        raise ValueError("GUI context history exceeds bounded read")
+    rows = [line for line in absolute.read_text(encoding="utf-8").splitlines() if line.strip()]
+    if not rows:
+        return fragment
+    valid = False
+    for line in rows:
+        try:
+            item = json.loads(line)
+        except ValueError as exc:
+            raise ValueError("malformed GUI context history") from exc
+        if not isinstance(item, dict):
+            raise ValueError("GUI context history entries must be JSON objects")
+        context_tokens = item.get("context_tokens")
+        if (item.get("method") == "gui-context/1" and isinstance(context_tokens, dict)
+                and context_tokens.get("status") == "estimated"):
+            valid = True
+    if not valid:
+        return fragment
+    url = f"https://github.com/mhaduk/ck3-dynasty-map/blob/{repository_ref}/" + repo_relative.as_posix()
+    lines = fragment.splitlines()
+    total = next((i for i, line in enumerate(lines) if line.startswith("| **Total** |")), None)
+    if total is None:
+        raise ValueError("canonical AI-cost Total row missing")
+    link_line = f"[GUI context history]({url})"
+    if link_line not in lines:
+        lines[total + 1:total + 1] = ["", link_line]
+    return "\n".join(lines)
 
 
 def valid_usage(u):
@@ -183,6 +242,9 @@ def main():
     p.add_argument("--body", type=Path, required=True)
     p.add_argument("--fragment", type=Path, required=True)
     p.add_argument("--expected-sha256", required=True)
+    p.add_argument("--repository-ref", default="main", help="published ref for GUI history link")
+    p.add_argument("--gui-context-history", type=Path,
+                   help="optional aggregate JSONL; link only when it contains a real measurement")
     p.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if args.command == "account":
@@ -190,6 +252,8 @@ def main():
         inputs = [args.mapping] + [Path(s["path"]) for s in mapping["sources"]]
     else:
         inputs = [args.body, args.fragment]
+        if args.gui_context_history is not None:
+            inputs.append(args.gui_context_history)
     # Resolution catches path/symlink aliases; samefile catches hardlinks.
     # Check before writing. This is not a concurrent path replacement defense.
     for path in inputs:
@@ -199,7 +263,9 @@ def main():
     if args.command == "account":
         result = json.dumps(account(mapping), indent=2) + "\n"
     else:
-        result = replace_suffix(args.body.read_bytes().decode(), args.fragment.read_bytes().decode(), args.expected_sha256)
+        fragment_text = args.fragment.read_bytes().decode()
+        fragment_text = with_context_history(fragment_text, args.gui_context_history, Path.cwd(), args.repository_ref)
+        result = replace_suffix(args.body.read_bytes().decode(), fragment_text, args.expected_sha256)
     args.output.write_bytes(result.encode())
 
 

@@ -302,10 +302,20 @@ def progress_line(status):
     if p is None:
         return None
     percent = p["percent"]
-    bar = "#" * (percent // 10) + "-" * (10 - percent // 10)
-    milestone = p["current"] or "milestone boundary"
-    suffix = "CLI complete; GUI review pending" if status["status"] == "COMPLETED" else status["status"]
-    return f"{status['id']} [{bar}] ~{percent}% {milestone} ({suffix})"
+    filled = percent * 30 // 100
+    bar = "█" * filled + "░" * (30 - filled)
+    if status["status"] == "COMPLETED":
+        label = "CLI complete; GUI review pending"
+    elif p["current"] is None:
+        label = "milestone boundary"
+    else:
+        label = next((step["label"] for step in p["plan"]["steps"]
+                      if step["id"] == p["current"]), p["current"])
+    cue = "●"
+    if sys.stdout.isatty() and "NO_COLOR" not in os.environ:
+        cue = "\x1b[32m●\x1b[0m"
+    identity = status.get("parent_id") or status["id"]
+    return f"{cue}  {identity} [{bar}] ~{percent}% — {label}"
 
 
 def cmd_progress(args):
@@ -391,6 +401,31 @@ def cmd_create(args):
         task_text = source.read_text(encoding="utf-8")
     else:
         task_text = args.task
+    if args.context_preview:
+        preview_path = Path(args.context_preview)
+        preview_path = preview_path if preview_path.is_absolute() else root / preview_path
+        safe_path(root, preview_path, "file", required=True)
+        try:
+            context = json.loads(preview_path.read_text(encoding="utf-8"))
+            lines = context["preview"].splitlines()
+            url = context["history_url"]
+        except (ValueError, KeyError, TypeError, AttributeError) as exc:
+            raise HandoffError("invalid GUI context preview") from exc
+        expected_url = re.compile(r"https://github\.com/mhaduk/ck3-dynasty-map/blob/[A-Za-z0-9_./-]+/docs/telemetry/gui-context/" + re.escape(args.parent) + r"\.jsonl")
+        if (len(lines) != 2
+                or not re.fullmatch(r"GUI session estimate: ~[0-9,]+ estimated tokens(?: \(\+[0-9,]+ since previous handoff\))?", lines[0])
+                or not re.fullmatch(r"GUI session: [0-9,]+ messages / [0-9,]+ UTF-8 bytes", lines[1])
+                or not isinstance(url, str) or not expected_url.fullmatch(url) or ".." in url):
+            raise HandoffError("GUI context preview must contain two short lines and the stable parent history URL")
+        if any(len(line) > 160 for line in lines):
+            raise HandoffError("GUI context preview line exceeds 160 characters")
+        lines[1] += f" · [history]({url})"
+        marker = "\n\n```json\n"
+        if marker in task_text:
+            before, after = task_text.split(marker, 1)
+            task_text = before.rstrip() + "\n\n## GUI context (diagnostic estimate)\n" + "\n".join(lines) + marker + after
+        else:
+            task_text = task_text.rstrip() + "\n\n## GUI context (diagnostic estimate)\n" + "\n".join(lines) + "\n"
     if args.execution_plan is not None:
         plan = plan_argument(args.execution_plan)
         if frozen_plan(task_text) is not None:
@@ -744,6 +779,7 @@ def build_parser():
     p.add_argument("id"); p.add_argument("--parent", required=True)
     p.add_argument("--task", default=""); p.add_argument("--task-file")
     p.add_argument("--execution-plan", help="GUI-supplied plan JSON, frozen into CLI_TASK before READY")
+    p.add_argument("--context-preview", help="optional private JSON preview from gui_context.py; diagnostic only")
     p.add_argument("--input", action="append", default=[], help="immutable dependency (unless also --owned)")
     p.add_argument("--owned", action="append", default=[], help="owned editable input/output, including new files")
     p.add_argument("--check", action="append", default=[]); p.set_defaults(func=cmd_create)

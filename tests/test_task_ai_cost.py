@@ -129,6 +129,39 @@ class Descriptions(unittest.TestCase):
         for body in [cost.START,cost.END,cost.END+cost.START,self.fragment+cost.START,self.fragment+"more text"]:
             with self.subTest(body=body),self.assertRaises(ValueError):self.replace(body)
 
+    def test_gui_context_link_below_total_only_when_history_exists(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            history = root / "docs/telemetry/gui-context/T-012.jsonl"
+            history.parent.mkdir(parents=True)
+            self.assertEqual(cost.with_context_history(self.fragment, history, root), self.fragment)
+            history.write_text(json.dumps({"method": "gui-context/1", "context_tokens": {"status": "estimated"}}) + "\n")
+            linked = cost.with_context_history(self.fragment, history, root)
+            total = linked.index("| **Total** |")
+            link = linked.index("[GUI context history]")
+            method = linked.index("Method:")
+            self.assertGreater(link, total)
+            self.assertLess(link, method)
+            self.assertEqual(linked.count("[GUI context history]"), 1)
+            self.assertEqual(cost.with_context_history(linked, history, root), linked)
+
+    def test_gui_context_history_rejects_malformed_and_outside_files(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            history = root / "docs/telemetry/gui-context/T-012.jsonl"
+            history.parent.mkdir(parents=True)
+            history.write_text("bad\n")
+            with self.assertRaisesRegex(ValueError, "malformed"):
+                cost.with_context_history(self.fragment, history, root)
+            outside = root / "outside.jsonl"
+            outside.write_text("{}\n")
+            with self.assertRaisesRegex(ValueError, "inside"):
+                cost.with_context_history(self.fragment, outside, root)
+            linked = history.parent / "linked.jsonl"
+            linked.symlink_to(history)
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                cost.with_context_history(self.fragment, linked, root)
+
     def test_concurrent_body_drift(self):
         with self.assertRaises(ValueError):
             cost.replace_suffix("changed",self.fragment,cost.sha(b"original"))

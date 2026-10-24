@@ -2,6 +2,21 @@
 
 Updated 2026-10-24. This is the operational checkpoint; detailed evidence stays in canonical task records and private local handoffs.
 
+## Completed GUI selection — T-012 / #33
+
+GUI accepted the corrected implementation on 2026-10-24 after 82 independent
+focused tests and a real saved-session schema smoke. Local heuristic text
+estimates, aggregate-only prospective history, cost-preview links, time/step
+formatting and 30-cell progress are delivered. Initial CLI evidence is preserved
+as consumed CHANGES REQUIRED; GUI corrections are separately accepted.
+One GUI plus one CLI session: 178 responses, 24,722,407 measured tokens and
+$0.79798050 known API-equivalent USD through 2026-10-24T13:00:08.440Z;
+coverage is partial and later closeout excluded. User authorized scoped cleanup,
+issue/Wiki publication, closure, commit and push. No context backfill or new
+production history; first collection belongs to the next normal handoff.
+See [T-012](tasks/T-012-gui-context-measurement.md) and [guide](GUI_CONTEXT.md).
+No CK3 action or successor selection.
+
 Entries below preserve their dated task cutoffs. The dedicated F-001 section
 later in this file supersedes earlier statements that F-001 was paused; its
 bounded F-001 scope is complete; remaining gates retain their named owners.

@@ -16,6 +16,8 @@ Parent: <stable parent ID>
 Delegation type: <COLLECT | VERIFY | RESEARCH | EXECUTE>
 Decision authority: GUI
 Model recommendation: Luna / Medium (recommendation unless runtime confirms)
+Estimated CLI time: <raw-low>–<raw-high> minutes (uncalibrated baseline for future comparable pairs)
+Estimated CLI time / steps: <low>–<high> minutes / <exact frozen plan count> steps (<calibration basis; no plan when absent>)
 
 ## Question / scope
 <Question, intended result and frozen boundaries>
@@ -53,12 +55,13 @@ readable stage descriptions; preserve exact commands, IDs and required receipt p
 After each successful meaningful progress transition, send one standalone agent
 commentary based on persisted `STATUS.json.progress`, using the parent ID and
 the current stage label (or “milestone boundary”):
-`🟢 <parent ID> [<10-cell bar>] ~<percent>% — <stage>`. Never relay no-ops
+`●  <parent ID> [<30-cell Unicode bar>] ~<percent>% — <stage>`. Never relay no-ops
 or failed, rejected or stale commands; do not duplicate an unchanged state or
 guess progress. At 100%, say
-`CLI complete; GUI review pending`. A green-circle cue does not guarantee native
-text color. Keep ordinary command output as evidence; shell output itself is
-not an agent commentary.
+`CLI complete; GUI review pending`. Commentary contains no ANSI escapes. Terminal
+output uses a green ANSI bullet when color is supported and the same glyph
+uncolored otherwise. Keep ordinary command output as evidence; shell output
+itself is not an agent commentary.
 
 ## Escalation
 Complete useful safe bounded analysis first. Escalate scope, architecture,

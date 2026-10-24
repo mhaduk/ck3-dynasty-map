@@ -583,7 +583,10 @@ class HandoffTests(unittest.TestCase):
 
     def test_transition_restart_and_no_fake_drift_or_duplicate_output(self):
         directory = self.planned()
-        self.assertIn("~0% stage0", self.progress(directory, "--start", "stage0").stdout)
+        out = self.progress(directory, "--start", "stage0").stdout
+        self.assertIn("~0% — Major stage 0", out)
+        self.assertEqual(len(out.split("[")[1].split("]")[0]), 30)
+        self.assertIn("●  T-007", out)
         before = self.snapshot(directory)
         # New subprocesses emulate restart and an arbitrary number of ordinary logs/commands.
         for _ in range(3):
@@ -698,6 +701,43 @@ class HandoffTests(unittest.TestCase):
         before = self.snapshot(directory)
         self.assertIn("pending", self.progress(directory, "--start", "stage0", ok=False).stderr)
         self.assertEqual(before, self.snapshot(directory))
+
+    def test_optional_context_preview_is_diagnostic_and_plan_count_remains_frozen(self):
+        preview = self.root / "preview.json"
+        preview.write_text(json.dumps({
+            "version": 1,
+            "preview": "GUI session estimate: ~123 estimated tokens\nGUI session: 2 messages / 8 UTF-8 bytes",
+            "history_url": "https://github.com/mhaduk/ck3-dynasty-map/blob/main/docs/telemetry/gui-context/T-001.jsonl",
+        }))
+        task = "Work\n\n```json\n" + json.dumps({"execution_plan": self.plan(2)}) + "\n```\n"
+        self.run_cli("create", "T-001-CONTEXT", "--parent", "T-001", "--task", task,
+                     "--context-preview", "preview.json")
+        directory = self.root / ".codex-sync/tasks/T-001-CONTEXT"
+        text = (directory / "CLI_TASK.md").read_text()
+        self.assertEqual(text.count("GUI session"), 2)
+        self.assertIn("[history](https://github.com/mhaduk/ck3-dynasty-map/blob/main/docs/telemetry/gui-context/T-001.jsonl)", text)
+        self.assertEqual(self.status(directory)["inputs"], {})
+        self.claim(directory.name)
+        self.assertEqual(len(self.status(directory)["progress"]["plan"]["steps"]), 2)
+
+    def test_progress_rendering_no_color_and_parent_fallback(self):
+        spec = importlib.util.spec_from_file_location("handoff_for_render", SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        status = {"id": "T-001-LONG-ID", "parent_id": "T-001", "status": "IN_PROGRESS",
+                  "progress": {"percent": 34, "current": "stage0", "plan": {"steps": [{"id": "stage0", "label": "Readable stage"}]}}}
+        line = module.progress_line(status)
+        self.assertIn("●  T-001 [██████████░░░░░░░░░░░░░░░░░░░░] ~34% — Readable stage", line)
+        self.assertNotIn("\x1b[", line)
+        with mock.patch.object(module.sys.stdout, "isatty", return_value=True), mock.patch.dict(os.environ, {}, clear=True):
+            colored = module.progress_line(status)
+        self.assertTrue(colored.startswith("\x1b[32m●\x1b[0m  T-001"))
+        with mock.patch.object(module.sys.stdout, "isatty", return_value=True), mock.patch.dict(os.environ, {"NO_COLOR": "1"}):
+            no_color = module.progress_line(status)
+        self.assertTrue(no_color.startswith("●  T-001"))
+        self.assertNotIn("\x1b[", no_color)
+        status["parent_id"] = None
+        self.assertIn("  T-001-LONG-ID [", module.progress_line(status))
 
     def test_progress_plan_evidence_tampering_and_premature_100_rejected(self):
         directory = self.planned()

@@ -550,6 +550,45 @@ must not reconstruct initial milestones from prose. Existing planless per-ID
 tasks and controlled legacy handoffs remain compatible without migration or
 invented progress. `progress` refuses a planless task.
 
+For a planned handoff, show the actual `execution_plan.total_steps` beside the
+time range in the GUI-to-CLI receipt table. Keep a compact calibration record
+with original estimate ranges and claim-to-complete elapsed minutes. Pair only
+comparable, single-attempt completed work; exclude failed, retried, interrupted,
+or otherwise incomparable tasks and do not count user waiting as compute.
+When there are enough comparable pairs, use the median actual/estimated midpoint
+ratio as a simple robust multiplier, apply it to both range endpoints, and round
+outward to whole minutes. Preserve source pairs and describe the small-sample
+uncertainty. If fewer than three comparable pairs exist, use the user-observed
+2–3× overestimate only as a prior: divide the low endpoint by 3 and the high
+endpoint by 2, round outward, and label the result as prior-based rather than
+measured. A planless handoff retains the ordinary uncalibrated estimate and
+shows `no plan`. Save newly available estimate/elapsed pairs during normal task
+closeout; progress transitions do not measure or display time.
+The standard library helper can retain a candidate pair during that same
+closeout with `python3 scripts/gui_context.py --repo . --timing-task-id <ID>`;
+it reads only the named per-ID `CLI_TASK.md` and `STATUS.json`, appends
+idempotently to `.codex-sync/gui-context-calibration.json`, separate from the
+frozen T-012 evidence snapshot, and marks whether a frozen
+range was present. GUI explicitly marks a reviewed comparable candidate with
+`--timing-eligible <ID> --review-note '<reason>'`. To prepare a range, use
+`python3 scripts/gui_context.py --repo . --estimate-min <low> --estimate-max <high> --steps <plan-count>`;
+the output includes the calibrated range, basis, pair count and uncertainty.
+GUI still decides comparability before using a pair. Keep the raw baseline in `Estimated CLI time: <low>–<high> minutes` in the frozen task and calibrated time/steps separately, to avoid applying calibration twice. See [GUI context guide](GUI_CONTEXT.md) for retry, history integrity, session boundaries and published-ref handling.
+
+An optional GUI context measurement is prepared during the same handoff
+preparation, with no extra model call or GUI turn. Run
+`python3 scripts/gui_context.py --session <explicit-saved-session-file> --task <parent-ID> --handoff <delegation-ID> --repository-ref <published-ref> --identity <stable-private-session-key> --preview <private-preview.json>`
+and pass that preview to normal `handoff.py create --context-preview`.
+The helper reads only the named bounded JSONL input (16 MiB maximum), counts
+deduplicated user/assistant text from known message events, and labels
+`ceil(UTF-8 bytes / 4)` as an estimate. It does not inspect a GUI or infer active
+model context from request usage. It writes aggregate JSONL under
+`docs/telemetry/gui-context/<parent-ID>.jsonl`; raw text, session key, path,
+hash and byte cursor stay private in `.codex-sync/gui-context-private.json`.
+Changed identity, method, compaction or reset makes the delta unknown. No
+measurement means no history file and no history link. The optional preview is
+diagnostic only, at most two short lines, and never changes scope or plan.
+
 Example in a disposable repository (owner `worker`, no assigned outputs):
 
 ```sh
@@ -576,19 +615,21 @@ explicitly says `CLI complete; GUI review pending`. Later receipt/acceptance
 remains the coordinator's separate decision; 100% does not complete a parent.
 
 Each successful meaningful transition emits one compact diagnostic line on
-command stdout. This is ordinary tool output; it does not create an agent
-message and the client may collapse it. After the command succeeds, CLI reads
-the persisted `STATUS.json.progress` and sends one standalone agent commentary
-outside shell output/code fences, such as
-`🟢 T-007 [██████░░░░] ~60% — Validate changes`. Use the parent ID and a
-human-readable stage label from the persisted plan/current state; at a boundary
-use “milestone boundary”. Render ten cells with `percent // 10` filled cells
-and the remainder empty. Translate readable stage/boundary text into the language
-of the latest user request; preserve commands, IDs and required receipt phrases.
-The green-circle cue is portable but native text
-color is client-dependent. Never reconstruct or guess a percentage from the
-command text. Do not relay a failed, rejected, stale or no-op command, and do
-not repeat a commentary for an unchanged state. At 100%, explicitly say
+command stdout. The renderer uses a 30-cell Unicode bar with
+`percent * 30 // 100` filled cells, the parent ID (delegation ID only when the
+parent is unavailable), and the persisted plan's readable label. Its shape is
+`●  T-007 [██████████████████░░░░░░░░░░] ~60% — Validate changes`. A green ANSI
+sequence colors the bullet only when stdout is a TTY and `NO_COLOR` is absent;
+otherwise the same bullet is uncolored. At 100%, the label is exactly
+`CLI complete; GUI review pending`. This is ordinary tool output; it does not
+create an agent message and the client may collapse it. After the command
+succeeds, CLI reads persisted `STATUS.json.progress` and sends one standalone
+plain-text agent commentary with the same readable structure, without ANSI
+escapes. Translate readable stage/boundary text into the language of the latest
+user request; preserve commands, IDs and required receipt phrases. Never
+reconstruct or guess a percentage from the command text. Do not relay a failed,
+rejected, stale or no-op command, and do not repeat a commentary for an unchanged
+state. At 100%, explicitly say
 `CLI complete; GUI review pending`. No timer, ETA, elapsed-time display,
 sub-progress or repeated checklist is added. Normal command logs remain. While
 a long stage runs, leave the displayed percentage unchanged. The integer is

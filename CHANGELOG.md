@@ -20,6 +20,9 @@ All notable changes to Dynasty Map will be documented here.
 - Reusable mod encoding/preflight rules and read-only file checker added.
 
 ### Added
+- T-012 developer workflow: local GUI session text estimates, aggregate history,
+  context-history links in cost previews, calibrated CLI ranges with plan counts,
+  and a consistent 30-cell Unicode progress line. No session-management decisions.
 - T-010 private checkpoint metadata comparison: explicit saved-manifest pins,
   declared ranges, retained fingerprints and count context with source gaps
   preserved; no inferred continuity, new-event counts or causality.
