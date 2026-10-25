@@ -1,20 +1,10 @@
 # Task History
 
-T-023 implementation accepted locally on 2026-10-25 after fresh independent
-review: 154 passing tests, 102 probes, three residual findings independently
-resolved, final source/review receipts accepted and T-021 triage persisted.
-Shared future-task workflow is active with per-task contracts and trivial/legacy
-exceptions. Authorized closeout publication is underway. CLI has prepared a
-finite-cutoff estimate of 182,128,125 measured tokens / $9.58132606 partial
-known-model API-equivalent cost; ten response counters remain unallocated and
-GUI attribution/pricing review is pending. Keep #49 open and T-023 out of the
-closed-task rollup until the GUI receipt gate. See the
-[canonical acceptance and closeout record](tasks/T-023-independent-cli-review.md).
-
 Compact index of completed substantial tasks. Investigation detail belongs in the linked summary and, where available, the GitHub Issue.
 
 | Task | Goal | Result | Issue journal | Canonical summary |
 |---|---|---|---|---|
+| T-023 | Shared independent CLI review/correction workflow | Complete: GUI acceptance after 154 tests/102 probes; scoped source/Wiki publication and finite-cutoff accounting verified; 182,839,219 tokens / $10.77585306 partial API-equivalent; #49 closed completed | [#49](https://github.com/mhaduk/ck3-dynasty-map/issues/49) | [T-023](tasks/T-023-independent-cli-review.md) |
 | T-022 | Remove the per-row coverage/source-cutoff column from Wiki AI-cost detail | Published Wiki commit `71ad14e`; all numeric cells retained, five-column aggregate unchanged, remote readback passed; partial 1,723,715 GUI-session tokens / $0.36738040 | [#48](https://github.com/mhaduk/ck3-dynasty-map/issues/48) | [T-022](tasks/T-022-wiki-coverage-column.md) |
 | T-007 | Canonical task registry and GitHub-first creation | Accepted 2026-10-25; 88 focused tests; duplicate progress identity restored to T-003/#25, historical evidence preserved/quarantined; #31 closed, Wiki read back; 3,415,689 measured tokens / $0.72286920 partial cost; scoped repository commit/push subsequently authorized on 2026-10-25 | [#31](https://github.com/mhaduk/ck3-dynasty-map/issues/31) | [T-007](tasks/T-007-task-registry.md) |
 | T-021 | Add factual CLI self-review and GUI optimization inventory/triage | Complete: corrected implementation, 70 GUI tests, migrated inventory and three report triages; partial 23,249,743 tokens / $0.95229018; scoped publication authorized | [#47](https://github.com/mhaduk/ck3-dynasty-map/issues/47) | [T-021](tasks/T-021-execution-review.md) |

@@ -38,7 +38,7 @@
   "issues": [
     {
       "number": 49,
-      "state": "open",
+      "state": "closed",
       "title": "T-023 \u2014 Add independent CLI review/correction loop before GUI acceptance",
       "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/49"
     },

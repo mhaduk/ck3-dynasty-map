@@ -1,22 +1,16 @@
-## T-023 / #49 — implementation accepted; closeout in progress
+## T-023 / #49 — complete; shared workflow and accounting published
 
-GUI accepted the shared execution-review and correction workflow on 2026-10-25
-after fresh review of `T023-FIX-20261025-07`: 154 tests passed, 102 probe
-records were assessed, the three review-06 residuals were resolved, and no
-material finding remained. The accepted implementation, GUI triage and source
-receipts are preserved. No game action was involved.
-
-User authorized scoped documentation cleanup, finite-cutoff session accounting,
-source commit/push, Issue #49 update and Wiki workflow publication in
-`T023-CLOSEOUT-20261025-09`, without another independent review. CLI accounting
-is prepared at 2026-10-25T14:57:08Z; it assigns 1,334 response counters from ten
-selected sessions, with ten counters left unallocated. The computed partial
-Standard API-equivalent estimate is $9.58132606 across gpt-6.1-sol and
-gpt-6-luna. GUI must verify source/turn attribution, pricing and arithmetic
-before formal parent/issue closure and the final Wiki Home rollup. Issue #49
-must remain open through that receipt gate. Later publication/GUI work is
-excluded from the finite cutoff. See the [canonical T-023 record](tasks/T-023-independent-cli-review.md)
-and private handoff evidence.
+GUI accepted the implementation after fresh independent 154-test/102-probe
+review; all residual findings resolved. Shared per-task execution/review
+contracts, persistent executor, fresh read-only reviewers, explicit finite/open
+policy and verified ten-row handoff are active for future applicable tasks.
+Source and Wiki guides published; final GUI cost gate verified 1,344 responses
+from ten saved sessions through 2026-10-25T14:57:08Z: 182,839,219 tokens /
+$10.77585306 partial Standard API-equivalent cost. Initial GUI attribution and
+22 long-request prices corrected; original CLI evidence preserved. Issue #49
+is closed completed and the final Home rollup counts T-023 once. Later publication/GUI
+work excluded; runtime/isolation/effectiveness limits remain. No game action.
+See the [canonical closeout](tasks/T-023-independent-cli-review.md).
 
 ## T-022 / #48 — Wiki column cleanup complete
 

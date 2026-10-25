@@ -1,41 +1,71 @@
 # T-023 — Independent CLI review and bounded corrections
 
 Issue: [#49](https://github.com/mhaduk/ck3-dynasty-map/issues/49).
-Status: IMPLEMENTATION ACCEPTED by GUI on 2026-10-25 after fresh independent
-`T023-VERIFY-20261025-08` ACCEPTED. Source `T023-FIX-20261025-07` and its review
-are consumed ACCEPTED. Shared workflow is available for local future project
-tasks. Parent cost accounting and authorized task/issue/publication closeout
-remain pending; no parent closure is claimed.
+Status: COMPLETE — GUI implementation acceptance and saved-session cost
+verification completed on 2026-10-25. Source implementation and workflow Wiki
+guides are published; issue #49 is closed completed after this authorized
+final GUI receipt. Shared future-task workflow is active.
 
-## Closeout accounting — CLI estimate pending GUI verification
+## AI costs — GUI verified, finite cutoff
 
-Finite cutoff: 2026-10-25T14:57:08Z. The bounded search covered the named
-2026-10-25 saved-session directory (25 JSONL files); two preregistered GUI
-sessions and eight additional sessions containing exact T-023 execution IDs
-were snapshotted privately. `task_ai_cost.py` assigned 1,334 response counters
-to T-023 and left 10 counters in one source unallocated. The session inventory,
-complete-line snapshots, hashes, turn assignments and helper output are private
-under `.codex-sync/T023-CLOSEOUT-20261025-09/`; the GUI coordinator must check
-the mapping and any additional linked automatic-review counters before closure.
+GUI verified saved response counters from ten sessions (two GUI and eight CLI,
+including independent reviewers and closeout) through 2026-10-25T14:57:08Z.
+All 1,344 response records in those frozen source prefixes are assigned to T-023
+and deduplicated by response identity. Two initial issue-selected GUI turns
+account for the ten records omitted by the preliminary CLI mapping.
 
 | Model | Input | Cached input (subset) | Uncached input | Output | Total tokens | Known-model API-equivalent cost |
 |---|---:|---:|---:|---:|---:|---:|
-| gpt-6.1-sol | 39,059,927 | 38,260,096 | 799,831 | 236,995 | 39,296,922 | $7.79562160 |
+| gpt-6.1-sol | 39,768,834 | 38,892,416 | 876,418 | 239,182 | 40,008,016 | $8.99014860 |
 | gpt-6-luna | 142,395,549 | 140,796,416 | 1,599,133 | 435,654 | 142,831,203 | $1.78570446 |
-| **Total** | **181,455,476** | **179,056,512** | **2,398,964** | **672,649** | **182,128,125** | **$9.58132606** |
+| **Total** | **182,164,383** | **179,688,832** | **2,475,551** | **674,836** | **182,839,219** | **$10.77585306** |
 
-This is a partial known-model Standard API-equivalent estimate, not subscription
-spend or an invoice. Pricing was checked 2026-10-25 against [official OpenAI
-API pricing](https://developers.openai.com/api/docs/pricing). Short-context
-Standard rates were used because request-level context length and service tier
-were unavailable; cache-write pricing was not separately applied. Cached input
-is a subset, and reasoning output is already included in output. Ten saved
-response counters remain unallocated; the estimate is not GUI-verified. The
-cutoff excludes subsequent source/Issue/Wiki publication and final GUI review.
-The aggregate GUI text-history link remains in the repository's existing
-[telemetry record](../telemetry/gui-context/T-023.jsonl).
+Partial known-model Standard API-equivalent estimate, not subscription spending
+or an invoice. Prices verified on 2026-10-25 against [official API pricing](https://developers.openai.com/api/docs/pricing),
+[Sol model pricing](https://developers.openai.com/api/docs/models/gpt-6.1-sol) and
+[Luna model pricing](https://developers.openai.com/api/docs/models/gpt-6-luna).
+Each response uses its recorded input count: 22 Sol requests exceed 272K input
+and use 2x input/cache and 1.5x output rates for the whole request. All remaining
+requests use the documented short-context rates. Cache-write counters are zero
+in the selected records. Cached input is a subset; reasoning is already included
+in output. Actual processing tier, regional/tool/invoice adjustments and any
+further unavailable usage are not inferred.
 
-## Authorized cleanup and publication — 2026-10-25
+The GUI checked the complete-line source hashes, exact task/turn assignments,
+helper recomputation, request-level pricing and Decimal sums. Five bounded saved
+guardian-review metadata sources link to other parent sessions; no additional
+T-023 review counters were found there. This is not a claim of zero unavailable
+review usage. Subsequent publication and final GUI closeout are excluded by the
+unchanged cutoff. Original CLI artifacts remain preserved; their provisional
+short-only estimate is superseded by this verified result.
+
+[Saved GUI-text estimate history](../telemetry/gui-context/T-023.jsonl) is separate from usage accounting.
+
+## Final GUI closeout
+
+The implementation remains exactly the accepted candidate: 154 independent
+tests passed, 102 probes supported the final review, and all three residuals
+were independently resolved. No new independent review or implementation change
+was introduced for publication. Source publication: `ca6184ccf110d8a90e1ba4932364863df2388a04`;
+Wiki guide publication: `d5f52ba63cf2726d01fc63cd297d2f68aa980de6`.
+Final verified-cost Home publication: `fe8bf7447cc1b0a5a28e5795783defdb4c103f61`;
+issue #49 is CLOSED/completed with `ai-cost-table-format` verified.
+
+GUI preserved the preliminary CLI receipt, recorded CHANGES REQUIRED for its
+limited accounting errors, and completed the two bounded corrections directly
+during the authorized final cost check. The shared code, original cutoff and
+historical task prices remain unchanged. Final issue/Home/source readbacks and
+receipt evidence are retained privately. T-021 triage records the attribution/
+pricing gap and recovered tooling failures as KEEP OBSERVING; no optimization
+task or effectiveness claim follows.
+
+The CLI Home preview used an earlier base. GUI applies the corrected cost section
+to the actual published Home, preserving the new workflow links and unrelated
+legacy navigation. Compact five-column summary/detail tables and the global
+caveat remain. Runtime freshness/OS isolation and prospective savings remain
+outside the proven boundary; historical ledgers are never silently migrated.
+
+## Historical authorized cleanup scope — 2026-10-25
 
 The user authorized scoped cleanup, cost accounting, documentation, repository
 staging/commit/push and GitHub issue/Wiki publication, preferably in CLI without

@@ -105,7 +105,8 @@
         "T023-FIX-20261025-05",
         "T023-VERIFY-20261025-06",
         "T023-FIX-20261025-07",
-        "T023-VERIFY-20261025-08"
+        "T023-VERIFY-20261025-08",
+        "T023-CLOSEOUT-20261025-09"
       ],
       "affected_tasks": [
         "T021-EXECUTE-20261025-01",
@@ -115,17 +116,18 @@
         "T023-FIX-20261025-05",
         "T023-VERIFY-20261025-06",
         "T023-FIX-20261025-07",
-        "T023-VERIFY-20261025-08"
+        "T023-VERIFY-20261025-08",
+        "T023-CLOSEOUT-20261025-09"
       ],
       "boundary_history": [],
       "category": "unknown",
       "decision": {
         "date": "2026-10-25",
         "evidence": [
-          "handoff:T023-VERIFY-20261025-08",
-          "evidence:T023-GUI-REVIEW-20261025-08"
+          "handoff:T023-CLOSEOUT-20261025-09",
+          "evidence:T023-GUI-CLOSEOUT-20261025"
         ],
-        "rationale": "GUI verifies exact accepted reviewer/source binding and decisive evidence, accepting the bounded implementation. Preserve recovered-error recurrence and limits without claiming measured effectiveness, optimization success or missing runtime counters as zero.",
+        "rationale": "Published implementation/docs are accepted. Original CLI accounting needs two bounded GUI corrections before parent closure; exact original evidence is preserved, revised attribution and per-response pricing verified. No optimization task or effectiveness claim.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0003",
@@ -328,6 +330,32 @@
           "task": "T023-VERIFY-20261025-08",
           "text": "Reviewer used section-sized reads after truncation and restored the normal scripts import directory for an optional receipt checker. Candidate bytes and test outcomes were unchanged.",
           "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-CLOSEOUT-20261025-09",
+              "evidence:T023-GUI-CLOSEOUT-20261025"
+            ],
+            "rationale": "Published implementation/docs are accepted. Original CLI accounting needs two bounded GUI corrections before parent closure; exact original evidence is preserved, revised attribution and per-response pricing verified. No optimization task or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-CLOSEOUT-20261025-09",
+            "evidence:T023-GUI-CLOSEOUT-20261025"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-CLOSEOUT-20261025-09",
+          "text": "CLI reports approved escalation after Git-index denial, later successful network operations, newline normalization from actual Issue readback and corrected canonical check lines. GUI used HTML official docs after markdown retrieval was unsupported.",
+          "trend": "REPEATED"
         }
       ],
       "key": "tooling.platform-path-import-recovery",
@@ -346,31 +374,31 @@
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 8
+          "unknown_count": 9
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 8
+          "unknown_count": 9
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 8
+          "unknown_count": 9
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 8
+          "unknown_count": 9
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 8
+          "unknown_count": 9
         }
       },
       "metrics": {},
-      "occurrence_count": 8,
+      "occurrence_count": 9,
       "schema_history": [
         {
           "date": "2026-10-25",
@@ -736,22 +764,24 @@
       "affected_executions": [
         "T021-COST-COLLECT-20261025-03",
         "T023-EXECUTE-20261025-01",
-        "T023-FIX-20261025-03"
+        "T023-FIX-20261025-03",
+        "T023-CLOSEOUT-20261025-09"
       ],
       "affected_tasks": [
         "T021-COST-COLLECT-20261025-03",
         "T023-EXECUTE-20261025-01",
-        "T023-FIX-20261025-03"
+        "T023-FIX-20261025-03",
+        "T023-CLOSEOUT-20261025-09"
       ],
       "boundary_history": [],
       "category": "errors_recovery",
       "decision": {
         "date": "2026-10-25",
         "evidence": [
-          "handoff:T023-FIX-20261025-03",
-          "evidence:T023-GUI-REVIEW-20261025-03"
+          "handoff:T023-CLOSEOUT-20261025-09",
+          "evidence:T023-GUI-CLOSEOUT-20261025"
         ],
-        "rationale": "GUI verified the exact completed receipt and output bytes; retain reported recoveries and rework without an effectiveness or implementation-acceptance claim. Independent review is next; no separate optimization task.",
+        "rationale": "Published implementation/docs are accepted. Original CLI accounting needs two bounded GUI corrections before parent closure; exact original evidence is preserved, revised attribution and per-response pricing verified. No optimization task or effectiveness claim.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0007",
@@ -832,6 +862,32 @@
           "task": "T023-FIX-20261025-03",
           "text": "Executor reports two rejected stale progress commands and one rejected completion before the last milestone; persisted revision and milestone completion recovered them.",
           "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-CLOSEOUT-20261025-09",
+              "evidence:T023-GUI-CLOSEOUT-20261025"
+            ],
+            "rationale": "Published implementation/docs are accepted. Original CLI accounting needs two bounded GUI corrections before parent closure; exact original evidence is preserved, revised attribution and per-response pricing verified. No optimization task or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-CLOSEOUT-20261025-09",
+            "evidence:T023-GUI-CLOSEOUT-20261025"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-CLOSEOUT-20261025-09",
+          "text": "CLI reread persisted plan/revision after rejected transitions and completed the supplied milestones; no rejected transition advanced progress.",
+          "trend": "REPEATED"
         }
       ],
       "key": "handoff.stale-progress-revision",
@@ -842,31 +898,31 @@
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 3
+          "unknown_count": 4
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 3
+          "unknown_count": 4
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 3
+          "unknown_count": 4
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 3
+          "unknown_count": 4
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 3
+          "unknown_count": 4
         }
       },
       "metrics": {},
-      "occurrence_count": 3,
+      "occurrence_count": 4,
       "schema_history": [],
       "status": "observing",
       "summary": "A stale progress update was rejected; CLI reread the persisted revision and continued without state mutation.",
@@ -1322,6 +1378,92 @@
       "status": "observing",
       "summary": "Passing focused tests did not cover material lifecycle failures.",
       "trend": "REPEATED"
+    },
+    {
+      "affected_executions": [
+        "T023-CLOSEOUT-20261025-09"
+      ],
+      "affected_tasks": [
+        "T023-CLOSEOUT-20261025-09"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T023-CLOSEOUT-20261025-09",
+          "evidence:T023-GUI-CLOSEOUT-20261025"
+        ],
+        "rationale": "Published implementation/docs are accepted. Original CLI accounting needs two bounded GUI corrections before parent closure; exact original evidence is preserved, revised attribution and per-response pricing verified. No optimization task or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0011",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-CLOSEOUT-20261025-09",
+              "evidence:T023-GUI-CLOSEOUT-20261025"
+            ],
+            "rationale": "Published implementation/docs are accepted. Original CLI accounting needs two bounded GUI corrections before parent closure; exact original evidence is preserved, revised attribution and per-response pricing verified. No optimization task or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-CLOSEOUT-20261025-09",
+            "evidence:T023-GUI-CLOSEOUT-20261025"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-CLOSEOUT-20261025-09",
+          "text": "Two initial GUI turns explicitly selected issue 49 and clarified T-023; their ten response records were omitted. Twenty-two Sol requests exceed 272K input. GUI preserved the cutoff, added exact turn assignments and applied documented long-request rates; final known estimate is $10.77585306.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "accounting.turn-attribution-context-tier-gaps",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "GUI cost check corrected omitted initial task turns and request-context pricing.",
+      "trend": "NEW"
     }
   ],
   "ledger": [
@@ -1508,6 +1650,24 @@
       ],
       "rationale": "GUI verifies exact accepted reviewer/source binding and decisive evidence, accepting the bounded implementation. Preserve recovered-error recurrence and limits without claiming measured effectiveness, optimization success or missing runtime counters as zero.",
       "report_sha256": "c73d588569ed8003d86e56c28e482f3ae5a3d9946450d3bdb757f5cc63dbf015"
+    },
+    {
+      "content_sha256": "d700c68f0e3d35c0faeacb084b742bf5fcffed42129034b57a209373f3e6b790",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T023-CLOSEOUT-20261025-09",
+        "evidence:T023-GUI-CLOSEOUT-20261025"
+      ],
+      "id": "3e3f405c8ef78819397666d958f03effe4189c8befc14b636952a90ec2d04f58",
+      "identity": "T023-CLOSEOUT-20261025-09:1",
+      "observation_keys": [
+        "accounting.turn-attribution-context-tier-gaps",
+        "handoff.stale-progress-revision",
+        "tooling.platform-path-import-recovery"
+      ],
+      "rationale": "Published implementation/docs are accepted. Original CLI accounting needs two bounded GUI corrections before parent closure; exact original evidence is preserved, revised attribution and per-response pricing verified. No optimization task or effectiveness claim.",
+      "report_sha256": "a8d12f6ebd45e3c4eb4128740dd9b1a9a164ef554e301585e7632fc557d8b435"
     }
   ],
   "version": 1
