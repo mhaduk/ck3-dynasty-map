@@ -65,6 +65,23 @@ class ExecutionReviewTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 review.ingest(path, report, **{**args, "decision": "NO ACTION"})
 
+    def test_same_task_attempt_accepts_distinct_cycle_identities(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "inventory.json"
+            report = sample(); sha = report_sha(report)
+            args = dict(task_id="T023-EXECUTE-TEST", attempt=1, report_sha256=sha,
+                        observations=[], decision="KEEP OBSERVING", rationale="cycle evidence",
+                        evidence="handoff:T023-EXECUTE-TEST", today="2026-01-01")
+            one = review.ingest(path, report, **args, cycle_id="R1")
+            two = review.ingest(path, report, **args, cycle_id="C1")
+            again = review.ingest(path, report, **args, cycle_id="R1")
+            self.assertEqual(len(two["ledger"]), 2)
+            self.assertEqual(again["ledger"], two["ledger"])
+            self.assertEqual({x["identity"] for x in two["ledger"]},
+                             {"T023-EXECUTE-TEST:1:R1", "T023-EXECUTE-TEST:1:C1"})
+            with self.assertRaises(ValueError):
+                review.ingest(path, report, **args, cycle_id="bad/../id")
+
     def test_rejects_unverified_effectiveness_without_later_evidence(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "inventory.json"

@@ -140,3 +140,18 @@ one provenance object followed by one review object, not a nested Markdown
 fence around both. The receipt parser checks that ordering. The helper does no
 GitHub action or optimization recommendation; only the GUI decides whether to
 create a separate optimization task. One GUI inventory writer runs at a time.
+
+Enabled independent implementation-review tasks retain each executor, reviewer
+and correction cycle as a separate immutable factual artifact with an optional
+short T-021 observation attachment. The deterministic final receipt reports
+the frozen finite/open policy, separate review/correction counts, first-pass
+acceptance, repeated finding occurrences and GUI acceptance/rejection signals.
+These are derived from recorded events; unresolved recurrence alone does not
+force escalation. Known metrics and existing T-002 usage
+references may be attached; unknown values remain `null`, and T-012 GUI-context
+history remains separate. GUI validates and triages these cycle observations
+into the same inventory before receipt. The lifecycle helper never writes the
+live inventory; tests use temporary synthetic inventory fixtures.
+The final receipt distinguishes reviewer resolutions from executor claims and
+lists one final disposition and evidence per material finding; `FIXED` alone
+does not count as independent resolution.

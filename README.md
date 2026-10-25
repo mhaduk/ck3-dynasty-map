@@ -51,6 +51,7 @@ color-source feasibility. All Dynasties remains deferred.
 - [Completed task history](docs/TASK_HISTORY.md)
 - [Subview definitions and appearance (F-003)](docs/tasks/F-003-dynasty-subview-definitions.md)
 - [Codex workflow](docs/CODEX_WORKFLOW.md)
+- [Implementation review](docs/IMPLEMENTATION_REVIEW.md)
 
 - [Project charter](docs/PROJECT_CHARTER.md)
 - [Architecture](docs/ARCHITECTURE.md)

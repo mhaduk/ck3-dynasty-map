@@ -91,6 +91,26 @@ the plan fingerprint, rejects stale or incomplete mappings, and escapes table
 cells. For more than ten milestones, GUI authors ordered meaningful groups.
 Planless legacy handoffs retain the five-row table.
 
+When independent implementation review is enabled, GUI supplies the paired
+contract JSON with `handoff.py create --review-contract`. Bind the parent ID,
+acceptance revision, execution scope/permissions/validation, exact
+`execution_plan` and canonical `plan_summary` hash, selected executor and
+reviewer profiles with rationale, review dimensions, escalation rules, and an
+explicit `MAX_CYCLES` positive maximum or `UNTIL_ACCEPTED_OR_ESCALATED` null
+maximum with rationale. The frozen contract is the only renderer source for
+plan, profiles, policy and budget. Pass the delegation folder ID as `task_id`
+and its registered `STATUS.json.parent_id` as `parent_id`, alongside the exact
+contract: `review_loop={"task_id": <delegation ID>, "parent_id": <registered parent ID>, "contract": ...}`.
+The normal renderer resolves the registered delegation from the repository
+root, validates its frozen paired contract and parent binding, and rejects
+caller contract data that differs from registered bytes. The pure formatting
+helper does not verify registration. The renderer uses the
+delegation ID in all four operational commands.
+Preserve existing time/steps and saved GUI text estimates, and keep the frozen
+plan last. Do not infer a budget. See
+[`IMPLEMENTATION_REVIEW.md`](IMPLEMENTATION_REVIEW.md) for exact command
+routing, correction completion, recovery and T-021 receipt semantics.
+
 ## Compact result example
 
 Keep the exact top-level headings and required success/check/provenance grammar

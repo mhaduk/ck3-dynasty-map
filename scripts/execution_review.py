@@ -144,6 +144,10 @@ def _validate_inventory(data):
     identities = set()
     for entry in data["ledger"]:
         if not isinstance(entry, dict) or not isinstance(entry.get("identity"), str) or not re.fullmatch(r"[0-9a-f]{64}", str(entry.get("content_sha256", ""))) or not re.fullmatch(r"[0-9a-f]{64}", str(entry.get("report_sha256", ""))): raise ValueError("invalid inventory ledger entry")
+        if "cycle_id" in entry and (not isinstance(entry["cycle_id"], str)
+                or not re.fullmatch(r"[A-Z][A-Z0-9-]{0,63}", entry["cycle_id"])
+                or not entry["identity"].endswith(":" + entry["cycle_id"])):
+            raise ValueError("invalid cycle-specific ledger identity")
         if entry["identity"] in identities: raise ValueError("duplicate inventory ledger identity")
         identities.add(entry["identity"])
         if "observation_keys" in entry:
@@ -255,7 +259,7 @@ def _write_atomic(path, data):
         if os.path.exists(tmp): os.unlink(tmp)
 
 
-def ingest(path, report, *, task_id, attempt, report_sha256, observations, decision, rationale, evidence, today=None):
+def ingest(path, report, *, task_id, attempt, report_sha256, observations, decision, rationale, evidence, today=None, cycle_id=None):
     """GUI-only triage. Each observation owns its assessment and evidence history."""
     if decision not in DECISIONS: raise ValueError("invalid GUI decision")
     _public_text(rationale, "decision rationale", 1000)
@@ -298,7 +302,9 @@ def ingest(path, report, *, task_id, attempt, report_sha256, observations, decis
             _date(provenance["date"], "execution provenance date")
             _evidence(provenance["evidence"], "execution provenance evidence")
             if provenance["task_id"] != task_id or provenance["date"] != stamp: raise ValueError("execution provenance must match the current task and occurrence date")
-    identity = f"{task_id}:{attempt}"
+    if cycle_id is not None and (not isinstance(cycle_id, str) or not re.fullmatch(r"[A-Z][A-Z0-9-]{0,63}", cycle_id)):
+        raise ValueError("cycle_id must be a stable bounded cycle identifier")
+    identity = f"{task_id}:{attempt}" + (f":{cycle_id}" if cycle_id is not None else "")
     semantic = {"report_sha256": report_sha256, "observations": observations, "decision": decision, "rationale": rationale, "evidence": evidence}
     content_sha256 = hashlib.sha256(json.dumps(semantic, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
     ledger_id = hashlib.sha256((identity + content_sha256).encode()).hexdigest()
@@ -345,7 +351,7 @@ def ingest(path, report, *, task_id, attempt, report_sha256, observations, decis
         if boundary and boundary != item.get("optimization_boundary"):
             item["optimization_boundary"] = boundary; item["boundary_history"].append({"date": stamp, "task": task_id, "boundary": boundary, "decision": obs_decision, "rationale": obs_rationale})
     if len(data["ledger"]) >= MAX_LEDGER: raise ValueError("inventory record limit reached")
-    data["ledger"].append({"id": ledger_id, "identity": identity, "report_sha256": report_sha256, "content_sha256": content_sha256, "observation_keys": keys, "date": stamp, "decision": decision, "rationale": rationale, "evidence": evidence})
+    data["ledger"].append({"id": ledger_id, "identity": identity, **({"cycle_id": cycle_id} if cycle_id is not None else {}), "report_sha256": report_sha256, "content_sha256": content_sha256, "observation_keys": keys, "date": stamp, "decision": decision, "rationale": rationale, "evidence": evidence})
     _write_atomic(path, data)
     return data
 
@@ -371,8 +377,8 @@ def main():
         try: payload = json.loads(args.decision_json.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, UnicodeError) as exc: raise ValueError(f"malformed triage JSON: {exc}") from exc
         required = {"report", "task_id", "attempt", "report_sha256", "observations", "decision", "rationale", "evidence"}
-        if not isinstance(payload, dict) or set(payload) != required: raise ValueError("triage JSON must have exactly the documented fields")
-        ingest(args.inventory, payload["report"], task_id=payload["task_id"], attempt=payload["attempt"], report_sha256=payload["report_sha256"], observations=payload["observations"], decision=payload["decision"], rationale=payload["rationale"], evidence=payload["evidence"])
+        if not isinstance(payload, dict) or set(payload) not in (required, required | {"cycle_id"}): raise ValueError("triage JSON must have exactly the documented fields, with optional cycle_id")
+        ingest(args.inventory, payload["report"], task_id=payload["task_id"], attempt=payload["attempt"], report_sha256=payload["report_sha256"], observations=payload["observations"], decision=payload["decision"], rationale=payload["rationale"], evidence=payload["evidence"], cycle_id=payload.get("cycle_id"))
         print("GUI triage ingested")
 
 

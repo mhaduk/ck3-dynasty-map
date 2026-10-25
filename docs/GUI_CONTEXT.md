@@ -52,6 +52,20 @@ Use at most ten bullets and group plans above ten milestones explicitly. A
 fingerprint mismatch or incomplete/reordered IDs fails closed. Planless older
 receipts continue to render their original five rows.
 
+For a task explicitly enabled for independent implementation review, keep this
+saved GUI text estimate and the existing time/steps as rows 9 and 8 of the
+single ten-row table. Rows 1–7 identify the persistent executor, fresh reviewer,
+original-session correction command, GUI return and explicitly selected finite
+or open-ended correction policy. `Plan of execution` remains row 10 and the last row. See
+[`IMPLEMENTATION_REVIEW.md`](IMPLEMENTATION_REVIEW.md); disabled handoffs use
+the existing five/six-row layout.
+For the review-enabled renderer, use the registered delegation folder ID for
+`review_loop.task_id` and its `STATUS.json.parent_id` for `review_loop.parent_id`;
+the paired contract retains the parent issue ID and all four commands use the
+delegation ID. Supply the repository root to the normal renderer so it can
+validate the registered status and exact frozen paired contract before
+rendering; the pure formatter is not the GUI preparation entrypoint.
+
 ## History and privacy
 
 One aggregate JSONL history is created at

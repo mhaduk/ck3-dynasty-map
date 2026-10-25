@@ -23,11 +23,12 @@ class HandoffTests(unittest.TestCase):
         self.root.mkdir()
         (self.root / ".codex-sync").mkdir()
         (self.root / "input.md").write_text("input-v1\n")
+        (self.root / "fixture.md").write_text("fixture input\n")
         (self.root / "docs").mkdir()
         fixture = {"version": 1, "repository": "mhaduk/ck3-dynasty-map", "issues": [
             {"number": n, "title": f"{task} — Synthetic offline fixture", "state": "OPEN",
              "url": f"https://github.com/mhaduk/ck3-dynasty-map/issues/{n}"}
-            for task, n in (("T-001", 23), ("T-003", 25))]}
+            for task, n in (("T-001", 23), ("T-003", 25), ("T-024", 26))]}
         (self.root / "docs/task-registry.json").write_text(json.dumps(fixture))
 
     def tearDown(self):
@@ -604,6 +605,21 @@ class HandoffTests(unittest.TestCase):
     def plan(self, count=3):
         return {"total_steps": count, "steps": [{"id": f"stage{i}", "label": f"Major stage {i}"} for i in range(count)]}
 
+    def paired_contract(self, review_module, plan, budget=3):
+        module = self.load_helper()
+        summary = {"plan_sha256": module.plan_fingerprint(plan), "bullets": [
+            {"ids": [step["id"]], "text": step["label"]} for step in plan["steps"]]}
+        summary_hash = hashlib.sha256(json.dumps(summary, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
+        return {"version": 1, "task_id": "T-003", "revision": 2,
+                "execution": {"scope": "bounded", "acceptance": "receipt verified", "permissions": "offline",
+                    "invariants": "fixture only", "inputs": ["input.md"],
+                    "plan_of_execution": [b["text"] for b in summary["bullets"]], "plan_summary_sha256": summary_hash,
+                    "executor_profile": {"requested_model": "gpt-6-luna", "requested_reasoning": "medium", "justification": "fixture"},
+                    "validation": ["test"]},
+                "review": {"dimensions": list(review_module.REVIEW_DIMENSIONS), "budget": {"max_changed_files": 10, "max_evidence_items": 20},
+                    "profile": {"requested_model": "gpt-6.1-sol", "requested_reasoning": "medium", "justification": "fixture"}},
+                "loop": {"enabled": True, "correction_budget": budget, "budget_rationale": "GUI-selected fixture budget", "escalation": "scope conflict"}}
+
     def planned(self, task_id="T-003-PLAN", count=3):
         self.run_cli("create", task_id, "--parent", "T-003", "--task", "Bounded offline work.",
                      "--input", "input.md", "--check", "unit suite", "--execution-plan", json.dumps(self.plan(count)))
@@ -649,6 +665,108 @@ class HandoffTests(unittest.TestCase):
         self.assertEqual(self.status(directory)["progress"]["plan"], self.plan(1))
         for index, bad in enumerate((task + task, '```json\n{"execution_plan":\n```\n', task.rsplit("```", 1)[0])):
             self.run_cli("create", f"T-003-INLINE-BAD-{index}", "--parent", "T-003", "--task", bad, ok=False)
+
+    def test_review_contract_is_frozen_and_rendered_as_one_ten_row_table(self):
+        module = self.load_helper()
+        review_module_spec = importlib.util.spec_from_file_location("review_contract_fixture", SCRIPT.with_name("implementation_review.py"))
+        review_module = importlib.util.module_from_spec(review_module_spec); review_module_spec.loader.exec_module(review_module)
+        plan = self.plan(2); paired = self.paired_contract(review_module, plan, budget=10)
+        summary = {"plan_sha256": module.plan_fingerprint(plan), "bullets": [
+            {"ids": ["stage0"], "text": "Major stage 0"}, {"ids": ["stage1"], "text": "Major stage 1"}]}
+        task = "Work\n\n```json\n" + json.dumps({"execution_plan": plan}) + "\n```\n\n## Execution plan summary\n\n```json\n" + json.dumps({"plan_summary": summary}) + "\n```\n"
+        self.run_cli("create", "T-003-PAIRED", "--parent", "T-003", "--task", task, "--input", "input.md", "--review-contract", json.dumps(paired))
+        directory = self.root / ".codex-sync/tasks/T-003-PAIRED"
+        self.assertTrue((directory / "IMPLEMENTATION_REVIEW_CONTRACT.json").is_file())
+        self.assertTrue(self.run_cli("validate", "T-003-PAIRED").stdout)
+        plan = self.plan(2)
+        rows = [("CLI pickup", "old"), ("GUI receipt", "old"), ("Model / reasoning level", "old"),
+                ("Estimated CLI time / steps", "20–60 min / 8 steps"), ("szacowane tokeny/wiadomości", "3532 tokenów; 11 wiadomości")]
+        loop = {"task_id": "T-003-PAIRED", "parent_id": "T-003", "contract": paired,
+                "time_steps": "20–60 min / 8 steps", "gui_estimate": "3532 tokenów; 11 wiadomości"}
+        rendered = module.render_handoff_table(rows, plan, summary, review_loop=loop, root=self.root)
+        self.assertEqual(sum(line.startswith("| ") for line in rendered.splitlines()) - 1, 10)
+        for command in ("wykonaj T-003-PAIRED", "sprawdź T-003-PAIRED", "popraw T-003-PAIRED R&lt;n&gt;", "gotowe T-003-PAIRED"):
+            self.assertIn(command, rendered)
+        self.assertNotIn("wykonaj T-003 ", rendered)
+        self.assertIn("max 10 corrections", rendered)
+        self.assertTrue(rendered.endswith("| Plan of execution | • Major stage 0<br>• Major stage 1 |"))
+        self.assertIn("gpt-6-luna / Medium", rendered)
+        self.assertIn("gpt-6.1-sol / Medium", rendered)
+        with self.assertRaises(module.HandoffError):
+            module.render_handoff_table(rows, plan, summary, review_loop={**loop, "contract": {**paired,
+                "execution": {**paired["execution"], "plan_of_execution": ["different", "plan"]}},
+                }, root=self.root)
+        with self.assertRaises(module.HandoffError):
+            module.render_handoff_table(rows, plan, summary, review_loop={**loop, "parent_id": "T-004"}, root=self.root)
+        opened = json.loads(json.dumps(paired))
+        opened["version"] = 2
+        opened["loop"].update(correction_policy="UNTIL_ACCEPTED_OR_ESCALATED", correction_budget=None)
+        open_task = "Work\n\n```json\n" + json.dumps({"execution_plan": plan}) + "\n```\n\n## Execution plan summary\n\n```json\n" + json.dumps({"plan_summary": summary}) + "\n```\n"
+        self.run_cli("create", "T-003-PAIRED-OPEN", "--parent", "T-003", "--task", open_task,
+                     "--input", "input.md", "--review-contract", json.dumps(opened))
+        open_loop = {**loop, "task_id": "T-003-PAIRED-OPEN", "contract": opened}
+        opened_rendered = module.render_handoff_table(rows, plan, summary, review_loop=open_loop, root=self.root)
+        self.assertIn("wykonaj T-003-PAIRED", opened_rendered)
+        self.assertIn("until accepted or escalated · no numeric correction limit", opened_rendered)
+        with self.assertRaises(module.HandoffError):
+            module.render_handoff_table(rows, plan, summary, review_loop={**open_loop, "task_id": "T999-UNREGISTERED"}, root=self.root)
+        unrelated = json.loads(json.dumps(paired)); unrelated["task_id"] = "T-024"
+        self.run_cli("create", "T-024-OTHER", "--parent", "T-024", "--issue", "26", "--task", task,
+                     "--input", "input.md", "--review-contract", json.dumps(unrelated))
+        with self.assertRaises(module.HandoffError):
+            module.render_handoff_table(rows, plan, summary,
+                review_loop={**loop, "task_id": "T-024-OTHER", "parent_id": "T-023"}, root=self.root)
+        with self.assertRaises(module.HandoffError):
+            module.render_handoff_table(rows, plan, summary, review_loop=loop)
+
+    def test_enabled_receipt_resolution_requires_current_reviewer_terminal_verdict(self):
+        review_module_spec = importlib.util.spec_from_file_location("review_gate_fixture", SCRIPT.with_name("implementation_review.py"))
+        review_module = importlib.util.module_from_spec(review_module_spec); review_module_spec.loader.exec_module(review_module)
+        plan = self.plan(1); paired = self.paired_contract(review_module, plan, budget=1)
+        paired["execution"]["inputs"] = ["fixture.md"]
+        directory = self.root / ".codex-sync/tasks/T-003-REVIEW-GATE"
+        summary = {"plan_sha256": self.load_helper().plan_fingerprint(plan), "bullets": [{"ids": ["stage0"], "text": "Major stage 0"}]}
+        task = "Work\n\n```json\n" + json.dumps({"execution_plan": plan}) + "\n```\n\n## Execution plan summary\n\n```json\n" + json.dumps({"plan_summary": summary}) + "\n```\n"
+        self.run_cli("create", directory.name, "--parent", "T-003", "--task", task, "--input", "fixture.md", "--owned", "input.md", "--review-contract", json.dumps(paired))
+        self.claim(directory.name)
+        self.progress(directory, "--start", "stage0")
+        self.progress(directory, "--done", "stage0")
+        (self.root / "input.md").write_text("changed for reviewed fixture\n")
+        self.write_result(directory)
+        self.run_cli("complete", directory.name, "--owner", "worker-a", "--revision", str(self.status(directory)["revision"]))
+        self.run_cli("resolve", directory.name, "--receipt", ok=False)
+        review_module.initialize(self.root, directory.name, paired,
+            result_path=f".codex-sync/tasks/{directory.name}/CLI_RESULT.md", changed_paths=["input.md"])
+        review_module.begin_review(self.root, directory.name, review_id="R1",
+            result_path=f".codex-sync/tasks/{directory.name}/CLI_RESULT.md", changed_paths=["input.md"], reviewer_identity="reviewer-1")
+        review_module.submit_review(self.root, directory.name, review_id="R1", verdict="ACCEPTED", findings=[],
+            result_path=f".codex-sync/tasks/{directory.name}/CLI_RESULT.md", changed_paths=["input.md"], reviewer_identity="reviewer-1",
+            reviewer_profile=None, dimensions={name: "checked: fixture" for name in review_module.REVIEW_DIMENSIONS}, read_only_attestation=True)
+        execution_review_spec = importlib.util.spec_from_file_location("triage_execution_review", SCRIPT.with_name("execution_review.py"))
+        execution_review = importlib.util.module_from_spec(execution_review_spec); execution_review_spec.loader.exec_module(execution_review)
+        inventory = self.root / "docs/telemetry/optimization-inventory.json"
+        inventory.parent.mkdir(parents=True, exist_ok=True)
+        reports = review_module.cycle_reports(self.root, directory.name)
+        with self.assertRaises(review_module.ReviewError):
+            review_module.require_cycle_triage(self.root, directory.name)
+        for cycle in reports:
+            execution_review.ingest(inventory, cycle["report"], task_id=directory.name, attempt=1,
+                report_sha256=cycle["report_sha256"], observations=[], decision="KEEP OBSERVING",
+                rationale="synthetic lifecycle evidence", evidence="handoff:synthetic", cycle_id=cycle["cycle_id"])
+            review_module.record_cycle_triage(self.root, directory.name, cycle_id=cycle["cycle_id"],
+                inventory_path=inventory, actor="GUI")
+        result_body = (directory / "CLI_RESULT.md").read_text(encoding="utf-8")
+        provenance_end = result_body.index("\n```", result_body.index("```json")) + len("\n```")
+        final_report = execution_review.extract_review(result_body, after=provenance_end)
+        final_hash = hashlib.sha256(json.dumps(final_report, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
+        execution_review.ingest(inventory, final_report, task_id=directory.name, attempt=1,
+            report_sha256=final_hash, observations=[], decision="KEEP OBSERVING",
+            rationale="synthetic final receipt", evidence="handoff:synthetic")
+        review_module.require_cycle_triage(self.root, directory.name)
+        self.assertEqual(self.run_cli("resolve", directory.name, "--receipt").stdout.strip(), directory.name)
+        status = self.status(directory)
+        self.run_cli("consume", directory.name, "--revision", str(status["revision"]), "--review", "GUI accepted first-pass fixture")
+        self.assertEqual(self.status(directory)["status"], "CONSUMED")
 
     def test_plan_summary_table_order_grouping_staleness_and_legacy(self):
         spec = importlib.util.spec_from_file_location("handoff_summary", SCRIPT)

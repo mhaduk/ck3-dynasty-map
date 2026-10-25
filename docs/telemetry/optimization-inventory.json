@@ -99,20 +99,33 @@
     {
       "affected_executions": [
         "T021-EXECUTE-20261025-01",
-        "T021-FIX-20261025-02"
+        "T021-FIX-20261025-02",
+        "T023-FIX-20261025-02",
+        "T023-VERIFY-20261025-04",
+        "T023-FIX-20261025-05",
+        "T023-VERIFY-20261025-06",
+        "T023-FIX-20261025-07",
+        "T023-VERIFY-20261025-08"
       ],
       "affected_tasks": [
         "T021-EXECUTE-20261025-01",
-        "T021-FIX-20261025-02"
+        "T021-FIX-20261025-02",
+        "T023-FIX-20261025-02",
+        "T023-VERIFY-20261025-04",
+        "T023-FIX-20261025-05",
+        "T023-VERIFY-20261025-06",
+        "T023-FIX-20261025-07",
+        "T023-VERIFY-20261025-08"
       ],
       "boundary_history": [],
       "category": "unknown",
       "decision": {
         "date": "2026-10-25",
         "evidence": [
-          "handoff:T021-FIX-20261025-02"
+          "handoff:T023-VERIFY-20261025-08",
+          "evidence:T023-GUI-REVIEW-20261025-08"
         ],
-        "rationale": "Second occurrence of platform path recovery; impact duration and token cost remain unknown.",
+        "rationale": "GUI verifies exact accepted reviewer/source binding and decisive evidence, accepting the bounded implementation. Preserve recovered-error recurrence and limits without claiming measured effectiveness, optimization success or missing runtime counters as zero.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0003",
@@ -159,6 +172,162 @@
           "task": "T021-FIX-20261025-02",
           "text": "CLI recovered Python cache permissions and canonical platform temporary-directory aliases before the final test run.",
           "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-FIX-20261025-02",
+              "evidence:T023-GUI-REVIEW-20261025-02"
+            ],
+            "rationale": "Retain repeated execution evidence; fix the current task within scope. No new optimization is authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-FIX-20261025-02",
+            "evidence:T023-GUI-REVIEW-20261025-02"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-FIX-20261025-02",
+          "text": "CLI reports recovered parser lookup, exception wrapping, fixture isolation, cache storage and public-evidence path validation failures.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-VERIFY-20261025-04",
+              "evidence:T023-GUI-REVIEW-20261025-04"
+            ],
+            "rationale": "GUI accepts the completed read-only assessment, not the implementation. Four bounded findings require the selected third correction; retain recurrence evidence, no separate optimization or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-VERIFY-20261025-04",
+            "evidence:T023-GUI-REVIEW-20261025-04"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-VERIFY-20261025-04",
+          "text": "Reviewer corrected named-path discovery after an absent optional root and corrected only the disposable inventory location before both-policy integration passed. No implementation changes.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-FIX-20261025-05",
+              "evidence:T023-GUI-REVIEW-20261025-05"
+            ],
+            "rationale": "GUI verified exact completed bytes/provenance and reviewed reported recoveries. Keep observed recurrence without acceptance/effectiveness claims or new optimization work; commission fresh independent review of the third corrected candidate."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-FIX-20261025-05",
+            "evidence:T023-GUI-REVIEW-20261025-05"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-FIX-20261025-05",
+          "text": "Executor corrected a nonexistent unittest class selection and distinguished source denial-regex literals from actual private values. Known command time is not total execution time; runtime token counters remain unavailable.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-VERIFY-20261025-06",
+              "evidence:T023-GUI-REVIEW-20261025-06"
+            ],
+            "rationale": "GUI verified exact receipts/source binding and reviewed decisive normal-operation probes and implicated source. Three bounded residual defects prevent acceptance. Explicit separate GUI decision amends this bootstrap budget; no optimization or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-VERIFY-20261025-06",
+            "evidence:T023-GUI-REVIEW-20261025-06"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-VERIFY-20261025-06",
+          "text": "Reviewer adjusted temporary capture to the bridge exception type, used persisted telemetry cycle identities and restored the helper import path; reruns passed without implementation changes.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-FIX-20261025-07",
+              "evidence:T023-GUI-REVIEW-20261025-07"
+            ],
+            "rationale": "GUI verified exact completed bytes and receipt. Retain reported repeated recovery/rework; candidate fixes require fresh independent review. No separate optimization or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-FIX-20261025-07",
+            "evidence:T023-GUI-REVIEW-20261025-07"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-FIX-20261025-07",
+          "text": "Executor reports retrying the read with the path quoted as one argument. No task-context mutation occurred; no independent effectiveness or total-time claim follows.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-VERIFY-20261025-08",
+              "evidence:T023-GUI-REVIEW-20261025-08"
+            ],
+            "rationale": "GUI verifies exact accepted reviewer/source binding and decisive evidence, accepting the bounded implementation. Preserve recovered-error recurrence and limits without claiming measured effectiveness, optimization success or missing runtime counters as zero."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-VERIFY-20261025-08",
+            "evidence:T023-GUI-REVIEW-20261025-08"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-VERIFY-20261025-08",
+          "text": "Reviewer used section-sized reads after truncation and restored the normal scripts import directory for an optional receipt checker. Candidate bytes and test outcomes were unchanged.",
+          "trend": "REPEATED"
         }
       ],
       "key": "tooling.platform-path-import-recovery",
@@ -177,31 +346,31 @@
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 2
+          "unknown_count": 8
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 2
+          "unknown_count": 8
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 2
+          "unknown_count": 8
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 2
+          "unknown_count": 8
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 2
+          "unknown_count": 8
         }
       },
       "metrics": {},
-      "occurrence_count": 2,
+      "occurrence_count": 8,
       "schema_history": [
         {
           "date": "2026-10-25",
@@ -565,19 +734,24 @@
     },
     {
       "affected_executions": [
-        "T021-COST-COLLECT-20261025-03"
+        "T021-COST-COLLECT-20261025-03",
+        "T023-EXECUTE-20261025-01",
+        "T023-FIX-20261025-03"
       ],
       "affected_tasks": [
-        "T021-COST-COLLECT-20261025-03"
+        "T021-COST-COLLECT-20261025-03",
+        "T023-EXECUTE-20261025-01",
+        "T023-FIX-20261025-03"
       ],
       "boundary_history": [],
       "category": "errors_recovery",
       "decision": {
         "date": "2026-10-25",
         "evidence": [
-          "handoff:T021-COST-COLLECT-20261025-03"
+          "handoff:T023-FIX-20261025-03",
+          "evidence:T023-GUI-REVIEW-20261025-03"
         ],
-        "rationale": "Guard worked; retain occurrence evidence for future comparison.",
+        "rationale": "GUI verified the exact completed receipt and output bytes; retain reported recoveries and rework without an effectiveness or implementation-acceptance claim. Independent review is next; no separate optimization task.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0007",
@@ -606,6 +780,58 @@
           "task": "T021-COST-COLLECT-20261025-03",
           "text": "A stale progress update was rejected; CLI reread the persisted revision and continued without state mutation.",
           "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-EXECUTE-20261025-01",
+              "evidence:T023-GUI-REVIEW-20261025-01"
+            ],
+            "rationale": "Record execution and review evidence; current authorized correction addresses task defects. No separate optimization is authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-EXECUTE-20261025-01",
+            "evidence:T023-GUI-REVIEW-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-EXECUTE-20261025-01",
+          "text": "The existing guard rejected revision 1 after claim advanced it; CLI reread status and continued.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-FIX-20261025-03",
+              "evidence:T023-GUI-REVIEW-20261025-03"
+            ],
+            "rationale": "GUI verified the exact completed receipt and output bytes; retain reported recoveries and rework without an effectiveness or implementation-acceptance claim. Independent review is next; no separate optimization task."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-FIX-20261025-03",
+            "evidence:T023-GUI-REVIEW-20261025-03"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-FIX-20261025-03",
+          "text": "Executor reports two rejected stale progress commands and one rejected completion before the last milestone; persisted revision and milestone completion recovered them.",
+          "trend": "REPEATED"
         }
       ],
       "key": "handoff.stale-progress-revision",
@@ -616,35 +842,35 @@
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 3
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 3
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 3
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 3
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 3
         }
       },
       "metrics": {},
-      "occurrence_count": 1,
+      "occurrence_count": 3,
       "schema_history": [],
       "status": "observing",
       "summary": "A stale progress update was rejected; CLI reread the persisted revision and continued without state mutation.",
-      "trend": "NEW"
+      "trend": "REPEATED"
     },
     {
       "affected_executions": [
@@ -728,6 +954,374 @@
       "status": "observing",
       "summary": "All inspected metadata headers exceeded the allowed prefix; linked review coverage remains unavailable.",
       "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T023-EXECUTE-20261025-01"
+      ],
+      "affected_tasks": [
+        "T023-EXECUTE-20261025-01"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T023-EXECUTE-20261025-01",
+          "evidence:T023-GUI-REVIEW-20261025-01"
+        ],
+        "rationale": "Record execution and review evidence; current authorized correction addresses task defects. No separate optimization is authorized.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0009",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-EXECUTE-20261025-01",
+              "evidence:T023-GUI-REVIEW-20261025-01"
+            ],
+            "rationale": "Record execution and review evidence; current authorized correction addresses task defects. No separate optimization is authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-EXECUTE-20261025-01",
+            "evidence:T023-GUI-REVIEW-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-EXECUTE-20261025-01",
+          "text": "CLI moved two evidence files to declared sibling output paths before successful completion.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.exact-output-directory",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Required outputs were initially written into administration paths.",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T023-EXECUTE-20261025-01",
+        "T023-FIX-20261025-02",
+        "T023-FIX-20261025-03",
+        "T023-VERIFY-20261025-04",
+        "T023-FIX-20261025-05",
+        "T023-VERIFY-20261025-06",
+        "T023-FIX-20261025-07",
+        "T023-VERIFY-20261025-08"
+      ],
+      "affected_tasks": [
+        "T023-EXECUTE-20261025-01",
+        "T023-FIX-20261025-02",
+        "T023-FIX-20261025-03",
+        "T023-VERIFY-20261025-04",
+        "T023-FIX-20261025-05",
+        "T023-VERIFY-20261025-06",
+        "T023-FIX-20261025-07",
+        "T023-VERIFY-20261025-08"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T023-VERIFY-20261025-08",
+          "evidence:T023-GUI-REVIEW-20261025-08"
+        ],
+        "rationale": "GUI verifies exact accepted reviewer/source binding and decisive evidence, accepting the bounded implementation. Preserve recovered-error recurrence and limits without claiming measured effectiveness, optimization success or missing runtime counters as zero.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0010",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-EXECUTE-20261025-01",
+              "evidence:T023-GUI-REVIEW-20261025-01"
+            ],
+            "rationale": "Record execution and review evidence; current authorized correction addresses task defects. No separate optimization is authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-EXECUTE-20261025-01",
+            "evidence:T023-GUI-REVIEW-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-EXECUTE-20261025-01",
+          "text": "GUI reproduced budget replay, foreign-contract receipt acceptance and mutable-projection acceptance after 123 passing tests.",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-FIX-20261025-02",
+              "evidence:T023-GUI-REVIEW-20261025-02"
+            ],
+            "rationale": "Retain repeated execution evidence; fix the current task within scope. No new optimization is authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-FIX-20261025-02",
+            "evidence:T023-GUI-REVIEW-20261025-02"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-FIX-20261025-02",
+          "text": "GUI independently passed 135 tests, then reproduced a changed frozen budget and GUI readiness without an immutable escalation event.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-FIX-20261025-03",
+              "evidence:T023-GUI-REVIEW-20261025-03"
+            ],
+            "rationale": "GUI verified the exact completed receipt and output bytes; retain reported recoveries and rework without an effectiveness or implementation-acceptance claim. Independent review is next; no separate optimization task."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-FIX-20261025-03",
+            "evidence:T023-GUI-REVIEW-20261025-03"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-FIX-20261025-03",
+          "text": "Executor reports correcting an overstrict event-order guard and an altered symlink assertion before the claimed 146-test pass; independent review remains pending.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-VERIFY-20261025-04",
+              "evidence:T023-GUI-REVIEW-20261025-04"
+            ],
+            "rationale": "GUI accepts the completed read-only assessment, not the implementation. Four bounded findings require the selected third correction; retain recurrence evidence, no separate optimization or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-VERIFY-20261025-04",
+            "evidence:T023-GUI-REVIEW-20261025-04"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-VERIFY-20261025-04",
+          "text": "Reviewer independently reports mutable initial executor facts, dropped unresolved findings, parent/delegation command mismatch and incomplete shared-entrypoint prerequisites. GUI checked exact evidence and implicated source slices.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-FIX-20261025-05",
+              "evidence:T023-GUI-REVIEW-20261025-05"
+            ],
+            "rationale": "GUI verified exact completed bytes/provenance and reviewed reported recoveries. Keep observed recurrence without acceptance/effectiveness claims or new optimization work; commission fresh independent review of the third corrected candidate."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-FIX-20261025-05",
+            "evidence:T023-GUI-REVIEW-20261025-05"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-FIX-20261025-05",
+          "text": "Executor reports correcting a creation/read path-guard mixup, a new immutable-file fixture target and final-report ingestion in a disposable integration flow before the claimed 152-test pass; fresh independent review is pending.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-VERIFY-20261025-06",
+              "evidence:T023-GUI-REVIEW-20261025-06"
+            ],
+            "rationale": "GUI verified exact receipts/source binding and reviewed decisive normal-operation probes and implicated source. Three bounded residual defects prevent acceptance. Explicit separate GUI decision amends this bootstrap budget; no optimization or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-VERIFY-20261025-06",
+            "evidence:T023-GUI-REVIEW-20261025-06"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-VERIFY-20261025-06",
+          "text": "Reviewer independently reproduced former-executor review after legitimate recovery, resolved-finding disposition overwritten at budget escalation, and rendering commands for an unrelated registered delegation. Original four reproductions and V1-04 are corrected.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-FIX-20261025-07",
+              "evidence:T023-GUI-REVIEW-20261025-07"
+            ],
+            "rationale": "GUI verified exact completed bytes and receipt. Retain reported repeated recovery/rework; candidate fixes require fresh independent review. No separate optimization or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-FIX-20261025-07",
+            "evidence:T023-GUI-REVIEW-20261025-07"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-FIX-20261025-07",
+          "text": "Executor reports adjusting a registered open-policy fixture, canonical receipt path and immutable review-attempt ID before the claimed 154-test pass; independent verification of the residual invariants remains pending.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T023-VERIFY-20261025-08",
+              "evidence:T023-GUI-REVIEW-20261025-08"
+            ],
+            "rationale": "GUI verifies exact accepted reviewer/source binding and decisive evidence, accepting the bounded implementation. Preserve recovered-error recurrence and limits without claiming measured effectiveness, optimization success or missing runtime counters as zero."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T023-VERIFY-20261025-08",
+            "evidence:T023-GUI-REVIEW-20261025-08"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T023-VERIFY-20261025-08",
+          "text": "Reviewer independently resolves all three residuals with 154 passing tests and 102 probe records, including former-executor exclusion, finite final dispositions and registered renderer bindings. No material finding remains; production effectiveness and runtime attestation remain unknown.",
+          "trend": "REPEATED"
+        }
+      ],
+      "key": "validation.lifecycle-coverage-gaps",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 8
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 8
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 8
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 8
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 8
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 8,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Passing focused tests did not cover material lifecycle failures.",
+      "trend": "REPEATED"
     }
   ],
   "ledger": [
@@ -777,6 +1371,143 @@
       ],
       "rationale": "Three factual observations retained; no separate optimization task. Context-band statement in self-review is incomplete: GUI counted 24 inputs above 128k across both models, not the 19 stated for Luna alone. All measured inputs remain below 272k.",
       "report_sha256": "012c76de81df1e12d19e503b4189b8eae091c5a7ed90f2e13eba0109ed9d16b6"
+    },
+    {
+      "content_sha256": "5231bf8e82fa64c28da1ae1e75d6ce4b298b24575017b5aa56969eb010cdeb42",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T023-EXECUTE-20261025-01",
+        "evidence:T023-GUI-REVIEW-20261025-01"
+      ],
+      "id": "c96bb39a8b25dd809418163d9203c4eb7324ee0ee1b14bedcf03bd00b5354d11",
+      "identity": "T023-EXECUTE-20261025-01:1",
+      "observation_keys": [
+        "handoff.stale-progress-revision",
+        "handoff.exact-output-directory",
+        "validation.lifecycle-coverage-gaps"
+      ],
+      "rationale": "Reviewed all reported recovery and validation observations. Preserve recurrence evidence; GUI requires bounded implementation correction. No optimization task is created.",
+      "report_sha256": "867e0a1e32e1475e572fc412ff7d3b0ac4cf6550829a2af53b0eaf24ffd19fa7"
+    },
+    {
+      "content_sha256": "b342158c3cb41ec3b3e6acb2bea5e89c89b82b7feded0ac17c488801a5f8cb7d",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T023-FIX-20261025-02",
+        "evidence:T023-GUI-REVIEW-20261025-02"
+      ],
+      "id": "de71ee59044ce71a2c38cf74bc11b4688f9dcc6ce85af9c90c2401d07b97ae30",
+      "identity": "T023-FIX-20261025-02:1",
+      "observation_keys": [
+        "validation.lifecycle-coverage-gaps",
+        "tooling.platform-path-import-recovery"
+      ],
+      "rationale": "GUI reviewed the corrected receipt and recovered errors; two remaining invariant failures require correction 2. No separate optimization task.",
+      "report_sha256": "a5e26eae04ade4250bb86604427cbddace7c1d66939a396e6ae89836ab2d093f"
+    },
+    {
+      "content_sha256": "4acb92ea87cb041e8558d7a9b48f42933dc146187ba5753ffc451402377b0591",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T023-FIX-20261025-03",
+        "evidence:T023-GUI-REVIEW-20261025-03"
+      ],
+      "id": "1f40dd367b22f9828feecda731b232187e0ff9870181a9cc229453d3b9d0ea78",
+      "identity": "T023-FIX-20261025-03:1",
+      "observation_keys": [
+        "handoff.stale-progress-revision",
+        "validation.lifecycle-coverage-gaps"
+      ],
+      "rationale": "GUI verified the exact completed receipt and output bytes; retain reported recoveries and rework without an effectiveness or implementation-acceptance claim. Independent review is next; no separate optimization task.",
+      "report_sha256": "336aa1884af10e44a2ab42ddb211fa7c40cc2d1643d0a92fa264940601f625c0"
+    },
+    {
+      "content_sha256": "3d4a480457b71611abd3e75bf8dff51ed6e869f76c5594f70bdf0cda8b0a3703",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T023-VERIFY-20261025-04",
+        "evidence:T023-GUI-REVIEW-20261025-04"
+      ],
+      "id": "e55667a79b3869d007740f3c0bc2881b1669bf1e172301434df20c7cd99dbf1a",
+      "identity": "T023-VERIFY-20261025-04:1",
+      "observation_keys": [
+        "validation.lifecycle-coverage-gaps",
+        "tooling.platform-path-import-recovery"
+      ],
+      "rationale": "GUI accepts the completed read-only assessment, not the implementation. Four bounded findings require the selected third correction; retain recurrence evidence, no separate optimization or effectiveness claim.",
+      "report_sha256": "d103fce2fe44830ca4122fb1384edda57d6a4886466e1d347b90e59fd1dc6351"
+    },
+    {
+      "content_sha256": "fa5f273fcf7203dec1468c15dabf60efcc05ec494f1be2a601ec4ce242508923",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T023-FIX-20261025-05",
+        "evidence:T023-GUI-REVIEW-20261025-05"
+      ],
+      "id": "0d5d64b98b97d6a4ed6993d8d390b650d84997fab9c9e1717273288a662af000",
+      "identity": "T023-FIX-20261025-05:1",
+      "observation_keys": [
+        "validation.lifecycle-coverage-gaps",
+        "tooling.platform-path-import-recovery"
+      ],
+      "rationale": "GUI verified exact completed bytes/provenance and reviewed reported recoveries. Keep observed recurrence without acceptance/effectiveness claims or new optimization work; commission fresh independent review of the third corrected candidate.",
+      "report_sha256": "b4016ef77bdc2249d5823a65aa6fad031398a08f91bf9ae180383d385fbd24d6"
+    },
+    {
+      "content_sha256": "52f25fc273c76227d351187afcc473787c1cd24a763521a9699c33d98fc5007d",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T023-VERIFY-20261025-06",
+        "evidence:T023-GUI-REVIEW-20261025-06"
+      ],
+      "id": "b190349738db1b7b77171fda6b6d386621ac12bf843340fb8a0617b6b7a4339d",
+      "identity": "T023-VERIFY-20261025-06:1",
+      "observation_keys": [
+        "validation.lifecycle-coverage-gaps",
+        "tooling.platform-path-import-recovery"
+      ],
+      "rationale": "GUI verified exact receipts/source binding and reviewed decisive normal-operation probes and implicated source. Three bounded residual defects prevent acceptance. Explicit separate GUI decision amends this bootstrap budget; no optimization or effectiveness claim.",
+      "report_sha256": "5b8f3f27c771a199c7857569b08e772fe99b4a4e41c0d1f9b7f0b569a8598683"
+    },
+    {
+      "content_sha256": "6393dccc289a090e9ce08469230696eef2ddb452530161525fb622fceb60c2e5",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T023-FIX-20261025-07",
+        "evidence:T023-GUI-REVIEW-20261025-07"
+      ],
+      "id": "62805d02f3054bffaf44100e2ef5c04c5337c7049e738cfe093ddcc72129262a",
+      "identity": "T023-FIX-20261025-07:1",
+      "observation_keys": [
+        "validation.lifecycle-coverage-gaps",
+        "tooling.platform-path-import-recovery"
+      ],
+      "rationale": "GUI verified exact completed bytes and receipt. Retain reported repeated recovery/rework; candidate fixes require fresh independent review. No separate optimization or effectiveness claim.",
+      "report_sha256": "379f777e30f9e60fe14a0e15e5acd4d81853dc56a06ac762547c713ca7f25874"
+    },
+    {
+      "content_sha256": "ce9b33ca7aa326e21691cc840294abf1ad749237e1eba977853e7b5e84fbb7ae",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T023-VERIFY-20261025-08",
+        "evidence:T023-GUI-REVIEW-20261025-08"
+      ],
+      "id": "b982fbdde67277075d90dd1c599803b2240da9f9222397125bb029b2d0f25f7c",
+      "identity": "T023-VERIFY-20261025-08:1",
+      "observation_keys": [
+        "validation.lifecycle-coverage-gaps",
+        "tooling.platform-path-import-recovery"
+      ],
+      "rationale": "GUI verifies exact accepted reviewer/source binding and decisive evidence, accepting the bounded implementation. Preserve recovered-error recurrence and limits without claiming measured effectiveness, optimization success or missing runtime counters as zero.",
+      "report_sha256": "c73d588569ed8003d86e56c28e482f3ae5a3d9946450d3bdb757f5cc63dbf015"
     }
   ],
   "version": 1

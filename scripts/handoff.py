@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from contextlib import nullcontext
 from contextlib import contextmanager
 from datetime import datetime, timezone
 import fcntl
@@ -27,7 +28,7 @@ REQUIRED_SECTIONS = (
     "Permissions / Git state", "GUI next step",
 )
 ADMIN_FILES = ("STATUS.json", "CLI_TASK.md", "CLI_RESULT.md", "GUI_REVIEW.md",
-               ".status-lock", ".transition.json")
+               ".status-lock", ".transition.json", "IMPLEMENTATION_REVIEW_CONTRACT.json")
 ADMIN_DIRS = (".claim", "attempts", "baseline", "artifacts")
 
 
@@ -282,8 +283,52 @@ def validate_plan_summary(summary, plan):
     return summary
 
 
-def render_handoff_table(rows, plan=None, summary=None):
+def render_handoff_table(rows, plan=None, summary=None, review_loop=None, root=None):
     """Append the frozen plan row to the five established GUI handoff rows."""
+    if review_loop is not None:
+        try:
+            module_path = Path(__file__).resolve().with_name("implementation_review.py")
+            spec = importlib.util.spec_from_file_location("implementation_review_for_handoff", module_path)
+            if spec is None or spec.loader is None:
+                raise HandoffError("implementation-review helper cannot be loaded")
+            review_helper = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(review_helper)
+            if plan is None or summary is None:
+                raise HandoffError("review-enabled handoff requires the frozen execution plan and summary")
+            summary = validate_plan_summary(summary, plan)
+            bullets = [bullet["text"] for bullet in summary["bullets"]]
+            paired = review_loop["contract"]
+            if root is None:
+                raise HandoffError("review-enabled handoff requires a repository root for registered contract verification")
+            root = repo_root(root)
+            if [bullet["text"] for bullet in summary["bullets"]] != paired.get("execution", {}).get("plan_of_execution"):
+                raise HandoffError("rendered plan differs from the frozen paired contract")
+            summary_hash = hashlib.sha256(json.dumps(summary, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
+            if paired.get("execution", {}).get("plan_summary_sha256") != summary_hash:
+                raise HandoffError("rendered plan summary differs from the frozen paired contract")
+            delegation_id = review_loop["task_id"]
+            parent_id = review_loop.get("parent_id")
+            directory = task_dir(root, delegation_id)
+            registered_status = read_status(root, directory)
+            if registered_status.get("id") != delegation_id:
+                raise HandoffError("registered delegation identity does not match requested handoff")
+            contract(root, directory, registered_status)
+            contract_path = safe_path(root, directory / "IMPLEMENTATION_REVIEW_CONTRACT.json", "file", required=True)
+            registered_contract = json.loads(contract_path.read_text(encoding="utf-8"))
+            if registered_status.get("review_contract_sha256") is None or registered_contract != paired:
+                raise HandoffError("review contract differs from the registered frozen delegation contract")
+            parent_id = registered_status.get("parent_id")
+            if review_loop.get("parent_id") != parent_id:
+                raise HandoffError("rendered parent differs from registered delegation parent")
+            if parent_id != paired.get("task_id") or delegation_id == parent_id:
+                raise HandoffError("review-enabled renderer requires distinct registered delegation and parent IDs")
+            if not ID_RE.fullmatch(delegation_id) or not ID_RE.fullmatch(parent_id):
+                raise HandoffError("review-enabled renderer received an invalid handoff identity")
+            rendered = review_helper.render_enabled_handoff(delegation_id, parent_id=parent_id, contract=paired,
+                time_steps=review_loop["time_steps"], gui_estimate=review_loop["gui_estimate"])
+            return rendered
+        except (KeyError, ValueError) as exc:
+            raise HandoffError(f"invalid review-enabled handoff: {exc}") from exc
     if len(rows) != 5:
         raise HandoffError("handoff table requires the five established rows")
     output = ["| | Command / value |", "|---|---|"]
@@ -447,11 +492,64 @@ def registry_check(root, status):
         raise HandoffError(str(exc)) from exc
 
 
+def require_review_ready(root, directory, status, *, lock_held=False):
+    """Gate enabled T-023 receipt resolution/consumption on current persisted review."""
+    if status.get("review_contract_sha256") is None:
+        return
+    try:
+        contract_path = safe_path(root, directory / "IMPLEMENTATION_REVIEW_CONTRACT.json", "file", required=True)
+        contract_value = json.loads(contract_path.read_text(encoding="utf-8"))
+        if not contract_value.get("loop", {}).get("enabled", False):
+            return
+        lifecycle_path = safe_path(root, directory / "IMPLEMENTATION_REVIEW.json", "file", required=True)
+        module_path = Path(__file__).resolve().with_name("implementation_review.py")
+        spec = importlib.util.spec_from_file_location("implementation_review_for_handoff", module_path)
+        if spec is None or spec.loader is None:
+            raise HandoffError("implementation-review helper cannot be loaded")
+        review_helper = importlib.util.module_from_spec(spec); spec.loader.exec_module(review_helper)
+        current = review_helper.status(root, status["id"], lock_held=lock_held)
+        if not current["ready_for_gui"]:
+            raise HandoffError("enabled implementation review is not ACCEPTED or escalated for GUI")
+        review_helper.require_final_receipt(root, status["id"])
+        review_helper.require_cycle_triage(root, status["id"])
+    except (ValueError, OSError) as exc:
+        raise HandoffError(f"implementation-review receipt gate failed: {exc}") from exc
+
+
 def contract(root, directory, status, initial=False):
     registry_check(root, status)
     task = safe_path(root, directory / "CLI_TASK.md", "file", required=True)
     if digest(task.read_bytes()) != status["scope_sha256"]:
         raise HandoffError("frozen task description changed")
+    review_path = directory / "IMPLEMENTATION_REVIEW_CONTRACT.json"
+    if status.get("review_contract_sha256") is not None:
+        raw = safe_path(root, review_path, "file", required=True).read_bytes()
+        if digest(raw) != status["review_contract_sha256"]:
+            raise HandoffError("frozen implementation-review contract changed")
+        try:
+            module_path = Path(__file__).resolve().with_name("implementation_review.py")
+            spec = importlib.util.spec_from_file_location("paired_contract_validator", module_path)
+            if spec is None or spec.loader is None: raise HandoffError("implementation-review contract validator cannot be loaded")
+            validator = importlib.util.module_from_spec(spec); spec.loader.exec_module(validator)
+            review_contract = json.loads(raw)
+            validator.validate_contract(review_contract)
+        except (ValueError, OSError) as exc:
+            raise HandoffError(f"invalid implementation-review contract: {exc}") from exc
+        if review_contract["task_id"] != status["parent_id"]:
+            raise HandoffError("review contract task ID differs from handoff parent")
+        if status.get("review_contract_scope_sha256") != status["scope_sha256"]:
+            raise HandoffError("paired review contract is not bound to this frozen execution contract")
+        frozen = frozen_plan(task.read_text(encoding="utf-8"))
+        summary = frozen_plan_summary(task.read_text(encoding="utf-8"), frozen) if frozen is not None else None
+        if frozen is None or summary is None:
+            raise HandoffError("paired review contract lost its frozen plan or summary")
+        paired_execution = review_contract["execution"]
+        summary_hash = hashlib.sha256(json.dumps(summary, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
+        if (paired_execution["plan_of_execution"] != [b["text"] for b in summary["bullets"]]
+                or paired_execution["plan_summary_sha256"] != summary_hash):
+            raise HandoffError("paired review contract no longer matches the frozen handoff plan")
+        if not set(paired_execution["inputs"]).issubset(set(status.get("inputs", {})) - set(status.get("owned", []))):
+            raise HandoffError("paired review inputs are not included in immutable handoff inputs")
     progress_contract(status, frozen_plan(task.read_text(encoding="utf-8")))
     # Initial dirty bytes and their manifest are retained across attempts.
     manifest = read_json(root, directory / "baseline" / "INPUTS.json")
@@ -534,10 +632,33 @@ def cmd_create(args):
         raise HandoffError("task description is required")
     if "Self-review contract: execution-review/v1" not in task_text:
         task_text = task_text.rstrip() + "\n\nSelf-review contract: execution-review/v1\n"
+    review_contract = None
+    if args.review_contract is not None:
+        try:
+            from implementation_review import validate_contract
+            review_contract = validate_contract(json.loads(args.review_contract))
+        except (ValueError, TypeError) as exc:
+            raise HandoffError(f"invalid paired implementation-review contract: {exc}") from exc
+        if review_contract["task_id"] != args.parent:
+            raise HandoffError("review contract task ID must match parent task")
+        if not review_contract["loop"]["enabled"]:
+            raise HandoffError("paired review contract is only valid when its correction loop is enabled")
+        if plan is None:
+            raise HandoffError("paired review contract requires a frozen execution plan")
+        summary = frozen_plan_summary(task_text, plan)
+        if summary is None:
+            raise HandoffError("paired review contract requires a frozen execution plan summary")
+        execution = review_contract["execution"]
+        expected_bullets = [b["text"] for b in summary["bullets"]]
+        summary_hash = hashlib.sha256(json.dumps(summary, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
+        if execution["plan_of_execution"] != expected_bullets or execution["plan_summary_sha256"] != summary_hash:
+            raise HandoffError("paired review contract plan differs from the frozen handoff plan summary")
     if any(not c or "\n" in c or "\r" in c for c in args.check):
         raise HandoffError("check names must be nonempty single lines")
     owned = sorted(set(args.owned))
     paths = sorted(set(args.input) | set(owned))
+    if review_contract is not None and not set(review_contract["execution"]["inputs"]).issubset(set(paths) - set(owned)):
+        raise HandoffError("paired review inputs must be explicit immutable --input paths")
     fingerprints = inputs_fingerprint(root, paths, optional=set(owned) - set(args.input))
     baseline = {rel: input_path(root, rel).read_bytes() for rel, value in fingerprints.items() if value is not None}
     if any(digest(data) != fingerprints[rel] for rel, data in baseline.items()):
@@ -552,6 +673,9 @@ def cmd_create(args):
             atomic_bytes(root, directory / "baseline" / f"{index}.bin", baseline[rel])
     task_data = (task_text.rstrip() + "\n").encode()
     atomic_bytes(root, directory / "CLI_TASK.md", task_data)
+    review_contract_bytes = None if review_contract is None else (json.dumps(review_contract, indent=2, sort_keys=True) + "\n").encode()
+    if review_contract_bytes is not None:
+        atomic_bytes(root, directory / "IMPLEMENTATION_REVIEW_CONTRACT.json", review_contract_bytes)
     # Publish READY only after its description and initial evidence exist.
     with locked(root, directory):
         atomic_json(root, directory / "STATUS.json", {
@@ -559,6 +683,8 @@ def cmd_create(args):
             "status": "READY", "owner": None, "created_at": now(), "updated_at": now(),
             "inputs": fingerprints, "owned": owned, "required_checks": args.check,
             "scope_sha256": digest(task_data),
+            **({"review_contract_sha256": digest(review_contract_bytes),
+                "review_contract_scope_sha256": digest(task_data)} if review_contract_bytes is not None else {}),
         })
     print(directory.relative_to(root))
 
@@ -641,6 +767,8 @@ def cmd_resolve(args):
             status = read_status(root, directory)
             require_state(status, state)
             registry_check(root, status)
+            if args.receipt:
+                require_review_ready(root, directory, status, lock_held=True)
             print(args.id)
             return
         old = legacy_candidate(root, state)
@@ -661,6 +789,8 @@ def cmd_resolve(args):
         names = [s["id"] + (" (legacy)" if s.get("legacy") else "") for s in eligible]
         raise HandoffError(f"{'ambiguous' if eligible else 'no'} {state} candidates: {', '.join(names) or '(none)'}; no fallback to product work")
     registry_check(root, eligible[0])
+    if args.receipt and not eligible[0].get("legacy"):
+        require_review_ready(root, task_dir(root, eligible[0]["id"]), eligible[0])
     print(eligible[0]["id"])
 
 
@@ -758,6 +888,8 @@ def finish_transition(root, directory, journal):
         if digest(result.read_bytes()) != before["result_sha256"]:
             raise HandoffError("result changed after completion")
         contract(root, directory, before)
+        if operation == "consume":
+            require_review_ready(root, directory, before, lock_held=True)
         if inputs_fingerprint(root, before["owned"], optional=before["owned"]) != before["outputs"]:
             raise HandoffError("completed outputs changed")
         review = safe_path(root, directory / "GUI_REVIEW.md", "file")
@@ -868,6 +1000,120 @@ def cmd_complete(args):
         print(progress_line({**status, "status": "COMPLETED"}))
 
 
+def reopen_for_implementation_correction(root, task_id, *, expected_revision, correction_id,
+                                         review_id, review_sha256, prior_result_sha256,
+                                         prior_changed_files, lock_held=False):
+    """Reopen one completed handoff for its frozen, single-use correction.
+
+    The original completion and affected output bytes are archived before the
+    atomic status transition. The same owner/attempt/scope remains in force;
+    ordinary ``complete`` must validate the corrected CLI_RESULT and outputs.
+    """
+    root = repo_root(root)
+    directory = task_dir(root, task_id)
+    safe_component = re.fullmatch(r"[A-Z][A-Z0-9-]{0,63}", correction_id or "")
+    if not safe_component:
+        raise HandoffError("invalid correction ID")
+    context = nullcontext() if lock_held else locked(root, directory)
+    with context:
+        no_pending(directory)
+        status = read_status(root, directory)
+        review_module_path = Path(__file__).resolve().with_name("implementation_review.py")
+        review_spec = importlib.util.spec_from_file_location("implementation_review_correction_gate", review_module_path)
+        if review_spec is None or review_spec.loader is None:
+            raise HandoffError("implementation-review lifecycle validator cannot be loaded")
+        review_helper = importlib.util.module_from_spec(review_spec); review_spec.loader.exec_module(review_helper)
+        try:
+            _, _, lifecycle = review_helper._load(root, task_id)
+        except (ValueError, OSError) as exc:
+            raise HandoffError(f"current implementation-review authority is invalid: {exc}") from exc
+        authorization = lifecycle.get("pending_corrections", {}).get(correction_id)
+        if (authorization is None or authorization.get("id") != correction_id
+                or authorization.get("source_review") != review_id
+                or authorization.get("source_review_sha256") != review_sha256
+                or authorization.get("previous_result_sha256") != prior_result_sha256
+                or authorization.get("previous_changed_files") != prior_changed_files
+                or authorization.get("handoff_revision") != expected_revision
+                or lifecycle.get("correction_authorization_artifacts", {}).get(correction_id) is None):
+            raise HandoffError("correction is not bound to the exact current immutable authorization")
+        current_review = lifecycle.get("reviews", [])[-1] if lifecycle.get("reviews") else None
+        if (current_review is None or current_review.get("id") != review_id
+                or current_review.get("verdict") != "CHANGES REQUIRED"
+                or review_helper._has_current_escalation(lifecycle, review_id)):
+            raise HandoffError("correction source is terminal, stale, or escalated")
+        try:
+            contract(root, directory, status)
+        except (ValueError, OSError) as exc:
+            raise HandoffError(f"effective frozen correction contract is invalid: {exc}") from exc
+        if status.get("status") == "IN_PROGRESS" and status.get("implementation_review_correction_id") == correction_id:
+            archive = safe_path(root, directory / "implementation-review" / "handoff-cycles" / correction_id, "dir", required=True)
+            manifest = safe_path(root, archive / "MANIFEST.json", "file", required=True)
+            if read_json(root, manifest).get("result_sha256") != prior_result_sha256:
+                raise HandoffError("idempotent correction archive does not match current authorization")
+            return status
+        if status.get("status") != "COMPLETED":
+            raise HandoffError("correction requires the current COMPLETED handoff")
+        if status.get("revision") != expected_revision:
+            raise HandoffError("stale handoff revision for correction")
+        if status.get("result_sha256") != prior_result_sha256 or lifecycle.get("result_sha256") != prior_result_sha256:
+            raise HandoffError("correction does not match current completed result")
+        if status.get("owner") is None:
+            raise HandoffError("completed handoff has no persistent executor owner")
+        review_path = safe_path(root, directory / "implementation-review" / "reviews" / f"{review_id}.json", "file", required=True)
+        if digest(review_path.read_bytes()) != review_sha256:
+            raise HandoffError("correction source review artifact hash mismatch")
+        review_value = read_json(root, review_path)
+        if review_value.get("id") != review_id or review_value.get("verdict") != "CHANGES REQUIRED":
+            raise HandoffError("correction source review is not actionable")
+        if review_value.get("result_sha256") != prior_result_sha256:
+            raise HandoffError("correction source review is bound to a different result")
+        owned = status.get("owned", [])
+        if not set(prior_changed_files).issubset(set(owned)):
+            raise HandoffError("reviewed changed-file inventory is outside handoff ownership")
+        for rel, expected in prior_changed_files.items():
+            if status.get("outputs", {}).get(rel) != expected:
+                raise HandoffError("correction source changed-file hashes differ from completed outputs")
+        result_path = safe_path(root, directory / "CLI_RESULT.md", "file", required=True)
+        if digest(result_path.read_bytes()) != prior_result_sha256:
+            raise HandoffError("completed result bytes changed before correction authorization")
+        if any(status.get("outputs", {}).get(rel) != expected for rel, expected in prior_changed_files.items()):
+            raise HandoffError("current completed outputs differ from the authorized correction inputs")
+        for rel, expected in prior_changed_files.items():
+            if digest(safe_path(root, root / rel, "file", required=True).read_bytes()) != expected:
+                raise HandoffError("current owned output differs from the authorized correction input")
+        archive = safe_path(root, directory / "implementation-review" / "handoff-cycles" / correction_id, "dir")
+        archive.mkdir(parents=True, exist_ok=True)
+        saved = {"STATUS.json": json_bytes(status), "CLI_RESULT.md": result_path.read_bytes()}
+        for rel in prior_changed_files:
+            output = safe_path(root, root / rel, "file", required=True)
+            saved[f"outputs/{rel}"] = output.read_bytes()
+        for rel, data in saved.items():
+            target = safe_path(root, archive / rel, "file")
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if target.exists() and target.read_bytes() != data:
+                raise HandoffError("correction archive contains conflicting preserved bytes")
+            if not target.exists():
+                atomic_bytes(root, target, data)
+        manifest_path = archive / "MANIFEST.json"
+        expected_manifest = {"correction_id": correction_id, "review_id": review_id,
+            "review_sha256": review_sha256, "result_sha256": prior_result_sha256,
+            "changed_files": prior_changed_files,
+            "archived_hashes": {rel: digest(data) for rel, data in saved.items()}}
+        if manifest_path.exists():
+            if read_json(root, manifest_path) != expected_manifest:
+                raise HandoffError("existing correction archive manifest conflicts with this request")
+        else:
+            atomic_json(root, manifest_path, expected_manifest)
+        after = next_status(status, status="IN_PROGRESS", implementation_review_correction_id=correction_id,
+                            implementation_review_id=review_id, reopened_at=now())
+        if "progress" in after:
+            after["progress"] = {**after["progress"], "completed": [], "current": None, "percent": 0}
+        for key in ("completed_at", "outputs", "result_sha256", "result_provenance", "review_sha256"):
+            after.pop(key, None)
+        atomic_json(root, directory / "STATUS.json", after)
+        return after
+
+
 def cmd_consume(args):
     root = repo_root(args.root)
     directory = task_dir(root, args.id)
@@ -878,6 +1124,7 @@ def cmd_consume(args):
             if not args.review.strip():
                 raise HandoffError("GUI review text is required")
             contract(root, directory, status)
+            require_review_ready(root, directory, status, lock_held=True)
             if inputs_fingerprint(root, status["owned"], optional=status["owned"]) != status["outputs"]:
                 raise HandoffError("completed outputs changed")
             result = safe_path(root, directory / "CLI_RESULT.md", "file", required=True)
@@ -932,6 +1179,7 @@ def build_parser():
     p.add_argument("--execution-plan", help="GUI-supplied plan JSON, frozen into CLI_TASK before READY")
     p.add_argument("--plan-summary", help="GUI-authored summary JSON bound to the exact frozen plan")
     p.add_argument("--context-preview", help="optional private JSON preview from gui_context.py; diagnostic only")
+    p.add_argument("--review-contract", help="GUI-frozen paired implementation-review contract JSON; opt-in")
     p.add_argument("--input", action="append", default=[], help="immutable dependency (unless also --owned)")
     p.add_argument("--owned", action="append", default=[], help="owned editable input/output, including new files")
     p.add_argument("--check", action="append", default=[]); p.set_defaults(func=cmd_create)

@@ -20,6 +20,7 @@ All notable changes to Dynasty Map will be documented here.
 - Reusable mod encoding/preflight rules and read-only file checker added.
 
 ### Added
+- Accepted shared CLI execution-review workflow with persistent executors, fresh read-only reviewers, per-task correction policies and registered handoff commands; formal T-023 cost closeout is pending GUI verification.
 - T-013 Wiki: compact five-column AI-cost summary with a bold grand total;
   detailed accounting provenance remains separate and historical values are preserved.
 - T-020 developer workflow: planned GUI-to-CLI tables append a concise execution

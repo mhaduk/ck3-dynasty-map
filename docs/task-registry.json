@@ -37,6 +37,12 @@
   },
   "issues": [
     {
+      "number": 49,
+      "state": "open",
+      "title": "T-023 \u2014 Add independent CLI review/correction loop before GUI acceptance",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/49"
+    },
+    {
       "number": 48,
       "state": "closed",
       "title": "T-022 \u2014 Remove Coverage / source cutoff from Wiki AI-cost tables",
@@ -140,7 +146,7 @@
     },
     {
       "number": 31,
-      "state": "CLOSED",
+      "state": "closed",
       "title": "T-007 \u2014 Synchronize task registry and enforce GitHub-first task creation",
       "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/31"
     },
@@ -321,6 +327,6 @@
   ],
   "repository": "mhaduk/ck3-dynasty-map",
   "retired_ids": [],
-  "verified_at": "2026-10-25T08:00:13.307999+00:00",
+  "verified_at": "2026-10-25T08:41:15.113284+00:00",
   "version": 1
 }

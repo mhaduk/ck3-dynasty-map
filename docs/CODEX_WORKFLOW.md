@@ -131,6 +131,23 @@ reserved for GUI and is never a CLI delegation type. Each task states
 `Decision authority: GUI`; these are semantic instructions, not a new enforced
 STATUS schema.
 
+The T-023 shared implementation is accepted for local project use. GUI normally
+enables independent implementation review for new substantial implementation
+delegations; trivial actions may be explicitly routed without it, and existing
+legacy handoffs are preserved. This is the shared preparation workflow for
+future tasks, not a T-023-only experiment. Enabled tasks use the paired
+pre-execution contract and correction lifecycle in
+[Implementation Review](IMPLEMENTATION_REVIEW.md). GUI freezes both contracts
+from the same task revision, explicitly selects `MAX_CYCLES` with a positive
+maximum or `UNTIL_ACCEPTED_OR_ESCALATED` with no numeric maximum, and chooses
+the reviewer profile before READY. There is no silently assumed global
+three-cycle cap. The executor session persists across corrections; each review
+uses a fresh read-only session. `ACCEPTED` and `ESCALATE TO GUI` stop immediately.
+For a finite maximum N, N corrections allow one final fresh review; only another
+`CHANGES REQUIRED` escalates. Material scope, permission, architecture or
+invariant conflicts stop the loop for GUI. Disabled legacy
+handoffs retain their existing five/six-row representation.
+
 CLI may interpret evidence and recommend options with reasons, benefits, risks
 and scope impact. It should complete useful safe work within the delegation
 before escalating minor uncertainty: gather another bounded source, test
@@ -587,6 +604,12 @@ milestones require GUI-authored meaningful groups that preserve order. The
 helper rejects stale hashes, missing or reordered IDs, and malformed summaries.
 Regenerate the summary whenever the plan changes. Planless legacy receipts keep
 their five rows.
+
+For review-enabled handoffs, pass the repository root and registered delegation folder ID as
+`review_loop.task_id` and the registered `STATUS.json.parent_id` as
+`review_loop.parent_id`, separately from the paired contract's parent
+`task_id`. The renderer resolves and validates the registered status and frozen paired contract, then emits all four lifecycle
+commands with the delegation ID.
 
 An optional GUI context measurement is prepared during the same handoff
 preparation, with no extra model call or GUI turn. Run

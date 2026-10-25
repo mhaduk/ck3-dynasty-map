@@ -1,5 +1,16 @@
 # Task History
 
+T-023 implementation accepted locally on 2026-10-25 after fresh independent
+review: 154 passing tests, 102 probes, three residual findings independently
+resolved, final source/review receipts accepted and T-021 triage persisted.
+Shared future-task workflow is active with per-task contracts and trivial/legacy
+exceptions. Authorized closeout publication is underway. CLI has prepared a
+finite-cutoff estimate of 182,128,125 measured tokens / $9.58132606 partial
+known-model API-equivalent cost; ten response counters remain unallocated and
+GUI attribution/pricing review is pending. Keep #49 open and T-023 out of the
+closed-task rollup until the GUI receipt gate. See the
+[canonical acceptance and closeout record](tasks/T-023-independent-cli-review.md).
+
 Compact index of completed substantial tasks. Investigation detail belongs in the linked summary and, where available, the GitHub Issue.
 
 | Task | Goal | Result | Issue journal | Canonical summary |
