@@ -24,6 +24,23 @@ or legacy tasks retain their old handoff shape. The executor remains the same
 session across corrections; every reviewer is a new, read-only session. These
 identity checks are cooperative guards, not proof of runtime isolation.
 
+T-024 adds an optional `routing` object to this same contract for new
+classifications; its absence remains valid for legacy handoffs. The GUI freezes
+`execution_class` (`MECHANICAL`, `STANDARD`, `COMPLEX`, `DIAGNOSTIC`),
+`review_route`, `gui_finalization`, concise `reason`, and nullable
+`high_reason` / `targeted_trigger`. MECHANICAL may disable the ordinary review
+loop. STANDARD uses the existing Luna executor and optional Sol/Medium review.
+COMPLEX does not select High by itself. Sol/High requires one of the validated
+concrete risk reasons; classification cannot select XHigh/Max. DIAGNOSTIC
+disables the ordinary review loop and points to T-015. `TARGETED_REVIEW` needs
+a listed trigger; after `ACCEPTED`, `RECEIPT_ONLY` is the default.
+
+Classification affects reasoning and review cost only. It preserves required
+tests, preflight, bounded log checks, stale-state/revision checks, permissions
+and user-run game actions. Closeout, approved installs, deterministic checks,
+known-prefix log validation and publication readback are normally MECHANICAL;
+unclear or contradictory evidence routes to DIAGNOSTIC.
+
 The normal `handoff.render_handoff_table` renderer requires an explicit
 repository root. It resolves the delegation folder, validates its registered
 status and frozen paired contract, then derives the parent from that status.

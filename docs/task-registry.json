@@ -37,6 +37,12 @@
   },
   "issues": [
     {
+      "number": 50,
+      "state": "closed",
+      "title": "T-024 \u2014 Add lightweight execution classification and reasoning-cost guardrails",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/50"
+    },
+    {
       "number": 49,
       "state": "closed",
       "title": "T-023 \u2014 Add independent CLI review/correction loop before GUI acceptance",
@@ -327,6 +333,6 @@
   ],
   "repository": "mhaduk/ck3-dynasty-map",
   "retired_ids": [],
-  "verified_at": "2026-10-25T08:41:15.113284+00:00",
+  "verified_at": "2026-10-25T16:03:23.105697+00:00",
   "version": 1
 }

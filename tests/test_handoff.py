@@ -692,6 +692,45 @@ class HandoffTests(unittest.TestCase):
         self.assertTrue(rendered.endswith("| Plan of execution | • Major stage 0<br>• Major stage 1 |"))
         self.assertIn("gpt-6-luna / Medium", rendered)
         self.assertIn("gpt-6.1-sol / Medium", rendered)
+        mechanical = json.loads(json.dumps(paired)); mechanical["version"] = 2
+        mechanical["loop"].update(enabled=False, correction_policy="MAX_CYCLES",
+                                  correction_budget=None, budget_rationale=None)
+        mechanical["routing"] = {"execution_class": "MECHANICAL", "review_route": "NONE",
+            "gui_finalization": "RECEIPT_ONLY", "reason": "deterministic publication readback",
+            "high_reason": None, "targeted_trigger": None}
+        mechanical_task = "Work\n\n```json\n" + json.dumps({"execution_plan": plan}) + "\n```\n\n## Execution plan summary\n\n```json\n" + json.dumps({"plan_summary": summary}) + "\n```\n"
+        self.run_cli("create", "T-003-MECHANICAL", "--parent", "T-003", "--task", mechanical_task,
+                     "--input", "input.md", "--check", "synthetic preflight", "--review-contract", json.dumps(mechanical))
+        mechanical_loop = {**loop, "task_id": "T-003-MECHANICAL", "contract": mechanical}
+        mechanical_render = module.render_handoff_table(rows, plan, summary, review_loop=mechanical_loop, root=self.root)
+        self.assertIn("MECHANICAL · NONE · GUI finalization RECEIPT_ONLY", mechanical_render)
+        self.assertIn("Independent review | none", mechanical_render)
+        self.assertIn("GUI finalization", mechanical_render)
+        self.assertIn("Reason: deterministic publication", mechanical_render)
+        self.assertIn("after required checks; no independent review", mechanical_render)
+        self.assertNotIn("after ACCEPTED", mechanical_render)
+        self.assertNotIn("sprawdź T-003-MECHANICAL", mechanical_render)
+        mechanical_dir = self.root / ".codex-sync/tasks/T-003-MECHANICAL"
+        self.claim("T-003-MECHANICAL")
+        for step in ("stage0", "stage1"):
+            self.finish_stage(mechanical_dir, step)
+        self.write_result(mechanical_dir, passed=("synthetic preflight",))
+        mechanical_status = self.status(mechanical_dir)
+        self.run_cli("complete", "T-003-MECHANICAL", "--owner", "worker-a",
+                     "--revision", str(mechanical_status["revision"]))
+        self.assertEqual(self.run_cli("resolve", "T-003-MECHANICAL", "--receipt").stdout.strip(), "T-003-MECHANICAL")
+
+        high = json.loads(json.dumps(paired)); high["version"] = 2
+        high["loop"]["correction_policy"] = "MAX_CYCLES"
+        high["review"]["profile"]["requested_reasoning"] = "high"
+        high["routing"] = {"execution_class": "COMPLEX", "review_route": "SOL_HIGH",
+            "gui_finalization": "RECEIPT_ONLY", "reason": "shared behavior has difficult verification",
+            "high_reason": "unresolved_material_uncertainty_after_medium", "targeted_trigger": None}
+        self.run_cli("create", "T-003-HIGH-REASON", "--parent", "T-003", "--task", mechanical_task,
+                     "--input", "input.md", "--review-contract", json.dumps(high))
+        high_loop = {**loop, "task_id": "T-003-HIGH-REASON", "contract": high}
+        high_render = module.render_handoff_table(rows, plan, summary, review_loop=high_loop, root=self.root)
+        self.assertIn("High reason: Unresolved material uncertainty after medium", high_render)
         with self.assertRaises(module.HandoffError):
             module.render_handoff_table(rows, plan, summary, review_loop={**loop, "contract": {**paired,
                 "execution": {**paired["execution"], "plan_of_execution": ["different", "plan"]}},

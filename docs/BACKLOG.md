@@ -13,6 +13,7 @@ Dated migration/checkpoint statements below retain their historical meaning.
 
 | ID | Priority | Work item | Status |
 |---|---|---|---|
+| [T-024 / #50](tasks/T-024-execution-classification.md) | P1 | Add lightweight execution classification and reasoning-cost guardrails | Complete — R2 ACCEPTED, 125 tests evidenced, receipt consumed; partial cost $1.15595956; scoped source/Wiki published and #50 closed completed |
 | [T-007 / #31](tasks/T-007-task-registry.md) | P1 | Reconcile canonical task registry and enforce GitHub-first creation | Complete — canonical registry/guard and 88 tests accepted; T-003/#25 restored, frozen evidence retained, #31 closed and Wiki read back; partial cost $0.72286920; scoped repository commit/push subsequently authorized on 2026-10-25 |
 | [T-023 / #49](tasks/T-023-independent-cli-review.md) | P1 | Add independent CLI review/correction loop before GUI acceptance | Complete — accepted shared workflow, 154 independent tests/102 probes; source and Wiki published; GUI-verified 182,839,219 tokens / $10.77585306 partial cost; #49 closed completed |
 | [T-021 / #47](tasks/T-021-execution-review.md) | P2 | Add post-execution self-review and persistent GUI optimization triage | Complete — corrected implementation accepted; 70 independent tests; real inventory migration and report triage; partial cost $0.95229018; scoped publication authorized |

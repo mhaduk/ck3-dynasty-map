@@ -66,6 +66,66 @@ def _validate_actual_profile(value, label):
     return value
 
 
+def validate_routing(value, contract):
+    """Validate the GUI-frozen, lightweight T-024 routing decision."""
+    if value is None:
+        return None  # legacy handoffs remain readable
+    keys = {"execution_class", "review_route", "gui_finalization", "reason", "high_reason", "targeted_trigger"}
+    if not isinstance(value, dict) or set(value) != keys:
+        raise ReviewError("routing requires class, route, finalization, reason and explicit trigger fields")
+    classes = {"MECHANICAL", "STANDARD", "COMPLEX", "DIAGNOSTIC"}
+    routes = {"NONE", "SOL_MEDIUM", "SOL_HIGH", "DIAGNOSTIC"}
+    finals = {"RECEIPT_ONLY", "TARGETED_REVIEW"}
+    high = {"architecture_sensitive_correctness", "broad_shared_behavior_high_regression_cost",
+            "unresolved_material_uncertainty_after_medium", "exceptional_quality_risk"}
+    targeted = {"evidence_conflict", "missing_reviewer_provenance", "high_correction_count",
+                "validation_gap", "material_shared_behavior", "reviewer_escalation",
+                "receipt_inconsistency", "revision_mismatch", "manual_validation_pending",
+                "explicit_direct_inspection"}
+    if (not isinstance(value["execution_class"], str) or value["execution_class"] not in classes
+            or not isinstance(value["review_route"], str) or value["review_route"] not in routes
+            or not isinstance(value["gui_finalization"], str) or value["gui_finalization"] not in finals
+            or not isinstance(value["reason"], str)
+            or not value["reason"].strip() or len(value["reason"]) > 240):
+        raise ReviewError("invalid T-024 routing classification")
+    if (contract["review"]["profile"]["requested_reasoning"] in {"xhigh", "max"}
+            or contract["execution"]["executor_profile"]["requested_reasoning"] in {"xhigh", "max"}):
+        raise ReviewError("T-024 classification cannot automatically select XHigh/Max")
+    if value["review_route"] == "SOL_HIGH":
+        if (not isinstance(value["high_reason"], str) or value["high_reason"] not in high
+                or contract["review"]["profile"]["requested_reasoning"] != "high"):
+            raise ReviewError("Sol/High requires an allowed concrete reason and High reviewer profile")
+        if not contract["loop"]["enabled"]:
+            raise ReviewError("Sol/High requires the existing independent review path")
+    elif value["high_reason"] is not None:
+        raise ReviewError("High reason is valid only for the Sol/High route")
+    if value["review_route"] == "SOL_MEDIUM" and (not contract["loop"]["enabled"]
+            or contract["review"]["profile"]["requested_reasoning"] != "medium"):
+        raise ReviewError("Sol/Medium requires the existing independent Medium review path")
+    if value["review_route"] in {"NONE", "DIAGNOSTIC"} and contract["loop"]["enabled"]:
+        raise ReviewError("no-review and diagnostic routes cannot enable the ordinary correction loop")
+    if value["execution_class"] == "DIAGNOSTIC" and value["review_route"] != "DIAGNOSTIC":
+        raise ReviewError("DIAGNOSTIC must reuse the existing diagnostic route")
+    if value["review_route"] == "DIAGNOSTIC" and value["execution_class"] != "DIAGNOSTIC":
+        raise ReviewError("diagnostic route requires DIAGNOSTIC classification")
+    if value["gui_finalization"] == "TARGETED_REVIEW":
+        if not isinstance(value["targeted_trigger"], str) or value["targeted_trigger"] not in targeted:
+            raise ReviewError("TARGETED_REVIEW requires a concrete listed trigger")
+    elif value["targeted_trigger"] is not None:
+        raise ReviewError("targeted trigger is valid only for TARGETED_REVIEW")
+    if value["execution_class"] == "MECHANICAL" and value["review_route"] in {"SOL_HIGH", "DIAGNOSTIC"}:
+        raise ReviewError("MECHANICAL cannot automatically select High or diagnostic review")
+    return value
+
+
+def routing_summary(routing):
+    summary = (f"{routing['execution_class']} · {routing['review_route']} · "
+               f"GUI finalization {routing['gui_finalization']} · Reason: {routing['reason']}")
+    if routing["high_reason"]:
+        summary += " · High reason: " + routing["high_reason"].replace("_", " ").capitalize()
+    return summary
+
+
 @contextmanager
 def _lifecycle_lock(root, task_id):
     _check_task_id(task_id)
@@ -275,7 +335,7 @@ def _immutable_path(root: Path, task_id: str, kind: str, artifact_id: str):
 def validate_contract(contract: dict) -> dict:
     """Validate the paired, GUI-frozen execution/review contract."""
     required = {"version", "task_id", "revision", "execution", "review", "loop"}
-    if not isinstance(contract, dict) or set(contract) != required or type(contract["version"]) is not int or contract["version"] not in {1, 2}:
+    if not isinstance(contract, dict) or frozenset(contract) not in {frozenset(required), frozenset(required | {"routing"})} or type(contract["version"]) is not int or contract["version"] not in {1, 2}:
         raise ReviewError("contract requires version/task_id/revision/execution/review/loop")
     if not isinstance(contract["task_id"], str) or not re.fullmatch(r"[A-Z0-9][A-Z0-9-]{1,63}", contract["task_id"]):
         raise ReviewError("invalid task identity")
@@ -329,6 +389,7 @@ def validate_contract(contract: dict) -> dict:
         raise ReviewError("disabled loop cannot declare a correction budget")
     if not isinstance(loop["escalation"], str) or not loop["escalation"].strip():
         raise ReviewError("escalation rules are required")
+    validate_routing(contract.get("routing"), contract)
     return contract
 
 
@@ -506,6 +567,9 @@ def render_final_receipt(root, task_id):
         f"Review count: {len(state['reviews'])}", f"Correction-cycle count: {len(state['corrections'])}", "",
         f"Executor continuity breaks: {len(state.get('executor_recoveries', []))}",
         "Findings summary by cycle:"]
+    routing = state["contract"].get("routing")
+    if routing:
+        lines.insert(3, "Routing: " + routing_summary(routing))
     if not state["reviews"]: lines.append("- No reviews recorded.")
     for index, item in enumerate(state["reviews"]):
         findings = item.get("findings", []) + item.get("escalated_findings", [])
@@ -1319,10 +1383,10 @@ def _correct_locked(root, task_id: str, *, correction_id: str, source_review: st
 
 
 def render_enabled_handoff(task_id: str, *, parent_id: str, contract: dict, time_steps: str, gui_estimate: str):
-    """Render exactly ten logical rows, with the frozen plan last."""
+    """Render the established handoff rows and frozen plan last."""
     validate_contract(contract)
     _check_task_id(task_id)
-    if contract["task_id"] != parent_id or task_id == parent_id or not contract["loop"]["enabled"]:
+    if contract["task_id"] != parent_id or task_id == parent_id:
         raise ReviewError("handoff renderer requires the registered delegation ID and its distinct frozen parent")
     execution, review = contract["execution"], contract["review"]
     executor = execution["executor_profile"]
@@ -1335,13 +1399,24 @@ def render_enabled_handoff(task_id: str, *, parent_id: str, contract: dict, time
                        else "until accepted or escalated · no numeric correction limit")
     plan_bullets = execution["plan_of_execution"]
     if len(plan_bullets) > 10 or not plan_bullets: raise ReviewError("plan requires 1–10 bullets")
+    routing = contract.get("routing")
+    review_enabled = contract["loop"]["enabled"]
+    if review_enabled:
+        gui_return = f"gotowe {task_id} · after ACCEPTED or explicit escalation"
+    elif routing and routing["execution_class"] == "DIAGNOSTIC":
+        gui_return = f"gotowe {task_id} · after the existing diagnostic route"
+    else:
+        gui_return = f"gotowe {task_id} · after required checks; no independent review"
     rows = [("Executor / pickup", f"wykonaj {task_id}"),
             ("Executor model", f"{executor_model} · persistent session; reused for corrections"),
-            ("Independent review", f"sprawdź {task_id}"),
-            ("Reviewer model", f"{reviewer_model} · fresh session for every review"),
-            ("Correction command", f"popraw {task_id} R<n> · original persistent executor session"),
-            ("GUI return", f"gotowe {task_id} · after ACCEPTED or explicit escalation"),
-            ("Correction loop", f"{correction_text} · {loop['budget_rationale']} · ACCEPTED / CHANGES REQUIRED / ESCALATE TO GUI"),
+            ("Independent review", f"sprawdź {task_id}" if review_enabled else "none · existing diagnostic route only if escalated"),
+            ("Reviewer model", f"{reviewer_model} · fresh session for every review" if review_enabled else "none"),
+            ("Correction command", f"popraw {task_id} R<n> · original persistent executor session" if review_enabled else "none"),
+            ("GUI return", gui_return),
+            ("Correction loop", f"{correction_text} · {loop['budget_rationale']} · ACCEPTED / CHANGES REQUIRED / ESCALATE TO GUI" if review_enabled else "disabled · no independent review"),]
+    if routing:
+        rows.append(("Routing", routing_summary(routing)))
+    rows += [
             ("Estimated CLI time / steps", time_steps),
             ("szacowane tokeny/wiadomości", gui_estimate),
             ("Plan of execution", "<br>".join("• " + html.escape(x, quote=False).replace("|", "\\|") for x in plan_bullets))]

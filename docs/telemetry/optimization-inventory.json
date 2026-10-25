@@ -1464,6 +1464,399 @@
       "status": "observing",
       "summary": "GUI cost check corrected omitted initial task turns and request-context pricing.",
       "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T024-IMPLEMENT-20261025-01"
+      ],
+      "affected_tasks": [
+        "T024-IMPLEMENT-20261025-01"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T024-IMPLEMENT-20261025-01"
+        ],
+        "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0012",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T024-IMPLEMENT-20261025-01"
+            ],
+            "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T024-IMPLEMENT-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T024-IMPLEMENT-20261025-01",
+          "text": "An initial routing test exposed guard-order behavior; the XHigh/Max guard was moved ahead of profile matching and malformed-field type checks were added. A handoff test exposed cmd_create's unconditional enabled-loop requirement; it now permits only explicitly classified NONE or DIAGNOSTIC disabled routes. An earlier patch context mismatch was recovered by locating the actual guard. The receipt milestone progress marker was completed before the evidence/result files were written; final completion remains gated on their hashes and required checks.",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T024-IMPLEMENT-20261025-01"
+            ],
+            "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T024-IMPLEMENT-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T024-IMPLEMENT-20261025-01",
+          "text": "R1 F1-F3 were reproduced and corrected in the allowed boundary. The first correction-package CLI call rejected an absolute temporary path; I relocated the JSON under the repository handoff context and authorization succeeded. No implementation or validation failures remained in the final run.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.t024-tool-recovery",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 2,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "T-024 bounded implementation/review observation",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T024-IMPLEMENT-20261025-01"
+      ],
+      "affected_tasks": [
+        "T024-IMPLEMENT-20261025-01"
+      ],
+      "boundary_history": [],
+      "category": "rework",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T024-IMPLEMENT-20261025-01"
+        ],
+        "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0013",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T024-IMPLEMENT-20261025-01"
+            ],
+            "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T024-IMPLEMENT-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T024-IMPLEMENT-20261025-01",
+          "text": "Two test iterations exposed and resolved route-validation ordering and disabled-loop integration defects; final frozen suites passed.",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T024-IMPLEMENT-20261025-01"
+            ],
+            "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T024-IMPLEMENT-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T024-IMPLEMENT-20261025-01",
+          "text": "R1 findings F1-F3 corrected; frozen checks pass; R2 review pending.",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T024-IMPLEMENT-20261025-01"
+            ],
+            "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T024-IMPLEMENT-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T024-IMPLEMENT-20261025-01",
+          "text": "One bounded correction cycle added route-specific return wording, visible High reason, and the requested scenario assertions.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.t024-bounded-rework",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 3,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "T-024 bounded implementation/review observation",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T024-IMPLEMENT-20261025-01"
+      ],
+      "affected_tasks": [
+        "T024-IMPLEMENT-20261025-01"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T024-IMPLEMENT-20261025-01"
+        ],
+        "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0014",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T024-IMPLEMENT-20261025-01"
+            ],
+            "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T024-IMPLEMENT-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T024-IMPLEMENT-20261025-01",
+          "text": "Independent fresh reviewer and GUI semantic acceptance remain pending; runtime model identity is unknown.",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T024-IMPLEMENT-20261025-01"
+            ],
+            "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T024-IMPLEMENT-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T024-IMPLEMENT-20261025-01",
+          "text": "R1: 123 tests pass; disabled-return wording, hidden High trigger and missing required scenario assertions need bounded corrections. Recovered nonexistent discovery path and keyword-only initialize call before successful R1 setup; use verified paths and CLI signatures.",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T024-IMPLEMENT-20261025-01"
+            ],
+            "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T024-IMPLEMENT-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T024-IMPLEMENT-20261025-01",
+          "text": "R2: all F1-F3 independently resolved; 125 frozen-suite tests and diff check pass. Implementation/result hashes unchanged. Initial comparison helper failed with SyntaxError (exit 1) due to an extra parenthesis; corrected the helper and verified baseline hashes before diffing. Improvement: use verified baseline indexing and hash checks before reviewing diffs. No implementation defects or scope growth found. Runtime identity/profile unknown; GUI triage/acceptance pending.",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T024-IMPLEMENT-20261025-01"
+            ],
+            "rationale": "Observed recovery or bounded review finding; no new optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T024-IMPLEMENT-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T024-IMPLEMENT-20261025-01",
+          "text": "Fresh reviewer R2 and GUI acceptance remain pending; runtime model identity remains unknown.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.t024-evidence-coverage",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 4
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 4
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 4
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 4
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 4
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 4,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "T-024 bounded implementation/review observation",
+      "trend": "NEW"
     }
   ],
   "ledger": [
@@ -1668,6 +2061,103 @@
       ],
       "rationale": "Published implementation/docs are accepted. Original CLI accounting needs two bounded GUI corrections before parent closure; exact original evidence is preserved, revised attribution and per-response pricing verified. No optimization task or effectiveness claim.",
       "report_sha256": "a8d12f6ebd45e3c4eb4128740dd9b1a9a164ef554e301585e7632fc557d8b435"
+    },
+    {
+      "content_sha256": "22ddc4263fa6a1deab7dbc40ebf2027d01f163266aebee09ac3e92eb61788e69",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T024-IMPLEMENT-20261025-01"
+      ],
+      "id": "10eda22b44418154428ba8cd263b32191b5960cd58b5d886ee83c73b5128e21a",
+      "identity": "T024-IMPLEMENT-20261025-01:1:EXEC-1",
+      "observation_keys": [
+        "workflow.t024-tool-recovery",
+        "workflow.t024-bounded-rework",
+        "workflow.t024-evidence-coverage"
+      ],
+      "rationale": "GUI reviewed this exact cycle report. R2 resolves F1-F3; measured effectiveness and cycle metrics remain unknown.",
+      "report_sha256": "88247feed67d556d13aa8354a6486bb356529c965f38b1ace868c120c8878d1b"
+    },
+    {
+      "content_sha256": "b9e9334a5b48cfba4a419cb5535b25dc21d1b18506b49b3b329131174a7b172c",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T024-IMPLEMENT-20261025-01"
+      ],
+      "id": "23662d21116fd8b9a9f80e6623f6ba74a4ca7a76f1a4683d25e414a21c478ece",
+      "identity": "T024-IMPLEMENT-20261025-01:1:REVIEW-R1",
+      "observation_keys": [
+        "workflow.t024-evidence-coverage"
+      ],
+      "rationale": "GUI reviewed this exact cycle report. R2 resolves F1-F3; measured effectiveness and cycle metrics remain unknown.",
+      "report_sha256": "c666e5ad46b45fc73a3fc34af4c26d6e8f725c63b1c08cf89f6382db950dce95"
+    },
+    {
+      "content_sha256": "7db059e99db38264d943f01c8257bdae052a229e6c047a46304ee1cded08a4e1",
+      "cycle_id": "REVIEW-R2",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T024-IMPLEMENT-20261025-01"
+      ],
+      "id": "f3b302f3c295dbd44d278e3e6bbe95f17bf903b8c936d625874493533002df1a",
+      "identity": "T024-IMPLEMENT-20261025-01:1:REVIEW-R2",
+      "observation_keys": [
+        "workflow.t024-evidence-coverage"
+      ],
+      "rationale": "GUI reviewed this exact cycle report. R2 resolves F1-F3; measured effectiveness and cycle metrics remain unknown.",
+      "report_sha256": "c28ae7a79b586024a27b1f2a3b823e1bcfd0fce583ca501d6dc492af6c7d9171"
+    },
+    {
+      "content_sha256": "cc54cc449dcbd46b78c8b485015d803a9d52c3767ad10fec1e6d2b6c9ec731e8",
+      "cycle_id": "CORRECTION-C-R1",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T024-IMPLEMENT-20261025-01"
+      ],
+      "id": "b97d8dc0a4e45c66c2a7f1c00e9529da24a2594f55326e0dc121409c9486ee09",
+      "identity": "T024-IMPLEMENT-20261025-01:1:CORRECTION-C-R1",
+      "observation_keys": [
+        "workflow.t024-bounded-rework"
+      ],
+      "rationale": "GUI reviewed this exact cycle report. R2 resolves F1-F3; measured effectiveness and cycle metrics remain unknown.",
+      "report_sha256": "cc141ac2d6fbb9bb683f21fd9874848c98a7bbe26f46e90451b298c28dc8afdb"
+    },
+    {
+      "content_sha256": "1df1e8a915178d5f98daae0aa0f3f8df581a53e9e922456e0bd9658098373cd1",
+      "cycle_id": "EXEC-C-R1",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T024-IMPLEMENT-20261025-01"
+      ],
+      "id": "d858ce8798b0018acf5aa404b913b02f98b032f8207fddc1001eacdd69ab9ec3",
+      "identity": "T024-IMPLEMENT-20261025-01:1:EXEC-C-R1",
+      "observation_keys": [
+        "workflow.t024-tool-recovery",
+        "workflow.t024-bounded-rework",
+        "workflow.t024-evidence-coverage"
+      ],
+      "rationale": "GUI reviewed this exact cycle report. R2 resolves F1-F3; measured effectiveness and cycle metrics remain unknown.",
+      "report_sha256": "aa478f84f86a4c3a8668c75bc173a46a3d31473d7741536421e3b69507e7d6b8"
+    },
+    {
+      "content_sha256": "8603962dfa96d1a722af05d875db3094d325082972f4aac66000796abf6bc676",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T024-IMPLEMENT-20261025-01"
+      ],
+      "id": "40b759e037de574b0c2394593105b74d705d101a5ff03feb18ebee62d55a91c0",
+      "identity": "T024-IMPLEMENT-20261025-01:1",
+      "observation_keys": [],
+      "rationale": "Current executor report is the already ingested EXEC-C-R1 cycle report; parent receipt linkage only, no duplicate observation.",
+      "report_sha256": "aa478f84f86a4c3a8668c75bc173a46a3d31473d7741536421e3b69507e7d6b8"
     }
   ],
   "version": 1

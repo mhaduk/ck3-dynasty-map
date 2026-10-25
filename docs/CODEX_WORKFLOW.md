@@ -148,6 +148,29 @@ For a finite maximum N, N corrections allow one final fresh review; only another
 invariant conflicts stop the loop for GUI. Disabled legacy
 handoffs retain their existing five/six-row representation.
 
+For new handoffs, GUI classifies the task in the same preparation pass and
+freezes a compact `routing` object in the existing paired contract: one of
+`MECHANICAL`, `STANDARD`, `COMPLEX`, or `DIAGNOSTIC`, a concise reason, review
+route, and GUI finalization mode. No extra classifier call or CLI session is
+used. Choose the cheapest route that preserves required evidence: mechanical
+work may use Luna without independent Sol review; standard work uses the
+existing Luna path and Sol/Medium when separate review adds value; complex work
+does not imply High. Sol/High requires an allowed concrete risk reason.
+Classification never automatically selects XHigh/Max. `DIAGNOSTIC` uses the
+existing T-015 diagnostic route. After a current independent `ACCEPTED`, GUI
+uses `RECEIPT_ONLY` unless a listed concrete conflict, gap, stale revision or
+manual check requires scoped `TARGETED_REVIEW`.
+
+Classify operational work by its own reasoning need. Accepted-work closeout,
+approved patch installation, deterministic preflight, focused tests, installed
+file/hash checks, bounded known-prefix log checks, rollback under an existing
+procedure, and publication readback are normally `MECHANICAL`; they do not
+inherit a prior High tier. Log files alone do not make work diagnostic: route
+unclear or contradictory evidence to `DIAGNOSTIC`. Classification changes
+model/review effort only; required tests, preflight, log checks, stale-state,
+revision, permissions and user-only CK3 actions remain unchanged. Existing
+unclassified handoffs remain readable without migration.
+
 CLI may interpret evidence and recommend options with reasons, benefits, risks
 and scope impact. It should complete useful safe work within the delegation
 before escalating minor uncertainty: gather another bounded source, test

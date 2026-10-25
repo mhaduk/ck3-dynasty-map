@@ -111,6 +111,21 @@ plan last. Do not infer a budget. See
 [`IMPLEMENTATION_REVIEW.md`](IMPLEMENTATION_REVIEW.md) for exact command
 routing, correction completion, recovery and T-021 receipt semantics.
 
+During that same GUI preparation pass, freeze a compact `routing` object in
+the existing paired contract for new handoffs: `execution_class` is exactly
+`MECHANICAL`, `STANDARD`, `COMPLEX`, or `DIAGNOSTIC`; include `review_route`,
+`gui_finalization`, a concise `reason`, and nullable `high_reason` and
+`targeted_trigger`. This adds no model call or CLI session. MECHANICAL may use
+no independent review; STANDARD uses Sol/Medium only when separate review adds
+value; COMPLEX does not imply Sol/High. High requires a concrete allowed risk
+reason, and XHigh/Max is never automatic. DIAGNOSTIC uses T-015. After current
+review `ACCEPTED`, default to `RECEIPT_ONLY`; use `TARGETED_REVIEW` only with a
+listed concrete trigger. Treat accepted-work closeout, approved installation,
+deterministic preflight/tests/hash checks, bounded known-prefix log inspection
+and publication readback as MECHANICAL when their procedure is defined. Keep
+all required validation and permissions unchanged; unclear or contradictory
+evidence routes to DIAGNOSTIC. Legacy contracts without `routing` remain valid.
+
 ## Compact result example
 
 Keep the exact top-level headings and required success/check/provenance grammar

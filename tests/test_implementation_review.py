@@ -32,6 +32,20 @@ def contract(budget=3):
             "loop": {"enabled": True, "correction_budget": budget, "budget_rationale": "GUI selected for finite correction scope", "escalation": "scope/permission conflict"}}
 
 
+def classified_contract(execution_class, review_route, *, finalization="RECEIPT_ONLY", reason="bounded synthetic scenario",
+                        high_reason=None, targeted_trigger=None, enabled=True, reviewer="medium"):
+    value = contract(); value["version"] = 2
+    value["review"]["profile"]["requested_reasoning"] = reviewer
+    value["loop"].update(correction_policy="MAX_CYCLES", correction_budget=3,
+                          budget_rationale="bounded synthetic correction scope")
+    if not enabled:
+        value["loop"].update(enabled=False, correction_budget=None, budget_rationale=None)
+    value["routing"] = {"execution_class": execution_class, "review_route": review_route,
+        "gui_finalization": finalization, "reason": reason, "high_reason": high_reason,
+        "targeted_trigger": targeted_trigger}
+    return value
+
+
 TASK_ID = "T-023"
 
 
@@ -162,6 +176,72 @@ class ImplementationReviewTests(unittest.TestCase):
             with self.assertRaises(review.ReviewError): review.validate_contract(invalid)
         invalid = json.loads(json.dumps(finite)); invalid["loop"]["correction_budget"] = True
         with self.assertRaises(review.ReviewError): review.validate_contract(invalid)
+
+    def test_t024_routing_guards_and_legacy_compatibility(self):
+        legacy = contract()
+        self.assertIsNone(review.validate_contract(legacy).get("routing"))
+
+        def routed(execution_class, route, final="RECEIPT_ONLY", *, reason="bounded deterministic task",
+                   high_reason=None, trigger=None, enabled=False, reviewer="medium"):
+            value = contract(); value["version"] = 2
+            value["review"]["profile"]["requested_reasoning"] = reviewer
+            value["loop"].update(correction_policy="MAX_CYCLES", correction_budget=3,
+                                  budget_rationale="bounded fixture")
+            if not enabled:
+                value["loop"].update(enabled=False, correction_budget=None, budget_rationale=None)
+            value["routing"] = {"execution_class": execution_class, "review_route": route,
+                "gui_finalization": final, "reason": reason, "high_reason": high_reason,
+                "targeted_trigger": trigger}
+            return value
+
+        mechanical = routed("MECHANICAL", "NONE")
+        self.assertEqual(review.validate_contract(mechanical)["routing"]["review_route"], "NONE")
+        standard = routed("STANDARD", "SOL_MEDIUM", enabled=True)
+        review.validate_contract(standard)
+        complex_medium = routed("COMPLEX", "SOL_MEDIUM", enabled=True)
+        review.validate_contract(complex_medium)  # complexity alone stays Medium
+        high = routed("COMPLEX", "SOL_HIGH", enabled=True, reviewer="high",
+                      high_reason="architecture_sensitive_correctness")
+        review.validate_contract(high)
+        bad_high = routed("COMPLEX", "SOL_HIGH", enabled=True, reviewer="high")
+        with self.assertRaisesRegex(review.ReviewError, "allowed concrete reason"):
+            review.validate_contract(bad_high)
+        for tier in ("xhigh", "max"):
+            expensive = routed("STANDARD", "SOL_MEDIUM", enabled=True, reviewer=tier)
+            with self.assertRaisesRegex(review.ReviewError, "XHigh/Max"):
+                review.validate_contract(expensive)
+        diagnostic = routed("DIAGNOSTIC", "DIAGNOSTIC", final="TARGETED_REVIEW",
+                            trigger="validation_gap")
+        review.validate_contract(diagnostic)
+        with self.assertRaisesRegex(review.ReviewError, "concrete listed trigger"):
+            review.validate_contract(routed("STANDARD", "SOL_MEDIUM", final="TARGETED_REVIEW", enabled=True))
+        malformed = routed("STANDARD", "SOL_MEDIUM", enabled=True)
+        malformed["routing"]["execution_class"] = []
+        with self.assertRaises(review.ReviewError):
+            review.validate_contract(malformed)
+
+    def test_t024_operational_and_ambiguous_validation_scenarios(self):
+        expected_checks = ["unit test"]
+        scenarios = ["accepted implementation closeout", "install an already-approved patch",
+                     "inspect bounded error.log for known project prefixes"]
+        for reason in scenarios:
+            mechanical = classified_contract("MECHANICAL", "NONE", reason=reason, enabled=False)
+            validated = review.validate_contract(mechanical)
+            self.assertEqual(validated["routing"]["review_route"], "NONE")
+            self.assertEqual(validated["execution"]["validation"], expected_checks)
+        diagnostic = classified_contract("DIAGNOSTIC", "DIAGNOSTIC", finalization="TARGETED_REVIEW",
+            reason="contradictory runtime evidence remains unexplained", targeted_trigger="evidence_conflict", enabled=False)
+        self.assertEqual(review.validate_contract(diagnostic)["routing"]["execution_class"], "DIAGNOSTIC")
+
+    def test_t024_receipt_only_after_current_acceptance_exposes_high_reason(self):
+        paired = classified_contract("COMPLEX", "SOL_HIGH",
+            reason="shared behavior has difficult independent verification", reviewer="high",
+            high_reason="unresolved_material_uncertainty_after_medium")
+        self._create_lifecycle("T024-RECEIPT-ONLY", paired)
+        self.submit("R1", verdict="ACCEPTED", identity="reviewer-receipt-only")
+        receipt = review.render_final_receipt(self.root, self.task_id)
+        self.assertIn("GUI finalization RECEIPT_ONLY", receipt)
+        self.assertIn("High reason: Unresolved material uncertainty after medium", receipt)
 
     def test_v2_open_policy_has_no_numeric_exhaustion_and_reports_counters(self):
         opened = contract(); opened["version"] = 2

@@ -641,8 +641,10 @@ def cmd_create(args):
             raise HandoffError(f"invalid paired implementation-review contract: {exc}") from exc
         if review_contract["task_id"] != args.parent:
             raise HandoffError("review contract task ID must match parent task")
-        if not review_contract["loop"]["enabled"]:
-            raise HandoffError("paired review contract is only valid when its correction loop is enabled")
+        routing = review_contract.get("routing")
+        if (not review_contract["loop"]["enabled"]
+                and (not routing or routing["review_route"] not in {"NONE", "DIAGNOSTIC"})):
+            raise HandoffError("disabled paired review is valid only for explicit NONE or DIAGNOSTIC routing")
         if plan is None:
             raise HandoffError("paired review contract requires a frozen execution plan")
         summary = frozen_plan_summary(task_text, plan)

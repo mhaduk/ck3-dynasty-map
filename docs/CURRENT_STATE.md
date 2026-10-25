@@ -1,3 +1,17 @@
+## T-024 / #50 — complete; publication verified
+
+GUI accepted the small execution-classification/routing extension on 2026-10-25.
+Fresh R2 ACCEPTED after one correction; 125 required tests evidenced, current
+result/all ten output hashes and saved executor/reviewer provenance verified.
+Five cycle reports plus current executor receipt explicitly triaged; handoff
+consumed. Four classes, guarded High, receipt-only finalization and mechanical
+operations reuse T-020/T-023; required validation and T-015 remain intact.
+Finite-cutoff partial cost: 19,615,242 tokens / $1.15595956 from one GUI and
+three CLI sessions. Later receipt/accounting/closeout excluded; further linked
+automatic-review usage unavailable. Scoped source/GitHub/Wiki publication authorized and completed; #50 closed
+completed, Wiki `afb76ef` fetched/read back. No game action.
+See [canonical record](tasks/T-024-execution-classification.md).
+
 ## T-023 / #49 — complete; shared workflow and accounting published
 
 GUI accepted the implementation after fresh independent 154-test/102-probe
