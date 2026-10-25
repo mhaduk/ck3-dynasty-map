@@ -38,7 +38,7 @@
   "issues": [
     {
       "number": 48,
-      "state": "open",
+      "state": "closed",
       "title": "T-022 \u2014 Remove Coverage / source cutoff from Wiki AI-cost tables",
       "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/48"
     },

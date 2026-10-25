@@ -1,3 +1,13 @@
+## T-022 / #48 — Wiki column cleanup complete
+
+Removed the verbose per-row coverage/source-cutoff column from the Wiki Home
+AI-cost detail table; the five-column aggregate, all numeric values, total and
+global caveat remain. Its direct Wiki table has no generator; the repository's
+summary renderer already emits the compact aggregate. Local validation and
+remote readback passed; Wiki commit `71ad14e` is published. Partial GUI-session
+cost: 1,723,715 tokens / $0.36738040 through frozen cutoff 2026-10-25T08:18:24Z;
+later publication/closeout excluded. See [canonical record](tasks/T-022-wiki-coverage-column.md).
+
 ## T-007 / #31 — complete; scoped source publication authorized
 
 Accepted on 2026-10-25: canonical GitHub-first registry, issue-bound handoff
