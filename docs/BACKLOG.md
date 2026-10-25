@@ -13,6 +13,7 @@ Dated migration/checkpoint statements below retain their historical meaning.
 
 | ID | Priority | Work item | Status |
 |---|---|---|---|
+| [T-021 / #47](tasks/T-021-execution-review.md) | P2 | Add post-execution self-review and persistent GUI optimization triage | Complete — corrected implementation accepted; 70 independent tests; real inventory migration and report triage; partial cost $0.95229018; scoped publication authorized |
 | [T-013 / #34](tasks/T-013-wiki-cost-table.md) | P2 | Simplify Wiki AI-cost summary and expose grand total | Complete — five columns, bold Total, unchanged historical accounting; six GUI tests; Wiki and closed issue readbacks pass; partial task cost $0.42056876 |
 | [T-020 / #46](tasks/T-020-handoff-execution-plan.md) | P2 | Show intended CLI work in the existing handoff table | Complete — frozen 1–10-bullet summary, six-row planned table and legacy compatibility; 54 GUI tests; partial cost $0.36908640 verified |
 | [T-012 / #33](tasks/T-012-gui-context-measurement.md) | P2 | Measure known GUI session text cheaply, calibrate CLI estimates, show plan count and standardize progress rendering | Complete — corrected implementation accepted; 82 GUI tests and real-schema smoke; prospective aggregate history, calibrated time/steps and canonical progress; partial saved GUI/CLI cost $0.79798050 verified; scoped publication authorized |

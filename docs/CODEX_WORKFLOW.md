@@ -816,6 +816,35 @@ including GUI-only tasks; CLI completion alone does not satisfy that check.
 
 Before marking a substantial task done, update the canonical task summary, reusable research if needed, decisions if semantics/architecture changed, backlog, task history, current state, and affected risk/test/architecture docs. Update CHANGELOG only for user-visible changes. Run relevant consistency checks and privacy review. Preserve partial status when gates remain open; do not turn an unfinished task into a historical completion row.
 
+### Post-execution review and optimization triage
+
+New handoffs carry `Self-review contract: execution-review/v1`. After normal
+work and validation, CLI adds one structured post-execution self-review JSON
+fence after provenance. Unknown numeric measurements stay `null`; no more than
+five cost hotspots are ranked. The review is observation-only: CLI does not
+prescribe or implement an optimization because of it. Older tasks without the
+marker remain compatible.
+
+The live `docs/telemetry/optimization-inventory.json` is GUI-owned mutable
+state. Delegated CLI must never own or edit it, use it as a frozen output, or
+backfill it. GUI explicitly migrates and triages reports before consuming a
+new-contract receipt. Synthetic inventory fixtures stay in temporary roots.
+The result parser requires exactly one provenance object and one review object,
+with review after provenance inside `## Result`.
+
+GUI reviews and explicitly ingests every report during ordinary receipt using
+`scripts/execution_review.py ingest` and the schema in
+`docs/EXECUTION_REVIEW.md`. GUI supplies semantic keys, trend, evidence, decision
+and rationale. Duplicate ingestion of identical report/attempt is idempotent;
+changed duplicate content fails closed. Empty reports are ledgered too.
+The receipt command requires a ledger entry for each new-contract report before
+consumption. This records triage without equating it with acceptance.
+Ingestion does not create issues. Any optimization follows the existing
+GitHub-first flow with separate write authorization. Improvement or resolution
+requires later execution evidence after a recorded implementation boundary,
+and subsequent occurrences remain collected. This triage is separate from
+parent acceptance and AI-cost closeout.
+
 ## Public-content privacy gates
 
 Before staging, inspect every candidate change for identifying absolute paths, usernames, emails, credentials/tokens/cookies, account or device IDs, private URLs, raw logs/dumps/saves, and generated or copyrighted vanilla material. Sanitize or stop on suspicious content. Before commit, inspect the exact staged diff again, run `git diff --cached --check`, and check for unexpected generated/binary files. A later cleanup does not remove secrets from Git history. Do not stage/commit/push unless separately authorized. Existing historical privacy audit is recorded in `PRIVACY_AUDIT.md`; this workflow applies controls to new and modified content.

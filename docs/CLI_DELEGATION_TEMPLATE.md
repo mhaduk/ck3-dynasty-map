@@ -95,6 +95,17 @@ Planless legacy handoffs retain the five-row table.
 Keep the exact top-level headings and required success/check/provenance grammar
 below. Put the evidence dossier under `## Result`; omit optional detail that
 does not apply, while retaining every dossier heading for clear unknowns.
+For results with `Self-review contract: execution-review/v1`, append exactly
+one fenced provenance JSON object in the result and exactly one fenced review
+JSON object after it, both within `## Result`; no second provenance example or
+identity fence is allowed. `handoff.py` rejects duplicate provenance objects.
+It has `type: post_execution_self_review`, `version: 1`, all categories,
+`cost_hotspots` (maximum five) and `metrics` (unknown is `null`). CLI records
+observations only; GUI owns ingestion and decisions.
+
+The live `docs/telemetry/optimization-inventory.json` is GUI-owned mutable
+state. Do not declare it owned, edit it, reset/backfill it, or include it in
+completed-output hashes. Use temporary synthetic inventory fixtures only.
 
 ~~~markdown
 ## Identity
@@ -129,6 +140,14 @@ does not apply, while retaining every dossier heading for clear unknowns.
 ### DECISION REQUIRED
 - <specific GUI decision; or “None; GUI acceptance remains pending.”>
 
+```json
+{"id":"<ID>","parent_id":"<PARENT>","attempt":1,"inputs":{},"outputs":{}}
+```
+
+For a marked task, insert its structured post-execution review JSON fence here,
+after the actual provenance above. Replace the illustrative values with the
+exact frozen inputs and actual output hashes; do not append another provenance.
+
 ## Files
 - <changed or created owned path and purpose>
 
@@ -147,9 +166,6 @@ does not apply, while retaining every dossier heading for clear unknowns.
 ## GUI next step
 - <selected evidence to review, outstanding decision, and acceptance status>
 
-```json
-{"id":"<ID>","parent_id":"<PARENT>","attempt":1,"inputs":{},"outputs":{}}
-```
 ~~~
 
 For an AI-cost/closeout publication result, keep the canonical table specified

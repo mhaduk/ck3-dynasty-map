@@ -1,0 +1,783 @@
+{
+  "items": [
+    {
+      "affected_executions": [
+        "T021-EXECUTE-20261025-01"
+      ],
+      "affected_tasks": [
+        "T021-EXECUTE-20261025-01"
+      ],
+      "boundary_history": [],
+      "category": "unknown",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-EXECUTE-20261025-01"
+        ],
+        "rationale": "First observed execution; retain factual recurrence evidence. Correctness fixes remain within T-021, no separate optimization task justified.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0001",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": null,
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T021-EXECUTE-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T021-EXECUTE-20261025-01",
+          "text": "CLI looked for the frozen issue snapshot under the task status directory before using its declared sibling path.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.exact-input-path",
+      "last_seen": "2026-10-25",
+      "legacy_decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-EXECUTE-20261025-01"
+        ],
+        "rationale": "First observed execution; retain factual recurrence evidence. Correctness fixes remain within T-021, no separate optimization task justified.",
+        "value": "KEEP OBSERVING"
+      },
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [
+        {
+          "date": "2026-10-25",
+          "event": "legacy-migration",
+          "mapped_fields_unknown": [
+            "category",
+            "summary",
+            "status"
+          ],
+          "source": "legacy-v1"
+        }
+      ],
+      "status": "unknown",
+      "summary": "Legacy observation; summary unavailable",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T021-EXECUTE-20261025-01",
+        "T021-FIX-20261025-02"
+      ],
+      "affected_tasks": [
+        "T021-EXECUTE-20261025-01",
+        "T021-FIX-20261025-02"
+      ],
+      "boundary_history": [],
+      "category": "unknown",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-FIX-20261025-02"
+        ],
+        "rationale": "Second occurrence of platform path recovery; impact duration and token cost remain unknown.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0003",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": null,
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T021-EXECUTE-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T021-EXECUTE-20261025-01",
+          "text": "CLI recovered a platform temporary-directory alias rejection and a direct-import dependency failure before the final test run.",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T021-FIX-20261025-02"
+            ],
+            "rationale": "Second occurrence of platform path recovery; impact duration and token cost remain unknown."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T021-FIX-20261025-02"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T021-FIX-20261025-02",
+          "text": "CLI recovered Python cache permissions and canonical platform temporary-directory aliases before the final test run.",
+          "trend": "REPEATED"
+        }
+      ],
+      "key": "tooling.platform-path-import-recovery",
+      "last_seen": "2026-10-25",
+      "legacy_decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-EXECUTE-20261025-01"
+        ],
+        "rationale": "First observed execution; retain factual recurrence evidence. Correctness fixes remain within T-021, no separate optimization task justified.",
+        "value": "KEEP OBSERVING"
+      },
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 2,
+      "schema_history": [
+        {
+          "date": "2026-10-25",
+          "event": "legacy-migration",
+          "mapped_fields_unknown": [
+            "category",
+            "summary",
+            "status"
+          ],
+          "source": "legacy-v1"
+        }
+      ],
+      "status": "observing",
+      "summary": "Legacy observation; summary unavailable",
+      "trend": "REPEATED"
+    },
+    {
+      "affected_executions": [
+        "T021-EXECUTE-20261025-01"
+      ],
+      "affected_tasks": [
+        "T021-EXECUTE-20261025-01"
+      ],
+      "boundary_history": [],
+      "category": "unknown",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-EXECUTE-20261025-01"
+        ],
+        "rationale": "First observed execution; retain factual recurrence evidence. Correctness fixes remain within T-021, no separate optimization task justified.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0002",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": null,
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T021-EXECUTE-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T021-EXECUTE-20261025-01",
+          "text": "Final receipt-flow review found a missing triage gate; CLI added it within scope and amended the last milestone.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.receipt-gate-late-discovery",
+      "last_seen": "2026-10-25",
+      "legacy_decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-EXECUTE-20261025-01"
+        ],
+        "rationale": "First observed execution; retain factual recurrence evidence. Correctness fixes remain within T-021, no separate optimization task justified.",
+        "value": "KEEP OBSERVING"
+      },
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [
+        {
+          "date": "2026-10-25",
+          "event": "legacy-migration",
+          "mapped_fields_unknown": [
+            "category",
+            "summary",
+            "status"
+          ],
+          "source": "legacy-v1"
+        }
+      ],
+      "status": "unknown",
+      "summary": "Legacy observation; summary unavailable",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T021-FIX-20261025-02"
+      ],
+      "affected_tasks": [
+        "T021-FIX-20261025-02"
+      ],
+      "boundary_history": [],
+      "category": "rework",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-FIX-20261025-02"
+        ],
+        "rationale": "Isolated fixture setup error recovered within this correction.",
+        "value": "NO ACTION"
+      },
+      "display_id": "OPT-0004",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "NO ACTION",
+            "evidence": [
+              "handoff:T021-FIX-20261025-02"
+            ],
+            "rationale": "Isolated fixture setup error recovered within this correction."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T021-FIX-20261025-02"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T021-FIX-20261025-02",
+          "text": "A documentation fixture reused an existing task-attempt identity; CLI assigned a distinct synthetic identity and reran it successfully.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "validation.fixture-identity-collision",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "A documentation fixture reused an existing task-attempt identity; CLI assigned a distinct synthetic identity and reran it successfully.",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T021-FIX-20261025-02"
+      ],
+      "affected_tasks": [
+        "T021-FIX-20261025-02"
+      ],
+      "boundary_history": [],
+      "category": "token_context_hotspots",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-FIX-20261025-02"
+        ],
+        "rationale": "No measured attributable excess or recurring quantified cost established.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0005",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T021-FIX-20261025-02"
+            ],
+            "rationale": "No measured attributable excess or recurring quantified cost established."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T021-FIX-20261025-02"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T021-FIX-20261025-02",
+          "text": "CLI reports several large source and workflow reads; exact token attribution is unavailable.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.large-context-reads",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "CLI reports several large source and workflow reads; exact token attribution is unavailable.",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T021-COST-COLLECT-20261025-03"
+      ],
+      "affected_tasks": [
+        "T021-COST-COLLECT-20261025-03"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-COST-COLLECT-20261025-03"
+        ],
+        "rationale": "Recovered identity-mapping error; one occurrence with unknown attributable time.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0006",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T021-COST-COLLECT-20261025-03"
+            ],
+            "rationale": "Recovered identity-mapping error; one occurrence with unknown attributable time."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T021-COST-COLLECT-20261025-03"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T021-COST-COLLECT-20261025-03",
+          "text": "A truncated thread identifier produced no assigned usage; CLI rejected the empty result and recomputed from full metadata identities.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "accounting.truncated-thread-identity",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "A truncated thread identifier produced no assigned usage; CLI rejected the empty result and recomputed from full metadata identities.",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T021-COST-COLLECT-20261025-03"
+      ],
+      "affected_tasks": [
+        "T021-COST-COLLECT-20261025-03"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-COST-COLLECT-20261025-03"
+        ],
+        "rationale": "Guard worked; retain occurrence evidence for future comparison.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0007",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T021-COST-COLLECT-20261025-03"
+            ],
+            "rationale": "Guard worked; retain occurrence evidence for future comparison."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T021-COST-COLLECT-20261025-03"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T021-COST-COLLECT-20261025-03",
+          "text": "A stale progress update was rejected; CLI reread the persisted revision and continued without state mutation.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.stale-progress-revision",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "A stale progress update was rejected; CLI reread the persisted revision and continued without state mutation.",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T021-COST-COLLECT-20261025-03"
+      ],
+      "affected_tasks": [
+        "T021-COST-COLLECT-20261025-03"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T021-COST-COLLECT-20261025-03"
+        ],
+        "rationale": "Bounded search cannot establish absence of linked review usage; no task creation justified by this occurrence.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0008",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T021-COST-COLLECT-20261025-03"
+            ],
+            "rationale": "Bounded search cannot establish absence of linked review usage; no task creation justified by this occurrence."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T021-COST-COLLECT-20261025-03"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T021-COST-COLLECT-20261025-03",
+          "text": "All inspected metadata headers exceeded the allowed prefix; linked review coverage remains unavailable.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "accounting.metadata-prefix-limit",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "All inspected metadata headers exceeded the allowed prefix; linked review coverage remains unavailable.",
+      "trend": "NEW"
+    }
+  ],
+  "ledger": [
+    {
+      "content_sha256": "a3246d76018d754f35e8f87ad9f4047642179de31eec54ba8e164de506676e6a",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "id": "660497644debd0db9a180d38a6bde8041abb8a7d3ad87f948bb5b22c0f7a25eb",
+      "identity": "T021-EXECUTE-20261025-01:1",
+      "observation_keys": [
+        "handoff.exact-input-path",
+        "tooling.platform-path-import-recovery",
+        "handoff.receipt-gate-late-discovery"
+      ],
+      "report_sha256": "eb50bb45c89a01c754950458022ba34ea9a448c01d318bd98a66f763cb7fc7dc"
+    },
+    {
+      "content_sha256": "590ed2032096af2de932935918394f54e99edd266a1e71e4dec8c5665aea8b26",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T021-FIX-20261025-02"
+      ],
+      "id": "1da04acc048f29b08b87751d131f1555bf00aa7706ef33f4ee98932ecc2539a5",
+      "identity": "T021-FIX-20261025-02:1",
+      "observation_keys": [
+        "tooling.platform-path-import-recovery",
+        "validation.fixture-identity-collision",
+        "workflow.large-context-reads"
+      ],
+      "rationale": "Three observations reviewed: one recurrence, two new; two KEEP OBSERVING and one NO ACTION. No separate optimization task justified.",
+      "report_sha256": "3e2f658a3efad2141bc8e04b98364be0ff9ad0460192712e45eda9dbcbc02b4e"
+    },
+    {
+      "content_sha256": "7cf66ad5f40ec43eb95d9e16afe54b4d30eac8ffc8c2a991f7ff31794e06f8e2",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T021-COST-COLLECT-20261025-03"
+      ],
+      "id": "c0f39f8fbbe0ce72f3d79d54dcc86c943383017c895f4b72340412f0ce962b12",
+      "identity": "T021-COST-COLLECT-20261025-03:1",
+      "observation_keys": [
+        "accounting.truncated-thread-identity",
+        "handoff.stale-progress-revision",
+        "accounting.metadata-prefix-limit"
+      ],
+      "rationale": "Three factual observations retained; no separate optimization task. Context-band statement in self-review is incomplete: GUI counted 24 inputs above 128k across both models, not the 19 stated for Luna alone. All measured inputs remain below 272k.",
+      "report_sha256": "012c76de81df1e12d19e503b4189b8eae091c5a7ed90f2e13eba0109ed9d16b6"
+    }
+  ],
+  "version": 1
+}

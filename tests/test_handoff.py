@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import re
 import tempfile
 import unittest
 
@@ -70,7 +71,26 @@ class HandoffTests(unittest.TestCase):
                 body += "Isolated offline fixture only; no stage, commit, push, network or application access.\n"
             elif name == "GUI next step":
                 body += "Review actual output bytes and required checks before consuming this result; parent remains active.\n"
+        if "Self-review contract: execution-review/v1" in (directory / "CLI_TASK.md").read_text():
+            from importlib.util import spec_from_file_location, module_from_spec
+            helper_spec = spec_from_file_location("execution_review_test_helper", SCRIPT.with_name("execution_review.py"))
+            helper = module_from_spec(helper_spec); helper_spec.loader.exec_module(helper)
+            review = {"type": "post_execution_self_review", "version": 1,
+                      "categories": {key: "NONE" for key in helper.CATEGORIES}, "cost_hotspots": [],
+                      "metrics": {"elapsed_seconds": None, "tokens": None}}
+            body += "\n```json\n" + json.dumps(review) + "\n```\n"
         (directory / "CLI_RESULT.md").write_text(body)
+
+    def ingest_review(self, directory, *, decision="NO ACTION", rationale="Synthetic GUI triage"):
+        helper_spec = importlib.util.spec_from_file_location("execution_review_test_ingest", SCRIPT.with_name("execution_review.py"))
+        helper = importlib.util.module_from_spec(helper_spec); helper_spec.loader.exec_module(helper)
+        status = self.status(directory)
+        report = helper.extract_review((directory / "CLI_RESULT.md").read_text())
+        sha = hashlib.sha256(json.dumps(report, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
+        helper.ingest(self.root / "docs/telemetry/optimization-inventory.json", report,
+                      task_id=status["id"], attempt=status["attempt"], report_sha256=sha,
+                      observations=[], decision=decision, rationale=rationale, evidence="tests:test_handoff",
+                      today="2026-01-01")
 
     def test_independent_ids_progress_and_one_claim_wins(self):
         first = self.create("T-001-A")
@@ -112,9 +132,56 @@ class HandoffTests(unittest.TestCase):
         self.run_cli("complete", "T-001-GATE", "--owner", "worker-a", "--revision", "2", ok=False)
         self.write_result(directory, passed=("unit suite", "markdown links"))
         self.run_cli("complete", "T-001-GATE", "--owner", "worker-a", "--revision", "2")
+        self.run_cli("consume", "T-001-GATE", "--revision", "3", "--review", "Reviewed result and files.", ok=False)
+        self.ingest_review(directory)
         (directory / "GUI_REVIEW.md").write_text("Reviewed result and files.\n")
         self.run_cli("consume", "T-001-GATE", "--revision", "3", "--review", "Reviewed result and files.")
         self.assertEqual(json.loads((directory / "STATUS.json").read_text())["status"], "CONSUMED")
+
+    def test_new_handoffs_freeze_self_review_and_preexisting_contracts_remain_compatible(self):
+        directory = self.create("T-001-REVIEW")
+        self.assertIn("Self-review contract: execution-review/v1", (directory / "CLI_TASK.md").read_text())
+        self.claim("T-001-REVIEW")
+        self.write_result(directory)
+        self.run_cli("complete", "T-001-REVIEW", "--owner", "worker-a", "--revision", "2")
+        self.run_cli("consume", "T-001-REVIEW", "--revision", "3", "--review", "Reviewed result.", ok=False)
+        self.ingest_review(directory)
+        self.run_cli("consume", "T-001-REVIEW", "--revision", "3", "--review", "Reviewed result.")
+        old = self.create("T-001-OLD", owned=("input.md",))
+        task = old / "CLI_TASK.md"
+        task.write_text("Do bounded work.\n")
+        status = self.status(old)
+        status["scope_sha256"] = hashlib.sha256(task.read_bytes()).hexdigest()
+        (old / "STATUS.json").write_text(json.dumps(status))
+        self.claim("T-001-OLD")
+        self.write_result(old)
+        self.run_cli("complete", "T-001-OLD", "--owner", "worker-a", "--revision", "2")
+
+    def test_new_review_must_follow_provenance(self):
+        directory = self.create("T-001-ORDER")
+        self.claim("T-001-ORDER")
+        self.write_result(directory)
+        result = directory / "CLI_RESULT.md"
+        body = result.read_text()
+        # Move the structured review before provenance while preserving its bytes.
+        opening = body.rfind("```json")
+        review_fence = body[opening:]
+        body = body[:opening]
+        body = review_fence + "\n" + body
+        result.write_text(body)
+        self.run_cli("complete", "T-001-ORDER", "--owner", "worker-a", "--revision", "2", ok=False)
+
+    def test_new_review_rejects_second_provenance_object(self):
+        directory = self.create("T-001-DUP-PROVENANCE")
+        self.claim("T-001-DUP-PROVENANCE")
+        self.write_result(directory)
+        result = directory / "CLI_RESULT.md"
+        body = result.read_text()
+        first = re.search(r"(?ms)^```json\n(\{.*?\})\n```[ \t]*$", body)
+        self.assertIsNotNone(first)
+        body = body[:first.end()] + "\n\n" + first.group(0) + "\n" + body[first.end():]
+        result.write_text(body)
+        self.run_cli("complete", "T-001-DUP-PROVENANCE", "--owner", "worker-a", "--revision", "2", ok=False)
 
     def test_invalid_ids_and_symlink_escape_are_rejected(self):
         self.run_cli("create", "../escape", "--parent", "T-001", "--task", "x", ok=False)
@@ -202,6 +269,7 @@ class HandoffTests(unittest.TestCase):
         self.assertEqual(status["result_provenance"]["inputs"], status["inputs"])
         self.assertEqual(status["result_provenance"]["outputs"], status["outputs"])
         self.assertEqual(self.run_cli("resolve", "--receipt").stdout.strip(), "T-001-EDIT")
+        self.ingest_review(directory)
         self.run_cli("consume", "T-001-EDIT", "--revision", "3", "--review", "Reviewed actual edit and initial/final evidence.")
         self.run_cli("validate", "T-001-EDIT")
         self.assertEqual(self.status(directory)["status"], "CONSUMED")
@@ -388,6 +456,8 @@ class HandoffTests(unittest.TestCase):
                 self.claim(task_id)
                 self.write_result(directory)
                 self.run_cli("complete", task_id, "--owner", "worker-a", "--revision", "2")
+                self.run_cli("consume", task_id, "--revision", "3", "--review", "Reviewed actual diff.", ok=False)
+                self.ingest_review(directory)
                 result = (directory / "CLI_RESULT.md").read_bytes()
                 helper = self.load_helper()
                 original = helper.atomic_json
@@ -483,6 +553,7 @@ class HandoffTests(unittest.TestCase):
         (legacy.parent / "CLI_RESULT.md").write_text("Legacy result for GUI inspection.\n")
         self.assertIn("ambiguous COMPLETED", self.run_cli("resolve", "--receipt", ok=False).stderr)
         self.assertEqual(self.run_cli("resolve", "T-001-NAMED", "--receipt").stdout.strip(), "T-001-NAMED")
+        self.ingest_review(directory)
         self.run_cli("consume", "T-001-NAMED", "--revision", "3", "--review", "Reviewed")
         self.assertEqual(self.run_cli("resolve", "--receipt").stdout.strip(), "T-001-LEGACY")
         self.run_cli("resolve", "T-001-NAMED", "--receipt", ok=False)
@@ -707,6 +778,7 @@ class HandoffTests(unittest.TestCase):
         before = self.snapshot(directory)
         self.progress(directory, "--start", "stage0", ok=False)
         self.assertEqual(before, self.snapshot(directory))
+        self.ingest_review(directory)
         self.run_cli("consume", directory.name, "--revision", "5", "--review", "CHANGES REQUIRED: independent review")
         self.run_cli("validate", directory.name)
         self.assertEqual(self.status(directory)["progress"]["percent"], 100)
@@ -866,6 +938,7 @@ class HandoffTests(unittest.TestCase):
         revision = self.status(directory)["revision"]
         transcript.append(self.run_cli("complete", directory.name, "--owner", "worker-a", "--revision", str(revision)).stdout.strip())
         transcript.append("ordinary log: independent fixture review completed")
+        self.ingest_review(directory)
         transcript.append(self.run_cli("consume", directory.name, "--revision", str(revision + 1), "--review", "ACCEPTED: offline demonstration only").stdout.strip())
         self.run_cli("validate", directory.name)
         print("\n" + "\n".join(transcript))

@@ -10,6 +10,7 @@ import html
 import hashlib
 import json
 import os
+import importlib.util
 from pathlib import Path
 import re
 import sys
@@ -512,6 +513,8 @@ def cmd_create(args):
         frozen_plan_summary(task_text, plan)  # Freeze and validate GUI-authored summary with the plan.
     if not task_text.strip():
         raise HandoffError("task description is required")
+    if "Self-review contract: execution-review/v1" not in task_text:
+        task_text = task_text.rstrip() + "\n\nSelf-review contract: execution-review/v1\n"
     if any(not c or "\n" in c or "\r" in c for c in args.check):
         raise HandoffError("check names must be nonempty single lines")
     owned = sorted(set(args.owned))
@@ -771,12 +774,21 @@ def cmd_retry(args):
     print(f"retry-ready {args.id} (previous evidence archived)")
 
 
-def result_provenance(body, status, outputs):
-    marker = re.search(r"(?ms)^```json\n(\{.*?\})\n```[ \t]*$", body)
-    if not marker:
+def result_provenance(root, body, status, outputs):
+    markers = list(re.finditer(r"(?ms)^```json\n(\{.*?\})\n```[ \t]*$", body))
+    provenance_markers = []
+    for candidate in markers:
+        try:
+            value = json.loads(candidate.group(1))
+        except ValueError:
+            continue
+        if isinstance(value, dict) and {"id", "parent_id", "attempt", "inputs", "outputs"}.issubset(value):
+            provenance_markers.append((candidate, value))
+    if len(provenance_markers) != 1:
         raise HandoffError("result requires a fenced JSON provenance block")
+    marker, candidate_provenance = provenance_markers[0]
     try:
-        provenance = json.loads(marker.group(1))
+        provenance = candidate_provenance
     except ValueError as exc:
         raise HandoffError("invalid result provenance JSON") from exc
     expected = {key: status[key] for key in ("id", "parent_id", "attempt", "inputs")}
@@ -793,6 +805,14 @@ def result_provenance(body, status, outputs):
     for check in status["required_checks"]:
         if f"- {check}: PASS" not in sections["Checks"].splitlines():
             raise HandoffError(f"requested check not passed: {check}")
+    task_path = safe_path(root, task_dir(root, status["id"]) / "CLI_TASK.md", "file", required=True)
+    task_text = task_path.read_text(encoding="utf-8")
+    if "Self-review contract: execution-review/v1" in task_text:
+        try:
+            from execution_review import extract_review, validate_review
+            validate_review(extract_review(body, after=marker.end()))
+        except (ValueError, OSError) as exc:
+            raise HandoffError(f"new-contract task requires a valid post-execution self-review: {exc}") from exc
     return provenance
 
 
@@ -808,7 +828,7 @@ def cmd_complete(args):
         result = safe_path(root, directory / "CLI_RESULT.md", "file", required=True)
         data = result.read_bytes()
         outputs = inputs_fingerprint(root, status["owned"], optional=status["owned"])
-        provenance = result_provenance(data.decode(), status, outputs)
+        provenance = result_provenance(root, data.decode(), status, outputs)
         progress = status.get("progress")
         plan = frozen_plan((directory / "CLI_TASK.md").read_text(encoding="utf-8"))
         if plan is not None:
@@ -835,8 +855,34 @@ def cmd_consume(args):
             if inputs_fingerprint(root, status["owned"], optional=status["owned"]) != status["outputs"]:
                 raise HandoffError("completed outputs changed")
             result = safe_path(root, directory / "CLI_RESULT.md", "file", required=True)
-            if digest(result.read_bytes()) != status["result_sha256"]:
+            result_data = result.read_bytes()
+            if digest(result_data) != status["result_sha256"]:
                 raise HandoffError("result changed after completion")
+            task_path = safe_path(root, directory / "CLI_TASK.md", "file", required=True)
+            if "Self-review contract: execution-review/v1" in task_path.read_text(encoding="utf-8"):
+                try:
+                    module_path = Path(__file__).resolve().with_name("execution_review.py")
+                    spec = importlib.util.spec_from_file_location("execution_review_for_handoff", module_path)
+                    if spec is None or spec.loader is None:
+                        raise ValueError("review helper cannot be loaded")
+                    review_helper = importlib.util.module_from_spec(spec)
+                    spec.loader.exec_module(review_helper)
+                    body = result_data.decode("utf-8")
+                    provenance = re.search(r"(?ms)^```json\n(\{.*?\})\n```[ \t]*$", body)
+                    if not provenance:
+                        raise ValueError("result provenance is missing")
+                    report = review_helper.extract_review(body, after=provenance.end())
+                    review_helper.validate_review(report)
+                    canonical = json.dumps(report, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+                    report_hash = digest(canonical)
+                    inventory_path = safe_path(root, root / "docs/telemetry/optimization-inventory.json", "file")
+                    inventory = review_helper._read_inventory(inventory_path)
+                    identity = f"{status['id']}:{status['attempt']}"
+                    entry = next((row for row in inventory["ledger"] if row.get("identity") == identity), None)
+                    if entry is None or entry.get("report_sha256") != report_hash:
+                        raise ValueError("matching GUI triage ledger entry is absent")
+                except (ValueError, OSError, UnicodeError) as exc:
+                    raise HandoffError(f"GUI inventory triage is required before receipt: {exc}") from exc
             review = args.review.rstrip() + "\n"
             target = directory / "GUI_REVIEW.md"
             if target.exists() and target.read_text(encoding="utf-8") != review:
