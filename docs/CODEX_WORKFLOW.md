@@ -459,7 +459,7 @@ replacement or hard-link attacks.
 
 Run `python3 scripts/handoff.py --root . <operation> ...` from the repository:
 
-- Create: `create <ID> --parent <PARENT> --task-file <path> [--input <path> ...]
+- Create: `create <ID> --parent <PARENT> --issue <verified-issue-number> --task-file <path> [--input <path> ...]
   [--owned <path> ...] [--check <name> ...]`. Paths are normalized and relative
   to the repository. `--input` declares an immutable dependency. `--owned`
   explicitly declares an editable input/output, including an existing dirty
@@ -602,17 +602,17 @@ Changed identity, method, compaction or reset makes the delta unknown. No
 measurement means no history file and no history link. The optional preview is
 diagnostic only, at most two short lines, and never changes scope or plan.
 
-Example in a disposable repository (owner `worker`, no assigned outputs):
+Example in a disposable repository with a synthetic verified registry fixture for T-003/#25 (owner `worker`, no assigned outputs; tests create that fixture without network access):
 
 ```sh
-python3 scripts/handoff.py --root . create T-007-EXAMPLE --parent T-007 \
+python3 scripts/handoff.py --root . create T-003-EXAMPLE --parent T-003 --issue 25 \
   --task 'Prepare bounded change, verify it and finalize evidence.' \
   --check offline-tests \
   --execution-plan '{"total_steps":3,"steps":[{"id":"prepare","label":"Prepare bounded change"},{"id":"verify","label":"Validate and review change"},{"id":"handoff","label":"Finalize evidence and CLI handoff"}]}'
-python3 scripts/handoff.py --root . claim T-007-EXAMPLE --owner worker --revision 1
-python3 scripts/handoff.py --root . progress T-007-EXAMPLE --owner worker --revision 2 --start prepare
+python3 scripts/handoff.py --root . claim T-003-EXAMPLE --owner worker --revision 1
+python3 scripts/handoff.py --root . progress T-003-EXAMPLE --owner worker --revision 2 --start prepare
 # Execute concrete preparation commands; keep ordinary output readable.
-python3 scripts/handoff.py --root . progress T-007-EXAMPLE --owner worker --revision 3 --done prepare
+python3 scripts/handoff.py --root . progress T-003-EXAMPLE --owner worker --revision 3 --done prepare
 ```
 
 Continue with `--start verify`, `--done verify`, `--start handoff`, `--done
@@ -631,7 +631,7 @@ Each successful meaningful transition emits one compact diagnostic line on
 command stdout. The renderer uses a 30-cell Unicode bar with
 `percent * 30 // 100` filled cells, the parent ID (delegation ID only when the
 parent is unavailable), and the persisted plan's readable label. Its shape is
-`●  T-007 [██████████████████░░░░░░░░░░] ~60% — Validate changes`. A green ANSI
+`●  T-003 [██████████████████░░░░░░░░░░] ~60% — Validate changes`. A green ANSI
 sequence colors the bullet only when stdout is a TTY and `NO_COLOR` is absent;
 otherwise the same bullet is uncolored. At 100%, the label is exactly
 `CLI complete; GUI review pending`. This is ordinary tool output; it does not
@@ -689,7 +689,7 @@ Progress uses the same per-task lock, owner, revision, pending-journal,
 symlink/path, baseline and frozen-contract guards as lifecycle transitions.
 Only one atomic status replacement follows all checks. No progress command
 changes task text, baseline, claims, outputs, result grammar or publication
-permissions. See [T-007](tasks/T-007-handoff-progress.md) for acceptance and
+permissions. See [T-003](tasks/T-003-handoff-progress.md) for acceptance and
 offline evidence; GUI still reviews the actual diff and evidence before receipt.
 
 ### Legacy pickup and GUI receipt
@@ -715,6 +715,73 @@ record/state/index where materially changed, then consume the named result
 completes its parent.
 
 Every material stage records in its own result: observation, cause or unknown, recovery, outcome, and a small reusable instruction/tool suggestion. Report recovered errors with sanitized operation, diagnostic/exit code and recovery. One coordinator promotes verified reusable lessons; repeated violations of an existing rule call for execution/tool fixes, not automatic rule growth. No background monitor or report per chat message.
+
+## GitHub-first task registry
+
+GitHub Issues allocates task IDs. Register and verify the issue before creating
+local task records/handoffs or starting Codex execution. This applies to human
+and agent coordinators; a write still requires user authorization.
+
+| Surface | Owns |
+|---|---|
+| GitHub issue title/number/state | Canonical identity and lifecycle; sole new-ID allocator |
+| `docs/task-registry.json` | Verified offline mirror, retired-ID reservations and explicit historical conflict quarantine/aliases |
+| `docs/tasks/` | Durable technical specification/result mirror |
+| BACKLOG / CURRENT_STATE / TASK_HISTORY | Derived navigation and operational checkpoints |
+| `.codex-sync/tasks/` | Frozen execution evidence for an already registered parent; never an allocator |
+| Wiki | Human-facing mirror; never an allocator |
+
+Titles must start with `<ID> — <title>`. Number independently per class using
+one above the highest title ID or retained retired ID, never filling gaps.
+Closed issues reserve IDs permanently. Issue number #25 is not task T-025.
+Body mentions, generic full-text search hits and pull requests allocate nothing.
+Duplicate canonical titles are a hard conflict, including open/closed pairs.
+Never silently replace the registry while duplicates exist.
+
+Creation sequence:
+
+1. Query all open and closed issues with pagination. `python3 scripts/task_registry.py next T`
+   is a read-only suggestion, not a reservation.
+2. With GitHub-write authorization, use `python3 scripts/task_registry.py reserve T --title '<title>' --body-file <prepared-body.md>`.
+   The helper queries again, creates the issue, reads it back, checks the full
+   inventory for races and only then writes the verified local mirror.
+3. `python3 scripts/task_registry.py sync` refreshes already registered tasks,
+   verifying canonical issue titles/numbers. New execution requires this
+   verified identity, not an invented local ID. `verify T-003 --issue 25`
+   checks the offline mapping.
+4. Create the local specification and a handoff using
+   `handoff.py create <delegation-ID> --parent T-003 --issue 25 ...`.
+   The helper rejects missing/unregistered/conflicting bindings before writing
+   any task directory and freezes issue number, URL and title into status.
+
+GitHub cannot atomically enforce unique issue titles. A detected concurrent
+reservation fails closed, leaves remote evidence intact and writes no new local
+reservation. Re-query and reconcile the duplicate before another attempt; do
+not overwrite/close another coordinator's issue. An ambiguous creation response
+may already have created an issue: inspect GitHub before retrying. Network/API
+failure never authorizes a local final ID. An unnumbered draft may be prepared.
+The snapshot preserves removed IDs from earlier verified inventories; deleted
+IDs never previously observed cannot be recovered from the API. Restore them
+from durable historical evidence before allocating in that class.
+
+Already registered execution uses the saved registry offline; there is no
+network call during ordinary claim/progress/complete. Existing frozen receipts
+are not rewritten. Explicit quarantines block stale/conflicting handoffs;
+historical aliases preserve provenance but cannot authorize another execution.
+A changed canonical title or identity requires coordinator reconciliation and
+an explicitly prepared new handoff, not mutation of a frozen contract.
+
+Reconciliation: (A) missing local mirror → link the existing issue, not a new
+ID; (B) unregistered local work → preserve it as an unnumbered draft/history,
+reserve before further canonical execution; (C) different work under the same
+ID → quarantine and resolve ownership, retain original evidence; (D) lifecycle
+mismatch → compare durable acceptance and receipts, never blindly copy status.
+A documentation acceptance need not mean the GitHub issue is closed. No
+historical research decision is reopened by this registry audit.
+
+The 2026-10-25 audit is in [T-007](tasks/T-007-task-registry.md). Progress is
+T-003/#25; the earlier unregistered Wiki task is retained without a canonical
+ID. Historical misnumbered records remain explicit provenance, not new tasks.
 
 ## GitHub issue title convention
 

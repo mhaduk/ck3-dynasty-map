@@ -1,3 +1,17 @@
+## T-007 / #31 — complete; scoped source publication authorized
+
+Accepted on 2026-10-25: canonical GitHub-first registry, issue-bound handoff
+creation and offline validation; 88 focused tests pass. Progress #25 is restored
+to T-003, T-007 belongs solely to #31, unregistered Wiki history is preserved,
+and stale/conflicting handoffs are quarantined without rewriting evidence.
+GitHub #31 is closed completed; issue bodies/labels and Wiki commit 507d27b
+were read back. Partial finite-cutoff cost: 3,415,689 tokens / $0.72286920.
+The user subsequently authorized scoped repository commit/push on 2026-10-25;
+this publication carries the accepted source and records. Historical T-007
+progress / T-003 Wiki labels below
+are superseded identity provenance. No game action.
+See [canonical audit](tasks/T-007-task-registry.md).
+
 ## T-021 — completion accepted; publication authorized
 
 GUI accepted corrected execution-review/inventory implementation on 2026-10-25:

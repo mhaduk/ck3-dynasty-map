@@ -28,6 +28,8 @@
 - AI-cost updates and closeout publications must show the canonical per-model Markdown cost table in each scoped GitHub Issue/PR body and canonical task record, with a Total row and USD cost column; prose or a link alone is insufficient. Assign and verify `ai-cost-table-format`, including published-body readback; see CODEX_WORKFLOW for the exact schema and limits.
 - For each material stage, report observation, cause or unknown, recovery, outcome and a useful instruction/tool improvement. Report recovered command/path/tool failures; do not hide them. See the self-healing section in CODEX_WORKFLOW.
 
+- GitHub Issues allocates task IDs. Register and read back the issue before creating local task records/handoffs or starting execution. Closed IDs remain reserved; use `scripts/task_registry.py` and the [registry workflow](docs/CODEX_WORKFLOW.md#github-first-task-registry). Local filenames and conversation memory never allocate IDs.
+
 ## Project and source rules
 
 - CK3 source discovery starts at [CK3_SOURCE_MAP.md](docs/CK3_SOURCE_MAP.md). Reuse completed target-build research unless the build changes, evidence conflicts or revalidation is requested. Verify APIs against the installed target build and generated docs.

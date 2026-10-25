@@ -35,7 +35,7 @@ Planless handoffs retain their uncalibrated range.
 
 Terminal progress uses a green ANSI bullet for color-capable TTY output and the
 same plain glyph otherwise, compact parent ID, proportional 30-cell Unicode bar,
-approximate percentage and readable stage. T-007 semantics and completion gates,
+approximate percentage and readable stage. T-003 semantics and completion gates,
 T-006 decision authority and upstream evidence contracts remain intact.
 
 ```text

@@ -1,5 +1,5 @@
 name: Research spike
-description: Time-boxed CK3 API / vanilla behavior investigation. Replace R-XXX with the next verified stable ID; keep the title format <ID> — <concise title>.
+description: Time-boxed CK3 API / vanilla behavior investigation. Replace R-XXX with the next ID verified against all open/closed GitHub issue titles (never local numbering); keep the title format <ID> — <concise title>. Create and read back this issue before local execution; reconcile collisions before continuing.
 title: "R-XXX — "
 labels: ["type:research"]
 body:

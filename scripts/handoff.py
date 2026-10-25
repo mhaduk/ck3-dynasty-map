@@ -16,6 +16,11 @@ import re
 import sys
 import tempfile
 
+# Load the adjacent helper even when this module is imported from a test.
+_registry_spec = importlib.util.spec_from_file_location("handoff_task_registry", Path(__file__).with_name("task_registry.py"))
+task_registry = importlib.util.module_from_spec(_registry_spec)
+_registry_spec.loader.exec_module(task_registry)
+
 ID_RE = re.compile(r"^[A-Z][A-Z0-9]*-[A-Z0-9]+(?:-[A-Z0-9]+)*$")
 REQUIRED_SECTIONS = (
     "Identity", "Result", "Files", "Checks", "Self-healing / agent-instruction findings",
@@ -435,7 +440,15 @@ def cmd_progress(args):
     print(progress_line(updated) + ("; plan amended" if args.amend is not None else ""))
 
 
+def registry_check(root, status):
+    try:
+        task_registry.check_handoff(root, status)
+    except task_registry.RegistryError as exc:
+        raise HandoffError(str(exc)) from exc
+
+
 def contract(root, directory, status, initial=False):
+    registry_check(root, status)
     task = safe_path(root, directory / "CLI_TASK.md", "file", required=True)
     if digest(task.read_bytes()) != status["scope_sha256"]:
         raise HandoffError("frozen task description changed")
@@ -462,6 +475,12 @@ def cmd_create(args):
     if directory.exists():
         raise HandoffError("task ID already exists; retry must be explicit")
     safe_id(args.parent)
+    try:
+        if args.issue is None:
+            raise task_registry.RegistryError("--issue is required: bind the parent to its verified GitHub issue")
+        github_issue = task_registry.binding(root, args.parent, args.issue)
+    except task_registry.RegistryError as exc:
+        raise HandoffError(str(exc)) from exc
     if args.task_file:
         source = Path(args.task_file)
         source = source if source.is_absolute() else root / source
@@ -536,7 +555,7 @@ def cmd_create(args):
     # Publish READY only after its description and initial evidence exist.
     with locked(root, directory):
         atomic_json(root, directory / "STATUS.json", {
-            "id": args.id, "parent_id": args.parent, "attempt": 1, "revision": 1,
+            "id": args.id, "parent_id": args.parent, "github_issue": github_issue, "attempt": 1, "revision": 1,
             "status": "READY", "owner": None, "created_at": now(), "updated_at": now(),
             "inputs": fingerprints, "owned": owned, "required_checks": args.check,
             "scope_sha256": digest(task_data),
@@ -599,7 +618,7 @@ def legacy_candidate(root, state):
     task_id, parent = safe_id(field("Delegation ID")), safe_id(field("Parent task"))
     if state == "COMPLETED":
         safe_path(root, sync / "CLI_RESULT.md", "file", required=True)
-    return {"id": task_id, "parent_id": parent, "legacy": True}
+    return {"id": task_id, "parent_id": parent, "legacy": True, "status": status}
 
 
 def cmd_list(args):
@@ -621,20 +640,27 @@ def cmd_resolve(args):
             admin_paths(root, directory)
             status = read_status(root, directory)
             require_state(status, state)
+            registry_check(root, status)
             print(args.id)
             return
         old = legacy_candidate(root, state)
         if old and old["id"] == args.id:
+            registry_check(root, old)
             print(args.id)
             return
         raise HandoffError(f"requested ID is not {state}; no product-task fallback")
-    eligible = [s for s in candidates(root) if s["status"] == state]
+    data = task_registry.load(root) if (root / "docs/task-registry.json").exists() else {}
+    quarantines = data.get("handoff_reconciliation", {})
+    eligible = [s for s in candidates(root) if s["status"] == state
+                and not (quarantines.get(s["id"], {}).get("action") == "blocked"
+                         or (quarantines.get(s["id"], {}).get("action") == "alias" and state == "READY"))]
     old = legacy_candidate(root, state)
     if old:
         eligible.append(old)
     if len(eligible) != 1:
         names = [s["id"] + (" (legacy)" if s.get("legacy") else "") for s in eligible]
         raise HandoffError(f"{'ambiguous' if eligible else 'no'} {state} candidates: {', '.join(names) or '(none)'}; no fallback to product work")
+    registry_check(root, eligible[0])
     print(eligible[0]["id"])
 
 
@@ -901,6 +927,7 @@ def build_parser():
     subs = parser.add_subparsers(dest="command", required=True)
     p = subs.add_parser("create", help="create one frozen READY task")
     p.add_argument("id"); p.add_argument("--parent", required=True)
+    p.add_argument("--issue", type=int, help="verified GitHub issue number for the parent task")
     p.add_argument("--task", default=""); p.add_argument("--task-file")
     p.add_argument("--execution-plan", help="GUI-supplied plan JSON, frozen into CLI_TASK before READY")
     p.add_argument("--plan-summary", help="GUI-authored summary JSON bound to the exact frozen plan")
@@ -937,7 +964,7 @@ def main(argv=None):
     args = build_parser().parse_args(argv)
     try:
         args.func(args)
-    except (HandoffError, OSError, UnicodeError) as exc:
+    except (HandoffError, task_registry.RegistryError, OSError, UnicodeError) as exc:
         print(f"handoff: {exc}", file=sys.stderr)
         return 2
     return 0

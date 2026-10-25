@@ -15,7 +15,7 @@ The additive formatter uses the existing execution plan. Summary text maps to
 ordered milestone IDs and an exact canonical-plan fingerprint; every milestone
 is covered once in order. Plans above ten milestones require meaningful authored
 grouping. Changed plans reject stale summaries. Planless legacy handoffs remain
-valid. CLI authority, T-007 progress state, amendments and completion gates are
+valid. CLI authority, T-003 progress state, amendments and completion gates are
 unchanged. Structural checks do not establish semantic quality; GUI reviews it.
 
 ## Validation and review

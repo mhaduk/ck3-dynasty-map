@@ -12,7 +12,8 @@ exists; a provenance value of `null` is not evidence that it was delivered.
 ~~~markdown
 # <short task title>
 
-Parent: <stable parent ID>
+Parent: <registered stable parent ID>
+GitHub issue: <verified issue number and URL; --issue must match the saved registry>
 Delegation type: <COLLECT | VERIFY | RESEARCH | EXECUTE>
 Decision authority: GUI
 Model recommendation: Luna / Medium (recommendation unless runtime confirms)

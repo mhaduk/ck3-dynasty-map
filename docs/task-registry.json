@@ -1,0 +1,326 @@
+{
+  "handoff_reconciliation": {
+    "F002-MAPPING-BRIDGE-20261024-50": {
+      "action": "blocked",
+      "original_status_sha256": "ddf31604b6ed6887cff2960e191f1bf360afc61b94cc7f904b070dc1a418ca6e",
+      "original_task_sha256": "0e774636ad649ecc91acb924e7ced84d4387b08f5a0331954d99fb2b07beedac",
+      "reason": "Superseded READY candidate; F-002 already accepted/closed via later source52/installation53. No retry or execution."
+    },
+    "T-003": {
+      "action": "blocked",
+      "original_status_sha256": "cd47a6ccac832279b822518bc031bbe0892a28f7c9c7600582aca18146d699da",
+      "original_task_sha256": "cc9351d3fe8e76d1f9af70bfb6e633f097db3d7847aa44a536cda021517f6d6f",
+      "reason": "Unregistered historical Wiki draft; T-003 is progress issue #25. Preserve original frozen files."
+    },
+    "T-003-RETRY": {
+      "action": "blocked",
+      "original_status_sha256": "aff8a3e1e4278a38358c66f1b0e0291e857450cd783e97bd566b0ba2e53c36a5",
+      "original_task_sha256": "1deef57d4eebfee8858cd14a4195239973fef437707e96a3c8691079874cbc76",
+      "reason": "Consumed unregistered Wiki work; preserve evidence, no canonical T-003 execution."
+    },
+    "T007-DISPLAY-20261023-02": {
+      "action": "alias",
+      "canonical_parent": "T-003",
+      "issue": 25,
+      "original_status_sha256": "3b202c26f5894a63da96b9a628e37887a7f778274280d6981a945d12ccb1fe79",
+      "original_task_sha256": "09a8b0af6f67f3067a36da902c70e507bbf26ddcd08e90a268ea109d56ea1f9b",
+      "reason": "Consumed progress presentation follow-up, original frozen evidence retained."
+    },
+    "T007-PROGRESS-20261023-01": {
+      "action": "alias",
+      "canonical_parent": "T-003",
+      "issue": 25,
+      "original_status_sha256": "8a5066385e29497464737c81b1100f71271c4b1c9f1cc571f96eab9228e2a97a",
+      "original_task_sha256": "9c91ec804d5b996893498b2193ea791cee9cfdffb4dae4dd902aa444ea15638e",
+      "reason": "Consumed progress implementation, original misnumbered frozen evidence retained."
+    }
+  },
+  "issues": [
+    {
+      "number": 48,
+      "state": "open",
+      "title": "T-022 \u2014 Remove Coverage / source cutoff from Wiki AI-cost tables",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/48"
+    },
+    {
+      "number": 47,
+      "state": "closed",
+      "title": "T-021 \u2014 Add post-execution self-review and continuous optimization inventory",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/47"
+    },
+    {
+      "number": 46,
+      "state": "closed",
+      "title": "T-020 \u2014 Add human-readable Plan of execution to GUI \u2192 CLI handoff",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/46"
+    },
+    {
+      "number": 45,
+      "state": "open",
+      "title": "T-019 \u2014 Consolidate local mod variants and remove legacy launcher artifacts",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/45"
+    },
+    {
+      "number": 44,
+      "state": "open",
+      "title": "T-018 \u2014 Reduce Dynasty Map cold-entry recomputation cost",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/44"
+    },
+    {
+      "number": 43,
+      "state": "open",
+      "title": "T-017 \u2014 Define readiness gate for 0.1.0-beta.1",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/43"
+    },
+    {
+      "number": 42,
+      "state": "open",
+      "title": "T-016 \u2014 Restructure public Wiki for players and technical documentation",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/42"
+    },
+    {
+      "number": 41,
+      "state": "closed",
+      "title": "T-015 \u2014 Diagnostic escalation and independent external review",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/41"
+    },
+    {
+      "number": 40,
+      "state": "open",
+      "title": "T-014 \u2014 Prepare Dynasty Map for Steam Workshop beta",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/40"
+    },
+    {
+      "number": 39,
+      "state": "open",
+      "title": "F-006 \u2014 Implement Dynasty Map diagnostic timer",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/39"
+    },
+    {
+      "number": 38,
+      "state": "open",
+      "title": "R-018 \u2014 Research reliable elapsed timing for Dynasty Map",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/38"
+    },
+    {
+      "number": 37,
+      "state": "open",
+      "title": "T-011 \u2014 Deferred workflow optimization ideas",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/37"
+    },
+    {
+      "number": 36,
+      "state": "closed",
+      "title": "T-010 \u2014 Finite checkpoint metadata comparison",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/36"
+    },
+    {
+      "number": 35,
+      "state": "closed",
+      "title": "T-009 \u2014 Structured preflight evidence",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/35"
+    },
+    {
+      "number": 34,
+      "state": "closed",
+      "title": "T-013 \u2014 Simplify wiki AI-cost table",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/34"
+    },
+    {
+      "number": 33,
+      "state": "closed",
+      "title": "T-012 \u2014 Lightweight GUI session context measurement",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/33"
+    },
+    {
+      "number": 32,
+      "state": "closed",
+      "title": "T-008 \u2014 Workflow optimization after routing",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/32"
+    },
+    {
+      "number": 31,
+      "state": "CLOSED",
+      "title": "T-007 \u2014 Synchronize task registry and enforce GitHub-first task creation",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/31"
+    },
+    {
+      "number": 30,
+      "state": "open",
+      "title": "F-005 \u2014 Dynasty Map functional follow-ups",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/30"
+    },
+    {
+      "number": 29,
+      "state": "closed",
+      "title": "F-004 \u2014 Dynasty Map diagnostics hardening",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/29"
+    },
+    {
+      "number": 28,
+      "state": "closed",
+      "title": "T-006 \u2014 Workflow analysis and model-routing contract",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/28"
+    },
+    {
+      "number": 27,
+      "state": "closed",
+      "title": "T-005 \u2014 Review and rationalize open research tasks",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/27"
+    },
+    {
+      "number": 26,
+      "state": "closed",
+      "title": "T-004 \u2014 Standardize issue title convention in agent configuration",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/26"
+    },
+    {
+      "number": 25,
+      "state": "closed",
+      "title": "T-003 \u2014 Handoff execution plan and CLI progress indicator",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/25"
+    },
+    {
+      "number": 24,
+      "state": "closed",
+      "title": "T-002 \u2014 Per-task AI token accounting and historical backfill",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/24"
+    },
+    {
+      "number": 23,
+      "state": "closed",
+      "title": "T-001 \u2014 Incremental agent workflow optimization",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/23"
+    },
+    {
+      "number": 22,
+      "state": "open",
+      "title": "F-003 \u2014 Define Dynasty subview behavior and category roles",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/22"
+    },
+    {
+      "number": 21,
+      "state": "closed",
+      "title": "F-002 \u2014 Dynasty coat-of-arms palette",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/21"
+    },
+    {
+      "number": 20,
+      "state": "closed",
+      "title": "F-001 \u2014 Define Dynasty menu, subviews, legend and neutral-grey contrast",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/20"
+    },
+    {
+      "number": 19,
+      "state": "closed",
+      "title": "R-017 \u2014 Select test character, start year and Dynasty fixtures",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/19"
+    },
+    {
+      "number": 17,
+      "state": "closed",
+      "title": "chore: complete GitHub Community Standards and add open-source license",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/17"
+    },
+    {
+      "number": 16,
+      "state": "closed",
+      "title": "R-016 \u2014 Historical My Dynasty pipeline validation on CK3 1.20.1.2",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/16"
+    },
+    {
+      "number": 15,
+      "state": "closed",
+      "title": "R-015 \u2014 Investigate Clerical Regions as a custom map renderer",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/15"
+    },
+    {
+      "number": 14,
+      "state": "closed",
+      "title": "R-014 \u2014 Inventory CK3 modding documentation and source hierarchy",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/14"
+    },
+    {
+      "number": 13,
+      "state": "closed",
+      "title": "R-013 \u2014 Deferred no-Dynasty local-player fixture and unavailable UI",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/13"
+    },
+    {
+      "number": 12,
+      "state": "closed",
+      "title": "R-012 \u2014 Install and configure CK3 Tiger locally",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/12"
+    },
+    {
+      "number": 11,
+      "state": "closed",
+      "title": "R-011 \u2014 Capture a clean vanilla error-log baseline",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/11"
+    },
+    {
+      "number": 10,
+      "state": "closed",
+      "title": "R-010 \u2014 Confirm minimal original GUI integration and refresh path",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/10"
+    },
+    {
+      "number": 9,
+      "state": "open",
+      "title": "R-009 \u2014 Verify barony coloring and restoration safety",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/9"
+    },
+    {
+      "number": 8,
+      "state": "closed",
+      "title": "R-008 \u2014 Verify county-to-de-jure-baronies traversal",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/8"
+    },
+    {
+      "number": 7,
+      "state": "closed",
+      "title": "R-007 \u2014 Verify liege traversal semantics in target build",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/7"
+    },
+    {
+      "number": 6,
+      "state": "closed",
+      "title": "R-006 \u2014 Verify county-to-holder-to-Dynasty scope links",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/6"
+    },
+    {
+      "number": 5,
+      "state": "open",
+      "title": "R-005 \u2014 Verify local-player scopes and context-loss safety",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/5"
+    },
+    {
+      "number": 4,
+      "state": "closed",
+      "title": "R-004 \u2014 Generate clean script_docs and dump_data_types",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/4"
+    },
+    {
+      "number": 3,
+      "state": "closed",
+      "title": "R-003 \u2014 Inspect map-mode GUI and activation/refresh/exit hooks",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/3"
+    },
+    {
+      "number": 2,
+      "state": "closed",
+      "title": "R-002 \u2014 Inspect installed map-mode definitions",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/2"
+    },
+    {
+      "number": 1,
+      "state": "closed",
+      "title": "R-001 \u2014 Record installed CK3 version and DLC/playset baseline",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/1"
+    }
+  ],
+  "repository": "mhaduk/ck3-dynasty-map",
+  "retired_ids": [],
+  "verified_at": "2026-10-25T08:00:13.307999+00:00",
+  "version": 1
+}

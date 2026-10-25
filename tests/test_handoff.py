@@ -23,11 +23,19 @@ class HandoffTests(unittest.TestCase):
         self.root.mkdir()
         (self.root / ".codex-sync").mkdir()
         (self.root / "input.md").write_text("input-v1\n")
+        (self.root / "docs").mkdir()
+        fixture = {"version": 1, "repository": "mhaduk/ck3-dynasty-map", "issues": [
+            {"number": n, "title": f"{task} — Synthetic offline fixture", "state": "OPEN",
+             "url": f"https://github.com/mhaduk/ck3-dynasty-map/issues/{n}"}
+            for task, n in (("T-001", 23), ("T-003", 25))]}
+        (self.root / "docs/task-registry.json").write_text(json.dumps(fixture))
 
     def tearDown(self):
         self.temp.cleanup()
 
     def run_cli(self, *args, ok=True):
+        if args and args[0] == "create" and "--issue" not in args:
+            args = (*args, "--issue", "25" if args[args.index("--parent") + 1] == "T-003" else "23")
         result = subprocess.run([sys.executable, str(SCRIPT), "--root", str(self.root), *args], text=True, capture_output=True, timeout=15)
         if ok:
             self.assertEqual(result.returncode, 0, result.stderr)
@@ -596,8 +604,8 @@ class HandoffTests(unittest.TestCase):
     def plan(self, count=3):
         return {"total_steps": count, "steps": [{"id": f"stage{i}", "label": f"Major stage {i}"} for i in range(count)]}
 
-    def planned(self, task_id="T-007-PLAN", count=3):
-        self.run_cli("create", task_id, "--parent", "T-007", "--task", "Bounded offline work.",
+    def planned(self, task_id="T-003-PLAN", count=3):
+        self.run_cli("create", task_id, "--parent", "T-003", "--task", "Bounded offline work.",
                      "--input", "input.md", "--check", "unit suite", "--execution-plan", json.dumps(self.plan(count)))
         directory = self.root / ".codex-sync/tasks" / task_id
         self.claim(task_id)
@@ -620,18 +628,18 @@ class HandoffTests(unittest.TestCase):
                    {"total_steps": 1, "steps": [{"id": "read", "label": " "}]},
                    {"total_steps": 1, "steps": [{"id": "read", "label": "Read", "extra": 1}]}]
         for index, plan in enumerate(invalid):
-            task_id = f"T-007-BAD-{index}"
-            self.run_cli("create", task_id, "--parent", "T-007", "--task", "Work",
+            task_id = f"T-003-BAD-{index}"
+            self.run_cli("create", task_id, "--parent", "T-003", "--task", "Work",
                          "--execution-plan", json.dumps(plan), ok=False)
             self.assertFalse((self.root / ".codex-sync/tasks" / task_id).exists())
-        self.run_cli("create", "T-007-JSON", "--parent", "T-007", "--task", "Work", "--execution-plan", "{", ok=False)
-        self.run_cli("create", "T-007-EMPTY", "--parent", "T-007", "--task", "Work", "--execution-plan", "", ok=False)
-        self.planned("T-007-MAX", 20)
+        self.run_cli("create", "T-003-JSON", "--parent", "T-003", "--task", "Work", "--execution-plan", "{", ok=False)
+        self.run_cli("create", "T-003-EMPTY", "--parent", "T-003", "--task", "Work", "--execution-plan", "", ok=False)
+        self.planned("T-003-MAX", 20)
 
     def test_frozen_inline_plan_bootstrap_and_malformed_blocks(self):
         task = "Work\n\n```json\n" + json.dumps({"execution_plan": self.plan(1)}) + "\n```\n"
-        self.run_cli("create", "T-007-INLINE", "--parent", "T-007", "--task", task)
-        directory = self.root / ".codex-sync/tasks/T-007-INLINE"
+        self.run_cli("create", "T-003-INLINE", "--parent", "T-003", "--task", task)
+        directory = self.root / ".codex-sync/tasks/T-003-INLINE"
         self.claim(directory.name)
         # Simulates a pre-feature frozen task claimed by the previous helper.
         status = self.status(directory)
@@ -640,7 +648,7 @@ class HandoffTests(unittest.TestCase):
         self.progress(directory, "--start", "stage0")
         self.assertEqual(self.status(directory)["progress"]["plan"], self.plan(1))
         for index, bad in enumerate((task + task, '```json\n{"execution_plan":\n```\n', task.rsplit("```", 1)[0])):
-            self.run_cli("create", f"T-007-INLINE-BAD-{index}", "--parent", "T-007", "--task", bad, ok=False)
+            self.run_cli("create", f"T-003-INLINE-BAD-{index}", "--parent", "T-003", "--task", bad, ok=False)
 
     def test_plan_summary_table_order_grouping_staleness_and_legacy(self):
         spec = importlib.util.spec_from_file_location("handoff_summary", SCRIPT)
@@ -677,18 +685,18 @@ class HandoffTests(unittest.TestCase):
         plan = self.plan(1)
         frozen_summary = {"plan_sha256": module.plan_fingerprint(plan),
                           "bullets": [{"ids": ["stage0"], "text": "Inspect the supplied evidence"}]}
-        self.run_cli("create", "T-007-SUMMARY", "--parent", "T-007", "--task", "Work",
+        self.run_cli("create", "T-003-SUMMARY", "--parent", "T-003", "--task", "Work",
                      "--execution-plan", json.dumps(plan), "--plan-summary", json.dumps(frozen_summary))
-        frozen_text = (self.root / ".codex-sync/tasks/T-007-SUMMARY/CLI_TASK.md").read_text()
+        frozen_text = (self.root / ".codex-sync/tasks/T-003-SUMMARY/CLI_TASK.md").read_text()
         self.assertEqual(module.frozen_plan_summary(frozen_text, plan), frozen_summary)
         stale_plan = self.plan(1)
         stale_plan["steps"][0]["label"] = "Changed source plan"
-        self.run_cli("create", "T-007-SUMMARY-STALE", "--parent", "T-007", "--task", "Work",
+        self.run_cli("create", "T-003-SUMMARY-STALE", "--parent", "T-003", "--task", "Work",
                      "--execution-plan", json.dumps(stale_plan), "--plan-summary", json.dumps(frozen_summary), ok=False)
-        self.assertFalse((self.root / ".codex-sync/tasks/T-007-SUMMARY-STALE").exists())
+        self.assertFalse((self.root / ".codex-sync/tasks/T-003-SUMMARY-STALE").exists())
 
     def test_planless_compatibility_does_not_invent_plan(self):
-        directory = self.create("T-007-OLD")
+        directory = self.create("T-003-OLD")
         self.assertNotIn("[", self.claim(directory.name).stdout)
         before = self.snapshot(directory)
         self.assertIn("planless", self.progress(directory, "--start", "inspect", ok=False).stderr)
@@ -702,7 +710,7 @@ class HandoffTests(unittest.TestCase):
         out = self.progress(directory, "--start", "stage0").stdout
         self.assertIn("~0% — Major stage 0", out)
         self.assertEqual(len(out.split("[")[1].split("]")[0]), 30)
-        self.assertIn("●  T-007", out)
+        self.assertIn("●  T-003", out)
         before = self.snapshot(directory)
         # New subprocesses emulate restart and an arbitrary number of ordinary logs/commands.
         for _ in range(3):
@@ -922,9 +930,9 @@ class HandoffTests(unittest.TestCase):
 
     def test_temporary_root_end_to_end_progress_transcript(self):
         transcript = ["Temporary-root offline demonstration; no live task receipt."]
-        self.run_cli("create", "T-007-DEMO", "--parent", "T-007", "--task", "Offline demo", "--check", "unit suite",
+        self.run_cli("create", "T-003-DEMO", "--parent", "T-003", "--task", "Offline demo", "--check", "unit suite",
                      "--execution-plan", json.dumps(self.plan(2)))
-        directory = self.root / ".codex-sync/tasks/T-007-DEMO"
+        directory = self.root / ".codex-sync/tasks/T-003-DEMO"
         transcript += ["create: frozen GUI plan with two major stages", self.claim(directory.name).stdout.strip()]
         transcript.append(self.progress(directory, "--start", "stage0").stdout.strip())
         transcript.append("ordinary log: inspected bounded fixture")
