@@ -3040,6 +3040,399 @@
       "status": "observing",
       "summary": "Checkpoint recovered decimal serialization and readback encoding limitations",
       "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T016-WIKI-PREP-20261026-01"
+      ],
+      "affected_tasks": [
+        "T016-WIKI-PREP-20261026-01"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:T016-WIKI-PREP-20261026-01"
+        ],
+        "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0028",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T016-WIKI-PREP-20261026-01"
+            ],
+            "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T016-WIKI-PREP-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T016-WIKI-PREP-20261026-01",
+          "text": "RECOVERED",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T016-WIKI-PREP-20261026-01"
+            ],
+            "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T016-WIKI-PREP-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T016-WIKI-PREP-20261026-01",
+          "text": "RECOVERED: authorization payload retry; preview rebuilt after misplaced example; diff whitespace false positive scoped out; completion first rejected missing required report sections, then receipt structure was corrected",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T016-WIKI-PREP-20261026-01"
+            ],
+            "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T016-WIKI-PREP-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T016-WIKI-PREP-20261026-01",
+          "text": "RECOVERED: first edit pattern matched duplicate example outside Holdings; scoped replacement succeeded; temporary-directory scan hit protected entries, known renderer path used directly",
+          "trend": "REPEATED"
+        }
+      ],
+      "key": "workflow.t016-bounded-tool-recovery",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 3,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Wiki preparation recovered bounded tool and receipt failures",
+      "trend": "REPEATED"
+    },
+    {
+      "affected_executions": [
+        "T016-WIKI-PREP-20261026-01"
+      ],
+      "affected_tasks": [
+        "T016-WIKI-PREP-20261026-01"
+      ],
+      "boundary_history": [],
+      "category": "rework",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:T016-WIKI-PREP-20261026-01"
+        ],
+        "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0029",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T016-WIKI-PREP-20261026-01"
+            ],
+            "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T016-WIKI-PREP-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T016-WIKI-PREP-20261026-01",
+          "text": "RECOVERED",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T016-WIKI-PREP-20261026-01"
+            ],
+            "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T016-WIKI-PREP-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T016-WIKI-PREP-20261026-01",
+          "text": "OBSERVED: correction cycle and preview rebuild",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T016-WIKI-PREP-20261026-01"
+            ],
+            "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T016-WIKI-PREP-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T016-WIKI-PREP-20261026-01",
+          "text": "OBSERVED: C-R2 fixes the remaining semantic example and validator gap from R2",
+          "trend": "REPEATED"
+        }
+      ],
+      "key": "validation.t016-semantic-preview-rework",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 3,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Wiki examples and current interaction wording required bounded corrections",
+      "trend": "REPEATED"
+    },
+    {
+      "affected_executions": [
+        "T016-WIKI-PREP-20261026-01"
+      ],
+      "affected_tasks": [
+        "T016-WIKI-PREP-20261026-01"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:T016-WIKI-PREP-20261026-01"
+        ],
+        "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0030",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T016-WIKI-PREP-20261026-01"
+            ],
+            "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T016-WIKI-PREP-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T016-WIKI-PREP-20261026-01",
+          "text": "OBSERVED",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T016-WIKI-PREP-20261026-01"
+            ],
+            "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T016-WIKI-PREP-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T016-WIKI-PREP-20261026-01",
+          "text": "OBSERVED: no GitHub Wiki renderer or image-rights determination in this local scope",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T016-WIKI-PREP-20261026-01"
+            ],
+            "rationale": "Preserve factual execution evidence; no measured optimization effect or new optimization task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T016-WIKI-PREP-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T016-WIKI-PREP-20261026-01",
+          "text": "OBSERVED: live Wiki rendering and rights review remain pending GUI stage",
+          "trend": "REPEATED"
+        }
+      ],
+      "key": "validation.t016-live-rendering-pending",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 3
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 3,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Local previews do not establish live GitHub Wiki rendering",
+      "trend": "REPEATED"
     }
   ],
   "ledger": [
@@ -3827,6 +4220,143 @@
       ],
       "rationale": "Accept documentation/accounting checkpoint only after independent GUI raw sum and fresh issue readback. Parent remains open/inprogress with experiments deferred; minor history-link/received-state integration is direct GUI follow-up.",
       "report_sha256": "b8b4e7abd4673734abed80c0aedf94f6a8832985500517d5ded670cff6fc7a0b"
+    },
+    {
+      "content_sha256": "ce1b2b55d98b9fd9d185f7a168e43a8f247408f8b747f90561a8df4eed249d08",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T016-WIKI-PREP-20261026-01"
+      ],
+      "id": "2c588adafc97ca0743ddc436aed30904a31ca84c28d3ac8d0daab9af9d111e6c",
+      "identity": "T016-WIKI-PREP-20261026-01:1:EXEC-1",
+      "observation_keys": [
+        "workflow.t016-bounded-tool-recovery",
+        "validation.t016-semantic-preview-rework",
+        "validation.t016-live-rendering-pending"
+      ],
+      "rationale": "GUI inspected the current R3 acceptance and exact output hashes. Record this executor, reviewer or correction report distinctly; null metrics remain unknown. Empty attachments assert no additional optimization observation; findings remain in the immutable review ledger.",
+      "report_sha256": "8e9eb5cc17e80cd9844d92ae842eb692b595487a3981f247a4353752a5b8277e"
+    },
+    {
+      "content_sha256": "3f10ce080730def8021d172d72b950e26b725064ad0addda3d536723330bcffe",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T016-WIKI-PREP-20261026-01"
+      ],
+      "id": "5274f8f04f9ba10a24ba5157f7bd2900591b455040cc76ae4c266a6a82daa8ee",
+      "identity": "T016-WIKI-PREP-20261026-01:1:REVIEW-R1",
+      "observation_keys": [],
+      "rationale": "GUI inspected the current R3 acceptance and exact output hashes. Record this executor, reviewer or correction report distinctly; null metrics remain unknown. Empty attachments assert no additional optimization observation; findings remain in the immutable review ledger.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "3f10ce080730def8021d172d72b950e26b725064ad0addda3d536723330bcffe",
+      "cycle_id": "REVIEW-R2",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T016-WIKI-PREP-20261026-01"
+      ],
+      "id": "3ce985854e66261bb517d2d3fcc2931bca7e5377f5e2cac13ce6d95a87ba92f3",
+      "identity": "T016-WIKI-PREP-20261026-01:1:REVIEW-R2",
+      "observation_keys": [],
+      "rationale": "GUI inspected the current R3 acceptance and exact output hashes. Record this executor, reviewer or correction report distinctly; null metrics remain unknown. Empty attachments assert no additional optimization observation; findings remain in the immutable review ledger.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "3f10ce080730def8021d172d72b950e26b725064ad0addda3d536723330bcffe",
+      "cycle_id": "REVIEW-R3",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T016-WIKI-PREP-20261026-01"
+      ],
+      "id": "71a3f300e403f77edb3d52c83f6496886deefafc07d71f092d8f05777cc86606",
+      "identity": "T016-WIKI-PREP-20261026-01:1:REVIEW-R3",
+      "observation_keys": [],
+      "rationale": "GUI inspected the current R3 acceptance and exact output hashes. Record this executor, reviewer or correction report distinctly; null metrics remain unknown. Empty attachments assert no additional optimization observation; findings remain in the immutable review ledger.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "3f10ce080730def8021d172d72b950e26b725064ad0addda3d536723330bcffe",
+      "cycle_id": "CORRECTION-C-R1",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T016-WIKI-PREP-20261026-01"
+      ],
+      "id": "e47ca3138fe9bf72c14147489a8313034cc8f702381b63d7f88dd157ee14963d",
+      "identity": "T016-WIKI-PREP-20261026-01:1:CORRECTION-C-R1",
+      "observation_keys": [],
+      "rationale": "GUI inspected the current R3 acceptance and exact output hashes. Record this executor, reviewer or correction report distinctly; null metrics remain unknown. Empty attachments assert no additional optimization observation; findings remain in the immutable review ledger.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "c9eb6e3434b51ffbdc123335a54a6e992eefeda5615d4a36e63ed83688c5e43d",
+      "cycle_id": "EXEC-C-R1",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T016-WIKI-PREP-20261026-01"
+      ],
+      "id": "0f7746133fc9b64b40c491ddf1c443a33ad8c82fa310d1ee199165eeb4023411",
+      "identity": "T016-WIKI-PREP-20261026-01:1:EXEC-C-R1",
+      "observation_keys": [
+        "workflow.t016-bounded-tool-recovery",
+        "validation.t016-semantic-preview-rework",
+        "validation.t016-live-rendering-pending"
+      ],
+      "rationale": "GUI inspected the current R3 acceptance and exact output hashes. Record this executor, reviewer or correction report distinctly; null metrics remain unknown. Empty attachments assert no additional optimization observation; findings remain in the immutable review ledger.",
+      "report_sha256": "5c9e24e2d3a9e88d283b5ec1065dd127ff64f998807c7176bcc420c0a0d9172f"
+    },
+    {
+      "content_sha256": "3f10ce080730def8021d172d72b950e26b725064ad0addda3d536723330bcffe",
+      "cycle_id": "CORRECTION-C-R2",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T016-WIKI-PREP-20261026-01"
+      ],
+      "id": "6b2b3cdcffedfa728764857fd8cf1fd1aec8ef353e8d0c044721900c31510d35",
+      "identity": "T016-WIKI-PREP-20261026-01:1:CORRECTION-C-R2",
+      "observation_keys": [],
+      "rationale": "GUI inspected the current R3 acceptance and exact output hashes. Record this executor, reviewer or correction report distinctly; null metrics remain unknown. Empty attachments assert no additional optimization observation; findings remain in the immutable review ledger.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "8a8db1bd59471d96c1cc1957ecd708572c45b7ec47277a8e4d061c2c60831864",
+      "cycle_id": "EXEC-C-R2",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T016-WIKI-PREP-20261026-01"
+      ],
+      "id": "10d4eea3f8d6d2643352db7acd43138e1db47d93fe832ff326293b35c8aee875",
+      "identity": "T016-WIKI-PREP-20261026-01:1:EXEC-C-R2",
+      "observation_keys": [
+        "workflow.t016-bounded-tool-recovery",
+        "validation.t016-semantic-preview-rework",
+        "validation.t016-live-rendering-pending"
+      ],
+      "rationale": "GUI inspected the current R3 acceptance and exact output hashes. Record this executor, reviewer or correction report distinctly; null metrics remain unknown. Empty attachments assert no additional optimization observation; findings remain in the immutable review ledger.",
+      "report_sha256": "43985d948599d9ceed23da21025e700978e96676b81acec8d99bfcf21e0d447e"
+    },
+    {
+      "content_sha256": "268fef4203348d207951fe61b4cef23a960975b67cd6de927167c29b671d60b6",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T016-WIKI-PREP-20261026-01"
+      ],
+      "id": "5db603391858cf16507be274e300a8ee631fa78e41ccefca33176084f4a0c26d",
+      "identity": "T016-WIKI-PREP-20261026-01:1",
+      "observation_keys": [],
+      "rationale": "Current executor report explicitly reviewed with EXEC-C-R2; ordinary receipt identity retained without duplicating cycle observations.",
+      "report_sha256": "43985d948599d9ceed23da21025e700978e96676b81acec8d99bfcf21e0d447e"
     }
   ],
   "version": 1

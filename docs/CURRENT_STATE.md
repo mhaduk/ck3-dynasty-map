@@ -1,3 +1,17 @@
+## T-016 / #42 — Wiki redesign complete; publication verified
+
+GUI accepted R3 after two corrections and consumed the prepared handoff.
+The user authorized publication, accounting, documentation cleanup and commit/push
+on 2026-10-26. Wiki `960b01d` is published: 22 content pages plus sidebar,
+five supplied images, Before/After Home and Houses-first Map Views. Old map
+embeds removed; technical history/legacy links preserved; README aligned.
+Actual GitHub rendering and fresh 28-file remote readback passed.
+Five saved GUI/executor/reviewer sources independently reconcile 271 responses,
+30,970,092 tokens and $2.23023898 partial Standard API-equivalent cost through
+2026-10-26T11:09:24.150Z. Later publication/closeout excluded; automatic-review
+coverage unavailable. All eight cycle reports/current executor triaged.
+No game action. See [canonical closeout](tasks/T-016-wiki-redesign-review.md).
+
 ## T-018 / #44 — checkpoint accepted; issue remains in progress
 
 Corrected palette-hoist B remains the local source/installed baseline (effects
