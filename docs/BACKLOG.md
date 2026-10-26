@@ -32,6 +32,12 @@ Dated migration/checkpoint statements below retain their historical meaning.
 | [T-015 / #41](tasks/T-015-diagnostic-escalation.md) | P2 | Opt-in diagnostic escalation and independent advisory review | Complete — corrected packet builder/import accepted; 161 independent tests and historical dry run; saved-session costs verified; issue/Wiki published; no external reviewer or CK3 operation required |
 | [T-011 / #37](https://github.com/mhaduk/ck3-dynasty-map/issues/37) | P3 | Preserve undelivered T-008 optimization candidates for later prioritization | Deferred — OPEN; no implementation selected |
 
+## Active game task
+
+| ID | Issue | Priority | Work item | Status / next step |
+|---|---|---|---|---|
+| [T-018 / #44](https://github.com/mhaduk/ck3-dynasty-map/issues/44) | #44 | P1 | Reduce Dynasty Map cold-entry recomputation cost | IN PROGRESS — corrected B is installed and the experiment checkpoint is documented; no demonstrated speedup. User paused further experiments. GUI accepted the checkpoint and the user authorized scoped repository publication on 2026-10-26. Await explicit user direction before new timing/runtime work. See [canonical record](tasks/T-018-cold-entry-recompute.md). |
+
 ## M0 — Research & bootstrap
 
 | ID | GitHub issue | Priority | Work item | Depends on | Status |

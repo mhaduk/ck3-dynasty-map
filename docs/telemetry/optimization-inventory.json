@@ -679,19 +679,21 @@
     },
     {
       "affected_executions": [
-        "T021-COST-COLLECT-20261025-03"
+        "T021-COST-COLLECT-20261025-03",
+        "T018-DOCUMENT-CHECKPOINT-20261025-16"
       ],
       "affected_tasks": [
-        "T021-COST-COLLECT-20261025-03"
+        "T021-COST-COLLECT-20261025-03",
+        "T018-DOCUMENT-CHECKPOINT-20261025-16"
       ],
       "boundary_history": [],
       "category": "errors_recovery",
       "decision": {
-        "date": "2026-10-25",
+        "date": "2026-10-26",
         "evidence": [
-          "handoff:T021-COST-COLLECT-20261025-03"
+          "handoff:T018-DOCUMENT-CHECKPOINT-20261025-16"
         ],
-        "rationale": "Recovered identity-mapping error; one occurrence with unknown attributable time.",
+        "rationale": "Known identity-mapping failure recovered and arithmetic verified; no helper implementation task authorized.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0006",
@@ -720,68 +722,95 @@
           "task": "T021-COST-COLLECT-20261025-03",
           "text": "A truncated thread identifier produced no assigned usage; CLI rejected the empty result and recomputed from full metadata identities.",
           "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-DOCUMENT-CHECKPOINT-20261025-16"
+            ],
+            "rationale": "Known identity-mapping failure recovered and arithmetic verified; no helper implementation task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T018-DOCUMENT-CHECKPOINT-20261025-16"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-DOCUMENT-CHECKPOINT-20261025-16",
+          "text": "Initial usage mapping shortened child identities and counted only145records; executor corrected full identities. GUI independently verified932own responses across20sources with exact parent bindings, counters and per-response prices.",
+          "trend": "REPEATED"
         }
       ],
       "key": "accounting.truncated-thread-identity",
-      "last_seen": "2026-10-25",
+      "last_seen": "2026-10-26",
       "link_history": [],
       "linked_optimization_task": null,
       "metric_totals": {
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 2
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 2
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 2
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 2
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 2
         }
       },
       "metrics": {},
-      "occurrence_count": 1,
+      "occurrence_count": 2,
       "schema_history": [],
       "status": "observing",
       "summary": "A truncated thread identifier produced no assigned usage; CLI rejected the empty result and recomputed from full metadata identities.",
-      "trend": "NEW"
+      "trend": "REPEATED"
     },
     {
       "affected_executions": [
         "T021-COST-COLLECT-20261025-03",
         "T023-EXECUTE-20261025-01",
         "T023-FIX-20261025-03",
-        "T023-CLOSEOUT-20261025-09"
+        "T023-CLOSEOUT-20261025-09",
+        "T018-ROOTDOWN-INSTALL-20261025-07",
+        "T018-PALETTE-INSTALL-20261025-13"
       ],
       "affected_tasks": [
         "T021-COST-COLLECT-20261025-03",
         "T023-EXECUTE-20261025-01",
         "T023-FIX-20261025-03",
-        "T023-CLOSEOUT-20261025-09"
+        "T023-CLOSEOUT-20261025-09",
+        "T018-ROOTDOWN-INSTALL-20261025-07",
+        "T018-PALETTE-INSTALL-20261025-13"
       ],
       "boundary_history": [],
       "category": "errors_recovery",
       "decision": {
         "date": "2026-10-25",
         "evidence": [
-          "handoff:T023-CLOSEOUT-20261025-09",
-          "evidence:T023-GUI-CLOSEOUT-20261025"
+          "handoff:T018-PALETTE-INSTALL-20261025-13"
         ],
-        "rationale": "Published implementation/docs are accepted. Original CLI accounting needs two bounded GUI corrections before parent closure; exact original evidence is preserved, revised attribution and per-response pricing verified. No optimization task or effectiveness claim.",
+        "rationale": "Known revision handling recurrence; no new helper work authorized.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0007",
@@ -888,6 +917,54 @@
           "task": "T023-CLOSEOUT-20261025-09",
           "text": "CLI reread persisted plan/revision after rejected transitions and completed the supplied milestones; no rejected transition advanced progress.",
           "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-ROOTDOWN-INSTALL-20261025-07"
+            ],
+            "rationale": "Repeated known lifecycle recovery; use persisted post-transition revision. No helper implementation authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-ROOTDOWN-INSTALL-20261025-07"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-ROOTDOWN-INSTALL-20261025-07",
+          "text": "Installer retried one rejected stale progress transition after rereading persisted STATUS. Installation/backup evidence independently verified; no stale state was written.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-PALETTE-INSTALL-20261025-13"
+            ],
+            "rationale": "Known revision handling recurrence; no new helper work authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-PALETTE-INSTALL-20261025-13"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-PALETTE-INSTALL-20261025-13",
+          "text": "Installer recovered a rejected stale milestone revision by rereading persisted status. Backup and installed/config hashes independently verified; no stale transition executed.",
+          "trend": "REPEATED"
         }
       ],
       "key": "handoff.stale-progress-revision",
@@ -898,31 +975,31 @@
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 4
+          "unknown_count": 6
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 4
+          "unknown_count": 6
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 4
+          "unknown_count": 6
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 4
+          "unknown_count": 6
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 4
+          "unknown_count": 6
         }
       },
       "metrics": {},
-      "occurrence_count": 4,
+      "occurrence_count": 6,
       "schema_history": [],
       "status": "observing",
       "summary": "A stale progress update was rejected; CLI reread the persisted revision and continued without state mutation.",
@@ -1857,6 +1934,1112 @@
       "status": "observing",
       "summary": "T-024 bounded implementation/review observation",
       "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-BASELINE-20261025-01"
+      ],
+      "affected_tasks": [
+        "T018-BASELINE-20261025-01"
+      ],
+      "boundary_history": [],
+      "category": "scope_process_anomalies",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-BASELINE-20261025-01"
+        ],
+        "rationale": "Preparation correction requires no directory hashing feature or new implementation.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0015",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-BASELINE-20261025-01"
+            ],
+            "rationale": "Preparation correction requires no directory hashing feature or new implementation."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-BASELINE-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-BASELINE-20261025-01",
+          "text": "Evidence collection succeeded but completion rejected an owned archive directory. GUI preserved FAILED status and independently verified ten source/archive/installed files. Future contracts enumerate files.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.owned-output-directory-type",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "GUI assigned an owned directory unsupported by file-only finalization",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-BASELINE-20261025-01"
+      ],
+      "affected_tasks": [
+        "T018-BASELINE-20261025-01"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-BASELINE-20261025-01"
+        ],
+        "rationale": "Obtain bounded before-change user evidence without repeating accepted historical research.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0016",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-BASELINE-20261025-01"
+            ],
+            "rationale": "Obtain bounded before-change user evidence without repeating accepted historical research."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-BASELINE-20261025-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-BASELINE-20261025-01",
+          "text": "No comparable current timing/save identity exists. GUI corrected the report use of superseded runtime56 CLI conclusions; accepted per-view semantics remain intact.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.t018-baseline-evidence-gaps",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Historical diagnostics do not replace a same-save cold-entry baseline",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-IMPLEMENT-20261025-02"
+      ],
+      "affected_tasks": [
+        "T018-IMPLEMENT-20261025-02"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-IMPLEMENT-20261025-02",
+          "review:EXEC-1"
+        ],
+        "rationale": "Initial factual executor observations retained; known tool recovery and baseline test gaps do not authorize adjacent repairs.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0017",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-IMPLEMENT-20261025-02",
+              "review:EXEC-1"
+            ],
+            "rationale": "Initial factual executor observations retained; known tool recovery and baseline test gaps do not authorize adjacent repairs."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-IMPLEMENT-20261025-02",
+            "review:EXEC-1"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-IMPLEMENT-20261025-02",
+          "text": "Executor recovered stale revision, unsupported inspection command and wrong test selector. Reads narrowed after oversized output; no source scope expansion.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.t018-bounded-tool-recovery",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Bounded CLI command and selector errors recovered during source preparation",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-IMPLEMENT-20261025-02"
+      ],
+      "affected_tasks": [
+        "T018-IMPLEMENT-20261025-02"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-IMPLEMENT-20261025-02",
+          "review:EXEC-1"
+        ],
+        "rationale": "Initial factual executor observations retained; known tool recovery and baseline test gaps do not authorize adjacent repairs.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0018",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-IMPLEMENT-20261025-02",
+              "review:EXEC-1"
+            ],
+            "rationale": "Initial factual executor observations retained; known tool recovery and baseline test gaps do not authorize adjacent repairs."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-IMPLEMENT-20261025-02",
+            "review:EXEC-1"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-IMPLEMENT-20261025-02",
+          "text": "Independent reviewer reproduced the identical six failing test IDs with pre-change effects. New focused tests pass; engine/runtime validation remains required.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "validation.t018-existing-classification-expectations",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Six existing classification source expectations fail on frozen baseline too",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-INSTALL-20261025-03"
+      ],
+      "affected_tasks": [
+        "T018-INSTALL-20261025-03"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-INSTALL-20261025-03"
+        ],
+        "rationale": "Reuse explicit frozen paths and current revisions; no helper change or new optimization task authorized.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0019",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-INSTALL-20261025-03"
+            ],
+            "rationale": "Reuse explicit frozen paths and current revisions; no helper change or new optimization task authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-INSTALL-20261025-03"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-INSTALL-20261025-03",
+          "text": "An incorrect parent-derived config path, stale revisions and missing administrative report were corrected. Frozen task already specified exact config/report paths; this does not establish a contract contradiction. Installation and archived bytes independently verified.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.t018-install-command-recovery",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Installer recovered derived config path and stale revisions before verified completion",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-HIERARCHY-PLAN-20261025-04"
+      ],
+      "affected_tasks": [
+        "T018-HIERARCHY-PLAN-20261025-04"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-HIERARCHY-PLAN-20261025-04"
+        ],
+        "rationale": "Record factual recurrence without authorizing helper changes.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0020",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-HIERARCHY-PLAN-20261025-04"
+            ],
+            "rationale": "Record factual recurrence without authorizing helper changes."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-HIERARCHY-PLAN-20261025-04"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-HIERARCHY-PLAN-20261025-04",
+          "text": "CLI recovered incorrect output location, lifecycle arguments and result format. Explicit paths and required template were already frozen; original evidence retained and hashes verified.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.t018-research-path-and-receipt-recovery",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Research recovered path ownership, stale revision and result grammar mistakes",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-HIERARCHY-PLAN-20261025-04"
+      ],
+      "affected_tasks": [
+        "T018-HIERARCHY-PLAN-20261025-04"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-HIERARCHY-PLAN-20261025-04"
+        ],
+        "rationale": "GUI selects a bounded root-down verification rather than a list-lifetime runtime probe.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0021",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-HIERARCHY-PLAN-20261025-04"
+            ],
+            "rationale": "GUI selects a bounded root-down verification rather than a list-lifetime runtime probe."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-HIERARCHY-PLAN-20261025-04"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-HIERARCHY-PLAN-20261025-04",
+          "text": "Report inspected every_vassal_or_below but omitted direct-vassal and independent-root iterator contracts. Claim that root-down needs a result index is not established; targeted completion required.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "algorithm.t018-root-down-incomplete-comparison",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Negative memoization finding does not exclude dictionary-free root-down propagation",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-ROOTDOWN-VERIFY-20261025-05"
+      ],
+      "affected_tasks": [
+        "T018-ROOTDOWN-VERIFY-20261025-05"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-ROOTDOWN-VERIFY-20261025-05"
+        ],
+        "rationale": "Reuse compatible bounded reads, current revision and exact standalone check lines; no tooling task created.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0022",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-ROOTDOWN-VERIFY-20261025-05"
+            ],
+            "rationale": "Reuse compatible bounded reads, current revision and exact standalone check lines; no tooling task created."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-ROOTDOWN-VERIFY-20261025-05"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-ROOTDOWN-VERIFY-20261025-05",
+          "text": "CLI corrected source-read syntax, stale progress revision and annotated check receipt lines. Original plan and source bytes preserved; no implementation or game action.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.t018-rootdown-read-and-transition-recovery",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Root-down verification recovered bounded-read syntax and lifecycle receipt errors",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-ROOTDOWN-IMPLEMENT-20261025-06"
+      ],
+      "affected_tasks": [
+        "T018-ROOTDOWN-IMPLEMENT-20261025-06"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-ROOTDOWN-IMPLEMENT-20261025-06",
+          "review:R1",
+          "review:R2"
+        ],
+        "rationale": "Record concrete review findings and correction; no unproven long-term effectiveness claim or new optimization task.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0023",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-ROOTDOWN-IMPLEMENT-20261025-06",
+              "review:R1",
+              "review:R2"
+            ],
+            "rationale": "Record concrete review findings and correction; no unproven long-term effectiveness claim or new optimization task."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-ROOTDOWN-IMPLEMENT-20261025-06",
+            "review:R1",
+            "review:R2"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-ROOTDOWN-IMPLEMENT-20261025-06",
+          "text": "R1 found parent own Dynasty missing from child ancestor state and tests that accepted inverted roles. Correction changed parent-scope dispatch and added condition-aware production checks with an independent F-003 oracle. R2 resolved both findings.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "validation.t018-inherited-state-and-oracle-gap",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Independent review caught parent-state propagation and nondiscriminating source tests",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-PALETTE-HOIST-IMPLEMENT-20261025-11"
+      ],
+      "affected_tasks": [
+        "T018-PALETTE-HOIST-IMPLEMENT-20261025-11"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+          "review:R1",
+          "review:R2",
+          "review:R3"
+        ],
+        "rationale": "Retain factual repeated test-correction evidence; no new optimization task or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0024",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+              "review:R1",
+              "review:R2",
+              "review:R3"
+            ],
+            "rationale": "Retain factual repeated test-correction evidence; no new optimization task or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+            "review:R1",
+            "review:R2",
+            "review:R3"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+          "text": "R1/R2 required production-linked guard containment, callback placement and fallback traversal checks. R3 independently resolved both prior findings after two bounded corrections.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "validation.t018-palette-counter-guard-tests",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Palette tests initially failed to protect nested diagnostic guards and production paths",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-PALETTE-HOIST-IMPLEMENT-20261025-11"
+      ],
+      "affected_tasks": [
+        "T018-PALETTE-HOIST-IMPLEMENT-20261025-11"
+      ],
+      "boundary_history": [],
+      "category": "scope_process_anomalies",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+          "review:R3"
+        ],
+        "rationale": "Preserve A for isolated B measurement; do not authorize incidental deduplication or silently reopen terminal loop.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0025",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+              "review:R3"
+            ],
+            "rationale": "Preserve A for isolated B measurement; do not authorize incidental deduplication or silently reopen terminal loop."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+            "review:R3"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+          "text": "A has66 definition occurrences and65 unique names; B has65 occurrences. One identical legacy realms classifier was removed outside palette scope. Independent GUI balanced occurrence check confirms; restore exact occurrence in separate bounded repair.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "validation.definition-occurrence-comparison",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Name-keyed source comparison hid deletion of identical duplicate definition",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-PALETTE-SCOPE-REPAIR-20261025-12"
+      ],
+      "affected_tasks": [
+        "T018-PALETTE-SCOPE-REPAIR-20261025-12"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-25",
+        "evidence": [
+          "handoff:T018-PALETTE-SCOPE-REPAIR-20261025-12",
+          "review:R1"
+        ],
+        "rationale": "Record exact recovery evidence; no new tooling task or generalized effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0026",
+      "first_seen": "2026-10-25",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-PALETTE-SCOPE-REPAIR-20261025-12",
+              "review:R1"
+            ],
+            "rationale": "Record exact recovery evidence; no new tooling task or generalized effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-25",
+          "evidence": [
+            "handoff:T018-PALETTE-SCOPE-REPAIR-20261025-12",
+            "review:R1"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-PALETTE-SCOPE-REPAIR-20261025-12",
+          "text": "Executor report retains command/validation recoveries; independent R1 confirms sole74-line production insertion, retained B painter bodies and old validators, plus duplicate-deletion regression.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.t018-scope-repair-recovery",
+      "last_seen": "2026-10-25",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Exact duplicate restoration and occurrence guard completed after bounded tool recovery",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T018-DOCUMENT-CHECKPOINT-20261025-16"
+      ],
+      "affected_tasks": [
+        "T018-DOCUMENT-CHECKPOINT-20261025-16"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:T018-DOCUMENT-CHECKPOINT-20261025-16"
+        ],
+        "rationale": "Retain exact recovery facts; no change to scope or new optimization task.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0027",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T018-DOCUMENT-CHECKPOINT-20261025-16"
+            ],
+            "rationale": "Retain exact recovery facts; no change to scope or new optimization task."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:T018-DOCUMENT-CHECKPOINT-20261025-16"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T018-DOCUMENT-CHECKPOINT-20261025-16",
+          "text": "Executor corrected Decimal serialization and missing JavaScript encoding globals after authorized issue update; refetched body rather than duplicate update. GUI fresh readback matches preview/open state and table.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.t018-checkpoint-receipt-recovery",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Checkpoint recovered decimal serialization and readback encoding limitations",
+      "trend": "NEW"
     }
   ],
   "ledger": [
@@ -2158,6 +3341,492 @@
       "observation_keys": [],
       "rationale": "Current executor report is the already ingested EXEC-C-R1 cycle report; parent receipt linkage only, no duplicate observation.",
       "report_sha256": "aa478f84f86a4c3a8668c75bc173a46a3d31473d7741536421e3b69507e7d6b8"
+    },
+    {
+      "content_sha256": "244227b60ad9b6137d4c64123b0ad913296f1a88ad8e6e02adbd524cdf356532",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-BASELINE-20261025-01"
+      ],
+      "id": "ae1847e711dd010276d1d4c8590f6a266090f46b1991b88b81fe0f74f4f751d1",
+      "identity": "T018-BASELINE-20261025-01:1",
+      "observation_keys": [
+        "handoff.owned-output-directory-type",
+        "workflow.t018-baseline-evidence-gaps"
+      ],
+      "rationale": "Original failed report ingested as factual observations; independent GUI verification accepts reusable files only. No effectiveness or completion claim.",
+      "report_sha256": "d3a30dc01cea8e4501fe915c87e1601a90532d11dc9b53566f53313f027edb2f"
+    },
+    {
+      "content_sha256": "43a0b5b790d0ecfbfb41427a92c539a2c1fbfa774a0ea3995c2bed2e39e5c275",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-IMPLEMENT-20261025-02",
+        "review:EXEC-1"
+      ],
+      "id": "e2368bf1246c24032f4030f257239f6861f33ac51704182e52bfc59f86b28201",
+      "identity": "T018-IMPLEMENT-20261025-02:1:EXEC-1",
+      "observation_keys": [
+        "workflow.t018-bounded-tool-recovery",
+        "validation.t018-existing-classification-expectations"
+      ],
+      "rationale": "Initial factual executor observations retained; known tool recovery and baseline test gaps do not authorize adjacent repairs.",
+      "report_sha256": "fbabd59475887a8685afb50b4529902f94c0e39cc955e8c91abb22db0387caa8"
+    },
+    {
+      "content_sha256": "4b008ce65c0b67807afb217c074c839cefbdf6afd0893fdfd2a7287c116c0860",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-IMPLEMENT-20261025-02",
+        "review:REVIEW-R1"
+      ],
+      "id": "48a928590774f750f54a1f6c3cac691ce30d88b1f5248f82bc9fcce947543339",
+      "identity": "T018-IMPLEMENT-20261025-02:1:REVIEW-R1",
+      "observation_keys": [],
+      "rationale": "Review found missing production counter test linkage and stale receipt accounting; both received bounded correction and fresh R2 resolution.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "f85601f0b4536a9297f9d7db2e96bfac0b8f1a61db3ee9a648f45fd26b2ad6e6",
+      "cycle_id": "REVIEW-R2",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-IMPLEMENT-20261025-02",
+        "review:REVIEW-R2"
+      ],
+      "id": "52a73c75408e879cd1ee723fc704107f4c11fcdae0313e5ac65f311ea789adab",
+      "identity": "T018-IMPLEMENT-20261025-02:1:REVIEW-R2",
+      "observation_keys": [],
+      "rationale": "Fresh current ACCEPTED resolves both R1 findings; unknown runtime profiles and manual runtime/coverage gaps remain explicit.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "7d790440a671d5b019eb8162aa0edfb8dba2a09ae4c091e848f3405ec7f4e8bb",
+      "cycle_id": "CORRECTION-C-R1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-IMPLEMENT-20261025-02",
+        "review:CORRECTION-C-R1"
+      ],
+      "id": "b15f908419117a8fa11719e84bf9e45923ec38944c884ceb5c0a0861b97b9cde",
+      "identity": "T018-IMPLEMENT-20261025-02:1:CORRECTION-C-R1",
+      "observation_keys": [],
+      "rationale": "Empty factual correction telemetry retained. Bounded test/evidence fixes independently verified by R2; no optimization work inferred.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "e8f8996d0b1489bd6f7e98b49c39652c3d4b3bcbe155b2100f8fafe6f3dd2d93",
+      "cycle_id": "EXEC-C-R1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-IMPLEMENT-20261025-02",
+        "review:EXEC-C-R1"
+      ],
+      "id": "a88dab81d0d57ad05db6892a09558e902312266380fa33d28aa4b0feabac8f23",
+      "identity": "T018-IMPLEMENT-20261025-02:1:EXEC-C-R1",
+      "observation_keys": [],
+      "rationale": "Corrected executor report repeats prior factual observations; no duplicate inventory occurrence needed for the same execution.",
+      "report_sha256": "fbabd59475887a8685afb50b4529902f94c0e39cc955e8c91abb22db0387caa8"
+    },
+    {
+      "content_sha256": "5f742803fd15a12a1dccb75e6eb5a81cad11d3fd95ff0d86f5eb8591067d58ab",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-IMPLEMENT-20261025-02"
+      ],
+      "id": "14f4e2a32c794eb11d3becaae62bcb50fc4d90c9baa3ba939222ec56037cd302",
+      "identity": "T018-IMPLEMENT-20261025-02:1",
+      "observation_keys": [],
+      "rationale": "Current corrected executor report ingested; observations already triaged in cycle ledger. Source acceptance only; manual validation remains pending.",
+      "report_sha256": "fbabd59475887a8685afb50b4529902f94c0e39cc955e8c91abb22db0387caa8"
+    },
+    {
+      "content_sha256": "d322014bdbc91ceac25d2924a7fcfab527b500a81fd301944aabd8a9a3b90e10",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-INSTALL-20261025-03"
+      ],
+      "id": "d0040d53fefb9eafd3c276e0b8d8fe34a087b851289a1ebe7f0727255fc25077",
+      "identity": "T018-INSTALL-20261025-03:1",
+      "observation_keys": [
+        "workflow.t018-install-command-recovery"
+      ],
+      "rationale": "Accept scoped file installation only. Report end placement and narrative admin-path confusion do not alter verified installation; original result preserved. Runtime/startup remain pending.",
+      "report_sha256": "ee70a64bc8adf765b2cfbbefaf8dea98b73e78b2eb134a7ae4d8614e197e79e7"
+    },
+    {
+      "content_sha256": "7cbd2b90fc681aa1c66375081ccc0730d9f18ac316ce3d00c8be48d4a261fde3",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-HIERARCHY-PLAN-20261025-04"
+      ],
+      "id": "ee9ea821bc511f6ac1f3c75f9184dae86cd8f401c251983191d4ca2739448e4a",
+      "identity": "T018-HIERARCHY-PLAN-20261025-04:1",
+      "observation_keys": [
+        "workflow.t018-research-path-and-receipt-recovery",
+        "algorithm.t018-root-down-incomplete-comparison"
+      ],
+      "rationale": "List-based risks retained as useful evidence; comparison is CHANGES REQUIRED for missing direct-tree alternative. No implementation or game action.",
+      "report_sha256": "7dc6313049b818ed6f68de51b8923abbe208992abd9265e04c2d1dd8d95a0c35"
+    },
+    {
+      "content_sha256": "c9364458b16464abb6cfb2cb382e04a4cad20d08ee2c764e5167e005a0d208ec",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-ROOTDOWN-VERIFY-20261025-05"
+      ],
+      "id": "5498972953525a653c118127caac83db06cf5188c13682481eaad51941f3bb80",
+      "identity": "T018-ROOTDOWN-VERIFY-20261025-05:1",
+      "observation_keys": [
+        "workflow.t018-rootdown-read-and-transition-recovery"
+      ],
+      "rationale": "Source-feasible ordinary-forest design accepted for separate implementation candidate only. Recursive engine behavior, atypical-root coverage and speed remain explicit runtime gates.",
+      "report_sha256": "42b182c250d0444e77f7cfffb917e5cb6ff29c11ded83d4946824075578e4706"
+    },
+    {
+      "content_sha256": "10ccd935670da590065d366e63f56081671702c764cb92eeba24e3fc035af758",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-ROOTDOWN-IMPLEMENT-20261025-06",
+        "review:EXEC-1"
+      ],
+      "id": "7d44415074f929749178280ff167bc5ab876e7023111072ed013fefa87478897",
+      "identity": "T018-ROOTDOWN-IMPLEMENT-20261025-06:1:EXEC-1",
+      "observation_keys": [],
+      "rationale": "Initial source preparation observations retained; ordinary-tree parent-state defect and inadequate test discrimination were identified by R1 and resolved after correction.",
+      "report_sha256": "60376043e1baa90be870656d1bc849596383057f82841894a9d0518a350da1e8"
+    },
+    {
+      "content_sha256": "8b39b6e2e8b25f82bf65c368bef03c1bd099a28ab9a03c651c74356050ffc134",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-ROOTDOWN-IMPLEMENT-20261025-06",
+        "review:REVIEW-R1"
+      ],
+      "id": "71fc609699afbf749aac7b75439f297537a2aa2cd5cc94303258f538d775d073",
+      "identity": "T018-ROOTDOWN-IMPLEMENT-20261025-06:1:REVIEW-R1",
+      "observation_keys": [
+        "validation.t018-inherited-state-and-oracle-gap"
+      ],
+      "rationale": "R1 identified high-severity parent-ancestor propagation and production-test gaps. Both findings received bounded fixes and independent R2 resolution.",
+      "report_sha256": "28778bae6e728bf179c5899a9d7240ade1857d9c9e276807b54d3e64e7e0a1bc"
+    },
+    {
+      "content_sha256": "e5e79ad4b5180bdc45ff4567a9931d6f0ddea2cb55c67f75ab26b194d83876a8",
+      "cycle_id": "REVIEW-R2",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-ROOTDOWN-IMPLEMENT-20261025-06",
+        "review:REVIEW-R2"
+      ],
+      "id": "a532813632ca2b3f33ab65784b37da7c931b04b3543a8bd1c647a054c1e21478",
+      "identity": "T018-ROOTDOWN-IMPLEMENT-20261025-06:1:REVIEW-R2",
+      "observation_keys": [],
+      "rationale": "Current ACCEPTED resolves both R1 findings. Source-level validation only; actual runtime profiles, recursive engine execution, atypical-root coverage and speed remain unverified.",
+      "report_sha256": "c8769976d3f2ae7ce6e88e8fde4ba9f00da31227dd3bcaeac06df3e5c826224b"
+    },
+    {
+      "content_sha256": "c8ecd8ed59b53cd3f5202be93e4774bfd4864a8dbace09362af35722207aa94e",
+      "cycle_id": "CORRECTION-C-R1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-ROOTDOWN-IMPLEMENT-20261025-06",
+        "review:CORRECTION-C-R1"
+      ],
+      "id": "720e9cc5f007407b4491429957a0374fe7863045e4e9a038df20ca81b84bd787",
+      "identity": "T018-ROOTDOWN-IMPLEMENT-20261025-06:1:CORRECTION-C-R1",
+      "observation_keys": [],
+      "rationale": "Correction stayed within six owned files. Executor fixes are claims until fresh R2; the current R2 resolved both findings.",
+      "report_sha256": "6263bb2f059b20e0816c7ab42128025c77d2f46f1351306aa4f41c79def49fb2"
+    },
+    {
+      "content_sha256": "e037eae44723662e6d56c7c396b4ef95a03dde8f142a2502f4f7328da317a289",
+      "cycle_id": "EXEC-C-R1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-ROOTDOWN-IMPLEMENT-20261025-06",
+        "review:EXEC-C-R1"
+      ],
+      "id": "3ac4028b63d6a9c91dfaf180348beb037b8582e283dcc4c0cffd10bed42e7cee",
+      "identity": "T018-ROOTDOWN-IMPLEMENT-20261025-06:1:EXEC-C-R1",
+      "observation_keys": [],
+      "rationale": "Corrected executor report ingested; production-linked transition checker and independent oracle now evidence state behavior. Engine recursion/root coverage remain unproven.",
+      "report_sha256": "38b00d5234270e72e41a49cbbcf7519ed72b1fe7d1cafca733e68f87d6a40495"
+    },
+    {
+      "content_sha256": "663cf8db8cc427672833de91fda1a8f5c37dfeb6237f0011917f63173daa0028",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-ROOTDOWN-IMPLEMENT-20261025-06"
+      ],
+      "id": "8e4dbd3fe5e9b565e9b30d7fcfe645736d02d74c1a935945a70ffd702a93e06f",
+      "identity": "T018-ROOTDOWN-IMPLEMENT-20261025-06:1",
+      "observation_keys": [],
+      "rationale": "Current corrected executor report triaged; factual observations are retained in review-cycle ledger. Accept candidate source only with explicit later engine/runtime gates.",
+      "report_sha256": "38b00d5234270e72e41a49cbbcf7519ed72b1fe7d1cafca733e68f87d6a40495"
+    },
+    {
+      "content_sha256": "e7933e59020fdb6a5044b023b7517bcf1f4a6e462b02beea4e37d3d6cba2393b",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-ROOTDOWN-INSTALL-20261025-07"
+      ],
+      "id": "160c42f96e84e09359dc53a18e37ecb26ad77d0bc1fc54cfa6ed073dd21038cd",
+      "identity": "T018-ROOTDOWN-INSTALL-20261025-07:1",
+      "observation_keys": [
+        "handoff.stale-progress-revision"
+      ],
+      "rationale": "Accept exact one-file installation and verified R0 rollback archive. Runtime recursion/parser/coverage/timing remain pending; duplicate PASS presentation in report is not a second independent check.",
+      "report_sha256": "c45cadf93638abe76f50c1160f69367eb7f163879ee44886b62f6b240021ed15"
+    },
+    {
+      "content_sha256": "8aef22fd124b174c4cc4a67d533b723957d5764b9b15d6c773d0bca2af68d9e4",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+        "review:EXEC-1"
+      ],
+      "id": "739f43d589e33c3703fb59191c3b45a59332877d594799f7e703f2b4a5ae63a4",
+      "identity": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11:1:EXEC-1",
+      "observation_keys": [],
+      "rationale": "Immutable EXEC-1 executor report triaged. Prior test findings now resolved; incidental duplicate deletion remains the reason for GUI-directed repair. No source/performance acceptance.",
+      "report_sha256": "09f884b0d7631aa337a94aca1b20877544f54a469cfc873f1ad185ab39842c73"
+    },
+    {
+      "content_sha256": "6e1c9582c5d9cd8da9579ccd7bb7ab673bbcda8d824cdf4e0d8f6d13ddb58160",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+        "review:REVIEW-R1"
+      ],
+      "id": "96d11b5ac3118f7e295c96dcdcdc2aa001b37e0c85fbc0148779566ab52862ba",
+      "identity": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11:1:REVIEW-R1",
+      "observation_keys": [
+        "validation.t018-palette-counter-guard-tests"
+      ],
+      "rationale": "Immutable REVIEW-R1 reviewer report triaged. Prior test findings now resolved; incidental duplicate deletion remains the reason for GUI-directed repair. No source/performance acceptance.",
+      "report_sha256": "171d213451e19c641849d7738da396457ff0e2847fea2d0cb1cf147ed1c06cc7"
+    },
+    {
+      "content_sha256": "33575f8631cf3880f9c16f264238daa0e04aa90fcefa7812661f4fe1274e5854",
+      "cycle_id": "REVIEW-R2",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+        "review:REVIEW-R2"
+      ],
+      "id": "bb96ead5d91d16cb12cf768873b3fde9b8889aa13a549154c20d84e743df7c2c",
+      "identity": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11:1:REVIEW-R2",
+      "observation_keys": [],
+      "rationale": "Immutable REVIEW-R2 reviewer report triaged. Prior test findings now resolved; incidental duplicate deletion remains the reason for GUI-directed repair. No source/performance acceptance.",
+      "report_sha256": "83344189ea90b34497ea31ce823515554a34158f8e2ec79ce9a49848bb8d92b0"
+    },
+    {
+      "content_sha256": "9c6ea37db39e8faef43c670eba472a57d56047d32c6ef3173ce7de7e987b54d9",
+      "cycle_id": "REVIEW-R3",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+        "review:REVIEW-R3"
+      ],
+      "id": "cb7e29a1a0ff0b17624c010d3587b28d39199d8c215eb7877d4f315b82cfb0c8",
+      "identity": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11:1:REVIEW-R3",
+      "observation_keys": [
+        "validation.definition-occurrence-comparison"
+      ],
+      "rationale": "Immutable REVIEW-R3 reviewer report triaged. Prior test findings now resolved; incidental duplicate deletion remains the reason for GUI-directed repair. No source/performance acceptance.",
+      "report_sha256": "468c0691433abb2898e967915a1f7c165abc8d26c5125c022dd3aef456307751"
+    },
+    {
+      "content_sha256": "520df3a2d4b46e6a9d5eb8c033afd801216ec9afaa598b2fcc029074a7735c09",
+      "cycle_id": "CORRECTION-C-R1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+        "review:CORRECTION-C-R1"
+      ],
+      "id": "7e3e29119b20c898741bc8c3c45f28d1bae353ff46464530e5e0676f08768787",
+      "identity": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11:1:CORRECTION-C-R1",
+      "observation_keys": [],
+      "rationale": "Immutable CORRECTION-C-R1 correction report triaged. Prior test findings now resolved; incidental duplicate deletion remains the reason for GUI-directed repair. No source/performance acceptance.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "f1bc41276e196339d6471868ea4aca3d3bf6012bcbb2a880452012333096f565",
+      "cycle_id": "EXEC-C-R1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+        "review:EXEC-C-R1"
+      ],
+      "id": "1b8108a6183c7288617e8925a5c6adb8f7de9faeed5a23278087d4764664c154",
+      "identity": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11:1:EXEC-C-R1",
+      "observation_keys": [],
+      "rationale": "Immutable EXEC-C-R1 executor report triaged. Prior test findings now resolved; incidental duplicate deletion remains the reason for GUI-directed repair. No source/performance acceptance.",
+      "report_sha256": "0c60105330ecd482790b217b1454584be5032934756d28d48411b801da5ead88"
+    },
+    {
+      "content_sha256": "962a05c2eb4c01be28aa21af934581a560778ccbff10800fc8670bbac0ec424e",
+      "cycle_id": "CORRECTION-C-R2",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+        "review:CORRECTION-C-R2"
+      ],
+      "id": "77bbdff97254bdaa884e510a986e4cacdfd061876c711272202b79943dbcaafc",
+      "identity": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11:1:CORRECTION-C-R2",
+      "observation_keys": [],
+      "rationale": "Immutable CORRECTION-C-R2 correction report triaged. Prior test findings now resolved; incidental duplicate deletion remains the reason for GUI-directed repair. No source/performance acceptance.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "b73f056ac03c041e9d9cdeab8c0dbc81a3cc8d3fc7762d8a0da68a00c1c0b426",
+      "cycle_id": "EXEC-C-R2",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+        "review:EXEC-C-R2"
+      ],
+      "id": "50d68d3fb124910d71a2a21ffc953712f41874d2563404d6d8480bec6775fdab",
+      "identity": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11:1:EXEC-C-R2",
+      "observation_keys": [],
+      "rationale": "Immutable EXEC-C-R2 executor report triaged. Prior test findings now resolved; incidental duplicate deletion remains the reason for GUI-directed repair. No source/performance acceptance.",
+      "report_sha256": "21e64abdcc3a9bab2c416f2612c128bd7de9795a2366ad3aaa403e5db364f3cc"
+    },
+    {
+      "content_sha256": "0d864473783c57fa069841080309781a25bb784190c88bab463d09c55693d73c",
+      "cycle_id": "ESC-1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11",
+        "review:ESC-1"
+      ],
+      "id": "cda0624c5b9cc50920698df9838f130059374e1cee36b63d2dfcaa2806360437",
+      "identity": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11:1:ESC-1",
+      "observation_keys": [],
+      "rationale": "Explicit GUI escalation accepted as a routing event; source candidate is not accepted for install. GUI chooses exact restoration and occurrence-aware evidence in a new bounded task.",
+      "report_sha256": "00a07df139c2b6562612d11ba4ca95704ab1d4e43b98df62ffb3538dad76e563"
+    },
+    {
+      "content_sha256": "19f059cd1630a9805b5b62026647c70418bdfb71a6929ce32aa43687c2f42e05",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-PALETTE-HOIST-IMPLEMENT-20261025-11"
+      ],
+      "id": "84f82253f9ef3836171fbb38fa09f15406ed11e50e6c48c8a23f5fab3a0aa3c7",
+      "identity": "T018-PALETTE-HOIST-IMPLEMENT-20261025-11:1",
+      "observation_keys": [],
+      "rationale": "Current executor report ingested alongside9cycle reports. Source remains CHANGES REQUIRED for scope deletion; name-keyed unchanged-body claim corrected by occurrence-aware GUI evidence.",
+      "report_sha256": "21e64abdcc3a9bab2c416f2612c128bd7de9795a2366ad3aaa403e5db364f3cc"
+    },
+    {
+      "content_sha256": "23e48f9b58c35295105776f0d966dd3b6190de0a6eea0deb02fbbcb515325730",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-PALETTE-SCOPE-REPAIR-20261025-12",
+        "review:EXEC-1"
+      ],
+      "id": "3d56964f8b979e7df8ef512070f9b408c0952d360880bcc8539327273266a01c",
+      "identity": "T018-PALETTE-SCOPE-REPAIR-20261025-12:1:EXEC-1",
+      "observation_keys": [
+        "workflow.t018-scope-repair-recovery"
+      ],
+      "rationale": "Fresh R1 ACCEPTED resolves exact GUI scope restoration; original B terminal escalation remains preserved.66 occurrences/65names restored, no other production edit. Candidate source only, runtime B pending.",
+      "report_sha256": "c37f8fc44bfe229e0456a29be3c5dbd4b1aaca99da539d771cfeaab4c11722b3"
+    },
+    {
+      "content_sha256": "f639fb87e50df77f58e55f741e2907dd4b23c903a4c45e81017edb5437c6d652",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-PALETTE-SCOPE-REPAIR-20261025-12",
+        "review:REVIEW-R1"
+      ],
+      "id": "ee7b04a349c90f12166f2d8783964385e2327841f7bb6a414b2d56930eb8b26a",
+      "identity": "T018-PALETTE-SCOPE-REPAIR-20261025-12:1:REVIEW-R1",
+      "observation_keys": [],
+      "rationale": "Fresh R1 ACCEPTED resolves exact GUI scope restoration; original B terminal escalation remains preserved.66 occurrences/65names restored, no other production edit. Candidate source only, runtime B pending.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "ce50bd9f91da73e4b16e73ca3fd67e48eef0bbe531a3c6b1c29077d333dfb0c3",
+      "date": "2026-10-25",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T018-PALETTE-SCOPE-REPAIR-20261025-12"
+      ],
+      "id": "a356bbd8c09ac197dbc6abe60f0c5df33621b0f50605588fa157698becb2c178",
+      "identity": "T018-PALETTE-SCOPE-REPAIR-20261025-12:1",
+      "observation_keys": [],
+      "rationale": "Current executor report ingested;2cycle reports triaged and fresh accepted exact restoration retained. Source B can proceed to separate install gate, no runtime/speed claim.",
+      "report_sha256": "c37f8fc44bfe229e0456a29be3c5dbd4b1aaca99da539d771cfeaab4c11722b3"
+    },
+    {
+      "content_sha256": "5d0771040f9910d3e165699b0bbebf0f0f94517612c389a0e9a8f28dd39d955d",
+      "date": "2026-10-25",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-PALETTE-INSTALL-20261025-13"
+      ],
+      "id": "80a6b3f143ed3d0efdcc2363e79056564bd3142571a26a84c1cb1a0c2ecab780",
+      "identity": "T018-PALETTE-INSTALL-20261025-13:1",
+      "observation_keys": [
+        "handoff.stale-progress-revision"
+      ],
+      "rationale": "Accept exact one-file B installation and verified A rollback archive only. Prior A override warnings are retained as baseline; new startup/runtime gates remain.",
+      "report_sha256": "37965fc608eabbbffba88d1acded470f8374d9da57316f1d7e754073150926a7"
+    },
+    {
+      "content_sha256": "d5e373f3bc1298206aa4a7c1af0165f482cfbc65f6633692a862206424d82c34",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T018-DOCUMENT-CHECKPOINT-20261025-16"
+      ],
+      "id": "ce7c47e4990b5f41bd58d35706046e72b26d1de6aab649c9b92db7537066f9b5",
+      "identity": "T018-DOCUMENT-CHECKPOINT-20261025-16:1",
+      "observation_keys": [
+        "accounting.truncated-thread-identity",
+        "workflow.t018-checkpoint-receipt-recovery"
+      ],
+      "rationale": "Accept documentation/accounting checkpoint only after independent GUI raw sum and fresh issue readback. Parent remains open/inprogress with experiments deferred; minor history-link/received-state integration is direct GUI follow-up.",
+      "report_sha256": "b8b4e7abd4673734abed80c0aedf94f6a8832985500517d5ded670cff6fc7a0b"
     }
   ],
   "version": 1

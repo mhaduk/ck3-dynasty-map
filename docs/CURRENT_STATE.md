@@ -1,3 +1,22 @@
+## T-018 / #44 — checkpoint accepted; issue remains in progress
+
+Corrected palette-hoist B remains the local source/installed baseline (effects
+SHA-256 `3dcc3e171ceece48e80b1109f33d5507740d9e86dab88f5f76b71b771b24cdba`;
+accepted ten-file match). Existing B summaries equal A/R0 on emitted fields.
+Manual same-save timings were original 2.2s, R0 2.5s, A 2.3s, B 2.2s;
+no demonstrated speedup beyond manual uncertainty. The user accepts roughly
+two seconds and has deferred further experiments. No new tests or optimization.
+
+GUI accepted the documentation/accounting checkpoint on 2026-10-26 after an
+independent 932-response / 20-source recomputation and fresh open-issue readback.
+Partial known API-equivalent cost is $9.97596148 through 2026-10-25T22:49:54Z;
+later work is excluded. Issue #44 stays OPEN / IN PROGRESS. On 2026-10-26
+the user authorized scoped repository publication in two commits: accepted
+source/tests, then checkpoint documentation and reviewed aggregate telemetry.
+Further experiments remain deferred pending explicit user direction. Exact RGB, global census,
+recursive depth/cycles, special governments and broad compatibility remain
+unproven. See the [canonical checkpoint](tasks/T-018-cold-entry-recompute.md).
+
 ## T-024 / #50 — complete; publication verified
 
 GUI accepted the small execution-classification/routing extension on 2026-10-25.

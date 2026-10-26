@@ -1,5 +1,20 @@
 # Algorithms and Performance
 
+## T-018 observed implementation checkpoint — 2026-10-25
+
+The current bounded research candidate uses neutral base initialization,
+root-down Dynasty classification and a finite 76-literal palette dispatch at
+exceptional-county scope. It retains one flat base write per projected barony
+and Primary/Secondary overrides; the emitted B frames show 12,247 attempted
+writes per view on the recorded 4,703-county fixture. Root-down traversal can
+visit more intermediary characters/title candidates, while the palette hoist
+adds repeated literal source (final effects file 4,125 lines versus 2,152 for
+the A baseline). The asymptotic source model at a fixed palette size is
+`O(R + V + E + T + C + B)`, but its engine constants and recursive behavior are
+unknown. Manual same-save timings (original 2.2s, R0 2.5s, A 2.3s, B 2.2s)
+show no confirmed speedup. Do not treat the source-level operation model as a
+runtime result. User paused experiments; see the [T-018 checkpoint](tasks/T-018-cold-entry-recompute.md).
+
 ## Key conclusion
 
 Do **not** build a persistent graph for My Dynasty in the MVP.

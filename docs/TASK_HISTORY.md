@@ -2,6 +2,19 @@
 
 Compact index of completed substantial tasks. Investigation detail belongs in the linked summary and, where available, the GitHub Issue.
 
+## Ongoing T-018 checkpoint — not a completed-task entry
+
+T-018 / [#44](https://github.com/mhaduk/ck3-dynasty-map/issues/44) remains
+IN PROGRESS. Corrected B is installed and the finite experiment checkpoint
+reports no demonstrated speedup; the user has paused further experiments.
+The checkpoint preserves the problems, bounded conclusions, partial
+cutoff-based AI-cost table and future resume gate. GUI accepted the checkpoint
+on 2026-10-26 after independent accounting/readback verification; this does not
+close the task or mark its acceptance criteria complete.
+See the [canonical T-018 record](tasks/T-018-cold-entry-recompute.md).
+
+## Completed tasks
+
 | Task | Goal | Result | Issue journal | Canonical summary |
 |---|---|---|---|---|
 | T-024 | Add lightweight execution classification and reasoning-cost guardrails | GUI accepted locally: R2 ACCEPTED after one correction, 125 tests, exact output hashes and provenance verified; receipt consumed; partial 19,615,242 tokens / $1.15595956; source/Wiki published, #50 closed | [#50](https://github.com/mhaduk/ck3-dynasty-map/issues/50) | [T-024](tasks/T-024-execution-classification.md) |

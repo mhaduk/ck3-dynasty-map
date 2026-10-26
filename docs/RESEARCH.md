@@ -23,6 +23,20 @@ Historical partial statuses and next steps below retain their dates; current
 ownership is summarized in the [T-005 review](tasks/T-005-research-backlog-review.md).
 No game test, architecture waiver or production implementation follows.
 
+## T-018 finite cold-entry experiment checkpoint — 2026-10-25
+
+Corrected palette-hoist B is installed in the bounded local probe, with an exact
+ten-file match to its accepted source receipt. Existing emitted summaries for
+three views match A/R0; they do not establish an independent census or exact
+stored/rendered RGB. The original, R0, A and B manual timings were 2.2s, 2.5s,
+2.3s and 2.2s on the same paused Charles-the-Bald 867 / West Francia save.
+Differences are within manual uncertainty, so no speedup is demonstrated.
+The user paused further experimentation and accepts roughly two seconds for
+now. Parser/runtime compatibility across governments, recursive depth/cycles,
+global coverage and exact RGB remain unknown. Resume only with explicit user
+direction; timing research remains owned separately by R-018/#38 and F-006/#39.
+See the [canonical T-018 checkpoint](tasks/T-018-cold-entry-recompute.md).
+
 F-004's bounded 2026-10-24 diagnostic acceptance is now recorded in its
 [canonical result](tasks/F-004-diagnostics-hardening.md) and
 [developer guide](F004_DIAGNOSTICS.md): native DIAG V3 declarations/samples
