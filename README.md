@@ -48,6 +48,7 @@ Player documentation: [GitHub Wiki](https://github.com/mhaduk/ck3-dynasty-map/wi
 - [Compatibility policy](docs/COMPATIBILITY.md)
 - [Versioning and release process](docs/VERSIONING.md)
 - [Second-Mac bootstrap checklist](docs/SECOND_MAC_BOOTSTRAP.md)
+- [Local DEV and production variants](docs/LOCAL_MOD_VARIANTS.md)
 
 ## Release status
 

@@ -20,6 +20,9 @@ All notable changes to Dynasty Map will be documented here.
 - Reusable mod encoding/preflight rules and read-only file checker added.
 
 ### Added
+- Local `Dynasty Map [DEV]` identity and preparation helper; obsolete installed
+  probe entries retired while historical sources remain preserved. Production
+  creation is deferred to T-014; no runtime behavior change.
 - Player-first GitHub Wiki with supplied Before/After and three-view illustrations, grouped navigation, dedicated usage/compatibility pages and separate AI-cost documentation.
 - Accepted shared CLI execution-review workflow with persistent executors, fresh read-only reviewers, per-task correction policies and registered handoff commands; formal T-023 cost closeout is pending GUI verification.
 - T-013 Wiki: compact five-column AI-cost summary with a bold grand total;

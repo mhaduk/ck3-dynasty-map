@@ -1,3 +1,20 @@
+## T-019 / #45 — DEV cleanup complete; production deferred to T-014
+
+User-approved narrowed scope is complete on 2026-10-26. Dynasty Map [DEV]
+replaces four obsolete installed probes; historical research remains intact.
+Ten-file source/installed preflight and all nine unchanged runtime-file hashes
+PASS. Launcher library and persisted selection confirm DEV alone in the existing
+playset, with zero obsolete links. No game action. Production creation/two-variant
+verification explicitly transfer to T-014; T-017 retains release readiness.
+Saved GUI plus two linked automatic-review sources independently reconcile
+60 responses / 6,575,955 tokens / $1.14733320 partial known Standard API-equivalent
+cost through 2026-10-26T12:16:20.992Z; automatic review measured but unpriced.
+Issue #45 is closed completed and Wiki `cdebfec` is published/read back.
+User authorized scoped repository commit/push; source publication follows.
+Older install references below are historical; do not recreate R-016 locally.
+See [canonical closeout](tasks/T-019-local-mod-variants.md) and
+[local install guide](LOCAL_MOD_VARIANTS.md).
+
 ## T-016 / #42 — Wiki redesign complete; publication verified
 
 GUI accepted R3 after two corrections and consumed the prepared handoff.

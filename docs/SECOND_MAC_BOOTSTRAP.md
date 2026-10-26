@@ -27,7 +27,10 @@ The modding guide recommends these options for console access and hot reload whe
 
 ## 3. Deferred until implementation authorization: create the local mod
 
-Create `Dynasty Map` in the launcher so CK3 generates correct local descriptors for that machine.
+Use `Dynasty Map [DEV]` for ordinary development and follow the
+[local variant guide](LOCAL_MOD_VARIANTS.md). Reserve `Dynasty Map` for the
+reviewed production package supplied by T-014. Do not create a production copy
+from the historical diagnostic tree or recreate old probe launcher entries.
 
 Then reconcile the generated folder with this repository. The machine-specific external `.mod` file must **not** be committed; `descriptor.mod` inside the repository can be committed after review.
 

@@ -13,6 +13,7 @@ Dated migration/checkpoint statements below retain their historical meaning.
 
 | ID | Priority | Work item | Status |
 |---|---|---|---|
+| [T-019 / #45](tasks/T-019-local-mod-variants.md) | P1 | Consolidate local DEV identity and remove obsolete probe installs | Complete in user-approved narrowed scope — DEV and launcher/persisted checks PASS; production transferred to T-014. Partial measured cost $1.14733320; #45 closed and Wiki cdebfec published/read back; scoped repository publication authorized. |
 | [T-016 / #42](tasks/T-016-wiki-redesign-review.md) | P2 | Reorganize public Wiki for players and technical readers | Complete — R3 accepted, supplied image layout published, live rendering/28-file readback passed; partial cost $2.23023898; repository publication authorized |
 | [T-024 / #50](tasks/T-024-execution-classification.md) | P1 | Add lightweight execution classification and reasoning-cost guardrails | Complete — R2 ACCEPTED, 125 tests evidenced, receipt consumed; partial cost $1.15595956; scoped source/Wiki published and #50 closed completed |
 | [T-007 / #31](tasks/T-007-task-registry.md) | P1 | Reconcile canonical task registry and enforce GitHub-first creation | Complete — canonical registry/guard and 88 tests accepted; T-003/#25 restored, frozen evidence retained, #31 closed and Wiki read back; partial cost $0.72286920; scoped repository commit/push subsequently authorized on 2026-10-25 |
