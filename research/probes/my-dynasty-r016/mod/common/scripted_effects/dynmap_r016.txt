@@ -10,14 +10,1000 @@ dynmap_r016_paint_dark_effect = {
 	}
 	else = {
 		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } set_local_variable = { name = dynmap_r016_d_county_writes value = 0 } }
-		every_in_de_jure_hierarchy = {
-			continue = { always = yes }
-			limit = { tier = tier_barony }
-			 dynmap_r016_paint_mixed_primary_effect = yes
-			if = {
-				limit = { exists = scope:dynmap_r016_diagnostic_armed }
-				change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
-				change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+		if = {
+			limit = { scope:dynmap_r016_palette_id = 1 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 137 76 67 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 2 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 134 59 29 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 3 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 182 160 156 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 4 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 172 109 42 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 6 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 63 81 88 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 8 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 66 98 126 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 9 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 150 106 41 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 11 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 149 116 61 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 12 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 159 157 155 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 14 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 70 68 64 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 15 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 158 167 175 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 18 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 67 51 26 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 19 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 71 91 38 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 20 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 74 108 76 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 21 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 204 202 200 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 23 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 161 171 159 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 24 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 191 134 48 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 25 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 201 185 162 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 28 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 194 151 86 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 29 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 92 31 22 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 30 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 44 56 82 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 31 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 94 45 26 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 33 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 175 158 166 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 34 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 48 26 20 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 35 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 83 120 155 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 36 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 164 175 185 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 37 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 115 34 23 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 38 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 20 63 102 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 39 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 151 120 45 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 42 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 37 86 131 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 43 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 60 78 111 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 44 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 23 66 85 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 45 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 22 53 81 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 46 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 118 71 98 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 47 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 91 41 43 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 48 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 97 49 52 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 49 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 40 36 30 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 50 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 163 78 12 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 51 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 30 40 49 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 52 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 79 103 117 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 53 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 176 133 69 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 54 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 115 54 60 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 55 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 33 81 61 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 56 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 48 33 12 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 57 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 154 62 50 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 58 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 255 191 230 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 59 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 141 62 34 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 60 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 172 115 43 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 61 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 89 27 64 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 62 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 29 63 31 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 63 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 198 136 43 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 64 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 70 85 105 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 65 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 38 76 110 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 66 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 39 89 114 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 67 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 86 110 54 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 68 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 166 95 50 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 69 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 67 85 48 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 70 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 45 82 47 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 71 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 219 219 219 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 72 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 52 66 32 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 73 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 159 0 101 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 74 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 92 50 27 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 75 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 145 130 0 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 76 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 194 167 85 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 77 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 48 95 15 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 78 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 116 64 63 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 79 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 149 74 63 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 80 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 134 78 34 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 81 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 108 32 33 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 82 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 28 73 52 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 83 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 217 195 163 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 84 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 74 120 157 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 85 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 84 93 107 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 86 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 79 90 89 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 87 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 99 51 31 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 88 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 122 63 9 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else = {
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 25 105 50 }
+				if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } change_local_variable = { name = dynmap_r016_d_county_writes add = 1 } change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 } }
 			}
 		}
 		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } dynmap_r016_diagnostic_county_primary_effect = yes }
@@ -32,14 +1018,1000 @@ dynmap_r016_paint_light_effect = {
 	}
 	else = {
 		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } set_local_variable = { name = dynmap_r016_d_county_writes value = 0 } }
-		every_in_de_jure_hierarchy = {
-			continue = { always = yes }
-			limit = { tier = tier_barony }
-			dynmap_r016_paint_mixed_secondary_effect = yes
-			if = {
-				limit = { exists = scope:dynmap_r016_diagnostic_armed }
-				change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
-				change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+		if = {
+			limit = { scope:dynmap_r016_palette_id = 1 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 178 139 133 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 2 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 176 128 108 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 3 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 208 193 191 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 4 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 201 160 117 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 6 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 130 142 146 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 8 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 132 153 171 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 9 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 187 158 116 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 11 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 186 165 129 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 12 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 193 191 190 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 14 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 135 133 131 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 15 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 192 198 203 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 18 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 133 122 106 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 19 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 135 148 114 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 20 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 137 159 139 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 21 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 222 221 219 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 23 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 194 200 193 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 24 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 213 176 120 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 25 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 220 210 195 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 28 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 215 187 145 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 29 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 149 109 104 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 30 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 118 126 143 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 31 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 150 119 106 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 33 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 203 192 197 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 34 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 120 106 102 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 35 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 143 167 190 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 36 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 196 203 210 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 37 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 164 111 104 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 38 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 102 130 156 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 39 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 187 167 119 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 42 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 113 145 174 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 43 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 128 140 161 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 44 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 104 132 145 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 45 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 104 124 142 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 46 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 166 135 153 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 47 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 148 116 117 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 48 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 152 121 123 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 49 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 115 113 109 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 50 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 195 140 97 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 51 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 109 115 121 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 52 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 141 156 165 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 53 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 204 176 134 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 54 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 164 124 128 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 55 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 111 142 129 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 56 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 120 111 97 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 57 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 189 130 122 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 58 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 255 213 239 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 59 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 181 130 111 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 60 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 201 164 117 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 61 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 147 107 131 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 62 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 108 130 109 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 63 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 218 178 117 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 64 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 135 145 158 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 65 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 114 139 161 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 66 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 115 147 163 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 67 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 145 161 124 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 68 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 197 151 122 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 69 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 133 145 120 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 70 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 119 143 120 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 71 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 232 232 232 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 72 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 123 132 110 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 73 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 193 89 155 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 74 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 149 122 107 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 75 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 184 174 89 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 76 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 215 198 145 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 77 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 120 151 99 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 78 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 165 131 130 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 79 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 186 137 130 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 80 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 176 140 111 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 81 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 159 110 111 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 82 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 107 137 123 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 83 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 230 216 195 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 84 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 137 167 191 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 85 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 144 150 159 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 86 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 141 148 147 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 87 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 154 122 109 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else_if = {
+			limit = { scope:dynmap_r016_palette_id = 88 }
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 169 130 95 }
+				if = {
+					limit = { exists = scope:dynmap_r016_diagnostic_armed }
+					change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
+					change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
+				}
+			}
+		}
+		else = {
+			every_in_de_jure_hierarchy = {
+				continue = { always = yes }
+				limit = { tier = tier_barony }
+				set_title_color = { 145 220 150 }
+				if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } change_local_variable = { name = dynmap_r016_d_county_writes add = 1 } change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 } }
 			}
 		}
 		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } dynmap_r016_diagnostic_county_secondary_effect = yes }
@@ -55,17 +2027,24 @@ dynmap_r016_paint_grey_effect = {
 	}
 	else = {
 		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } set_local_variable = { name = dynmap_r016_d_county_writes value = 0 } }
-		every_in_de_jure_hierarchy = {
-			continue = { always = yes }
-			limit = { tier = tier_barony }
+		# The valid world repaint already initialized every barony to neutral.
+		# Keep this county pass for semantic diagnostics, but do not repaint it.
+		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } dynmap_r016_diagnostic_county_neutral_effect = yes }
+	}
+}
+
+# Called only after the world effect has validated and saved player/Dynasty
+# context. The audit path classifies without mutating shared title RGB.
+dynmap_r016_paint_neutral_base_effect = {
+	if = {
+		limit = { NOT = { exists = scope:dynmap_r016_audit_armed } }
+		every_barony = {
 			set_title_color = { 65 70 80 }
 			if = {
 				limit = { exists = scope:dynmap_r016_diagnostic_armed }
-				change_local_variable = { name = dynmap_r016_d_county_writes add = 1 }
 				change_local_variable = { name = dynmap_r016_d_attempted_writes add = 1 }
 			}
 		}
-		if = { limit = { exists = scope:dynmap_r016_diagnostic_armed } dynmap_r016_diagnostic_county_neutral_effect = yes }
 	}
 }
 
@@ -310,6 +2289,8 @@ dynmap_r016_paint_mixed_primary_effect = {
  else_if = { limit = { scope:dynmap_r016_palette_id = 88 } set_title_color = { 122 63 9 } }
  else = { set_title_color = { 25 105 50 } }
 }
+
+# Frozen76 ordered pairs; independent inclusive ±5 byte ranges.
 dynmap_r016_paint_mixed_secondary_effect = {
  if = { limit = { scope:dynmap_r016_palette_id = 1 } set_title_color = { 178 139 133 } }
  else_if = { limit = { scope:dynmap_r016_palette_id = 2 } set_title_color = { 176 128 108 } }
@@ -389,7 +2370,7 @@ dynmap_r016_paint_mixed_secondary_effect = {
  else_if = { limit = { scope:dynmap_r016_palette_id = 88 } set_title_color = { 169 130 95 } }
  else = { set_title_color = { 145 220 150 } }
 }
-# County holder first; missing holder Dynasty never suppresses senior checks.
+
 dynmap_r016_realms_county_effect = {
 	if = {
 		limit = { exists = holder }
@@ -464,7 +2445,6 @@ dynmap_r016_realms_county_effect = {
 	}
 }
 
-# Frozen76 ordered pairs; independent inclusive ±5 byte ranges.
 dynmap_r016_select_palette_effect = {
 	# Unknown, invalid and unrecognized/missing slots are exact option B.
 	set_variable = { name = dynmap_r016_pair_cache_id value = 126 }
@@ -781,32 +2761,38 @@ dynmap_r016_select_palette_effect = {
 	save_scope_value_as = { name = dynmap_r016_palette_id value = var:dynmap_r016_pair_cache_id }
 }
 
-dynmap_r016_world_realms_effect = {
-	if = {
-		limit = { exists = dynasty }
-		save_scope_as = dynmap_r016_player_root
-		dynasty = { save_scope_as = dynmap_r016_player_dynasty }
-		every_county = { dynmap_r016_realms_county_effect = yes }
-		clear_saved_scope = dynmap_r016_player_dynasty
-		clear_saved_scope = dynmap_r016_player_root
-	}
-}
-
-# County holder first; missing holder Dynasty never suppresses senior checks.
-dynmap_r016_holdings_county_effect = {
+# Historical county classifiers retained as diagnostic-only semantic oracles; never called by world repaint.
+dynmap_r016_realms_county_effect = {
 	if = {
 		limit = { exists = holder }
 		if = {
 			limit = {
 				holder = {
-					trigger_if = {
-						limit = {
-							exists = dynasty
+					OR = {
+						AND = {
+							top_liege = this
+							trigger_if = {
+								limit = {
+									exists = dynasty
+								}
+								dynasty = scope:dynmap_r016_player_dynasty
+							}
+							trigger_else = {
+								always = no
+							}
 						}
-						dynasty = scope:dynmap_r016_player_dynasty
-					}
-					trigger_else = {
-						always = no
+						any_liege_or_above = {
+							top_liege = this
+							trigger_if = {
+								limit = {
+									exists = dynasty
+								}
+								dynasty = scope:dynmap_r016_player_dynasty
+							}
+							trigger_else = {
+								always = no
+							}
+						}
 					}
 				}
 			}
@@ -850,18 +2836,52 @@ dynmap_r016_holdings_county_effect = {
 	}
 }
 
-dynmap_r016_world_holdings_effect = {
+dynmap_r016_holdings_county_effect = {
 	if = {
-		limit = { exists = dynasty }
-		save_scope_as = dynmap_r016_player_root
-		dynasty = { save_scope_as = dynmap_r016_player_dynasty }
-		every_county = { dynmap_r016_holdings_county_effect = yes }
-		clear_saved_scope = dynmap_r016_player_dynasty
-		clear_saved_scope = dynmap_r016_player_root
+		limit = { exists = holder }
+		if = {
+			limit = {
+				holder = {
+					trigger_if = {
+						limit = {
+							exists = dynasty
+						}
+						dynasty = scope:dynmap_r016_player_dynasty
+					}
+					trigger_else = {
+						always = no
+					}
+				}
+			}
+			dynmap_r016_paint_dark_effect = yes
+		}
+		else_if = {
+			limit = {
+				holder = {
+					any_liege_or_above = {
+						trigger_if = {
+							limit = {
+								exists = dynasty
+							}
+							dynasty = scope:dynmap_r016_player_dynasty
+						}
+						trigger_else = {
+							always = no
+						}
+					}
+				}
+			}
+			dynmap_r016_paint_light_effect = yes
+		}
+		else = {
+			dynmap_r016_paint_grey_effect = yes
+		}
+	}
+	else = {
+		dynmap_r016_paint_grey_effect = yes
 	}
 }
 
-# County holder first; missing holder Dynasty never suppresses senior checks.
 dynmap_r016_my_realm_county_effect = {
 	if = {
 		limit = { exists = holder }
@@ -907,12 +2927,667 @@ dynmap_r016_my_realm_county_effect = {
 	}
 }
 
+dynmap_r016_rootdown_realms_r0a0i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_grey_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r0a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r0a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r0a0i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r0a0i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_realms_r0a0i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_grey_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r0a0i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r0a0i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_realms_r0a1i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r0a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r0a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r0a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r0a1i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_realms_r0a1i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r0a1i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_realms_r1a0i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r1a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r1a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r1a0i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r1a0i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_realms_r1a0i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r1a0i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_realms_r1a1i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r1a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r1a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r1a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r1a1i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_realms_r1a1i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r1a1i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_holdings_r0a0i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_grey_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r0a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r0a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r0a0i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r0a0i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_holdings_r0a0i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_grey_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r0a0i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r0a0i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_holdings_r0a1i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r0a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r0a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r0a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r0a1i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_holdings_r0a1i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r0a1i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_holdings_r1a0i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_grey_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r1a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r1a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r1a0i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r1a0i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_holdings_r1a0i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_grey_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r1a0i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_holdings_r1a1i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r1a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r1a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r1a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r1a1i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_holdings_r1a1i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r1a1i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_my_realm_r0a0i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_grey_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r0a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r0a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r0a0i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r0a0i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_my_realm_r0a0i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r0a0i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r0a0i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_my_realm_r0a1i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r0a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r0a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r0a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r0a1i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_my_realm_r0a1i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r0a1i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_my_realm_r1a0i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_grey_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r1a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r1a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r1a0i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r1a0i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_my_realm_r1a0i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r1a0i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_my_realm_r1a1i0_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_light_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r1a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r1a1i0_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r1a1i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r1a1i0_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_my_realm_r1a1i1_effect = {
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } }
+		every_held_title = { limit = { tier = tier_county } dynmap_r016_paint_dark_effect = yes }
+	}
+	if = { limit = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } }
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+	}
+	}
+else = {
+	every_vassal = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r1a1i1_effect = yes }
+	}
+	}
+}
+
+dynmap_r016_rootdown_start_realms_effect = {
+	every_independent_ruler = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_realms_r1a0i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_realms_r0a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_realms_r0a0i0_effect = yes }
+	}
+	every_county = { if = { limit = { NOT = { exists = holder } } dynmap_r016_paint_grey_effect = yes } }
+}
+
+dynmap_r016_rootdown_start_holdings_effect = {
+	every_independent_ruler = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_holdings_r1a0i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_holdings_r0a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_holdings_r0a0i0_effect = yes }
+	}
+	every_county = { if = { limit = { NOT = { exists = holder } } dynmap_r016_paint_grey_effect = yes } }
+}
+
+dynmap_r016_rootdown_start_my_realm_effect = {
+	every_independent_ruler = {
+		if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r1a0i1_effect = yes }
+		else_if = { limit = { AND = { trigger_if = { limit = { exists = dynasty } dynasty = scope:dynmap_r016_player_dynasty } trigger_else = { always = no } NOT = { this = scope:dynmap_r016_player_root } } } dynmap_r016_rootdown_my_realm_r1a0i0_effect = yes }
+		else_if = { limit = { AND = { OR = { NOT = { exists = dynasty } AND = { exists = dynasty NOT = { dynasty = scope:dynmap_r016_player_dynasty } } } this = scope:dynmap_r016_player_root } } dynmap_r016_rootdown_my_realm_r0a0i1_effect = yes }
+		else = { dynmap_r016_rootdown_my_realm_r0a0i0_effect = yes }
+	}
+	every_county = { if = { limit = { NOT = { exists = holder } } dynmap_r016_paint_grey_effect = yes } }
+}
+
+dynmap_r016_world_realms_effect = {
+	if = {
+		limit = { exists = dynasty }
+		save_scope_as = dynmap_r016_player_root
+		dynasty = { save_scope_as = dynmap_r016_player_dynasty }
+		dynmap_r016_paint_neutral_base_effect = yes
+		dynmap_r016_rootdown_start_realms_effect = yes
+		clear_saved_scope = dynmap_r016_player_dynasty
+		clear_saved_scope = dynmap_r016_player_root
+	}
+}
+
+dynmap_r016_world_holdings_effect = {
+	if = {
+		limit = { exists = dynasty }
+		save_scope_as = dynmap_r016_player_root
+		dynasty = { save_scope_as = dynmap_r016_player_dynasty }
+		dynmap_r016_paint_neutral_base_effect = yes
+		dynmap_r016_rootdown_start_holdings_effect = yes
+		clear_saved_scope = dynmap_r016_player_dynasty
+		clear_saved_scope = dynmap_r016_player_root
+	}
+}
+
 dynmap_r016_world_my_realm_effect = {
 	if = {
 		limit = { exists = dynasty }
 		save_scope_as = dynmap_r016_player_root
 		dynasty = { save_scope_as = dynmap_r016_player_dynasty }
-		every_county = { dynmap_r016_my_realm_county_effect = yes }
+		dynmap_r016_paint_neutral_base_effect = yes
+		dynmap_r016_rootdown_start_my_realm_effect = yes
 		clear_saved_scope = dynmap_r016_player_dynasty
 		clear_saved_scope = dynmap_r016_player_root
 	}
