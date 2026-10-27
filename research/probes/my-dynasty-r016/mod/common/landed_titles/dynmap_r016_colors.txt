@@ -1,0 +1,23 @@
+﻿# Fixed source colors for the copy-path sample only. Intentionally uncreatable;
+# inertness, visibility and successful CoA resolution require runtime review.
+d_dynmap_r016_direct = {
+	color = { 40 190 80 }
+	no_automatic_claims = yes
+	de_jure_drift_disabled = yes
+	can_create = { always = no }
+	can_create_on_partition = { always = no }
+}
+d_dynmap_r016_controlled = {
+	color = { 225 150 35 }
+	no_automatic_claims = yes
+	de_jure_drift_disabled = yes
+	can_create = { always = no }
+	can_create_on_partition = { always = no }
+}
+d_dynmap_r016_other = {
+	color = { 65 70 80 }
+	no_automatic_claims = yes
+	de_jure_drift_disabled = yes
+	can_create = { always = no }
+	can_create_on_partition = { always = no }
+}

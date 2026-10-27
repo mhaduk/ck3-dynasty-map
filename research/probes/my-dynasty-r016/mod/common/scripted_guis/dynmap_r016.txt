@@ -1,0 +1,203 @@
+﻿# Character dispatch validation precedes effects; void Execute is not success.
+dynmap_r016_check = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { }
+}
+dynmap_r016_compute_realms = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	saved_scopes = { dynmap_r016_palette_id }
+	effect = { dynmap_r016_operation_cleanup_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = -1 } dynmap_r016_world_realms_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+        if = { limit = { var:dynmap_r016_last_painted_id = 2 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=2" debug_log_scopes = yes }
+        else_if = { limit = { var:dynmap_r016_last_painted_id = 126 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=126" debug_log_scopes = yes }
+        else = { debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=other" debug_log_scopes = yes } }
+}
+dynmap_r016_compute_holdings = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	saved_scopes = { dynmap_r016_palette_id }
+	effect = { dynmap_r016_operation_cleanup_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = -1 } dynmap_r016_world_holdings_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+        if = { limit = { var:dynmap_r016_last_painted_id = 2 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=2" debug_log_scopes = yes }
+        else_if = { limit = { var:dynmap_r016_last_painted_id = 126 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=126" debug_log_scopes = yes }
+        else = { debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=other" debug_log_scopes = yes } }
+}
+dynmap_r016_compute_my_realm = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	saved_scopes = { dynmap_r016_palette_id }
+	effect = { dynmap_r016_operation_cleanup_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = -1 } dynmap_r016_world_my_realm_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+        if = { limit = { var:dynmap_r016_last_painted_id = 2 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=2" debug_log_scopes = yes }
+        else_if = { limit = { var:dynmap_r016_last_painted_id = 126 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=126" debug_log_scopes = yes }
+        else = { debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=other" debug_log_scopes = yes } }
+}
+dynmap_r016_refresh_realms = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	saved_scopes = { dynmap_r016_pair_c1_r dynmap_r016_pair_c1_g dynmap_r016_pair_c1_b dynmap_r016_pair_c2_r dynmap_r016_pair_c2_g dynmap_r016_pair_c2_b }
+	effect = {
+		dynmap_r016_operation_cleanup_effect = yes
+		dynmap_r016_select_palette_effect = yes
+		set_variable = { name = dynmap_r016_last_painted_id value = -1 }
+		dynmap_r016_world_realms_effect = yes
+		set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+	}
+}
+
+dynmap_r016_refresh_holdings = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	saved_scopes = { dynmap_r016_pair_c1_r dynmap_r016_pair_c1_g dynmap_r016_pair_c1_b dynmap_r016_pair_c2_r dynmap_r016_pair_c2_g dynmap_r016_pair_c2_b }
+	effect = {
+		dynmap_r016_operation_cleanup_effect = yes
+		dynmap_r016_select_palette_effect = yes
+		set_variable = { name = dynmap_r016_last_painted_id value = -1 }
+		dynmap_r016_world_holdings_effect = yes
+		set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+	}
+}
+
+dynmap_r016_refresh_my_realm = {
+	scope = character
+	is_valid = { is_alive = yes exists = dynasty }
+	saved_scopes = { dynmap_r016_pair_c1_r dynmap_r016_pair_c1_g dynmap_r016_pair_c1_b dynmap_r016_pair_c2_r dynmap_r016_pair_c2_g dynmap_r016_pair_c2_b }
+	effect = {
+		dynmap_r016_operation_cleanup_effect = yes
+		dynmap_r016_select_palette_effect = yes
+		set_variable = { name = dynmap_r016_last_painted_id value = -1 }
+		dynmap_r016_world_my_realm_effect = yes
+		set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+	}
+}
+
+dynmap_r016_audit_realms = {
+	scope = character
+	saved_scopes = { dynmap_r016_palette_id }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_audit_realms_selected_effect = yes }
+}
+dynmap_r016_audit_holdings = {
+	scope = character
+	saved_scopes = { dynmap_r016_palette_id }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_audit_holdings_selected_effect = yes }
+}
+dynmap_r016_audit_my_realm = {
+	scope = character
+	saved_scopes = { dynmap_r016_palette_id }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_audit_my_realm_selected_effect = yes }
+}
+
+dynmap_r016_summary_realms = {
+	scope = character
+	saved_scopes = { dynmap_r016_palette_id }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_summary_realms_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+        if = { limit = { var:dynmap_r016_last_painted_id = 2 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=2" debug_log_scopes = yes }
+        else_if = { limit = { var:dynmap_r016_last_painted_id = 126 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=126" debug_log_scopes = yes }
+        else = { debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=other" debug_log_scopes = yes } }
+}
+dynmap_r016_samples_realms = {
+	scope = character
+	saved_scopes = { dynmap_r016_palette_id }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_samples_realms_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+        if = { limit = { var:dynmap_r016_last_painted_id = 2 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=2" debug_log_scopes = yes }
+        else_if = { limit = { var:dynmap_r016_last_painted_id = 126 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=126" debug_log_scopes = yes }
+        else = { debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=other" debug_log_scopes = yes } }
+}
+dynmap_r016_summary_holdings = {
+	scope = character
+	saved_scopes = { dynmap_r016_palette_id }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_summary_holdings_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+        if = { limit = { var:dynmap_r016_last_painted_id = 2 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=2" debug_log_scopes = yes }
+        else_if = { limit = { var:dynmap_r016_last_painted_id = 126 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=126" debug_log_scopes = yes }
+        else = { debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=other" debug_log_scopes = yes } }
+}
+dynmap_r016_samples_holdings = {
+	scope = character
+	saved_scopes = { dynmap_r016_palette_id }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_samples_holdings_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+        if = { limit = { var:dynmap_r016_last_painted_id = 2 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=2" debug_log_scopes = yes }
+        else_if = { limit = { var:dynmap_r016_last_painted_id = 126 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=126" debug_log_scopes = yes }
+        else = { debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=other" debug_log_scopes = yes } }
+}
+dynmap_r016_summary_my_realm = {
+	scope = character
+	saved_scopes = { dynmap_r016_palette_id }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_summary_my_realm_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+        if = { limit = { var:dynmap_r016_last_painted_id = 2 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=2" debug_log_scopes = yes }
+        else_if = { limit = { var:dynmap_r016_last_painted_id = 126 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=126" debug_log_scopes = yes }
+        else = { debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=other" debug_log_scopes = yes } }
+}
+dynmap_r016_samples_my_realm = {
+	scope = character
+	saved_scopes = { dynmap_r016_palette_id }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = { dynmap_r016_samples_my_realm_effect = yes set_variable = { name = dynmap_r016_last_painted_id value = scope:dynmap_r016_palette_id }
+        if = { limit = { var:dynmap_r016_last_painted_id = 2 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=2" debug_log_scopes = yes }
+        else_if = { limit = { var:dynmap_r016_last_painted_id = 126 } debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=126" debug_log_scopes = yes }
+        else = { debug_log = "DYNMAP_R016 COMPUTE_RECEIPT completed_id=other" debug_log_scopes = yes } }
+}
+dynmap_r016_pair_cache_has_value = {
+	scope = character
+	is_valid = { has_variable = dynmap_r016_pair_cache_id }
+	effect = { }
+}
+
+dynmap_r016_pair_cache_probe = {
+	scope = character
+	saved_scopes = { dynmap_r016_pair_c1_r dynmap_r016_pair_c1_g dynmap_r016_pair_c1_b dynmap_r016_pair_c2_r dynmap_r016_pair_c2_g dynmap_r016_pair_c2_b }
+	is_valid = { is_alive = yes exists = dynasty }
+	effect = {
+		# Every click starts from exact historical-green option B.
+		set_variable = { name = dynmap_r016_pair_cache_id value = 126 }
+		set_variable = { name = dynmap_r016_last_c1_r value = scope:dynmap_r016_pair_c1_r }
+		set_variable = { name = dynmap_r016_last_c1_g value = scope:dynmap_r016_pair_c1_g }
+		set_variable = { name = dynmap_r016_last_c1_b value = scope:dynmap_r016_pair_c1_b }
+		set_variable = { name = dynmap_r016_last_c2_r value = scope:dynmap_r016_pair_c2_r }
+		set_variable = { name = dynmap_r016_last_c2_g value = scope:dynmap_r016_pair_c2_g }
+		set_variable = { name = dynmap_r016_last_c2_b value = scope:dynmap_r016_pair_c2_b }
+
+		if = {
+			limit = { AND = { has_variable = dynmap_r016_last_c1_r var:dynmap_r016_last_c1_r >= 0 var:dynmap_r016_last_c1_r <= 255 has_variable = dynmap_r016_last_c1_g var:dynmap_r016_last_c1_g >= 0 var:dynmap_r016_last_c1_g <= 255 has_variable = dynmap_r016_last_c1_b var:dynmap_r016_last_c1_b >= 0 var:dynmap_r016_last_c1_b <= 255 has_variable = dynmap_r016_last_c2_r var:dynmap_r016_last_c2_r >= 0 var:dynmap_r016_last_c2_r <= 255 has_variable = dynmap_r016_last_c2_g var:dynmap_r016_last_c2_g >= 0 var:dynmap_r016_last_c2_g <= 255 has_variable = dynmap_r016_last_c2_b var:dynmap_r016_last_c2_b >= 0 var:dynmap_r016_last_c2_b <= 255 } }
+			debug_log = "DYNMAP_R016 PAIR_CACHE_RECEIPT stored_channels=present range=0..255"
+			debug_log_scopes = yes
+		}
+		else = { debug_log = "DYNMAP_R016 PAIR_CACHE_RECEIPT stored_channels=missing_or_out_of_range" debug_log_scopes = yes }
+
+		debug_log = "DYNMAP_R016 PAIR_CACHE_PROBE selected_id=126 pair=unknown_or_unmatched"
+		debug_log_scopes = yes
+		if = {
+			limit = {
+				AND = {
+					var:dynmap_r016_last_c1_r = 114
+					var:dynmap_r016_last_c1_g = 33
+					var:dynmap_r016_last_c1_b = 22
+					var:dynmap_r016_last_c2_r = 191
+					var:dynmap_r016_last_c2_g = 133
+					var:dynmap_r016_last_c2_b = 47
+				}
+			}
+			set_variable = { name = dynmap_r016_pair_cache_id value = 2 }
+
+			debug_log = "DYNMAP_R016 PAIR_CACHE_PROBE selected_id=2 pair=red_yellow"
+			debug_log_scopes = yes
+		}
+	}
+}
+
+dynmap_r016_audit_all_views = {
+ scope = character
+ saved_scopes = { dynmap_r016_palette_id }
+ is_valid = { is_alive = yes exists = dynasty }
+ effect = {
+  dynmap_r016_audit_realms_selected_effect = yes
+  dynmap_r016_audit_holdings_selected_effect = yes
+  dynmap_r016_audit_my_realm_selected_effect = yes
+ }
+}

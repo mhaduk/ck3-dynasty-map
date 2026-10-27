@@ -1,0 +1,279 @@
+# Original additive panel using tested R-005 startup-widget concepts.
+# All character execution is manual, with a fresh player root. No NULL calls.
+widget = {
+    name = "dynmap_r009_batch_widget"
+    parentanchor = top|left
+    position = { 20 120 }
+    size = { 800 560 }
+    visible = "[IsInGame]"
+    button_round = {
+        name = "dynmap_r009_reopen"
+        size = { 150 32 }
+        visible = "[GetVariableSystem.HasValue('dynmap_r009_panel', 'hidden')]"
+        raw_text = "R009 SHOW"
+        onclick = "[GetVariableSystem.Clear('dynmap_r009_panel')]"
+    }
+    widget = {
+        name = "dynmap_r009_panel"
+        size = { 800 560 }
+        visible = "[Not(GetVariableSystem.HasValue('dynmap_r009_panel', 'hidden'))]"
+        text_single = {
+            name = "dynmap_r009_heading"
+            position = { 0 0 }
+            raw_text = "R-009 COLOR BATCH — DISPOSABLE SESSION ONLY"
+            using = Font_Size_Small
+        }
+        button_round = {
+            name = "dynmap_r009_hide"
+            position = { 610 0 }
+            size = { 170 34 }
+            raw_text = "HIDE PANEL"
+            raw_tooltip = "Only hides this panel; no color reset"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_panel', 'hidden')]"
+        }
+        text_single = {
+            name = "dynmap_r009_targets"
+            position = { 0 42 }
+            raw_text = "A: b_london / 1527 | B: b_southwark / 1526 | control: b_woxbrigge / 1528"
+            using = Font_Size_Small
+        }
+        text_single = {
+            name = "dynmap_r009_validity"
+            position = { 0 66 }
+            raw_text = "[Select_CString(GetPlayer.IsValid, 'PLAYER', 'NO PLAYER')] | A [Select_CString(GetTitleByKey('b_london').IsValid, 'EXISTS', 'MISSING')] | B [Select_CString(GetTitleByKey('b_southwark').IsValid, 'EXISTS', 'MISSING')]"
+            using = Font_Size_Small
+        }
+        text_single = {
+            name = "dynmap_r009_receipt"
+            position = { 0 90 }
+            raw_text = "Request: [Select_CString(GetVariableSystem.Exists('dynmap_r009_request'), GetVariableSystem.Get('dynmap_r009_request'), 'NONE')] (receipt only; read log/result)"
+            using = Font_Size_Small
+        }
+        button_round = {
+            name = "dynmap_r009_c00"
+            position = { 0 124 }
+            size = { 250 34 }
+            raw_text = "C00 INSPECT / ARM"
+            raw_tooltip = "Read fixed target/source existence and holder presence; no color write"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C00')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c00').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_armed', 'yes')]"
+        }
+        button_round = {
+            name = "dynmap_r009_c01"
+            position = { 265 124 }
+            size = { 250 34 }
+            raw_text = "C01 RGB A"
+            raw_tooltip = "Set A to magenta RGB"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C01')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c01').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+        button_round = {
+            name = "dynmap_r009_c02"
+            position = { 530 124 }
+            size = { 250 34 }
+            raw_text = "C02 NAMED A"
+            raw_tooltip = "Set A to the same named magenta"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C02')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c02').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+        button_round = {
+            name = "dynmap_r009_c03"
+            position = { 0 166 }
+            size = { 250 34 }
+            raw_text = "C03 COPY MAGENTA A"
+            raw_tooltip = "Copy standard titular source to A; repeat bounded clicks to observe drift"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C03')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c03').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+        button_round = {
+            name = "dynmap_r009_c04"
+            position = { 265 166 }
+            size = { 250 34 }
+            raw_text = "C04 COPY CYAN A"
+            raw_tooltip = "Copy landless source to A"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C04')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c04').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+        button_round = {
+            name = "dynmap_r009_c05"
+            position = { 530 166 }
+            size = { 250 34 }
+            raw_text = "C05 COPY YELLOW A"
+            raw_tooltip = "Copy guarded source to A"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C05')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c05').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+        button_round = {
+            name = "dynmap_r009_c06"
+            position = { 0 208 }
+            size = { 250 34 }
+            raw_text = "C06 COPY PAIR"
+            raw_tooltip = "Copy same magenta source to A and B"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C06')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c06').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+        button_round = {
+            name = "dynmap_r009_c07"
+            position = { 265 208 }
+            size = { 250 34 }
+            raw_text = "C07 CHAIN A TO B"
+            raw_tooltip = "Copy current A color to B; run C03 first for the specified comparison"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C07')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c07').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+        button_round = {
+            name = "dynmap_r009_c08"
+            position = { 530 208 }
+            size = { 250 34 }
+            raw_text = "C08 COPY BASELINE"
+            raw_tooltip = "Approximate reset of A/B from definition-color source; drift expected"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C08')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c08').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+        text_single = {
+            name = "dynmap_r009_title_root_warning"
+            position = { 0 254 }
+            raw_text = "TITLE ROOT EXPERIMENT: C09 must log TITLE_ROOT_RECEIVED before C10."
+            using = Font_Size_Small
+        }
+        button_round = {
+            name = "dynmap_r009_c09"
+            position = { 0 282 }
+            size = { 250 34 }
+            raw_text = "C09 TITLE ROOT CHECK"
+            raw_tooltip = "New dispatch hypothesis; logs only, no character root"
+            visible = "[GetVariableSystem.HasValue('dynmap_r009_armed', 'yes')]"
+            enabled = "[GetTitleByKey('b_london').IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C09')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c09').Execute( GuiScope.SetRoot( GetTitleByKey('b_london').MakeScope ).End )]"
+        }
+        button_round = {
+            name = "dynmap_r009_c10"
+            position = { 265 282 }
+            size = { 250 34 }
+            raw_text = "C10 TITLE RESET"
+            raw_tooltip = "Manually set A/B to 230 5 5; NOT a live-original restore; no character root"
+            visible = "[GetVariableSystem.HasValue('dynmap_r009_armed', 'yes')]"
+            enabled = "[GetTitleByKey('b_london').IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C10')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c10').Execute( GuiScope.SetRoot( GetTitleByKey('b_london').MakeScope ).End )]"
+        }
+        button_round = {
+            name = "dynmap_r009_c11"
+            position = { 530 282 }
+            size = { 250 34 }
+            raw_text = "C11 PLAYER RESET"
+            raw_tooltip = "Fallback definition reset of A/B using a valid player with Dynasty; no original capture"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r009_request', 'C11')]"
+            onclick = "[GetScriptedGui('dynmap_r009_c11').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+        text_single = {
+            name = "dynmap_r009_mode_heading"
+            position = { 0 326 }
+            raw_text = "Renderer controls: mode changes never execute a color effect or reset."
+            using = Font_Size_Small
+        }
+        button_round = {
+            name = "dynmap_r009_mode_baronies"
+            position = { 0 352 }
+            size = { 250 34 }
+            raw_text = "M01 NATIVE BARONIES"
+            raw_tooltip = "Select renderer only; use native controls as fallback"
+            enabled = "[CanChangeMapMode]"
+            onclick = "[SetMapMode('baronies')]"
+        }
+        button_round = {
+            name = "dynmap_r009_mode_dynmap_r009_baronies"
+            position = { 265 352 }
+            size = { 250 34 }
+            raw_text = "M02 CUSTOM"
+            raw_tooltip = "Select renderer only; use native controls as fallback"
+            enabled = "[CanChangeMapMode]"
+            onclick = "[SetMapMode('dynmap_r009_baronies')]"
+        }
+        button_round = {
+            name = "dynmap_r009_mode_realms"
+            position = { 530 352 }
+            size = { 250 34 }
+            raw_text = "REALMS"
+            raw_tooltip = "Select renderer only; use native controls as fallback"
+            enabled = "[CanChangeMapMode]"
+            onclick = "[SetMapMode('realms')]"
+        }
+        button_round = {
+            name = "dynmap_r009_mode_counties"
+            position = { 0 394 }
+            size = { 250 34 }
+            raw_text = "COUNTIES"
+            raw_tooltip = "Select renderer only; use native controls as fallback"
+            enabled = "[CanChangeMapMode]"
+            onclick = "[SetMapMode('counties')]"
+        }
+        button_round = {
+            name = "dynmap_r009_mode_houses"
+            position = { 265 394 }
+            size = { 250 34 }
+            raw_text = "HOUSES"
+            raw_tooltip = "Select renderer only; use native controls as fallback"
+            enabled = "[CanChangeMapMode]"
+            onclick = "[SetMapMode('houses')]"
+        }
+        button_round = {
+            name = "dynmap_r009_mode_religions"
+            position = { 530 394 }
+            size = { 250 34 }
+            raw_text = "FAITH"
+            raw_tooltip = "Select renderer only; use native controls as fallback"
+            enabled = "[CanChangeMapMode]"
+            onclick = "[SetMapMode('religions')]"
+        }
+        button_round = {
+            name = "dynmap_r009_mode_filled"
+            position = { 530 436 }
+            size = { 250 34 }
+            raw_text = "A01 FILLED CUSTOM"
+            raw_tooltip = "Independent filled renderer; compare with M01/M02 in this launch"
+            enabled = "[CanChangeMapMode]"
+            onclick = "[SetMapMode('dynmap_r009_baronies_filled')]"
+        }
+        text_single = {
+            name = "dynmap_r009_mode_status"
+            position = { 0 436 }
+            raw_text = "[Select_CString(IsMapMode('baronies'), 'NATIVE BARONIES', Select_CString(IsMapMode('dynmap_r009_baronies'), 'CUSTOM MINIMAL', Select_CString(IsMapMode('dynmap_r009_baronies_filled'), 'CUSTOM FILLED', 'OTHER MODE')))]"
+            using = Font_Size_Small
+        }
+        text_single = {
+            name = "dynmap_r009_warning"
+            position = { 0 480 }
+            raw_text = "No automatic restoration. C08/C10/C11 use definition values. Save BEFORE and AFTER separately."
+            using = Font_Size_Small
+        }
+        text_single = {
+            name = "dynmap_r009_context"
+            position = { 0 504 }
+            raw_text = "[Select_CString(GetVariableSystem.Exists('dynmap_r009_armed'), 'ARMED (GUI only)', 'UNARMED')] | no player: C00-C08/C11 hidden; title-root experiments remain manual."
+            using = Font_Size_Small
+        }
+    }
+}

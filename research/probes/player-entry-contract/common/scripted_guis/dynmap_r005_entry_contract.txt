@@ -1,0 +1,66 @@
+﻿# R-005 final guards. Every entry has a fresh explicit player root from a manual click.
+dynmap_r005_final_inspect = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R005_FINAL CHECK_INSPECT_ENTER"
+        debug_log_scopes = yes
+        if = {
+            limit = { exists = dynasty }
+            debug_log = "DYNMAP_R005_FINAL CHECK_HAS_DYNASTY"
+        }
+        else = { debug_log = "DYNMAP_R005_FINAL CHECK_NO_DYNASTY" }
+        debug_log = "DYNMAP_R005_FINAL CHECK_INSPECT_EXIT"
+    }
+}
+
+dynmap_r005_final_availability = {
+    scope = character
+    is_valid = { exists = dynasty }
+}
+
+dynmap_r005_final_activate = {
+    scope = character
+    is_valid = { exists = dynasty }
+    effect = {
+        if = {
+            limit = { exists = dynasty }
+            debug_log = "DYNMAP_R005_FINAL ACTIVATE_ENTER"
+            debug_log_scopes = yes
+            debug_log = "DYNMAP_R005_FINAL ACTIVATE_EXIT"
+        }
+        else = { debug_log = "DYNMAP_R005_FINAL ACTIVATE_REJECT_NO_DYNASTY" }
+    }
+}
+
+# Intentional one-time mutation of the current ruler in a disposable timeline.
+dynmap_r005_final_lowborn_fixture = {
+    scope = character
+    is_valid = {
+        is_alive = yes
+        is_ai = no
+        is_ruler = yes
+        exists = dynasty
+    }
+    effect = {
+        if = {
+            limit = {
+                is_alive = yes
+                is_ai = no
+                is_ruler = yes
+                exists = dynasty
+            }
+            debug_log = "DYNMAP_R005_FINAL LOWBORN_BEFORE"
+            debug_log_scopes = yes
+            set_to_lowborn = yes
+            if = {
+                limit = { exists = dynasty }
+                debug_log = "DYNMAP_R005_FINAL LOWBORN_AFTER_HAS_DYNASTY"
+            }
+            else = { debug_log = "DYNMAP_R005_FINAL LOWBORN_AFTER_NO_DYNASTY" }
+            debug_log_scopes = yes
+            debug_log = "DYNMAP_R005_FINAL LOWBORN_EXIT"
+        }
+        else = { debug_log = "DYNMAP_R005_FINAL LOWBORN_REJECT" }
+    }
+}

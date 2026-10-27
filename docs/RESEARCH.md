@@ -1,14 +1,199 @@
 # Research Findings
 
+## R-009 accepted local observer checkpoint — 2026-10-27
+
+The corrected current-DEV absent-player fallback returned observer mode to
+native Realms; native Cultures remained selectable, return to the original
+player did not auto-enter Dynasty, and manual reentry worked. The final refresh
+save matched corrected pre-observer title identity/RGB fields across 18,190
+records, with unchanged bounded error bytes and empty GUI/conflict logs. This
+is a bounded user-tested path, not an all-world-state or beta-safety result.
+The accepted reproducible build is `current-dev`; unresolved 81-barony cycle,
+corrected save/reload, DEV-absent and full invariant checks are transferred to
+registered, still-PLANNED T-025/#51. See the [R-009 checkpoint](tasks/R-009-barony-color-safety.md)
+and [T-025 follow-up](tasks/T-025-lifecycle-persistence-followup.md).
+
+## R-009 concrete vanilla color-copy consumer — 2026-10-26
+
+Installed cardinalate effect copies a selected temple/capital barony map color
+into a new landless dynamic title. Two controlled disposable saved-state trials
+confirm actual propagation with slight shifts: Vaticano211/37/173 ->209/31/167,
+Farfa23/191/47 ->18/186/45. Actual named_after references/landless/new markers
+verified. Constructed Papal-recipient setup also logs a primary-title rank error;
+this is no clean ordinary appointment test. No normal-map/UI or gameplay harm
+was demonstrated; copied color data is not inert, but persistence alone is not
+damage. Bukhara owned-barony customization has no picker; county picker does.
+Full release/lifecycle/legacy-save compatibility remains separate. See the
+[canonical R-009 checkpoint](tasks/R-009-barony-color-safety.md).
+
+
+## R-009 current-build lifecycle checkpoint — 2026-10-26
+
+On 1.20.1.2 current DEV, designated frozen PAINTED/EXITED/RELOADED and absent-DEV
+load/save comparisons establish persistence of all 11,297 painted barony RGB
+fields by stable key. The absent-DEV BEFORE control remains without those
+fields. User-reported successful loads and supplied ordinary Realms screenshots
+support bounded visual acceptance, not arbitrary-original restoration or global
+harmlessness. Both absent-DEV loads emit the same three named legacy-template
+and blank duplicate-title errors; three old DEV duchies become keyless records.
+Current ten-file writer uses literal RGB and has no references to those fixture
+titles. Fixture compatibility debt is separate from direct-RGB feasibility.
+Beta safety remains blocked on an unmet safe-exit/harmless-persistence contract;
+no engine-impossibility or replacement-renderer decision follows. See the
+[canonical checkpoint](tasks/R-009-barony-color-safety.md). Parent remains open.
+
+
 **Research date:** 2026-10-20
 **Reported public CK3 release at research time (reference baseline, not installed-build verification):** 1.20.1 "Crozier" (2026-10-13). Paradox stated that subsequent changes were being targeted at the forthcoming 1.21 update, so the implementation target must be re-checked on the gaming Mac before coding.
+
+## Current architecture boundary — 2026-10-23
+
+ADR-009 requires map-system interfaces; earlier carrier hypotheses are historical.
+R-016 demonstrated a bounded shared title-RGB/baronies pipeline on 1.20.1.2,
+without independent view storage, safe exact restoration or removal acceptance.
+T-005 narrows open research to R-005 (dispatch/context and merged R-013 coverage)
+and R-009 (RGB lifecycle/save/removal). R-007/R-008/R-010 are closed completed
+research; their ordinary classifier/projection/UI tests belong to F-001.
+The user accepts the bounded F-001 menu, appearance and ordinary interaction
+on fresh 867 Ismail sessions. This does not pass RG-PLAYER-01, shared RGB/save/
+removal gates, strict diagnostics or broad projection/parity acceptance; residual
+functional checks are owned by F-005 and diagnostic checks by F-004. The earlier
+two duplicate-title messages were not reproduced in bounded fresh-game error
+channels, but their cause and old-save relationship remain UNKNOWN.
+R-011/R-012 are closed not planned: matched attribution controls and optional
+validator evaluation belong to T-113/current feature acceptance when needed.
+Historical partial statuses and next steps below retain their dates; current
+ownership is summarized in the [T-005 review](tasks/T-005-research-backlog-review.md).
+No game test, architecture waiver or production implementation follows.
+
+## T-018 finite cold-entry experiment checkpoint — 2026-10-25
+
+Corrected palette-hoist B is installed in the bounded local probe, with an exact
+ten-file match to its accepted source receipt. Existing emitted summaries for
+three views match A/R0; they do not establish an independent census or exact
+stored/rendered RGB. The original, R0, A and B manual timings were 2.2s, 2.5s,
+2.3s and 2.2s on the same paused Charles-the-Bald 867 / West Francia save.
+Differences are within manual uncertainty, so no speedup is demonstrated.
+The user paused further experimentation and accepts roughly two seconds for
+now. Parser/runtime compatibility across governments, recursive depth/cycles,
+global coverage and exact RGB remain unknown. Resume only with explicit user
+direction; timing research remains owned separately by R-018/#38 and F-006/#39.
+See the [canonical T-018 checkpoint](tasks/T-018-cold-entry-recompute.md).
+
+F-004's bounded 2026-10-24 diagnostic acceptance is now recorded in its
+[canonical result](tasks/F-004-diagnostics-hardening.md) and
+[developer guide](F004_DIAGNOSTICS.md): native DIAG V3 declarations/samples
+and three isolated AUDIT V4 reports pass relative to emitted rosters, and the
+user accepts the fixed-row interaction in the tested fixture. This does not
+change the research boundary: independent global coverage, stored RGB,
+restoration, save/removal and lifecycle remain unproven. Timing remains outside
+F-004 under R-018/#38 and F-006/#39.
+
+## Reusable findings by subject
+
+Use this index to open only the subject relevant to the active task. Dated runtime checkpoints live in the linked `docs/evidence/` records; they
+are evidence history, not a list of current next steps. Current conclusions
+are summarized here and in CURRENT_STATE.md.
+
+| Subject | Reusable finding | Status / task |
+|---|---|---|
+| CK3 source discovery | [Source hierarchy and quick lookup](CK3_SOURCE_MAP.md) | R-014 complete; use this index before broad source searches |
+| Test start selection | [R-017 roster and fixture locator](tasks/R-017-test-scenario-selection.md) | Selection stage complete: three easy bookmark starts (Ismail 867, William 1066, Murchad 1066) with static evidence and locators. Runtime chains and remaining family/comparator coverage are deferred to later tests |
+| Target build and evidence quality | [Evidence policy](#evidence-policy-and-target-build-status); [generated API baseline](#verified--ck3-12011-crozier-generated-script_docs) | 1.20.1.1 signatures verified; runtime limits stated per finding |
+| Player context and validity | [R-005 consolidated status](#r-005--consolidated-status-2026-10-20) | Partial / open, R-005 |
+| Scope transitions | [Formal scope links](#formal-scope-links--r-006--r-008) | Static links verified, R-006/R-008 |
+| Liege traversal | [Liege traversal](#liege-traversal--r-007) | Research closed; remaining classifier/government acceptance in F-001 and later tests |
+| Map-mode definitions | [R-002 findings](#verified--r-002-installed-map-mode-definitions-2026-10-20) | Static inspection complete; custom loading/runtime pending |
+| GUI and map lifecycle | [R-003 inspection](#verified--r-003-installed-gui-bindings-2026-10-20); [R-010 registration](#verified--r-010-additive-widget-registration-documentation-2026-10-20) | Integration research closed; F-001 UI acceptance, R-005/R-009 safety open |
+| Color effects and state | [Title-color effects](#title-color-effects--r-009--rg-state-01); [remaining unknowns](#still-unknown) | Signatures verified; rendering/isolation/restore open, R-009 |
+| Binary Dynasty-view proposal | [Binary feasibility](#r-009-two-binary-player-views--static-feasibility-2026-10-21) | Historical predicate findings; carrier route excluded by ADR-009; area fill/lifecycle unverified, R-009 |
+| Clerical Regions reuse | [Clerical static checkpoint](#r-015--clerical-regions-static-checkpoint-2026-10-21) | Constrained membership exposed; advertised add/remove pair and independent binding unresolved; intended stripe rule documented; R-015 closed as not planned, evidence partial |
+| Historical references | [Reference findings](#historicalreference-findings-pending-m0-verification) | Not target-build verification |
+
+## R-015 — Clerical Regions static checkpoint (2026-10-21)
+
+**Final disposition:** closed as not planned on 2026-10-21 by explicit user
+authorization, retaining partial evidence and explicit unknowns. The supplied
+secondary synthesis does not establish singleton engine storage or resolve the
+missing independent membership/provider chain. See [closure assessment](tasks/R-015-clerical-regions.md#closure-assessment-after-supplied-external-synthesis--2026-10-21).
+Historical barony-map leads are separate; no alternative architecture, product
+scope reduction or follow-on task was adopted. GitHub closure was verified.
+
+Subsequent official-source verification narrows the earlier stripe unknown:
+the 1.20.0 release notes document county/region Rite mismatch as the intended
+native rule. Dev Diary #8 advertises nonreligious reuse and county add/remove;
+exact arbitrary runtime membership and independent renderer binding remain
+unverified. See the [official-source follow-up](tasks/R-015-clerical-regions.md#official-source-follow-up--2026-10-21).
+Earlier UNKNOWN labels below describe Stage A's inspected evidence; this
+follow-up supplies documentation, not runtime verification or an ADR change.
+
+Focused reconciliation `R015-REGION-API-RECONCILE-20261021-02` is delivered,
+GUI-reviewed and accepted: **advertised operation unresolved in corpus**. Expansion
+accepts a landed-title target, so a single eligible county is type-compatible
+(**LIKELY**, county-tier behavior untested), but primitive adjacency/free-only
+constraints remain (`effects.log:11573–11580`). No arbitrary individual
+remove/reassign counterpart, independent family or mode-to-dataset selector was
+identified by alternate description/terminology searches. Situation-scope
+add/remove effects are not clerical membership writers. See the
+[focused reconciliation](tasks/R-015-clerical-regions.md#focused-api-reconciliation--2026-10-21).
+Official generic reuse remains positive evidence of intent; the missing
+ownership/binding contract, not religious vanilla wrappers alone, determines
+the current **STOP** under ADR-009. No probe or runtime stage is prepared.
+
+**Partial; static checkpoint GUI-reviewed and accepted.** Canonical [R-015 evidence and capability matrix](tasks/R-015-clerical-regions.md#stage-a-checkpoint--2026-10-21).
+Installed CK3 1.20.1.1 text and existing clean generated documentation only;
+no new runtime evidence, probe preparation or production route selection.
+
+- **VERIFIED static:** `clerical_regions` definition binds the native color and
+  selection enums (`gfx/map/map_modes/map_modes.txt:6054–6060`). History connects
+  real titles to authored geographical county lists
+  (`history/titles/ce3/00_ecclesiastical_titles.txt:682–688,939–944`;
+  `map_data/geographical_regions/geographical_region.txt:5922–5926,6011–6015`).
+  History syntax is not a runtime membership writer or separate dataset.
+- **VERIFIED static:** province-root create takes free land-connected counties
+  in the capital's de-jure kingdom (`effects.log:15316–15336`); title-root expand
+  takes adjacent unassigned de-jure counties (`:11573–11580`); split uses a
+  ruler's realm portion (`:10775–10796`); merge takes an adjacent region's whole
+  county set (`:11584–11590`). Generic title destruction exists and is used on
+  clerical titles (`:4093–4095`; `events/dlc/pam/pam_clergy_events.txt:751–781`).
+  No arbitrary county add/remove/reassign, private provider or layer reset found
+  in the bounded corpus. This is not proof of global engine impossibility.
+- **VERIFIED static:** region-title RGB definitions and shipped copy-color
+  setup (`common/landed_titles/07_pam_ecclesiastical_titles.txt:563–573,709–719`;
+  `common/scripted_effects/pam_effects.txt:7071–7088,7992–8004`). **LIKELY:** real
+  title RGB supplies ordinary region fill; exact renderer/channel binding is
+  **UNKNOWN**. Title RGB effects are not a view-owned palette.
+- **UNKNOWN:** Clerical Regions stripe rule. Tooltip compares county Rite to
+  region holder Rite (`common/customizable_localization/pam_custom_loc.txt:413–449`);
+  that does not prove stripe production. Shared shader secondary stripes
+  (`gfx/FX/jomini/jomini_province_overlays.fxh:77–82`) do not expose a script
+  producer. Faith's county/top-liege mismatch rule is a distinct mechanism.
+- **VERIFIED static coupling:** title-holder hook can change capital Rite and
+  Church Situation membership (`common/on_action/title_on_actions.txt:3170–3193`);
+  mismatch is code-driven (`on_actions.log:3275–3277`;
+  `common/on_action/dlc/pam/pam_on_actions.txt:529–544`). Wrapper council/fervor/
+  government/toast effects are separable from the primitive, but full synthetic
+  object isolation, save/removal behavior, multiplayer locality and update cost
+  remain **UNKNOWN**. Shipped religious actions have doctrine/PAM gates; actual
+  renderer/direct-effect availability without that DLC is unverified.
+
+Independent provider, isolated synthetic regions and actual religious mutation
+have separate verdicts in the canonical matrix. None establishes the required
+dynamic input for simultaneous three-category, proposed binary or All Dynasties
+views; R-009's separate binary-selector hypothesis remains unchanged. **STOP
+before Dynasty Map probe preparation** until a concrete input lead or separately
+scoped religious-mutation tradeoff justifies a discriminating experiment.
+Persistent state is not rejected categorically; its actual costs are unresolved.
+ADRs, R-009/R-010 partial status and pre-implementation boundary are preserved.
 
 ## Evidence policy and target-build status
 
 Community documentation, Workshop descriptions and archived repositories are
 historical/reference evidence only. They suggest research probes; they do not
 verify API behavior for the target CK3 build. The generated script_docs findings
-below are authoritative API documentation for installed CK3 1.20.1.1 (Crozier).
+below document APIs exposed by installed CK3 1.20.1.1 (Crozier). Initially
+generated with NUI:Realm Ledger enabled, the listed entries were reconfirmed
+in clean vanilla output on 2026-10-20 (see follow-up below).
 They verify documented signatures and semantics, not runtime rendering behavior.
 Other API assumptions still require installed-file, generated-doc or runtime
 evidence before implementation relies on them.
@@ -18,12 +203,108 @@ local file/API entry or runtime procedure, observed result and limitations.
 Keep raw generated dumps local; record original findings here. Distinguish
 reference claims, design assumptions and target-build observations.
 
+## R-005 — Consolidated status (2026-10-20)
+
+**Partial / open; RG-PLAYER-01 remains open.** Canonical checkpoint:
+[R-005 player-context summary](tasks/R-005-player-context.md). Target CK3
+1.20.1.1 (Crozier), Steam build 25913294, DLC baseline Garments of the Holy
+Roman Empire. No Tiger run or production implementation. The final diagnostic
+is installed but disabled after launcher restoration.
+
+| Case | Current result and precise limit |
+|---|---|
+| Explicit valid player/Dynasty root | Passed across activation, manual switches, succession, observer return, controlled reload and V3's same-root comparison. Diagnostic entry execution does not prove production map-mode refresh. |
+| Shared no-Dynasty effect guard | Passed for Terentiy, a no-Dynasty courtier under a distinct valid player root. It does not prove no-Dynasty local-player UI. |
+| Observer watcher / marker invalidation | Earlier corrected C–D cleared a GUI-local marker. In FINAL GUARDS, RESET occurred before entering observer; live READY clearing was not tested in that run. Neither result proves map-color restoration. |
+| Direct NULL Execute | Effect did not run; validation logged an invalid-character error, including with a conditional root guard. No error-free internal NULL boundary is established. Do not repeat. |
+| FINAL GUARDS A — missing-player display | Passed for this tested path: healthy CHECK/activation positive control; after RESET, observer displayed NO PLAYER and all action buttons were absent; no extra activation or probe-attributed validation error was found in the bounded capture. This is external UI evidence for that state transition, not direct invalid-root safety, atomic race or programmatic-caller proof. |
+| FINAL GUARDS B — no-Dynasty local player | Not tested: the one-shot `set_to_lowborn` fixture was rejected on the player character. Dynasty remained present; a fresh CHECK correctly returned READY. No no-Dynasty local-player UI conclusion follows. Further fixture attempts are deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13). |
+
+ADR-008 remains unchanged: My Dynasty must be unavailable without a valid local
+player or valid player Dynasty, with no classification/color writes; context
+loss cleanup remains separate. R-005 stays partial. Do not repeat NULL, V1–V3,
+passed lifecycle cases or the rejected fixture. R-013 owns future supported
+no-Dynasty fixture/UI coverage; R-009 owns color restoration; R-010 owns native
+menu parity and refresh. No further R-005 runtime test is pending.
+
+V1's missing markers were inconclusive; V2 separately confirmed GUI receipt but
+not Execute delivery; V3 ran both character-scoped and omitted-scope entries
+once with the same explicit valid player root. Historical details and their
+limits remain in the [V1](evidence/2026-10-20-r005-player-context/entry-v1-result.md),
+[V2](evidence/2026-10-20-r005-player-context/entry-v2-result.md),
+[V3](evidence/2026-10-20-r005-player-context/entry-v3-result.md) and
+[FINAL GUARDS](evidence/2026-10-20-r005-player-context/final-guards-result.md)
+records. Overall evidence index: [R-005 evidence](evidence/2026-10-20-r005-player-context/README.md).
+
+The earlier bounded entry-contract review remains useful static evidence, not a
+rootless-execution contract. Prior tests included excluded court-scene log noise;
+do not claim whole error logs were clean. No classification, title or color
+writes occurred in these R-005 probes; SUCCESSION intentionally killed a ruler
+in a disposable timeline. Launcher configuration was restored after FINAL
+GUARDS and the diagnostic is disabled. This is config cleanup, not a map-visual
+restore claim.
+
+## R-001 — Environment inventory complete (2026-10-20)
+
+Read-only local inspection established the following baseline. This completes
+R-001 as an inventory, not a clean vanilla runtime validation. Machine-local
+paths and raw evidence stay outside Git under the existing provenance policy.
+
+| Item | VERIFIED observation / evidence |
+|---|---|
+| Installed CK3 | 1.20.1.1 (Crozier), installed `launcher/launcher-settings.json` |
+| Steam build | 25913294, `appmanifest_1158310.acf` |
+| Clausewitz | `titus/release/1.20.1`; revision `af5c758c2072fbb444bab748c2b6dbb41faaa4b3`, installed branch/revision files |
+| Titus | `release/1.20.1`; revision `32d8931eb5e04726c52574cce34a51147a3e4fd7`, installed branch/revision files |
+| macOS / CPU | 26.5.2, build 25F84 (`sw_vers`); arm64 / Apple Silicon (`uname -m`) |
+| Active playset | Initial playset confirmed by read-only launcher database query; machine-specific identifier omitted |
+| Enabled mod | NUI:Realm Ledger, Workshop ID 2995323766; launcher database, `dlc_load.json`, descriptor and runtime `debug.log` agree |
+| DLC installed | Garments of the Holy Roman Empire (`dlc001_preorder`); package files and Steam depot present; no other packages found in inspected DLC directory |
+| DLC enabled | `ck3_dlc001_preorder` enabled in active playset and mounted in `debug.log`; `disabled_dlcs` empty |
+| Launch flags | `-debug_mode -develop` configured in Steam user `config/localconfig.vdf`, CK3 `LaunchOptions`; current process arguments not checked |
+| Tools | Git 2.50.1 (Apple Git-155); Codex CLI 0.163.0; VS Code app and `code` command available |
+| API output | script_docs generated successfully; effects, triggers, event targets and related logs timestamped 2026-10-20 approximately 11:55 Europe/Warsaw |
+
+**UNKNOWN:** Steam branch selection (not explicitly present in inspected app
+metadata); Mac model (system query denied); broader account DLC ownership;
+At inventory time, `dump_data_types` completion/output was unknown; it is now
+confirmed below. Internal source branch names do not prove
+Steam branch selection.
+
+**Initial baseline limitation (superseded by clean follow-up below):** NUI:Realm Ledger was enabled and mounted in the session
+that produced the current runtime logs and script_docs. These are **not clean
+vanilla evidence**. Preserve the documented API observations, but reconfirm them
+after clean generation. No target rendering or lifecycle probes have run.
+
+### Clean vanilla follow-up — R-004 complete; R-011 partial
+
+On 2026-10-20 the user disabled Realm Ledger, restarted CK3 and executed
+`script_docs` and `dump_data_types`. Read-only inspection confirms:
+
+- `dlc_load.json`: no enabled mods and no disabled DLC.
+- `debug.log:134–139`: empty Mod list; Garments of the Holy Roman Empire mounted;
+  session startup at 12:16:54 Europe/Warsaw.
+- Console history records both generation commands. Script-doc files refreshed
+  at approximately 12:17:46; all five nonempty `logs/data_types/data_types_*.txt`
+  files refreshed at approximately 12:17:53 (Europe/Warsaw).
+- Every scope, iterator and color-effect entry cited below was rechecked at the
+  same line locations in clean output; no discrepancies found.
+- `error.log` is empty (0 bytes) at inspection after generation. This is a startup
+  and API-generation observation only: save/bookmark and map-mode interaction
+  coverage have not been established, and no archived vanilla log baseline has
+  been captured. R-011 remains partial under TEST_PLAN.md.
+
+Raw output remains in the game's local logs directory, outside Git. No game
+files were modified by the agent, and no rendering/lifecycle probes were run.
+That follow-up led to R-002, now complete below. The next task at that point was R-003 (now completed below);
+UI and runtime research remain gated separately.
+
 ## VERIFIED — CK3 1.20.1.1 (Crozier) generated script_docs
 
 **Evidence recorded:** 2026-10-20, static inspection of generated logs from the
 installed build. Sources are local files under
 `${CK3_USER_DATA}/logs/`.
-Raw logs remain outside the repository. No rendering/runtime probes were run.
+Raw logs remain outside the repository. The clean follow-up above reconfirms these entries. No rendering/runtime probes were run.
 These findings address API portions of R-006, R-007, R-008 and R-009; they do not
 close the UI, runtime rendering or state-safety research gates.
 
@@ -87,20 +368,622 @@ an identical value. Do not assume identical RGB values across titles using the
 same source. No replacement color strategy is selected by this finding.
 
 Barony iteration yields the `landed_title` scope accepted by these effects;
-this verifies scope compatibility, not safe temporary rendering. Persistence,
-restoration and map-only isolation are UNKNOWN.
+this verifies scope compatibility, not safe temporary rendering. Later R-009
+evidence below confirms shared barony state and title RGB serialization; safe
+restoration and removal remain unresolved.
+
+### R-009 batch preparation — focused static findings
+
+During preparation on 2026-10-20, focused read-only inspection for the isolated
+[research batch](../research/probes/barony-color-batch/README.md) added the
+following source evidence. No target regeneration, installation or runtime
+probe was performed in that preparation stage; subsequent runtime/save results
+are recorded below. Earlier effect/renderer findings are reused.
+
+- `common/landed_titles/00_landed_titles.txt:2330–2373` identifies
+  `b_london`/1527 and `b_southwark`/1526, each with definition RGB
+  `{ 230 5 5 }`, and neighboring `b_woxbrigge`/1528. Static definition values
+  do not capture a live title's original customization or earlier mutations.
+- `common/landed_titles/_landed_titles.info:34–61,103–109,152–157,225–237`
+  documents title color, landless/domicile, automatic claims, drift and distinct
+  normal/partition creation guards. `can_create_on_partition` is used instead
+  of `can_create` for partition. Both guards are false in every original dummy
+  fixture; landless/claims/drift variants remain runtime inertness hypotheses.
+- `common/named_colors/default_colors.txt:1–24` and
+  `culture_colors.txt:1–15` show the named registry and RGB entries. Combined
+  with the generated named-color write signature, this grounds an original
+  named-color versus direct-RGB candidate; it is not a runtime registration pass.
+- Generated `data_types_uncategorized.txt:673–675,113889–113891,114825–114827`
+  exposes `GetTitleByKey` returning Title, `Title.MakeScope` returning Scope,
+  and `Title.IsValid`. `data_types_script.txt:4147–4149` exposes SetRoot;
+  installed `gui/window_title.gui:289` uses a title-root scope for a breakdown,
+  while `common/scripted_guis/pam_scripted_guis.txt:55–65` demonstrates
+  non-character scripted-GUI scopes. A title-root Execute combination is a
+  grounded hypothesis at preparation time. Later C09 received once with a valid
+  player; observer dispatch and C10 cleanup were not demonstrated.
+  Installed `gui/debug/window_component_library.gui:719–727` uses `IsInGame`
+  visibility; the new diagnostic panel uses that gate to exclude frontend use.
+
+Focused searches of generated effects/event-targets and the exposed Title type
+found no arbitrary title-color getter, exact snapshot or reset-color signature.
+The customization window's color getter is not a demonstrated arbitrary-title
+snapshot interface. This is a bounded negative finding, not proof that another
+engine path does not exist. Name/coat-of-arms reset effects do not document a
+color reset. Copying a color into a dummy would introduce documented copy drift
+and higher-tier writes; the batch does not use that as an exact snapshot.
+
+Consequently, the batch used only explicit static-definition reset experiments.
+C08/C11 later ran; C10 was skipped. No automatic exit/context-loss color write
+or exact-original restoration is claimed.
+[The R-009 checkpoint](tasks/R-009-barony-color-safety.md) records the full
+capability/unknown matrix; RG-STATE-01 remains open.
+
+### R-009 native color data and renderer boundary
+
+Focused read-only follow-up on the unchanged target reused R-002/R-003 and
+traced additional color sources, shader consumers and a concrete alternative.
+Full matrix and limits: [R-009 checkpoint](tasks/R-009-barony-color-safety.md#native-color-data-trace--static-evidence).
+
+- Baronies consumes mutable title map RGB: definitions/effects plus user-run
+  native/custom views and serialized A/B overrides establish that connection.
+  A separate definition key does not provide separate color storage.
+- Realms selects `selected_character_realms` (`map_modes.txt:276–281`). Native
+  descriptions identify ruler/realm and vassal exploration; graphic defines
+  document liege/vassal zoom, tributary/confederation mixing and civil-war
+  primary-title interpolation (`common/defines/graphic/00_graphics.txt:225–226,435–438`).
+  The full ordinary realm grouping/RGB algorithm remains opaque.
+- Houses tooltip uses title -> `GetHouseMapModeTitleHolder` -> House
+  (`localization/english/gui/map_l_english.yml:104–105`; generated
+  `data_types_uncategorized.txt:113829–113831`). Exact display-holder selection
+  and RGB source remain unknown. House/Dynasty template `color` is documented
+  as read but unused by game logic (`common/dynasty_houses/_dynasty_houses.info:39–42`;
+  `common/dynasties/_dynasties.info:41–44`); no reusable active map palette is
+  demonstrated. House grouping is not Dynasty grouping.
+- Faiths mode is `religions` / `religions` (`map_modes.txt:1434–1441`). Native
+  description distinguishes county faith, selected-Faith rites at close zoom
+  and county/top-liege mismatch stripes (`localization/english/gui/ingame_main_l_english.yml:39`).
+  Tooltip reads county Rite/parent Faith (`gui/map_l_english.yml:116–121` under
+  localization). Faith and Rite schemas expose RGB/map color; mainline Rite
+  templates copy faith colors (`common/religion/faith_types/_faith_types.info:1–12`;
+  `rite_types/_rite_types.info:27–40`, `rite_types/02_mainline_rite_types.txt:4–17`,
+  latter paths under `common/religion/`). Religious membership mutation is not
+  an independent category channel; precise zoom/stripe/cache behavior is opaque.
+- `gfx/FX/jomini/jomini_province_overlays.fxh:9–26,77–135` binds engine resources
+  `JominiProvinceColorIndirection` and `JominiProvinceColor`, then samples and
+  blends primary/secondary/alternate colors. `gfx/FX/bordercolor.fxh:55–75`
+  adds pattern/desaturation/lighting. Shader text exposes consumption, not the
+  mode-specific producer or a supported dynamic table writer.
+- Generated `MapMode` exposes metadata/accessors, not color submission/provider
+  registration/cache invalidation (`data_types_uncategorized.txt:86117–86160`).
+  Selection/variables/lists alone do not connect a custom barony -> class ->
+  palette model. No generic input hook was identified in focused map types,
+  effects/event-targets, relevant schemas, token references and shader bindings;
+  this is a bounded negative result, not proof of universal engine impossibility.
+- Situation is a **positive specialized consumer**: native `situation` renderer
+  (`map_modes.txt:5226–5231`), group/sub-region `map_color`, membership and
+  character-validity triggers (`common/situation/situations/_situations.info:64–98,114–185`).
+  `start_situation` accepts sub-region RGB; title-region effects add/remove
+  de-jure counties (`effects.log:2857–2876,18244–18256,18423–18435`). Phase
+  province effects also exist (Situation schema `:267–271`;
+  `gfx/map/province_effects/_province_effects.info:5–16,24–38`). Neither route
+  has runtime-verified county coverage, independent selection, local-only storage,
+  automatic lifecycle or harmless removal. County-key add/remove now has installed
+  usage evidence below. Nonoverlap/255 limits apply; three regions fit the limit.
+
+Recommendation: preserve the conceptual independent class/palette model, with
+its renderer connection unverified. The static Situation trace below advances
+membership/selection research; GUI review precedes any separately scoped probe
+or classifier. Native grouping/shader recolor cannot silently replace Dynasty
+semantics. Direct/named title writes remain a tested state-mutating fallback
+with unresolved restoration, not an approved production strategy. No ADR change.
+
+### R-009 Situation feasibility — static evidence
+
+Result: **blocked on named unknowns**, not an approved architecture. Full
+requirement matrix and operational limits:
+[Situation checkpoint](tasks/R-009-barony-color-safety.md#situation-feasibility--static-checkpoint).
+
+- The first earthquake object in
+  `common/situation/situations/tgp_natural_disaster.txt:1–180` starts with an empty
+  area. `common/scripted_effects/10_dlc_tgp_natural_disaster_scripted_effects.txt:73–133`
+  starts it and adds the epicenter **county** and neighboring **counties** using
+  `add_dejure_title_to_sub_region`.
+  `events/situation_events/tgp_natural_disaster_events.txt:43–84,87–110` removes
+  individual counties and explicitly ends the Situation. This supports dynamic
+  county-key membership at installed-script level; exact barony/unheld/nonstandard
+  coverage, cross-region moves and empty-category rendering remain untested.
+- Earthquake defaults to participant-group mode. The distinct
+  `map_mode = sub_regions` example with region RGB is
+  `common/situation/situations/game_extra_nomads_sami.txt:1–24`. This is an actual
+  category-area/color input contract without title-color writes or new titles.
+  Three disjoint regions fit the 255 limit. It does not prove rendering with zero
+  participants or all three regions displayed together.
+- Selection opens a world object's view by ID
+  (`gui/window_situation_list.gui:369–374`; `gui/map_icon_layer.gui:6068–6086`);
+  generic sub-region selection is separate (`gui/window_situation.gui:70–114,738–744`).
+  No independent named-map-to-Situation binding or arbitration between concurrent
+  Situation views was established. Close and return-to-realms are not documented
+  to end the world object or clear its region state.
+- Both auto-add switches can be disabled; authored pulse/join/phase effects,
+  modifiers and migration need not be copied from disasters
+  (`common/situation/situations/_situations.info:129–218,245–278,332–365`). Thus
+  disaster gameplay is not mandatory generic behavior. Complete engine/UI
+  inertness remains unverified. Other-tab items include nonparticipants;
+  `PinSituation` hides only shortcuts (`gui/window_situation_list.gui:261–272,512–550`;
+  `localization/english/situations/situation_list_window_l_english.yml:14–18`).
+- Participant/group `on_leave` does not run when the Situation ends
+  (`_situations.info:170–175,200–208`). Start/membership/end are world simulation
+  operations, not demonstrated local GUI storage. A temporary scope reference
+  does not make the created object temporary. Exact serialization/synchronization,
+  post-end residue, disabled-mod load and ADR-008 renderer cleanup remain unknown;
+  no Situation save inspection or runtime was performed. Multiplayer unsupported.
+- Sami creation is explicitly MPO/game-rule gated
+  (`common/on_action/game_start.txt:2688–2697`); generic Situation feature/DLC
+  requirements are not established by schema or generated start signature.
+  Phase province overlays retain the same carrier/lifecycle gaps and introduce
+  shared effect-channel priority; they do not resolve this feasibility boundary.
+
+The user has not rejected persistent state categorically; the concern is whether
+repurposing unrelated title/Situation systems would be a fragile workaround.
+Situation remains unapproved pending source-led review of view binding,
+coverage, lifecycle, save/removal and gameplay/UI effects. No local-only
+alternative was found in the inspected surface. Any runtime scope requires a
+fresh design and explicit authorization. No source/install/runtime stage,
+classifier, new titles or ADR revision follows from this static checkpoint.
+
+### R-009 native highlight / selection inputs — static evidence (2026-10-21)
+
+The bounded generated-API, schema and vanilla caller pass found no independent
+three-category county-to-color interface. Full findings and limits are in the
+[R-009 selection checkpoint](tasks/R-009-barony-color-safety.md#native-highlight-and-selection-inputs--static-checkpoint-2026-10-21).
+
+- Decision `title_valid` is a real mod-authored eligibility predicate: title
+  root, `scope:ruler`, world/realm tier controllers
+  (`common/decisions/_decisions.info:305–310,388–404`). Shipped county selection
+  uses it (`common/decisions/00_holy_order_decisions.txt:648–666`). GUI selection,
+  Close and Confirm exist; no three-set/RGB input, automatic renderer binding
+  or context-loss cleanup contract was identified in the inspected controller.
+- Council county target enums/predicates and own-realm highlighting exist
+  (`common/council_tasks/_council_tasks.info:3–14,35–60`), with native task modes
+  and global palettes. They do not expose arbitrary category/color mapping.
+  Assignment hooks concern gameplay; preview state/exit/coverage remain unknown.
+- Geographical regions accept authored county/province lists and visual-region
+  RGB (`map_data/geographical_regions/_geographical_regions.info:3–32`). The
+  window selects multiple database region identities and exposes Toggle/Clear/
+  Close (`gui/window_geographical_regions.gui:45–81,111–127`; generated
+  `data_types_uncategorized.txt:70321–70424`). No runtime region-membership writer
+  or selected-set RGB binding was identified. `add_geographical_region` edits
+  Situation sub-region membership, not the geographical-region definition.
+- Struggle hover takes an existing Struggle and pairs with a border clear
+  (`gui/hud.gui:5014–5022`). Global highlight alpha/RGB controls
+  (`common/defines/graphic/00_graphics.txt:209–219,399–433,926–928`) supply
+  appearance, not arbitrary county geometry or a view-owned palette.
+
+These interfaces may support a different selection-based UX; their existence
+does not verify area fill, three simultaneous classes, local execution or safe
+save/removal. The three-author-page audit found the known War Maps title-copy
+explanation, DTR's declared War Maps ancestry and historical map-button changes;
+no accessible original code established an independent route. No new data
+producer warranted repeating shader research. R-009 remains partial; no probe,
+classifier, runtime or architecture choice follows from this bounded absence.
+
+### R-009 two binary player views — static feasibility (2026-10-21)
+
+**Historical proposal; subsequently excluded by ADR-009.** Preserve the technical
+findings, but do not prepare the decision/council-selector experiment or treat
+two binary views as an adopted replacement for G1.
+
+Two separate DIRECT / exclusive INDIRECT views need only a boolean distinction,
+so the prior missing three-color interface does not rule them out. They remain
+a proposal, not an accepted G1/ADR change. See the [binary checkpoint](tasks/R-009-barony-color-safety.md#two-binary-player-views--static-feasibility-2026-10-21).
+
+The title-root `title_valid` and world `select_county_title` controller are
+documented (`common/decisions/_decisions.info:286–310,376–404`). A newly followed
+native chain opens the shipped county-selector decision from the Faith GUI
+using a decision identity and `OpenGameViewData`
+(`gui/window_faith.gui:1489–1516`), then invokes the selector's `OnSelectTitle`.
+Two authored decisions can carry different predicates; this is a **viable runtime
+hypothesis for decision-carried inspection**, not independent map-mode binding.
+Native county-selector filled gradients support examining area fill
+(`gfx/map/map_modes/map_modes.txt:34–92,1991–2067`); no explicit boolean-to-fill
+mapping is exposed. A filtered list or selected-title checkmark is insufficient.
+
+The standard picker requires `HasValidTitles`, leaving zero-match entry/rendering
+unverified. Normal decision-list selection resets custom widget state through
+an animation (`gui/window_decisions.gui:354–355`;
+`gui/window_decisions_detail.gui:28–38`); that is not a map refresh/clear contract.
+World/barony coverage, selected-title emphasis, two-context replacement, fresh
+decision-taker Dynasty, invalidation, exit, save/removal and native polling cost
+remain unresolved. Global validity colors are not a view-specific palette.
+Council preview has additional council/assignment coupling.
+
+DIRECT still requires matching holder Dynasty; INDIRECT excludes DIRECT and
+checks de-facto lieges even for lowborn holders. Background means not matching
+the active predicate; invalid PD means unavailable, never an empty map. All
+Dynasties still needs simultaneous parent-Dynasty groups; “has a Dynasty” or one
+chosen-Dynasty inspection is a different feature. No new many-group producer was
+found. Only one future fixed-target selector experiment was outlined locally;
+no source/probe, installation, runtime or production strategy follows.
+
+### R-009 first-run and save evidence
+
+User-run batch visibly applied direct/named/copy colors, loaded two original
+custom barony definitions and retained changed colors through native/custom view
+round-trips, same-process AFTER reload and reported observer context loss.
+Other modes reportedly looked normal within bounded visual coverage. These
+observations do not establish map-only isolation. Actual receipt totals:
+C01=2, C02=1, C03=5, C05=2, C06=1, C07=2; C08/C11 each once. C04/C10 skipped.
+C09 received only in the initial valid-player baseline; no new observer receipt
+and no dispatch cause inferred. Definition resets made targets red, not exact
+arbitrary originals. BEFORE load followed resets and is not independent rollback.
+
+Read-only designated BEFORE/AFTER inspection on ignored copies with unchanged
+original hashes confirms explicit title-level A/B RGB overrides only in AFTER,
+separate from CoA references; the two stored values differ. This proves title
+RGB serialization, not a per-copy drift law or successful fresh-process/mod-disabled
+load. Absent BEFORE fields are not a live-original getter. Four fixture records
+occur in both; presence is not creation/ownership evidence. No native House/
+Realms/Faith storage inference follows from those title records.
+
+All four sources are visible in Find Title with CoA generation errors; cyan
+lacks a capital, two source files lack BOM and court-scene errors occur. GUI
+warnings empty; no whole-run-clean claim. Actual creation untested; reported
+creatability is unverified. Prior enabled selection restored after user exit;
+R009 installed but disabled. No new launch/repeat is requested.
 
 ### Still UNKNOWN
 
-- temporary map-only coloring and save persistence;
-- safe restoration on exit, context loss or mod removal;
-- refresh/recompute lifecycle and dependable activation/re-click behavior;
-- custom grouping/classification callback for the native renderer;
-- native House map color source and direct House/Dynasty color access;
-- runtime performance and color leakage into other map modes.
+- supported independent view-specific class/palette consumption;
+- safe exact-original restoration on exit/context loss/removal for title writes;
+- fresh-process/disabled-mod loading of marked saves and fixture residue;
+- per-mode cache/update contracts, dependable refresh and local/shared execution;
+- exact House RGB origin and reusable Dynasty grouping;
+- Situation county/barony coverage, zero-participant rendering, independent
+  selection, saved/shared behavior and lifecycle (county-key input now supported);
+- performance and broader comparison-mode/zoom leakage.
 
-These remain open M0 questions. Generated script_docs signatures do not by
-themselves verify visual results, local-only execution or lifecycle safety.
+These remain open M0 questions. Generated signatures and shader/configuration
+inspection do not by themselves verify runtime/locality/lifecycle safety.
+
+## VERIFIED — R-002 installed map-mode definitions (2026-10-20)
+
+**Target:** CK3 1.20.1.1 (Crozier), reconfirmed in installed launcher metadata.
+Read-only inspection of `game/gfx/map/map_modes/map_modes.txt` (6,239 lines;
+SHA-256 `feb28bbd29604cda4aeae2ac31e99f44fa4092b2de163f765b219a8e7775b115`).
+No files were copied from vanilla or modified, and no runtime probe was run.
+R-002 / [#2](https://github.com/mhaduk/ck3-dynasty-map/issues/2) is complete
+as static definition research; custom loading/rendering were unverified then.
+The later R-009 batch above supports the two tested original custom definitions;
+the R-002 entry below preserves its historical static findings.
+
+### Definition structure and relevant native objects
+
+The file contains 79 top-level named objects plus shared `@` constants. Each
+object selects native renderer/naming/selection modes; a definition name need
+not equal its `color_mode`. This is observed file syntax, not an exhaustive
+schema of accepted engine fields or values.
+
+| Installed evidence (game-relative file above) | Original finding |
+|---|---|
+| Lines 1–106 | Shared constants govern zoom thresholds and gradient/edge presentation. A separate original definition cannot assume these constants are visible across files. |
+| Lines 109–114 | `debug_terrain` selects `terrain` coloring, `realms` map names and `holding` selection; not every native object contains gradient blocks. This does not prove those blocks are optional for a custom barony renderer. |
+| Lines 116–195 | `baronies` uses `color_mode = baronies`, barony names/selection, `fill_in_impassable = no`, and repeated gradient blocks. This confirms the native barony renderer token exists in this target build. |
+| Lines 196–201 | `counties` uses county coloring, names and selection. County semantics and barony rendering remain distinct choices. |
+| Lines 276–281 | `realms` uses `selected_character_realms` coloring and different small/large naming modes; IDs are not interchangeable with renderer values. |
+| Lines 2961–2967 | `houses` selects native House coloring, `county_houses` / `explored_houses` names, House selection, impassable fill and a tooltip key. No Dynasty grouping/color callback is exposed in this object. |
+| Lines 5399–5406 | A native `dynastic_cycle` object exists; its name alone does not establish the county/Dynasty semantics required by this project or a reusable grouping API. |
+
+Across the inspected file, observed immediate object fields are `color_mode`,
+`small_map_names`, `large_map_names`, `selection`, `fill_in_impassable`,
+`gradient_parameters`, `barony_description`, `selection_description` and
+`select_holdings_on_close_zoom`. These are presentation/selection/description
+settings, not evidence of an arbitrary scripted classification callback.
+No sub-mode declaration, scripted-GUI invocation or activation/exit callback
+was found in this definition file. Absence here does not prove engine absence.
+
+### Format documentation and extension boundary
+
+The map_modes directory contains only `map_modes.txt`; no adjacent `.info`
+exists there or directly in `gfx/map`. A search of installed `gfx/**/*.info`
+found a map-mode mention in `gfx/map/province_effects/_province_effects.info:16`,
+but no map-mode definition schema. This is a bounded search, not a claim that
+no other engine documentation exists.
+
+The smallest candidate remains an **original**, uniquely named object in
+`gfx/map/map_modes/dynmap_map_modes.txt`, selecting the verified native
+`baronies` color mode. Separate-file discovery/merge behavior, required fields,
+constant visibility, selectable custom names and actual visual results are
+still UNKNOWN until an authorized minimal probe. Do not copy the vanilla file
+or advertise additive loading as verified. GUI exposure is separate research:
+the installed candidate is `game/gui/shared/mapmodes.gui` (R-003 / #3).
+
+**Decision:** retain the existing architecture and candidate path; no ADR change
+is needed. The historical barony renderer token is now confirmed locally, but
+its temporary color-write safety remains R-009 / RG-STATE-01. Native House
+internals and All Dynasties color access remain gated. No contradiction with
+accepted project semantics was found. **Next task at R-002 completion:** R-003, inspect the
+installed GUI and generated GUI types for insertion, unavailable state and
+activation/manual-refresh/exit/context-loss hooks, distinguishing static
+bindings from runtime behavior. R-010 chooses the integration strategy later.
+
+## VERIFIED — R-003 installed GUI bindings (2026-10-20)
+
+**Target:** installed CK3 1.20.1.1; static read-only GUI inspection and clean
+12:17 generated data types. R-003 / [#3](https://github.com/mhaduk/ck3-dynasty-map/issues/3)
+completes inspection only. RG-UI-01, RG-PLAYER-01 and RG-STATE-01 remain open;
+no custom GUI, rendering or lifecycle runtime probe has been executed.
+
+### UI structure and extension candidates
+
+Sources below are relative to installed `game/`:
+
+| Evidence | Original finding |
+|---|---|
+| `gui/hud.gui:2542–2554` | The live HUD instantiates the shared `map_modes` type; defining a new derived type alone does not establish that HUD will instantiate it. |
+| `gui/shared/buttons.gui:1116–1170` | `icon_button_mapmode` has `mm_datacontext`, `mm_button` and `mm_icon` blocks. Its round button calls SetMapMode using MapMode.GetKey, derives down/glow state from IsMapMode and gets tooltip/icon through MapMode. |
+| `gui/shared/mapmodes.gui:426–480` | Text and small round selectors call SetMapMode; both set alwaystransparent when already active. They cannot be assumed to provide re-click refresh. The main icon button uses down state instead; actual event delivery and recomputation remain untested. |
+| `gui/shared/mapmodes.gui:483–526,1114–1158` | Additional-mode container has an empty `mapmodes_insert_before` block, overridden by the native mini-mode instance to insert controls. This proves local type/instance composition, not cross-file injection into the existing HUD. |
+| `gui/shared/mapmodes.gui:1165–1214` | Faith sub-modes are explicitly enumerated as buttons for religions, holy_orders and clerical_regions, visible for those mode keys. This is not an automatic list of all mode definitions. |
+| `gui/shared/mapmodes.gui:1255–1395` | Header labels enumerate known modes with IsMapMode visibility; custom key/header discovery is not established. |
+| `gui/shared/mapmodes.gui:1398–1407` | Back-to-realms button calls SetMapMode('realms') and has a close-window shortcut. No custom color-restoration call is present there. Switching renderer is not proof of restoring changed title state. |
+| `gui/shared/mapmodes.gui:1559–1600` | Banner offers named visibility/background/sub-mode blocks and _show/_hide animation states. The animations alone do not establish safe classification/cleanup hooks. |
+| `gui/hud_bottom.gui:286–307` | Actual in-game banner instance overrides sub-mode content and adjusts faith controls. Patching only the shared default may not affect the instantiated content. |
+
+No map-mode datamodel that automatically enumerates arbitrary custom modes was
+found in the inspected shared file. Named blocks are promising seams for
+**original** integration, but a safe way to reach the existing instance from a
+separate mod file remains UNKNOWN. Do not treat a block name as a global patch
+API, copy vanilla files, or select an override strategy before R-010.
+
+### Generated GUI APIs and player context
+
+All references below are in local `logs/data_types/`:
+
+| Evidence | Verified exposed API |
+|---|---|
+| `data_types_uncategorized.txt:523–525,1399–1401,2743–2745,3187–3189` | GetMapMode returns MapMode; CanChangeMapMode and IsMapMode return bool; SetMapMode returns void. Argument types/side effects are not fully documented by these entries. |
+| `data_types_uncategorized.txt:86122–86160` | MapMode exposes GetDesc, GetIcon, GetKey, GetName, HasIcon and self access. No lifecycle callback appears in this inspected type section. |
+| `data_types_uncategorized.txt:571–573,34627–34629,40963–40965,61153–61155` | GetPlayer returns Character; Character.GetDynasty returns Dynasty; Character.IsValid and Dynasty.IsValid return bool. This does not prove chained null access is safe or boolean evaluation short-circuits. |
+| `data_types_gui.txt:1–4,15–18` | GetScriptedGui returns ScriptedGui; GuiScope returns TopScope. |
+| `data_types_script.txt:3944–3976` | ScriptedGui.Execute takes an argument and returns void; IsShown/IsValid return bool, with tooltip variants. Execution guards/locality must still be verified. |
+| `gui/activity_window_widgets/funeral_deceased_selection_button.gui:27–28` (installed game) | A vanilla button explicitly constructs GuiScope.SetRoot(GetPlayer.MakeScope).End for scripted-GUI execution and has a second onclick. This is a target-build syntax example, not proof of absent-player safety or map refresh ordering. |
+
+The map-mode buttons inspected do not invoke a scripted GUI and do not supply a
+verified implicit character root. A future original button must explicitly
+establish and revalidate its context. Native visible bindings (for example
+mapmodes.gui:103,539,598) show conditional visibility is used; CanChangeMapMode
+alone is not a valid-player/Dynasty guard. Exact ADR-008 UI guards, hidden versus
+disabled behavior, attempted unavailable activation and context-loss cleanup
+remain R-005/R-010 runtime questions. ScriptedGui.IsValid exposure alone does
+not establish that Execute enforces the same guard.
+
+### Gate disposition and next step
+
+Re-click refresh, execution ordering/locality, switching-player/observer cleanup,
+exit restoration and safe GUI injection remain UNKNOWN. No generic map exit or
+player-context invalidation callback was identified in the inspected files;
+this is a bounded negative result, not proof that no such API exists elsewhere.
+
+**Historical sequencing note (superseded):** when R-003 inspection closed,
+R-005 and R-010 were queued for research, with R-010 first. Current status is
+maintained in CURRENT_STATE.md; R-005 remains partial and R-010 remains open.
+This historical note does not set the active task or authorize implementation.
+
+## VERIFIED — R-010 additive widget registration documentation (2026-10-20)
+
+**Target:** installed CK3 1.20.1.1. Read-only inspection; no implementation,
+launcher changes or runtime probes. R-010 / [#10](https://github.com/mhaduk/ck3-dynasty-map/issues/10)
+is **Partial**, not complete. Its visibility, refresh and lifecycle acceptance
+still require runtime evidence after relevant prerequisites and authorization.
+
+### Newly found documented entry point
+
+Installed `game/gui/scripted_widgets/_scripted_widgets.info` (9 lines;
+SHA-256 `c5e1e671c0328e37a11aa56004033f4609ed8709b56128b8ac4de2394b8ff3ad`)
+documents a registration mechanism:
+
+- Lines 1–5: registration entries pair a GUI file path with a widget name;
+  the engine creates the referenced widget at startup without a code reference.
+- Line 7: each registration creates an instance; duplicate registration creates
+  overlapping instances at their scripted location. Use one registration and
+  unique dynmap-prefixed paths/names.
+- Line 9: all registration files are loaded, allowing multiple mods to provide
+  widgets without sharing paths. This is installed documentation of additive
+  registration, not a runtime test of this project.
+
+The installed registration directory contains only this `.info`; no native
+registration example establishes placement or lifecycle beyond the description.
+Existing `gui/hud_bottom.gui:1–6` shows a top-level widget, default-GUI visibility
+and a layer declaration; these are syntax references, not proof of which layer,
+input behavior or anchor a registered custom widget should use.
+
+### Feasibility result and scope boundary
+
+A candidate needing no vanilla copy is a single original registered widget,
+with a unique registration file under `gui/scripted_widgets/` and a separate
+original GUI file under `gui/`. Both owned filenames/IDs should use dynmap_
+prefixes where allowed. Do not create these files during read-only research.
+The registration file extension/parser behavior and cross-file lookup still
+need a minimal probe; the `.info` does not specify a complete file schema.
+
+This supports investigating a **separate additive control**, positioned near
+the native map UI if safe. It does not prove insertion into the existing map
+menu, a new native sub-mode group, or cross-file replacement of shared blocks.
+A new type by itself remains insufficient to alter the live HUD instance.
+Separate-widget native-feeling placement must be reviewed and tested before
+selecting a final integration strategy; no architecture/semantic ADR is changed.
+
+A candidate control would use already exposed SetMapMode/IsMapMode bindings
+and an explicitly constructed, revalidated player scope for scripted execution.
+Do not use the active-state-transparent text selector as assumed refresh UX.
+A smallest explicit refresh control remains an option if re-click cannot be
+verified, but neither its event ordering nor safe execution is verified here.
+
+RG-UI-01 is **open with a documented candidate**, not policy-blocked: no evidence
+currently establishes that copying vanilla is necessary. Runtime widget loading,
+menu/observer visibility, absent-player/Dynasty guards, duplicate instances,
+UI scale/overlap/input, refresh/re-activation, player-context loss and cleanup
+remain unverified. RG-PLAYER-01 and RG-STATE-01 remain open. No title colors were
+written and no recurring work was added.
+
+**Next single task:** R-005, read-only inspection of local-player/Dynasty guard
+syntax, scripted-GUI execution context/guard behavior and available invalidation
+hooks. Record which checks are static evidence and which require a future
+explicitly authorized minimal probe. Do not treat that next task as permission
+to create GUI/scaffolding or claim safety from method names alone.
+
+### R-010 follow-up — native menu requested (2026-10-20)
+
+The user explicitly prefers placement inside the existing map-mode menu;
+a standalone adjacent widget is not the selected integration strategy.
+This clarifies UI preference without changing classification semantics or ADR-006.
+
+**VERIFIED static attachment chain:** `game/gui/hud.gui:2542–2554` instantiates
+`map_modes`; `game/gui/shared/mapmodes.gui:419–423` instantiates
+`flowcontainer_additional_mapmodes`; that type is defined at 483 and contains
+`mapmodes_insert_before` at 526–529 inside the vertical menu content. A native
+mini-mode instance overrides that block at 1120. Therefore this block is a
+concrete candidate for an actual menu child, rather than a separate overlay.
+The existing main icon rows around lines 278–406 have explicit button lists;
+no automatic custom-mode enumeration was identified.
+
+**Additional static evidence:** `game/gui/preload/defaults.gui:102,294–302`,
+`game/gui/shared/lines.gui:4` and `clausewitz/gui/toolstypes.gui:875–878` use
+same-name base/derived type spelling (for example built-in widget/flowcontainer
+or engine tool types). This suggests a type-decoration avenue to investigate,
+but does NOT prove that re-declaring the script-defined additional-menu type
+preserves its old body, resolves the intended base, or affects existing HUD
+instances. Cross-file resolution, namespace behavior and load order are UNKNOWN.
+Do not publish a self-inheritance recipe as verified mod syntax.
+
+A bounded scan of 416 game, 49 Clausewitz and 91 Jomini `.gui` files found no
+working explicit inject/reparent/child-append mechanism under the searched
+keywords (one comment-only parentwidget hit). A targeted scan of generated
+data types likewise found no matching runtime parent/child mutation API.
+This does not establish impossibility or exclude APIs under other names.
+
+**Result:** native-menu integration is a concrete candidate, not proven possible
+or impossible under the current no-copy policy. Scripted-widget registration
+alone does not attach a widget to that menu. RG-UI-01 / R-010 remain open.
+
+**Historical next evidence proposal:** an isolated menu-only GUI probe using
+original files was proposed to test the narrow menu-type extension. The R-010
+probe and checkpoints are recorded separately in the [R-010 evidence history](evidence/2026-10-20-r010-native-menu-02/checkpoint-history.md);
+see CURRENT_STATE.md for current sequencing. This old proposal is not an active
+R-005 instruction.
+
+Detailed probe preparation and runtime checkpoints are preserved in [the R-010 evidence history](evidence/2026-10-20-r010-native-menu-02/checkpoint-history.md).
+
+### R-005 player/Dynasty context and guards — static investigation (2026-10-20)
+
+**Historical static investigation.** The source and generated-doc findings
+below remain useful context; the later user-led runtime observations and current
+status are in the [consolidated result](#r-005--consolidated-status-2026-10-20)
+and [canonical checkpoint](tasks/R-005-player-context.md).
+
+VERIFIED API surface and installed examples:
+
+- Generated `data_types/data_types_uncategorized.txt:571–573` exposes
+  `GetPlayer -> Character`; `34627–34629` exposes
+  `Character.GetDynasty -> Dynasty`. `Character.IsValid` and `Dynasty.IsValid`
+  return bool at `40963–40965` and `61153–61155` respectively.
+- `data_types/data_types_gui.txt:1–4,15–18` exposes `GetScriptedGui` and
+  `GuiScope`. `data_types_script.txt:3944–3970,4129–4149` exposes
+  `ScriptedGui.Execute/IsShown/IsValid`, `TopScope.AddScope/SetRoot`.
+  Signatures alone do not establish automatic validation on Execute.
+- Installed `game/gui/activity_window_widgets/funeral_deceased_selection_button.gui:27`
+  explicitly calls Execute with `GuiScope.SetRoot( GetPlayer.MakeScope ).End`.
+  The matching `game/common/scripted_guis/ce1_funeral_scripted_guis.txt:9–17`
+  declares character scope and an effect. Thus a vanilla-supported candidate
+  exists for explicitly supplying the current player root; a map-menu button
+  does not thereby acquire an automatic player root.
+- `game/gui/hud.gui:28–51` uses `GetPlayer.IsValid` to distinguish global
+  observer from player-observer UI. Validity alone therefore does not prove
+  ordinary player control or all observer requirements.
+- `triggers.log:600–603` documents `exists` as a non-null scope-target check.
+  `is_player_selected` (`793–796`) and `is_local_player` (`5667–5671`) are
+  explicitly restricted interface triggers. Do not assume they are legal in
+  arbitrary effects/on-actions.
+- `game/common/on_action/player_change_on_actions.txt:1–6` documents the
+  engine-triggered `on_player_character_change`: root is the new player
+  character and `scope:previous_player_character` the previous one; its comment
+  describes character-to-character changes. Generated `on_actions.log:3929–3931`
+  confirms From Code: Yes but lists Expected Scope: none. This documentation
+  discrepancy leaves actual runtime root/previous-scope behavior to verify.
+
+Candidate safety approach, **not implemented or runtime verified**: obtain a
+fresh player context on each activation/manual refresh, require valid character
+and Dynasty before work, and guard the effect itself rather than relying only
+on button appearance or automatic IsValid enforcement. Do not rely on boolean
+short-circuiting or null-chain behavior without testing. Keep context transient;
+no saved Dynasty cache or recurring world scan is introduced.
+
+Later evidence refined these gates. The bounded FINAL GUARDS observer display
+path passed, but it does not establish safe internal NULL dispatch or all
+transition races. The no-Dynasty player fixture was rejected and that UI case is
+deferred to R-013 / #13. Do not follow historical next-step hypotheses here;
+see the consolidated status above. R-009 retains color restoration.
+
+## R-016 — Stage A reusable static findings (2026-10-21)
+
+Historical source review recovered a `line_dynasty` baronies-mode object, a
+player-rooted `line_dynasty_map` GUI call and fixed helper palette, but **not**
+the Dynasty classifier. The retained infrastructure scripted GUI/effect chain
+supports the generic pipeline only. The bounded search and pinned citations are
+in the [R-016 checkpoint](tasks/R-016-my-dynasty-pipeline.md#stage-a-checkpoint--2026-10-21).
+No historical category or current runtime behavior follows from palette names.
+
+Additional target-build source details, building on R-006/007/008:
+
+- `effects.log:2675–2677` documents `save_scope_as` for an unbroken event chain;
+  `:243–245` documents `clear_saved_scope`. A captured Dynasty scope is distinct
+  from a persistent character/title variable. No delayed chain is proposed.
+- `common/scripted_triggers/00_elective_triggers.txt:111–114` uses Dynasty
+  identity equality to a saved scope route.
+- `common/scripted_effects/00_title_effects.txt:53–57` uses
+  `every_in_de_jure_hierarchy` with a tier filter. Combined with the documented
+  independence of `continue` and `limit`, this grounds the county-first,
+  barony-filtered design; runtime county/barony coverage is still open.
+- `effects.log:139–144,2769–2776` lists local-variable change/set effects, although
+  the emitted usage examples name the ordinary variable forms. Actual shipped
+  `common/scripted_effects/07_dlc_ep3_scripted_effects.txt:2818–2834` uses
+  `set_local_variable`, `local_var:` and `change_local_variable`. This supports
+  local diagnostic counters; actual helper lifetime/output was not tested.
+- `data_types/data_types_script.txt:3944–3946` returns void from
+  `ScriptedGui.Execute`. Neither that signature nor a subsequent `IsValid`
+  check is a successful-effect receipt. External UI guarding/active-view
+  lifecycle retain the R-005/R-009 limitations; no atomic dispatch or automatic
+  color restoration contract was established by Stage A.
+
+No payload, game test, parser/Tiger run or installation occurred. No color path,
+production entry design, persistence acceptance or ADR change was selected.
+
+## R-016 — 1.20.1.2 used-API revalidation (2026-10-21)
+
+Fresh user-generated 1.20.1.2 script/type outputs were reviewed with R016 enabled,
+**not as clean vanilla evidence**. Manifests, newer output mtimes and captured
+build/mount/startup logs support that provenance; the prior 1.20.1.1 baseline
+remains intact. Forty-one relevant contract entries match old/new byte for byte;
+this establishes agreement of documented entries, not unchanged engine behavior.
+See the [review checkpoint](tasks/R-016-my-dynasty-pipeline.md#used-api-review--small-sample-readiness--2026-10-21).
+
+Renewed current generated contracts include `event_targets.log:920–922,550–552`
+(title holder/character Dynasty), `triggers.log:1816–1819` (seniors excluding
+self), `effects.log:773–776,11422–11427` (world counties; self-inclusive de-jure
+hierarchy with continue independent of limit), `:2675–2677,243–245` (unbroken-chain
+capture/clear) and `:12761–12767,12646–12649` (direct RGB/title copy with documented
+slight shift). County-rooted hierarchy plus barony limit remains a supported
+static candidate; runtime coverage and special-government semantics are open.
+
+Current `data_types_script.txt:3944–3946,3968–3970,4147–4149,4279–4281` documents
+void Execute, bool IsValid and TopScope root/end composition;
+`data_types_gui.txt:15–18` promotes GuiScope to TopScope. No successful-effect
+receipt, atomic invalid-context dispatch, repaint timing or lifecycle contract
+follows. `effects.log:139–144,2769–2776,564–565` renews local-counter/scope-log
+availability without settling nested-helper lifetime or emitted totals. These
+limits do not block the separately staged paused valid-context sample; they do
+prevent claiming production entry, complete coverage or persistence safety.
+No classifier, game/Tiger/parser test or independent review ran in this stage.
 
 ## Historical/reference findings pending M0 verification
 
@@ -160,11 +1043,23 @@ This is a **hard research gate** before implementing UI.
 
 ## Open research gates
 
-### RG-UI-01 — Current UI insertion method
-Can the installed build add custom modes without replacing the full vanilla map-mode GUI? Determine UI disabling/hiding for unavailable My Dynasty (ADR-008), valid activation, a dependable refresh path and exit/restore. Verify re-click before using it; otherwise select the smallest explicit refresh mechanism needed for v0.1.
+### RG-UI-01 — Integration method research closed; acceptance open
 
-### RG-PLAYER-01 — Local player scope
-What exact root/context is provided to the scripted GUI invoked from the installed map-mode button? Prefer a local-player-aware scope rather than global player iteration. Verify valid-player/Dynasty checks and safe invalidation on player switching, succession, observer transitions and reload; stop old-context use and clear/restore visuals as far as the API permits without recurring world scans.
+R-010’s original scoped replacement and R-016 menu/panel provide a demonstrated
+bounded path without a vanilla copy. F-001 owns ordinary menu/subview/explicit
+Refresh, native parity, DLC/UI-scale and compatibility acceptance. No universal
+load-order rule or full parity pass follows. R-005 owns safe dispatch and R-009
+actual restore; do not keep a duplicate engine-research gate here.
+
+### RG-PLAYER-01 — Dispatch and context safety (R-005)
+
+Open: the tested observer UI after RESET and fresh valid-root diagnostics do
+not establish atomic entry or invalid-root safety. R-005 now also owns the
+unresolved real no-Dynasty player fixture-or-coverage decision merged from
+R-013. Stop with a supported contract and decisive evidence or a precise blocked
+boundary. ADR-008 guards/no unavailable classification remain mandatory; no
+coverage waiver or repeated rejected fixture/NULL test. R-009 owns RGB restore,
+F-001 normal UI acceptance. See the [R-005 checkpoint](tasks/R-005-player-context.md).
 
 ### RG-COLOR-01 — All Dynasties color source
 Does the native House map expose any reusable House/Dynasty color data or grouping hook?
@@ -188,3 +1083,113 @@ Are map-color effects/UI execution local-only, synchronized, or desync-prone? Mu
 - War Maps 3 note on barony coloring: https://steamcommunity.com/sharedfiles/filedetails/?id=3450639748
 - CK3 1.20.0 changelog / sub-map-mode UI: https://steamdb.info/patchnotes/25588574/
 - CK3 1.20.1 changelog: https://steamdb.info/patchnotes/25870654/
+
+Detailed dated R-005 evidence checkpoints are preserved in [the R-005 evidence history](evidence/2026-10-20-r005-player-context/checkpoint-history.md).
+
+## R-016 — Three-view source contracts (pre-install checkpoint, 2026-10-21)
+
+ADR-010 settles the product semantics: Realms default, Holdings and My Realm &
+Dynasty. Historical holder-first results apply to Holdings only. Source-only
+preparation uses fresh P/D per manual pass, three separate county predicates,
+shared direct RGB projection (25/105/50, 145/220/150, 65/70/80), no stored dataset
+or selection cache, and complete senior checks. Static truth-table agreement
+is not CK3 execution. The installed payload remains the historical classifier.
+
+The accepted .2 generated snapshot additionally documents character `liege` at
+`event_targets.log:664–666`. Explicit absence of liege defines an independent
+holder/senior in the ordinary hierarchy; no undocumented independent top_liege
+self behavior is required. `any_liege_or_above` excludes self at
+`triggers.log:1816–1819`. Shipped `00_elective_triggers.txt:167–175` corroborates
+iterator `this` equality and liege existence. My Realm compares P itself in that
+chain, preventing expansion to sibling vassals under a foreign top ruler.
+
+Current types document `IsMapMode` (:2743–2745), `CanChangeMapMode`
+(:1399–1401) and `SetMapMode` (:3187–3189) in data_types_uncategorized.txt;
+void Execute and bool IsValid remain at data_types_script.txt:3944–3946,3968–3970.
+Shipped `gui/activity_window_widgets/funeral_deceased_selection_button.gui:27–28`
+uses consecutive onclick actions after Execute; this does not prove success,
+transactionality, timing or null safety. The normal new compute/select path is
+a candidate with explicit per-view staged diagnostics and an unresolved atomic
+entry/transition gap. Diagnostics cannot substitute for required normal UX.
+
+`gui/shared/mapmodes.gui:1165–1216,1559–1600` explicitly composes native Faith
+subviews/banner. Crucially `gui/hud_bottom.gui:286–338` replaces its submode block;
+the original R016 custom panel is therefore outside that block. Narrow native
+menu/banner type overrides preserve native children and instance block seams;
+composition, selected state, palette and normal-click behavior still need the
+fresh changed-source runtime batch. R010's earlier Faith smoke is reused only
+for its tested native integration evidence. No vanilla body is packaged.
+
+Historical sample/direct-copy bodies and helper definitions remain unchanged
+and separately labeled with their old green/orange palette. No helper fix,
+installation, runtime, parser/Tiger or independent review occurred. Shared RGB,
+no-Dynasty UI, active-context restoration, full coverage and save/removal limits
+remain. See the [source checkpoint](tasks/R-016-my-dynasty-pipeline.md#three-view-source-preparation--2026-10-21)
+and [test matrix](TEST_PLAN.md#my-dynasty-functional-matrix).
+
+## R-016 — Final bounded runtime verdict (2026-10-21)
+
+Research is closed with limits. Installed 1.20.1.2 / 26046173 loaded the original
+nine-file candidate and both new GUI assets; fresh startup error/GUI/conflict
+logs were empty. Each new world classifier produced one initial BEGIN/END pair
+with valid player/Dynasty; subsequent user switching/Refresh/native-return smoke
+reported functional. Its final interval added five complete pairs without new
+error/GUI/conflict entries. Precompute session history/court errors remained a
+baseline, not a wholly clean runtime-log claim. Exact per-control attribution,
+world coverage, deep fixtures, timing and context safety were not established.
+
+User continental screenshots show unsatisfactory neutral grey ground. This is
+failed visual acceptance with an unresolved classification/projection/display
+cause, not a demonstrated terrain-only explanation. Shared native Baronies RGB,
+serialization, exact restore/removal and void Execute/display safety gaps remain.
+No new save test or production route acceptance. See the
+[final disposition](tasks/R-016-my-dynasty-pipeline.md#final-disposition--2026-10-21)
+and [F-003 accepted definitions](tasks/F-003-dynasty-subview-definitions.md).
+
+## R-017 — Sourced start/relationship fixtures (2026-10-21)
+
+Targeted installed CK3 1.20.1.2 sources support **Ismail Samani, 867** as the
+best primary test start: bookmark `bm_867_persia` selects `c_bukhara` for
+character 163157 and explicitly labels Nasr 163099 as his liege and brother.
+Character history assigns both to `house_samanid`; the House record maps it to
+Dynasty 1042070. Title history gives Ismail the county and Nasr
+`k_transoxiana` at the start. This is a verified-static player-to-Dynastic-
+senior fixture; Nasr's own complete senior chain and a Dynasty county outside
+the player's subtree remain unverified.
+
+William the Bastard (1066) is a useful optional complement: history records
+William 140 holding `d_normandy` and `c_alencon`; `d_normandy`'s explicit
+title-liege changes from `k_france` to `k_england` on 1066-10-14, after the
+bookmark date. Treat the live de-facto chain as likely pending observation.
+Murchad (1066) holds `d_munster` and `c_thomond`, but the bookmark's numeric
+Dynasty 695 conflicts with `house_british_isles_briain` mapping to Dynasty
+100009 in the installed House record. Character histories identify House,
+not that bookmark numeric override; do not count the sidekick metadata as a
+confirmed Dynasty match.
+
+The R-017 **scenario-selection stage is complete** with three easy bookmark
+starts: Ismail / Iranian Intermezzo 867, William / Fate of England 1066, and
+Murchad / Rags to Riches 1066. The foreign-only, sibling, independent-relative,
+outside-subtree, cadet, lowborn and unheld cases are not established by these
+sources; full live liege chains are also reserved for later user-run tests.
+Begin with Ismail and record his displayed liege and Nasr's full senior chain.
+Full source citations and locator steps are in the [canonical R-017
+record](tasks/R-017-test-scenario-selection.md). No game, save or runtime UI
+inspection was performed in this research pass.
+
+
+## F-002 — accepted approximate current-character palette (2026-10-24)
+
+The user selected practical character-associated coloring rather than Dynasty-wide identity. The accepted source reads the current player Dynasty CoA's ordered color1/color2 RGB channels during a normal refresh and matches the six byte channels to one of 76 complete ordered roster pairs. The inclusive ±5 ranges are pairwise disjoint. Twelve roster entries lack color2; unknown or unmatched pairs use exact option-B green (dark 25/105/50, light 145/220/150). This is a static finite palette keyed by current colors, not a Dynasty-ID lookup, nearest-color search, or persistent registry.
+
+The dark mix is 75% color1 and 25% color2. It receives a maximum-channel floor of 40/255 only when below that floor; zero becomes 40/40/40. Light moves dark 35% toward white. Byte outputs round with floor(x+0.5). Matching tolerance is an explicit allowance, not a claim about engine rounding. The literal writers are keyed by sparse roster IDs; missing IDs route to option B. The selector writes all six fresh values before its branches and selects once per normal refresh.
+
+
+
+A separate transparent top-of-viewport diagnostic overlay remains in the accepted source. It exposes cached-ID/channel diagnostics and only the known Charles pair-2 and option-B swatch examples; it is not a 76-row palette legend. The screenshot evidence does not establish that this top overlay rendered or verify its placement. It was authorized and remains; this closeout does not remove it or claim visual acceptance for it.
+
+Evidence labels: source and installed bytes matched for ten files (52/53); startup gate passed (54); user reports many-character and observer behavior accepted, with a first-entry screenshot showing the accepted brown map and exact F-004 tooltip (55); the GUI accepted bounded DIAG V3 summary framing/arithmetic for three reports of 4,703 each (56). These do not constitute a full 76-pair census, independent classification audit, stored-pixel readback, or performance test. Missing-slot engine normalization, exact RGB rendering, save/removal safety and Dynasty stability are unresolved.
+
+Source provenance is the private frozen palette roster SHA-256 `3142d65d5217c40cb015bc7c66275695ebb5c618dd243a13182aebc1de0e186c`. Public generated data stores numeric pair IDs and RGB channels only; it omits raw Dynasty IDs and vanilla source dumps. See the [F-002 canonical record](tasks/F-002-dynasty-color-strategy.md).
+
+Reusable closeout lessons: accepted source baselines can predate later F-001 presentation cleanup, so review exact frozen payload lineage before installation; byte equality proves installed file identity, not runtime UI; use native authoring patterns and a fresh parser/startup gate; keep installer evidence phase-specific; a stale numeric GUI value was fixed by selecting and saving the ID in one script-side Execute; sparse IDs and inclusive disjoint ±5 boxes must stay aligned across selector and writers; validate lifecycle outputs' sibling paths and non-null hashes before completion; runtime line evidence must use its own capture interval, not startup hashes. A user described the overall work as “about five times longer than expected”; this is qualitative feedback only, not a calibrated duration or model-cost measure.

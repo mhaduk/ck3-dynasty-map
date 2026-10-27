@@ -1,0 +1,246 @@
+# Original R-010 probe 02. No vanilla file is copied.
+# Replace only the menu type; derive from a primitive, never the replaced type.
+# File-order / replacement semantics and engine validation remain unverified.
+# The disabled DM control has no action. Other controls retain native functions.
+types dynmap_native_menu_alternative
+{
+    type dynmap_probe2_mode_button = icon_button_mapmode
+    {
+        size = { 32 32 }
+        blockoverride "mm_icon" { size = { 26 26 } }
+    }
+
+    # Existing identifier is an intentional, limited integration override.
+    type flowcontainer_additional_mapmodes = flowcontainer
+    {
+        direction = vertical
+        visible = "[GetVariableSystem.Exists('mapmodes_expand')]"
+        visible_at_creation = no
+        alwaystransparent = no
+        filter_mouse = all
+        margin = { 16 12 }
+        spacing = 5
+        ignoreinvisible = yes
+        background = { using = Background_Area_Dark }
+
+        state = {
+            name = _mouse_hierarchy_leave
+            on_finish = "[GetVariableSystem.Clear('mapmodes_expand')]"
+        }
+
+        text_single = {
+            name = "dynmap_probe2_heading"
+            text = "ADDITIONAL_MAPMODES"
+            parentanchor = hcenter
+            using = Font_Size_Medium
+        }
+
+        # Retain the seam used by native mini-mode instances.
+        block "mapmodes_insert_before" {}
+
+        button_round = {
+            name = "dynmap_probe2_inert_button"
+            parentanchor = hcenter
+            size = { 32 32 }
+            raw_text = "DM"
+            raw_tooltip = "Dynasty Map: inactive native-menu probe 02"
+            enabled = no
+        }
+
+        # Temporary R-005 diagnostic; DM above stays inert.
+        button_round = {
+            name = "dynmap_r005_context_button"
+            parentanchor = hcenter
+            size = { 32 32 }
+            raw_text = "R5"
+            raw_tooltip = "R-005: log current player and Dynasty context"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetScriptedGui('dynmap_r005_context').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            onclick = "[GetScriptedGui('dynmap_r005_context').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+
+        button_round = {
+            name = "dynmap_r005_no_dynasty_button"
+            parentanchor = hcenter
+            size = { 32 32 }
+            raw_text = "R5N"
+            raw_tooltip = "R-005: test shared guard on one courtier without a Dynasty"
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetScriptedGui('dynmap_r005_no_dynasty').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            onclick = "[GetScriptedGui('dynmap_r005_no_dynasty').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+
+        button_round = {
+            name = "dynmap_r005_arm_button"
+            parentanchor = hcenter
+            size = { 32 32 }
+            raw_text = "ARM"
+            raw_tooltip = "R-005: arm GUI-only observer lifecycle marker"
+            visible = "[GetPlayer.IsValid]"
+            onclick = "[GetVariableSystem.Set('dynmap_r005_armed', 'yes')]"
+        }
+        text_single = {
+            name = "dynmap_r005_arm_status"
+            parentanchor = hcenter
+            text = "[Select_CString(GetVariableSystem.Exists('dynmap_r005_armed'), 'R5: ARMED', 'R5: CLEAR')]"
+            using = Font_Size_Small
+        }
+
+        button = {
+            name = "dynmap_r005_null_button"
+            parentanchor = hcenter
+            size = { 100 28 }
+            raw_text = "NULL"
+            raw_tooltip = "Diagnostic: bypass IsValid and Execute with a null character"
+            onclick = "[GetScriptedGui('dynmap_r005_context').Execute( GuiScope.SetRoot( GetNullCharacter.MakeScope ).End )]"
+        }
+        button = {
+            name = "dynmap_r005_succession_button"
+            parentanchor = hcenter
+            size = { 130 28 }
+            raw_text = "SUCCESSION"
+            raw_tooltip = "TEST SAVE ONLY: kills current ruler to test succession. Save first."
+            visible = "[GetPlayer.IsValid]"
+            enabled = "[GetScriptedGui('dynmap_r005_succession').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+            onclick = "[GetScriptedGui('dynmap_r005_succession').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+        }
+
+        flowcontainer = {
+            name = "dynmap_probe2_modes_row_1"
+            parentanchor = hcenter
+            spacing = 4
+            ignoreinvisible = yes
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_migration_counties"
+                visible = "[HasDlcFeature('khans_of_the_steppe')]"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('migration_counties')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_19" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_terrain"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('terrain')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_terrain" }
+                blockoverride "mm_icon" { size = { 26 26 } texture = "gfx/interface/icons/flat_icons/map_modes/terrain.dds" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_simple_terrain"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('simple_terrain')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_12" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_players"
+                visible = "[And(Or(GameHasMultiplePlayers, InDebugMode), CanChangeMapMode)]"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('players')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_8" }
+            }
+        }
+
+        flowcontainer = {
+            name = "dynmap_probe2_modes_row_2"
+            parentanchor = hcenter
+            spacing = 4
+            ignoreinvisible = yes
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_landless_rulers"
+                visible = "[And(HasDlcFeature('landless_playable'), CanChangeMapMode)]"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('landless_rulers')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_18" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_confederations"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('confederations')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_confederations" }
+                blockoverride "mm_icon" { size = { 26 26 } texture = "gfx/interface/icons/flat_icons/map_modes/confederations.dds" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_epidemics"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('epidemics')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_16" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_legends"
+                visible = "[And(HasDlcFeature('legends'), CanChangeMapMode)]"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('legends')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_17" }
+            }
+        }
+
+        flowcontainer = {
+            name = "dynmap_probe2_modes_row_3"
+            parentanchor = hcenter
+            spacing = 4
+            ignoreinvisible = yes
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_dejure_counties"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('dejure_counties')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_6" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_dejure_hegemonies"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('dejure_hegemonies')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_20" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_government"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('government')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_5" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_court_languages"
+                visible = "[And(HasDlcFeature('royal_court'), CanChangeMapMode)]"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('court_languages')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_7" }
+            }
+        }
+
+        flowcontainer = {
+            name = "dynmap_probe2_modes_row_4"
+            parentanchor = hcenter
+            spacing = 4
+            ignoreinvisible = yes
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_county_development"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('county_development')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_13" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_county_control"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('county_control')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_15" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_economy_buildings"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('economy_buildings')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_14" }
+            }
+            dynmap_probe2_mode_button = {
+                name = "dynmap_probe2_diplomatic_relations"
+                blockoverride "mm_datacontext" { datacontext = "[GetMapMode('diplomatic_relations')]" }
+                blockoverride "mm_button" { shortcut = "map_mode_diplomatic_relations" }
+            }
+        }
+
+        text_single = {
+            text = "ADDITIONAL_MAP_SETTINGS"
+            parentanchor = hcenter
+            using = Font_Size_Medium
+        }
+        button_checkbox_label = {
+            name = "dynmap_probe2_epidemic_setting"
+            onclick = "[ToggleShowEpidemicMapGraphics]"
+            tooltip = "SETTING_SHOW_EPIDEMIC_MAP_GRAPHICS_TOOLTIP"
+            blockoverride "checkbox" { checked = "[ShowEpidemicMapGraphics]" size = { 20 20 } }
+            blockoverride "text" { text = "SETTING_SHOW_EPIDEMIC_MAP_GRAPHICS" max_width = 155 fontsize = 14 }
+        }
+        button_checkbox_label = {
+            name = "dynmap_probe2_legend_setting"
+            onclick = "[ToggleShowLegendMapGraphics]"
+            tooltip = "SETTING_SHOW_LEGEND_MAP_GRAPHICS_TOOLTIP"
+            visible = "[HasDlcFeature('legends')]"
+            blockoverride "checkbox" { checked = "[ShowLegendMapGraphics]" size = { 20 20 } }
+            blockoverride "text" { text = "SETTING_SHOW_LEGEND_MAP_GRAPHICS" max_width = 155 fontsize = 14 }
+        }
+        # R-005 isolation variant: raid/barter controls temporarily omitted.
+        # Their player-dependent visibility is unsafe until separately tested.
+    }
+}

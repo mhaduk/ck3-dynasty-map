@@ -1,0 +1,29 @@
+# Original unheld research fixtures; no history, province, holder or grant effects.
+# Non-creatable by normal creation and partition. Inertness remains untested.
+d_dynmap_r009_magenta = {
+    color = { 240 25 200 }
+    can_create = { always = no }
+    can_create_on_partition = { always = no }
+}
+d_dynmap_r009_cyan = {
+    color = { 25 220 240 }
+    landless = yes
+    allow_domicile = no
+    can_create = { always = no }
+    can_create_on_partition = { always = no }
+}
+d_dynmap_r009_yellow = {
+    color = { 245 220 20 }
+    no_automatic_claims = yes
+    de_jure_drift_disabled = yes
+    can_create = { always = no }
+    can_create_on_partition = { always = no }
+}
+d_dynmap_r009_baseline = {
+    # Definition value of both targets; NOT a captured live original.
+    color = { 230 5 5 }
+    no_automatic_claims = yes
+    de_jure_drift_disabled = yes
+    can_create = { always = no }
+    can_create_on_partition = { always = no }
+}

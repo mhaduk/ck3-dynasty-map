@@ -1,5 +1,20 @@
 # Algorithms and Performance
 
+## T-018 observed implementation checkpoint — 2026-10-25
+
+The current bounded research candidate uses neutral base initialization,
+root-down Dynasty classification and a finite 76-literal palette dispatch at
+exceptional-county scope. It retains one flat base write per projected barony
+and Primary/Secondary overrides; the emitted B frames show 12,247 attempted
+writes per view on the recorded 4,703-county fixture. Root-down traversal can
+visit more intermediary characters/title candidates, while the palette hoist
+adds repeated literal source (final effects file 4,125 lines versus 2,152 for
+the A baseline). The asymptotic source model at a fixed palette size is
+`O(R + V + E + T + C + B)`, but its engine constants and recursive behavior are
+unknown. Manual same-save timings (original 2.2s, R0 2.5s, A 2.3s, B 2.2s)
+show no confirmed speedup. Do not treat the source-level operation model as a
+runtime result. User paused experiments; see the [T-018 checkpoint](tasks/T-018-cold-entry-recompute.md).
+
 ## Key conclusion
 
 Do **not** build a persistent graph for My Dynasty in the MVP.
@@ -48,6 +63,12 @@ This is simple but repeats the same county classification for every barony in th
 
 ## Algorithm B — county classify, barony propagate (preferred)
 
+The pseudocode below is the **Dynasty Holdings** predicate, not the universal
+rule. For Realms use highest-ruler Dynasty first; for My Realm use player
+identity/subtree first, then inclusive holder/senior Dynasty. See
+[F-003](tasks/F-003-dynasty-subview-definitions.md) and ADR-010 for the full table.
+All three retain county-first projection and the same complexity bound.
+
 Pseudo-code:
 
 ```text
@@ -73,7 +94,7 @@ CK3 1.20.1.1 script_docs verifies `every_county` and `every_barony`, both yieldi
 
 Because `any_liege_or_above` excludes the holder, the separate DIRECT check is required before CONTROLLED traversal, not just an optimization. The documented chain is county title -> `holder` -> character -> `dynasty`; character -> `house` -> `house_dynasty` also exposes Dynasty identity.
 
-The color effects accept `landed_title`: `set_title_color` supports named/RGB values; `set_color_from_title` accepts a title target but deliberately shifts the copied color slightly. One shared source therefore does not guarantee identical RGB values. Persistence, restoration, map-only isolation, performance and color leakage remain UNKNOWN; no color-strategy change is selected here.
+The color effects accept `landed_title`: `set_title_color` supports named/RGB values; `set_color_from_title` accepts a title target but deliberately shifts the copied color slightly. One shared source therefore does not guarantee identical RGB values. R-009 demonstrated shared native/custom Baronies state and title RGB serialization; exact restoration, removal safety, isolation and measured performance remain unresolved. R-016 uses fixed direct RGB in its research candidate; this is not a safe production color-strategy verdict.
 
 Complexity:
 
@@ -118,7 +139,7 @@ Do not add caching until the profiler shows the static refresh is materially slo
 
 ## Execution constraints and potential micro-optimizations
 
-1. Check `holder.dynasty == player_dynasty` separately before traversing lieges; the verified traversal excludes the holder itself.
+1. In Holdings, check `holder.dynasty == player_dynasty` separately before traversing lieges; the verified traversal excludes the holder itself.
 2. Use M0-verified missing-scope guards (historical candidates: `exists` / `?=`); these remain mandatory for correctness.
 3. Save repeatedly-used scopes temporarily inside one execution if supported cleanly.
 4. Avoid `every_living_character` entirely.

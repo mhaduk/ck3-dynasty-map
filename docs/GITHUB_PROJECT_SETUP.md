@@ -56,6 +56,8 @@ Columns/status values:
 - Move to Ready only when dependencies are satisfied.
 - One active P0 engineering task at a time during initial PoC work.
 - PR moves item to Review / Test.
-- Done only after required in-game validation.
+- Done after the task's acceptance criteria are met. For documentation-only work, game-runtime validation may be marked not applicable.
 
-Use `docs/BACKLOG.md` as the initial source when creating issues so planning IDs remain traceable in issue descriptions.
+Use `docs/BACKLOG.md` as the initial source when creating issues so stable planning IDs remain traceable in issue descriptions. Title format is `<ID> — <concise title>` (R/F/T/B ID only; no redundant textual type prefix); see [CODEX_WORKFLOW.md](CODEX_WORKFLOW.md). Substantial work uses one Issue as its investigation journal; the distilled completed result belongs in one `docs/tasks/<ID>-<slug>.md` file and one concise row in `docs/TASK_HISTORY.md`. `docs/CURRENT_STATE.md` names the active task and immediate queue.
+
+Use `gh` for authorized GitHub operations. Reads and writes are separate permissions; never write remotely unless the task explicitly authorizes GitHub writes. Before writing, inspect the exact repository/Issue/PR and verify the result. Do not include raw logs, local absolute paths, account identifiers, credentials, or unreviewed screenshots in Issues. See [CODEX_WORKFLOW.md](CODEX_WORKFLOW.md).

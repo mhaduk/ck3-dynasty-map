@@ -16,19 +16,27 @@ Exit criteria:
 - GUI integration strategy selected, including unavailable UI, context invalidation/restore and verified re-click or minimal explicit refresh;
 - no copyrighted vanilla game files committed to Git.
 
+R-016 research closed with limits on 2026-10-21: the historical barony-color
+pipeline and three-view UI received bounded runtime smoke on 1.20.1.2. This
+does not close all M0 safety gates or constitute a release. Accepted subview
+behavior and semantic category roles are consolidated in
+[F-003](tasks/F-003-dynasty-subview-definitions.md).
+Next planned work: R-017 scenario selection, F-001 final UI/grey/contrast and
+F-002 color-source strategy; no successor implementation has started.
+
 ## v0.1.0 — My Dynasty MVP
 
 Scope:
 
-- custom My Dynasty map mode;
+- one Dynasty entry with Dynasty Realms default, Dynasty Holdings and My Realm & Dynasty;
 - county-level semantics;
-- `DIRECT`, `CONTROLLED`, `OTHER` rendering;
+- per-view dark/light/grey county categories under ADR-010; Holdings retains DIRECT/CONTROLLED/OTHER;
 - static refresh on activation;
 - unavailable without a valid local player or valid player Dynasty; no classification/color writes on unavailable activation and no all-neutral substitute (ADR-008);
 - stop old-Dynasty use on active-context invalidation and clear/restore visuals as far as the API permits;
 - dependable manual refresh: M0-verified re-click or the smallest explicit refresh mechanism needed;
 - English localization;
-- minimal icon/UI integration using the least invasive mechanism supported by the target CK3 build;
+- coherent subview controls, matching legend and clearly grey neutral land (F-001); use the least invasive supported UI integration;
 - basic `error.log` cleanliness.
 
 Explicitly deferred:
@@ -51,7 +59,7 @@ Release gate:
 
 Scope:
 
-- tooltip/legend explaining shades;
+- refine the MVP legend/tooltips explaining per-view shades;
 - optional Polish localization;
 - observer/no-dynasty UX hardening and regression coverage beyond the v0.1 safety guards;
 - save/load and add/remove-mid-save tests;

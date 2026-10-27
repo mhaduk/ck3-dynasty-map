@@ -2,7 +2,19 @@
 
 ## Status
 
-This document defines the intended architecture during M0 investigation of installed CK3 1.20.1.1 (Crozier). RESEARCH.md records VERIFIED generated script_docs signatures and scope links. Other API names, file paths and integration behavior remain candidates until supported by installed-file, generated-doc or runtime evidence. Open **Research Gates** still block the implementation decisions they cover.
+This document defines the intended architecture during M0. R-016 now targets installed CK3 1.20.1.2 (Crozier); earlier evidence retains its 1.20.1.1 provenance. RESEARCH.md records VERIFIED generated script_docs signatures and scope links. Other API names, file paths and integration behavior remain candidates until supported by installed-file, generated-doc or runtime evidence. Open **Research Gates** still block the implementation decisions they cover.
+
+## Current research ownership — T-005, 2026-10-23
+
+R-005 owns the safe dispatch/context contract and the no-Dynasty fixture-or-coverage decision merged from R-013. R-009 owns exact arbitrary-original RGB restore, isolation and save/removal. R-007/R-008/R-010 research is closed completed. The user accepts the bounded F-001 menu, appearance and ordinary interaction on fresh 867 Ismail sessions; residual parity/coverage is tracked by F-005, while context and RGB lifecycle gates remain with R-005/R-009. Historical checkpoint descriptions below retain their evidence limits. See [T-005](tasks/T-005-research-backlog-review.md) and [the F-001 painting guide](F001_MAP_PAINTING.md).
+
+F-004's accepted 2026-10-24 diagnostic path reads native `debug_log_scopes`
+declarations for DIAG V3 summaries/samples and independently framed AUDIT V4
+selected-view batches. Each selected-view PASS is limited to emitted-roster
+agreement in the tested fixture. The fixed two-row icon host is accepted for
+that fixture/build; it does not establish other UI parity or lifecycle safety.
+Native diagnostic text is not treated as a stable serialization API. See
+[F-004 diagnostics](F004_DIAGNOSTICS.md).
 
 ## Logical components
 
@@ -13,7 +25,7 @@ flowchart LR
     C --> R[Barony color renderer]
     P[Local player Dynasty] --> C
     H[County holder + liege hierarchy] --> C
-    COL[Dummy color titles / color strategy] --> R
+    COL[Color input strategy: unresolved] --> R
 ```
 
 ### 1. Map mode definition
@@ -22,7 +34,12 @@ Expected location:
 
 `gfx/map/map_modes/dynmap_map_modes.txt`
 
-The proposed custom map uses `color_mode = baronies`, following historical community examples; M0 must verify the target-build rendering mechanism.
+Installed 1.20.1.1 `game/gfx/map/map_modes/map_modes.txt:116–195` confirms
+that the native `baronies` object uses `color_mode = baronies` (R-002). The
+R-009 user-run batch supports two original custom objects loaded from a separate
+file and selected with this native producer. This is bounded evidence for those
+definitions; temporary rendering safety is unresolved and changed title colors
+are shared with native baronies.
 
 ### 2. Scripted GUI / execution logic
 
@@ -42,27 +59,91 @@ Under ADR-008, My Dynasty is unavailable if there is no valid local player or th
 
 If context becomes invalid while the mode is active, stop using the old Dynasty context and clear/restore visual state as far as the CK3 map-mode API permits. M0 must determine how to disable/hide the UI and detect context invalidation safely, including what cleanup/restore the API supports. Cleanup is distinct from unavailable activation and may require restoration writes; it must not classify against stale context.
 
-### 3. Color sources
+#### R-005 evidence boundary (2026-10-20)
 
-Expected location:
+Explicit fresh player roots, manual-switch/succession notifications and a
+separate GUI observer-validity watcher have runtime diagnostic evidence.
+Character-change hook delivery did not cover tested observer/load transitions;
+GUI VariableSystem state is not guaranteed to reset on in-process reload.
+Direct character-scoped Execute with a null root logged a validation error even
+with conditional root guards, before any effect ran. Do not treat internal
+validation as an error-free missing-player entry boundary. FINAL GUARDS A passed
+for the tested displayed path into observer after RESET: NO PLAYER appeared,
+action buttons were absent, and the bounded capture contained no extra activation
+or probe-attributed validation error. This is external UI evidence for that
+transition, not direct invalid-root or every-race safety. The same run rejected
+the one-shot `set_to_lowborn` player fixture; no-Dynasty local-player UI remains
+unverified and is deferred to [R-013 / #13](https://github.com/mhaduk/ck3-dynasty-map/issues/13). ADR-008 semantics remain unchanged.
+GUI flag invalidation is not title-color restoration. See the [R-005 checkpoint](tasks/R-005-player-context.md).
 
-`common/landed_titles/dynmap_colors.txt`
+### 3. Color sources and renderer input — unresolved
 
-For My Dynasty, use a small set of non-creatable dummy landed titles as color sources:
+The historical dummy-title palette candidate proposed three non-creatable source
+titles in `common/landed_titles/dynmap_colors.txt`. R-009 tested four fixed
+research sources, not a production palette or one title per barony. Search
+visibility and CoA/capital errors leave inertness unresolved. Do not implement
+F-102 or add more titles before the color strategy is resolved.
 
-- `d_dynmap_direct`
-- `d_dynmap_controlled`
-- `d_dynmap_other`
+Generated `set_title_color` accepts named/RGB values; `set_color_from_title`
+introduces a deliberate slight shift. Direct/named writes avoid dummy sources
+but still mutate title state. R-009 confirmed native/custom barony views share
+those mutations and designated AFTER saves serialize explicit title RGB.
+Definition resets do not recover arbitrary live originals; exact capture,
+automatic cleanup and disabled-mod/fresh-process behavior remain open.
 
-Exact RGB values are intentionally deferred until in-game testing because lighting/terrain blending affects perceived contrast. CK3 1.20.1.1 script_docs verifies `set_title_color` on `landed_title` with named/RGB colors, and `set_color_from_title` from `landed_title` to `landed_title`. The latter deliberately shifts the copied color slightly; a shared source does not guarantee identical RGB values. This finding does not select a new color strategy. Persistence, restoration and map-only isolation remain UNKNOWN (see RESEARCH.md).
+Current research separates a conceptual ephemeral barony -> county class
+(dark/light/grey for the selected ADR-010 view) mapping from a three-category
+palette. It preserves ADR-008 unavailability. R016 has a prepared three-view
+research classifier and bounded startup/execution evidence; no production
+classifier, saved palette registry or verified isolated storage API is
+established.
+
+The missing link is a supported consumer of that mapping only in our view.
+Native mode definitions select engine producers. The exposed overlay shader
+samples engine-bound province color textures; no generic script/GUI table upload
+or grouping callback was identified in the reviewed surface. Metadata/selection
+bindings and variables alone do not establish that link. Native Realms, Houses
+and Faith/Rite grouping cannot substitute for the required classifier.
+
+Situation sub-region/group `map_color` and membership are a documented
+specialized consumer. The bounded feasibility trace found installed add/remove
+usage with individual county titles and a native sub-region color mode. It also
+found a world-Situation lifecycle and game-view selection by object ID, not a
+demonstrated local ephemeral buffer or independent named-map binding. Both
+automatic enrollment paths can be disabled and authored gameplay hooks omitted;
+zero-participant rendering, exact county/barony coverage, competing Situation
+selection, saved/shared behavior and exit/removal safety remain unverified.
+ADR-009 excludes this route; these findings remain historical, not a current
+production investigation or approval. The user has not rejected persistent state in
+general; the concern is repurposing unrelated titles or Situations as fragile
+map workarounds. Shared shader recoloring also lacks a demonstrated dynamic
+classification input/view gate.
+See the [R-009 trace](tasks/R-009-barony-color-safety.md#native-color-data-trace--static-evidence)
+and [RESEARCH.md](RESEARCH.md#r-009-native-color-data-and-renderer-boundary).
+No strategy or ADR semantics are changed; implementation stays gated.
 
 ### 4. GUI integration
 
-**Research Gate RG-UI-01**: inspect CK3 1.20.x/1.21.x vanilla `map_modes.txt` and the current map-mode GUI. The public custom-map-mode guide was last verified against a very old CK3 version, while the recorded patch references report sub-map-mode display changes in CK3 1.20. Verify the installed behavior during M0, including unavailable UI, re-click/manual refresh and exit/restore hooks.
+**RG-UI-01 historical method-selection checkpoint (research closed by T-005):** R-002/R-003 statically inspected installed 1.20.1.1
+map definitions and GUI. Native named blocks and explicit faith sub-mode buttons
+exist, but separate-file insertion into the live HUD is unverified; the banner
+instance overrides shared defaults. See RESEARCH.md. The bounded F-001 menu and ordinary flow are user-accepted on fresh 867 Ismail sessions; other UI parity, unavailable-state and lifecycle cases remain unverified under F-005/R-005/R-009. The public custom-map-mode guide was last verified against a very old CK3 version, while the recorded patch references report sub-map-mode display changes in CK3 1.20.
 
 Preferred order:
 
 1. data-driven/additive integration without replacing a large vanilla GUI file;
+   installed `gui/scripted_widgets/_scripted_widgets.info` documents additive
+   startup registration (R-010). A separate original control is a candidate,
+   not verified native-menu insertion; placement, loading and lifecycle still
+   need an authorized probe. The user prefers a real child of the native map
+   menu over an adjacent standalone widget. R-010 traced `mapmodes_insert_before`
+   in Additional map modes as a candidate. The R-010 same-name type-extension
+   probe crashed in recursive GUI type resolution on 2026-10-20 and is withdrawn.
+   That route remains withdrawn. Probe 02 (original replacement of only the
+   submenu type, based on primitive flowcontainer) now has startup and in-game
+   DM-placement/tooltip evidence in 1.20.1.1. Full menu behavior, compatibility,
+   unavailable state, refresh and cleanup remain unverified; it is not yet a
+   production integration decision. No general load-order rule is established.
 2. minimal scoped GUI override;
 3. if neither approach is viable, record RG-UI-01 as blocked and document the evidence before revisiting the design.
 
@@ -86,27 +167,48 @@ The design models the ordinary de-facto political hierarchy as a rooted forest w
 
 ## My Dynasty classification
 
-Let `PD` be the valid local player's Dynasty and `H` the county holder. This is conceptual pseudocode, not verified CK3 syntax.
+ADR-010 defines one Dynasty family with three ordered views, initially Dynasty
+Realms. For fresh valid player P and Dynasty D, classify county holder H and
+all ordinary de-facto seniors S; T is the highest ruler, or H when independent.
 
-```text
-if local player or PD is invalid:
-    mode unavailable; return without classification or color writes
-else if H exists and H has a valid Dynasty and H.dynasty == PD:
-    DIRECT
-else if H exists and a qualifying de-facto liege has dynasty == PD:
-    CONTROLLED
-else:
-    OTHER
-```
+| View | Dark green | Otherwise light green |
+|---|---|---|
+| Dynasty Realms | T's Dynasty is D | H or any senior has D |
+| Dynasty Holdings | H's Dynasty is D | Any senior has D |
+| My Realm & Dynasty | H is P or P is any senior | H or any senior has D |
 
-Important semantics:
+Otherwise grey; an unheld county is grey. Invalid P/D makes the feature
+unavailable without classification or writes. Dark precedes light. Cadet Houses
+compare Dynasty, not House. Missing holder Dynasty never skips senior checks.
+Player-vassal dark territory is only P's subtree, never all of P's top ruler's
+realm. Baron identity, occupation, claims, regents/co-rulers and tributary/
+suzerain relationships do not replace the legal holder or de-facto hierarchy.
+De-jure membership is used only to propagate the county result to its baronies.
+Historical DIRECT/CONTROLLED/OTHER denotes Holdings, not the default Realms rule.
 
-- cadet Houses automatically collapse because comparison is on `dynasty`;
-- county holder controls classification, not barony holder;
-- a holder without a Dynasty cannot be DIRECT, but can be CONTROLLED through a qualifying liege; check the chain before assigning OTHER;
-- occupations do not change classification in v1.0;
-- tributary/suzerain relations do not count as lieges in v1.0;
-- regents/co-rulers do not replace the legal title holder for classification.
+The R016 source revision for 1.20.1.2 prepared all three direct classifiers,
+one Dynasty menu entry and an associated active-map panel with selection and
+legends. Startup and bounded repeated executions were observed; the user
+reports ordinary switching/refresh/native-return smoke appears to work. Grey
+nonmatching land failed visual acceptance, and the smoke does not establish
+full semantic coverage, atomicity, performance or lifecycle safety. Startup
+loaded the new GUI assets; user observation showed the ordered controls and
+legend at two zoom levels, not all UI scales or compatibility contexts. The
+original Additional Modes seam and narrow banner composition are intentional
+native type overrides; native children remain references. The custom panel
+sits outside the HUD-overridden native submode block. No vanilla body/HUD file
+is packaged. The old R010 Faith smoke does not validate this new panel.
+
+Normal entry/subview/refresh calls Execute with fresh GetPlayer, then SetMapMode.
+UI availability queries Dynasty; the effect checks it again before any pass.
+The composed call is only a candidate: void Execute cannot report success or
+make dispatch/display atomic during a context change. Explicit per-view
+COMPUTE/log review/DISPLAY diagnostics remain available. They do not complete
+the normal UX requirement or close ADR-008. Each subview recomputes rather than
+showing another subview's last-painted RGB. Additional-menu opening does not
+scan; re-entering through Dynasty resets to Realms, while an active alternative
+stays selected until an explicit selection. Shared RGB, context-loss cleanup,
+exit/restore, persistence/removal and full coverage remain unresolved.
 
 ## State management
 
@@ -161,3 +263,13 @@ No All Dynasties implementation should be merged until the color strategy has ex
 - All dummy titles: `d_dynmap_*`
 - Future event namespace: `dynmap`
 - Files owned by this project should start with `dynmap_` where CK3 loading rules permit it.
+
+## R-016 research closeout and specification split
+
+R-016 is closed with bounded pipeline/UI evidence on 1.20.1.2, not production
+acceptance. Grey nonmatching ground is a failed visual item; exact context-safe
+activation, coverage, isolation/restore and removal remain unresolved. The
+[F-003 tables](tasks/F-003-dynasty-subview-definitions.md) consolidate accepted
+subview behavior and semantic result roles. R-017 plans test fixtures; F-001
+owns target layout/grey/contrast; F-002 owns the accepted approximate character-associated palette and its exact green fallback. See the F-002 canonical record for boundaries and evidence.
+No successor implementation is selected by this closeout.

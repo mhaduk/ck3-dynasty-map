@@ -1,0 +1,61 @@
+﻿# R-005 diagnostics. SUCCESSION below deliberately changes the test timeline.
+dynmap_r005_context = {
+    scope = character
+    is_valid = {
+        trigger_if = {
+            limit = { exists = root }
+            exists = dynasty
+        }
+        trigger_else = { always = no }
+    }
+    effect = {
+        debug_log = "DYNMAP_R005 EXECUTE_ENTER"
+        if = {
+            limit = { exists = root }
+            dynmap_r005_guard_diagnostic_effect = yes
+        }
+        else = { debug_log = "DYNMAP_R005 REJECT_NO_ROOT" }
+        debug_log = "DYNMAP_R005 EXECUTE_EXIT"
+    }
+}
+
+dynmap_r005_no_dynasty = {
+    scope = character
+    is_valid = {
+        any_courtier_or_guest = { NOT = { exists = dynasty } }
+    }
+    effect = {
+        debug_log = "DYNMAP_R005 NO_DYNASTY_TEST_ENTER"
+        if = {
+            limit = { any_courtier_or_guest = { NOT = { exists = dynasty } } }
+            ordered_courtier_or_guest = {
+                limit = { NOT = { exists = dynasty } }
+                order_by = 0
+                max = 1
+                check_range_bounds = no
+                dynmap_r005_guard_diagnostic_effect = yes
+            }
+        }
+        else = { debug_log = "DYNMAP_R005 NO_CANDIDATE" }
+        debug_log = "DYNMAP_R005 NO_DYNASTY_TEST_EXIT"
+    }
+}
+
+# Destructive to the disposable test timeline only. User must save first.
+dynmap_r005_succession = {
+    scope = character
+    is_valid = {
+        is_alive = yes
+        is_ai = no
+        exists = player_heir
+    }
+    effect = {
+        if = {
+            limit = { is_alive = yes is_ai = no exists = player_heir }
+            debug_log = "DYNMAP_R005 SUCCESSION_REQUEST"
+            debug_log_scopes = yes
+            player_heir = { debug_log_scopes = yes }
+            death = natural
+        }
+    }
+}

@@ -1,0 +1,25 @@
+# R-010 probe: original narrow type decoration; target-build loading is unverified.
+# The existing type identifier and insertion block are intentional integration seams.
+# No onclick, map-mode selection, effects, scopes, variables or recurring work.
+types DynmapNativeMenuProbe
+{
+    type flowcontainer_additional_mapmodes = flowcontainer_additional_mapmodes
+    {
+        blockoverride "mapmodes_insert_before"
+        {
+            flowcontainer = {
+                name = "dynmap_menu_probe_row"
+                parentanchor = hcenter
+                margin_bottom = 4
+
+                button_round = {
+                    name = "dynmap_menu_probe_button"
+                    size = { 40 40 }
+                    raw_text = "DM"
+                    raw_tooltip = "Dynasty Map: inactive menu integration probe"
+                    enabled = no
+                }
+            }
+        }
+    }
+}

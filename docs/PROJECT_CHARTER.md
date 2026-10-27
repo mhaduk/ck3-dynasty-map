@@ -7,11 +7,14 @@ CK3's House map mode distinguishes individual Houses. Cadet branches therefore f
 ## Goals
 
 ### G1 — My Dynasty
-Provide a map mode that classifies every landed county into three states relative to the local player:
-
-1. `DIRECT`: county holder belongs to the player's Dynasty.
-2. `CONTROLLED`: holder does not belong to the player's Dynasty, but one or more de-facto lieges do.
-3. `OTHER`: no holder/liege in the de-facto chain belongs to the player's Dynasty.
+Provide one Dynasty map family with **Dynasty Realms** (default), **Dynasty
+Holdings** and **My Realm & Dynasty**. Each classifies counties into dark,
+light and neutral categories under ADR-010. Holdings retains the original
+DIRECT/CONTROLLED/OTHER rule; the other views distinguish dynastic highest
+rulers and the player's own subtree. Accepted subview behavior and semantic
+category roles are in [F-003](tasks/F-003-dynasty-subview-definitions.md).
+F-001 owns layout/visual treatment; F-002 owns color-source/fallback. Research feasibility is
+bounded; production safety and visual acceptance remain release requirements.
 
 ### G2 — All Dynasties
 Provide a world map that preserves the useful territorial semantics of the House map while grouping cadet Houses by their parent Dynasty.

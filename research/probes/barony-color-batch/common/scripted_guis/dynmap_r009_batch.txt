@@ -1,0 +1,361 @@
+﻿# Original R-009 research only. No startup/on_action effects or saved counters.
+# BEGIN/END pairs identify each invocation by chronological ordinal in debug.log.
+# AFTER_EFFECT proves only that execution advanced, never a rendered/saved result.
+
+dynmap_r009_c00 = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C00 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = dynasty }
+            if = {
+                limit = { exists = title:b_london }
+                debug_log = "DYNMAP_R009 case=C00 target=b_london stage=EXISTS"
+                title:b_london = {
+                    if = { limit = { exists = holder } debug_log = "DYNMAP_R009 case=C00 target=b_london stage=HAS_HOLDER" }
+                    else = { debug_log = "DYNMAP_R009 case=C00 target=b_london stage=NO_HOLDER" }
+                }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C00 target=b_london stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:b_southwark }
+                debug_log = "DYNMAP_R009 case=C00 target=b_southwark stage=EXISTS"
+                title:b_southwark = {
+                    if = { limit = { exists = holder } debug_log = "DYNMAP_R009 case=C00 target=b_southwark stage=HAS_HOLDER" }
+                    else = { debug_log = "DYNMAP_R009 case=C00 target=b_southwark stage=NO_HOLDER" }
+                }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C00 target=b_southwark stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:b_woxbrigge }
+                debug_log = "DYNMAP_R009 case=C00 target=b_woxbrigge stage=EXISTS"
+                title:b_woxbrigge = {
+                    if = { limit = { exists = holder } debug_log = "DYNMAP_R009 case=C00 target=b_woxbrigge stage=HAS_HOLDER" }
+                    else = { debug_log = "DYNMAP_R009 case=C00 target=b_woxbrigge stage=NO_HOLDER" }
+                }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C00 target=b_woxbrigge stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:c_middlesex }
+                debug_log = "DYNMAP_R009 case=C00 target=c_middlesex stage=EXISTS"
+                title:c_middlesex = {
+                    if = { limit = { exists = holder } debug_log = "DYNMAP_R009 case=C00 target=c_middlesex stage=HAS_HOLDER" }
+                    else = { debug_log = "DYNMAP_R009 case=C00 target=c_middlesex stage=NO_HOLDER" }
+                }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C00 target=c_middlesex stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:d_dynmap_r009_magenta }
+                debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_magenta stage=EXISTS"
+                title:d_dynmap_r009_magenta = {
+                    if = { limit = { exists = holder } debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_magenta stage=HAS_HOLDER" }
+                    else = { debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_magenta stage=NO_HOLDER" }
+                }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_magenta stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:d_dynmap_r009_cyan }
+                debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_cyan stage=EXISTS"
+                title:d_dynmap_r009_cyan = {
+                    if = { limit = { exists = holder } debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_cyan stage=HAS_HOLDER" }
+                    else = { debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_cyan stage=NO_HOLDER" }
+                }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_cyan stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:d_dynmap_r009_yellow }
+                debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_yellow stage=EXISTS"
+                title:d_dynmap_r009_yellow = {
+                    if = { limit = { exists = holder } debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_yellow stage=HAS_HOLDER" }
+                    else = { debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_yellow stage=NO_HOLDER" }
+                }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_yellow stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:d_dynmap_r009_baseline }
+                debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_baseline stage=EXISTS"
+                title:d_dynmap_r009_baseline = {
+                    if = { limit = { exists = holder } debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_baseline stage=HAS_HOLDER" }
+                    else = { debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_baseline stage=NO_HOLDER" }
+                }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C00 target=d_dynmap_r009_baseline stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C00 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C00 target=batch invocation=END stage=EXIT"
+    }
+}
+
+dynmap_r009_c01 = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C01 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = dynasty }
+            if = {
+                limit = { exists = title:b_london }
+                debug_log = "DYNMAP_R009 case=C01 target=b_london stage=BEFORE"
+                title:b_london = { set_title_color = { 240 25 200 } }
+                debug_log = "DYNMAP_R009 case=C01 target=b_london stage=AFTER_EFFECT"
+            }
+            else = { debug_log = "DYNMAP_R009 case=C01 target=b_london stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C01 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C01 target=batch invocation=END stage=EXIT"
+    }
+}
+
+dynmap_r009_c02 = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C02 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = dynasty }
+            if = {
+                limit = { exists = title:b_london }
+                debug_log = "DYNMAP_R009 case=C02 target=b_london stage=BEFORE"
+                title:b_london = { set_title_color = dynmap_r009_magenta }
+                debug_log = "DYNMAP_R009 case=C02 target=b_london stage=AFTER_EFFECT"
+            }
+            else = { debug_log = "DYNMAP_R009 case=C02 target=b_london stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C02 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C02 target=batch invocation=END stage=EXIT"
+    }
+}
+
+dynmap_r009_c03 = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C03 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = dynasty }
+            if = {
+                limit = { exists = title:b_london exists = title:d_dynmap_r009_magenta }
+                if = {
+                    limit = { title:d_dynmap_r009_magenta = { NOT = { exists = holder } } }
+                    debug_log = "DYNMAP_R009 case=C03 target=b_london source=d_dynmap_r009_magenta stage=BEFORE"
+                    title:b_london = { set_color_from_title = title:d_dynmap_r009_magenta }
+                    debug_log = "DYNMAP_R009 case=C03 target=b_london stage=AFTER_EFFECT"
+                }
+                else = { debug_log = "DYNMAP_R009 case=C03 target=b_london stage=GUARD_SKIP_SOURCE_HELD" }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C03 target=b_london stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C03 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C03 target=batch invocation=END stage=EXIT"
+    }
+}
+
+dynmap_r009_c04 = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C04 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = dynasty }
+            if = {
+                limit = { exists = title:b_london exists = title:d_dynmap_r009_cyan }
+                if = {
+                    limit = { title:d_dynmap_r009_cyan = { NOT = { exists = holder } } }
+                    debug_log = "DYNMAP_R009 case=C04 target=b_london source=d_dynmap_r009_cyan stage=BEFORE"
+                    title:b_london = { set_color_from_title = title:d_dynmap_r009_cyan }
+                    debug_log = "DYNMAP_R009 case=C04 target=b_london stage=AFTER_EFFECT"
+                }
+                else = { debug_log = "DYNMAP_R009 case=C04 target=b_london stage=GUARD_SKIP_SOURCE_HELD" }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C04 target=b_london stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C04 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C04 target=batch invocation=END stage=EXIT"
+    }
+}
+
+dynmap_r009_c05 = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C05 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = dynasty }
+            if = {
+                limit = { exists = title:b_london exists = title:d_dynmap_r009_yellow }
+                if = {
+                    limit = { title:d_dynmap_r009_yellow = { NOT = { exists = holder } } }
+                    debug_log = "DYNMAP_R009 case=C05 target=b_london source=d_dynmap_r009_yellow stage=BEFORE"
+                    title:b_london = { set_color_from_title = title:d_dynmap_r009_yellow }
+                    debug_log = "DYNMAP_R009 case=C05 target=b_london stage=AFTER_EFFECT"
+                }
+                else = { debug_log = "DYNMAP_R009 case=C05 target=b_london stage=GUARD_SKIP_SOURCE_HELD" }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C05 target=b_london stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C05 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C05 target=batch invocation=END stage=EXIT"
+    }
+}
+
+dynmap_r009_c06 = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C06 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = dynasty }
+            if = {
+                limit = { exists = title:b_london exists = title:d_dynmap_r009_magenta }
+                if = {
+                    limit = { title:d_dynmap_r009_magenta = { NOT = { exists = holder } } }
+                    debug_log = "DYNMAP_R009 case=C06 target=b_london source=d_dynmap_r009_magenta stage=BEFORE"
+                    title:b_london = { set_color_from_title = title:d_dynmap_r009_magenta }
+                    debug_log = "DYNMAP_R009 case=C06 target=b_london stage=AFTER_EFFECT"
+                }
+                else = { debug_log = "DYNMAP_R009 case=C06 target=b_london stage=GUARD_SKIP_SOURCE_HELD" }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C06 target=b_london stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:b_southwark exists = title:d_dynmap_r009_magenta }
+                if = {
+                    limit = { title:d_dynmap_r009_magenta = { NOT = { exists = holder } } }
+                    debug_log = "DYNMAP_R009 case=C06 target=b_southwark source=d_dynmap_r009_magenta stage=BEFORE"
+                    title:b_southwark = { set_color_from_title = title:d_dynmap_r009_magenta }
+                    debug_log = "DYNMAP_R009 case=C06 target=b_southwark stage=AFTER_EFFECT"
+                }
+                else = { debug_log = "DYNMAP_R009 case=C06 target=b_southwark stage=GUARD_SKIP_SOURCE_HELD" }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C06 target=b_southwark stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C06 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C06 target=batch invocation=END stage=EXIT"
+    }
+}
+
+dynmap_r009_c07 = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C07 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = dynasty }
+            if = {
+                limit = { exists = title:b_southwark exists = title:b_london }
+                debug_log = "DYNMAP_R009 case=C07 target=b_southwark stage=BEFORE"
+                title:b_southwark = { set_color_from_title = title:b_london }
+                debug_log = "DYNMAP_R009 case=C07 target=b_southwark stage=AFTER_EFFECT"
+            }
+            else = { debug_log = "DYNMAP_R009 case=C07 target=b_southwark stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C07 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C07 target=batch invocation=END stage=EXIT"
+    }
+}
+
+dynmap_r009_c08 = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C08 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = dynasty }
+            if = {
+                limit = { exists = title:b_london exists = title:d_dynmap_r009_baseline }
+                if = {
+                    limit = { title:d_dynmap_r009_baseline = { NOT = { exists = holder } } }
+                    debug_log = "DYNMAP_R009 case=C08 target=b_london source=d_dynmap_r009_baseline stage=BEFORE"
+                    title:b_london = { set_color_from_title = title:d_dynmap_r009_baseline }
+                    debug_log = "DYNMAP_R009 case=C08 target=b_london stage=AFTER_EFFECT"
+                }
+                else = { debug_log = "DYNMAP_R009 case=C08 target=b_london stage=GUARD_SKIP_SOURCE_HELD" }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C08 target=b_london stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:b_southwark exists = title:d_dynmap_r009_baseline }
+                if = {
+                    limit = { title:d_dynmap_r009_baseline = { NOT = { exists = holder } } }
+                    debug_log = "DYNMAP_R009 case=C08 target=b_southwark source=d_dynmap_r009_baseline stage=BEFORE"
+                    title:b_southwark = { set_color_from_title = title:d_dynmap_r009_baseline }
+                    debug_log = "DYNMAP_R009 case=C08 target=b_southwark stage=AFTER_EFFECT"
+                }
+                else = { debug_log = "DYNMAP_R009 case=C08 target=b_southwark stage=GUARD_SKIP_SOURCE_HELD" }
+            }
+            else = { debug_log = "DYNMAP_R009 case=C08 target=b_southwark stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C08 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C08 target=batch invocation=END stage=EXIT"
+    }
+}
+
+# New title-root dispatch hypothesis. Read-only check before using C10.
+dynmap_r009_c09 = {
+    scope = landed_title
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C09 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = root exists = title:b_london }
+            debug_log = "DYNMAP_R009 case=C09 target=b_london stage=TITLE_ROOT_RECEIVED"
+        }
+        else = { debug_log = "DYNMAP_R009 case=C09 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C09 target=batch invocation=END stage=EXIT"
+    }
+}
+
+# Manual definition reset, never an exact live-original or automatic cleanup claim.
+dynmap_r009_c10 = {
+    scope = landed_title
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C10 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = root exists = title:b_london }
+            if = {
+                limit = { exists = title:b_london }
+                debug_log = "DYNMAP_R009 case=C10 target=b_london stage=BEFORE"
+                title:b_london = { set_title_color = { 230 5 5 } }
+                debug_log = "DYNMAP_R009 case=C10 target=b_london stage=AFTER_EFFECT"
+            }
+            else = { debug_log = "DYNMAP_R009 case=C10 target=b_london stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:b_southwark }
+                debug_log = "DYNMAP_R009 case=C10 target=b_southwark stage=BEFORE"
+                title:b_southwark = { set_title_color = { 230 5 5 } }
+                debug_log = "DYNMAP_R009 case=C10 target=b_southwark stage=AFTER_EFFECT"
+            }
+            else = { debug_log = "DYNMAP_R009 case=C10 target=b_southwark stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C10 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C10 target=batch invocation=END stage=EXIT"
+    }
+}
+
+# Same definition reset with tested character-root entry scaffolding; fallback only.
+dynmap_r009_c11 = {
+    scope = character
+    is_valid = { always = yes }
+    effect = {
+        debug_log = "DYNMAP_R009 case=C11 target=batch invocation=BEGIN stage=ENTER"
+        if = {
+            limit = { exists = dynasty }
+            if = {
+                limit = { exists = title:b_london }
+                debug_log = "DYNMAP_R009 case=C11 target=b_london stage=BEFORE"
+                title:b_london = { set_title_color = { 230 5 5 } }
+                debug_log = "DYNMAP_R009 case=C11 target=b_london stage=AFTER_EFFECT"
+            }
+            else = { debug_log = "DYNMAP_R009 case=C11 target=b_london stage=GUARD_SKIP" }
+            if = {
+                limit = { exists = title:b_southwark }
+                debug_log = "DYNMAP_R009 case=C11 target=b_southwark stage=BEFORE"
+                title:b_southwark = { set_title_color = { 230 5 5 } }
+                debug_log = "DYNMAP_R009 case=C11 target=b_southwark stage=AFTER_EFFECT"
+            }
+            else = { debug_log = "DYNMAP_R009 case=C11 target=b_southwark stage=GUARD_SKIP" }
+        }
+        else = { debug_log = "DYNMAP_R009 case=C11 target=batch stage=GUARD_SKIP" }
+        debug_log = "DYNMAP_R009 case=C11 target=batch invocation=END stage=EXIT"
+    }
+}

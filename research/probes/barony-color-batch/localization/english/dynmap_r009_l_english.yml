@@ -1,0 +1,13 @@
+﻿l_english:
+ d_dynmap_r009_magenta:0 "R009 Source Magenta"
+ d_dynmap_r009_magenta_adj:0 "R009 Magenta"
+ d_dynmap_r009_cyan:0 "R009 Source Cyan Landless"
+ d_dynmap_r009_cyan_adj:0 "R009 Cyan"
+ d_dynmap_r009_yellow:0 "R009 Source Yellow Guarded"
+ d_dynmap_r009_yellow_adj:0 "R009 Yellow"
+ d_dynmap_r009_baseline:0 "R009 Definition Baseline"
+ d_dynmap_r009_baseline_adj:0 "R009 Baseline"
+ dynmap_r009_baronies:0 "R009 Baronies Candidate"
+ dynmap_r009_baronies_desc:0 "Experimental title color renderer; no automatic color restoration."
+ dynmap_r009_baronies_filled:0 "R009 Filled Baronies Candidate"
+ dynmap_r009_baronies_filled_desc:0 "Independent filled renderer experiment; no automatic restoration."

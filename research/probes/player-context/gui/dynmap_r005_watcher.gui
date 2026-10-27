@@ -1,0 +1,11 @@
+# Original additive, non-interactive diagnostic. No character-scoped effects.
+widget = {
+    name = "dynmap_r005_player_watcher"
+    size = { 0 0 }
+    alwaystransparent = yes
+    visible = "[GetPlayer.IsValid]"
+    state = {
+        name = _hide
+        on_start = "[GetVariableSystem.Clear('dynmap_r005_armed')]"
+    }
+}

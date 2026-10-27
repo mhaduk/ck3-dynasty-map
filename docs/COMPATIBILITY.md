@@ -2,7 +2,15 @@
 
 ## Supported game versions
 
-The research baseline is CK3 1.20.1, but the implementation target is whatever stable CK3 build is installed on the gaming Mac when M0 begins. `supported_version` is updated only after the release checklist passes.
+Current recorded installed target: CK3 1.20.1.2 / Steam build 26046173.
+The clean generated API baseline is 1.20.1.1 / 25913294; selected used contracts
+were rechecked on 1.20.1.2 with the probe enabled. R-016/F-001 supply bounded
+startup/runtime evidence, not broad compatibility acceptance. The historical
+empty no-mod startup error.log does not cover loaded saves/map interactions.
+R-011’s blanket capture and R-012’s mandatory Tiger setup were retired by T-005;
+F-001/T-113 owns concrete attribution and any evidence-triggered optional
+validator evaluation. Reconfirm installed build after updates. `supported_version`
+is a declaration that must follow the applicable release checks.
 
 Prefer a minor-series wildcard only after validation, for example:
 
@@ -56,3 +64,5 @@ Not supported by default for 1.0. They may replace map dimensions, landed-title 
 ## Multiplayer
 
 Unsupported until tested. Old custom map mods report observer/global-variable and multiplayer uncertainty. Multiplayer support requires a dedicated test with identical mods/load order on all clients and explicit desync checks.
+
+T-005 (2026-10-23): R-009 retains exact color restoration/isolation and save/removal feasibility; R-005 retains context safety and merged no-Dynasty coverage. R-010 research closure does not establish UI-mod compatibility: F-001/C-210 retain that acceptance. No support claim is added.

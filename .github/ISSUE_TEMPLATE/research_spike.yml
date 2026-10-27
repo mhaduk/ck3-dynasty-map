@@ -1,6 +1,6 @@
 name: Research spike
-description: Time-boxed CK3 API / vanilla behavior investigation
-title: "research: "
+description: Time-boxed CK3 API / vanilla behavior investigation. Replace R-XXX with the next ID verified against all open/closed GitHub issue titles (never local numbering); keep the title format <ID> — <concise title>. Create and read back this issue before local execution; reconcile collisions before continuing.
+title: "R-XXX — "
 labels: ["type:research"]
 body:
   - type: textarea
@@ -14,6 +14,9 @@ body:
     attributes:
       label: Evidence to collect
       description: Files, script_docs entries, profiler data, screenshots or logs.
+  - type: markdown
+    attributes:
+      value: "Sanitize evidence before posting: remove local paths, usernames, emails, account/device IDs and unrelated log content. Never attach raw generated dumps or copyrighted vanilla files."
   - type: textarea
     id: decision
     attributes:

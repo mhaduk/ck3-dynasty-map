@@ -1,6 +1,6 @@
 name: Feature request
-description: Propose a user-visible enhancement
-title: "feat: "
+description: Propose a user-visible enhancement. Replace F-XXX with the next ID verified against all open/closed GitHub issue titles (never local numbering); keep the title format <ID> — <concise title>. Create and read back this issue before local execution; reconcile collisions before continuing.
+title: "F-XXX — "
 labels: ["type:feature"]
 body:
   - type: textarea

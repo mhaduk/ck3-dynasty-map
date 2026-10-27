@@ -1,6 +1,6 @@
 name: Bug report
-description: Report incorrect behavior or a regression
-title: "bug: "
+description: Report incorrect behavior or a regression. Replace B-XXX with the next ID verified against all open/closed GitHub issue titles (never local numbering); keep the title format <ID> — <concise title>. Create and read back this issue before local execution; reconcile collisions before continuing.
+title: "B-XXX — "
 labels: ["type:bug"]
 body:
   - type: input
@@ -21,7 +21,7 @@ body:
     id: os
     attributes:
       label: OS version and hardware
-      description: Include macOS version and Mac model where applicable.
+      description: Include only details needed to reproduce. Do not include account names, device IDs or local paths.
     validations:
       required: true
   - type: textarea
@@ -67,4 +67,4 @@ body:
     id: logs
     attributes:
       label: Relevant error.log lines
-      description: Remove unrelated/private content; do not upload copyrighted vanilla files.
+      description: Include only the smallest sanitized relevant excerpt. Remove paths, usernames, emails, account/device IDs and unrelated content. Never upload full logs or copyrighted vanilla files.

@@ -1,0 +1,1 @@
+﻿gui/dynmap_r005_entry_contract.gui = dynmap_r005_entry_contract_widget

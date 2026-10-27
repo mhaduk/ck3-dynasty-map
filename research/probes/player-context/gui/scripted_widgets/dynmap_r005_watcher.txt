@@ -1,0 +1,1 @@
+﻿gui/dynmap_r005_watcher.gui = dynmap_r005_player_watcher
