@@ -37,6 +37,12 @@
   },
   "issues": [
     {
+      "number": 51,
+      "state": "open",
+      "title": "T-025 \u2014 Verify remaining Dynasty Map lifecycle and persistence gates",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/51"
+    },
+    {
       "number": 50,
       "state": "closed",
       "title": "T-024 \u2014 Add lightweight execution classification and reasoning-cost guardrails",
@@ -68,7 +74,7 @@
     },
     {
       "number": 45,
-      "state": "open",
+      "state": "closed",
       "title": "T-019 \u2014 Consolidate local mod variants and remove legacy launcher artifacts",
       "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/45"
     },
@@ -86,7 +92,7 @@
     },
     {
       "number": 42,
-      "state": "open",
+      "state": "closed",
       "title": "T-016 \u2014 Restructure public Wiki for players and technical documentation",
       "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/42"
     },
@@ -278,8 +284,8 @@
     },
     {
       "number": 9,
-      "state": "open",
-      "title": "R-009 \u2014 Verify barony coloring and restoration safety",
+      "state": "closed",
+      "title": "R-009 \u2014 Validate current title-color renderer safety for beta",
       "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/9"
     },
     {
@@ -333,6 +339,6 @@
   ],
   "repository": "mhaduk/ck3-dynasty-map",
   "retired_ids": [],
-  "verified_at": "2026-10-25T16:03:23.105697+00:00",
+  "verified_at": "2026-10-27T14:34:27.822425+00:00",
   "version": 1
 }

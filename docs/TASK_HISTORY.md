@@ -13,6 +13,15 @@ on 2026-10-26 after independent accounting/readback verification; this does not
 close the task or mark its acceptance criteria complete.
 See the [canonical T-018 record](tasks/T-018-cold-entry-recompute.md).
 
+## Ongoing R-009 closeout checkpoint
+
+R-009's corrected observer path is accepted as a bounded local checkpoint,
+with remaining lifecycle/persistence criteria transferred to registered
+T-025/#51 (PLANNED). R-009 is not SAFE FOR BETA and Issue #9 remains OPEN until
+saved-session accounting is checked by GUI and the separately gated publication
+stage completes. See the [canonical R-009 record](tasks/R-009-barony-color-safety.md)
+and [T-025 follow-up](tasks/T-025-lifecycle-persistence-followup.md).
+
 ## Completed tasks
 
 | Task | Goal | Result | Issue journal | Canonical summary |

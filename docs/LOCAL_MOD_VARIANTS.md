@@ -25,6 +25,45 @@ and changes only the descriptor name. It does not install files or operate the
 launcher. Review the target version before future use; this command retains the
 existing 1.20.1.2 declaration and establishes no broader compatibility.
 
+For the bounded R-009 fresh-save candidate only, an explicit cleaned profile is
+available:
+
+```sh
+python3 scripts/prepare_dev_mod.py --profile r009-clean --output .codex-sync/dev-build/r009-clean/dynasty_map_dev
+python3 scripts/check_mod_preflight.py .codex-sync/dev-build/r009-clean/dynasty_map_dev --expected-version 1.20.1.2
+```
+
+This profile requires the frozen ten-file historical source, exact bytes for
+the two obsolete fixture-definition files, no symlinks, and no references to
+`d_dynmap_r016_direct`, `d_dynmap_r016_controlled`, or
+`d_dynmap_r016_other` in retained files. It emits eight files by omitting only
+those two definition files; retained runtime bodies and the DEV descriptor
+metadata remain the same. The default profile remains the legacy ten-file
+behavior. Historical research bytes are not edited. This candidate supports
+fresh games and saves demonstrably free of those three legacy fixture titles;
+it does not migrate, repair, or promise compatibility with older fixture-bearing
+saves. This is an R-009 evidence candidate, not a production package or beta
+approval. See the [provisional renderer contract](R009_RENDERER_CONTRACT.md).
+
+Use the accepted current development candidate with the explicit profile below.
+It emits the same fixture-free eight-file inventory and adds the reviewed
+absent-player fallback to `views.gui`:
+
+```sh
+python3 scripts/prepare_dev_mod.py --profile current-dev --output .codex-sync/dev-build/current-dev/dynasty_map_dev
+python3 scripts/check_mod_preflight.py .codex-sync/dev-build/current-dev/dynasty_map_dev --expected-version 1.20.1.2
+```
+
+`current-dev` checks the frozen ten-file source inventory and exact source
+hashes, including the fixture bytes, all retained payload bodies, descriptor
+and GUI source, plus retained-reference absence and a unique insertion anchor.
+It pins the emitted eight-file candidate hashes. The default
+remains `legacy`; `r009-clean` remains available for the earlier fixture-free
+candidate without the observer fallback. Neither profile is a runtime or beta
+safety claim. The corrected fallback was accepted for the bounded observer
+path on 1.20.1.2; remaining persistence and lifecycle checks transfer to
+[T-025 / #51](https://github.com/mhaduk/ck3-dynasty-map/issues/51).
+
 The local install target is `<CK3-user-data>/mod/dynasty_map_dev`, with external
 wrapper `<CK3-user-data>/mod/dynasty_map_dev.mod`. Copy the prepared descriptor
 into that external wrapper and append one `path="<absolute-installed-DEV-root>"`

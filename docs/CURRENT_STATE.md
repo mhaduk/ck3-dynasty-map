@@ -1,3 +1,558 @@
+## R-009 / #9 — completed local checkpoint; residual verification in T-025 — 2026-10-27
+
+User accepted the corrected observer path. Source, independent review, installed
+payload, bounded runtime evidence and finite-cutoff accounting are verified.
+Known partial API-equivalent cost: $10.17636316 for124,348,105 measured tokens;
+automatic-review pricing and excluded usage remain explicit. R-009 is closed as
+completed local work, not SAFE FOR BETA; T-025/#51 remains PLANNED for81-barony
+repeat attribution, corrected reload/DEV-absent checks and complete invariants.
+CurrentDEV reproducible via --profile current-dev; installed files unchanged.
+Final source/Wiki publication includes the upstream narrowed R009 specification;
+no new game tests or further handoff. Historical checkpoints below are retained.
+
+## R-009 / #9 — GUI cost gate accepted; final publication READY — 2026-10-27
+
+Stage37 consumed after first-review ACCEPTED,37actual output/result hashes.
+GUI independently replayed50frozen session sources/all accounting, checked raw
+currentGUI counters and prior executor/review coverage;124348105measured tokens,
+known partial10.17636316USD, auto-review unpriced,484ambiguous records/current37
+unavailable/laterpublication excluded. Cutoff12:37:19Z retained. Raw cache-write
+counters all1192zero; final wording clarifies this without changing costs.
+Final stage38 uses existing user authorization: publish7Wiki pages/final bodies,
+close9 completed with residualT025planned, sync registry, privacy-check exact14
+approved source paths incl GUI-owned aggregate telemetry, normal commit/push.
+No new game test, installation, fullbetaPASS or new permission question.
+
+## R-009 / #9 — accepted local checkpoint; T-025 residual verification planned — 2026-10-27
+
+The corrected current-DEV observer path is accepted for the bounded local
+checkpoint: observer automatically returned to native Realms, native Cultures
+remained selectable, return to the original player did not auto-enter Dynasty,
+and manual Dynasty entry worked. The final refresh save matched corrected
+pre-observer title identities/RGB across 18,190 records; bounded error bytes
+were unchanged and GUI/conflict logs were empty. This is not SAFE FOR BETA.
+
+T-025/#51 is registered, verified and PLANNED, not executed. It owns the
+unexplained 81-barony repeat discrepancy, corrected-candidate save/reload and
+DEV-absent checks, and complete saved-title invariants. R-005 retains broader
+no-Dynasty coverage; T-014 production packaging; T-017 release readiness. No
+new game test or live mutation is part of the closeout. Handoff37 prepared the
+public `current-dev` build profile, canonical records, priced session accounting
+and Wiki previews; Issue #9's cost/status body was updated and read back while
+remaining OPEN. GUI accounting review is a prerequisite to final Wiki/issue
+closure and repository publication.
+
+## R-009 / #9 — user ends game tests; corrected observer path accepted — 2026-10-27
+
+Snapshot36 RETURN_REFRESH saved/screenshot/5logs frozen; proper player16181,
+all18190 title identities/colors equal correctedPRE32, same date/build;
+error bytes unchanged, GUI/conflict empty. Observed corrected observer auto-exit,
+native Culture freedom, return without custom autoentry and manual Dynasty reentry
+accepted for tested path. User asks to finish manual tests; no further game/test/
+screenshot/save request. Current corrected DEV stays installed, evidence preserved.
+Parent stays OPEN: old81cycle discrepancy unproven cause; final corrected reload/
+fresh clean absent-mod sequence not completed; full final verification/accounting
+and R005 broader limits remain. No whole-beta PASS/engine-impossibility/issue close.
+Private consolidated checkpoint in snapshot36; no Git/publication authorized.
+
+## R-009 / #9 — original player restored without auto-Dynasty PASS; manual entry next — 2026-10-27
+
+Snapshot35 CORRECTED_OBSERVER_RETURN frozen; saved player/current list16181,
+same867.1.1/build,18190 identities/all title colors unchanged vs nativeCulture34.
+Screenshot explicit Cultures/Paused/no Dynasty banner. Error unchanged, GUI/conflict
+empty. Tested no-automatic-custom-reentry PASS. Next ordinary main Dynasty entry,
+local R009_CORRECTED_OBSERVER_RETURN_REFRESH+screenshot before other view clicks.
+Broader R005/81repeat/reload/absent-mod/final safety gates remain pending.
+
+## R-009 / #9 — observer Culture stays selected PASS; return-before-refresh next — 2026-10-27
+
+Snapshot34 preserves CORRECTED_OBSERVER_NATIVE_MODE/save/screenshot/5logs.
+Explicit Cultures/Paused; user reports good after requested wait, no measured
+duration. Observer sentinel/no player list and18190 title colors/identities same
+as33; error unchanged, GUI/conflict empty. Bounded native Culture freedom PASS,
+not exhaustive mode coverage. Next user returns to original Ismail/Bukhara16181
+without load/Dynasty click, keeps native mode, saves
+R009_CORRECTED_OBSERVER_RETURN+screenshot before manual refresh/reentry.
+
+## R-009 / #9 — corrected observer automatic native exit PASS; native-mode freedom next — 2026-10-27
+
+Snapshot33 preserves CORRECTED_OBSERVER/save/screenshot/5logs. User confirms
+automatic jump; screenshot native political realms/no custom banner/Paused.
+Saved observer sentinel4294967295/no player list; stable18190 title identities,
+zero net RGB change vs PRE32, same date/build. Error unchanged, GUI/conflict empty.
+Bounded fallback transition PASS, not whole safety/R005/no-Dynasty coverage.
+Next observer chooses native Culture, remains paused/waits briefly, captures
+R009_CORRECTED_OBSERVER_NATIVE_MODE and screenshot before returning to character;
+ensure new fallback does not hijack ordinary native modes.81repeat gate still open.
+
+## R-009 / #9 — corrected preobserver frozen; actual fallback test next — 2026-10-27
+
+Snapshot32 CORRECTED_OBSERVER_PRE equals loaded source27 in all immediate title
+colors, stable18190 keys/IDs and player16181/date867.1.1/version1.20.1.2.
+Screenshot explicit Dynasty Realms/Paused. GUI/conflict empty;58post-load error
+signatures all match prior vanilla court scenes (snapshot28), no new signature.
+Next user directly observer, no other map click/load, pause, local
+R009_CORRECTED_OBSERVER/save+screenshot and report automatic native return.
+No fallback PASS until actual observed transition; repeat81/no-Dynasty limits open.
+
+## R-009 / #9 — corrected startup accepted; load identified clean branch — 2026-10-27
+
+Snapshot31 captures fresh menu logs/config. Actual1.20.1.2 DEV mount and corrected
+viewsGUI5a6a7fce... verified; error/GUI/conflict empty,12known warning signatures
+unchanged. Startup-only PASS. Local R009_CLEAN_POST_EXIT_REALMS bytes independently
+match frozen27/fixture-free player16181/date867.1.1 branch. Next user loads it,
+ordinary top-level Dynasty entry once, pause, new R009_CORRECTED_OBSERVER_PRE
+save+screenshot before observer. No repeated initial survey or fallback runtime
+claim.81cycle discrepancy/no-Dynasty limits and remaining lifecycle gates pending.
+
+## R-009 / #9 — corrected GUI installation accepted; fresh startup next — 2026-10-27
+
+Stage30 consumed. Six actual output/result hashes,15archive member hashes and
+manifest equality verified. Current live8 equals reviewed candidate, only viewsGUI
+changed to5a6a7fce...,7files unchanged. Wrapper/config same, DEV only/P empty.
+Recovered revision/enum failures triaged. Archived shutdown logs are corrected
+PRESTART baseline; file preflight is not runtime proof. User next Steam launch,
+stop at menu, report menu, no save load. Fresh1.20.1.2 DEV mount/error/GUI/conflict
+gate precedes focused observer fix test on identified cleanPOST_EXIT branch.
+No repeated initial survey;81mismatch/no-Dynasty limits and beta decision pending.
+
+## R-009 / #9 — context-exit source accepted; single-GUI installation READY — 2026-10-27
+
+Stage29 consumed: fresh independent first-review ACCEPTED, zero corrections,
+all11 outputs/result hashes and only11-line GUI diff verified;7files unchanged.
+Two cycles/current report triaged; premature milestone and recovered paths/revisions
+retained. Runtime callback/timing not proven. User explicitly GZ LO. Next stage30
+backs up current8/wrapper/config/5logs and replaces only approved viewsGUI, exact
+old/new hashes and8-file preflight. No game action before accepted install receipt.
+Focused corrected observer retest will reuse positively identified clean branch;
+no redundant first-view survey.81repeat mismatch/R005no-Dynasty limits remain.
+
+## R-009 / #9 — observer context-loss FAIL; bounded native-exit patch preparation — 2026-10-27
+
+Snapshot28 frozen: observer played_character4294967295/no current-player list,
+previous16181;18190 stable title identities and zero net RGB change. User/supplied
+screenshots confirm stale custom coloring with Dynasty menu/banner absent.
+Error unchanged, GUI/conflict empty. Concrete context-loss beta blocker; stop
+remaining runtime tests on this version, not renderer-impossibility evidence.
+GUI chooses minimal absent-player native Realms fallback for active custom modes,
+no repaint/classifier/R005 full detector redesign. Prepare/review source only;
+no install while game open. Earlier81 repeat mismatch not waived. User may close
+game normally and leave launcher; installation waits explicit closed state plus
+accepted independent patch review. Parent remains OPEN, no public/Git writes.
+
+## R-009 / #9 — controlled reentry equals first Realms; observer boundary next — 2026-10-27
+
+Snapshot27 POST_EXIT_REALMS equals first REALMS_FIRST and NATIVE_EXIT in all
+18,190 immediate title color records, stable keys/IDs/player/date/version.
+Error unchanged, GUI/conflict empty; screenshot explicit Dynasty Realms/Paused.
+Earlier cycle snapshot equaled Holdings; cause still unproven, no user-mistake
+or code-fault conclusion/repeat PASS. Continue independent approved context-loss
+test: frozen POST_EXIT_REALMS explicitly aliases OBSERVER_PRE (same hash, not
+new observation). User next observer while custom view active, no intervening
+Dynasty/native click or load, pause, R009_CLEAN_OBSERVER save+screenshot before
+returning to original character. No restart or source modification.
+
+## R-009 / #9 — native exit frozen; explicit top-level Dynasty reentry next — 2026-10-27
+
+Snapshot26 preserves NATIVE_EXIT/save/user screenshot/5logs before another custom
+click. Native appearance user-reported correct; possible earlier mis-save raised
+by user but unconfirmed. Same player/date/version and stable title identities;
+full color delta vs cycle in private evidence. Error unchanged, GUI/conflict empty.
+Next explicit top-level Dynasty family/house entry from native (source refresh_realms),
+local R009_CLEAN_POST_EXIT_REALMS/save+screenshot before other actions. No restart,
+no source change; repeat mismatch unresolved, no user/renderer fault attribution.
+
+## R-009 / #9 — cycle verification accepted; isolate planned native exit/reentry — 2026-10-27
+
+Stage25 consumed after2actual output/result hashes and targeted source review;
+report ingested. Cycle-end RGB exactly first Holdings despite Dynasty Realms
+screenshot;81delta vsfirstRealms,56vsMyRealm. Full18190 title identities/immediate
+noncolor title fields stable; whole game state/causal callback timing unknown.
+Repeat gate remains NOT PASS; no user/palette/engine blame, no beta decision.
+GUI selects already-planned native exit/reentry pair, no new start: next user
+ordinary native Realms, pause, local R009_CLEAN_NATIVE_EXIT plus screenshot,
+freeze before explicit Dynasty reentry/POST_EXIT_REALMS. No source/live mutation.
+
+## R-009 / #9 — repeat-cycle mismatch preserved; focused verification next — 2026-10-27
+
+Snapshot24 CYCLE_END_REALMS compared with REALMS_FIRST: stable18,190 title keys/IDs,
+same version/date/player, but81 baronies differ.71 RGB201/185/162 ->220/210/195,
+10 reverse; no nonbarony color difference. Both saved palette cache/last-painted
+raw identities equal2500000, so no established palette-change explanation.
+Error log unchanged; GUI/conflict empty. Screenshot explicitly Dynasty Realms,
+user reports full cycle/good appearance and extra native Realms visit. Capture
+and difference preserved; source cause/chronology unresolved, repeat gate NOT PASS.
+User keeps paused current view, no new action/restart. Next focused CLI VERIFY
+compares frozen five saves and traces existing button routes, no new renderer,
+code change, live access or speculative failure attribution. Parent remains open.
+
+## R-009 / #9 — three first views frozen; repeated Realms cycle next — 2026-10-27
+
+Snapshot23 preserves MY_REALM_FIRST/save/user screenshot/5logs. Explicit Showing:
+My Realm & Dynasty/Paused/date867.1.1. Stable18,190 title keys/IDs, same player/date;
+RGB differences only baronies. Error log unchanged since Holdings; GUI/conflict empty.
+Next user ordinary Realms->Holdings->My Realm->Realms (no modifiers/unpause), save
+R009_CLEAN_CYCLE_END_REALMS and screenshot; preserve before native exit. Compare
+same-context first Realms for cumulative/stale color effects. No beta PASS yet.
+
+## R-009 / #9 — first clean Holdings frozen; My Realm next — 2026-10-27
+
+Snapshot22 preserves HOLDINGS_FIRST/save/user screenshot/5logs. Explicit Showing:
+Dynasty Holdings/Paused/date867.1.1; stable18,190 title keys/IDs, same player/date;
+RGB differences confined to baronies, no standard-title color change. Error log
+unchanged since Realms; GUI/conflict empty. User defers gray-base coloring quality
+as later visual/palette issue; no scope expansion. Next ordinary My Realm & Dynasty,
+separate R009_CLEAN_MY_REALM_FIRST save/screenshot, pause maintained, freeze before
+further switch. Full state invariants and beta safety remain pending.
+
+## R-009 / #9 — first clean Realms paint frozen; Holdings next — 2026-10-27
+
+Snapshot21 preserves REALMS_FIRST/save/user screenshot/5logs. Screenshot explicitly
+Showing: Dynasty Realms/Paused/date867.1.1. Strict parser compared BASE: stable
+18,190 title keys/IDs and player/date/version; actual changed RGB confined to
+baronies, first-paint positive control PASS. Error log unchanged since BASE;
+GUI/conflict empty. Screenshot framing differs from BASE, no pixel-match claim.
+Next ordinary Dynasty Holdings, separate R009_CLEAN_HOLDINGS_FIRST save/screenshot,
+no unpause; preserve before switching again. Other state invariants final-check pending.
+
+## R-009 / #9 — clean BASE frozen; first Dynasty Realms next — 2026-10-27
+
+User supplied native paused map screenshot and local R009_CLEAN_BASE. Snapshot20
+preserves exact save/screenshot/5logs with hashes. Strict accepted parser:18,190
+title records (old18,193 minus3obsolete fixtures), no fixture keys, zero barony
+RGB overrides; metadata1.20.1.2/date867.1.1. No paint yet. Next ordinary Dynasty
+Realms click, separate R009_CLEAN_REALMS_FIRST save and screenshot, same pause/
+zoom/position; preserve snapshot before switching. BASE must remain unchanged.
+
+## R-009 / #9 — clean startup1 accepted; fresh baseline next — 2026-10-27
+
+User menu. Private START1 snapshot19 captures five complete stable logs/config.
+Actual checksum version1.20.1.2, DEV mount and DEV-only selection verified.
+Error/GUI/conflict empty;12 bookmark/holy-order warnings mirrored in debug/game
+match prestart signatures. Read-only zero-warning assumption corrected to actual
+signature comparison. Startup-only acceptance, no RGB PASS. Next user starts new
+paused Ismail867 in Bukhara, no Dynasty click, native Realms screenshot and local
+R009_CLEAN_BASE save. Preserve exact bytes before painting; old experiments intact.
+
+## R-009 / #9 — clean DEV installation accepted; first startup next — 2026-10-27
+
+Stage18 consumed after all6 output/result hashes, actual17-member backup hashes,
+current live8/candidate equality and unchanged wrapper/config verified. DEV only
+enabled, P empty. Exactly2 obsolete fixture files removed; no runtime test yet.
+Recovered executor orchestration and GUI manifest-schema errors recorded/triaged;
+completed report retained with administrative self-review placement caveat.
+Frozen archive is PRESTART1 baseline. User next starts through Steam, stops at
+main menu, reports menu; fresh1.20.1.2 DEV mount/parser/GUI/conflict gate precedes
+new paused Ismail867 and R009_CLEAN_* saves. Do not load old experiments.
+No beta/parent closure or publication; approved two-start cycle continues.
+
+## R-009 / #9 — clean preparation accepted; mechanical installation READY
+
+Stage17 consumed after independent R2B ACCEPTED/one correction, 16 actual output
+hashes/result verified, all five cycle reports and current report GUI-triaged.
+GUI operational protocol separately clarifies ordinary refresh emits no
+COMPUTE_RECEIPT; action/view/save outcome evidence retained, no runtime/source
+change or safety waiver. Reviewed originals preserved. Runtime criteria pending.
+Next stage18 preserves state/logs and removes only two hash-matched obsolete
+fixture definitions from current10, yielding exact approved8. User-declared GZ LO
+persists; no game action before accepted install receipt. No beta/parent closure.
+
+## R-009 / #9 — unified closeout cycle approved; preparation in progress
+
+User approved one coordinated cycle: cleaned DEV/support contract, one combined
+independent review, mechanical installation, two successful user-only game starts
+(enabled and absent), one final evidence verification, cost-backed closure materials.
+GUI freezes fixture-free fresh-save support; old experimental saves preserved,
+not migrated. Existing accepted RGB/cardinalate evidence reused. No R-005 detector,
+production T-014 or alternative renderer work; no beta PASS/publication permission.
+Preparation only; user-declared GZ LO continues. No live installation or game action.
+
+## R-009 / #9 — temporary cardinalate experiment cleaned up and accepted
+
+Stage16 consumed ACCEPTED. Installed DEV independently verified original10files;
+sentinel2absent, wrapper/config/logs unchanged. All19currentbackup hashes and14
+ownedoutputs verified. Evidence saves/source/logs retained. No new game action
+or repeated copying test required. Ordinary play must use untouched saves, not
+modified CONTROL/TREATMENT experimental branches. Parent remains OPEN: explicit
+release/lifecycle and legacy-fixture compatibility judgment/cost closeout pending.
+No beta PASS/global harm claim or automatic renderer replacement research.
+
+## R-009 / #9 — user GZ LO; temporary sentinel cleanup READY
+
+User closed game/left launcher. R009-SENTINEL-CLEANUP-20261026-16 READY:
+verify current12 DEV, preserve state/logs, remove only hash-matched sentinel2,
+verify original10 against trusted preinstall archive with correct DEV descriptor.
+No save/log/source evidence deletion, old fixture cleanup, config/game action or
+beta safety decision. User keeps game closed until GUI reviews cleanup receipt.
+
+## R-009 / #9 — actual color propagation verified; temporary sentinel cleanup next
+
+Stage15 attempt2 consumed ACCEPTED. Actual vanilla dynamic cardinalate copies
+source baronyRGB: CONTROL Vaticano211/37/173 ->209/31/167; TREATMENT Farfa23/191/47
+->18/186/45. New landless markers/source references/raw hashes verified. Both
+constructed Papal-recipient runs have known primary-tier errors; no ordinary-
+appointment/normal UI harm/global safety claim. No further copy test needed.
+Next user closes game and leaves launcher; mechanical cleanup will remove only
+2sentinel files and restore verified original10 DEV state. All evidence retained;
+CONTROL/TREATMENT disposable. Parent release gate unresolved, no closeout.
+
+## R-009 / #9 — paired-save verification retry READY, inputs directly verified
+
+Stage15 attempt1 FAILED claiming missing frozen saves. GUI directly opened all3
+exact declared paths and verified their unchanged frozen hashes; no restoration
+or substitution needed. Filtered ignored-file discovery may omit saves, but prior
+cause not proved. Same handoff explicitly retried, attempt1 archived; attempt2
+READY with frozen scope/inputs and historical33% high-water mark retained.
+CLI must use exact STATUS paths relative to repository root. No new game tests.
+
+## R-009 / #9 — both cardinal sentinel runs captured; final paired verification READY
+
+TREATMENT preserved unchanged. COMPLETE interval fc108162e70ca871 shows BASE
+load before correct .2 command and actual new/temple/landless receipts. Selected
+source Farfa differs from CONTROL Vaticano; uniform candidate RGB designed for
+that randomness. Both runs have Papal primary-tier setup error; no clean ordinary
+appointment/material-harm claim. R009-CARDINAL-VERIFY-20261026-15 compares three
+frozen saves/logs and resolves actual source references and RGB. No new game action.
+
+## R-009 / #9 — actual CONTROL copy observed; same-BASE treatment next
+
+User ran event .1; COMPLETE logs show guards/new temple cardinalate/landless
+receipts. CONTROL saved/copied unchanged. Targeted original records: b_vaticano
+211/37/173 -> new x_script_509209/31/167, landless, absent in BASE. Later vanilla
+primary-title change errors because constructed recipient Pope has kingdomtier;
+not clean/ordinary appointment or RGB harm proof. Next user reloads exact BASE,
+pauses, runs .2 16181 and saves R009_CARDINAL_TREATMENT. No code change.
+
+## R-009 / #9 — console syntax and disposable BASE verified; control run next
+
+User help output confirms event [eventid] [character]. Exact BASE saved privately
+unchanged, metadata 1.20.1.2/867.1.1; played-character ID16181 independently read.
+Next user-only command event dynmap_r009_cardinal_test.1 16181, save separate
+R009_CARDINAL_CONTROL paused and report console output. BASE never overwritten;
+no treatment until actual control branch/abort receipt checked. Prior startup
+known orphan diagnostics retained; no runtime success yet.
+
+## R-009 / #9 — fresh sentinel startup verified; console help before event
+
+Fresh 1.20.1.2 DEV mount and two test events loaded. Startup error channel has
+exactly two orphaned manual-event diagnostics; installed schema documents this
+unreferenced debug-event category. GUI accepts known disposable-test exception,
+no clean-start/production claim. GUI/conflict channels empty. No test event ran.
+Next user-only checkpoint: new paused Ismail 867 disposable game, no Dynasty,
+R009_CARDINAL_BASE save, console help event response. Verify command before
+actual sentinel. No reinstallation just to silence diagnostic; code unchanged.
+
+## R-009 / #9 — sentinel installation accepted; fresh startup pending
+
+Stage10 consumed ACCEPTED. Actual twelve-file source/installed equality, ten
+unchanged originals and seventeen-member backup hashes independently verified.
+DEV wrapper retained, supported_version1.20.1.2, persisted DEV only. Added event/
+effect only, no runtime validation. Next user starts game via Steam launcher,
+stops at main menu; verify fresh build/mount/parser/error/GUI/conflict gate
+before loading or running test. Console event syntax still must be verified.
+No beta-safety conclusion or task closeout.
+
+## R-009 / #9 — install stage09 safely failed; corrected stage10 READY
+
+Stage09 FAILED before mutations because its source carried historical R016
+name but installed DEV descriptor correctly differed; exact equality plus
+no-descriptor-write contract was contradictory. GUI preparation error fixed by
+new private twelve-file staging: ONLY descriptor replaced with exact live DEV
+bytes; all eleven code/payload files unchanged from accepted candidate. Source
+preflight PASS. Current installed ten-file baseline untouched, sentinel absent,
+wrapper correct and DEV only enabled. Stage09 preserved FAILED, no rollback needed.
+R009-CARDINAL-INSTALL-20261026-10 READY supersedes changed install contract.
+User GZ LO/DEV enabled persists; no new confirmation or game start requested.
+
+## R-009 / #9 — user GZ LO / DEV enabled; mechanical install READY
+
+User declares game closed, launcher open and patch enabled. Exact live state
+will not be inspected through processes/UI. R009-CARDINAL-INSTALL-20261026-09
+installs accepted two-file sentinel into existing DEV only after verified
+backup and ten-file baseline check, then twelve-file equality/preflight and
+persisted selection evidence. No new variant, code revision or game action.
+User must not start until GUI reviews receipt and gives fresh startup direction.
+
+## R-009 / #9 — sentinel source accepted; game-closed state needed for install
+
+R009-CARDINAL-PREPARE-20261026-08 consumed after independent R2 ACCEPTED/one C1
+correction. Actual fourteen hashes verified, ten existing runtime files unchanged.
+Five review-cycle reports plus current executor triaged. Candidate source-only;
+no install/runtime/safety acceptance. Next user prerequisite: close CK3 normally,
+launcher via Steam available, then report state. Mechanical existing-DEV install
+and fresh startup follow; event console grammar verified before actual execution.
+No new permanent variant or beta approval.
+
+## R-009 / #9 — guarded cardinalate sentinel source preparation READY
+
+GUI accepted/consumed R009-CARDINAL-PROTOCOL-20261026-07 as corrected source
+logic plus bounded gap. GUI found current shipped clear_global_variable_list;
+selects empty test list + actual eligibility + unchanged vanilla effect through
+manual hidden event, narrower than ordinary appointment UI. Source-only
+R009-CARDINAL-PREPARE-20261026-08 READY with independent Sol/Medium review,
+MAX_CYCLES=2 selected. Private DEV copy only; no install/game/save action or
+permanent mod identity. Original ten runtime files unchanged, two additions.
+Beta harmless-persistence gate remains unresolved; no replacement research.
+
+## R-009 / #9 — owned-barony color UI absent; cardinalate protocol correction next
+
+User explicitly confirms county customization shows color, owned Bukhara castle
+holding customization does not; panel screenshot supports title-tier distinction.
+Prior green swatch is county, not barony. Bounded absent-DEV barony UI observation
+accepted, no repeat screenshot needed. Next source-only handoff corrects actual
+new-cardinalate positive control; no game/save change requested. Beta harmless-
+persistence assessment still incomplete; legacy fixtures remain separate debt.
+
+## R-009 / #9 — customization crop received; actual title tier unresolved
+
+Map Color visible for title named Bukhara, showing green; cropped identity does
+not distinguish barony from county. Expected saved b_bukhara RGB beige. Request
+full holding/customization context only, no edits/save or new protocol. No
+barony-reader/terrain-harm conclusion. Private screenshots preserved unchanged.
+
+## R-009 / #9 — barony customization visibility next; cardinalate setup deferred
+
+Consumer handoff R009-CONSUMERS-VERIFY-20261026-06 consumed CHANGES REQUIRED:
+source/UI facts accepted, proposed suppression-only new-cardinalate control is
+incorrect (outer vacancy branch ignores suppression). No runtime test ran.
+Next user-only check: absent-DEV DISABLED_PAINTED, paused Ismail, Bukhara holding
+edit-title window screenshot for Map Color visibility; no edits/save. Missing
+button -> holding panel screenshot. No cardinal setup, broad research or beta pass.
+
+## R-009 / #9 — concrete color consumers found; targeted test design READY
+
+User supplied external research. GUI confirmed installed cardinalate effect
+copies temple/capital barony RGB to a dynamic title and marks it landless;
+customization color picker is visibility-guarded. No runtime/UI harm established.
+R009-CONSUMERS-VERIFY-20261026-06 verifies conditions, normal visible surfaces
+and minimum tests with positive controls before any game action. Harmless
+persistence already allowed by #9; no broad renderer investigation or mandatory
+restore assumption. Beta gate unresolved; legacy fixtures remain separate debt.
+
+## R-009 / #9 — current beta safety BLOCKED; checkpoint accepted
+
+GUI accepted/consumed R009-DISABLED-VERIFY-20261026-05 with explicit prose
+corrections. DISABLED_BEFORE remains without barony RGB; DISABLED_PAINTED retains
+all 11,297 painted values. Both fresh-process absent-DEV loads succeed and tested
+Realms appearance accepted, but both emit the same missing legacy template/
+blank duplicate errors and lose three named DEV title keys. Actual RGB writer
+has no fixture references in frozen ten-file source. No inherent RGB harm proof.
+Current safe-exit/harmless-persistence contract unproven, so CURRENT RENDERER
+BLOCKED for beta; R-009 remains OPEN, no closeout/publication. Stop repeated
+persistence tests and no automatic replacement-renderer search. Next decision:
+supported safe-exit/harmlessness contract, plus separate new-beta/legacy-save
+compatibility boundary before packaging. No cleanup/migration authorized.
+Game last user-reported in disabled-DEV test; no further game action requested.
+
+## R-009 / #9 — absent-DEV loads visually good; save/error verification READY
+
+User completed BEFORE and PAINTED loads without DEV and supplied Realms-visible
+screenshots; reports good appearance and missing-mod warning on original saves.
+Both DISABLED saves/all images privately preserved unchanged. COMPLETE checkpoint
+ebc327ee39060e2d includes named missing DEV fixture templates, duplicate-title
+messages and court-scene errors; no clean removal acceptance. New bounded
+R009-DISABLED-VERIFY-20261026-05 compares exact saved RGB and control-vs-painted
+log evidence, distinguishing legacy fixture compatibility from RGB behavior.
+No new game action or implementation. Beta gate remains unsatisfied.
+
+## R-009 / #9 — fresh process without DEV verified; control/painted loads next
+
+User reached main menu. Fresh 15:10:57 startup and explicit 1.20.1.2 verified;
+no DEV mount/project identifier, persisted enabled_mods empty. Startup
+error/gui/conflict channels empty; historical-pattern warnings only. Snapshot
+R009-DISABLED-STARTUP-20261026-01 and pre-load baseline retained privately.
+Next user-only checkpoint: load BEFORE control and PAINTED with same ordinary
+Realms view, full-window comparison screenshots, separate DISABLED_BEFORE and
+DISABLED_PAINTED saves. No payload deletion or safe-removal acceptance yet.
+
+## R-009 / #9 — exit/reload retains painted RGB; absent-DEV startup next
+
+GUI accepted/consumed R009-EXIT-RELOAD-VERIFY-20261026-04. PAINTED, EXITED and
+RELOADED have identical canonical color maps across 18,193 titles; BEFORE
+changes 11,297 baronies. Verified actual hashes/wrapper/raw samples. No native
+RGB or intermediate callback proof; logs retain unattributed court-scene errors.
+Next user action: exit CK3 normally, launcher via Steam, disable DEV only in
+existing test playset, start fresh process and stop at main menu. Verify fresh
+actual mounts/persisted selection before loading PAINTED. No deletion/uninstall
+or broad renderer work; beta gate still unsatisfied, parent OPEN.
+
+## R-009 / #9 — EXITED and RELOADED preserved; comparison READY
+
+User corrected missing-save oversight; exact local RELOADED now preserved.
+Explicit no-Dynasty-click-after-load confirmation applies. Both new saves and
+supplied image are copied privately with originals unchanged. Fresh overlapping
+checkpoint 3bf8d66cfe57c1c5 is COMPLETE; original ced31ef4152e90a4 incomplete
+capture preserved, not combined. Court-scene errors present, no clean claim.
+R009-EXIT-RELOAD-VERIFY-20261026-04 will reuse accepted parser on four frozen
+saves to separate exit state from DEV-enabled reload. User leaves game paused.
+No code/install/config or disabled-mod test; beta gate remains unsatisfied.
+
+## R-009 / #9 — exit/reload report received; reload save filename pending
+
+User explicitly confirms no Dynasty click after load and before saving.
+R009_EXITED and supplied reload screenshot preserved privately unchanged.
+Exact local R009_RELOADED missing; asked for actual name/cloud location;
+no historical spaced R009 saves substituted. Dependent comparison awaits file.
+Checkpoint ced31ef4152e90a4 INCOMPLETE at partial debug line, court-scene errors
+present; no clean-run or safety acceptance. User should leave game paused.
+
+## R-009 / #9 — corrected save comparison accepted; exit/reload test next
+
+GUI accepted/consumed R009-SAVE-FIX-20261026-03. Actual output hashes, boundary
+regressions and raw samples verified. Frozen saves: 18,193 actual records;
+11,297 baronies gain explicit RGB; no standard county/higher color changes;
+510 unknown-prefix colors unchanged. Previous aggregates rejected/superseded.
+Next user actions: paused post-exit R009_EXITED save, then load R009_PAINTED
+with DEV enabled, ordinary native view/selector screenshot before repaint and
+R009_RELOADED save. User alone operates game. No fresh-process disabled-mod
+test or safety acceptance; beta gate remains unsatisfied.
+
+## R-009 / #9 — save-verification correction READY; game stays paused
+
+GUI consumed R009-SAVE-VERIFY-20261026-02 CHANGES REQUIRED: required outputs
+misplaced with null provenance; parser spills RGB across title records; claim
+that neutral RGB is absent from source contradicted by source line 2042.
+Reported county/global counts unaccepted. Actual raw Bukhara/London fields
+still prove bounded serialization. New R009-SAVE-FIX-20261026-03 reuses same
+frozen copies/logs and corrects only this analysis. User need not repeat tests.
+No next game action until corrected review; beta gate remains unsatisfied.
+
+## R-009 / #9 — first user test complete; save verification READY
+
+User reports native appearance looks good after Dynasty view/exit and supplies
+three screenshots. First/third show similar political/dynastic realm labels;
+mode selector is cropped, so exact native barony-RGB restoration is unproven.
+Designated BEFORE/PAINTED saves and all screenshots preserved byte-for-byte.
+Complete log interval fb953f4ae39e363e contains initialization/error entries,
+not a clean interval. Next bounded verification handoff is
+`R009-SAVE-VERIFY-20261026-02`: compare saved title RGB and inspect relevant
+log timing/attribution. User should leave game paused; no new action requested.
+No mod change. Parent remains open; beta safety not accepted.
+
+## R-009 / #9 — fresh DEV startup gate passed; first comparison pending
+
+User reached main menu on 2026-10-26. Bounded fresh startup confirms explicit
+1.20.1.2 and actual DEV mount; persisted selection is DEV only. Error/conflicts/
+gui_warnings empty. Twelve historical-pattern bookmark/holy-order warnings;
+no whole-run-clean claim. Private capture R009-STARTUP-20261026-01 retained.
+Next: user alone creates paused disposable Ismail 867; native-barony baseline
+and BEFORE save, Dynasty Realms paint/PAINTED save, native exit comparison.
+No load, disabled-mod test or safety acceptance yet.
+
+## R-009 / #9 — research checkpoint reviewed, runtime characterization next
+
+GUI reviewed and consumed `R009-RESTORE-RESEARCH-20261026-01` on 2026-10-26.
+Substantive bounded research accepted; receipt formatting remains a preserved
+CHANGES REQUIRED finding. Actual outputs/result and decisive API/schema hashes
+verified. Current DEV directly mutates shared title RGB; cleanup does not restore
+it. No supported reset/arbitrary live-original capture was identified in scoped
+evidence; generated docs are still 1.20.1.1, not fresh 1.20.1.2 proof.
+Beta gate remains unsatisfied; no global engine-impossibility claim.
+Next GUI-directed test is a fixed-title native/paint/exit comparison plus
+painted disposable-save reload and fresh-process disabled-DEV load. User app
+state pending; no game action yet requested. No code/install/publication change.
+See [canonical checkpoint](tasks/R-009-barony-color-safety.md).
+
 ## T-019 / #45 — DEV cleanup complete; production deferred to T-014
 
 User-approved narrowed scope is complete on 2026-10-26. Dynasty Map [DEV]

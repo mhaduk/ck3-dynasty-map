@@ -793,7 +793,14 @@
         "T023-FIX-20261025-03",
         "T023-CLOSEOUT-20261025-09",
         "T018-ROOTDOWN-INSTALL-20261025-07",
-        "T018-PALETTE-INSTALL-20261025-13"
+        "T018-PALETTE-INSTALL-20261025-13",
+        "R009-RESTORE-RESEARCH-20261026-01",
+        "R009-SAVE-FIX-20261026-03",
+        "R009-DISABLED-VERIFY-20261026-05",
+        "R009-CARDINAL-PROTOCOL-20261026-07",
+        "R009-CARDINAL-PREPARE-20261026-08",
+        "R009-CARDINAL-INSTALL-20261026-10",
+        "R009-CARDINAL-VERIFY-20261026-15"
       ],
       "affected_tasks": [
         "T021-COST-COLLECT-20261025-03",
@@ -801,16 +808,23 @@
         "T023-FIX-20261025-03",
         "T023-CLOSEOUT-20261025-09",
         "T018-ROOTDOWN-INSTALL-20261025-07",
-        "T018-PALETTE-INSTALL-20261025-13"
+        "T018-PALETTE-INSTALL-20261025-13",
+        "R009-RESTORE-RESEARCH-20261026-01",
+        "R009-SAVE-FIX-20261026-03",
+        "R009-DISABLED-VERIFY-20261026-05",
+        "R009-CARDINAL-PROTOCOL-20261026-07",
+        "R009-CARDINAL-PREPARE-20261026-08",
+        "R009-CARDINAL-INSTALL-20261026-10",
+        "R009-CARDINAL-VERIFY-20261026-15"
       ],
       "boundary_history": [],
       "category": "errors_recovery",
       "decision": {
-        "date": "2026-10-25",
+        "date": "2026-10-26",
         "evidence": [
-          "handoff:T018-PALETTE-INSTALL-20261025-13"
+          "handoff:R009-CARDINAL-VERIFY-20261026-15"
         ],
-        "rationale": "Known revision handling recurrence; no new helper work authorized.",
+        "rationale": "Factual recovered verification issue; no optimization work or effectiveness claim.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0007",
@@ -965,41 +979,209 @@
           "task": "T018-PALETTE-INSTALL-20261025-13",
           "text": "Installer recovered a rejected stale milestone revision by rereading persisted status. Backup and installed/config hashes independently verified; no stale transition executed.",
           "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-RESTORE-RESEARCH-20261026-01"
+            ],
+            "rationale": "Record recovery or format defect; no optimization implementation authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-RESTORE-RESEARCH-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-RESTORE-RESEARCH-20261026-01",
+          "text": "Persisted revision was reread and required owner supplied; no failed command advanced state.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-SAVE-FIX-20261026-03"
+            ],
+            "rationale": "Record actual recovery only; no workflow optimization or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-SAVE-FIX-20261026-03"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-SAVE-FIX-20261026-03",
+          "text": "Executor reread persisted revision and continued; no failed transition advanced state.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-DISABLED-VERIFY-20261026-05"
+            ],
+            "rationale": "Retain observed recovery; no optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-DISABLED-VERIFY-20261026-05"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-DISABLED-VERIFY-20261026-05",
+          "text": "Executor supplied correct owner/revision; rejected lifecycle calls did not change state.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CARDINAL-PROTOCOL-20261026-07"
+            ],
+            "rationale": "Record recovery; no optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CARDINAL-PROTOCOL-20261026-07"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CARDINAL-PROTOCOL-20261026-07",
+          "text": "Read persisted status and used supported resolve/validate, then correct current progress revision.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CARDINAL-PREPARE-20261026-08"
+            ],
+            "rationale": "Recovered execution issue, no optimization effectiveness inference."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CARDINAL-PREPARE-20261026-08"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CARDINAL-PREPARE-20261026-08",
+          "text": "Executor reread current revision and supplied result at required administrative location with frozen provenance. No candidate bytes changed by rejected commands.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CARDINAL-INSTALL-20261026-10"
+            ],
+            "rationale": "Retain factual completion recovery; no optimization or effectiveness inference."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CARDINAL-INSTALL-20261026-10"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CARDINAL-INSTALL-20261026-10",
+          "text": "Installed state needed no rollback; executor corrected current revision and canonical result/provenance/review placement after helper rejections.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CARDINAL-VERIFY-20261026-15"
+            ],
+            "rationale": "Factual recovered verification issue; no optimization work or effectiveness claim."
+          },
+          "attempt": 2,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CARDINAL-VERIFY-20261026-15"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CARDINAL-VERIFY-20261026-15",
+          "text": "Executor supplied current required revision after rejection; external py_compile cache write denial recovered using in-memory compile with no scope expansion.",
+          "trend": "REPEATED"
         }
       ],
       "key": "handoff.stale-progress-revision",
-      "last_seen": "2026-10-25",
+      "last_seen": "2026-10-26",
       "link_history": [],
       "linked_optimization_task": null,
       "metric_totals": {
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 6
+          "unknown_count": 13
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 6
+          "unknown_count": 13
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 6
+          "unknown_count": 13
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 6
+          "unknown_count": 13
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 6
+          "unknown_count": 13
         }
       },
       "metrics": {},
-      "occurrence_count": 6,
+      "occurrence_count": 13,
       "schema_history": [],
       "status": "observing",
       "summary": "A stale progress update was rejected; CLI reread the persisted revision and continued without state mutation.",
@@ -1090,20 +1272,23 @@
     },
     {
       "affected_executions": [
-        "T023-EXECUTE-20261025-01"
+        "T023-EXECUTE-20261025-01",
+        "R009-SAVE-VERIFY-20261026-02",
+        "R009-CARDINAL-PROTOCOL-20261026-07"
       ],
       "affected_tasks": [
-        "T023-EXECUTE-20261025-01"
+        "T023-EXECUTE-20261025-01",
+        "R009-SAVE-VERIFY-20261026-02",
+        "R009-CARDINAL-PROTOCOL-20261026-07"
       ],
       "boundary_history": [],
       "category": "errors_recovery",
       "decision": {
-        "date": "2026-10-25",
+        "date": "2026-10-26",
         "evidence": [
-          "handoff:T023-EXECUTE-20261025-01",
-          "evidence:T023-GUI-REVIEW-20261025-01"
+          "handoff:R009-CARDINAL-PROTOCOL-20261026-07"
         ],
-        "rationale": "Record execution and review evidence; current authorized correction addresses task defects. No separate optimization is authorized.",
+        "rationale": "Record recovery; no optimization work or effectiveness claim.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0009",
@@ -1134,45 +1319,93 @@
           "task": "T023-EXECUTE-20261025-01",
           "text": "CLI moved two evidence files to declared sibling output paths before successful completion.",
           "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-SAVE-VERIFY-20261026-02"
+            ],
+            "rationale": "Preserve factual review defect; bounded correction required, no workflow optimization authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-SAVE-VERIFY-20261026-02"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-SAVE-VERIFY-20261026-02",
+          "text": "Dossier, evidence and helper exist under tasks while every owned output is absent; preserve real files with GUI hashes and require corrected output provenance.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CARDINAL-PROTOCOL-20261026-07"
+            ],
+            "rationale": "Record recovery; no optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CARDINAL-PROTOCOL-20261026-07"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CARDINAL-PROTOCOL-20261026-07",
+          "text": "Initial administrative placement recovered to exact declared private output files; final output hashes independently match.",
+          "trend": "REPEATED"
         }
       ],
       "key": "handoff.exact-output-directory",
-      "last_seen": "2026-10-25",
+      "last_seen": "2026-10-26",
       "link_history": [],
       "linked_optimization_task": null,
       "metric_totals": {
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 3
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 3
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 3
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 3
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 3
         }
       },
       "metrics": {},
-      "occurrence_count": 1,
+      "occurrence_count": 3,
       "schema_history": [],
       "status": "observing",
       "summary": "Required outputs were initially written into administration paths.",
-      "trend": "NEW"
+      "trend": "REPEATED"
     },
     {
       "affected_executions": [
@@ -1937,19 +2170,21 @@
     },
     {
       "affected_executions": [
-        "T018-BASELINE-20261025-01"
+        "T018-BASELINE-20261025-01",
+        "R009-RESTORE-RESEARCH-20261026-01"
       ],
       "affected_tasks": [
-        "T018-BASELINE-20261025-01"
+        "T018-BASELINE-20261025-01",
+        "R009-RESTORE-RESEARCH-20261026-01"
       ],
       "boundary_history": [],
       "category": "scope_process_anomalies",
       "decision": {
-        "date": "2026-10-25",
+        "date": "2026-10-26",
         "evidence": [
-          "handoff:T018-BASELINE-20261025-01"
+          "handoff:R009-RESTORE-RESEARCH-20261026-01"
         ],
-        "rationale": "Preparation correction requires no directory hashing feature or new implementation.",
+        "rationale": "Record recovery or format defect; no optimization implementation authorized.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0015",
@@ -1978,45 +2213,69 @@
           "task": "T018-BASELINE-20261025-01",
           "text": "Evidence collection succeeded but completion rejected an owned archive directory. GUI preserved FAILED status and independently verified ten source/archive/installed files. Future contracts enumerate files.",
           "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-RESTORE-RESEARCH-20261026-01"
+            ],
+            "rationale": "Record recovery or format defect; no optimization implementation authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-RESTORE-RESEARCH-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-RESTORE-RESEARCH-20261026-01",
+          "text": "GUI preparation used folder wording for a file-only owned path; executor recovered by writing one evidence index file.",
+          "trend": "REPEATED"
         }
       ],
       "key": "handoff.owned-output-directory-type",
-      "last_seen": "2026-10-25",
+      "last_seen": "2026-10-26",
       "link_history": [],
       "linked_optimization_task": null,
       "metric_totals": {
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 2
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 2
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 2
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 2
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 1
+          "unknown_count": 2
         }
       },
       "metrics": {},
-      "occurrence_count": 1,
+      "occurrence_count": 2,
       "schema_history": [],
       "status": "observing",
       "summary": "GUI assigned an owned directory unsupported by file-only finalization",
-      "trend": "NEW"
+      "trend": "REPEATED"
     },
     {
       "affected_executions": [
@@ -3433,6 +3692,1915 @@
       "status": "observing",
       "summary": "Local previews do not establish live GitHub Wiki rendering",
       "trend": "REPEATED"
+    },
+    {
+      "affected_executions": [
+        "R009-RESTORE-RESEARCH-20261026-01"
+      ],
+      "affected_tasks": [
+        "R009-RESTORE-RESEARCH-20261026-01"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-RESTORE-RESEARCH-20261026-01"
+        ],
+        "rationale": "Record recovery or format defect; no optimization implementation authorized.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0031",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-RESTORE-RESEARCH-20261026-01"
+            ],
+            "rationale": "Record recovery or format defect; no optimization implementation authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-RESTORE-RESEARCH-20261026-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-RESTORE-RESEARCH-20261026-01",
+          "text": "Provenance and factual review were outside Result, followed by a literal escaped duplicate; semantic review preserves original and records administrative defect.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.result-fence-placement",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Result retained misplaced JSON blocks and a literal escaped duplicate",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-SAVE-VERIFY-20261026-02"
+      ],
+      "affected_tasks": [
+        "R009-SAVE-VERIFY-20261026-02"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-SAVE-VERIFY-20261026-02"
+        ],
+        "rationale": "Preserve factual review defect; bounded correction required, no workflow optimization authorized.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0032",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-SAVE-VERIFY-20261026-02"
+            ],
+            "rationale": "Preserve factual review defect; bounded correction required, no workflow optimization authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-SAVE-VERIFY-20261026-02"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-SAVE-VERIFY-20261026-02",
+          "text": "For c_kara_asirgan and c_garabogazkol the helper reports RGB but the actual brace-bounded record has no color. County totals and all global counts require a corrected parser and boundary negative cases.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "verification.title-record-boundary",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Title RGB parser spills across record boundaries",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-SAVE-VERIFY-20261026-02"
+      ],
+      "affected_tasks": [
+        "R009-SAVE-VERIFY-20261026-02"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-SAVE-VERIFY-20261026-02"
+        ],
+        "rationale": "Preserve factual review defect; bounded correction required, no workflow optimization authorized.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0033",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-SAVE-VERIFY-20261026-02"
+            ],
+            "rationale": "Preserve factual review defect; bounded correction required, no workflow optimization authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-SAVE-VERIFY-20261026-02"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-SAVE-VERIFY-20261026-02",
+          "text": "Frozen effects contain literal 65 70 80 at line 2042 inside every_barony neutral-base writer. Correct source attribution without renderer research.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "verification.source-negative-claim",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Claim of missing neutral RGB contradicted by frozen source",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-SAVE-FIX-20261026-03"
+      ],
+      "affected_tasks": [
+        "R009-SAVE-FIX-20261026-03"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-SAVE-FIX-20261026-03"
+        ],
+        "rationale": "Record actual recovery only; no workflow optimization or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0034",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-SAVE-FIX-20261026-03"
+            ],
+            "rationale": "Record actual recovery only; no workflow optimization or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-SAVE-FIX-20261026-03"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-SAVE-FIX-20261026-03",
+          "text": "Outer-wrapper selection, RGB cursor, inline fixture shape and sibling evidence root errors recovered; final regression and exact output hashes verified.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "verification.title-parser-fixture-recovery",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Nested save structure and faithful fixtures required bounded parser corrections",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-EXIT-RELOAD-VERIFY-20261026-04"
+      ],
+      "affected_tasks": [
+        "R009-EXIT-RELOAD-VERIFY-20261026-04"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-EXIT-RELOAD-VERIFY-20261026-04"
+        ],
+        "rationale": "Factual process recovery only, no optimization implementation or effectiveness inference.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0035",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-EXIT-RELOAD-VERIFY-20261026-04"
+            ],
+            "rationale": "Factual process recovery only, no optimization implementation or effectiveness inference."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-EXIT-RELOAD-VERIFY-20261026-04"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-EXIT-RELOAD-VERIFY-20261026-04",
+          "text": "Corrected wrapper path ancestry and decoded logs before text regex tally; a progress-order rejection was retried without state mutation. Verified exact output hashes and positive exit/reload samples.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "verification.wrapper-root-and-regex-recovery",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Comparison wrapper recovered root ancestry and bytes/text regex mistakes",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-DISABLED-VERIFY-20261026-05"
+      ],
+      "affected_tasks": [
+        "R009-DISABLED-VERIFY-20261026-05"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-DISABLED-VERIFY-20261026-05"
+        ],
+        "rationale": "Retain observed recovery; no optimization work or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0036",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-DISABLED-VERIFY-20261026-05"
+            ],
+            "rationale": "Retain observed recovery; no optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-DISABLED-VERIFY-20261026-05"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-DISABLED-VERIFY-20261026-05",
+          "text": "Accepted strict parser stayed unchanged; analysis-only synthetic keys identify/exclude three keyless records, raw original samples confirm boundaries.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "verification.keyless-save-placeholder",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Absent definitions produce three keyless title records requiring bounded adapter",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CONSUMERS-VERIFY-20261026-06"
+      ],
+      "affected_tasks": [
+        "R009-CONSUMERS-VERIFY-20261026-06"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-CONSUMERS-VERIFY-20261026-06"
+        ],
+        "rationale": "Retain concrete source/protocol defect; no workflow optimization implementation or live test.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0037",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CONSUMERS-VERIFY-20261026-06"
+            ],
+            "rationale": "Retain concrete source/protocol defect; no workflow optimization implementation or live test."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CONSUMERS-VERIFY-20261026-06"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CONSUMERS-VERIFY-20261026-06",
+          "text": "Outer any_in_global_list availability predicate ignores suppressed_cardinalate; inner title selection checks it. Suppression alone can enter old-title branch and select nothing, never reaching new-title else_if. GUI rejected that protocol before runtime; source/UI findings remain useful.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "verification.cardinalate-branch-positive-control",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Proposed cardinalate suppression setup does not force the new-title branch",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CARDINAL-PREPARE-20261026-08"
+      ],
+      "affected_tasks": [
+        "R009-CARDINAL-PREPARE-20261026-08"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-CARDINAL-PREPARE-20261026-08"
+        ],
+        "rationale": "Record material review findings; no workflow optimization authorized.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0038",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CARDINAL-PREPARE-20261026-08"
+            ],
+            "rationale": "Record material review findings; no workflow optimization authorized."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CARDINAL-PREPARE-20261026-08"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CARDINAL-PREPARE-20261026-08",
+          "text": "R1 identified incorrect final else pairing and unsupported is_landless title trigger. Original executor corrected both; fresh R2 resolved findings. This is bounded source correction, not runtime proof.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "verification.sentinel-guard-and-title-trigger",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Independent review found mispaired abort branches and unsupported title trigger",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CARDINAL-PREPARE-20261026-08"
+      ],
+      "affected_tasks": [
+        "R009-CARDINAL-PREPARE-20261026-08"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-CARDINAL-PREPARE-20261026-08"
+        ],
+        "rationale": "Factual correction recoveries only.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0039",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CARDINAL-PREPARE-20261026-08"
+            ],
+            "rationale": "Factual correction recoveries only."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CARDINAL-PREPARE-20261026-08"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CARDINAL-PREPARE-20261026-08",
+          "text": "Normalized lifecycle payload path, reread post-authorization revision, and checked actual guard structure instead of assumed line numbers; final source accepted independently.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.correction-payload-and-static-check-recovery",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Correction recovered payload location, stale revision and assumed line-number check",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CARDINAL-VERIFY-20261026-15"
+      ],
+      "affected_tasks": [
+        "R009-CARDINAL-VERIFY-20261026-15"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-CARDINAL-VERIFY-20261026-15"
+        ],
+        "rationale": "Factual recovered verification issue; no optimization work or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0040",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CARDINAL-VERIFY-20261026-15"
+            ],
+            "rationale": "Factual recovered verification issue; no optimization work or effectiveness claim."
+          },
+          "attempt": 2,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CARDINAL-VERIFY-20261026-15"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CARDINAL-VERIFY-20261026-15",
+          "text": "Attempt1 incorrectly treated ignored save binaries as absent. GUI verified unchanged bytes and retried same scope; attempt2 exact-path reads/hashes succeeded without any restored/substitute saves.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.ignored-private-binary-discovery",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Filtered discovery hid frozen private saves; exact-path reads recovered verification",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-SENTINEL-CLEANUP-20261026-16"
+      ],
+      "affected_tasks": [
+        "R009-SENTINEL-CLEANUP-20261026-16"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-SENTINEL-CLEANUP-20261026-16"
+        ],
+        "rationale": "Factual recovered mechanical checks, no optimization implementation or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0041",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-SENTINEL-CLEANUP-20261026-16"
+            ],
+            "rationale": "Factual recovered mechanical checks, no optimization implementation or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-SENTINEL-CLEANUP-20261026-16"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-SENTINEL-CLEANUP-20261026-16",
+          "text": "Executor corrected whitespace-dependent descriptor assertion and actual archive entry count19, plus rejected milestone/revision sequencing. No live mutation by failed commands; verified cleanup ten-file state and19entry hashes.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.cleanup-precondition-and-count-recovery",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Cleanup recovered descriptor-text and backup cardinality checks before removal",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "affected_tasks": [
+        "R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+        ],
+        "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0042",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+            ],
+            "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CLOSE-CYCLE-PREPARE-20261026-17",
+          "text": "Initial execution recovered unsupported pickup, exact report path, mistyped fixture hash and stale progress revision. Strict guards rejected bad operations before their mutations; correct bytes and persisted revision were reused. No optimization-effectiveness claim.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.clean-build-input-guards",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Rejected hash and stale-state attempts recovered before writes",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "affected_tasks": [
+        "R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+        ],
+        "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0043",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+            ],
+            "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CLOSE-CYCLE-PREPARE-20261026-17",
+          "text": "After independent acceptance, GUI source check found ordinary refresh callbacks do not emit COMPUTE_RECEIPT. GUI prepares a separate small operational-protocol correction using action/view and saved RGB evidence, preserving reviewed files and all substantive safety criteria. Candidate code unchanged; no runtime validation yet.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "review.ordinary-refresh-marker-gap",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "GUI found an impossible ordinary-refresh log requirement",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "affected_tasks": [
+        "R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "boundary_history": [],
+      "category": "rework",
+      "decision": {
+        "date": "2026-10-26",
+        "evidence": [
+          "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+        ],
+        "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0044",
+      "first_seen": "2026-10-26",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+            ],
+            "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-26",
+          "evidence": [
+            "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CLOSE-CYCLE-PREPARE-20261026-17",
+          "text": "Independent R1 found missing paired checkpoints, ordinary-action source mapping and unrelated playset preservation. Original executor corrected three documentation/evidence outputs; fresh R2B accepted. JSON-path and patch-operation errors recovered without runtime changes.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.protocol-checkpoints-review",
+      "last_seen": "2026-10-26",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "One correction resolved three protocol findings",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CLEAN-INSTALL-20261026-18"
+      ],
+      "affected_tasks": [
+        "R009-CLEAN-INSTALL-20261026-18"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:R009-CLEAN-INSTALL-20261026-18"
+        ],
+        "rationale": "GUI reviewed recovered mechanical failures and verified actual artifacts; preserve factual evidence only, no new optimization scope.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0045",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CLEAN-INSTALL-20261026-18"
+            ],
+            "rationale": "GUI reviewed recovered mechanical failures and verified actual artifacts; preserve factual evidence only, no new optimization scope."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:R009-CLEAN-INSTALL-20261026-18"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CLEAN-INSTALL-20261026-18",
+          "text": "Executor recovered archive syntax, receipt NameError, stale progress revision and initial provenance omission. Final six outputs, archive members and installed state verified independently. GUI first assumed a generic backup-manifest layout; adapted read-only verifier to actual schema. No failed check changed live state; no optimization effectiveness claim.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.mechanical-install-orchestration",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Mechanical install helper failures recovered before live changes",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CYCLE-DIFF-VERIFY-20261027-25"
+      ],
+      "affected_tasks": [
+        "R009-CYCLE-DIFF-VERIFY-20261027-25"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:R009-CYCLE-DIFF-VERIFY-20261027-25"
+        ],
+        "rationale": "GUI accepts bounded verification and records unresolved repeat criterion; no safety waiver or optimization work.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0046",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CYCLE-DIFF-VERIFY-20261027-25"
+            ],
+            "rationale": "GUI accepts bounded verification and records unresolved repeat criterion; no safety waiver or optimization work."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:R009-CYCLE-DIFF-VERIFY-20261027-25"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CYCLE-DIFF-VERIFY-20261027-25",
+          "text": "Executor recovered unsupported status command, positional progress syntax, stale revision and baseline path confusion using documented list/resolve, flags and frozen manifest. Useful instruction remains exact current status/revision and declared baseline paths. Factual recurrence only; no optimization implementation or savings claim.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.lifecycle-command-syntax-recovery",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Verification recovered unsupported lifecycle syntax and baseline lookup",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CYCLE-DIFF-VERIFY-20261027-25"
+      ],
+      "affected_tasks": [
+        "R009-CYCLE-DIFF-VERIFY-20261027-25"
+      ],
+      "boundary_history": [],
+      "category": "validation_gaps",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:R009-CYCLE-DIFF-VERIFY-20261027-25"
+        ],
+        "rationale": "GUI accepts bounded verification and records unresolved repeat criterion; no safety waiver or optimization work.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0047",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CYCLE-DIFF-VERIFY-20261027-25"
+            ],
+            "rationale": "GUI accepts bounded verification and records unresolved repeat criterion; no safety waiver or optimization work."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:R009-CYCLE-DIFF-VERIFY-20261027-25"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CYCLE-DIFF-VERIFY-20261027-25",
+          "text": "Five frozen saves confirm stable title identities and immediate noncolor title fields. Cycle-end complete RGB map equals first Holdings, differs from first Realms in81 baronies and first My Realm in56. Ordinary callback writer/chronology remains unknown; visual report alone cannot pass repeat safety. GUI uses already-planned native exit/reentry pair as discriminator, no restart or implementation yet.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "renderer.repeat-cycle-unexplained-rgb",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Full repeat-cycle map equals Holdings under Realms label",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CONTEXT-EXIT-PREPARE-20261027-29"
+      ],
+      "affected_tasks": [
+        "R009-CONTEXT-EXIT-PREPARE-20261027-29"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:R009-CONTEXT-EXIT-PREPARE-20261027-29"
+        ],
+        "rationale": "GUI reviewed factual cycle report and independently checked final artifacts; no optimization work/effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0048",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CONTEXT-EXIT-PREPARE-20261027-29"
+            ],
+            "rationale": "GUI reviewed factual cycle report and independently checked final artifacts; no optimization work/effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:R009-CONTEXT-EXIT-PREPARE-20261027-29"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CONTEXT-EXIT-PREPARE-20261027-29",
+          "text": "Executor recovered guessed source root, repository-parent index, canonical macOS temp aliases, stale progress revision and initial receipt grammar/path mistakes. Reproducible candidate and negative path guards subsequently verified by independent reviewer. GUI verifies actual eleven artifacts; recovered attempts are not hidden.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.gui-builder-path-recovery",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Pinned GUI builder path and alias failures recovered",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CONTEXT-EXIT-PREPARE-20261027-29"
+      ],
+      "affected_tasks": [
+        "R009-CONTEXT-EXIT-PREPARE-20261027-29"
+      ],
+      "boundary_history": [],
+      "category": "scope_process_anomalies",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:R009-CONTEXT-EXIT-PREPARE-20261027-29"
+        ],
+        "rationale": "GUI reviewed factual cycle report and independently checked final artifacts; no optimization work/effectiveness claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0049",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CONTEXT-EXIT-PREPARE-20261027-29"
+            ],
+            "rationale": "GUI reviewed factual cycle report and independently checked final artifacts; no optimization work/effectiveness claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:R009-CONTEXT-EXIT-PREPARE-20261027-29"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CONTEXT-EXIT-PREPARE-20261027-29",
+          "text": "Executor recorded candidate milestone complete before candidate creation. Candidate files were subsequently produced and checked before validation; final output hashes and independent review passed. Preserve this reporting defect as an observation, not a false final-runtime claim or optimization implementation.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.premature-progress-completion",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Candidate milestone completed before files were produced",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CONTEXT-EXIT-INSTALL-20261027-30"
+      ],
+      "affected_tasks": [
+        "R009-CONTEXT-EXIT-INSTALL-20261027-30"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:R009-CONTEXT-EXIT-INSTALL-20261027-30"
+        ],
+        "rationale": "GUI explicitly reviews recovered mechanical failures and actual install evidence; runtime proof remains separate.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0050",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CONTEXT-EXIT-INSTALL-20261027-30"
+            ],
+            "rationale": "GUI explicitly reviews recovered mechanical failures and actual install evidence; runtime proof remains separate."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:R009-CONTEXT-EXIT-INSTALL-20261027-30"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CONTEXT-EXIT-INSTALL-20261027-30",
+          "text": "Executor corrected stale progress revision and mistaken preflight comparison enum using persisted state and schema PASS/MATCH. No installation rollback or extra live modification. Final6 outputs,15archive members and exact live8 verified by GUI; no optimization implementation or measured savings.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.preflight-enum-recovery",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Mechanical receipt recovered stale revision and comparison enum",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-CLOSEOUT-PREPARE-20261027-37"
+      ],
+      "affected_tasks": [
+        "R009-CLOSEOUT-PREPARE-20261027-37"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:R009-CLOSEOUT-PREPARE-20261027-37"
+        ],
+        "rationale": "GUI accepts reviewed preparation and independently verified partial priced accounting; factual recovered failures only.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0051",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CLOSEOUT-PREPARE-20261027-37"
+            ],
+            "rationale": "GUI accepts reviewed preparation and independently verified partial priced accounting; factual recovered failures only."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:R009-CLOSEOUT-PREPARE-20261027-37"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-CLOSEOUT-PREPARE-20261027-37",
+          "text": "Executor recovered malformed progress mode/stale revision, source hash transcription, table assertion and Python3.9 archive extraction API mismatch. Independent review and GUI verified all37 actual outputs,50source replay and exact published issue cost table. No premature source/Wiki push or issue closure.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.closeout-orchestration-recovery",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Closeout preparation and archive replay errors recovered",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-GUI-FINALIZE-20261027-39"
+      ],
+      "affected_tasks": [
+        "R009-GUI-FINALIZE-20261027-39"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:R009-CLOSEOUT-PUBLISH-20261027-38"
+        ],
+        "rationale": "GUI-owned factual recovery of expected stale-base stop; no optimization task/effectiveness claim or fabricated executor report.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0052",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CLOSEOUT-PUBLISH-20261027-38"
+            ],
+            "rationale": "GUI-owned factual recovery of expected stale-base stop; no optimization task/effectiveness claim or fabricated executor report."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:R009-CLOSEOUT-PUBLISH-20261027-38"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-GUI-FINALIZE-20261027-39",
+          "text": "CLI stopped correctly on overlapping upstream document change. User requested direct GUI finish. GUI preserved all14 local files, retained upstream narrower renderer scope, applied accepted local result/costs and transferred remaining checks to T025; fast-forward retained upstream commit. Wiki pushed, issue9closedcompleted/51planned read back; source publication verified separately in final receipt.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "publication.upstream-overlap-gui-reconcile",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "GUI reconciled upstream R009 scope before authorized final publication",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "R009-GUI-FINALIZE-20261027-39"
+      ],
+      "affected_tasks": [
+        "R009-GUI-FINALIZE-20261027-39"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:R009-CLOSEOUT-PUBLISH-20261027-38"
+        ],
+        "rationale": "Factual final-publication guard/recovery only; no workflow optimization implementation or new task.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0053",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:R009-CLOSEOUT-PUBLISH-20261027-38"
+            ],
+            "rationale": "Factual final-publication guard/recovery only; no workflow optimization implementation or new task."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:R009-CLOSEOUT-PUBLISH-20261027-38"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "R009-GUI-FINALIZE-20261027-39",
+          "text": "Final staged privacy/whitespace gate caught two Markdown hard-break trailing spaces in the new T025canonical record (untracked file was absent from earlier unstaged diff check). Commit/push stopped before any source publication. Removed only those trailing spaces, retained exact staged14path guard and resumed only the authorized staged set. Useful instruction: validate new files after staging, not only tracked unstaged diff.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "publication.untracked-markdown-whitespace-gate",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Staged gate caught hard-break spaces missed before new-file staging",
+      "trend": "NEW"
     }
   ],
   "ledger": [
@@ -4357,6 +6525,506 @@
       "observation_keys": [],
       "rationale": "Current executor report explicitly reviewed with EXEC-C-R2; ordinary receipt identity retained without duplicating cycle observations.",
       "report_sha256": "43985d948599d9ceed23da21025e700978e96676b81acec8d99bfcf21e0d447e"
+    },
+    {
+      "content_sha256": "c614f76a4558fbfbc44bee3c7f37e011091213b7c796cf7ca5a908d084107679",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-RESTORE-RESEARCH-20261026-01"
+      ],
+      "id": "5659d53fc0c5a8345de5fcf6279d9917f9857cc75ed755d83d5d4f8a6d4db6f9",
+      "identity": "R009-RESTORE-RESEARCH-20261026-01:1",
+      "observation_keys": [
+        "handoff.stale-progress-revision",
+        "handoff.owned-output-directory-type",
+        "handoff.result-fence-placement"
+      ],
+      "rationale": "Bounded research substantively useful; tool recovery and report format defects retained, no effectiveness claim.",
+      "report_sha256": "616d04bddfbf351f29fbb10b4aeb5b11235a218479fea4e251ee1b34bb7ca61d"
+    },
+    {
+      "content_sha256": "048f4482dd7c01fd15ee543db140ac04c9cf3eb88c03cdc75fc154d8c5ebe78c",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-SAVE-VERIFY-20261026-02"
+      ],
+      "id": "833ec60d8ade33a92855ca565853dd031dfd8947fa9f02170bec558cc3303d3f",
+      "identity": "R009-SAVE-VERIFY-20261026-02:1",
+      "observation_keys": [
+        "handoff.exact-output-directory",
+        "verification.title-record-boundary",
+        "verification.source-negative-claim"
+      ],
+      "rationale": "GUI rejects aggregate/parser/source claims and output ownership; exact positive RGB samples remain useful only at their bounded scope.",
+      "report_sha256": "99ad52fc6484845a8f27f760bbe16991ef9340fc76ad208e9cc39c2a1e8daab3"
+    },
+    {
+      "content_sha256": "5d0f7560602b4b6ee6cf4bf57db0d82adfb4ade2e955291b8352de9abb962d4c",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-SAVE-FIX-20261026-03"
+      ],
+      "id": "4f07f1de0d9fc7c3b129469c6eb7be6c649215e1f9f605a1570e3f65282a62be",
+      "identity": "R009-SAVE-FIX-20261026-03:1",
+      "observation_keys": [
+        "handoff.stale-progress-revision",
+        "verification.title-parser-fixture-recovery"
+      ],
+      "rationale": "Bounded correction accepted after targeted checks; factual process recovery retained separately from product safety.",
+      "report_sha256": "b0bf3118aa944403d80b00ae22303fc8a5a08f2b8ce1c1133b1d8601d7194f37"
+    },
+    {
+      "content_sha256": "fca29051b635d8b596f07a1e4e8d867efedd400083761592b5822b6222eb181a",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-EXIT-RELOAD-VERIFY-20261026-04"
+      ],
+      "id": "9930b6dec88a76896b0666ef0a082fa0eea283789422d72e0d80bc1f75a0a7f6",
+      "identity": "R009-EXIT-RELOAD-VERIFY-20261026-04:1",
+      "observation_keys": [
+        "verification.wrapper-root-and-regex-recovery"
+      ],
+      "rationale": "Accept bounded four-save comparison; process failures recovered, runtime/removal safety still open.",
+      "report_sha256": "5ece62bf721fceacd15cc488096f5309ca7150f0f4d9387f7f748b2c0f7ded1c"
+    },
+    {
+      "content_sha256": "858c41da91a68608472f11239727cd6b267c7d10f3f65750c1d108c551ad1907",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-DISABLED-VERIFY-20261026-05"
+      ],
+      "id": "aca032099e1f16dfdb7a98e320498bcb45392f3ec5bcfd3bdc67688767eb5d4a",
+      "identity": "R009-DISABLED-VERIFY-20261026-05:1",
+      "observation_keys": [
+        "handoff.stale-progress-revision",
+        "verification.keyless-save-placeholder"
+      ],
+      "rationale": "Bounded saved-state/control comparison accepted with explicit GUI wording corrections, parent beta safety remains blocked.",
+      "report_sha256": "59952c24a28fe45ac2a22a75c9b71fce671024646fe9e7e632e98407ca0f5299"
+    },
+    {
+      "content_sha256": "4325a5c9cf54faad586f43403a270b5a41b74d5a725e2be765cc5a7d2ff827b9",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CONSUMERS-VERIFY-20261026-06"
+      ],
+      "id": "f04718ecb1faca741975d3c4fde47f6beaefe949b07099d9df6e5878e5e77d5e",
+      "identity": "R009-CONSUMERS-VERIFY-20261026-06:1",
+      "observation_keys": [
+        "verification.cardinalate-branch-positive-control"
+      ],
+      "rationale": "Core consumer/UI evidence accepted separately, cardinalate protocol CHANGES REQUIRED; cheap read-only UI check can proceed.",
+      "report_sha256": "fa1a826e2d0c4c61b46f188e109b2e66e5bb2be3e3b6f1d4c4f76eaf39d5da63"
+    },
+    {
+      "content_sha256": "15b7775b93d983abcb892af0ba19333b28712a2c4dc67356063b99f53ab23d1f",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CARDINAL-PROTOCOL-20261026-07"
+      ],
+      "id": "83c6bb12b4caf3500ede412e7c1948628086e307966547cfc86bda66fbed57d4",
+      "identity": "R009-CARDINAL-PROTOCOL-20261026-07:1",
+      "observation_keys": [
+        "handoff.stale-progress-revision",
+        "handoff.exact-output-directory"
+      ],
+      "rationale": "Source branch correction accepted; executable setup was not established by CLI and GUI supplies new narrow method evidence.",
+      "report_sha256": "6026caa5cf5ba15f0f35e20772101749a0ae5053e5a7ff0ed57674708e1be549"
+    },
+    {
+      "content_sha256": "9909aba443f5b3dfffeb079ad069d9c42c16d126445847118ca4fdb3f4db7796",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CARDINAL-PREPARE-20261026-08"
+      ],
+      "id": "b91e77932afcb91651213c57f2226e5b59077877df9d29ac56b8ddfb8ffff785",
+      "identity": "R009-CARDINAL-PREPARE-20261026-08:1:EXEC-1",
+      "observation_keys": [
+        "handoff.stale-progress-revision"
+      ],
+      "rationale": "GUI triage of exact source-preparation cycle, independent of beta acceptance.",
+      "report_sha256": "2b40bcfb7abd0e87a0a766eea5f57f1f8788614ce8b02342e1e443c6f8b8dc80"
+    },
+    {
+      "content_sha256": "6ea29d011666fb2d07ff38fc38aee9c47337ec57566e8ec395aca7addc711d76",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CARDINAL-PREPARE-20261026-08"
+      ],
+      "id": "0e1ef1af17522393e25661f9ffcc00895dd6d01df9e5a7f2535cca36b91b516e",
+      "identity": "R009-CARDINAL-PREPARE-20261026-08:1:REVIEW-R1",
+      "observation_keys": [
+        "verification.sentinel-guard-and-title-trigger"
+      ],
+      "rationale": "GUI triage of exact source-preparation cycle, independent of beta acceptance.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "3b0f7b6417eec6eafaf5df6059c5e080ceb23062729991fb8af1e7cd9244c15c",
+      "cycle_id": "REVIEW-R2",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:R009-CARDINAL-PREPARE-20261026-08"
+      ],
+      "id": "0d36e9489533dd128e4f7b4cc4bfe58758543cfdeefb1b8ea47d36a0383ca7cb",
+      "identity": "R009-CARDINAL-PREPARE-20261026-08:1:REVIEW-R2",
+      "observation_keys": [],
+      "rationale": "GUI reviewed this exact cycle; empty telemetry retained without inferred zero usage or runtime acceptance.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "3b0f7b6417eec6eafaf5df6059c5e080ceb23062729991fb8af1e7cd9244c15c",
+      "cycle_id": "CORRECTION-C1",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:R009-CARDINAL-PREPARE-20261026-08"
+      ],
+      "id": "96f3df1e464f2593dcf9d93efb146cec374f533c96889632ee09d2bfa1c97ffe",
+      "identity": "R009-CARDINAL-PREPARE-20261026-08:1:CORRECTION-C1",
+      "observation_keys": [],
+      "rationale": "GUI reviewed this exact cycle; empty telemetry retained without inferred zero usage or runtime acceptance.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "d7f0118da73de7fe0f5d3b97f4d8e5e1235beabe91f6ef6aa0ffcb7d50837e4a",
+      "cycle_id": "EXEC-C1",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CARDINAL-PREPARE-20261026-08"
+      ],
+      "id": "ee22acf4ba78767837773f4ddc1d42336903c036662ece4600e7f18a3123eef0",
+      "identity": "R009-CARDINAL-PREPARE-20261026-08:1:EXEC-C1",
+      "observation_keys": [
+        "handoff.correction-payload-and-static-check-recovery"
+      ],
+      "rationale": "GUI triage of exact source-preparation cycle, independent of beta acceptance.",
+      "report_sha256": "23f9474f6c8d1527a768e20a776e3fda6f3388de4af6c4419b775d8a2f998b9e"
+    },
+    {
+      "content_sha256": "a668c48206b631c54fcf999e336d9707c5c5af12cd027977f4a114f928063f0e",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:R009-CARDINAL-PREPARE-20261026-08"
+      ],
+      "id": "14ec6940a9566d4499f620d0100f4811da889c0ce5b29f23a72522a27b23bd11",
+      "identity": "R009-CARDINAL-PREPARE-20261026-08:1",
+      "observation_keys": [],
+      "rationale": "Current executor report matches already triaged EXEC-C1 cycle; ledgered separately for receipt without duplicating occurrence counts.",
+      "report_sha256": "23f9474f6c8d1527a768e20a776e3fda6f3388de4af6c4419b775d8a2f998b9e"
+    },
+    {
+      "content_sha256": "c8a408c2f9f0164c06768deb02d39c597d55312612f220d19da1b644450bf88f",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CARDINAL-INSTALL-20261026-10"
+      ],
+      "id": "74207b9e494b4673fdd45a910ff61da76e9e02983fae6e3269ec53c4e033e1eb",
+      "identity": "R009-CARDINAL-INSTALL-20261026-10:1",
+      "observation_keys": [
+        "handoff.stale-progress-revision"
+      ],
+      "rationale": "Mechanical installation accepted after direct file/archive/config verification; runtime gates remain pending.",
+      "report_sha256": "73de4fd926ffc76ae14e2fade247d0856481e2bfa203fa53c3e3bcd7c8603f33"
+    },
+    {
+      "content_sha256": "5f4afac6b783812e11c6198598d2d3961523714365c572ce4783ac2428f282c5",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CARDINAL-VERIFY-20261026-15"
+      ],
+      "id": "d98c767cd872b4372dcb2562b3661c20ea592803d40d3b4e445fd271c40098b6",
+      "identity": "R009-CARDINAL-VERIFY-20261026-15:2",
+      "observation_keys": [
+        "handoff.ignored-private-binary-discovery",
+        "handoff.stale-progress-revision"
+      ],
+      "rationale": "Accept bounded saved RGB-copy evidence; failed attempt preserved, normal UI/material harm and beta disposition separate.",
+      "report_sha256": "67f893575a5b0cc3aa085277ef5f7cf215ebb55e0609fd8843b8531ae4fd2096"
+    },
+    {
+      "content_sha256": "c46f8cc41a97a5ecd0b0c89640e576809ff30e3e121f4455f05c47409f4d549e",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-SENTINEL-CLEANUP-20261026-16"
+      ],
+      "id": "788630baeef43107b8cb1c424bca2d1a7e057e6ed904df7c7faf8058d42e62fb",
+      "identity": "R009-SENTINEL-CLEANUP-20261026-16:1",
+      "observation_keys": [
+        "handoff.cleanup-precondition-and-count-recovery"
+      ],
+      "rationale": "Cleanup accepted after actual file/archive hash verification; parent research/release/accounting separate.",
+      "report_sha256": "b9c7142e4dfaa9147c0c3e06b889cde0df33d0cc778dda461712a6bc51ef9e2c"
+    },
+    {
+      "content_sha256": "86c4680149135804b74faec97932e4cd9779c2c0599fc0dc2f802c2026d381a8",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "id": "680af3f395277b8fc5bcb087012bec7d3c73bd8d1d836ebb7317eb3a2472fab9",
+      "identity": "R009-CLOSE-CYCLE-PREPARE-20261026-17:1:EXEC-1",
+      "observation_keys": [
+        "handoff.clean-build-input-guards"
+      ],
+      "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim.",
+      "report_sha256": "d173738f7515b8992329e9d6ecf9eb43713184607243e35d86b2f0d067153f68"
+    },
+    {
+      "content_sha256": "23684ac20899a5ad04f0a054ce85ad861d54be49d3639752e1352fbce47f4cb6",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "id": "f29822327bcdab35422799854d0f44c332dd7a73882ebdb04510f48132fdd9c0",
+      "identity": "R009-CLOSE-CYCLE-PREPARE-20261026-17:1:REVIEW-R1",
+      "observation_keys": [],
+      "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "203adb6272a719a8ac57de0a8a9d874bd6fdae68b5f79074fb5db2bb4a84fc70",
+      "cycle_id": "REVIEW-R2B",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "id": "efc2de08e866b2aa8d766ffa0577f24876d4f975b8b65e097a3416de1a7de9e7",
+      "identity": "R009-CLOSE-CYCLE-PREPARE-20261026-17:1:REVIEW-R2B",
+      "observation_keys": [
+        "review.ordinary-refresh-marker-gap"
+      ],
+      "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "23684ac20899a5ad04f0a054ce85ad861d54be49d3639752e1352fbce47f4cb6",
+      "cycle_id": "CORRECTION-R1-CORRECTION-1",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "id": "610da1cc9eb32592871d9e61f3c4d584226799f238b9d38bcb5bb1764dc16e50",
+      "identity": "R009-CLOSE-CYCLE-PREPARE-20261026-17:1:CORRECTION-R1-CORRECTION-1",
+      "observation_keys": [],
+      "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "e1da964421f2e789c18eb5644cbd7740daf236f1d3393b1e25eeb46c6f993726",
+      "cycle_id": "EXEC-R1-CORRECTION-1",
+      "date": "2026-10-26",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "id": "c202b672e11d761eaf7f0ff42de8dce9dc6ecf560400f069d33f4ebd75b7df82",
+      "identity": "R009-CLOSE-CYCLE-PREPARE-20261026-17:1:EXEC-R1-CORRECTION-1",
+      "observation_keys": [
+        "handoff.protocol-checkpoints-review"
+      ],
+      "rationale": "GUI explicitly reviewed the factual cycle report; preserve recovered failures and bounded evidence, no optimization work or effectiveness claim.",
+      "report_sha256": "269ab0937ea6bc955d47bcc55f82c5f1db3591d119fdce80cff852bcb56cd0f4"
+    },
+    {
+      "content_sha256": "79d8d1278cd19f1b062aa1dde2981bb8c6900dd5bbef0bb006b1a18a9ebb192b",
+      "date": "2026-10-26",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:R009-CLOSE-CYCLE-PREPARE-20261026-17"
+      ],
+      "id": "98bcdfe60fc9086eea02a5329145d50f769c597875822c8cc986400078a8c23f",
+      "identity": "R009-CLOSE-CYCLE-PREPARE-20261026-17:1",
+      "observation_keys": [],
+      "rationale": "Current executor report already represented by its correction cycle; receipt ingestion adds no duplicate observation.",
+      "report_sha256": "269ab0937ea6bc955d47bcc55f82c5f1db3591d119fdce80cff852bcb56cd0f4"
+    },
+    {
+      "content_sha256": "f3c21d1d4775257709e6a93c9d266be273c650b9588bb7228d9420fe3a4373e7",
+      "date": "2026-10-27",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CLEAN-INSTALL-20261026-18"
+      ],
+      "id": "a3519853bdc50dec3974b83776fc5101e8049141f07738934eb36f43df7cbce1",
+      "identity": "R009-CLEAN-INSTALL-20261026-18:1",
+      "observation_keys": [
+        "handoff.mechanical-install-orchestration"
+      ],
+      "rationale": "GUI reviewed recovered mechanical failures and verified actual artifacts; preserve factual evidence only, no new optimization scope.",
+      "report_sha256": "021d12bad35cc11b3dd3b9dbbcc3d3698c2a21fd43c236c7a323e5b48f5dfd5d"
+    },
+    {
+      "content_sha256": "758c0d744db4cffebe998cbb2c9a0c33655501d035f8a78db40c297be430882a",
+      "date": "2026-10-27",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CYCLE-DIFF-VERIFY-20261027-25"
+      ],
+      "id": "99feff23affeb10719793551d252c24f1313b9e88cfc767756008b5f2973054c",
+      "identity": "R009-CYCLE-DIFF-VERIFY-20261027-25:1",
+      "observation_keys": [
+        "handoff.lifecycle-command-syntax-recovery",
+        "renderer.repeat-cycle-unexplained-rgb"
+      ],
+      "rationale": "GUI accepts bounded verification and records unresolved repeat criterion; no safety waiver or optimization work.",
+      "report_sha256": "5fb901effb7614fe14f90e4c6ec90fbe5b8dc2d2b2935c9d01a89ea376a9fbfd"
+    },
+    {
+      "content_sha256": "82fa9cd8a6dfcbf33c73653aa99d37453a24263874f80b59b7ce2c1c34aab160",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-27",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CONTEXT-EXIT-PREPARE-20261027-29"
+      ],
+      "id": "3cd0a158fd7b521f86ad80c052be242b6a7109698b2e80d33e9fe475c3649dca",
+      "identity": "R009-CONTEXT-EXIT-PREPARE-20261027-29:1:EXEC-1",
+      "observation_keys": [
+        "handoff.gui-builder-path-recovery",
+        "handoff.premature-progress-completion"
+      ],
+      "rationale": "GUI reviewed factual cycle report and independently checked final artifacts; no optimization work/effectiveness claim.",
+      "report_sha256": "03040ee383b8526a5bcfda5e71010e9bcf61c893ec176dfd4d1b522823f6583d"
+    },
+    {
+      "content_sha256": "61df8439ae980b6a4040aab891bd3f64d89015923e376d84ebd25f0e3e8eab26",
+      "cycle_id": "REVIEW-REVIEW-R1",
+      "date": "2026-10-27",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:R009-CONTEXT-EXIT-PREPARE-20261027-29"
+      ],
+      "id": "a7c6e1d29dac242a49a6d42147ff5d4b016c81c1ead012d3fae00fad7a63948c",
+      "identity": "R009-CONTEXT-EXIT-PREPARE-20261027-29:1:REVIEW-REVIEW-R1",
+      "observation_keys": [],
+      "rationale": "GUI reviewed factual cycle report and independently checked final artifacts; no optimization work/effectiveness claim.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "205fb588dafd033cf2dba50ce46d74434fdfa83ec22a9f9b03835e711c8cc983",
+      "date": "2026-10-27",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:R009-CONTEXT-EXIT-PREPARE-20261027-29"
+      ],
+      "id": "013b875606102b86b9d5842feb1284fff44e005712743cf6949d7b6c87a2c30c",
+      "identity": "R009-CONTEXT-EXIT-PREPARE-20261027-29:1",
+      "observation_keys": [],
+      "rationale": "Current report already triaged as initial execution cycle; no duplicate observations.",
+      "report_sha256": "03040ee383b8526a5bcfda5e71010e9bcf61c893ec176dfd4d1b522823f6583d"
+    },
+    {
+      "content_sha256": "7582a46d368360bcf63eea14452e2bdb41159bef9fa122ceb7c2d0b96e029d91",
+      "date": "2026-10-27",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CONTEXT-EXIT-INSTALL-20261027-30"
+      ],
+      "id": "ac8e2b0e9c737107469a17c389032c984a334ef9b61d7a731fc546589531e520",
+      "identity": "R009-CONTEXT-EXIT-INSTALL-20261027-30:1",
+      "observation_keys": [
+        "handoff.preflight-enum-recovery"
+      ],
+      "rationale": "GUI explicitly reviews recovered mechanical failures and actual install evidence; runtime proof remains separate.",
+      "report_sha256": "6074ffd77d7d49a26551da49a3fbfdcce8220bec57ba92d1239832f63b2305ae"
+    },
+    {
+      "content_sha256": "ca582961c9b524b49a5d4dac6fadc031b488fa65ec4da1774cbc9f578be1cc9e",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-27",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CLOSEOUT-PREPARE-20261027-37"
+      ],
+      "id": "77021cd925dd7eecc4f5d3dbd3cc136d420615e15351da7c5783e0fe0f300558",
+      "identity": "R009-CLOSEOUT-PREPARE-20261027-37:1:EXEC-1",
+      "observation_keys": [
+        "handoff.closeout-orchestration-recovery"
+      ],
+      "rationale": "GUI accepts reviewed preparation and independently verified partial priced accounting; factual recovered failures only.",
+      "report_sha256": "51292667b7b5bb9710e32f89bcdb8676ad816b63869b2d9dcb9ab68a3169a8b8"
+    },
+    {
+      "content_sha256": "de19dfc9c227a94a1d3ee4469a4e7069869910fbf56e821b6b131504f5434be9",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-27",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:R009-CLOSEOUT-PREPARE-20261027-37"
+      ],
+      "id": "718ede3126c43d3e7298c7ee9ada18e59e6bc7169f738bfecbd39631d6d10d2c",
+      "identity": "R009-CLOSEOUT-PREPARE-20261027-37:1:REVIEW-R1",
+      "observation_keys": [],
+      "rationale": "GUI accepts reviewed preparation and independently verified partial priced accounting; factual recovered failures only.",
+      "report_sha256": "6cf9f14c5515d0a10ad47ad33573397f6d5e37875d57e1dc49c7516ed81de35f"
+    },
+    {
+      "content_sha256": "c2c8f64cd7c24408da48bb46288c154b535f99618d06e65c5c2b2b0107d7ecd6",
+      "date": "2026-10-27",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:R009-CLOSEOUT-PREPARE-20261027-37"
+      ],
+      "id": "c8ad45e74de2909e824f61fa77123ea50cab8c4b51f7fe6b70b80a211846b3fc",
+      "identity": "R009-CLOSEOUT-PREPARE-20261027-37:1",
+      "observation_keys": [],
+      "rationale": "Current executor report already triaged under initial cycle, no duplicate observation.",
+      "report_sha256": "51292667b7b5bb9710e32f89bcdb8676ad816b63869b2d9dcb9ab68a3169a8b8"
+    },
+    {
+      "content_sha256": "b1f373a14f81f7065ee9276a72a4c7d0a98a253b45d320e27802c973e9293bb7",
+      "date": "2026-10-27",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CLOSEOUT-PUBLISH-20261027-38"
+      ],
+      "id": "15ac8a02ddf0cb53bacdc8fa5893bc15e638fb72a5a014f5ce3dc16d67eb8ca4",
+      "identity": "R009-GUI-FINALIZE-20261027-39:1",
+      "observation_keys": [
+        "publication.upstream-overlap-gui-reconcile"
+      ],
+      "rationale": "GUI-owned factual recovery of expected stale-base stop; no optimization task/effectiveness claim or fabricated executor report.",
+      "report_sha256": "9ec559a1bc57e3d1aa65ad41d582dcb4a99938d828681af8e762e15716168367"
+    },
+    {
+      "content_sha256": "dc3fce32d6ba728abf93405dbda541657e0e4aaca679cbab0235839f3775f7aa",
+      "cycle_id": "PREFLIGHT-RECOVERY",
+      "date": "2026-10-27",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:R009-CLOSEOUT-PUBLISH-20261027-38"
+      ],
+      "id": "ab8754ec65379918217b3790a29702998ae05acdc455b26366396c7264dbe6d6",
+      "identity": "R009-GUI-FINALIZE-20261027-39:1:PREFLIGHT-RECOVERY",
+      "observation_keys": [
+        "publication.untracked-markdown-whitespace-gate"
+      ],
+      "rationale": "Factual final-publication guard/recovery only; no workflow optimization implementation or new task.",
+      "report_sha256": "fa25c43139f1146634b85efeea347baaebe3fa20012ff1c2e712f1f5fe242db3"
     }
   ],
   "version": 1

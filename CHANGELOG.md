@@ -5,6 +5,11 @@ All notable changes to Dynasty Map will be documented here.
 ## [Unreleased]
 
 ### Verified
+- R-009's corrected current-DEV GUI fallback passes the bounded observer
+  return, native Culture selection and manual reentry path on CK3 1.20.1.2.
+  The reproducible `current-dev` builder emits the fixture-free eight-file
+  candidate with that reviewed correction. Remaining persistence and lifecycle
+  checks transfer to T-025; no beta-safety claim is made.
 - F-004 bounded diagnostics: native DIAG V3 values and samples are delivered;
   separate REALMS, HOLDINGS and MY_REALM AUDIT V4 captures pass against their
   emitted rosters. The user accepts the fixed-row interaction in CK3

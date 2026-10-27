@@ -1,4 +1,70 @@
-# R-009 — Validate current title-color renderer safety for beta
+# R-009 — Accepted local renderer checkpoint
+
+The GUI accepts the corrected current-DEV observer checkpoint as complete for
+its bounded local scope. User reports the tested path worked: observer mode
+automatically returned to native Realms, native Cultures remained selectable,
+returning to the original player did not auto-enter Dynasty, and ordinary
+manual Dynasty entry worked. The frozen final refresh save preserved the
+corrected pre-observer title identities and RGB for all 18,190 records; the
+bounded error log was unchanged and GUI/conflict logs were empty. This is not a
+whole-world-state equality claim, a harmless-persistence finding, or SAFE FOR
+BETA.
+
+The user accepted R-009 with residual verification transferred to the already
+registered [T-025 / #51](https://github.com/mhaduk/ck3-dynasty-map/issues/51),
+which remains PLANNED and unexecuted. T-025 owns the unexplained 81-barony
+repeat-cycle discrepancy, final corrected-candidate save/reload and fresh
+process with DEV absent, and full saved-title invariant comparisons. R-005
+retains broader no-Dynasty dispatch coverage; T-014 owns production packaging;
+T-017 owns release readiness. Gray-base palette quality remains deferred.
+No further game test, save, screenshot, installation, or live-state change is
+authorized by this closeout.
+
+The public reproducible build uses the explicit `current-dev` profile, which
+emits the fixture-free eight-file source29 candidate including the reviewed
+observer fallback. Historical ten-file research source and default `legacy`
+behavior remain unchanged; `r009-clean` continues to reproduce the earlier
+eight-file candidate without that fallback. Static preflight and focused helper
+tests establish file reproducibility only, not CK3 syntax or runtime safety.
+
+**Disposition: completed by explicit user acceptance on 2026-10-27, with remaining verification transferred to T-025 / #51.** GUI independently verified the frozen session-backed accounting before closure. This is not SAFE FOR BETA and makes no conclusion that the renderer is impossible.
+
+### R-009 measured AI-cost estimate
+
+| Model | Input | Cached input (subset) | Uncached input | Output | Total tokens | Known-model API-equivalent cost |
+|---|---:|---:|---:|---:|---:|---:|
+| codex-auto-review | 2,623,482 | 1,873,024 | 750,458 | 8,483 | 2,631,965 | N/A |
+| gpt-6.1-sol | 37,183,685 | 36,410,624 | 773,061 | 138,711 | 37,322,396 | $8.91609300 |
+| gpt-6-luna | 83,921,831 | 81,865,216 | 2,056,615 | 471,913 | 84,393,744 | $1.26027016 |
+| **Total** | 123,728,998 | 120,148,864 | 3,580,134 | 619,107 | 124,348,105 | $10.17636316 |
+
+Partial measured coverage: 50 saved session files and 121 explicitly mapped
+R-009 turns yielded 1,192 attributed response records. The accounting helper
+deduplicated response IDs across overlapping fork snapshots. 484 records in
+the selected sources lacked unambiguous R-009 attribution and were excluded;
+unmarked follow-ups were not inferred. The current R009-CLOSEOUT-PREPARE-20261027-37
+executor conversation was not present as a saved source by the frozen cutoff,
+so its usage is unavailable, not zero; later independent review and GUI
+publication are also excluded. Frozen cutoff: 2026-10-27T12:37:19Z.
+
+This is a rough API-equivalent estimate for measured usage, not subscription
+spend. Official OpenAI model/API prices were checked 2026-10-27 ([GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna), [API pricing](https://developers.openai.com/api/docs/pricing)). Standard rates
+were applied per response, using long-context rates for inputs above 272K tokens
+(54 Sol responses; no Luna responses). Request service tier, regional processing and exact API context billing are unavailable. The estimate assumes Standard without a regional uplift. GUI checked all 1,192 selected raw response counters: cache-write input was zero, so no cache-write charge was added.
+Cached input is a subset of input; reasoning is included in output. The
+recorded `codex-auto-review` bucket has no matching published API-model price
+and remains unpriced. The known USD total excludes that bucket and the
+unavailable current handoff usage.
+
+[GUI context history](https://github.com/mhaduk/ck3-dynasty-map/blob/research/native-menu-alternative/docs/telemetry/gui-context/R-009.jsonl)
+
+## Historical release-safety scope retained from upstream e740113
+
+The following 2026-10-26 research specification is preserved from the upstream
+commit. Its unfinished release gates now belong to T-025; it does not override
+the user-accepted local closeout above or declare beta readiness.
+
+### Historical R-009 — Validate current title-color renderer safety for beta
 
 Status: **OPEN / P0 release-safety research**  
 Target: **CK3 1.20.1.2, current `Dynasty Map [DEV]` runtime**  

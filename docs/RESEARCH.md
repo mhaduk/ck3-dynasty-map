@@ -1,5 +1,48 @@
 # Research Findings
 
+## R-009 accepted local observer checkpoint — 2026-10-27
+
+The corrected current-DEV absent-player fallback returned observer mode to
+native Realms; native Cultures remained selectable, return to the original
+player did not auto-enter Dynasty, and manual reentry worked. The final refresh
+save matched corrected pre-observer title identity/RGB fields across 18,190
+records, with unchanged bounded error bytes and empty GUI/conflict logs. This
+is a bounded user-tested path, not an all-world-state or beta-safety result.
+The accepted reproducible build is `current-dev`; unresolved 81-barony cycle,
+corrected save/reload, DEV-absent and full invariant checks are transferred to
+registered, still-PLANNED T-025/#51. See the [R-009 checkpoint](tasks/R-009-barony-color-safety.md)
+and [T-025 follow-up](tasks/T-025-lifecycle-persistence-followup.md).
+
+## R-009 concrete vanilla color-copy consumer — 2026-10-26
+
+Installed cardinalate effect copies a selected temple/capital barony map color
+into a new landless dynamic title. Two controlled disposable saved-state trials
+confirm actual propagation with slight shifts: Vaticano211/37/173 ->209/31/167,
+Farfa23/191/47 ->18/186/45. Actual named_after references/landless/new markers
+verified. Constructed Papal-recipient setup also logs a primary-title rank error;
+this is no clean ordinary appointment test. No normal-map/UI or gameplay harm
+was demonstrated; copied color data is not inert, but persistence alone is not
+damage. Bukhara owned-barony customization has no picker; county picker does.
+Full release/lifecycle/legacy-save compatibility remains separate. See the
+[canonical R-009 checkpoint](tasks/R-009-barony-color-safety.md).
+
+
+## R-009 current-build lifecycle checkpoint — 2026-10-26
+
+On 1.20.1.2 current DEV, designated frozen PAINTED/EXITED/RELOADED and absent-DEV
+load/save comparisons establish persistence of all 11,297 painted barony RGB
+fields by stable key. The absent-DEV BEFORE control remains without those
+fields. User-reported successful loads and supplied ordinary Realms screenshots
+support bounded visual acceptance, not arbitrary-original restoration or global
+harmlessness. Both absent-DEV loads emit the same three named legacy-template
+and blank duplicate-title errors; three old DEV duchies become keyless records.
+Current ten-file writer uses literal RGB and has no references to those fixture
+titles. Fixture compatibility debt is separate from direct-RGB feasibility.
+Beta safety remains blocked on an unmet safe-exit/harmless-persistence contract;
+no engine-impossibility or replacement-renderer decision follows. See the
+[canonical checkpoint](tasks/R-009-barony-color-safety.md). Parent remains open.
+
+
 **Research date:** 2026-10-20
 **Reported public CK3 release at research time (reference baseline, not installed-build verification):** 1.20.1 "Crozier" (2026-10-13). Paradox stated that subsequent changes were being targeted at the forthcoming 1.21 update, so the implementation target must be re-checked on the gaming Mac before coding.
 
