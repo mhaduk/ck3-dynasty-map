@@ -13,6 +13,7 @@ Dated migration/checkpoint statements below retain their historical meaning.
 
 | ID | Priority | Work item | Status |
 |---|---|---|---|
+| [T-027 / #53](tasks/T-027-main-development-checkpoint.md) | P1 | Reconcile research into main and freeze development checkpoint | Verified normal integration; `v0.1.0-rc.1` baseline for T-026; final remote receipt in #53. No beta/release gate claim. |
 | [T-025 / #51](tasks/T-025-lifecycle-persistence-followup.md) | P1 | Verify remaining Dynasty Map lifecycle and persistence gates | PLANNED / not started — resolve the 81-barony repeat discrepancy; verify corrected-candidate save/reload, DEV-absent behavior and saved-title invariants. R-005, T-014 and T-017 ownership remains distinct. |
 | [T-019 / #45](tasks/T-019-local-mod-variants.md) | P1 | Consolidate local DEV identity and remove obsolete probe installs | Complete in user-approved narrowed scope — DEV and launcher/persisted checks PASS; production transferred to T-014. Partial measured cost $1.14733320; #45 closed and Wiki cdebfec published/read back; scoped repository publication authorized. |
 | [T-016 / #42](tasks/T-016-wiki-redesign-review.md) | P2 | Reorganize public Wiki for players and technical readers | Complete — R3 accepted, supplied image layout published, live rendering/28-file readback passed; partial cost $2.23023898; repository publication authorized |

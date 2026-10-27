@@ -1,3 +1,13 @@
+## T-027 / #53 — repository integration checkpoint — 2026-10-27
+
+Normal integration preserves the 56-commit accepted research history and three
+main-only legal/community commits. The sole README conflict keeps current
+project status plus main's License section; runtime/tooling bytes are unchanged.
+`main @ v0.1.0-rc.1` is the intended verified development baseline for T-026;
+final remote main/tag readback is recorded in #53. No release/beta readiness,
+T-014/T-017/T-025 completion or new game test is claimed.
+See [T-027](tasks/T-027-main-development-checkpoint.md).
+
 ## R-009 / #9 — completed local checkpoint; residual verification in T-025 — 2026-10-27
 
 User accepted the corrected observer path. Source, independent review, installed

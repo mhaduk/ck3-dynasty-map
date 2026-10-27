@@ -37,6 +37,18 @@
   },
   "issues": [
     {
+      "number": 53,
+      "state": "open",
+      "title": "T-027 \u2014 Reconcile research branch into main and freeze v0.1.0-rc.1",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/53"
+    },
+    {
+      "number": 52,
+      "state": "open",
+      "title": "T-026 \u2014 Astra audit and optimization of AI-assisted development workflow",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/52"
+    },
+    {
       "number": 51,
       "state": "open",
       "title": "T-025 \u2014 Verify remaining Dynasty Map lifecycle and persistence gates",
@@ -87,7 +99,7 @@
     {
       "number": 43,
       "state": "open",
-      "title": "T-017 \u2014 Define readiness gate for 0.1.0-beta.1",
+      "title": "T-017 \u2014 [DEFERRED] Define readiness gate for 0.1.0-beta.1",
       "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/43"
     },
     {
@@ -339,6 +351,6 @@
   ],
   "repository": "mhaduk/ck3-dynasty-map",
   "retired_ids": [],
-  "verified_at": "2026-10-27T14:34:27.822425+00:00",
+  "verified_at": "2026-10-27T14:58:52.953585+00:00",
   "version": 1
 }

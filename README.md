@@ -53,3 +53,7 @@ Player documentation: [GitHub Wiki](https://github.com/mhaduk/ck3-dynasty-map/wi
 ## Release status
 
 No public beta has been released. Release readiness and supported-version declarations follow [VERSIONING.md](docs/VERSIONING.md) and the current release-gate owner; the historical milestone roadmap remains internal planning context.
+
+## License
+
+Original project code and documentation are available under the [MIT License](LICENSE). That license applies only to material authored for this project. Crusader Kings III and Paradox assets, trademarks, extracted game files, and other third-party material are not relicensed under MIT and remain subject to their respective terms. The [Code of Conduct](CODE_OF_CONDUCT.md) is adapted from Contributor Covenant 3.0 and is licensed under CC BY-SA 4.0.
