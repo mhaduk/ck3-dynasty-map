@@ -19,27 +19,21 @@ Both require rationale. Immutable version 1 contracts remain finite with their
 original selected maximum. Handoff validation compares the complete effective
 contract to the exact registered frozen bytes and compares its plan with the
 frozen `execution_plan` and `plan_summary`. The renderer accepts the frozen
-contract as its only source for profiles, policy, budget, rationale and plan. Disabled
-or legacy tasks retain their old handoff shape. The executor remains the same
+contract as its only source for profiles, policy, budget, rationale and plan.
+Legacy forms and classified disabled-contract forms follow the existing
+[conditional table presentation](CODEX_WORKFLOW.md#handoff-table-presentation).
+The executor remains the same
 session across corrections; every reviewer is a new, read-only session. These
 identity checks are cooperative guards, not proof of runtime isolation.
 
-T-024 adds an optional `routing` object to this same contract for new
-classifications; its absence remains valid for legacy handoffs. The GUI freezes
-`execution_class` (`MECHANICAL`, `STANDARD`, `COMPLEX`, `DIAGNOSTIC`),
-`review_route`, `gui_finalization`, concise `reason`, and nullable
-`high_reason` / `targeted_trigger`. MECHANICAL may disable the ordinary review
-loop. STANDARD uses the existing Luna executor and optional Sol/Medium review.
-COMPLEX does not select High by itself. Sol/High requires one of the validated
-concrete risk reasons; classification cannot select XHigh/Max. DIAGNOSTIC
-disables the ordinary review loop and points to T-015. `TARGETED_REVIEW` needs
-a listed trigger; after `ACCEPTED`, `RECEIPT_ONLY` is the default.
-
-Classification affects reasoning and review cost only. It preserves required
-tests, preflight, bounded log checks, stale-state/revision checks, permissions
-and user-run game actions. Closeout, approved installs, deterministic checks,
-known-prefix log validation and publication readback are normally MECHANICAL;
-unclear or contradictory evidence routes to DIAGNOSTIC.
+New classifications may include the optional `routing` object; legacy contracts
+without it remain valid. GUI freezes `execution_class`, `review_route`,
+`gui_finalization`, `reason`, nullable `high_reason` and `targeted_trigger`.
+Use the canonical [classification and finalization procedure](CODEX_WORKFLOW.md#delegation-classes-evidence-and-escalation)
+for allowed routes and effort. Schema validation in `validate_contract` remains
+authoritative; classification changes effort only, never permissions or required
+checks. A selected maximum of three is a normal proposal requiring GUI selection,
+not a semantic constant or target correction count.
 
 The normal `handoff.render_handoff_table` renderer requires an explicit
 repository root. It resolves the delegation folder, validates its registered
@@ -141,12 +135,13 @@ GUI remains the final acceptance authority and can reject reviewer acceptance.
 
 ## User handoff
 
-`render_enabled_handoff()` creates one ten-row table: executor pickup and
-persistent model/session; independent review and fresh reviewer profile;
-correction command to the original executor; GUI return; the selected budget
-and three verdicts; unchanged time/steps and saved GUI text estimate; then the
-frozen plan as the last row, capped at ten bullets. It adds no telemetry rows.
-The original presentation stays frozen across cycles; live status is separate.
+Use the registered `handoff.render_handoff_table` entry point and the canonical
+[Handoff table presentation](CODEX_WORKFLOW.md#handoff-table-presentation).
+The existing `render_enabled_handoff` supplies the conditional Routing row and
+explicit disabled values where applicable; do not hard-code a universal row
+count or remove these fields. Preserve the frozen presentation across
+cycles; live status is separate. The original executor handles corrections,
+and each independent reviewer uses a fresh session. No telemetry rows are added.
 
 The workflow reuses T-021 for cycle observations and explicit GUI triage. Each
 cycle may link a validated factual observation, known metrics and existing

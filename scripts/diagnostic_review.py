@@ -251,11 +251,19 @@ def _markdown(manifest, extracted):
     return "\n".join(lines).encode("utf-8")
 
 
+def _canonical_prompt() -> bytes:
+    """Read the bounded repository resource beside this trusted helper tree."""
+    trusted_root = _root(Path(__file__).absolute().parent.parent)
+    _target(trusted_root, "scripts/diagnostic_review.py")
+    return _read(_target(trusted_root, "docs/DIAGNOSTIC_REVIEW_PROMPT.md"), EXCERPT_LIMIT)
+
+
 def build(root: Path, manifest_rel: str, output_rel: str, *, preview=False):
     root = _root(root)
     raw = _read(_target(root, manifest_rel), MANIFEST_LIMIT)
     manifest = _json(raw)
     _schema(manifest)
+    prompt = _canonical_prompt()  # Validate before _output can create directories.
     output = _output(root, output_rel, preview=preview)
     if PurePosixPath(output_rel).name != manifest["review_id"]:
         raise Invalid("output_review_id_mismatch")
@@ -269,25 +277,6 @@ def build(root: Path, manifest_rel: str, output_rel: str, *, preview=False):
             raise Invalid("total_excerpt_limit")
         extracted.append(row)
     packet = _markdown(manifest, extracted)
-    prompt = ("# Independent diagnostic review prompt\n\n"
-              "You are a read-only, advisory reviewer. Analyze only the supplied immutable\n"
-              "Diagnostic Review Packet. Do not edit files, Issues, game state or task status.\n"
-              "Do not request private chain-of-thought. Distinguish supported facts,\n"
-              "observations, inferences and speculation. Preserve all `UNKNOWN`, `INCOMPLETE`\n"
-              "and upstream status values.\n\n"
-              "Challenge assumptions; identify contradictions and missing evidence links;\n"
-              "rank remaining hypotheses with support, weakening evidence, confidence and\n"
-              "limitations; propose the smallest discriminating next experiment; recommend a\n"
-              "fix only when evidence supports it; say what would falsify your recommendation;\n"
-              "flag external/current claims with source and provenance. Do not repeat listed\n"
-              "completed experiments or non-repeat actions. If evidence is insufficient, say\n"
-              "what exact missing observation would decide the question.\n\n"
-              "Return concise conclusions under these headings:\n\n"
-              "```text\nROOT-CAUSE ASSESSMENT\nASSUMPTIONS TO CHALLENGE\nEVIDENCE / CONTRADICTIONS\n"
-              "RANKED HYPOTHESES\nSMALLEST NEXT EXPERIMENT\nRECOMMENDED FIX (only if justified)\n"
-              "WHAT WOULD FALSIFY THIS\nUNRESOLVED / UNKNOWN\nEXTERNAL SOURCES / CLAIMS\n```\n\n"
-              "Your review is advice, not project evidence or acceptance. The Coordinator\n"
-              "validates and owns synthesis.\n").encode()
     identity = json.dumps({"schema": SCHEMA, "review_id": manifest["review_id"], "manifest_sha256": digest(raw), "packet_sha256": digest(packet), "prompt_sha256": digest(prompt), "inputs": extracted}, ensure_ascii=False, sort_keys=True, indent=2).encode() + b"\n"
     if SENSITIVE.search(packet.decode("utf-8")) or SENSITIVE.search(manifest["review_id"]):
         raise Invalid("sensitive_packet_content")

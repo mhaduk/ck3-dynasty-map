@@ -1,7 +1,7 @@
 # GUI context estimate
 
-The next ordinary GUI-to-CLI handoff can include a small estimate of the known
-saved session text. It does not read the live GUI, request another model call,
+During ordinary GUI-to-CLI preparation, report the required estimate of known
+saved session text, or explicitly mark it unavailable. It does not read the live GUI, request another model call,
 interpret the measurement, recommend a rollover, or estimate actual active
 model context or billing usage.
 
@@ -44,27 +44,10 @@ runtime transformations may change active context. No error bound is claimed.
 Per-request input counters remain usage telemetry and are never substituted for
 active context size.
 
-For planned receipts, append a sixth `Plan of execution` row after the five
-standard rows with `handoff.render_handoff_table(rows, plan, summary)`. Author
-the concise summary during the existing preparation pass; store its canonical
-plan fingerprint and ordered milestone-ID groups with `create --plan-summary`.
-Use at most ten bullets and group plans above ten milestones explicitly. A
-fingerprint mismatch or incomplete/reordered IDs fails closed. Planless older
-receipts continue to render their original five rows.
-
-For a task explicitly enabled for independent implementation review, keep this
-saved GUI text estimate and the existing time/steps as rows 9 and 8 of the
-single ten-row table. Rows 1–7 identify the persistent executor, fresh reviewer,
-original-session correction command, GUI return and explicitly selected finite
-or open-ended correction policy. `Plan of execution` remains row 10 and the last row. See
-[`IMPLEMENTATION_REVIEW.md`](IMPLEMENTATION_REVIEW.md); disabled handoffs use
-the existing five/six-row layout.
-For the review-enabled renderer, use the registered delegation folder ID for
-`review_loop.task_id` and its `STATUS.json.parent_id` for `review_loop.parent_id`;
-the paired contract retains the parent issue ID and all four commands use the
-delegation ID. Supply the repository root to the normal renderer so it can
-validate the registered status and exact frozen paired contract before
-rendering; the pure formatter is not the GUI preparation entrypoint.
+For plan summaries, conditional table rows and registered renderer arguments,
+follow [Handoff table presentation](CODEX_WORKFLOW.md#handoff-table-presentation).
+Do not hard-code row numbers: paired contracts may include Routing. The saved
+text estimate stays immediately below time/steps and the plan stays last.
 
 ## History and privacy
 
@@ -105,18 +88,19 @@ comparability before counting it.
 Future candidates are retained in private
 `.codex-sync/gui-context-calibration.json`, separate from the frozen T-012
 sample snapshot.
-After the coordinator marks at least three candidate pairs comparable, produce
+GUI marks each reviewed comparable candidate with
+`--timing-eligible <ID> --review-note '<reason>'`; preserve the source pairs
+privately and report small-sample uncertainty. After at least three comparable
+pairs, produce
 a new handoff range with
 `python3 scripts/gui_context.py --repo . --estimate-min <low> --estimate-max <high> --steps <plan-count>`.
 The helper uses the median actual/estimate-midpoint ratio and reports the
 observed ratio spread alongside the planned-step count. With fewer than three
 reviewed pairs, it applies only the prior formula above.
 
-Terminal progress uses a 30-cell Unicode bar, parent task ID, approximate
-percentage and persisted human-readable stage. The bullet is green ANSI only
-when stdout supports color and `NO_COLOR` is absent. Commentary uses the same
-structure without ANSI. Progress remains milestone-based; it does not measure
-elapsed time.
+Execution progress is independent of this measurement/calibration. Follow the
+[canonical progress procedure](CODEX_WORKFLOW.md#gui-execution-plan-and-cli-progress)
+for persisted milestone updates, language, terminal colors and commentary.
 
 ## Activation and validation
 

@@ -22,6 +22,19 @@ saved-session accounting is checked by GUI and the separately gated publication
 stage completes. See the [canonical R-009 record](tasks/R-009-barony-color-safety.md)
 and [T-025 follow-up](tasks/T-025-lifecycle-persistence-followup.md).
 
+## Ongoing T-026 Git checkpoint — publication complete, branch push pending
+
+T-026/#52 has an accepted bounded audit and accepted local implementation of
+#1/#2 plus a limited #4 governance procedure. The independent R1 reviews found
+zero corrections; their historical focused test totals are documented in the
+canonical task record. The frozen GUI cost gate passed; six Wiki pages were
+published/read back at `2a8694d`; Issue #52 body/table were read back and #52
+closed COMPLETED. The scoped source commit, exact annotated Astra tag and
+current-branch/tag push remain pending. No savings/effectiveness, beta
+readiness, or T-014/T-017/T-025 completion is claimed.
+See [T-026](tasks/T-026-astra-workflow-audit.md) and the [dated deferred
+snapshot](T026_DEFERRED_OPTIMIZATIONS.md).
+
 ## Completed tasks
 
 | Task | Goal | Result | Issue journal | Canonical summary |

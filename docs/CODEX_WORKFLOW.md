@@ -110,18 +110,9 @@ independent review.
 
 ## Delegation classes, evidence and escalation
 
-For difficult unresolved problems, GUI may opt into an independent diagnostic
-review when evidence leaves competing hypotheses, cross-layer contradictions,
-weakly documented behavior, a costly next experiment, repeated rediscovery, or
-a material assumption challenge. A simple reproducible defect, one likely
-decisive check, mechanical work, missing decisive user evidence, or token count
-alone is not a trigger. GUI / Coordinator remains the decision and acceptance
-authority; any external reviewer is read-only and advisory. Use the bounded
-manual packet workflow, immutable-input rules and privacy limits in
-[Diagnostic Review](DIAGNOSTIC_REVIEW.md). Do not claim savings or treat
-unavailable external usage as zero. Match the output directory name to the
-manifest review ID; optional evidence may be unavailable only when it is
-genuinely absent. Treat symlinks and malformed identity data as errors.
+For diagnostic escalation, use the gates, advisory authority and bounded manual
+packet procedure in [Diagnostic Review](DIAGNOSTIC_REVIEW.md). Token/attempt
+counts alone do not trigger it; unavailable external usage is not zero.
 
 Every new `CLI_TASK.md` names one primary delegation type: `COLLECT` (gather
 facts/evidence), `VERIFY` (check a stated claim or contract), `RESEARCH` (bound
@@ -131,22 +122,15 @@ reserved for GUI and is never a CLI delegation type. Each task states
 `Decision authority: GUI`; these are semantic instructions, not a new enforced
 STATUS schema.
 
-The T-023 shared implementation is accepted for local project use. GUI normally
-enables independent implementation review for new substantial implementation
-delegations; trivial actions may be explicitly routed without it, and existing
-legacy handoffs are preserved. This is the shared preparation workflow for
-future tasks, not a T-023-only experiment. Enabled tasks use the paired
-pre-execution contract and correction lifecycle in
-[Implementation Review](IMPLEMENTATION_REVIEW.md). GUI freezes both contracts
-from the same task revision, explicitly selects `MAX_CYCLES` with a positive
-maximum or `UNTIL_ACCEPTED_OR_ESCALATED` with no numeric maximum, and chooses
-the reviewer profile before READY. There is no silently assumed global
-three-cycle cap. The executor session persists across corrections; each review
-uses a fresh read-only session. `ACCEPTED` and `ESCALATE TO GUI` stop immediately.
-For a finite maximum N, N corrections allow one final fresh review; only another
-`CHANGES REQUIRED` escalates. Material scope, permission, architecture or
-invariant conflicts stop the loop for GUI. Disabled legacy
-handoffs retain their existing five/six-row representation.
+The T-023 shared implementation is accepted for local use. GUI normally enables
+independent review for substantial new implementation; explicitly route trivial
+work without it and preserve legacy handoffs. Freeze the paired contracts and
+selected correction policy before READY using
+[Implementation Review](IMPLEMENTATION_REVIEW.md#frozen-preparation). Its
+[lifecycle](IMPLEMENTATION_REVIEW.md#lifecycle-evidence) is canonical for
+persistent-executor corrections, fresh read-only reviewers, terminal verdicts,
+finite/open budgets and GUI escalation. Table variants are described under
+[handoff table presentation](#handoff-table-presentation).
 
 For new handoffs, GUI classifies the task in the same preparation pass and
 freezes a compact `routing` object in the existing paired contract: one of
@@ -462,14 +446,9 @@ correct input snapshot. Use [CLI_DELEGATION_TEMPLATE.md](CLI_DELEGATION_TEMPLATE
 for the compatible task and result shape; it does not replace the lifecycle
 helper.
 
-Route bounded collection, verification, research, comparisons, documentation,
-analysis and approved execution to CLI / Luna / Medium; trivial mechanical work
-may use Luna / Low. GUI retains decisions and product coordination. More
-difficult work remains bounded and is returned with evidence or an escalation
-request; do not auto-upgrade the model or transfer decision authority. GUI may
-explicitly select a stronger worker/reviewer. These are recommendations, not
-availability or cost claims; report actual model only when known. Preserve the
-small direct-edit exception when delegation overhead exceeds the work.
+Use the [routing table](#required-guicli-routing-decision) and
+[classification procedure](#delegation-classes-evidence-and-escalation); a
+handoff does not transfer GUI decision authority or automatically upgrade a model.
 
 For probes/mods, read [MOD_AUTHORING_RULES.md](MOD_AUTHORING_RULES.md), name exact payload/install roots and expected version, run the preflight before installation and again with `--installed` afterward, and include the manual and user-run startup/log gates. This does not apply to tooling that does not touch a mod.
 
@@ -485,6 +464,57 @@ whole CK3 user-data/game directory or disable the sandbox. Permissions do not
 replace scoped install authorization, backups, preflight or the game-closed
 prerequisite. Self-review installer evidence-directory handling before execution,
 and use no-write syntax inspection to avoid unrelated cache permissions.
+
+### Handoff table presentation
+
+End GUI-to-CLI handoff messages with the table rendered by
+`scripts/handoff.py::render_handoff_table`; its existing
+`scripts/implementation_review.py::render_enabled_handoff` formatter is the
+structure authority for paired contracts. A profile is a recommendation unless
+confirmed. Keep time/step estimates bounded and calibrated through
+[GUI_CONTEXT](GUI_CONTEXT.md#time-estimate-and-progress-display).
+
+For ordinary review-disabled or legacy handoffs without a paired renderer,
+fill the five base rows below. Planned handoffs append one final
+`Plan of execution` row; planless legacy handoffs keep only the five rows.
+
+| | Command / value |
+|---|---|
+| CLI pickup | `pobierz zadanie <ID>` |
+| GUI receipt | `gotowe <ID>` |
+| Model / reasoning level | `<recommended model> / <level>` |
+| Estimated CLI time / steps | `<calibrated minutes; N steps, or no plan>` |
+| szacowane tokeny/wiadomości | `<N> tokenów; <M> wiadomości`, or `niedostępne` |
+
+GUI authors the concise plan summary during the existing preparation pass and
+freezes it with `create --plan-summary '<JSON>'`. The summary contains
+`plan_sha256` (canonical plan fingerprint) and ordered `bullets`, each with
+milestone `ids` and authored `text`. Cover every ID exactly once in plan order.
+Use 1–10 bullets; group more than ten milestones meaningfully without changing
+order. Regenerate the summary when the plan changes; stale fingerprints and
+missing/reordered IDs are rejected. Use `render_handoff_table(rows, plan, summary)`
+for the ordinary form.
+
+For a registered paired contract, supply the repository `root`, frozen plan and
+summary, and `review_loop` containing the delegation folder `task_id`, registered
+`STATUS.json.parent_id` as `parent_id`, exact frozen `contract`, `time_steps` and
+`gui_estimate`. The helper validates the registered bytes and uses the delegation
+ID in commands. Do not use the pure formatter as a substitute for registration.
+The paired form has seven lifecycle/profile/policy rows, then an optional
+`Routing` row when the frozen contract contains routing, followed by time/steps,
+saved GUI estimate and the final plan row. Thus the existing no-routing form has
+ten rows and the routing form eleven. This also applies to explicitly classified
+paired contracts with review disabled: the renderer marks review/correction rows
+as disabled and preserves diagnostic routing where applicable. Do not strip
+Routing or force these contracts into the legacy five-row form.
+
+The combined estimate row is always immediately below time/steps, including the
+paired form. Use the saved GUI text measurement from
+[GUI_CONTEXT](GUI_CONTEXT.md#prepare-a-handoff), or `niedostępne` when unavailable.
+A separate estimate line above the table or values only in CLI_TASK/tool output
+are insufficient. This is saved-session text, not active context or billing.
+For review-enabled commands and persistent/fresh session requirements, see
+[Implementation Review user handoff](IMPLEMENTATION_REVIEW.md#user-handoff).
 
 ### Per-ID lifecycle helper
 
@@ -591,62 +621,14 @@ tasks and controlled legacy handoffs remain compatible without migration or
 invented progress. `progress` refuses a planless task.
 
 For a planned handoff, show the actual `execution_plan.total_steps` beside the
-time range in the GUI-to-CLI receipt table. Keep a compact calibration record
-with original estimate ranges and claim-to-complete elapsed minutes. Pair only
-comparable, single-attempt completed work; exclude failed, retried, interrupted,
-or otherwise incomparable tasks and do not count user waiting as compute.
-When there are enough comparable pairs, use the median actual/estimated midpoint
-ratio as a simple robust multiplier, apply it to both range endpoints, and round
-outward to whole minutes. Preserve source pairs and describe the small-sample
-uncertainty. If fewer than three comparable pairs exist, use the user-observed
-2–3× overestimate only as a prior: divide the low endpoint by 3 and the high
-endpoint by 2, round outward, and label the result as prior-based rather than
-measured. A planless handoff retains the ordinary uncalibrated estimate and
-shows `no plan`. Save newly available estimate/elapsed pairs during normal task
-closeout; progress transitions do not measure or display time.
-The standard library helper can retain a candidate pair during that same
-closeout with `python3 scripts/gui_context.py --repo . --timing-task-id <ID>`;
-it reads only the named per-ID `CLI_TASK.md` and `STATUS.json`, appends
-idempotently to `.codex-sync/gui-context-calibration.json`, separate from the
-frozen T-012 evidence snapshot, and marks whether a frozen
-range was present. GUI explicitly marks a reviewed comparable candidate with
-`--timing-eligible <ID> --review-note '<reason>'`. To prepare a range, use
-`python3 scripts/gui_context.py --repo . --estimate-min <low> --estimate-max <high> --steps <plan-count>`;
-the output includes the calibrated range, basis, pair count and uncertainty.
-GUI still decides comparability before using a pair. Keep the raw baseline in `Estimated CLI time: <low>–<high> minutes` in the frozen task and calibrated time/steps separately, to avoid applying calibration twice. See [GUI context guide](GUI_CONTEXT.md) for retry, history integrity, session boundaries and published-ref handling.
-
-Append exactly one `Plan of execution` row after the five established receipt
-rows. Render it with `handoff.render_handoff_table(rows, plan, summary)` during
-the existing GUI preparation; the five `(label, value)` rows retain their
-wording, order and combined telemetry. GUI authors a concise meaningful
-summary in that same pass and freezes it with `create --plan-summary '<JSON>'`.
-The summary contains `plan_sha256` (the canonical plan fingerprint) and ordered
-`bullets`, each with milestone `ids` and authored `text`. Every milestone ID
-must appear exactly once in plan order. Use at most ten bullets; plans above ten
-milestones require GUI-authored meaningful groups that preserve order. The
-helper rejects stale hashes, missing or reordered IDs, and malformed summaries.
-Regenerate the summary whenever the plan changes. Planless legacy receipts keep
-their five rows.
-
-For review-enabled handoffs, pass the repository root and registered delegation folder ID as
-`review_loop.task_id` and the registered `STATUS.json.parent_id` as
-`review_loop.parent_id`, separately from the paired contract's parent
-`task_id`. The renderer resolves and validates the registered status and frozen paired contract, then emits all four lifecycle
-commands with the delegation ID.
-
-An optional GUI context measurement is prepared during the same handoff
-preparation, with no extra model call or GUI turn. Run
-`python3 scripts/gui_context.py --session <explicit-saved-session-file> --task <parent-ID> --handoff <delegation-ID> --repository-ref <published-ref> --identity <stable-private-session-key> --preview <private-preview.json>`
-and pass that preview to normal `handoff.py create --context-preview`.
-The helper reads only the named bounded JSONL input (16 MiB maximum), counts
-deduplicated user/assistant text from known message events, and labels
-`ceil(UTF-8 bytes / 4)` as an estimate. It does not inspect a GUI or infer active
-model context from request usage. It writes aggregate JSONL under
-`docs/telemetry/gui-context/<parent-ID>.jsonl`; raw text, session key, path,
-hash and byte cursor stay private in `.codex-sync/gui-context-private.json`.
-Changed identity, method, compaction or reset makes the delta unknown. No
-measurement means no history file and no history link. The optional preview is
-diagnostic only, at most two short lines, and never changes scope or plan.
+time range. Use [GUI_CONTEXT time calibration](GUI_CONTEXT.md#time-estimate-and-progress-display)
+for comparable pairs, uncertainty and the explicitly labelled 2–3× user-observation
+prior; keep raw and calibrated estimates separate. Progress does not measure time.
+During normal GUI preparation, follow the
+[saved-session measurement procedure](GUI_CONTEXT.md#prepare-a-handoff) and
+[history/privacy rules](GUI_CONTEXT.md#history-and-privacy). It adds no model
+turn and never substitutes saved text or usage counters for active context.
+Render the user-facing table using [handoff table presentation](#handoff-table-presentation).
 
 Example in a disposable repository with a synthetic verified registry fixture for T-003/#25 (owner `worker`, no assigned outputs; tests create that fixture without network access):
 
@@ -759,6 +741,8 @@ identity, inspect actual diff/evidence and self-healing, update the parent
 record/state/index where materially changed, then consume the named result
 (or record legacy review). Preserve failed evidence. Child completion never
 completes its parent.
+
+### Self-healing evidence
 
 Every material stage records in its own result: observation, cause or unknown, recovery, outcome, and a small reusable instruction/tool suggestion. Report recovered errors with sanitized operation, diagnostic/exit code and recovery. One coordinator promotes verified reusable lessons; repeated violations of an existing rule call for execution/tool fixes, not automatic rule growth. No background monitor or report per chat message.
 
@@ -931,32 +915,17 @@ Before marking a substantial task done, update the canonical task summary, reusa
 
 ### Post-execution review and optimization triage
 
-New handoffs carry `Self-review contract: execution-review/v1`. After normal
-work and validation, CLI adds one structured post-execution self-review JSON
-fence after provenance. Unknown numeric measurements stay `null`; no more than
-five cost hotspots are ranked. The review is observation-only: CLI does not
-prescribe or implement an optimization because of it. Older tasks without the
-marker remain compatible.
-
-The live `docs/telemetry/optimization-inventory.json` is GUI-owned mutable
-state. Delegated CLI must never own or edit it, use it as a frozen output, or
-backfill it. GUI explicitly migrates and triages reports before consuming a
-new-contract receipt. Synthetic inventory fixtures stay in temporary roots.
-The result parser requires exactly one provenance object and one review object,
-with review after provenance inside `## Result`.
-
-GUI reviews and explicitly ingests every report during ordinary receipt using
-`scripts/execution_review.py ingest` and the schema in
-`docs/EXECUTION_REVIEW.md`. GUI supplies semantic keys, trend, evidence, decision
-and rationale. Duplicate ingestion of identical report/attempt is idempotent;
-changed duplicate content fails closed. Empty reports are ledgered too.
-The receipt command requires a ledger entry for each new-contract report before
-consumption. This records triage without equating it with acceptance.
-Ingestion does not create issues. Any optimization follows the existing
-GitHub-first flow with separate write authorization. Improvement or resolution
-requires later execution evidence after a recorded implementation boundary,
-and subsequent occurrences remain collected. This triage is separate from
-parent acceptance and AI-cost closeout.
+The canonical schema, JSON placement, legacy compatibility and GUI ingestion
+procedure are in [EXECUTION_REVIEW](EXECUTION_REVIEW.md#gui-triage-and-inventory);
+use the [result example](CLI_DELEGATION_TEMPLATE.md#compact-result-example).
+CLI supplies factual observations only. The live inventory remains GUI-owned;
+use disposable fixtures, never CLI edits or completed-output hashes of it.
+GUI explicitly triages every report (including empty reports) before receipt;
+enabled review also requires [cycle triage](IMPLEMENTATION_REVIEW.md#lifecycle-evidence).
+Triage is not acceptance, cost closeout or authorization for optimization.
+Use the existing [human-governed improvement procedure](EXECUTION_REVIEW.md#human-governed-improvement-validation)
+for later eligible evidence; issue creation still follows the GitHub-first
+registry and separate write authorization.
 
 ## Public-content privacy gates
 

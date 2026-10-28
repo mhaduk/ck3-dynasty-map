@@ -4,6 +4,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
@@ -57,6 +58,50 @@ class DiagnosticReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(dr.Invalid, "packet_exists"):
             self.build()
         self.assertEqual(dr.validate(self.root, self.output)["state"], "VALID")
+
+    def test_canonical_prompt_matches_original_bytes_and_ignores_packet_root_copy(self):
+        canonical = (Path(dr.__file__).resolve().parents[1] / "docs/DIAGNOSTIC_REVIEW_PROMPT.md").read_bytes()
+        # Frozen pre-change generated prompt digest, without a second prompt copy.
+        expected = "bd698c9bb0ac0315c9eb265dc8bf436d4c7460bddf3154498bb7e937293334d3"
+        self.assertEqual(hashlib.sha256(canonical).hexdigest(), expected)
+        (self.root / "docs").mkdir()
+        (self.root / "docs/DIAGNOSTIC_REVIEW_PROMPT.md").write_text("Untrusted caller copy")
+        self.assertEqual(self.build(preview=True)["prompt_sha256"], expected)
+        self.build()
+        self.assertEqual((self.root / self.output / "REVIEW_PROMPT.md").read_bytes(), canonical)
+
+    def test_missing_or_unsafe_trusted_prompt_fails_before_any_output(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            trusted = Path(temporary).resolve()
+            (trusted / "scripts").mkdir(); (trusted / "docs").mkdir()
+            helper = trusted / "scripts/diagnostic_review.py"
+            helper.write_text("# Trusted-location fixture\n")
+            resource = trusted / "docs/DIAGNOSTIC_REVIEW_PROMPT.md"
+            def snapshot():
+                return {str(p.relative_to(self.root)): (p.stat().st_mode, p.stat().st_mtime_ns,
+                        p.read_bytes() if p.is_file() else None) for p in self.root.rglob("*")}
+            for kind in ("missing", "symlink", "directory", "oversized", "parent-symlink", "helper-symlink"):
+                with self.subTest(kind=kind), mock.patch.object(dr, "__file__", str(helper)):
+                    if kind == "symlink": resource.symlink_to(trusted / "absent")
+                    elif kind == "directory": resource.mkdir()
+                    elif kind == "oversized": resource.write_bytes(b"x" * (dr.EXCERPT_LIMIT + 1))
+                    elif kind == "parent-symlink":
+                        (trusted / "docs").rmdir(); (trusted / "docs").symlink_to(self.root, target_is_directory=True)
+                    elif kind == "helper-symlink":
+                        helper.unlink(); helper.symlink_to(trusted / "absent")
+                    before = snapshot()
+                    for preview in (True, False):
+                        with self.assertRaises(dr.Invalid): self.build(preview=preview)
+                        self.assertEqual(before, snapshot())
+                    if kind == "directory": resource.rmdir()
+                    elif kind in ("symlink", "oversized"): resource.unlink()
+                    elif kind == "parent-symlink":
+                        (trusted / "docs").unlink(); (trusted / "docs").mkdir()
+
+    def test_archived_packet_validates_without_current_prompt_resource(self):
+        self.build()
+        with mock.patch.object(dr, "_canonical_prompt", side_effect=dr.Invalid("missing_input")):
+            self.assertEqual(dr.validate(self.root, self.output)["state"], "VALID")
 
     def test_json_selected_fields_and_missing_field_are_explicit(self):
         (self.root / "evidence" / "data.json").write_text('{"status":"INCOMPLETE","nested":{"value":4}}', encoding="utf-8")

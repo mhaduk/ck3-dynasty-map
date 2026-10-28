@@ -51,18 +51,11 @@ Estimated CLI time / steps: <low>–<high> minutes / <exact frozen plan count> s
   The token-only helper fragment is not the final priced table.
 
 ## Progress and communication
-Keep user-facing commentary in the language of the latest user request, including
-readable stage descriptions; preserve exact commands, IDs and required receipt phrases.
-After each successful meaningful progress transition, send one standalone agent
-commentary based on persisted `STATUS.json.progress`, using the parent ID and
-the current stage label (or “milestone boundary”):
-`●  <parent ID> [<30-cell Unicode bar>] ~<percent>% — <stage>`. Never relay no-ops
-or failed, rejected or stale commands; do not duplicate an unchanged state or
-guess progress. At 100%, say
-`CLI complete; GUI review pending`. Commentary contains no ANSI escapes. Terminal
-output uses a green ANSI bullet when color is supported and the same glyph
-uncolored otherwise. Keep ordinary command output as evidence; shell output
-itself is not an agent commentary.
+Use the latest user's language; preserve exact commands, IDs and receipt phrases.
+Follow `docs/CODEX_WORKFLOW.md`, section "GUI execution plan and CLI progress"
+(repository-root path): use supplied milestones/current revision and relay only
+successful meaningful persisted transitions. Never invent progress or an initial
+legacy plan. At 100% preserve `CLI complete; GUI review pending`.
 
 ## Escalation
 Complete useful safe bounded analysis first. Escalate scope, architecture,
@@ -78,70 +71,50 @@ authorized work. Recommendations are advice; GUI acceptance is separate.
 ```
 ~~~
 
-The GUI supplies a real 1–20 milestone plan as its final preparation step when
-progress is useful; the example above is illustrative only. Follow the current
-schema: CLI must not invent an initial plan. Justified in-scope amendments
-use the existing `progress --amend` procedure; scope changes require a new handoff.
+The sample plan is illustrative; GUI supplies and freezes the actual milestones
+as the last preparation step. Use the canonical
+[plan/progress procedure](CODEX_WORKFLOW.md#gui-execution-plan-and-cli-progress)
+and [table presentation](CODEX_WORKFLOW.md#handoff-table-presentation), including
+summary binding/grouping, saved-session estimate and conditional Routing row.
+Do not reconstruct initial plans for legacy handoffs.
 
-For a planned handoff, append one `Plan of execution` row after the five
-standard receipt rows using `handoff.render_handoff_table`. GUI supplies up to
-ten concise authored summary bullets, each mapped to ordered milestone IDs,
-and freezes them with `create --plan-summary`. The helper binds the summary to
-the plan fingerprint, rejects stale or incomplete mappings, and escapes table
-cells. For more than ten milestones, GUI authors ordered meaningful groups.
-Planless legacy handoffs retain the five-row table.
-
-When independent implementation review is enabled, GUI supplies the paired
-contract JSON with `handoff.py create --review-contract`. Bind the parent ID,
-acceptance revision, execution scope/permissions/validation, exact
-`execution_plan` and canonical `plan_summary` hash, selected executor and
-reviewer profiles with rationale, review dimensions, escalation rules, and an
-explicit `MAX_CYCLES` positive maximum or `UNTIL_ACCEPTED_OR_ESCALATED` null
-maximum with rationale. The frozen contract is the only renderer source for
-plan, profiles, policy and budget. Pass the delegation folder ID as `task_id`
-and its registered `STATUS.json.parent_id` as `parent_id`, alongside the exact
-contract: `review_loop={"task_id": <delegation ID>, "parent_id": <registered parent ID>, "contract": ...}`.
-The normal renderer resolves the registered delegation from the repository
-root, validates its frozen paired contract and parent binding, and rejects
-caller contract data that differs from registered bytes. The pure formatting
-helper does not verify registration. The renderer uses the
-delegation ID in all four operational commands.
-Preserve existing time/steps and saved GUI text estimates, and keep the frozen
-plan last. Do not infer a budget. See
-[`IMPLEMENTATION_REVIEW.md`](IMPLEMENTATION_REVIEW.md) for exact command
-routing, correction completion, recovery and T-021 receipt semantics.
-
-During that same GUI preparation pass, freeze a compact `routing` object in
-the existing paired contract for new handoffs: `execution_class` is exactly
-`MECHANICAL`, `STANDARD`, `COMPLEX`, or `DIAGNOSTIC`; include `review_route`,
-`gui_finalization`, a concise `reason`, and nullable `high_reason` and
-`targeted_trigger`. This adds no model call or CLI session. MECHANICAL may use
-no independent review; STANDARD uses Sol/Medium only when separate review adds
-value; COMPLEX does not imply Sol/High. High requires a concrete allowed risk
-reason, and XHigh/Max is never automatic. DIAGNOSTIC uses T-015. After current
-review `ACCEPTED`, default to `RECEIPT_ONLY`; use `TARGETED_REVIEW` only with a
-listed concrete trigger. Treat accepted-work closeout, approved installation,
-deterministic preflight/tests/hash checks, bounded known-prefix log inspection
-and publication readback as MECHANICAL when their procedure is defined. Keep
-all required validation and permissions unchanged; unclear or contradictory
-evidence routes to DIAGNOSTIC. Legacy contracts without `routing` remain valid.
+For substantial implementation, follow
+[frozen independent-review preparation](IMPLEMENTATION_REVIEW.md#frozen-preparation)
+and the [review/correction lifecycle](IMPLEMENTATION_REVIEW.md#lifecycle-evidence).
+The paired contract and routing are frozen before READY; the original executor
+handles corrections and every reviewer is fresh/read-only. Use the delegation
+ID, actual selected finite/open policy and registered renderer inputs. For
+classification and GUI finalization, use the
+[routing procedure](CODEX_WORKFLOW.md#delegation-classes-evidence-and-escalation).
+No template or classification grants permissions or removes required checks.
 
 ## Compact result example
+
+For an existing registered delegation, run
+`python3 scripts/handoff.py --root . preview <ID>` for the next applicable
+command, or add `--mode result` for a current `CLI_RESULT.md` scaffold on
+stdout. Preview does not claim, lock, initialize review or write a result file.
+Replace the explicit owner placeholder before claiming; milestone completion
+and task completion still require actual work and evidence. Refresh after
+every transition and regenerate the scaffold after implementation: output
+hashes describe the files at preview time, while input hashes retain the
+registered baseline. JSON null marks a missing output, not a delivered file.
+Fill outcome, acceptance, checks, dossier and self-review placeholders from
+actual evidence; the unedited scaffold cannot complete. Preview grants no
+permissions, invents no runtime profile or reviewer identity, and does not
+bypass independent review, correction dispositions or GUI acceptance. It is a
+cooperative snapshot, not an atomic transaction against concurrent writers.
+Legacy inbox IDs are unsupported; use the explicitly registered per-ID task.
 
 Keep the exact top-level headings and required success/check/provenance grammar
 below. Put the evidence dossier under `## Result`; omit optional detail that
 does not apply, while retaining every dossier heading for clear unknowns.
-For results with `Self-review contract: execution-review/v1`, append exactly
-one fenced provenance JSON object in the result and exactly one fenced review
-JSON object after it, both within `## Result`; no second provenance example or
-identity fence is allowed. `handoff.py` rejects duplicate provenance objects.
-It has `type: post_execution_self_review`, `version: 1`, all categories,
-`cost_hotspots` (maximum five) and `metrics` (unknown is `null`). CLI records
-observations only; GUI owns ingestion and decisions.
-
-The live `docs/telemetry/optimization-inventory.json` is GUI-owned mutable
-state. Do not declare it owned, edit it, reset/backfill it, or include it in
-completed-output hashes. Use temporary synthetic inventory fixtures only.
+For marked tasks, follow the canonical
+[self-review schema and placement](EXECUTION_REVIEW.md) and
+[GUI triage procedure](EXECUTION_REVIEW.md#gui-triage-and-inventory): exactly one
+provenance fence followed by one review fence within `## Result`. Legacy tasks
+without the marker retain their contract. The live inventory is GUI-owned;
+CLI supplies observations only, using disposable inventory fixtures for tests.
 
 ~~~markdown
 ## Identity

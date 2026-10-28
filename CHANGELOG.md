@@ -5,6 +5,7 @@ All notable changes to Dynasty Map will be documented here.
 ## [Unreleased]
 
 ### Verified
+- T-026 accepted local workflow improvements: a read-only handoff/result preview and reduced duplicate workflow policy text, with a limited procedure for later real-task effectiveness review. Independent R1 reviews accepted both implementation stages; Wiki and Issue #52 publication/readback completed, #52 closed. Scoped branch commit/tag/push pending; savings/effectiveness remain unproven.
 - R-009's corrected current-DEV GUI fallback passes the bounded observer
   return, native Culture selection and manual reentry path on CK3 1.20.1.2.
   The reproducible `current-dev` builder emits the fixture-free eight-file

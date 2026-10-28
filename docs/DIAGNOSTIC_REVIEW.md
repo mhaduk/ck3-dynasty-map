@@ -98,8 +98,13 @@ absolute private paths, credentials or unrelated user data. The common-value
 scanner is a guardrail, not proof of privacy; inspect the packet before
 transfer. Review packets and responses remain under ignored `.codex-sync/`.
 
-The reusable reviewer instructions are in
-[DIAGNOSTIC_REVIEW_PROMPT.md](DIAGNOSTIC_REVIEW_PROMPT.md).
+The sole reusable reviewer instruction source is
+[DIAGNOSTIC_REVIEW_PROMPT.md](DIAGNOSTIC_REVIEW_PROMPT.md). The helper reads
+its exact bytes (at most 64 KiB) from the repository containing the trusted
+helper, never from the caller's packet root. Missing, symlinked, nonregular or
+oversized resources fail before output directories/artifacts are created;
+there is no fallback prompt. Existing packets validate against their own
+stored prompt hash, without rereading or regenerating the current resource.
 
 ```mermaid
 flowchart LR

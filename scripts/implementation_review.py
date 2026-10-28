@@ -1129,6 +1129,32 @@ def fail_review_attempt(root, task_id: str, *, review_id: str, reason: str):
         return record
 
 
+def preview_status(root, task_id):
+    """Read a validated projection without creating locks or lifecycle artifacts.
+
+    This is a cooperative snapshot, not authorization to mutate. Refresh after
+    every transition; ordinary mutation guards remain authoritative.
+    """
+    root, path, state = _load(root, task_id)
+    before = path.read_bytes()
+    projection = _status_locked(root, task_id)
+    closed = {r["id"] for r in state["reviews"]} | {
+        f["review_id"] for f in state["review_attempt_failures"]}
+    projection.update(
+        open_reviews=[a["id"] for a in state["review_attempts"] if a["id"] not in closed],
+        pending_corrections=list(state["pending_corrections"]),
+        corrected_reviews=[c["source_review"] for c in state["corrections"]],
+    )
+    handoff = _load_payload(root, f".codex-sync/tasks/{task_id}/STATUS.json")
+    # Consumption advances the handoff revision after the final receipt was
+    # checked. That historical receipt is not a new GUI-return authorization.
+    if projection["ready_for_gui"] and handoff["status"] != "CONSUMED":
+        require_final_receipt(root, task_id)
+    if path.read_bytes() != before:
+        raise ReviewError("review changed during preview; refresh")
+    return projection
+
+
 def status(root, task_id, *, lock_held=False):
     """Return a deterministic status projection from persisted artifacts."""
     root = Path(root).resolve(strict=True)

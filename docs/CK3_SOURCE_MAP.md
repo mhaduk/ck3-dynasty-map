@@ -49,7 +49,7 @@ Evidence labels used in project notes:
 | GUI function / type / return type | `<user-data>/logs/data_types/` (`data_types_gui.txt`, `data_types_script.txt`, `data_types_uncategorized.txt`) | Search vanilla `.gui` caller; check case and scope construction | Usually for execution ordering, invalid context, refresh and visibility behavior |
 | GUI layout / native integration | `<game>/gui/` | Relevant `mapmodes.gui`, HUD/window and registration `.info` | Usually; composition and engine-managed behavior are not API signatures |
 | Scripted GUI | `data_types_script.txt` and `data_types_gui.txt` | `common/scripted_guis/`, `gui/` invocation; search `ScriptedGui.Execute` | For root, availability, re-click and lifecycle semantics |
-| Map mode / barony colors | `<game>/gfx/map/map_modes/map_modes.txt`; `common/landed_titles/` | Native map-mode GUI, color effects, shaders and the exact consumer | Yes for renderer input/isolation/restore. R-009 renderer input and lifecycle remain **UNKNOWN** |
+| Map mode / barony colors | `<game>/gfx/map/map_modes/map_modes.txt`; `common/landed_titles/` | Native map-mode GUI, color effects, shaders and the exact consumer | Yes for renderer input/isolation/restore. Current bounded acceptance and residual gates: [R-009](tasks/R-009-barony-color-safety.md) and [T-025](tasks/T-025-lifecycle-persistence-followup.md); not SAFE FOR BETA |
 | Area selection / geographical-region inputs | Generated `TitleSelectorWindow`, `GeographicalRegionsWindow`, `GuiPotentialCouncilTask`; `<game>/map_data/geographical_regions/_geographical_regions.info` | `common/decisions/_decisions.info` title controllers, `common/council_tasks/_council_tasks.info`, matching selector/window GUI | R-009 static trace found predicates and database identities, not a dynamic three-set/RGB layer. Region definition RGB is for visual regions; selection binding/cleanup needs separate evidence |
 | County / barony / title traversal | `event_targets.log`, `effects.log`, `triggers.log` | `common/landed_titles/`, map/title effects and a focused iterator example | Runtime for unusual de-jure/holder cases; generated signatures do not prove intended coverage |
 | Character / House / Dynasty and lieges | `event_targets.log`, `triggers.log` | `common/dynasty_houses/`, `common/dynasties/`, relevant decisions/effects | Runtime for succession, missing Dynasty, special governments or null behavior |
@@ -221,7 +221,13 @@ source/install preflight and the separate user-run startup/log gate.
 6. Keep raw dumps/logs/save data local. Record concise findings, source build,
    exact locations and limitations in the canonical task summary.
 
-For the current renderer boundary, R-009 remains **PARTIAL**: no supported
-independent view-specific barony color input or safe cleanup lifecycle has
-been established. This map is a navigation aid, not a resolution of those
-unknowns.
+For current renderer status, follow the [accepted R-009 local checkpoint](tasks/R-009-barony-color-safety.md)
+(2026-10-27) and its residual verification transferred to
+[T-025](tasks/T-025-lifecycle-persistence-followup.md). The 2026-10-21 static
+source chronology above remains historical evidence, not a current release
+verdict. That historical static search did not establish an independent
+view-specific barony-color input or safe cleanup lifecycle; its UNKNOWN limits
+do not override the later bounded direct-title-RGB checkpoint. Bounded local
+acceptance does not establish whole-world equality,
+harmless persistence or SAFE FOR BETA, and does not prove renderer impossibility.
+This navigation update performs no renewed source or runtime research.

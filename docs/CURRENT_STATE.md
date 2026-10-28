@@ -1,3 +1,13 @@
+## T-026 / #52 — accepted workflow checkpoint; Git publication pending — 2026-10-28
+
+Phase A audit and explicitly selected local changes #1/#2 plus limited #4 are
+accepted; both implementation reviews were R1 ACCEPTED with zero corrections.
+The frozen partial cost gate passed; six Wiki pages were published and read
+back at commit `2a8694d`, and #52 was closed COMPLETED after exact issue-body
+and cost-table readback. The local branch commit, annotated tag and project
+push are still pending. Later effectiveness and savings remain unproven. See
+[T-026](tasks/T-026-astra-workflow-audit.md) and [deferred snapshot](T026_DEFERRED_OPTIMIZATIONS.md).
+
 ## T-027 / #53 — repository integration checkpoint — 2026-10-27
 
 Normal integration preserves the 56-commit accepted research history and three

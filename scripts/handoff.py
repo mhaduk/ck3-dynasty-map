@@ -14,8 +14,13 @@ import os
 import importlib.util
 from pathlib import Path
 import re
+import shlex
 import sys
 import tempfile
+
+# A CLI preview must not create Python caches while loading adjacent helpers.
+if __name__ == "__main__" and "preview" in sys.argv[1:]:
+    sys.dont_write_bytecode = True
 
 # Load the adjacent helper even when this module is imported from a test.
 _registry_spec = importlib.util.spec_from_file_location("handoff_task_registry", Path(__file__).with_name("task_registry.py"))
@@ -809,6 +814,172 @@ def cmd_validate(args):
     print(json.dumps({"id": status["id"], "status": status["status"], "revision": status["revision"], "contract_match": True}, sort_keys=True))
 
 
+def preview_commands(root, directory, status, task, paired, review):
+    """Render only the next applicable action, with explicit human preconditions."""
+    task_id = status["id"]
+    lines = [f"Preview: {task_id} (parent {status['parent_id']}); {status['status']}; "
+             f"attempt {status['attempt']}; revision {status['revision']}",
+             "Snapshot only. Refresh after every transition. This grants no permissions."]
+    # A root argument is quoted too, so the command remains valid outside cwd.
+    def command(operation, *options):
+        return shlex.join(["python3", str(Path(__file__).resolve()), "--root", str(root),
+                           operation, task_id, *options])
+    if paired is not None:
+        loop = paired["loop"]
+        lines.append(f"Implementation review: {'enabled' if loop['enabled'] else 'disabled'}; "
+                     f"policy {loop.get('correction_policy', 'MAX_CYCLES')}; "
+                     f"maximum corrections {loop['correction_budget']}")
+    phase = status["status"]
+    if phase == "READY":
+        if (directory / ".claim").exists():
+            lines.append("No action: interrupted claim evidence requires coordinator recovery.")
+        else:
+            lines += ["Replace <OWNER> with your actual owner label before claiming:",
+                      command("claim", "--owner", "<OWNER>", "--revision", str(status["revision"]))]
+    elif phase == "IN_PROGRESS":
+        owner = status.get("owner")
+        if not isinstance(owner, str) or not owner.strip():
+            lines.append("No action: owner is unknown; coordinator inspection required.")
+        else:
+            options = ["--owner", owner, "--revision", str(status["revision"])]
+            plan = frozen_plan(task)
+            progress = status.get("progress") or (new_progress(plan) if plan else None)
+            if progress and progress["current"]:
+                lines += ["Only after actual milestone work and evidence are complete:",
+                          command("progress", *options, "--done", progress["current"])]
+            elif progress and len(progress["completed"]) < progress["plan"]["total_steps"]:
+                remaining = next(s["id"] for s in progress["plan"]["steps"]
+                                 if s["id"] not in progress["completed"])
+                lines += ["Start the next supplied milestone:", command("progress", *options, "--start", remaining)]
+            else:
+                lines += ["Only after deliverables, truthful result and every required check are complete:",
+                          command("complete", *options)]
+            if review and review["pending_corrections"]:
+                lines.append("Authorized correction in progress; preserve findings/dispositions and record "
+                             "the correction receipt after ordinary completion, before fresh review.")
+    elif phase == "COMPLETED":
+        if paired and paired["loop"]["enabled"]:
+            if review is None:
+                lines += ["Review ledger is uninitialized; a fresh read-only reviewer must initialize "
+                          "from the frozen contract and exact completed artifacts. Review command:",
+                          f"sprawdź {task_id}"]
+            elif review["ready_for_gui"]:
+                lines += ["Current review permits GUI return; GUI acceptance and report triage remain pending:",
+                          f"gotowe {task_id}"]
+            elif review["pending_corrections"]:
+                lines.append("No new review: original executor must record the pending correction receipt "
+                             "with required dispositions for " + ", ".join(review["pending_corrections"]) + ".")
+            elif review["open_reviews"]:
+                lines.append("No new action: review attempt pending: " + ", ".join(review["open_reviews"]) +
+                             ". Its reviewer must submit a verdict or record interruption.")
+            else:
+                latest = review["latest_review"]
+                if latest and latest["verdict"] == "CHANGES REQUIRED" and latest["id"] not in review["corrected_reviews"]:
+                    lines += ["Original executor only; authorize correction with evidenced dispositions first:",
+                              f"popraw {task_id} {latest['id']}"]
+                elif latest and latest["verdict"] in {"ACCEPTED", "ESCALATE TO GUI"}:
+                    lines.append("No action: terminal review is not currently GUI-ready; coordinator inspection required.")
+                else:
+                    lines += ["Fresh independent read-only review is required:", f"sprawdź {task_id}"]
+        else:
+            lines += ["Executor complete; GUI must review evidence and perform required report triage:", f"gotowe {task_id}"]
+    else:
+        lines.append(f"No action: {phase}; coordinator instructions are required for any further lifecycle work.")
+    return "\n".join(lines) + "\n"
+
+
+def preview_result(status, task, outputs):
+    """Produce a deliberately incomplete receipt, with current provenance only."""
+    provenance = {key: status[key] for key in ("id", "parent_id", "attempt", "inputs")}
+    provenance["outputs"] = outputs
+    lines = ["## Identity", f"- ID: {status['id']}; parent: {status['parent_id']}; attempt: {status['attempt']}",
+             f"- Owner/revision snapshot: {json.dumps(status.get('owner'))}/{status['revision']}",
+             "- Model: UNKNOWN; <fill only with supported actual-profile evidence>",
+             "", "## Result", "- Outcome: <FILL FROM ACTUAL EVIDENCE>", "- Acceptance: <FILL FROM ACTUAL EVIDENCE>",
+             "", "Snapshot: regenerate after implementation and before completion. Fill all placeholders."]
+    for heading in ("QUESTION / SCOPE", "FINDINGS", "EVIDENCE", "OPTIONS", "RECOMMENDATION",
+                    "UNRESOLVED / UNKNOWN", "DECISION REQUIRED"):
+        lines += ["", "### " + heading, "<FILL: actual evidence, supported conclusion or explicit unknown>"]
+    lines += ["", "```json", json.dumps(provenance, indent=2, sort_keys=True), "```"]
+    if "Self-review contract: execution-review/v1" in task:
+        from execution_review import CATEGORIES
+        report = {"type": "post_execution_self_review", "version": 1,
+                  "categories": {name: "<FILL: factual observation or NONE after verification>" for name in CATEGORIES},
+                  "cost_hotspots": [], "metrics": {"elapsed_seconds": None, "tokens": None}}
+        lines += ["", "```json", json.dumps(report, indent=2, sort_keys=True), "```"]
+    lines += ["", "## Files", "<FILL: actual changed files and purpose; hashes above are this snapshot only>"]
+    missing = [rel for rel, value in outputs.items() if value is None]
+    if missing:
+        lines += ["Missing outputs (JSON null); missing required deliverables cannot complete:"]
+        lines.extend("- " + json.dumps(rel) for rel in missing)
+    lines += ["", "## Checks"]
+    lines.extend(f"- {check}: <FILL FROM ACTUAL CHECK>" for check in status["required_checks"])
+    lines += ["<FILL: commands, outcomes and limitations>", "", "## Self-healing / agent-instruction findings",
+              "- Observation: <FILL>", "- Cause or unknown: <FILL>", "- Recovery/outcome: <FILL>",
+              "- Improvement: <FILL: observation only; no new work authorized>",
+              "", "## Permissions / Git state", "<FILL: actual operations and permission boundary>",
+              "", "## GUI next step", "<FILL: review evidence, pending independent review and GUI decision>"]
+    return "\n".join(lines) + "\n"
+
+
+def cmd_preview(args):
+    # Deliberately do not use locked(), cmd_validate() or review.status(): those
+    # may create lock files. No mutation is authorized by this snapshot.
+    previous = sys.dont_write_bytecode
+    sys.dont_write_bytecode = True
+    try:
+        root = repo_root(args.root)
+        directory = task_dir(root, args.id)
+        admin_paths(root, directory)
+        no_pending(directory)
+        status = read_status(root, directory)
+        if "docs/telemetry/optimization-inventory.json" in status["owned"]:
+            raise HandoffError("live GUI inventory cannot be a preview output")
+        contract(root, directory, status, initial=status["status"] == "READY")
+        outputs = inputs_fingerprint(root, status["owned"], optional=status["owned"])
+        if status["status"] in {"COMPLETED", "CONSUMED"}:
+            if outputs != status["outputs"]:
+                raise HandoffError("completed outputs changed")
+            result = safe_path(root, directory / "CLI_RESULT.md", "file", required=True)
+            if digest(result.read_bytes()) != status["result_sha256"]:
+                raise HandoffError("completed result changed")
+        task = (directory / "CLI_TASK.md").read_text(encoding="utf-8")
+        paired, review = None, None
+        ledger = safe_path(root, directory / "IMPLEMENTATION_REVIEW.json", "file")
+        for name in ("IMPLEMENTATION_REVIEW_FINAL_RECEIPT.md", ".implementation-review.lock"):
+            safe_path(root, directory / name, "file")
+        review_dir = safe_path(root, directory / "implementation-review", "dir")
+        if review_dir.exists():
+            for parent, dirs, files in os.walk(review_dir, followlinks=False):
+                for name in dirs:
+                    safe_path(root, Path(parent) / name, "dir")
+                for name in files:
+                    safe_path(root, Path(parent) / name, "file")
+        pending = safe_path(root, directory / "implementation-review" / "PENDING.json", "file")
+        if pending.exists():
+            raise HandoffError("interrupted review transition pending; coordinator recovery required")
+        if status.get("review_contract_sha256") is not None:
+            paired = read_json(root, directory / "IMPLEMENTATION_REVIEW_CONTRACT.json")
+        if ledger.exists():
+            if paired is None or not paired["loop"]["enabled"]:
+                raise HandoffError("review ledger conflicts with disabled or absent paired contract")
+            from implementation_review import preview_status
+            review = preview_status(root, args.id)
+        elif status.get("implementation_review_correction_id"):
+            raise HandoffError("correction requires its existing review ledger")
+        elif review_dir.exists() and any(review_dir.iterdir()):
+            raise HandoffError("review artifacts exist without their ledger; coordinator inspection required")
+        rendered = (preview_result(status, task, outputs) if args.mode == "result" else
+                    preview_commands(root, directory, status, task, paired, review))
+        if read_status(root, directory) != status:
+            raise HandoffError("status changed during preview; refresh")
+        print(rendered, end="")
+    except ValueError as exc:
+        raise HandoffError(f"preview validation failed: {exc}") from exc
+    finally:
+        sys.dont_write_bytecode = previous
+
+
 def cmd_fail(args):
     root = repo_root(args.root)
     directory = task_dir(root, args.id)
@@ -1202,6 +1373,10 @@ def build_parser():
         p.set_defaults(func=function)
     p = subs.add_parser("validate", help="validate frozen scope, baseline and applicable fingerprints")
     p.add_argument("id"); p.set_defaults(func=cmd_validate)
+    p = subs.add_parser("preview", help="read-only stdout command preview or incomplete result scaffold")
+    p.add_argument("id")
+    p.add_argument("--mode", choices=("commands", "result"), default="commands")
+    p.set_defaults(func=cmd_preview)
     p = subs.add_parser("progress", help="record one meaningful milestone transition or justified plan amendment")
     p.add_argument("id"); p.add_argument("--owner", required=True); p.add_argument("--revision", type=int, required=True)
     actions = p.add_mutually_exclusive_group(required=True)

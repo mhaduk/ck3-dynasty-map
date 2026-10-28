@@ -59,6 +59,24 @@ paths are checked for symlinks. Only the canonical platform aliases `/tmp` to
 `/private/tmp` and `/var` to `/private/var` are trusted; nested aliases are
 rejected.
 
+## Human-governed improvement validation
+
+GUI selects a significant existing observation based on its evidence, then
+explicitly approves a bounded change through the normal scope/permission and
+GitHub-first workflow. After acceptance, GUI records the existing verified
+optimization link and actual implementation boundary, and names a later eligible
+real task with an opportunity to exercise the changed behavior. Observe actual
+use, repair/rework and retained correctness checks; attach the existing later
+`EXECUTE` provenance before judging benefit, regression or UNKNOWN. Preserve the
+later-date and causal gates above: same-parent or same-day use does not bypass
+them, and no opportunity or missing measurements means uncertainty, not success.
+
+This uses existing reports and inventory fields, not new compulsory reports,
+metrics or recurrence thresholds. Observations never authorize autonomous code
+or routing changes, new daemons/state, historical-ledger rewrites or CLI inventory
+ownership. GUI alone triages and decides; synthetic tests do not establish
+IMPROVING/RESOLVED or cost savings.
+
 ## Complete triage input example
 
 The CLI is `python3 scripts/execution_review.py ingest INVENTORY TRIAGE_JSON`.

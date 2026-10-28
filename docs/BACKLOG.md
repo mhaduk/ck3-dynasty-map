@@ -7,12 +7,14 @@ IDs such as R-002 are separate from GitHub issue numbers. Only verified GitHub i
 
 ## Project tooling
 
+
 T-005 is COMPLETE after substantive GUI review (2026-10-23); parent #27 is closed completed. Cross-chat receipt integration with F-001 is resolved by a new accepted reconciliation; original frozen evidence is preserved.
 See [T-005 review](tasks/T-005-research-backlog-review.md) for eight dispositions, evidence and ownership.
 Dated migration/checkpoint statements below retain their historical meaning.
 
 | ID | Priority | Work item | Status |
 |---|---|---|---|
+| [T-026 / #52](tasks/T-026-astra-workflow-audit.md) | P1 | Audit and simplify the AI-assisted workflow | Local #1/#2 and limited #4 accepted; GUI cost gate passed, Wiki/Issue published and #52 closed. Scoped commit/tag/push pending; effectiveness and savings remain unproven. |
 | [T-027 / #53](tasks/T-027-main-development-checkpoint.md) | P1 | Reconcile research into main and freeze development checkpoint | Verified normal integration; `v0.1.0-rc.1` baseline for T-026; final remote receipt in #53. No beta/release gate claim. |
 | [T-025 / #51](tasks/T-025-lifecycle-persistence-followup.md) | P1 | Verify remaining Dynasty Map lifecycle and persistence gates | PLANNED / not started — resolve the 81-barony repeat discrepancy; verify corrected-candidate save/reload, DEV-absent behavior and saved-title invariants. R-005, T-014 and T-017 ownership remains distinct. |
 | [T-019 / #45](tasks/T-019-local-mod-variants.md) | P1 | Consolidate local DEV identity and remove obsolete probe installs | Complete in user-approved narrowed scope — DEV and launcher/persisted checks PASS; production transferred to T-014. Partial measured cost $1.14733320; #45 closed and Wiki cdebfec published/read back; scoped repository publication authorized. |

@@ -155,6 +155,98 @@ class ImplementationReviewTests(unittest.TestCase):
         return review.correct(self.root, self.task_id, correction_id=cid, source_review=source_review,
             dispositions=dispositions, new_result_path=self.result_path, changed_paths=[self.source_path], executor_identity="exec")
 
+    def preview(self, mode="commands", ok=True):
+        def snapshot():
+            return {str(p.relative_to(self.root)): (p.stat().st_mode, p.stat().st_mtime_ns,
+                    p.read_bytes() if p.is_file() else None) for p in self.root.rglob("*")}
+        before = snapshot()
+        result = self.handoff_cli("preview", self.task_id, "--mode", mode, ok=ok)
+        self.assertEqual(before, snapshot())
+        if not ok: self.assertEqual(result.stdout, "")
+        return result.stdout if ok else result.stderr
+
+    def test_preview_initialized_open_review_and_accepted_without_writes(self):
+        self.assertIn("sprawdź T-023", self.preview())
+        review.begin_review(self.root, self.task_id, review_id="R1", result_path=self.result_path,
+                            changed_paths=[self.source_path], reviewer_identity="reviewer-R1")
+        self.assertIn("review attempt pending: R1", self.preview())
+        review.fail_review_attempt(self.root, self.task_id, review_id="R1", reason="Synthetic interruption")
+        self.assertIn("sprawdź T-023", self.preview())
+        self.submit("R2", "ACCEPTED")
+        self.assertIn("gotowe T-023", self.preview())
+        self.assertNotIn("sprawdź", self.preview())
+        # A changed final receipt must not be treated as accepted by preview.
+        receipt = self.task / "IMPLEMENTATION_REVIEW_FINAL_RECEIPT.md"
+        receipt.write_text("stale")
+        self.assertIn("final GUI receipt is stale", self.preview(ok=False))
+
+    def test_preview_correction_and_fresh_review_sequence(self):
+        self.submit("R1")
+        self.assertIn("popraw T-023 R1", self.preview())
+        dispositions = {"F1": {"disposition": "FIXED", "evidence": "Synthetic fix and validation"}}
+        review.authorize_correction(self.root, self.task_id, correction_id="C1", source_review="R1",
+                                    dispositions=dispositions, executor_identity="exec")
+        self.assertIn("Authorized correction in progress", self.preview())
+        self.assertIn("--start stage0", self.preview())
+        (self.root / self.source_path).write_text("value = 2\n")
+        for milestone in ("stage0", "stage1"):
+            for action in ("--start", "--done"):
+                status = json.loads((self.task / "STATUS.json").read_text())
+                self.handoff_cli("progress", self.task_id, "--owner", "executor-session",
+                                 "--revision", str(status["revision"]), action, milestone)
+        self.write_handoff_result()
+        status = json.loads((self.task / "STATUS.json").read_text())
+        self.handoff_cli("complete", self.task_id, "--owner", "executor-session", "--revision", str(status["revision"]))
+        self.assertIn("pending correction receipt", self.preview())
+        self.assertNotIn("sprawdź", self.preview())
+        review.correct(self.root, self.task_id, correction_id="C1", source_review="R1",
+                       dispositions=dispositions, new_result_path=self.result_path,
+                       changed_paths=[self.source_path], executor_identity="exec")
+        self.assertIn("sprawdź T-023", self.preview())
+        self.assertNotIn("popraw", self.preview())
+        self.submit("R2", "ACCEPTED")
+        self.assertIn("gotowe T-023", self.preview())
+
+    def test_preview_escalated_and_changed_completed_outputs(self):
+        self.submit("R1", "ESCALATE TO GUI")
+        self.assertIn("gotowe T-023", self.preview())
+        (self.root / self.source_path).write_text("tampered")
+        self.assertIn("completed outputs changed", self.preview(ok=False))
+
+    def test_preview_uninitialized_and_disabled_review(self):
+        self._create_lifecycle("T-023-UNINITIALIZED", contract(), initialize=False)
+        self.assertIn("Review ledger is uninitialized", self.preview())
+        self.assertNotIn("gotowe", self.preview())
+        self.preview("result")
+        disabled = classified_contract("MECHANICAL", "NONE", enabled=False)
+        self._create_lifecycle("T-023-DISABLED", disabled, initialize=False)
+        self.assertIn("Implementation review: disabled", self.preview())
+        self.assertIn("gotowe T-023-DISABLED", self.preview())
+
+    def test_preview_contract_drift_pending_review_and_tampered_events(self):
+        paired = self.task / "IMPLEMENTATION_REVIEW_CONTRACT.json"
+        original = paired.read_bytes()
+        paired.write_text("{}")
+        self.assertIn("frozen implementation-review contract changed", self.preview(ok=False))
+        paired.write_bytes(original)
+        pending = self.task / "implementation-review/PENDING.json"
+        pending.write_text("{}")
+        self.assertIn("interrupted review transition", self.preview(ok=False))
+        pending.unlink()
+        self.submit("R1", "ACCEPTED")
+        event = self.task / "implementation-review/reviews/R1.json"
+        event.write_text("{}")
+        self.assertIn("tampered", self.preview(ok=False))
+
+    def test_preview_missing_ledger_is_not_silently_uninitialized(self):
+        (self.task / "IMPLEMENTATION_REVIEW.json").unlink()
+        self.assertIn("artifacts exist without their ledger", self.preview(ok=False))
+
+    def test_preview_rejects_unindexed_symlink_in_review_tree(self):
+        link = self.task / "implementation-review/unindexed"
+        link.symlink_to(self.root / "input.md")
+        self.assertIn("symlink", self.preview(ok=False))
+
     def test_explicit_budget_accepts_one_three_and_ten(self):
         for value in (1, 3, 10): self.assertEqual(review.validate_contract(contract(value))["loop"]["correction_budget"], value)
         bad = contract(); bad["loop"]["correction_budget"] = None
@@ -460,6 +552,7 @@ class ImplementationReviewTests(unittest.TestCase):
         self.handoff_cli("consume", self.task_id, "--revision", str(status["revision"]), "--review", "GUI accepted synthetic simulation")
         self.assertEqual(json.loads((self.task / "STATUS.json").read_text())["status"], "CONSUMED")
         self.assertTrue((self.task / "implementation-review/handoff-cycles/C1/MANIFEST.json").is_file())
+        self.assertIn("No action: CONSUMED", self.preview())
 
     def test_open_policy_correction_runs_through_normal_completion_and_gui_triage(self):
         opened = contract(); opened["version"] = 2
@@ -833,6 +926,7 @@ class ImplementationReviewTests(unittest.TestCase):
         self.assertTrue(review.status(self.root, self.task_id)["ready_for_gui"])
         review.record_gui_rejection(self.root, "T-023", reason="GUI found a missing acceptance case")
         self.assertFalse(review.status(self.root, self.task_id)["ready_for_gui"])
+        self.assertIn("terminal review is not currently GUI-ready", self.preview())
 
     def test_explicit_reviewer_escalation_enables_gui_action(self):
         self.submit("R1", verdict="ESCALATE TO GUI", identity="reviewer-1")

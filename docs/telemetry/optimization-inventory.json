@@ -680,20 +680,22 @@
     {
       "affected_executions": [
         "T021-COST-COLLECT-20261025-03",
-        "T018-DOCUMENT-CHECKPOINT-20261025-16"
+        "T018-DOCUMENT-CHECKPOINT-20261025-16",
+        "T026-CLOSEOUT-PREP-20261027-04"
       ],
       "affected_tasks": [
         "T021-COST-COLLECT-20261025-03",
-        "T018-DOCUMENT-CHECKPOINT-20261025-16"
+        "T018-DOCUMENT-CHECKPOINT-20261025-16",
+        "T026-CLOSEOUT-PREP-20261027-04"
       ],
       "boundary_history": [],
       "category": "errors_recovery",
       "decision": {
-        "date": "2026-10-26",
+        "date": "2026-10-28",
         "evidence": [
-          "handoff:T018-DOCUMENT-CHECKPOINT-20261025-16"
+          "handoff:T026-CLOSEOUT-PREP-20261027-04"
         ],
-        "rationale": "Known identity-mapping failure recovered and arithmetic verified; no helper implementation task authorized.",
+        "rationale": "Cost arithmetic/source replay substantively accepted; full preparation receipt CHANGES REQUIRED because four declared outputs absent. Preserve original result; next bounded publication delegation must repair output binding before external writes.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0006",
@@ -746,41 +748,65 @@
           "task": "T018-DOCUMENT-CHECKPOINT-20261025-16",
           "text": "Initial usage mapping shortened child identities and counted only145records; executor corrected full identities. GUI independently verified932own responses across20sources with exact parent bindings, counters and per-response prices.",
           "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T026-CLOSEOUT-PREP-20261027-04"
+            ],
+            "rationale": "Cost arithmetic/source replay substantively accepted; full preparation receipt CHANGES REQUIRED because four declared outputs absent. Preserve original result; next bounded publication delegation must repair output binding before external writes."
+          },
+          "attempt": 1,
+          "date": "2026-10-28",
+          "evidence": [
+            "handoff:T026-CLOSEOUT-PREP-20261027-04"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T026-CLOSEOUT-PREP-20261027-04",
+          "text": "Executor recovered initial zero assigned records from truncated IDs, added two linked review sources and corrected UTC cutoff. GUI replay matches 217 own response counters in eight snapshots and independently sums 22.07391212 Standard API-equivalent USD; partial coverage preserved.",
+          "trend": "REPEATED"
         }
       ],
       "key": "accounting.truncated-thread-identity",
-      "last_seen": "2026-10-26",
+      "last_seen": "2026-10-28",
       "link_history": [],
       "linked_optimization_task": null,
       "metric_totals": {
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 2
+          "unknown_count": 3
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 2
+          "unknown_count": 3
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 2
+          "unknown_count": 3
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 2
+          "unknown_count": 3
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 2
+          "unknown_count": 3
         }
       },
       "metrics": {},
-      "occurrence_count": 2,
+      "occurrence_count": 3,
       "schema_history": [],
       "status": "observing",
       "summary": "A truncated thread identifier produced no assigned usage; CLI rejected the empty result and recomputed from full metadata identities.",
@@ -800,7 +826,9 @@
         "R009-CARDINAL-PROTOCOL-20261026-07",
         "R009-CARDINAL-PREPARE-20261026-08",
         "R009-CARDINAL-INSTALL-20261026-10",
-        "R009-CARDINAL-VERIFY-20261026-15"
+        "R009-CARDINAL-VERIFY-20261026-15",
+        "T026-SCAFFOLD-20261027-02",
+        "T026-POLICY-20261027-03"
       ],
       "affected_tasks": [
         "T021-COST-COLLECT-20261025-03",
@@ -815,17 +843,27 @@
         "R009-CARDINAL-PROTOCOL-20261026-07",
         "R009-CARDINAL-PREPARE-20261026-08",
         "R009-CARDINAL-INSTALL-20261026-10",
-        "R009-CARDINAL-VERIFY-20261026-15"
+        "R009-CARDINAL-VERIFY-20261026-15",
+        "T026-SCAFFOLD-20261027-02",
+        "T026-POLICY-20261027-03"
       ],
-      "boundary_history": [],
+      "boundary_history": [
+        {
+          "boundary": "2026-10-27",
+          "date": "2026-10-27",
+          "decision": "MERGE WITH EXISTING OPTIMIZATION",
+          "rationale": "Accepted T026 intervention 1 addresses this existing recurring issue. Record the verified link and implementation boundary; no effectiveness claim until later eligible EXECUTE evidence.",
+          "task": "T026-SCAFFOLD-20261027-02"
+        }
+      ],
       "category": "errors_recovery",
       "decision": {
-        "date": "2026-10-26",
+        "date": "2026-10-27",
         "evidence": [
-          "handoff:R009-CARDINAL-VERIFY-20261026-15"
+          "handoff:T026-POLICY-20261027-03"
         ],
-        "rationale": "Factual recovered verification issue; no optimization work or effectiveness claim.",
-        "value": "KEEP OBSERVING"
+        "rationale": "Record initial real use of accepted generator and accepted canonical-policy implementation boundary under T026. No IMPROVING/RESOLVED claim: same-parent/date use does not meet later eligible evidence requirement.",
+        "value": "MERGE WITH EXISTING OPTIMIZATION"
       },
       "display_id": "OPT-0007",
       "first_seen": "2026-10-25",
@@ -1147,45 +1185,114 @@
           "task": "R009-CARDINAL-VERIFY-20261026-15",
           "text": "Executor supplied current required revision after rejection; external py_compile cache write denial recovered using in-memory compile with no scope expansion.",
           "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "MERGE WITH EXISTING OPTIMIZATION",
+            "evidence": [
+              "handoff:T026-SCAFFOLD-20261027-02"
+            ],
+            "rationale": "Accepted T026 intervention 1 addresses this existing recurring issue. Record the verified link and implementation boundary; no effectiveness claim until later eligible EXECUTE evidence."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:T026-SCAFFOLD-20261027-02"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T026-SCAFFOLD-20261027-02",
+          "text": "GUI accepted intervention 1 after first independent review. Read-only preview derives current revision and command; stale guards stay unchanged. Implementation boundary recorded; later real-task benefit remains unverified.",
+          "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "MERGE WITH EXISTING OPTIMIZATION",
+            "evidence": [
+              "handoff:T026-POLICY-20261027-03"
+            ],
+            "rationale": "Record initial real use of accepted generator and accepted canonical-policy implementation boundary under T026. No IMPROVING/RESOLVED claim: same-parent/date use does not meet later eligible evidence requirement."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:T026-POLICY-20261027-03"
+          ],
+          "execution_provenance": {
+            "date": "2026-10-27",
+            "delegation_type": "EXECUTE",
+            "evidence": "handoff:T026-POLICY-20261027-03",
+            "task_id": "T026-POLICY-20261027-03"
+          },
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T026-POLICY-20261027-03",
+          "text": "Accepted intervention1 preview/scaffold actually used in this EXECUTE for current owner/revision/milestones and final hashes. Executor reports no ID/revision/path/grammar repair. Same-parent/date initial use only; no efficacy or cost conclusion.",
+          "trend": "INCONCLUSIVE"
         }
       ],
       "key": "handoff.stale-progress-revision",
-      "last_seen": "2026-10-26",
-      "link_history": [],
-      "linked_optimization_task": null,
+      "last_seen": "2026-10-27",
+      "link_history": [
+        {
+          "date": "2026-10-27",
+          "decision": "MERGE WITH EXISTING OPTIMIZATION",
+          "link": {
+            "id": "T-026",
+            "status": "verified"
+          },
+          "rationale": "Accepted T026 intervention 1 addresses this existing recurring issue. Record the verified link and implementation boundary; no effectiveness claim until later eligible EXECUTE evidence.",
+          "task": "T026-SCAFFOLD-20261027-02"
+        }
+      ],
+      "linked_optimization_task": {
+        "id": "T-026",
+        "status": "verified"
+      },
       "metric_totals": {
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 13
+          "unknown_count": 15
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 13
+          "unknown_count": 15
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 13
+          "unknown_count": 15
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 13
+          "unknown_count": 15
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 13
+          "unknown_count": 15
         }
       },
       "metrics": {},
-      "occurrence_count": 13,
+      "occurrence_count": 15,
+      "optimization_boundary": "2026-10-27",
       "schema_history": [],
       "status": "observing",
       "summary": "A stale progress update was rejected; CLI reread the persisted revision and continued without state mutation.",
-      "trend": "REPEATED"
+      "trend": "INCONCLUSIVE"
     },
     {
       "affected_executions": [
@@ -1274,21 +1381,23 @@
       "affected_executions": [
         "T023-EXECUTE-20261025-01",
         "R009-SAVE-VERIFY-20261026-02",
-        "R009-CARDINAL-PROTOCOL-20261026-07"
+        "R009-CARDINAL-PROTOCOL-20261026-07",
+        "T026-CLOSEOUT-PREP-20261027-04"
       ],
       "affected_tasks": [
         "T023-EXECUTE-20261025-01",
         "R009-SAVE-VERIFY-20261026-02",
-        "R009-CARDINAL-PROTOCOL-20261026-07"
+        "R009-CARDINAL-PROTOCOL-20261026-07",
+        "T026-CLOSEOUT-PREP-20261027-04"
       ],
       "boundary_history": [],
       "category": "errors_recovery",
       "decision": {
-        "date": "2026-10-26",
+        "date": "2026-10-28",
         "evidence": [
-          "handoff:R009-CARDINAL-PROTOCOL-20261026-07"
+          "handoff:T026-CLOSEOUT-PREP-20261027-04"
         ],
-        "rationale": "Record recovery; no optimization work or effectiveness claim.",
+        "rationale": "Cost arithmetic/source replay substantively accepted; full preparation receipt CHANGES REQUIRED because four declared outputs absent. Preserve original result; next bounded publication delegation must repair output binding before external writes.",
         "value": "KEEP OBSERVING"
       },
       "display_id": "OPT-0009",
@@ -1367,41 +1476,65 @@
           "task": "R009-CARDINAL-PROTOCOL-20261026-07",
           "text": "Initial administrative placement recovered to exact declared private output files; final output hashes independently match.",
           "trend": "REPEATED"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T026-CLOSEOUT-PREP-20261027-04"
+            ],
+            "rationale": "Cost arithmetic/source replay substantively accepted; full preparation receipt CHANGES REQUIRED because four declared outputs absent. Preserve original result; next bounded publication delegation must repair output binding before external writes."
+          },
+          "attempt": 1,
+          "date": "2026-10-28",
+          "evidence": [
+            "handoff:T026-CLOSEOUT-PREP-20261027-04"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T026-CLOSEOUT-PREP-20261027-04",
+          "text": "Four required regular-file outputs were written under task administration instead of frozen owned paths. Original result records null for all four. GUI located actual artifacts and verified nine reviewable hashes, but rejects full receipt; publication delegation must bind actual manifests as explicit inputs and emit real owned outputs.",
+          "trend": "REPEATED"
         }
       ],
       "key": "handoff.exact-output-directory",
-      "last_seen": "2026-10-26",
+      "last_seen": "2026-10-28",
       "link_history": [],
       "linked_optimization_task": null,
       "metric_totals": {
         "manual_effort": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 3
+          "unknown_count": 4
         },
         "reliability_events": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 3
+          "unknown_count": 4
         },
         "rework_count": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 3
+          "unknown_count": 4
         },
         "time_seconds": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 3
+          "unknown_count": 4
         },
         "tokens": {
           "known_count": 0,
           "known_total": null,
-          "unknown_count": 3
+          "unknown_count": 4
         }
       },
       "metrics": {},
-      "occurrence_count": 3,
+      "occurrence_count": 4,
       "schema_history": [],
       "status": "observing",
       "summary": "Required outputs were initially written into administration paths.",
@@ -5601,6 +5734,387 @@
       "status": "observing",
       "summary": "Staged gate caught hard-break spaces missed before new-file staging",
       "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T026-AUDIT-20261027-01",
+        "T026-POLICY-20261027-03"
+      ],
+      "affected_tasks": [
+        "T026-AUDIT-20261027-01",
+        "T026-POLICY-20261027-03"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:T026-POLICY-20261027-03"
+        ],
+        "rationale": "Keep recovered input-volume issue factual. No new optimization selected; model costs and profiles remain unverified.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0054",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T026-AUDIT-20261027-01"
+            ],
+            "rationale": "Concrete recovered input-volume issue; no new optimization authorized by receipt. Existing audit intervention 2 is a candidate for separate selection."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:T026-AUDIT-20261027-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T026-AUDIT-20261027-01",
+          "text": "Astra audit recovered truncated combined reads using bounded sections; GUI receipt also needed smaller reads. Prefer section and field selection before emitting large contracts. Exact incident cost unknown.",
+          "trend": "NEW"
+        },
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T026-POLICY-20261027-03"
+            ],
+            "rationale": "Keep recovered input-volume issue factual. No new optimization selected; model costs and profiles remain unverified."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:T026-POLICY-20261027-03"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T026-POLICY-20261027-03",
+          "text": "Review and GUI intake recovered truncated combined reads by selecting smaller ranges and compact fields. Accepted source and report hashes unchanged.",
+          "trend": "REPEATED"
+        }
+      ],
+      "key": "tooling.bounded-read-output",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 2
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 2,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Large evidence reads require bounded output",
+      "trend": "REPEATED"
+    },
+    {
+      "affected_executions": [
+        "T026-AUDIT-20261027-01"
+      ],
+      "affected_tasks": [
+        "T026-AUDIT-20261027-01"
+      ],
+      "boundary_history": [],
+      "category": "rework",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:T026-AUDIT-20261027-01"
+        ],
+        "rationale": "Record recoveries without building a new validator for a one-off audit. Use actual schema keys and smaller checks.",
+        "value": "NO ACTION"
+      },
+      "display_id": "OPT-0055",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "NO ACTION",
+            "evidence": [
+              "handoff:T026-AUDIT-20261027-01"
+            ],
+            "rationale": "Record recoveries without building a new validator for a one-off audit. Use actual schema keys and smaller checks."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:T026-AUDIT-20261027-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T026-AUDIT-20261027-01",
+          "text": "Audit reported two mistaken structural counting assertions corrected against the actual tables. GUI aggregation independently needed occurrence_count and a syntax correction. Source findings were unchanged; fixed checks confirmed 53 items, 96 histories, 92 ledger entries and no links or boundaries.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "validation.audit-coverage-count-assumptions",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Ad hoc report counting checks needed schema corrections",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T026-SCAFFOLD-20261027-02"
+      ],
+      "affected_tasks": [
+        "T026-SCAFFOLD-20261027-02"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:T026-SCAFFOLD-20261027-02"
+        ],
+        "rationale": "Record schema recovery; no new tooling or efficacy claim.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0056",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:T026-SCAFFOLD-20261027-02"
+            ],
+            "rationale": "Record schema recovery; no new tooling or efficacy claim."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:T026-SCAFFOLD-20261027-02"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T026-SCAFFOLD-20261027-02",
+          "text": "Reviewer recovered invalid @ syntax, overlong note and unsupported usage field before mutation. Four independent boundary probes passed; first review accepted unchanged implementation.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.review-submission-schema-recovery",
+      "last_seen": "2026-10-27",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Review submission payload needed schema corrections",
+      "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "T026-POLICY-20261027-03"
+      ],
+      "affected_tasks": [
+        "T026-POLICY-20261027-03"
+      ],
+      "boundary_history": [
+        {
+          "boundary": "2026-10-27",
+          "date": "2026-10-27",
+          "decision": "MERGE WITH EXISTING OPTIMIZATION",
+          "rationale": "Record initial real use of accepted generator and accepted canonical-policy implementation boundary under T026. No IMPROVING/RESOLVED claim: same-parent/date use does not meet later eligible evidence requirement.",
+          "task": "T026-POLICY-20261027-03"
+        }
+      ],
+      "category": "repeated_knowledge_acquisition",
+      "decision": {
+        "date": "2026-10-27",
+        "evidence": [
+          "handoff:T026-POLICY-20261027-03"
+        ],
+        "rationale": "Record initial real use of accepted generator and accepted canonical-policy implementation boundary under T026. No IMPROVING/RESOLVED claim: same-parent/date use does not meet later eligible evidence requirement.",
+        "value": "MERGE WITH EXISTING OPTIMIZATION"
+      },
+      "display_id": "OPT-0057",
+      "first_seen": "2026-10-27",
+      "history": [
+        {
+          "assessment": {
+            "decision": "MERGE WITH EXISTING OPTIMIZATION",
+            "evidence": [
+              "handoff:T026-POLICY-20261027-03"
+            ],
+            "rationale": "Record initial real use of accepted generator and accepted canonical-policy implementation boundary under T026. No IMPROVING/RESOLVED claim: same-parent/date use does not meet later eligible evidence requirement."
+          },
+          "attempt": 1,
+          "date": "2026-10-27",
+          "evidence": [
+            "handoff:T026-POLICY-20261027-03"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "T026-POLICY-20261027-03",
+          "text": "GUI accepts intervention2 after first independent review: rule-to-source map, 8560 fewer owned Markdown bytes, one unchanged-byte diagnostic prompt and short existing governed-validation procedure. Later-task impact unknown.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "workflow.duplicated-policy-source",
+      "last_seen": "2026-10-27",
+      "link_history": [
+        {
+          "date": "2026-10-27",
+          "decision": "MERGE WITH EXISTING OPTIMIZATION",
+          "link": {
+            "id": "T-026",
+            "status": "verified"
+          },
+          "rationale": "Record initial real use of accepted generator and accepted canonical-policy implementation boundary under T026. No IMPROVING/RESOLVED claim: same-parent/date use does not meet later eligible evidence requirement.",
+          "task": "T026-POLICY-20261027-03"
+        }
+      ],
+      "linked_optimization_task": {
+        "id": "T-026",
+        "status": "verified"
+      },
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "optimization_boundary": "2026-10-27",
+      "schema_history": [],
+      "status": "observing",
+      "summary": "Duplicated procedural rules consolidated to canonical sources",
+      "trend": "NEW"
     }
   ],
   "ledger": [
@@ -7025,6 +7539,129 @@
       ],
       "rationale": "Factual final-publication guard/recovery only; no workflow optimization implementation or new task.",
       "report_sha256": "fa25c43139f1146634b85efeea347baaebe3fa20012ff1c2e712f1f5fe242db3"
+    },
+    {
+      "content_sha256": "83551f12a4c385eaa664cc97c196dc39d309dd571129c5235fed1e9b44e757b1",
+      "date": "2026-10-27",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T026-AUDIT-20261027-01"
+      ],
+      "id": "2919a5d3c9a0e916c04e5b1ffdba7be4bbd903e3b5093b8c9b1643b332bb9833",
+      "identity": "T026-AUDIT-20261027-01:1",
+      "observation_keys": [
+        "tooling.bounded-read-output",
+        "validation.audit-coverage-count-assumptions"
+      ],
+      "rationale": "GUI accepts bounded Phase A audit and explicitly triages recovered read/check issues. Audit proposals remain advisory; no Phase B, efficacy, publication or task-closure authorization.",
+      "report_sha256": "5a0a53a13d2a2d6dc721009369dd72d6f64b886ba9da910356eeb46f40dc4b74"
+    },
+    {
+      "content_sha256": "75282efb8241d409b3578ee6d864995880a458145e3b670040d29c1f4fa4e17f",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-27",
+      "decision": "MERGE WITH EXISTING OPTIMIZATION",
+      "evidence": [
+        "handoff:T026-SCAFFOLD-20261027-02"
+      ],
+      "id": "dcc7d008f58f1daaf170aaea979538a365e4a29711e918c4291a104b5a445bcc",
+      "identity": "T026-SCAFFOLD-20261027-02:1:EXEC-1",
+      "observation_keys": [
+        "handoff.stale-progress-revision"
+      ],
+      "rationale": "Accepted T026 intervention 1 addresses this existing recurring issue. Record the verified link and implementation boundary; no effectiveness claim until later eligible EXECUTE evidence.",
+      "report_sha256": "84802ef6ef725ad15b0b66c4de940db136f89e0768e454d48b1612fe175427ac"
+    },
+    {
+      "content_sha256": "7a2cdc97a76ada102235899f070d19bd335408b236aeeb4aad9549d3d8b35454",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-27",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T026-SCAFFOLD-20261027-02"
+      ],
+      "id": "8d317f01e227c92f26294d6ca9418002caf8111aaa3cd8e0017f05ed2606398e",
+      "identity": "T026-SCAFFOLD-20261027-02:1:REVIEW-R1",
+      "observation_keys": [
+        "handoff.review-submission-schema-recovery"
+      ],
+      "rationale": "Record schema recovery; no new tooling or efficacy claim.",
+      "report_sha256": "0c7c4188621023b71129ddcd81ca5f90089d5c6015cd9af5a0d155c0b4ce618f"
+    },
+    {
+      "content_sha256": "021eb934aa54248234d2b54c48513ccedb09982a14ea03e4e04a127db9cdda3d",
+      "date": "2026-10-27",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T026-SCAFFOLD-20261027-02"
+      ],
+      "id": "445d24f2f75227bfa368a97ce9277c4e40a70fd3b8b5b02a846257f150318965",
+      "identity": "T026-SCAFFOLD-20261027-02:1",
+      "observation_keys": [],
+      "rationale": "Current executor report matches explicitly triaged EXEC-1; avoid duplicate counts. GUI accepts first-pass review and exact six-output evidence; no efficacy claim.",
+      "report_sha256": "84802ef6ef725ad15b0b66c4de940db136f89e0768e454d48b1612fe175427ac"
+    },
+    {
+      "content_sha256": "91deb34108f637d5d0754065a17033d54f7887ddeb7ff515dc271ebcc8802f4c",
+      "cycle_id": "EXEC-1",
+      "date": "2026-10-27",
+      "decision": "MERGE WITH EXISTING OPTIMIZATION",
+      "evidence": [
+        "handoff:T026-POLICY-20261027-03"
+      ],
+      "id": "544ce8d8231a13d20ebbd34e46b17816c3662f550af17b962e3c68ce3353a16f",
+      "identity": "T026-POLICY-20261027-03:1:EXEC-1",
+      "observation_keys": [
+        "handoff.stale-progress-revision",
+        "workflow.duplicated-policy-source"
+      ],
+      "rationale": "Record initial real use of accepted generator and accepted canonical-policy implementation boundary under T026. No IMPROVING/RESOLVED claim: same-parent/date use does not meet later eligible evidence requirement.",
+      "report_sha256": "dc865d095c620e9759b92a6a1750eff2239f36aead6327f9c95ea37d1efd0eaf"
+    },
+    {
+      "content_sha256": "bb82b308d45b55bcfa013cc5b9a947ba147560768784ec9b9762aacb7da42271",
+      "cycle_id": "REVIEW-R1",
+      "date": "2026-10-27",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T026-POLICY-20261027-03"
+      ],
+      "id": "66498c65586e85a9416adfdfb290592316d667e479d1e00a23f466c4a49bd3aa",
+      "identity": "T026-POLICY-20261027-03:1:REVIEW-R1",
+      "observation_keys": [
+        "tooling.bounded-read-output"
+      ],
+      "rationale": "Keep recovered input-volume issue factual. No new optimization selected; model costs and profiles remain unverified.",
+      "report_sha256": "ac4c822cd56bb3d5d8888998806c2ce576f2b3d9368cd4517d3c3bea2a659c16"
+    },
+    {
+      "content_sha256": "809b077fcc7aabdd57326d880e742ec8bc08d0af08cd1707cc4d723f6282e7c8",
+      "date": "2026-10-27",
+      "decision": "NO ACTION",
+      "evidence": [
+        "handoff:T026-POLICY-20261027-03"
+      ],
+      "id": "25267e0339894b99b9dc66eb3dbe46a30be7b3467b32d3dbc634f4113486f0a5",
+      "identity": "T026-POLICY-20261027-03:1",
+      "observation_keys": [],
+      "rationale": "Current report equals explicitly triaged EXEC-1; avoid duplicate observations. GUI accepts first independent review with eleven exact outputs, 157 focused tests, 66 links and independent prompt/path probes; no duplicated full rerun or efficacy claim.",
+      "report_sha256": "dc865d095c620e9759b92a6a1750eff2239f36aead6327f9c95ea37d1efd0eaf"
+    },
+    {
+      "content_sha256": "a8fa590e3944e809edadc2ba8a1f9670c05127e3708fbc3b8b0818d14ea95ff5",
+      "date": "2026-10-28",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:T026-CLOSEOUT-PREP-20261027-04"
+      ],
+      "id": "2922006288455d1b7d93f7c3ae228af8d38e2c24525eea20b15b4aae11eab832",
+      "identity": "T026-CLOSEOUT-PREP-20261027-04:1",
+      "observation_keys": [
+        "handoff.exact-output-directory",
+        "accounting.truncated-thread-identity"
+      ],
+      "rationale": "Cost arithmetic/source replay substantively accepted; full preparation receipt CHANGES REQUIRED because four declared outputs absent. Preserve original result; next bounded publication delegation must repair output binding before external writes.",
+      "report_sha256": "4d9a6bce5b6667ded437abd9821e5be40ec9aaab1eb8cce8931bce98ec89c52a"
     }
   ],
   "version": 1

@@ -37,14 +37,20 @@
   },
   "issues": [
     {
-      "number": 53,
+      "number": 55,
       "state": "open",
+      "title": "F-007 \u2014 Add All Dynasties map view",
+      "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/55"
+    },
+    {
+      "number": 53,
+      "state": "closed",
       "title": "T-027 \u2014 Reconcile research branch into main and freeze v0.1.0-rc.1",
       "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/53"
     },
     {
       "number": 52,
-      "state": "open",
+      "state": "closed",
       "title": "T-026 \u2014 Astra audit and optimization of AI-assisted development workflow",
       "url": "https://github.com/mhaduk/ck3-dynasty-map/issues/52"
     },
@@ -351,6 +357,6 @@
   ],
   "repository": "mhaduk/ck3-dynasty-map",
   "retired_ids": [],
-  "verified_at": "2026-10-27T14:58:52.953585+00:00",
+  "verified_at": "2026-10-28T10:17:09.206154+00:00",
   "version": 1
 }

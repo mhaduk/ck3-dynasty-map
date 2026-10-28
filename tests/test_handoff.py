@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 import sys
 import re
+import shlex
 import tempfile
 import unittest
 
@@ -100,6 +101,169 @@ class HandoffTests(unittest.TestCase):
                       task_id=status["id"], attempt=status["attempt"], report_sha256=sha,
                       observations=[], decision=decision, rationale=rationale, evidence="tests:test_handoff",
                       today="2026-01-01")
+
+    def preview_snapshot(self):
+        return {str(p.relative_to(self.root)): (p.lstat().st_mode, p.lstat().st_mtime_ns,
+                os.readlink(p) if p.is_symlink() else p.read_bytes() if p.is_file() else None)
+                for p in self.root.rglob("*")}
+
+    def preview(self, directory, mode="commands", ok=True):
+        before = self.preview_snapshot()
+        result = self.run_cli("preview", directory.name, "--mode", mode, ok=ok)
+        self.assertEqual(before, self.preview_snapshot())
+        if not ok:
+            self.assertEqual(result.stdout, "")
+        return result
+
+    def test_preview_ready_planless_quotes_owner_and_current_revision(self):
+        directory = self.create("T-001-PREVIEW")
+        (directory / ".status-lock").unlink()
+        output = self.preview(directory).stdout
+        command = shlex.split(output.splitlines()[-1])
+        self.assertEqual(command[4:], ["claim", directory.name, "--owner", "<OWNER>", "--revision", "1"])
+        owner = "owner with spaces ' $(touch injected) ; `false`"
+        self.claim(directory.name, owner=owner)
+        output = self.preview(directory).stdout
+        command = shlex.split(output.splitlines()[-1])
+        self.assertEqual(command[4:], ["complete", directory.name, "--owner", owner, "--revision", "2"])
+        self.assertFalse((self.root / "injected").exists())
+
+    def test_preview_planned_commands_refresh_and_stale_revision_still_fails(self):
+        directory = self.planned(count=1)
+        first = shlex.split(self.preview(directory).stdout.splitlines()[-1])
+        self.assertEqual(first[-2:], ["--start", "stage0"])
+        self.progress(directory, "--start", "stage0")
+        second = shlex.split(self.preview(directory).stdout.splitlines()[-1])
+        self.assertEqual(second[-4:], ["--revision", "3", "--done", "stage0"])
+        self.run_cli(*first[4:], ok=False)
+        self.progress(directory, "--done", "stage0")
+        self.assertEqual(shlex.split(self.preview(directory).stdout.splitlines()[-1])[4], "complete")
+
+    def test_preview_scaffold_actual_hashes_headings_and_end_to_end_completion(self):
+        directory = self.create("T-001-SCAFFOLD", checks=("synthetic",), owned=("input.md", "output.txt"))
+        before = self.preview(directory, "result").stdout
+        blocks = [json.loads(x) for x in re.findall(r"(?ms)^```json\n(.*?)\n```", before)]
+        self.assertIsNone(blocks[0]["outputs"]["output.txt"])
+        self.assertIn("missing required deliverables cannot complete", before)
+        self.assertNotIn("- Outcome: SUCCESS", before)
+        self.assertNotIn("- Acceptance: PASS", before)
+        self.claim(directory.name)
+        (self.root / "input.md").write_text("modified synthetic input\n")
+        (self.root / "output.txt").write_text("synthetic output\n")
+        body = self.preview(directory, "result").stdout
+        blocks = [json.loads(x) for x in re.findall(r"(?ms)^```json\n(.*?)\n```", body)]
+        self.assertEqual(len(blocks), 2)
+        self.assertEqual(blocks[0]["inputs"], self.status(directory)["inputs"])
+        self.assertNotEqual(blocks[0]["inputs"]["input.md"], blocks[0]["outputs"]["input.md"])
+        self.assertEqual(blocks[0]["outputs"]["output.txt"], hashlib.sha256(b"synthetic output\n").hexdigest())
+        self.assertEqual(blocks[1]["metrics"], {"elapsed_seconds": None, "tokens": None})
+        for heading in ("QUESTION / SCOPE", "FINDINGS", "EVIDENCE", "OPTIONS", "RECOMMENDATION", "UNRESOLVED / UNKNOWN", "DECISION REQUIRED"):
+            self.assertIn("### " + heading, body)
+        (directory / "CLI_RESULT.md").write_text(body)
+        self.run_cli("complete", directory.name, "--owner", "worker-a", "--revision", "2", ok=False)
+        body = body.replace("- Outcome: <FILL FROM ACTUAL EVIDENCE>", "- Outcome: SUCCESS")
+        body = body.replace("- Acceptance: <FILL FROM ACTUAL EVIDENCE>", "- Acceptance: PASS")
+        body = body.replace("- synthetic: <FILL FROM ACTUAL CHECK>", "- synthetic: PASS")
+        body = body.replace("<FILL: factual observation or NONE after verification>", "NONE")
+        body = re.sub(r"<[^>]+>", "Synthetic fixture: output bytes and rejection verified; no external operations.", body)
+        (directory / "CLI_RESULT.md").write_text(body)
+        (self.root / "output.txt").write_text("changed after scaffold\n")
+        stale = self.run_cli("complete", directory.name, "--owner", "worker-a", "--revision", "2", ok=False)
+        self.assertIn("final outputs mismatch", stale.stderr)
+        (self.root / "output.txt").write_text("synthetic output\n")
+        self.run_cli("complete", directory.name, "--owner", "worker-a", "--revision", "2")
+        self.assertIn("gotowe " + directory.name, self.preview(directory).stdout)
+        self.ingest_review(directory)
+        self.run_cli("consume", directory.name, "--revision", "3", "--review", "Synthetic evidence checked.")
+        self.assertIn("No action: CONSUMED", self.preview(directory).stdout)
+
+    def test_preview_legacy_without_review_marker_has_single_json(self):
+        directory = self.create("T-001-LEGACYPREVIEW")
+        task = directory / "CLI_TASK.md"
+        task.write_text("Legacy per-ID frozen scope.\n")
+        status = self.status(directory)
+        status["scope_sha256"] = hashlib.sha256(task.read_bytes()).hexdigest()
+        (directory / "STATUS.json").write_text(json.dumps(status))
+        self.assertEqual(self.preview(directory, "result").stdout.count("```json"), 1)
+
+    def test_preview_rejects_unsafe_outputs_and_administration_without_writes(self):
+        directory = self.create("T-001-UNSAFE", owned=("output",))
+        self.claim(directory.name)
+        output = self.root / "output"
+        for kind in ("symlink", "directory", "fifo"):
+            with self.subTest(kind=kind):
+                if kind == "symlink": output.symlink_to(self.root / "missing")
+                elif kind == "directory": output.mkdir()
+                else: os.mkfifo(output)
+                result = self.preview(directory, "result", ok=False)
+                self.assertEqual(result.stdout, "")
+                self.assertIn("symlink" if kind == "symlink" else "regular file", result.stderr)
+                if kind == "directory": output.rmdir()
+                else: output.unlink()
+        ledger = directory / "IMPLEMENTATION_REVIEW.json"
+        ledger.symlink_to(self.root / "missing")
+        self.preview(directory, ok=False)
+        ledger.unlink()
+        (directory / "implementation-review").symlink_to(self.root / "missing")
+        self.preview(directory, ok=False)
+
+    def test_preview_identity_inputs_baseline_and_inventory_fail_closed(self):
+        directory = self.create("T-001-CONFLICT")
+        original = (directory / "STATUS.json").read_bytes()
+        status = self.status(directory)
+        status["id"] = "T-001-OTHER"
+        (directory / "STATUS.json").write_text(json.dumps(status))
+        self.preview(directory, ok=False)
+        (directory / "STATUS.json").write_bytes(original)
+        (self.root / "input.md").write_text("stale\n")
+        self.preview(directory, ok=False)
+        (self.root / "input.md").write_text("input-v1\n")
+        baseline = directory / "baseline/0.bin"
+        baseline.write_text("tampered\n")
+        self.preview(directory, ok=False)
+        baseline.write_text("input-v1\n")
+        status = self.status(directory)
+        status["owned"].append("docs/telemetry/optimization-inventory.json")
+        (directory / "STATUS.json").write_text(json.dumps(status))
+        self.assertIn("live GUI inventory", self.preview(directory, "result", ok=False).stderr)
+
+    def test_preview_unknown_owner_interrupted_and_nonregistered(self):
+        directory = self.create("T-001-PENDING")
+        self.claim(directory.name)
+        status = self.status(directory); status["owner"] = None
+        (directory / "STATUS.json").write_text(json.dumps(status))
+        self.assertIn("owner is unknown", self.preview(directory).stdout)
+        (directory / ".transition.json").write_text("{}")
+        self.assertIn("interrupted transition", self.preview(directory, ok=False).stderr)
+        self.run_cli("preview", "T-001-NONREGISTERED", ok=False)
+        self.run_cli("preview", "../../escape", ok=False)
+        self.run_cli("preview", directory.name, "--output", "forbidden.md", ok=False)
+        self.assertFalse((self.root / "forbidden.md").exists())
+
+    def test_preview_enabled_ready_and_disabled_planned_in_progress(self):
+        spec = importlib.util.spec_from_file_location("preview_review", SCRIPT.with_name("implementation_review.py"))
+        helper = importlib.util.module_from_spec(spec); spec.loader.exec_module(helper)
+        plan = self.plan(1)
+        paired = self.paired_contract(helper, plan)
+        summary = {"plan_sha256": self.load_helper().plan_fingerprint(plan),
+                   "bullets": [{"ids": ["stage0"], "text": plan["steps"][0]["label"]}]}
+        for enabled in (True, False):
+            task_id = "T-003-ENABLED" if enabled else "T-003-DISABLED"
+            if not enabled:
+                paired["loop"].update(enabled=False, correction_budget=None, budget_rationale=None)
+                paired["routing"] = {"execution_class": "MECHANICAL", "review_route": "NONE",
+                                     "gui_finalization": "RECEIPT_ONLY", "reason": "synthetic read-only fixture",
+                                     "high_reason": None, "targeted_trigger": None}
+            self.run_cli("create", task_id, "--parent", "T-003", "--task", "Synthetic preview fixture",
+                         "--input", "input.md", "--execution-plan", json.dumps(plan),
+                         "--plan-summary", json.dumps(summary), "--review-contract", json.dumps(paired))
+            directory = self.root / ".codex-sync/tasks" / task_id
+            output = self.preview(directory).stdout
+            self.assertIn("enabled" if enabled else "disabled", output)
+            self.assertIn("<OWNER>", output)
+            self.claim(task_id)
+            self.assertIn("--start stage0", self.preview(directory).stdout)
+            self.preview(directory, "result")
 
     def test_independent_ids_progress_and_one_claim_wins(self):
         first = self.create("T-001-A")
