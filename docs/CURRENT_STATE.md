@@ -1,3 +1,19 @@
+## F-007 / #55 — parked; published research checkpoint — 2026-10-28
+
+The user ended this iteration and authorized documentation/GitHub publication,
+commit and push while keeping #55 OPEN. No fourth view was implemented. The
+current blocker is script-side Dynasty CoA color1/color2 extraction as six
+numeric selector inputs; confirmed GUI getters do not establish effect/value
+callability. The recovered install-path issue is not a remaining blocker.
+
+The [canonical F-007 record](tasks/F-007-all-dynasties.md) contains target-build
+sources, negative-search limits, recovery/cleanup evidence, finite-cutoff partial
+AI cost and a gated future plan. The failed implementation and superseded broad
+advisory packet remain preserved privately. No active F-007 handoff, game test,
+probe, architecture change or next research iteration is started. Future GUI
+orchestration is an option for a separate decision, not approved implementation.
+F-007 is parked; select a different task only on new user instruction.
+
 ## T-026 / #52 — accepted workflow checkpoint; Git publication pending — 2026-10-28
 
 Phase A audit and explicitly selected local changes #1/#2 plus limited #4 are

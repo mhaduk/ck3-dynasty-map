@@ -1193,3 +1193,23 @@ Evidence labels: source and installed bytes matched for ten files (52/53); start
 Source provenance is the private frozen palette roster SHA-256 `3142d65d5217c40cb015bc7c66275695ebb5c618dd243a13182aebc1de0e186c`. Public generated data stores numeric pair IDs and RGB channels only; it omits raw Dynasty IDs and vanilla source dumps. See the [F-002 canonical record](tasks/F-002-dynasty-color-strategy.md).
 
 Reusable closeout lessons: accepted source baselines can predate later F-001 presentation cleanup, so review exact frozen payload lineage before installation; byte equality proves installed file identity, not runtime UI; use native authoring patterns and a fresh parser/startup gate; keep installer evidence phase-specific; a stale numeric GUI value was fixed by selecting and saving the ID in one script-side Execute; sparse IDs and inclusive disjoint ±5 boxes must stay aligned across selector and writers; validate lifecycle outputs' sibling paths and non-null hashes before completion; runtime line evidence must use its own capture interval, not startup hashes. A user described the overall work as “about five times longer than expected”; this is qualitative feedback only, not a calibrated duration or model-cost measure.
+
+## F-007 — script-side Dynasty CoA RGB gate (2026-10-28)
+
+On CK3 1.20.1.2, the script `dynasty` scope link from Character is documented
+(`event_targets.log:550–552`). `Dynasty.GetDynastyCoA` and `CoatOfArms.GetColor`
+are confirmed data/GUI functions, not evidence of effect-callable RGB access.
+The generated script catalogs and installed numeric script-values description,
+plus targeted searches of shipped script_values/scripted_effects, established
+no supported producer of the six CoA RGB channels needed by F-002. CoA effects
+`generate_coa`, `reset_coa` and `set_coa` mutate rather than return RGB.
+
+The feature is parked, not implemented or proven impossible. Reopen this gate
+only on a concrete candidate/caller or relevant build change; require its exact
+signature, context, return and effect/value callability before an NPC-only
+microprobe. Do not repeat renderer/traversal research or infer a script-side
+ScriptedGui producer from Execute's data-type listing. A GUI acquisition/dispatch
+layer would be a separate architecture decision, with transient run ordering,
+completion/cancellation and cleanup still unproven. See [F-007](tasks/F-007-all-dynasties.md)
+for exact references, limits, recovery and future stages. Existing renderer,
+palette semantics and the three accepted views are unchanged.

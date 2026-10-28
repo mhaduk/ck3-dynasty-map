@@ -84,6 +84,7 @@ technical findings remain partial.
 
 | [R-018 / #38](tasks/R-018-diagnostic-timing-research.md) | Research reliable elapsed timing and presentation boundaries | Reuse F-004 timing findings | Open/deferred research; timer excluded from F-004 |
 | [F-006 / #39](tasks/F-006-diagnostic-timer.md) | Implement Shift diagnostic elapsed timer | R-018 and GUI design approval | Planned/blocked on research; independent of F-004 |
+| [F-007 / #55](tasks/F-007-all-dynasties.md) | Add All Dynasties with existing renderer/palette and top independent ruler Dynasty colors | Supported script-side CoA RGB producer, or separately accepted minimal acquisition/dispatch change | OPEN / parked at Step 0 — 1.20.1.2 source/API findings and gated future plan recorded; no implementation, runtime test or architecture change |
 
 These plans are separate backlog records, not implementation or runtime
 authorization. Existing F-101 through F-110 IDs remain stable; their older

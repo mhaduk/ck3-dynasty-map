@@ -6115,6 +6115,89 @@
       "status": "observing",
       "summary": "Duplicated procedural rules consolidated to canonical sources",
       "trend": "NEW"
+    },
+    {
+      "affected_executions": [
+        "F007-IMPLEMENT-20261028-01"
+      ],
+      "affected_tasks": [
+        "F007-IMPLEMENT-20261028-01"
+      ],
+      "boundary_history": [],
+      "category": "errors_recovery",
+      "decision": {
+        "date": "2026-10-28",
+        "evidence": [
+          "handoff:F007-IMPLEMENT-20261028-01"
+        ],
+        "rationale": "Record recovered preparation error without authorizing tool changes or claiming optimization effectiveness.",
+        "value": "KEEP OBSERVING"
+      },
+      "display_id": "OPT-0058",
+      "first_seen": "2026-10-28",
+      "history": [
+        {
+          "assessment": {
+            "decision": "KEEP OBSERVING",
+            "evidence": [
+              "handoff:F007-IMPLEMENT-20261028-01"
+            ],
+            "rationale": "Record recovered preparation error without authorizing tool changes or claiming optimization effectiveness."
+          },
+          "attempt": 1,
+          "date": "2026-10-28",
+          "evidence": [
+            "handoff:F007-IMPLEMENT-20261028-01"
+          ],
+          "metrics": {
+            "manual_effort": null,
+            "reliability_events": null,
+            "rework_count": null,
+            "time_seconds": null,
+            "tokens": null
+          },
+          "task": "F007-IMPLEMENT-20261028-01",
+          "text": "Executor stopped truthfully on absent frozen path. GUI then resolved current DEV from the mod wrapper and persisted enabled-mod configuration; all eight installed files match the generated current-dev baseline. API bridge remains independently unresolved.",
+          "trend": "NEW"
+        }
+      ],
+      "key": "handoff.installed-dev-path-stale",
+      "last_seen": "2026-10-28",
+      "link_history": [],
+      "linked_optimization_task": null,
+      "metric_totals": {
+        "manual_effort": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "reliability_events": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "rework_count": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "time_seconds": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        },
+        "tokens": {
+          "known_count": 0,
+          "known_total": null,
+          "unknown_count": 1
+        }
+      },
+      "metrics": {},
+      "occurrence_count": 1,
+      "schema_history": [],
+      "status": "observing",
+      "summary": "GUI froze a retired installed DEV path instead of resolving the current wrapper.",
+      "trend": "NEW"
     }
   ],
   "ledger": [
@@ -7662,6 +7745,21 @@
       ],
       "rationale": "Cost arithmetic/source replay substantively accepted; full preparation receipt CHANGES REQUIRED because four declared outputs absent. Preserve original result; next bounded publication delegation must repair output binding before external writes.",
       "report_sha256": "4d9a6bce5b6667ded437abd9821e5be40ec9aaab1eb8cce8931bce98ec89c52a"
+    },
+    {
+      "content_sha256": "be3ace8ddbd9be936105098e3fc09e85e2fe35bb4ad3b289170843db2321e3f8",
+      "date": "2026-10-28",
+      "decision": "KEEP OBSERVING",
+      "evidence": [
+        "handoff:F007-IMPLEMENT-20261028-01"
+      ],
+      "id": "57b4feabe843b1d800363d47498e67d50228a81bb744a3b23c6222c9ac8d7eaf",
+      "identity": "F007-IMPLEMENT-20261028-01:1",
+      "observation_keys": [
+        "handoff.installed-dev-path-stale"
+      ],
+      "rationale": "GUI reviewed negative result and verified all ten declared output hashes. Correctly stopped before implementation; no runtime acceptance. Missing installation path was a GUI preparation error recovered by exact wrapper/config/file evidence. Source API bridge remains UNKNOWN, not disproven.",
+      "report_sha256": "6c79e851238cdf9a1a5d2b08db869559612447b7ef79a85f3033efdcd7aff7a5"
     }
   ],
   "version": 1

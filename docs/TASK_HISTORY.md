@@ -2,6 +2,16 @@
 
 Compact index of completed substantial tasks. Investigation detail belongs in the linked summary and, where available, the GitHub Issue.
 
+## Parked F-007 checkpoint — open, not completed
+
+F-007 / [#55](https://github.com/mhaduk/ck3-dynasty-map/issues/55) remains OPEN.
+The 2026-10-28 source/API iteration stopped at unestablished script-side Dynasty
+CoA RGB access; no feature implementation or runtime test occurred. The user
+ended this iteration. Findings, search limits, recovered preparation errors,
+partial finite-cutoff cost and gated next-iteration/possible GUI orchestration
+plan are in [F-007](tasks/F-007-all-dynasties.md). The existing architecture and
+three views remain unchanged; no next iteration is authorized by this record.
+
 ## Ongoing T-018 checkpoint — not a completed-task entry
 
 T-018 / [#44](https://github.com/mhaduk/ck3-dynasty-map/issues/44) remains
